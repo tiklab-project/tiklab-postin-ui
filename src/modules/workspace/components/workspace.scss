@@ -1,0 +1,388 @@
+body{
+    margin: 0;
+    padding: 0;
+
+}
+ul{
+    list-style: none;
+}
+
+.ant-table{
+    font-size: 13px;
+}
+
+//------------------------------------------
+//dragbox
+.dragbox{
+    width: 3px;
+}
+
+.dragbox:hover{
+    background-color: #6aa5ff;
+}
+
+
+// --------------------------------------------
+// --workspace--
+
+.ws-layout{
+    background-color: white;
+    height: 100%;
+}
+
+.ws-sider{
+    background-color: #f7f8fa;
+}
+
+.ws-content{
+    background-color: white;
+    height: 100%;
+    //background-color: #f0f0f0;
+}
+
+.ws-menu-ul-show{
+    display: block;
+}
+
+.ws-menu-ul-collapsed{
+    display: none;
+}
+
+// ws左侧导航
+.ws-menu-ul {
+    padding: 0;
+    .ws-menu-li {
+        padding: 0 40px;
+        height: 40px;
+        width: 240px;
+        line-height: 40px;
+        display: block;
+        cursor: pointer;
+    }
+
+    .ws-menu-li:hover{
+        background-color:#EDF0F5;
+    }
+    .ws-menu-li-action{
+        background-color: #e3e8f0;
+        border-right: 3px solid #1296db;
+    }
+}
+
+.ws-menu-side-header{
+    padding: 0 5px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.ws-menu-side-header:hover{
+    background-color:#EDF0F5 ;
+    color: #000;
+}
+
+.ws-menu-icon{
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.ws-menu-title{
+    flex-grow: 3;
+    font-weight: bold;
+    margin: 0 0 0 15px;
+}
+
+.action-li{
+    background-color: #b6e3ff;
+}
+
+
+// --------------------------------------------
+// --workspaceEdit --
+.ws-edit-modal-form{
+    text-align: center;
+    margin: 10px 50px 0 0;
+}
+
+.ws-edit-modal-form-submit{
+    margin-left: -120px ;
+}
+
+
+// --------------------------------------------
+// --workspaceList --
+
+.wslist-searchbtn{
+    border-top: 1px solid #d9d9d9;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.wslist-eibtn{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+// --------------------------------------------
+// --workspaceDetail --
+.det-box{
+    display: flex;
+    justify-content: space-around;
+}
+.det-item{
+    border: 1px solid black;
+    width: 180px;
+    display: flex;
+    padding: 10px;
+    margin: 30px 0;
+    justify-content: space-around;
+}
+.det-icon{
+    margin-top: 20px;
+}
+
+
+// --------------------------------------------
+// --workspaceDetailIndex --
+.detailindex-content{
+    background-color: white;
+}
+
+.detailindex-layout{
+    height: 100%;
+}
+
+.ws-row{
+    overflow:auto;
+    height: 100%;
+    background-color: #f0f2f5;
+}
+
+.ws-col{
+    background-color: white;
+    padding: 0 20px 30px;
+}
+
+// --------------------------------------------
+// --workspaceDetailMenu--
+.detailmenu-sider{
+    background-color: #f7f8fa;
+    width: 260px;
+    // height: 100%;
+}
+
+.ws-menu{
+    height: 100%;
+}
+
+.ws-menu-header{
+   height: 50px;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+.ws-menu-header-title{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ws-menu-header-show{
+   display: block;
+}
+
+.ws-menu-header-hide{
+   display: none;
+}
+
+.ws-detail-iconMenu-show{
+   display: block;
+}
+.ws-detail-iconMenu-hide{
+   display: none;
+}
+
+.ws-detail-dropdown{
+
+}
+
+
+.ws-detail-menu-showadd{
+    // background-color:#f7f7f7;
+    // border: 1px solid rgb(124, 208, 241);
+    box-shadow: 0 0 5px #d9d9d9;
+    width: 120px;
+    height: 80px;
+    text-align: center;
+    position: absolute;
+    top:-37px;
+    left: 45px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.detailmenu-fold{
+    height: 100%;
+}
+
+.ws-detail-menu{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.ws-detail-menu-ul-box{
+    overflow: auto;
+    overflow-x: hidden;
+    height: 85%;
+}
+
+
+.ant-menu{
+   background-color: #f7f7f7;
+}
+.ws-detail-menu-ul-show{
+   display: block;
+}
+
+.ws-detail-menu-ul-collapsed{
+   display: none;
+}
+
+.ws-detail-menu-serchbtn{
+    padding: 10px 8px;
+    border-top:1px solid #e4e4e4 ;
+    border-bottom:1px solid #e4e4e4 ;
+    display: flex;
+    justify-content: center;
+}
+.ws-detail-menu-protitle{
+    display: flex;
+    justify-content: space-around;
+}
+
+.ws-detail-menu-set{
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #e4e4e4;
+}
+
+.ws-detail-menu-text{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.iconmenu-unfold{
+    height: 100%;
+}
+
+.ws-detail-iconMenu{
+    ul{
+        height: 93%;
+        width: 100%;
+        padding:1px 0;
+        li{
+            text-align: center;
+            line-height: 45px;
+            height: 45px;
+            margin: 20px 0 ;
+
+        }
+    }
+   height: 100%;
+}
+
+.detailmenu-unfold{
+    padding: 15px 0;
+    text-align: center;
+}
+
+
+.show-category:hover + .show-categorynav{
+    display: block;
+}
+
+.show-categorynav{
+    position: absolute;
+    margin: -50px 0 0 80px;
+    display: none;
+    width: 100px;
+    box-shadow:0px 0px 5px rgba(0,0,0,0.3);
+    // border: 1px solid black;
+}
+
+.show-categorynav:hover{
+    display: block;
+}
+
+
+.ws-show-set{
+    display: block;
+}
+.ws-hide-set{
+    display: none;
+}
+
+.wscontant{
+    display: flex;
+    height: 100%;
+}
+
+.changeBox{
+    //border-right: 3px solid #f0f2f5;
+    width: 280px;
+    background: #f0f1f2;
+}
+
+
+
+.wscontant-contant{
+    width: 100%;
+}
+
+.wsAside{
+    height: 100%;
+}
+
+
+//workspaceinitpage
+
+.workspace-init-page{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    .ws-init-box{
+        width: 1100px;
+        background: white;
+        box-shadow: 0 0 10px #e2e2e2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .ws-init-contant{
+            width: 450px;
+
+            .ant-input{
+                width: 450px;
+                height: 45px;
+            }
+
+            .ant-btn-primary{
+                width: 110px;
+                height: 40px;
+            }
+        }
+    }
+}

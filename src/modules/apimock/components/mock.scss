@@ -1,0 +1,36 @@
+.mock-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.mock-search{
+    width: 200px;
+}
+
+.mock-baseInfo-form{
+    .ant-input[disabled]{
+        font-size: 16px;
+        color: black;
+    }
+}
+
+
+// --------------------------
+// detail
+
+.mock-baseInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mock-request{
+    margin: 20px 0 0 0;
+}
+
+.mock-response{
+    margin: 20px 0 ;
+}
+
+

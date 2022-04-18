@@ -1,0 +1,88 @@
+//workspaceDetailLayout
+.ws-detail-contant{
+    height: 100%;
+    display: flex;
+
+
+    .ws-detail-left{
+        width: 80px;
+        height: 100%;
+        position:relative;
+        background: #e6e7e9;
+    }
+
+    .ws-detail-right{
+        width: 100%;
+    }
+
+}
+
+
+
+//leftNav
+.ws-detail-left-nav-ws{
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    .ant-avatar{
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .ant-avatar.ant-avatar-icon {
+        font-size: 22px;
+    }
+}
+
+
+
+
+.ws-detail-left-nav{
+    width: 80px;
+    height: 100%;
+
+
+
+    .ws-detail-left-nav-item{
+        padding: 6px;
+
+        .ws-detail-left-nav-item-box{
+            padding: 6px 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .ws-detail-left-nav-item-box:hover{
+            background-color: #fcfcfc;
+        }
+
+
+        .ws-detail-left-nav-item-detail{
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .selectlink{
+        background-color: #fcfcfc;
+    }
+
+
+
+}
+
+//workspaceDetailPage
+.ws-detail-page{
+    width: 1240px;
+    margin: 0 auto;
+}
+
+//workspaceContant
+
+.wscontant-box{
+    width: 1240px;
+    margin: 0 auto;
+}

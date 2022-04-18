@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
+    /* 默认有边距，都要清除 */
+    margin: 0;
+    padding: 0;
+    /*字体设置*/
+    //font-size: 14px !important;
+    //font-family: "Microsoft Yahei",sans-serif;
+    //color: #ccc;
+    /* 去掉列表的原点 */
+    list-style: none;
+    /* 默认鼠标 */
+    cursor: default;
+}
+
+/*控制整个滚动条*/
+::-webkit-scrollbar {
+    background-color: white;
+    width: 10px;
+    height: 10px;
+}
+
+/*滚动条两端方向按钮*/
+::-webkit-scrollbar-button {
+    background-color: white;
+}
+
+/*滚动条中间滑动部分*/
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, .3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+/*滚动条右下角区域*/
+::-webkit-scrollbar-corner {
+    background-color: white;
+}
+
+//::-webkit-scrollbar-thumb:window-inactive {
+//    background-color: rgba(0, 0, 0, .2);
+//}
+
+
+//面包屑
+.breadcrumb-contant{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d9d9d9;
+    margin: 0 0 10px 0;
+}
+
+.apibox-breadcrumb{
+    font-size: 15px;
+    font-weight: 600;
+    margin: 8px 0;
+}
+.bread-cursor{
+    cursor: pointer;
+}
+
+
+$blue-main: #0053ca;
+.ant-tabs-tab .ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: $blue-main;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    margin:0 5px  ;
+}
+
+// 表头设置
+.ant-table-thead>tr .ant-table-cell{
+    background: #e6edfa;
+    font-weight: 600;
+}
+
+.ant-table-tbody .ant-table-cell{
+    //border:none
+}
+
+//表格头单元格
+.ant-table-thead>tr>th{
+    padding: 12px;
+}
+//表格体单元格
+.ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
+    padding: 6px;
+}
+
+table{
+    //border-bottom: 1px solid #f0f0f0;
+}
+
+.search-input{
+    width: 300px!important;
+    border-radius: 15px;
+}
+
+//表单内组件背景
+.ant-select-selector {
+    background-color: #e3e8f07d;
+}
+
+.ant-input-affix-wrapper {
+    background-color: #e3e8f07d;
+}
+
+.ant-input {
+    background-color: #e3e8f07d;
+}
+
+.ant-picker {
+    background-color: #e3e8f07d;
+}
+
+
+//弹出框表单的弹框样式，遮罩层背景
+.ant-modal-mask {
+    background-color: #4a60848f!important;
+}
+
+//弹框标题
+.ant-modal-title {
+    font-weight: 600!important;
+}
+
+
+.table-delete{
+    color: #ff0000;
+}
+
+table .icon{
+    margin:0   ;
+}
+
+.important-btn{
+    background: #1296db!important;
+    color: #f0f0f0!important;
+}
+
+
+

@@ -1,0 +1,37 @@
+.quicktest-contant{
+    display: flex;
+    height: 100%;
+
+    .quicktest-left{
+        width: 220px;
+        border-right: 1px solid #e4e4e4;
+    }
+
+    .quicktest-right{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+.quicktest-contant-box{
+    width: 1240px;
+}
+
+
+//leftList
+.qt-left-list{
+    height: 100%;
+    background: #f5f5f5;
+
+    .qt-left-list-li{
+        padding:5px 5px 5px 40px;
+        border-bottom: 1px solid #e4e4e4;
+        cursor: pointer;
+    }
+    .qt-left-list-li:hover{
+        background: #fafafa;
+    }
+
+}

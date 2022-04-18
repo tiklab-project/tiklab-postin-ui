@@ -1,0 +1,210 @@
+.form-info{
+    padding: 10px 25px;
+    .ant-input[disabled] {
+        font-size: 14px;
+        color: #000;
+        cursor: text;
+    }
+}
+
+.title{
+    font-weight: bold;
+    border-left: 3px solid #1890ff;
+    padding-left: 3px;
+}
+
+.ex-title{
+    margin: 15px 0;
+
+}
+
+// apxMethod
+$backgroud-color: #fff;
+.method-header{
+    line-height: 47px;
+    background-color:$backgroud-color;
+    height: 50px;
+    border-bottom:1px solid #d9d9d9 ;
+    padding: 0;
+}
+
+.method-menu-box>.ant-menu-horizontal{
+    border-bottom:0px
+}
+
+.method-content{
+    background-color:$backgroud-color;
+    padding:10px 0 0  0;
+}
+
+.method-menu{
+    background-color:$backgroud-color;
+}
+
+
+// --------------------------------
+// ApxMethodDetail
+.apidetail-header-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.apidetail-title-tool{
+    display: flex;
+}
+
+/* 可编辑框初始宽度 */
+.editable-cell-value-wrap {
+    width: 100%;
+    height: 100%;
+    min-height: 21px;
+
+}
+
+.method-request{
+    margin: 0 10px 15px 10px  ;
+    padding: 10px ;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.method-response{
+    margin: 15px 10px;
+    padding: 10px ;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.method-name{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 10px 25px;
+}
+
+.method{
+    padding: 0 0 0 25px;
+    border-bottom: 1px solid #d9d9d9;
+    margin: 0 0 30px 0 ;
+
+    .method-info{
+
+
+        .method-info-item{
+            margin: 0 10px 10px 0;
+        }
+
+        .method-info-path{
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    .info-item{
+        margin: 0 0 25px 0;
+    }
+
+    .method-people-info{
+        margin: 10px 0;
+
+        .people-item{
+            margin: 0 80px 0 0;
+            color: #999;
+        }
+    }
+
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+        border: none;
+    }
+
+}
+
+
+
+// 可编辑表格，当鼠标移入行时，显示单元格
+.editable-row{
+    .editable-cell-value-wrap {
+        height: 31.6px;
+        padding: 5px 12px;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    .ant-select{
+        height: 31.6px;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    .ant-select-arrow{
+        display: none;
+    }
+
+    .ant-checkbox-inner{
+        border:none
+    }
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 4px 11px;
+}
+
+.editable-row:hover .ant-select {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid #d9d9d9;
+}
+
+.editable-row:hover .ant-select-arrow{
+    display: block;
+}
+
+.editable-row:hover .ant-checkbox-inner{
+    border: 1px solid #d9d9d9;
+}
+
+// .ant-table-thead>tr>th{
+//     padding: 10px;
+//     font-size: 13px;
+// }
+
+// .ant-table-tbody>tr>td{
+//     padding: 5px;
+//     font-size: 13px;
+// }
+
+
+// request
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color:#0053ca;
+}
+
+.mock-textarea{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.textArea-focus{
+    display: block;
+}
+
+.textArea-blur{
+    display: none;
+}
+
+
+//
+.request-radio{
+    margin:10px 0 20px 0;
+}
+
+//
+.binary-box{
+    height: 80px;
+}
+

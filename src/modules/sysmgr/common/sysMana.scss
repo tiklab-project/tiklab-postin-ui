@@ -1,0 +1,98 @@
+.sysmana-layout{
+    height: 100%;
+    .site-layout-background {
+        background-color: #fff;
+    }
+    .search-add{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // padding: 0 20px;
+        .addmodel {
+            margin: 0 10px;
+        }
+    }
+
+    .doublekit-orga-aside {
+        height: 100%;
+        border-right: 1px solid #e6f7ff;
+        ul,li {
+            list-style: none;
+        }
+
+        .orga-aside-hidden {
+            display: none;
+        }
+
+        .aside-li{
+            cursor: pointer;
+            padding: 0 15px 0 30px;
+        }
+
+        .orga-aside-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .orga-aside-item:hover{
+            background-color:#EDF0F5;
+        }
+
+        .aside-item-li{
+            padding: 0 15px;
+        }
+
+        .orga-aside-li {
+            height: 40px;
+            line-height: 40px;
+
+
+        }
+
+        .orga-aside-li:hover{
+              background-color:#EDF0F5;
+          }
+
+        .orga-aside-select {
+            background-color: #e3e8f0;
+            border-right: 3px solid #1296db;
+        }
+    }
+}
+
+.sysmana-sider{
+    width: 200px;
+    background-color: white;
+    height: 100%;
+}
+
+.sysmana-menu{
+    height: 100%;
+}
+
+.sysmana-content{
+    height: 100%;
+    background-color: white;
+}
+
+
+// evnMana
+.environment-breadcrumb{
+    margin: 15px 0;
+}
+
+.environment-searchbtn{
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.ant-modal-close-x{
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}

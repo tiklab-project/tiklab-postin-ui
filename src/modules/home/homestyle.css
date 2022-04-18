@@ -1,0 +1,17 @@
+
+
+.home-content{
+    background-color:#f0f2f5;
+    height: 500px;
+    height: 800px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content-div{
+    width: 400px;
+    height: 250px;
+    border: 1px solid black;
+}

@@ -1,0 +1,44 @@
+//requestType
+.requestType{
+    height: 25px;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.requestType-post{
+    color: white;
+    background: #d55e4d;
+}
+
+.requestType-get{
+    color: white;
+    background: #2bd583;
+}
+
+.requestType-delete{
+    color: white;
+    background: #ff0000;
+}
+
+.requestType-head{
+    color: white;
+    background: #439591;
+}
+
+.requestType-put{
+    color: white;
+    background: #7e97bd;
+}
+
+.requestType-options{
+    color: white;
+    background: #7e97bd;
+}
+
+.requestType-patch{
+    color: white;
+    background: #7e97bd;
+}
+
+
+
