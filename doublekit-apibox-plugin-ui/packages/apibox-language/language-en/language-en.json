@@ -1,0 +1,12 @@
+{
+  "wsName":"workspaceName",
+  "wsId": "workspaceId",
+  "desc":"desc",
+  "operation":"operation",
+  "wsMgr": "workspaceManagement",
+  "wsList": "workspaceList",
+  "searchWorkspace": "searchWorkspace",
+  "edit": "edit",
+  "delete": "delete",
+  "addws": "add"
+}

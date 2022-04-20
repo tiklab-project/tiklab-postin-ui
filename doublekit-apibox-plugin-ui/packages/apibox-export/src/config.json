@@ -1,0 +1,14 @@
+{
+    "name":"export",
+    "type":"function",
+    "extensions":[
+        {
+            "id": "export",
+            "version": "1.0.0",
+            "js": "/export/export.js",
+            "css": "/export/export.css",
+            "point": "export",
+            "title": "导出"
+        }
+    ]
+}

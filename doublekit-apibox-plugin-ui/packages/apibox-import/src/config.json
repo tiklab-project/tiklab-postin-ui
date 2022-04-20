@@ -1,0 +1,14 @@
+{
+    "name":"import",
+    "type":"function",
+    "extensions":[
+        {
+            "id": "import",
+            "version": "1.0.0",
+            "title": "导入",
+            "js": "/import/import.js",
+            "css": "/import/import.css",
+            "point": "import"
+        }
+    ]
+}

@@ -1,0 +1,116 @@
+.cur-table-icon{
+  background: #1296db;
+  color: white;
+  border-radius: 5px;
+}
+
+//
+.comp-vertitle{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comp-module{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f3f3f3;
+  padding: 5px;
+  border-left: 3px solid #1296db;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.showInfo{
+  display: block;
+}
+
+.hideInfo{
+  display: none;
+}
+
+
+.modeule-layout{
+  display: flex;
+  justify-content: space-between;
+  .ant-form-item{
+    margin:0 0 5px;
+}
+}
+.combaseinfo{
+  flex-grow:1;
+}
+
+.edit-info{
+  background: #9effa9;
+}
+.delete-info{
+  background:#ffbebe
+}
+.add-info{
+  background: #d5ebd8;
+}
+
+.edited{
+  background: #9effa9;
+}
+.removed{
+  background:#ffbebe
+}
+.added{
+  background: #d5ebd8;
+}
+
+
+//com
+.header-item{
+  display: flex;
+}
+.com-content{
+  padding: 0 40px;
+}
+
+//
+.version-detail{
+  .ant-collapse-header{
+    background: #f3f3f3;
+    margin: 10px 0;
+    border-left: 3px solid #1890ff;
+
+}
+  .ant-collapse-icon-position-right>.ant-collapse-item>.ant-collapse-header{
+    padding: 8px 10px;
+}
+  .form-info{
+    padding: 0px 25px;
+}
+  .ant-form-item{
+    margin: 0 0 10px;
+}
+
+  //控制详情里所有单元格的padding
+  .ant-table-tbody>tr>td,
+  .ant-table-thead>tr>th,
+  .ant-table tfoot>tr>td,
+  .ant-table tfoot>tr>th{
+    padding: 12px;
+}
+
+
+}
+.ver-title{
+  margin: 10px 0;
+  font-weight:bold;
+}
+
+.ver-show{
+  display: block;
+}
+
+.ver-hide{
+  display: none;
+}
+

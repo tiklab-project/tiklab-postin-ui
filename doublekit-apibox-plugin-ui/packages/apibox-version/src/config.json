@@ -1,0 +1,44 @@
+{
+    "name":"apibox-version",
+    "type":"function",
+    "extensions":[
+        {
+            "id": "versionButton",
+            "version": "1.0.0",
+            "js": "versionButton/versionButton.js",
+            "css": "versionButton/versionButton.css",
+            "point": "apibox-version",
+            "title": "版本"
+        },
+        {
+            "id": "versionList",
+            "version": "1.0.0",
+            "js": "versionList/versionList.js",
+            "css": "versionList/versionList.css",
+            "title": "版本",
+            "mount": "workspacepage",
+            "router": "/version",
+            "slide": false
+        },
+        {
+            "id": "versionDetail",
+            "version": "1.0.0",
+            "js": "apiboxVersionDetail/apiboxVersionDetail.js",
+            "css": "apiboxVersionDetail/apiboxVersionDetail.css",
+            "title": "版本",
+            "mount": "workspacepage",
+            "router": "/versiondetail",
+            "slide": false
+        },
+        {
+            "id": "versionCompare",
+            "version": "1.0.0",
+            "js": "apiboxVersionCompare/apiboxVersionCompare.js",
+            "css": "apiboxVersionCompare/apiboxVersionCompare.css",
+            "title": "版本",
+            "mount": "workspacepage",
+            "router": "/versioncompare",
+            "slide": false
+        }
+    ]
+}

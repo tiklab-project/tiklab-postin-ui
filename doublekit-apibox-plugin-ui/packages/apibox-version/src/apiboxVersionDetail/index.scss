@@ -1,0 +1,32 @@
+
+.version-detail{
+    .ant-collapse-header{
+        background: #f3f3f3;
+        margin: 10px 0;
+        border-left: 3px solid #1890ff;
+
+    }
+    .ant-collapse-icon-position-right>.ant-collapse-item>.ant-collapse-header{
+        padding: 8px 10px;
+    }
+    .form-info{
+        padding: 0px 25px;
+    }
+    .ant-form-item{
+        margin: 0 0 10px;
+    }
+
+    //控制详情里所有单元格的padding
+    .ant-table-tbody>tr>td,
+    .ant-table-thead>tr>th,
+    .ant-table tfoot>tr>td,
+    .ant-table tfoot>tr>th{
+        padding: 12px;
+    }
+
+
+}
+.ver-title{
+    margin: 10px 0;
+    font-weight:bold;
+}

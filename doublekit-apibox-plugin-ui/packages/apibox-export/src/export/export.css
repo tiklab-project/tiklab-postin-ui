@@ -1,0 +1,36 @@
+
+.aaa{
+    border: 1px solid #1890ff;
+    padding: 5px;
+    width: 100px;
+    text-align: center;
+    background-color: #1890ff;
+    color: white;
+    border-radius: 3px;
+}
+
+
+
+/* body {
+    background: #050901;   
+} */
+.light {
+    width: fit-content;
+    padding: 25px 30px;
+    color: #03e9f4;
+    font-size: 24px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    cursor: pointer;
+}
+.light:hover {
+    background-color: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+}
+   
+ 
