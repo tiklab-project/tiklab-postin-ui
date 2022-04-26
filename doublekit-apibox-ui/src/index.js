@@ -20,6 +20,13 @@ import routes from './routers';
 class Entry extends Component {
 
     render(){
+        try {
+            console.log(acc_url)
+        } catch (e) {
+            console.log(222)
+        }
+
+        debugger
         let allStore = {
             ...stores,
             ...privilegeStores,

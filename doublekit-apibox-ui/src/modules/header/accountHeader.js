@@ -6,8 +6,10 @@ import CommonHeader from "./commonHeader";
 const AccountHeader = props => {
     const authData = useAccountConfig();
 
+
     const AccountLogout = () => {
-        loginOutAcc(authData.authAccConfig.accUrl)
+
+        loginOutAcc(authData.authUrl)
     }
 
     console.log("AccHeader");

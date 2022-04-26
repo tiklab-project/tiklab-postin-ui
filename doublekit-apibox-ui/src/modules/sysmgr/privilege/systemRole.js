@@ -1,10 +1,10 @@
 import React from "react";
-import { PrivilegeSystemRole } from 'doublekit-privilege-ui';
+import { RoleList } from 'doublekit-privilege-ui';
 
 const SystemRole = props => {
 
     return (
-            <PrivilegeSystemRole {...props} group={'system'} />
+            <RoleList {...props} group={'system'} />
     )
 }
 

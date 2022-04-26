@@ -1,5 +1,5 @@
 import { LoginStore,LOGIN_STATUS } from 'doublekit-portal-ui';
-import {PluginStore, PLUGIN_STORE} from "doublekit-plugin-ui"
+import {PluginStore, PLUGIN_STORE} from "doublekit-plugin-manage"
 import { SEARCHSTORE, SearchStore } from './modules/integration/search'
 
 import {USERSELECT_STORE, UserSelectStore} from './modules/integration/userSelect/store/userSelectStore'

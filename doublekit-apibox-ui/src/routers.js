@@ -1,7 +1,7 @@
 
 import React from 'react'
 import PortalHeader from './modules/header/portalHeader.js';
-import {LogOut} from 'doublekit-portal-ui';
+import {BaseLogOut} from 'doublekit-portal-ui';
 import {Directory} from 'doublekit-user-ui';
 import {Licence} from "doublekit-licence-ui";
 import {PluginDetail} from "doublekit-plugin-manage"
@@ -30,7 +30,7 @@ import {
     Mock,
     MockDetail,
 
-    SystemManagement,
+    SysManage,
     EvnMana,
     DataStructure,
     ApiStatus,
@@ -48,7 +48,6 @@ import {
 } from './modules';
 import {Redirect} from "react-router";
 import RecentBrowing from "./modules/workspace/components/recentBrowing";
-import EmailConfig from "./modules/sysmgr/message/emailConfig";
 import WorkspaceDetailLayout from "./modules/workspaceDetail/workspaceDetailLayout";
 import ApiContant from "./modules/category/components/ApiContant";
 import TabsPage from "./modules/workspaceDetail/tabsPage";
@@ -66,7 +65,7 @@ const routers =  [
     },
     {
         path: "/logout",
-        component: LogOut,
+        component: BaseLogOut,
         exact: true,
         key:'logout',
     },
@@ -76,8 +75,8 @@ const routers =  [
     },
     {
         component: PortalHeader,
-        path: '/',
-        key:'poroute',
+        // path: '/',
+        // key:'poroute',
         routes:[
             {
                 path: "/",
@@ -125,7 +124,7 @@ const routers =  [
             {
                 path:'/systemManagement',
                 key:'systemManagement',
-                component:SystemManagement,
+                component:SysManage,
                 routes:[
                     {
                         path: "/systemManagement/organ/org",
@@ -188,23 +187,12 @@ const routers =  [
                         component: MessageType,
                     },
                     {
-                        path: "/systemManagement/emailconfig",
-                        key:'emailconfig',
-                        exact: true,
-                        component: EmailConfig,
-                    },
-                    {
                         path: "/systemManagement/envMana",
                         key:'EvnMana',
                         exact: true,
                         component: EvnMana,
                     },
-                    {
-                        path: "/systemManagement/authConfig",
-                        key:'authConfig',
-                        exact: true,
-                        render: () => <Directory isPortal={false}/>,
-                    },
+
                     {
                         path: "/systemManagement/dataStructure",
                         key:'dataStucture',
@@ -226,7 +214,18 @@ const routers =  [
                         key:'licence',
                         exact: true,
                         component: Licence,
-                    }
+                    },{
+                        path: "/systemManagement/authConfig",
+                        key:'authConfig',
+                        exact: true,
+                        render: () => <Directory isPortal={false}/>,
+                    },
+                    {
+                        path: "/systemManagement",
+                        key:'sysEnvMana',
+                        exact: true,
+                        render: () => <Directory to={"/systemManagement/envMana"}/>,
+                    },
                 ]
 
             },

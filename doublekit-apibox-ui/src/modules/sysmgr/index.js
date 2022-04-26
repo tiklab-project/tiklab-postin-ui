@@ -1,4 +1,4 @@
-import SystemManagement from './common/sysManagMenu';
+import SysManage from './common/sysManagMenu';
 import EvnMana from './environment/components/environment';
 import { ENVIRONMENT_STORE, EnvironmentStore } from './environment/store/environmentStore';
 import DataStructure from "./dataStructure/components/dataStructure";
@@ -20,7 +20,7 @@ import MessageUser from './message/messageUser';
 
 
 export {
-    SystemManagement,
+    SysManage,
     EvnMana,
     ENVIRONMENT_STORE, EnvironmentStore,
     DataStructure,

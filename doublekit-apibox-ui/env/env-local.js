@@ -5,10 +5,12 @@
  */
 
 const base_url =  JSON.stringify('http://192.168.10.16:8080');
-const plugin_base_url = JSON.stringify("http://127.0.0.1:3000");
-const pluginAddressUrl = JSON.stringify('http://127.0.0.1:3000/config.json');
-const fetchMethod = JSON.stringify("get");
+const plugin_base_url = JSON.stringify("http://192.168.10.16:8080");
+const pluginAddressUrl = JSON.stringify('/pluginConfig/getPluginConfig');
 
+const fetchMethod = JSON.stringify("post");
+
+//判断是否是用户环境，公司内部切为false用于调试
 const userProduction = false;
 
 const appKey = JSON.stringify('appkey');
@@ -16,7 +18,7 @@ const appSecret = JSON.stringify('appsecret');
 const version = JSON.stringify('1.0.1');
 const client = JSON.stringify('1.1.0');
 
-const ISCEEESAAS = JSON.stringify('ce');
+const acc_url = JSON.stringify('http://project.dev.doublekit.net');
 
 module.exports = {
     base_url,
@@ -28,5 +30,5 @@ module.exports = {
     appSecret,
     version,
     client,
-    ISCEEESAAS,
+    acc_url
 }

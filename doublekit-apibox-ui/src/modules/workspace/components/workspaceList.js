@@ -8,7 +8,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Breadcrumb, Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
-import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
+import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-manage'
 import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui"
 
@@ -105,7 +105,7 @@ const WorkspaceList = (props) => {
     },[userId,params])
 
     useEffect(()=>{
-        const pluginComConfig = new PluginFun({pluginsStore}, "import", {});
+        const pluginComConfig = new PluginFun(props, "import", {});
         const plug = pluginComConfig.getPlugins();
         setPluginLength(plug.length)
     },[])

@@ -8,7 +8,6 @@
   ],
   "scripts": {
     "start": "cross-env NODE_ENV=local API_ENV=local  webpack-dev-server --progress --config ./webpack.dev.js ",
-    "dev": "cross-env NODE_ENV=dev API_ENV=dev webpack-dev-server --progress --config ./webpack.dev.js",
     "prod": "cross-env NODE_ENV=prod API_ENV=prod webpack --config ./webpack.test.js",
     "build": "rimraf es/* && ./node_modules/.bin/babel src --copy-files  --extensions .js --out-dir es/components && ncp pack/index.js es/index.js && ncp README.md es/README.md  && ncp package.publish.json es/package.json && ncp plugins es/plugins",
     "electron": "electron ."
@@ -84,11 +83,10 @@
     "antd": "^4.15.2",
     "axios": "^0.21.0",
     "chalk": "^4.1.2",
-    "doublekit-core-ui": "^1.0.1",
+    "doublekit-core-ui": "^1.0.0",
     "doublekit-licence-ui": "^1.0.1",
     "doublekit-message-ui": "^1.0.0",
     "doublekit-plugin-manage": "^1.0.0",
-    "doublekit-plugin-ui": "^1.0.0",
     "doublekit-portal-ui": "^1.0.0",
     "doublekit-privilege-ui": "^1.0.0",
     "doublekit-user-ui": "^1.0.0",

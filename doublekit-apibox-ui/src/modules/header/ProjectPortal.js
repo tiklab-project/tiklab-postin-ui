@@ -1,16 +1,16 @@
 import React from 'react';
-import {useAccountConfig, useBasePortal} from "doublekit-portal-ui";
+import {useAccountConfig, useBasePortal, verifyUserHOC} from "doublekit-portal-ui";
 import LocalHeader from './localHeader';
 import AccountHeader from './accountHeader';
 import { inject, observer } from 'mobx-react';
 
 const Portal = props => {
 
-    const {portalLoginStore , history} = props;
+    const {portalLoginStore , history,authData} = props;
 
-    const authData = useAccountConfig();
+    // const authData = useAccountConfig();
 
-    useBasePortal(portalLoginStore, history, "/login")
+    // useBasePortal(portalLoginStore, history, "/login")
 
     const isCeEeHeader = () =>{
         if(authData.authType === 'local'){
@@ -29,6 +29,6 @@ const Portal = props => {
         </div>
     )
 }
-
-export default inject("portalLoginStore")(observer(Portal));
+const  WrapPortal = verifyUserHOC(Portal);
+export default inject("portalLoginStore")(observer(WrapPortal));
 

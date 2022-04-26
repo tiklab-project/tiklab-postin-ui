@@ -2,14 +2,14 @@ import React, {Fragment, useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
 import { DownOutlined,UpOutlined} from '@ant-design/icons';
-import { PrivilegeSystem } from "doublekit-privilege-ui";
+import { PrivilegeButton } from "doublekit-privilege-ui";
 
 import './sysMana.scss'
 import {inject, observer} from "mobx-react";
 
 const { Sider, Content } = Layout;
 
-const SystemManagement = (props) => {
+const SysManage = (props) => {
     const {pluginsStore} = props;
     const {pluginConfig, isInitLoadPlugin} = pluginsStore;
     const routers = props.route.routes
@@ -76,26 +76,6 @@ const SystemManagement = (props) => {
             ]
         },
         {
-            title: '项目权限中心',
-            icon: 'laptop',
-            key: "/systemManagement/project",
-            encoded: "SysPriProject",
-            children: [
-                {
-                    title: '功能管理',
-                    icon: 'laptop',
-                    key: '/systemManagement/privilege',
-                    encoded: "SysFeatrueProject",
-                },
-                {
-                    title: '角色管理',
-                    icon: 'laptop',
-                    key: '/systemManagement/role',
-                    encoded: "SysRoleProject",
-                }
-            ]
-        },
-        {
             title: "消息中心",
             icon: 'laptop',
             key: '/systemManagement/message',
@@ -125,12 +105,6 @@ const SystemManagement = (props) => {
                     key: '/systemManagement/messageSendType',
                     encoded: "SysMessageSendType",
                 },
-                {
-                    title: '邮箱配置',
-                    icon: 'laptop',
-                    key: '/systemManagement/emailconfig',
-                    encoded: "emailconfig",
-                }
             ]
         },
         {
@@ -155,7 +129,7 @@ const SystemManagement = (props) => {
 
     const [selectKey,setSelectKey] = useState('/systemManagement/envMana')
 
-    const [router,setRouter] = useState()
+    const [menuRouter,setMenuRouter] = useState()
 
     useEffect(() => {
         let data = pluginConfig("settingMenu").filter(item => item.menuTitle);
@@ -171,9 +145,9 @@ const SystemManagement = (props) => {
                     }
                 })
             })
-            setRouter(settingMenu.concat(newRouter));
+            setMenuRouter(settingMenu.concat(newRouter));
         }else {
-            setRouter(settingMenu);
+            setMenuRouter(settingMenu);
         }
     }, [isInitLoadPlugin])
 
@@ -201,7 +175,7 @@ const SystemManagement = (props) => {
     // 无子级菜单处理
     const renderMenu = (data,deep)=> {
         return (
-            <PrivilegeSystem code={data.encoded}  key={data.key}>
+            <PrivilegeButton code={data.encoded}  key={data.key}>
                 <li
                     key={data.key}
                     className={` orga-aside-li ${data.key=== selectKey ? "orga-aside-select" : ""}`}
@@ -212,14 +186,14 @@ const SystemManagement = (props) => {
                         {data.title}
                     </div>
                 </li>
-            </PrivilegeSystem>
+            </PrivilegeButton>
         )
     }
 
     // 子级菜单处理
     const renderSubMenu = ({title,key,children,encoded},deep)=> {
         return (
-              <PrivilegeSystem code={encoded} disabled ={"hidden"} key={key}>
+              <PrivilegeButton code={encoded} disabled ={"hidden"} key={key}>
                   <li key={key} title={title} >
                       <div className="orga-aside-item aside-li"
                            onClick={() => setOpenOrClose(key)}
@@ -250,8 +224,18 @@ const SystemManagement = (props) => {
                           }
                       </ul>
                   </li>
-               </PrivilegeSystem>
+               </PrivilegeButton>
         )
+    }
+
+    const showUlView = (data)=>{
+        return data && data.map(firstItem => {
+            return firstItem.children && firstItem.children.length > 0
+                ? renderSubMenu(firstItem)
+                : renderMenu(firstItem)
+
+        })
+
     }
 
 
@@ -262,10 +246,7 @@ const SystemManagement = (props) => {
                     <div className="doublekit-orga-aside">
                         <ul style={{padding: 0}} >
                             {
-                                router && router.map(firstItem => {
-                                    return firstItem.children && firstItem.children.length > 0 ?
-                                            renderSubMenu(firstItem) : renderMenu(firstItem)
-                                })
+                                showUlView(menuRouter)
                             }
                         </ul>
                     </div>
@@ -279,4 +260,4 @@ const SystemManagement = (props) => {
 }
 
 
-export default inject("pluginsStore")(observer(SystemManagement));
+export default inject("pluginsStore")(observer(SysManage));

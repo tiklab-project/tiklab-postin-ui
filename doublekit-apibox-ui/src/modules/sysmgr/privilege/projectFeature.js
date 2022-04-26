@@ -1,9 +1,9 @@
 import React from "react";
-import { PrivilegeProjectFeature } from 'doublekit-privilege-ui';
+import { ProjectFeatureList } from 'doublekit-privilege-ui';
 
 const ProjectFeature = props => {
     return (
-            <PrivilegeProjectFeature {...props}/>
+            <ProjectFeatureList {...props}/>
     )
 }
 

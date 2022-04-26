@@ -1,10 +1,10 @@
 import React from "react";
-import { PrivilegeDomainRole } from 'doublekit-privilege-ui';
+import { DomainRoleList } from 'doublekit-privilege-ui';
 
 const WorkspacePrivilege = props => {
     const workspaceId = localStorage.getItem('workspaceId')
     return (
-            <PrivilegeDomainRole  
+            <DomainRoleList
                 {...props} 
                 domainId = {workspaceId}
             />
