@@ -8,9 +8,6 @@ const Portal = props => {
 
     const {portalLoginStore , history,authData} = props;
 
-    // const authData = useAccountConfig();
-
-    // useBasePortal(portalLoginStore, history, "/login")
 
     const isCeEeHeader = () =>{
         if(authData.authType === 'local'){

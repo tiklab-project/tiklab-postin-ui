@@ -2,21 +2,21 @@
   "name": "doublekit-apibox-ui",
   "version": "1.0.0",
   "description": "doublekit-apibox-ui",
-  "main": "main.js",
+  "main": "es/index.js",
   "files": [
     "es"
   ],
   "scripts": {
     "start": "cross-env NODE_ENV=local API_ENV=local  webpack-dev-server --progress --config ./webpack.dev.js ",
     "prod": "cross-env NODE_ENV=prod API_ENV=prod webpack --config ./webpack.test.js",
-    "build": "rimraf es/* && ./node_modules/.bin/babel src --copy-files  --extensions .js --out-dir es/components && ncp pack/index.js es/index.js && ncp README.md es/README.md  && ncp package.publish.json es/package.json && ncp plugins es/plugins",
-    "electron": "electron ."
+    "build": "rimraf es/* && ./node_modules/.bin/babel src --copy-files  --extensions .js --out-dir es/components && ncp pack/index.js es/index.js && ncp README.md es/README.md",
+    "publish": "npm publish"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "publishConfig": {
-    "registry": "http://172.12.1.11:8081/repository/npm-hosted/"
+    "registry": "http://172.12.1.11:8081/repository/npm-hosted"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
@@ -79,12 +79,11 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
-    "@uiw/react-codemirror": "^3.0.12",
     "antd": "^4.15.2",
     "axios": "^0.21.0",
     "chalk": "^4.1.2",
     "doublekit-core-ui": "^1.0.0",
-    "doublekit-licence-ui": "^1.0.1",
+    "doublekit-licence-ui": "^1.0.0",
     "doublekit-message-ui": "^1.0.0",
     "doublekit-plugin-manage": "^1.0.0",
     "doublekit-portal-ui": "^1.0.0",
@@ -92,8 +91,6 @@
     "doublekit-user-ui": "^1.0.0",
     "i18next": "^19.8.4",
     "i18next-browser-languagedetector": "^6.0.1",
-    "js-md5": "^0.7.3",
-    "json-server": "^0.16.3",
     "lodash": "^4.17.21",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
@@ -105,7 +102,6 @@
     "react-json-view": "^1.21.3",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "rimraf": "^3.0.2",
     "sass": "^1.32.2"
   }
 }

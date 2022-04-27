@@ -1,10 +1,11 @@
 /*
- * @Description:
+ * @Description:用于打包
  * @LastEditTime: 2021-05-31 13:29:01
  */
 import { stores as workspaceStore } from './components/stores';
 import routers from './components/routers';
 import saasrouters from './components/saasrouters';
+import Entry from "./components/index";
 import workspaceResource from './components/common/language/resource';
 import { orgStores } from 'doublekit-user-ui';
 import { privilegeStores } from 'doublekit-privilege-ui';
@@ -25,5 +26,6 @@ export {
     workspaceRouters,
     saasrouters,
     workspaceResource,
-    Search
+    Search,
+    Entry
 }

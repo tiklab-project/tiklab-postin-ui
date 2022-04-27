@@ -19,7 +19,6 @@ import {
     WorkspaceCreatePage,
     WorkspaceList,
     WorkspaceDetail,
-    DetailIndex,
     Category,
     ApxMethod,
     ApxMethodDetail,
@@ -75,11 +74,11 @@ const routers =  [
     },
     {
         component: PortalHeader,
-        // path: '/',
-        // key:'poroute',
+        path: '/',
+        key:'poroute',
         routes:[
             {
-                path: "/",
+                path: "/home",
                 component: Home,
                 exact: true,
                 key:'Home',

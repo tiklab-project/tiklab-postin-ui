@@ -233,9 +233,7 @@ const SysManage = (props) => {
             return firstItem.children && firstItem.children.length > 0
                 ? renderSubMenu(firstItem)
                 : renderMenu(firstItem)
-
         })
-
     }
 
 

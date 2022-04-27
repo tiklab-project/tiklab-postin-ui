@@ -1,6 +1,6 @@
 //workspaceDetailLayout
 .ws-detail-contant{
-    height: 100%;
+    height: calc(100% - 64px);
     display: flex;
 
 
@@ -83,6 +83,6 @@
 //workspaceContant
 
 .wscontant-box{
-    width: 1240px;
+    //width: 1240px;
     margin: 0 auto;
 }

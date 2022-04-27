@@ -1,12 +1,10 @@
 
 import React from 'react'
 import PortalHeader from './modules/header/portalHeader';
-import {AuthConfig, Directory} from 'doublekit-user-ui'
 import {
     Home,
     SearchResult,
 
-    WorkspaceSetting,
     WorkspaceRole,
     WorkspacePrivilege,
     Workspace, WorkspaceInitPage,
@@ -14,7 +12,6 @@ import {
     WorkspaceCreatePage,
     WorkspaceList,
     WorkspaceDetail,
-    DetailIndex,
     Category,
     ApxMethod,
     ApxMethodDetail,
@@ -22,12 +19,10 @@ import {
     Test,
     TestCase,
     TestCaseDetail,
-    TestInstance,
 
     Mock,
     MockDetail,
 
-    SystemManagement,
     EvnMana,
     DataStructure,
     ApiStatus,
@@ -39,12 +34,21 @@ import {
     MessageSendType,
     MessageTemplate,
     MessageType,
-    MessageUser, Org, Usermgr,
+    MessageUser, Org, Usermgr, Login, SysManage,
 
 } from './modules';
 import {Redirect} from "react-router";
 import RecentBrowing from "./modules/workspace/components/recentBrowing";
-
+import PluginManage from "./modules/sysmgr/pluginManage/pluginManage";
+import {Licence} from "doublekit-licence-ui";
+import {Directory} from "doublekit-user-ui";
+import {PluginDetail} from "doublekit-plugin-manage";
+import WorkspaceDetailLayout from "./modules/workspaceDetail/workspaceDetailLayout";
+import ApiContant from "./modules/category/components/ApiContant";
+import TabsPage from "./modules/workspaceDetail/tabsPage";
+import LayoutQuickTest from "./modules/quicktest/components/layoutQuickTest";
+import TabsQuickTest from "./modules/quicktest/components/tabsQuickTest";
+import TestdetailQuickTest from "./modules/quicktest/components/testdetailQuickTest";
 
 const routers =  [
     {
@@ -57,10 +61,9 @@ const routers =  [
         key:'poroute',
         routes:[
             {
-                path: "/",
+                path: "/home",
                 component: Home,
                 exact: true,
-
                 key:'Home',
             },
             {
@@ -101,33 +104,9 @@ const routers =  [
                 ]
             },
             {
-                path: "/workspaceSet",
-                component: WorkspaceSetting,
-                key:'setting',
-                routes:[
-                    {
-                        path: "/workspaceSet/role",
-                        key:'role',
-                        exact: true,
-                        component: WorkspaceRole,
-                    },
-                    {
-                        path: "/workspaceSet/workspacePrivilege",
-                        key:'privilege',
-                        exact: true,
-                        component: WorkspacePrivilege,
-                    },
-                    {
-                        path: "/workspaceSet",
-                        key:'ridrole',
-                        component: ()=><Redirect to='/workspaceSet/role'/>,
-                    },
-                ]
-            },
-            {
                 path:'/systemManagement',
                 key:'systemManagement',
-                component:SystemManagement,
+                component:SysManage,
                 routes:[
                     {
                         path: "/systemManagement/privilege",
@@ -164,39 +143,54 @@ const routers =  [
                         key:'MessageSendType',
                         exact: true,
                         component: MessageSendType,
-                    },
-                    {
+                    },{
                         path: "/systemManagement/messageTemplate",
                         key:'MessageTemplate',
                         exact: true,
                         component: MessageTemplate,
-                    },
-                    {
+                    },{
                         path: "/systemManagement/messageType",
                         key:'MessageType',
                         exact: true,
                         component: MessageType,
-                    },
-                    {
+                    },{
                         path: "/systemManagement/envMana",
                         key:'EvnMana',
                         exact: true,
                         component: EvnMana,
-                    },
-                    {
+                    },{
                         path: "/systemManagement/dataStructure",
                         key:'dataStucture',
                         exact: true,
                         component: DataStructure,
-                    },
-                    {
+                    },{
                         path: "/systemManagement/apistatus",
                         key:'apistatus',
                         exact: true,
                         component: ApiStatus,
+                    },{
+                        path: "/systemManagement/pluginmanage",
+                        key:'pluginmanage',
+                        component: PluginManage,
+                    },{
+                        path: "/systemManagement/authConfig",
+                        key:'authConfig',
+                        exact: true,
+                        render: () => <Directory isPortal={false}/>,
+                    },{
+                        path: "/systemManagement",
+                        key:'sysEnvMana',
+                        exact: true,
+                        render: () => <Directory to={"/systemManagement/envMana"}/>,
                     },
                 ]
 
+            },
+            {
+                path: "/plugindetail",
+                key:'plugindetail',
+                exact: true,
+                component: PluginDetail,
             },
             {
                 path: "/searchResult",
@@ -211,7 +205,7 @@ const routers =  [
                 component: MessageUser,
             },
             {
-                component: DetailIndex,
+                component: WorkspaceDetailLayout,
                 path: "/workspacepage",
                 key:'DetailIndex',
                 routes:[
@@ -221,66 +215,114 @@ const routers =  [
                         key:'WorkspaceDetail',
                         component: WorkspaceDetail,
                     },
-
                     {
-                        path: "/workspacepage/apis/detail/category",
-                        exact: true,
-                        key:'Category',
-                        component: Category,
-                    },
-
-                    {
-                        path:"/workspacepage/apis/detail/interface",
-                        component: ApxMethod,
+                        path: "/workspacepage/apis",
+                        key:'apis',
+                        component: ApiContant,
                         routes:[
                             {
-                                path:"/workspacepage/apis/detail/interface/detail",
-                                exact: true,
-                                key:'ApxMethodDetail',
-                                component: ApxMethodDetail,
+                                path: "/workspacepage/apis/detail",
+                                key:'TabsPage',
+                                component: TabsPage,
+                                routes:[
+                                    {
+                                        path: "/workspacepage/apis/detail/category",
+                                        exact: true,
+                                        key:'Category',
+                                        component: Category,
+                                    },{
+                                        path:"/workspacepage/apis/detail/interface",
+                                        component: ApxMethod,
+                                        key:'ApxMethod',
+                                        routes:[
+                                            {
+                                                path:"/workspacepage/apis/detail/interface/detail",
+                                                exact: true,
+                                                key:'ApxMethodDetail',
+                                                component: ApxMethodDetail,
+                                            },
+                                            {
+                                                path:"/workspacepage/apis/detail/interface/test",
+                                                exact: true,
+                                                key:'test',
+                                                component: Test,
+                                            },{
+                                                path:"/workspacepage/apis/detail/interface/testcase",
+                                                exact: true,
+                                                key:'testcase',
+                                                component: TestCase,
+                                            },
+                                            {
+                                                path:"/workspacepage/apis/detail/interface/testcasedetail",
+                                                exact: true,
+                                                key:'testCaseDetail',
+                                                component: TestCaseDetail,
+                                            },
+                                            {
+                                                path:'/workspacepage/apis/detail/interface/mock',
+                                                key:'mock',
+                                                exact: true,
+                                                component: Mock
+                                            },
+                                            {
+                                                path:'/workspacepage/apis/detail/interface/mockdetail',
+                                                exact: true,
+                                                key:'mockDetail',
+                                                component:MockDetail
+                                            },
+                                            {
+                                                path:"/workspacepage/apis/detail/interface",
+                                                exact: true,
+                                                key:'ridinterfacedetail',
+                                                component: ()=><Redirect to='/workspacepage/apis/detail/interface/detail'/>,
+                                            },
+                                        ]
+                                    },
+                                    {
+                                        path:"/workspacepage/apis/detail",
+                                        exact: true,
+                                        key:'ridapidetail',
+                                        component: ()=><Redirect to='/workspacepage/apis/detail/category'/>,
+                                    },
+                                ]
                             },
                             {
-                                path:"/workspacepage/apis/detail/interface/test",
+                                path:"/workspacepage/apis",
                                 exact: true,
-                                key:'test',
-                                component: Test,
-                            },{
-                                path:"/workspacepage/apis/detail/interface/testcase",
-                                exact: true,
-                                key:'testcase',
-                                component: TestCase,
+                                key:'ridapisdetail',
+                                component: ()=><Redirect to='/workspacepage/apis/detail'/>,
+                            },
+                        ]
+                    },
+                    {
+                        path: "/workspacepage/quickTest",
+                        key:'quickTest',
+                        component: LayoutQuickTest,
+                        routes:[
+                            {
+                                path: "/workspacepage/quickTest/detail",
+                                key: 'TabsQuickTest',
+                                component: TabsQuickTest,
+                                routes: [
+                                    {
+                                        path: "/workspacepage/quickTest/detail/api",
+                                        exact: true,
+                                        key:'TestdetailQuickTest',
+                                        component: TestdetailQuickTest,
+                                    },{
+                                        path:"/workspacepage/quickTest/detail",
+                                        exact: true,
+                                        key:'reTestdetailQuickTest',
+                                        component: ()=><Redirect to='/workspacepage/quickTest/detail/api'/>,
+                                    },
+                                ]
                             },
                             {
-                                path:"/workspacepage/apis/detail/interface/testcasedetail",
+                                path:"/workspacepage/quickTest",
                                 exact: true,
-                                key:'testCaseDetail',
-                                component: TestCaseDetail,
+                                key:'ridquickTestdetail',
+                                component: ()=><Redirect to='/workspacepage/quickTest/detail'/>,
                             },
-                            {
-                                path:"/workspacepage/apis/detail/interface/instance",
-                                exact: true,
-                                key:'instance',
-                                component: TestInstance,
-                            },
-                            {
-                                path:'/workspacepage/apis/detail/interface/mock',
-                                key:'mock',
-                                exact: true,
-                                component: Mock
-                            },
-                            {
-                                path:'/workspacepage/apis/detail/interface/mockdetail',
-                                exact: true,
-                                key:'mockDetail',
-                                component:MockDetail
-                            },
-                            {
-                                path:"/workspacepage/apis/detail/interface",
-                                exact: true,
-                                key:'ridapidetail',
-                                component: ()=><Redirect to='/workspacepage/apis/detail/interface/detail'/>,
-                            },
-
                         ]
                     },
                     {
@@ -289,8 +331,18 @@ const routers =  [
                         exact: true,
                         component: ()=><Redirect to='/workspacepage/detail'/>,
                     },
-
-
+                    {
+                        path: "/workspacepage/role",
+                        key:'role',
+                        exact: true,
+                        component: WorkspaceRole,
+                    },
+                    {
+                        path: "/workspacepage/workspacePrivilege",
+                        key:'privilege',
+                        exact: true,
+                        component: WorkspacePrivilege,
+                    },
                 ]
             },
         ]
