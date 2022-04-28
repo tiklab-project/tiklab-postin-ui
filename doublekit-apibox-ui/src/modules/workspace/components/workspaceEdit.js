@@ -13,7 +13,7 @@ const layout = {
     wrapperCol: {span: 16},
 };
 const WorkspaceEdit = (props) => {
-    const { workspaceStore, workspaceId } = props;
+    const { workspaceStore, workspaceId,userId } = props;
     const {
         findWorkspace,
         createWorkspace,
@@ -44,6 +44,7 @@ const WorkspaceEdit = (props) => {
      */
     const onFinish = () => {
         form.validateFields().then((values)=>{
+            values.user = {id:userId};
             if(props.type === "add" ){
                 createWorkspace(values);
             }else{

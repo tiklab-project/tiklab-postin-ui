@@ -3,9 +3,6 @@ import Avatar from "antd/es/avatar/avatar";
 import {UserOutlined} from "@ant-design/icons";
 
 const LeftNav = (props) =>{
-
-    const [selectRouter, setSelectRouter] = useState(props.location.pathname);
-
     const menuData = [
         {
             "icon":"layers",
@@ -36,6 +33,7 @@ const LeftNav = (props) =>{
     ]
 
     const workspaceId = localStorage.getItem("workspaceId")
+    const leftRouter = localStorage.getItem("leftRouter")
 
     const clickAddRouter = (router) =>{
 
@@ -43,7 +41,9 @@ const LeftNav = (props) =>{
 
         addQuickTestTabInfo(router);
 
-        setSelectRouter(router)
+        //点击左侧导航，设置选择项,用于刷新后还能选择。
+        localStorage.setItem("leftRouter",router);
+
         props.history.push(router)
     }
 
@@ -91,7 +91,7 @@ const LeftNav = (props) =>{
                    className={`ws-detail-left-nav-item `}
                    onClick={()=>clickAddRouter(item.router)}
                >
-                   <div className={`ws-detail-left-nav-item-box ${selectRouter===item.router?"selectlink":null}`}>
+                   <div className={`ws-detail-left-nav-item-box ${leftRouter===item.router?"selectlink":null}`}>
                        <div className={"ws-detail-left-nav-item-detail"}>
                            <svg className="icon" aria-hidden="true">
                                <use xlinkHref= {`#icon-${item.icon}`}></use>

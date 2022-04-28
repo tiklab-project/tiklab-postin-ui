@@ -82,7 +82,7 @@ const Workspace = (props) => {
         <Fragment>
             <Layout className="ws-layout">
                 <Sider
-                    className="ws-sider"
+                    theme="light"
                     width='240'
                 >
                 <div  className="ws-menu-side-header" >

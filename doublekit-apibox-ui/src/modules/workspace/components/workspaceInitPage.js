@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Form, Input} from "antd";
 import {inject, observer} from "mobx-react";
 import initPage from '../../../assets/img/backgroundimg.jpg'
+import {getUser} from "doublekit-core-ui"
 
 const layout = {
     labelCol: {span: 8},
@@ -15,6 +16,7 @@ const WorkspaceInitPage = (props) => {
 
     const onFinish = () => {
         form.validateFields().then((values)=>{
+            values.user= {id:getUser().userId};
             createWorkspace(values).then(res=>{
                 localStorage.setItem('workspaceId',res.data);
                 props.history.push("/workspacepage")

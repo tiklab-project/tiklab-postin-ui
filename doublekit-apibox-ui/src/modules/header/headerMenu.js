@@ -36,8 +36,11 @@ const HeaderMenu = (props) =>{
     // 切换空间
     const switchWorkspace=(id)=>{
         localStorage.setItem('workspaceId',id);
-        sessionStorage.setItem("isAllApi","isAllApi");
+
+        localStorage.setItem("leftRouter","/workspacepage/detail");
+
         props.history.push({pathname:'/workspacepage'});
+
         setClickIcon(false)
     }
 

@@ -148,7 +148,13 @@ const WorkspaceCreatePage = (props) => {
                     style={{width:240}}
                 />
                 <div className='wslist-eibtn'>
-                    <WorkspaceEdit className="important-btn" name={`${t('addws')}`} type="add"  style={{ width: 200 }}/>
+                    <WorkspaceEdit
+                        className="important-btn"
+                        name={`${t('addws')}`}
+                        type="add"
+                        style={{ width: 200 }}
+                        userId={userId}
+                    />
                     {
                         pluginLength && pluginLength>0 ? <PluginComponent point='import' pluginsStore={pluginsStore}/> : <Button disabled>导入</Button>
                     }
@@ -171,4 +177,4 @@ const WorkspaceCreatePage = (props) => {
     )
 }
 
-export default inject('workspaceStore',PLUGIN_STORE)(observer(WorkspaceCreatePage));
+export default inject('workspaceStore',PLUGIN_STORE,)(observer(WorkspaceCreatePage));

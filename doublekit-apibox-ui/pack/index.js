@@ -11,6 +11,7 @@ import { orgStores } from 'doublekit-user-ui';
 import { privilegeStores } from 'doublekit-privilege-ui';
 import { messageModuleStores } from 'doublekit-message-ui';
 import Search from "./components/modules/integration/search/components/search"
+import HeaderContent from "./components/modules/header/headercontent"
 
 const  workspaceStores = {
     ...workspaceStore,
@@ -27,5 +28,6 @@ export {
     saasrouters,
     workspaceResource,
     Search,
-    Entry
+    Entry,
+    HeaderContent
 }

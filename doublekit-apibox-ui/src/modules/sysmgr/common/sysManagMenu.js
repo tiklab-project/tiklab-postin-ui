@@ -108,7 +108,7 @@ const SysManage = (props) => {
             ]
         },
         {
-            title: '目录管理',
+            title: '账号同步',
             icon: 'laptop',
             key: '/systemManagement/authConfig',
             encoded: "authConfig",

@@ -1,22 +1,31 @@
-/*
- * @Description:
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-27 14:00:23
- */
 import React from 'react';
-import { renderRoutes } from "react-router-config";
+import LocalHeader from "./localHeader";
+import AccountHeader from "./accountHeader";
+import {verifyUserHOC} from "doublekit-portal-ui";
+import {inject, observer} from "mobx-react";
 
-import Portal from "./ProjectPortal";
-import './portalStyle.scss'
+import HeaderContent from "./headerContent";
+
+const RenderHeader = (props) => {
+    const {authData} = props;
+    if (authData.authType === 'local') {
+        return <AccountHeader {...props}/>
+    } else {
+        return <LocalHeader {...props}/>
+    }
+};
 
 const  PortalHeader =(props)=> {
-    const router = props.route.routes;
+    const {authData} = props;
 
     return(
-        <Portal {...props}>
-            {renderRoutes(router)}
-        </Portal>
+        <HeaderContent
+            header={<RenderHeader authData={authData} {...props}/>}
+            {...props}
+        />
     )
 }
 
-export default PortalHeader
+const  WrapPortal = verifyUserHOC(PortalHeader);
+export default inject("portalLoginStore")(observer(WrapPortal));
+
