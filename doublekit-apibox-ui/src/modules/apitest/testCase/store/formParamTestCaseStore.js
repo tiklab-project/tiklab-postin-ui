@@ -62,7 +62,7 @@ export class FormParamTestCaseStore {
 
     @action
     createFormParamTestCase = async (values) => {
-        values.testcase = {id:this.testCaseId};
+        values.httpCase = {id:this.testCaseId};
 
         const res = await createFormParamTestCase(values);
         if( res.code === 0){

@@ -75,7 +75,7 @@ export class JsonParamTestCaseStore {
 
     @action
     createJsonParamTestCase = async (values) => {
-        values.testcase = {id:this.testCaseId}
+        values.httpCase = {id:this.testCaseId}
 
         const res = await createJsonParamTestCase(values)
         if(res.code === 0 ){

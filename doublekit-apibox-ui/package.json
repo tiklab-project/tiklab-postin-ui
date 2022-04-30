@@ -2,14 +2,14 @@
   "name": "doublekit-apibox-ui",
   "version": "1.0.0",
   "description": "doublekit-apibox-ui",
-  "main": "dist/index.js",
+  "main": "es/index.js",
   "files": [
-    "dist"
+    "es"
   ],
   "scripts": {
     "start": "cross-env NODE_ENV=local API_ENV=local  webpack-dev-server --progress --config ./webpack.dev.js ",
     "prod": "cross-env NODE_ENV=prod API_ENV=prod webpack --config ./webpack.test.js",
-    "build": "rimraf dist/* && ./node_modules/.bin/babel src --copy-files  --extensions .js --out-dir dist/components && ncp pack/index.js dist/index.js && ncp README.md dist/README.md",
+    "build": "rimraf es/* && ./node_modules/.bin/babel src --copy-files  --extensions .js --out-dir es/components && ncp pack/index.js es/index.js && ncp README.md es/README.md"
   },
   "keywords": [],
   "author": "",

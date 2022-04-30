@@ -32,7 +32,6 @@ import resources from "./common/language/resource";
                  }else {
                      setResources(resources)
                  }
-
              })
          }
      }, [isInitLoadPlugin])

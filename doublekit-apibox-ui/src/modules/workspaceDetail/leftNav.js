@@ -54,7 +54,7 @@ const LeftNav = (props) =>{
                 activeKey:0,
                 tabList:[
                     {
-                        name:"所有API",
+                        name:"初始页",
                         id:workspaceId,
                         type:"list",
                     }

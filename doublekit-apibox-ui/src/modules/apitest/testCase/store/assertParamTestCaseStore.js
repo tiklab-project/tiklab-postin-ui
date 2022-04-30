@@ -51,7 +51,7 @@ export class AssertParamTestCaseStore {
 
     @action
     createAssertParamTestCase = async (values) => {
-        values.testcase = {id:this.testCaseId}
+        values.httpCase = {id:this.testCaseId}
 
         const res = await createAssertParamTestCase(values)
         if( res.code === 0){

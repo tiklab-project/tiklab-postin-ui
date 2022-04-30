@@ -16,6 +16,8 @@ module.exports = merge(baseWebpackConfig, {
     entry: [
         path.resolve(__dirname, './src/index.js')
     ],
+    devtool: 'source-map',
+
     plugins: [
         new UglifyJSPlugin({
             parallel: os.cpus().length,
@@ -106,7 +108,7 @@ module.exports = merge(baseWebpackConfig, {
                 terserOptions: {
                     compress: {
                         drop_console: true,
-                        drop_debugger: true // 去除console.log 和debuger
+                        // drop_debugger: true // 去除console.log 和debuger
                     },
                 }
             })

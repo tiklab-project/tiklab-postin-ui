@@ -34,7 +34,7 @@ const WorkspaceList = (props) => {
             align:"center",
             width:"25%",
             render: (text,record) =>(
-                <a onClick = {()=>setLocalStorage('workspaceId',record.id)}>{text}</a>
+                <a onClick = {()=>toDetail('workspaceId',record.id)}>{text}</a>
             )
         },
         {
@@ -67,7 +67,12 @@ const WorkspaceList = (props) => {
             render: (text, record) => (
             <Space size="middle">
                 <div>
-                    <WorkspaceEdit name={`${t('edit')}`} type='edit' workspaceId={record.id} />
+                    <WorkspaceEdit
+                        name={`${t('edit')}`}
+                        type='edit'
+                        workspaceId={record.id}
+                        userId={userId}
+                    />
                 </div>
                 <Popconfirm
                     title="确定删除？"
@@ -111,9 +116,11 @@ const WorkspaceList = (props) => {
     },[])
 
     // 保存空间id到缓存
-    const setLocalStorage = (workspaceId,id) => {
-        sessionStorage.setItem("isAllApi","isAllApi")
+    const toDetail = (workspaceId,id) => {
+        localStorage.setItem("leftRouter","/workspacepage/detail");
+
         localStorage.setItem(workspaceId,id);
+
         props.history.push('/workspacepage');
     }
 
@@ -165,7 +172,13 @@ const WorkspaceList = (props) => {
                     style={{width:240}}
                 />
                 <div className='wslist-eibtn'>
-                <WorkspaceEdit className="important-btn" name={`${t('addws')}`} type="add"  style={{ width: 200 }}/>
+                <WorkspaceEdit
+                    className="important-btn"
+                    name={`${t('addws')}`}
+                    type="add"
+                    style={{ width: 200 }}
+                    userId={userId}
+                />
                 {
                   pluginLength && pluginLength>0 ? <PluginComponent point='import' pluginsStore={pluginsStore}/> : <Button disabled>导入</Button>
                 }

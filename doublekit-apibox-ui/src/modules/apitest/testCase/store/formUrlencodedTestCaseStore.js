@@ -61,7 +61,7 @@ export class FormUrlencodedTestCaseStore {
     
     @action
     createFormUrlencodedTestCase = async (values) => {
-        values.testcase = {id: this.testCaseId}
+        values.httpCase = {id: this.testCaseId}
         const res = await createFormUrlencodedTestCase(values)
         if( res.code === 0){
             return this.findFormUrlencodedTestCaseList(this.testCaseId);

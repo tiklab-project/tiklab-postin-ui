@@ -5,6 +5,7 @@ import {
     findMethod,
     updateMethod,
     deleteMethod,
+    findMethodListByApix
 } from '../api/apxMethodApi'
 
 export class ApxMethodStore {
@@ -48,6 +49,21 @@ export class ApxMethodStore {
             return  res;
         }
     }
+
+    @action
+    findApxMethodListByApix = async (id) => {
+        let param ={
+            categoryId:id,
+            protocolType:'http',
+        }
+        const res = await findMethodListByApix(param);
+        if(res.code === 0 ) {
+            this.apxMethodList = res.data;
+            return  res;
+        }
+    }
+
+
 
     //根据接口ID查找接口
     @action

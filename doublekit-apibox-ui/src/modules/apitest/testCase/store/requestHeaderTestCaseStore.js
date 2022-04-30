@@ -61,7 +61,7 @@ export class RequestHeaderTestCaseStore {
 
     @action
     createRequestHeaderTestCase = async (values) => {
-        values.testcase = {id:this.testCaseId}
+        values.httpCase = {id:this.testCaseId}
         const res = await createRequestHeaderTestCase(values)
         if( res.code === 0){
            return  this.findRequestHeaderTestCaseList(this.testCaseId);

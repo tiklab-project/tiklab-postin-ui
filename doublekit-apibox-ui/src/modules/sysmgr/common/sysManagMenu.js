@@ -240,7 +240,11 @@ const SysManage = (props) => {
     return (
         <Fragment>
             <Layout className = 'sysmana-layout'>
-                <Sider className = 'sysmana-sider' width={240}>
+                <Sider
+                    className = 'sysmana-sider'
+                    width={240}
+                    theme={'light'}
+                >
                     <div className="doublekit-orga-aside">
                         <ul style={{padding: 0}} >
                             {

@@ -32,7 +32,7 @@ export class RequestBodyTestCaseStore {
 
     @action
     createRequestBodyTestCase =async (values) => {
-        values.testcase = {id: this.testCaseId};
+        values.httpCase = {id: this.testCaseId};
         values.id =  this.requestBodyTestCaseId;
 
         await createRequestBodyTestCase(values)
@@ -40,7 +40,7 @@ export class RequestBodyTestCaseStore {
 
     @action
 	updateRequestBodyTestCase = async (values) => {
-        values.testcase = {id: this.testCaseId};
+        values.httpCase = {id: this.testCaseId};
         values.id= this.requestBodyTestCaseId;
 
 		await updateRequestBodyTestCase(values)

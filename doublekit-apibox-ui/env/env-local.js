@@ -18,7 +18,9 @@ const appSecret = JSON.stringify('appsecret');
 const version = JSON.stringify('1.0.1');
 const client = JSON.stringify('1.1.0');
 
-const acc_url = JSON.stringify('http://www.portal.local.doublekit.net');
+const acc_url = JSON.stringify('http://portal.local.doublekit.net');
+
+// const electronVersion = JSON.stringify('electron');
 
 module.exports = {
     base_url,
@@ -30,5 +32,6 @@ module.exports = {
     appSecret,
     version,
     client,
-    acc_url
+    acc_url,
+    // electronVersion
 }

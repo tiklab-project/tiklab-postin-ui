@@ -13,7 +13,6 @@ module.exports = {
         filename: 'js/[name].[hash:8].js',
         chunkFilename: 'js/[name].[hash:8].js',
         path: DIST_PATH,
-        publicPath: '/',
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'],

@@ -30,7 +30,7 @@ export class PreParamTestCaseStore {
 
     @action
     createPreParamTestCase = async (values) => {
-        values.testcase = {id: this.testCaseId}
+        values.httpCase = {id: this.testCaseId}
         values.id =  this.testCaseId;
 
         await createPreParamTestCase(values)
@@ -38,7 +38,7 @@ export class PreParamTestCaseStore {
 
     @action
 	updatePreParamTestCase = async (values) => {
-        values.testcase = {id: this.testCaseId}
+        values.httpCase = {id: this.testCaseId}
         values.id= this.testCaseId;
 
 		await updatePreParamTestCase(values)

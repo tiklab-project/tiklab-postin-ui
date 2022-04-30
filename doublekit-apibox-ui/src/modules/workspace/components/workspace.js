@@ -7,7 +7,7 @@
 import React, { Fragment, useState } from 'react';
 import { renderRoutes } from "react-router-config";
 import { UnorderedListOutlined } from '@ant-design/icons';
-import {Row, Col , Layout } from 'antd';
+import { Layout } from 'antd';
 import './workspace.scss';
 
 const {  Sider } = Layout;
@@ -98,11 +98,9 @@ const Workspace = (props) => {
                 </ul>
                 </Sider>
                 <Layout className='ws-content'>
-                    <Row justify="center" className="ws-row">
-                        <Col span={18} className="ws-col">
-                            {renderRoutes(router)}
-                        </Col>
-                    </Row>
+                    <div className="ws-content-box">
+                        {renderRoutes(router)}
+                    </div>
                 </Layout>
             </Layout>
         </Fragment>

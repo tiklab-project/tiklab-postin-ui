@@ -39,7 +39,7 @@ const TestCaseList = (props) => {
         },
         {
             title: '路径',
-            dataIndex:['method', 'path'],
+            dataIndex:'path',
             // align:'center',
             key: 'method',
             width:"20%",

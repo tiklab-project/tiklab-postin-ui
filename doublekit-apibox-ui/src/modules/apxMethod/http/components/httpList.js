@@ -2,20 +2,20 @@ import React, {useEffect,useState} from 'react';
 import { observer, inject } from "mobx-react";
 import { Input, Popconfirm, Space, Table} from 'antd';
 import '../../../category/components/category.scss';
-import ApxMethodEdit from '../../http/components/apxMethodEdit';
+import ApxMethodEdit from './apxMethodEdit';
 import RequestType from "../../../common/requestType";
 
 // 点击左侧导航栏目录，查看的所在目录中的接口
-const ApixList = (props) => {
-    const {categoryStore, apixStore} = props;
+const HttpList = (props) => {
+    const {categoryStore, apxMethodStore} = props;
     const {findCategoryList} = categoryStore;
-    const {findApixPage, apixList, totalRecord, deleteApix} = apixStore;
+    const {findApxMethodListByApix,apxMethodList,deleteApxMethod} = apxMethodStore;
 
     //接口列表头
     const columns = [
         {
             title: '名称',
-            dataIndex: 'name',
+            dataIndex: ["apix",'name'],
             width: '25%',
             render: (text,record) => (
                 <a onClick = {()=>setLocalStorage('apxMethodId',record.id)}>{text}</a>
@@ -34,7 +34,7 @@ const ApixList = (props) => {
         },
         {
             title: '状态',
-            dataIndex: ['status','name'],
+            dataIndex: ['apix','status','name'],
             width: '10%',
             render:(text) =>(
                 <span>{text}</span>
@@ -42,7 +42,7 @@ const ApixList = (props) => {
         },
         {
             title: '执行人',
-            dataIndex: ['executor','name'],
+            dataIndex: ['apix','executor','name'],
             width: '15%',
         },
         {
@@ -53,13 +53,12 @@ const ApixList = (props) => {
                 <Space>
                     <ApxMethodEdit
                         name="编辑"
-                        apixId={record.id}
+                        httpId={record.id}
                         type={'edit'}
-                        pagination={params}
                     />
                     <Popconfirm
                         title="确定删除？"
-                        onConfirm={() =>deletMethod(record)}
+                        onConfirm={() =>deletMethod(record.id)}
                         okText='确定'
                         cancelText='取消'
                     >
@@ -90,18 +89,13 @@ const ApixList = (props) => {
     }
 
     useEffect(()=>{
-        const values = {
-            "categoryId":categoryId,
-            ...params
-        }
-
-        findApixPage(values);
+        findApxMethodListByApix(categoryId);
     },[categoryId,params])
 
     //删除
-    const deletMethod = (record) =>{
-        deleteApix(record).then(()=> {
-            findApixPage(categoryId);
+    const deletMethod = (id) =>{
+        deleteApxMethod(id).then(()=> {
+            findApxMethodListByApix(categoryId);
             findCategoryList(workspaceId);
         })
     }
@@ -142,33 +136,33 @@ const ApixList = (props) => {
     return(
         <div className='main-contant'>
             <div className={'category-search'}>
+                <ApxMethodEdit
+                    name="添加接口"
+                    type="add"
+                    isBtn={'btn'}
+                    // pagination={params}
+                />
                 <Input
                     placeholder={'搜索接口'}
                     onPressEnter={onSearch}
                     className='search-input'
                     style={{width:240}}
                 />
-                <ApxMethodEdit
-                    name="添加接口"
-                    type="add"
-                    isBtn={'btn'}
-                    pagination={params}
-                />
             </div>
             <Table
-                dataSource={apixList}
+                dataSource={apxMethodList}
                 columns={columns}
                 rowKey={record => record.id}
-                pagination={{
-                    current:currentPage,
-                    pageSize:pageSize,
-                    total:totalRecord,
-                }}
-                onChange = {(pagination) => onTableChange(pagination)}
+                // pagination={{
+                //     current:currentPage,
+                //     pageSize:pageSize,
+                //     total:totalRecord,
+                // }}
+                // onChange = {(pagination) => onTableChange(pagination)}
             />
         </div>
     )
 }
 
-export default inject('apixStore','categoryStore')(observer(ApixList));
+export default inject('apxMethodStore','categoryStore')(observer(HttpList));
 

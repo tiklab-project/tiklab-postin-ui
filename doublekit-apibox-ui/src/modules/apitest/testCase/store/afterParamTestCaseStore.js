@@ -30,7 +30,7 @@ export class AfterScriptTestCaseStore {
 
     @action
     createAfterScriptTestCase = async (values) => {
-        values.testcase = {id: this.testCaseId};
+        values.httpCase = {id: this.testCaseId};
         values.id = this.testCaseId;
 
         await createAfterScriptTestCase(values)
@@ -38,7 +38,7 @@ export class AfterScriptTestCaseStore {
 
     @action
 	updateAfterScriptTestCase = async (values) => {
-        values.testcase = {id: this.testCaseId};
+        values.httpCase = {id: this.testCaseId};
         values.id= this.testCaseId;
 
 		await updateAfterScriptTestCase(values)

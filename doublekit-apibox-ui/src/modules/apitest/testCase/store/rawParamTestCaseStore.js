@@ -33,7 +33,7 @@ export class RawParamTestCaseStore {
 
     @action
     createRawParamTestCase = async (values) => {
-        values.testcase = {id: this.testCaseId};
+        values.httpCase = {id: this.testCaseId};
         values.id =  this.rawParamTestCaseId;
 
         await createRawParamTestCase(values)
@@ -41,7 +41,7 @@ export class RawParamTestCaseStore {
 
     @action
 	updateRawParamTestCase =async (values) => {
-        values.testcase = {id: this.testCaseId}
+        values.httpCase = {id: this.testCaseId}
         values.id= this.rawParamTestCaseId;
 
 		await updateRawParamTestCase(values)

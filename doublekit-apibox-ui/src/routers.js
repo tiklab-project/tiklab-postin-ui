@@ -1,7 +1,6 @@
 
 import React from 'react'
 import PortalHeader from './modules/header/portalHeader.js';
-import {BaseLogOut} from 'doublekit-portal-ui';
 import {Directory} from 'doublekit-user-ui';
 import {Licence} from "doublekit-licence-ui";
 import {PluginDetail} from "doublekit-plugin-manage"
@@ -53,6 +52,8 @@ import TabsPage from "./modules/workspaceDetail/tabsPage";
 import LayoutQuickTest from "./modules/quicktest/components/layoutQuickTest";
 import TabsQuickTest from "./modules/quicktest/components/tabsQuickTest";
 import TestdetailQuickTest from "./modules/quicktest/components/testdetailQuickTest";
+import ApiInitPage from "./modules/category/components/apiInitPage";
+import LoginOut from "./modules/header/loginOut";
 
 
 const routers =  [
@@ -64,7 +65,7 @@ const routers =  [
     },
     {
         path: "/logout",
-        component: BaseLogOut,
+        component: LoginOut,
         exact: true,
         key:'logout',
     },
@@ -268,6 +269,12 @@ const routers =  [
                                 component: TabsPage,
                                 routes:[
                                     {
+                                        path: "/workspacepage/apis/detail/apiInitPage",
+                                        exact: true,
+                                        key:'Category',
+                                        component: ApiInitPage,
+                                    },
+                                    {
                                         path: "/workspacepage/apis/detail/category",
                                         exact: true,
                                         key:'Category',
@@ -324,7 +331,7 @@ const routers =  [
                                         path:"/workspacepage/apis/detail",
                                         exact: true,
                                         key:'ridapidetail',
-                                        component: ()=><Redirect to='/workspacepage/apis/detail/category'/>,
+                                        component: ()=><Redirect to='/workspacepage/apis/detail/apiInitPage'/>,
                                     },
                                 ]
                             },

@@ -44,8 +44,8 @@ const SaveTestcase = (props) => {
         setVisible(true);
         findApxMethod(apxMethodId).then((res)=> {
             form.setFieldsValue({
-                requestType:res.apix.requestType,
-                path: res.apix.path,
+                requestType:res.requestType,
+                path: res.path,
             })
         })
     };

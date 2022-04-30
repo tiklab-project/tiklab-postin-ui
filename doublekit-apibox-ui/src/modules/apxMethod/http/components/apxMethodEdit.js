@@ -20,14 +20,13 @@ const ApxMethodEdit = (props) => {
     const {
         apxMethodStore,
         categoryStore,
-        apixStore,
         setEdit,
-        apixId,
+        httpId,
         categoryItemId,
         pagination
     } =props;
-    const {setIsAddTab,isAddTab} = apxMethodStore;
-    const {createApix,findApix,updateApix,findApixPage} = apixStore;
+    const {setIsAddTab,isAddTab,findApxMethod,updateApxMethod,createApxMethod,findApxMethodListByApix} = apxMethodStore;
+
     const { findCategoryList,categoryList } = categoryStore;
 
     const [visible,setVisible] = useState(false);
@@ -36,7 +35,7 @@ const ApxMethodEdit = (props) => {
     const apxMethodId = localStorage.getItem('apxMethodId');
     const categoryId = localStorage.getItem("categoryId");
     const workspaceId = localStorage.getItem('workspaceId');
-    const [cascaderCategoryId, setCascaderCategoryId] = useState("");
+    const [cascaderCategoryId, setCascaderCategoryId] = useState();
     const apiTabListInfo = JSON.parse(sessionStorage.getItem("apiTabListInfo"))
 
     // 弹框展示
@@ -54,13 +53,13 @@ const ApxMethodEdit = (props) => {
 
     // 展示接口信息
     const showApxMethodInfo = () => {
-        findApix(apixId?apixId:apxMethodId).then((res)=>{
-            setStatus(res.status?.id)
+        findApxMethod(httpId?httpId:apxMethodId).then((res)=>{
+            setStatus(res.apix.status?.id)
             form.setFieldsValue({
-                abc: res.name,
+                abc: res.apix.name,
                 requestType: res.requestType,
                 path: res.path,
-                desc: res.desc,
+                desc: res.apix.desc,
                 // category:res.category.id
             })
             // form.setFieldsValue(res.data)
@@ -75,12 +74,23 @@ const ApxMethodEdit = (props) => {
     // 提交
     const onFinish =   () => {
         form.validateFields().then(values=>{
-            values.protocolType="http";
-            values.category = {id:cascaderCategoryId?cascaderCategoryId:categoryItemId};
+            debugger
+            delete values.category
+            values.apix={
+                id:httpId?httpId:apxMethodId,
+                name:values.name,
+                requestType:values.requestType,
+                path:values.path,
+                desc:values.desc,
+                status:status,
+                category:{id:cascaderCategoryId?cascaderCategoryId:categoryItemId},
+                protocolType:"http",
 
+            }
+            
             if(props.type === 'add'){
-                createApix(values).then(()=>{
-                    findApixPage({category:categoryId,...pagination});
+                createApxMethod(values).then((id)=>{
+                    findApxMethodListByApix(categoryId);
                     findCategoryList(workspaceId);
                     if(props.name==="+"){
                         let tablist = apiTabListInfo.tabList;
@@ -101,9 +111,9 @@ const ApxMethodEdit = (props) => {
                 })
             }else{
                 values.status={id:status}
-                values.id=apixId;
-                updateApix(values).then(()=>{
-                    findApixPage({category:categoryId,...pagination});
+                values.id=httpId;
+                updateApxMethod(values).then(()=>{
+                    findApxMethodListByApix(categoryId);
                     findCategoryList(workspaceId)
                     setEdit?setEdit(true):null
                 });
@@ -166,7 +176,7 @@ const ApxMethodEdit = (props) => {
                     </Form.Item>
                     <Form.Item
                         label="接口名称"
-                        name="abc"
+                        name="name"
                         rules={[{ required: true, message: 'Please input your interfacename!' }]}
                     >
                         <Input />

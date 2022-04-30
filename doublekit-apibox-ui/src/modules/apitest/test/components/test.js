@@ -55,9 +55,10 @@ const ApxMethodTest = (props) => {
 
     useEffect(()=>{
         findApxMethod(methodId).then(res=>{
+            debugger
             form.setFieldsValue({
-                requestType: res.apix.requestType,
-                path: res.apix.path,
+                requestType: res.requestType,
+                path: res.path,
             })
 
             getRequestHeaderTestList(res.requestHeaderList);

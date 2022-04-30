@@ -27,6 +27,10 @@ export function findMethodPage(data){
     return Axios.post("/http/findHttpApiPage",data)
 }
 
+export function findMethodListByApix(data){
+    return Axios.post("/http/findHttpApiListByApix",data)
+}
+
 //
 // export function createVersion(data){
 //     return Axios.post("/httpVersion/createVersion",data)

@@ -70,7 +70,7 @@ const sendTest=(data)=>{
 const isCreateInstance=(res,data)=>{
     if(data.createInstance){
         data.getResponseInfo(res,data.assertList).then(res=>{
-            res.testcase = {"id":data.belongId}
+            res.httpCase = {"id":data.belongId}
             data.createInstance(res)
         })
     }else {

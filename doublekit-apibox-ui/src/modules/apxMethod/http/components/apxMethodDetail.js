@@ -13,9 +13,9 @@ import RequestType from "../../../common/requestType";
 const {Option} = Select;
 
 const ApxMethodDetail = (props) => {
-    const { apixStore,categoryStore,userSelectStore,apxMethodStatusStore } = props;
+    const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore } = props;
 
-    const { findApix,deleteApix,updateApix } = apixStore;
+    const { findApxMethod} = apxMethodStore;
     const { findUserSelectPage,userSelectList } = userSelectStore;
     const {findAllApiStatus,apiStatusList} = apxMethodStatusStore;
 
@@ -38,18 +38,20 @@ const ApxMethodDetail = (props) => {
     const [updateTime, setUpdateTime] = useState("");
 
     useEffect(()=>{
-        findApix(apxMethodId).then((res)=>{
+        findApxMethod(apxMethodId).then((res)=>{
+            debugger
             setResData(res)
-            setName(res.name);
+
             setRequestType(res.requestType);
             setPath(res.path);
-            setStatus(res.status?.id);
-            setDesc(res.desc);
-            setCreateUser(res.createUser?.name);
-            setUpdataUser(res.updateUser?.name);
-            setExecutorId(res.executor?.id)
-            setCategory(res.category?.name);
-            setUpdateTime(res.updateTime);
+            setName(res.apix.name);
+            setStatus(res.apix.status?.id);
+            setDesc(res.apix.desc);
+            setCreateUser(res.apix.createUser?.name);
+            setUpdataUser(res.apix.updateUser?.name);
+            setExecutorId(res.apix.executor?.id)
+            setCategory(res.apix.category?.name);
+            setUpdateTime(res.apix.updateTime);
         })
     },[editOk,isEdit,apxMethodId]);
 
@@ -85,10 +87,10 @@ const ApxMethodDetail = (props) => {
             ...resData,
             "executor":{"id":executor}
         }
-        updateApix(newData).then(()=>{
-            setExecutorId(executor)
-            setIsEdit(!isEdit)
-        });
+        // updateApix(newData).then(()=>{
+        //     setExecutorId(executor)
+        //     setIsEdit(!isEdit)
+        // });
     }
 
     //渲染状态下拉框
@@ -104,10 +106,10 @@ const ApxMethodDetail = (props) => {
             ...resData,
             "status":{"id":statusId}
         }
-        updateApix(newData).then(()=>{
-            setStatus(statusId)
-            setIsEdit(!isEdit)
-        });
+        // updateApix(newData).then(()=>{
+        //     setStatus(statusId)
+        //     setIsEdit(!isEdit)
+        // });
     }
 
 
@@ -167,4 +169,4 @@ const ApxMethodDetail = (props) => {
     )
 }
 
-export default inject('apixStore','categoryStore',"userSelectStore","apxMethodStatusStore")(observer(ApxMethodDetail));
+export default inject('apxMethodStore','categoryStore',"userSelectStore","apxMethodStatusStore")(observer(ApxMethodDetail));

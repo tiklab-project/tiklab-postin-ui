@@ -203,24 +203,24 @@ const CategoryNav = (props) => {
         )
     }
 
-    const toAllApi = ()=>{
-        let item = {name:"所有API",id:"-1"}
-
-        apiTabListInfoProcess(item,apiTabListInfo,"list")
-        sessionStorage.setItem("isAllApi","isAllApi")
-        props.history.push("/workspacepage/apis/detail/category")
-    }
+    // const toInitPage = ()=>{
+    //     let item = {name:"初始页",id:"-1"}
+    //
+    //     apiTabListInfoProcess(item,apiTabListInfo,"list")
+    //
+    //     props.history.push("/workspacepage/apis/detail/apiInitPage")
+    // }
 
 
     return(
         <>
             <ul className="categoryNav-ui">
-                <li
-                    className={"allapi"}
-                    onClick={toAllApi}
-                >
-                    所有API
-                </li>
+                {/*<li*/}
+                {/*    className={"allapi"}*/}
+                {/*    onClick={toInitPage}*/}
+                {/*>*/}
+                {/*    初始页*/}
+                {/*</li>*/}
                 {
                     tree(categoryList)
                 }

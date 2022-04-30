@@ -63,7 +63,7 @@ export class QueryParamTestCaseStore {
 
     @action
     createQueryParamTestCase = async (values) => {
-        values.testcase = {id:this.testCaseId}
+        values.httpCase = {id:this.testCaseId}
 
         const res = await createQueryParamTestCase(values)
         if(res.code === 0){
