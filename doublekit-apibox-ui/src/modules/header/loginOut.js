@@ -1,12 +1,11 @@
 import React from "react";
-import {BaseLogOut,useAccountConfig,LOGIN_STATUS} from "doublekit-portal-ui"
+import {BaseLogOut,LOGIN_STATUS} from "doublekit-portal-ui"
 import {inject, observer} from "mobx-react";
 
 const  LoginOut = (props) => {
-    let authConfig = useAccountConfig();
 
     return (
-        <BaseLogOut authConfig={authConfig} {...props}/>
+        <BaseLogOut {...props}/>
     );
 };
 

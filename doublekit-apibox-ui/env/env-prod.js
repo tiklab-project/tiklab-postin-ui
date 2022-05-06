@@ -19,7 +19,7 @@ const appSecret = JSON.stringify('koon');
 const version = JSON.stringify('1.0.1');
 const client = JSON.stringify('1.1.0');
 
-const acc_url = JSON.stringify('apibox-ce.dev.doublekit.net');
+const acc_url = JSON.stringify('http://portal.dev.doublekit.net');
 
 // const electronVersion = JSON.stringify('electron');
 

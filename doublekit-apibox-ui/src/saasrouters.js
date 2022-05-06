@@ -50,8 +50,15 @@ import LayoutQuickTest from "./modules/quicktest/components/layoutQuickTest";
 import TabsQuickTest from "./modules/quicktest/components/tabsQuickTest";
 import TestdetailQuickTest from "./modules/quicktest/components/testdetailQuickTest";
 import ApiInitPage from "./modules/category/components/apiInitPage";
+import LoginOut from "./modules/header/loginOut";
 
 const routers =  [
+    {
+        path: "/logout",
+        component: LoginOut,
+        exact: true,
+        key:'logout',
+    },
     {
         component: PortalHeader,
         path: '/pluginfull',

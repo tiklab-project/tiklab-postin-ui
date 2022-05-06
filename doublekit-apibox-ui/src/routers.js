@@ -7,7 +7,7 @@ import {PluginDetail} from "doublekit-plugin-manage"
 import PluginManage from "./modules/sysmgr/pluginManage/pluginManage";
 
 import {
-    Login,
+    LoginContent,
     Home,
     SearchResult,
 
@@ -60,7 +60,7 @@ const routers =  [
     {
         path: "/login",
         exact: true,
-        component: Login,
+        component: LoginContent,
         key:'login',
     },
     {
