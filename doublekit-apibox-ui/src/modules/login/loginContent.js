@@ -8,10 +8,10 @@ import contentImg from '../../assets/img/contentimg.jpg';
 import { Login, LOGIN_STATUS } from 'doublekit-portal-ui'
 
 import {inject, observer} from 'mobx-react'
+
+
 // 登录
 const LoginContent = (props)=> {
-
-
 
     return(
         <Login

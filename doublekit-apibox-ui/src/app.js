@@ -3,7 +3,6 @@ import {inject, observer} from "mobx-react"
 import { renderRoutes  } from "react-router-config";
 import {PLUGIN_STORE, loadLanguage} from 'doublekit-plugin-manage';
 import {I18nextProvider,useTranslation} from "react-i18next";
-import {useVersion} from "doublekit-portal-ui"
 import './common/styles/base.scss';
 import './common/language/i18n';
 import "./assets/iconfont/iconfont";
@@ -16,8 +15,6 @@ import resources from "./common/language/resource";
      const [loading, setLoading] = useState(false);
      const [resourcesLanguage,setResources] = useState({});
      const {i18n,t} = useTranslation();
-
-     useVersion();
 
      useEffect(() => {
          if (isInitLoadPlugin) {

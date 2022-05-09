@@ -151,27 +151,33 @@ const routers =  [
                         key:'MessageSendType',
                         exact: true,
                         component: MessageSendType,
-                    },{
+                    },
+                    {
                         path: "/systemManagement/messageTemplate",
                         key:'MessageTemplate',
                         exact: true,
                         component: MessageTemplate,
-                    },{
+                    },
+                    {
                         path: "/systemManagement/messageType",
                         key:'MessageType',
                         exact: true,
                         component: MessageType,
-                    },{
+                    },
+                    {
                         path: "/systemManagement/envMana",
                         key:'EvnMana',
                         exact: true,
                         component: EvnMana,
-                    },{
+                    },
+
+                    {
                         path: "/systemManagement/dataStructure",
                         key:'dataStucture',
                         exact: true,
                         component: DataStructure,
-                    },{
+                    },
+                    {
                         path: "/systemManagement/apistatus",
                         key:'apistatus',
                         exact: true,
@@ -180,12 +186,19 @@ const routers =  [
                         path: "/systemManagement/pluginmanage",
                         key:'pluginmanage',
                         component: PluginManage,
+                    },
+                    {
+                        path: "/systemManagement/licence",
+                        key:'licence',
+                        exact: true,
+                        component: Licence,
                     },{
                         path: "/systemManagement/authConfig",
                         key:'authConfig',
                         exact: true,
                         render: () => <Directory isPortal={false}/>,
-                    },{
+                    },
+                    {
                         path: "/systemManagement",
                         key:'sysEnvMana',
                         exact: true,
@@ -362,5 +375,6 @@ const routers =  [
         ]
     },
 ];
+
 
 export default routers

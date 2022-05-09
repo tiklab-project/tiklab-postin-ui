@@ -1,4 +1,4 @@
-import LoginContent  from './login/loginContent';
+
 import Home from './home/home';
 import {
     Search,
@@ -26,7 +26,7 @@ import {
 } from './sysmgr/index'
 
 export {
-    LoginContent, Home,
+    Home,
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,

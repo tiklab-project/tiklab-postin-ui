@@ -15,7 +15,7 @@ const {Option} = Select;
 const ApxMethodDetail = (props) => {
     const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore } = props;
 
-    const { findApxMethod} = apxMethodStore;
+    const { findApxMethod,deleteApxMethod} = apxMethodStore;
     const { findUserSelectPage,userSelectList } = userSelectStore;
     const {findAllApiStatus,apiStatusList} = apxMethodStatusStore;
 
@@ -39,9 +39,7 @@ const ApxMethodDetail = (props) => {
 
     useEffect(()=>{
         findApxMethod(apxMethodId).then((res)=>{
-            debugger
             setResData(res)
-
             setRequestType(res.requestType);
             setPath(res.path);
             setName(res.apix.name);
@@ -70,7 +68,10 @@ const ApxMethodDetail = (props) => {
 
     // 删除接口
     const handleDeleteApxMethod = (apxMethodId) => {
-        deleteApix(apxMethodId).then(res=>categoryStore.findCategoryList(workspaceId))
+        deleteApxMethod(apxMethodId).then(()=>{
+            // findApxMethodPage(workspaceId);
+        })
+
         props.history.push({pathname:'/workspacepage/apis/detail/category'})
     }
 

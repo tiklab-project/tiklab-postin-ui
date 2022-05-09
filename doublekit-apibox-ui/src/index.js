@@ -13,7 +13,8 @@ import { orgStores } from 'doublekit-user-ui';
 import { privilegeStores } from 'doublekit-privilege-ui';
 import { messageModuleStores } from 'doublekit-message-ui'
 import { stores } from './stores';
-import routes from './routers';
+import routers from './routers';
+import {useVersion} from "doublekit-portal-ui";
 
 
 export class Entry extends Component {
@@ -26,6 +27,8 @@ export class Entry extends Component {
             ...messageModuleStores,
         }
 
+        useVersion();
+
         //获取系统权限
         const userInfo = getUser();
         if(userInfo && userInfo.userId) {
@@ -33,7 +36,7 @@ export class Entry extends Component {
         }
 
         allStore.pluginsStore.initLoadPlugin(fetchMethod, pluginAddressUrl)
-        allStore.pluginsStore.setProjectRouter(routes);
+        allStore.pluginsStore.setProjectRouter(routers);
 
         return (
             <Provider {...allStore} >

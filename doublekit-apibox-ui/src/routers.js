@@ -7,7 +7,6 @@ import {PluginDetail} from "doublekit-plugin-manage"
 import PluginManage from "./modules/sysmgr/pluginManage/pluginManage";
 
 import {
-    LoginContent,
     Home,
     SearchResult,
 
@@ -54,7 +53,7 @@ import TabsQuickTest from "./modules/quicktest/components/tabsQuickTest";
 import TestdetailQuickTest from "./modules/quicktest/components/testdetailQuickTest";
 import ApiInitPage from "./modules/category/components/apiInitPage";
 import LoginOut from "./modules/header/loginOut";
-
+import LoginContent from "./modules/login/loginContent";
 
 const routers =  [
     {

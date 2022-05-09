@@ -21,7 +21,6 @@ const client = JSON.stringify('1.1.0');
 const acc_url = JSON.stringify('http://apibox-ce.dev.doublekit.net');
 // const acc_url = JSON.stringify('http://portal.local.doublekit.net');
 
-// const electronVersion = JSON.stringify('electron');
 
 module.exports = {
     base_url,
@@ -33,6 +32,5 @@ module.exports = {
     appSecret,
     version,
     client,
-    acc_url,
-    // electronVersion
+    acc_url
 }
