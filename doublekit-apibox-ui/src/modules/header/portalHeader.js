@@ -9,7 +9,12 @@ export const  PortalHeader =(props)=> {
     const router = props.route.routes;
 
     const Logout = () => {
-        props.history.push('/logout')
+        props.history.push({
+            pathname: '/logout',
+            state:{
+                preRoute: props.location.pathname
+            }
+        })
     }
 
 

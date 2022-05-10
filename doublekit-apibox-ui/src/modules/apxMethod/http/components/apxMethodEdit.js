@@ -56,13 +56,12 @@ const ApxMethodEdit = (props) => {
         findApxMethod(httpId?httpId:apxMethodId).then((res)=>{
             setStatus(res.apix.status?.id)
             form.setFieldsValue({
-                abc: res.apix.name,
+                name: res.apix.name,
                 requestType: res.requestType,
                 path: res.path,
                 desc: res.apix.desc,
-                // category:res.category.id
+                // category:res.apix.category.id
             })
-            // form.setFieldsValue(res.data)
         })
     }
 
@@ -74,7 +73,6 @@ const ApxMethodEdit = (props) => {
     // 提交
     const onFinish =   () => {
         form.validateFields().then(values=>{
-            debugger
             delete values.category
             values.apix={
                 id:httpId?httpId:apxMethodId,
@@ -82,10 +80,9 @@ const ApxMethodEdit = (props) => {
                 requestType:values.requestType,
                 path:values.path,
                 desc:values.desc,
-                status:status,
+                status: {id:status},
                 category:{id:cascaderCategoryId?cascaderCategoryId:categoryItemId},
                 protocolType:"http",
-
             }
             
             if(props.type === 'add'){
@@ -172,6 +169,7 @@ const ApxMethodEdit = (props) => {
                             onChange={changeCategory}
                             changeOnSelect
                             expandTrigger={"hover"}
+                            placeholder="请选择分组"
                         />
                     </Form.Item>
                     <Form.Item

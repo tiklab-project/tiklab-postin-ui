@@ -14,16 +14,17 @@ const {Option} = Select;
 
 const ApxMethodDetail = (props) => {
     const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore } = props;
-
-    const { findApxMethod,deleteApxMethod} = apxMethodStore;
+    const {findCategoryList} = categoryStore;
+    const { findApxMethod,deleteApxMethod,findApxMethodListByApix,updateApxMethod} = apxMethodStore;
     const { findUserSelectPage,userSelectList } = userSelectStore;
     const {findAllApiStatus,apiStatusList} = apxMethodStatusStore;
 
     const [editOk, setEdit] = useState(false);
-    const [isEdit, setIsEdit] = useState(false);
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
     const workspaceId = localStorage.getItem('workspaceId');
+    const categoryId = localStorage.getItem('categoryId');
+    const apxMethodId = localStorage.getItem('apxMethodId');
+
 
     const [resData, setResData] = useState({});
     const [name,setName]=useState("");
@@ -51,7 +52,7 @@ const ApxMethodDetail = (props) => {
             setCategory(res.apix.category?.name);
             setUpdateTime(res.apix.updateTime);
         })
-    },[editOk,isEdit,apxMethodId]);
+    },[editOk,apxMethodId]);
 
     useEffect(()=>{
         findUserSelectPage(workspaceId)
@@ -69,7 +70,9 @@ const ApxMethodDetail = (props) => {
     // 删除接口
     const handleDeleteApxMethod = (apxMethodId) => {
         deleteApxMethod(apxMethodId).then(()=>{
-            // findApxMethodPage(workspaceId);
+            findCategoryList(workspaceId);
+            findApxMethodListByApix(categoryId);
+
         })
 
         props.history.push({pathname:'/workspacepage/apis/detail/category'})
@@ -84,14 +87,13 @@ const ApxMethodDetail = (props) => {
 
     //设置执行者
     const selectExecutor = (executor) =>{
-        const newData = {
-            ...resData,
-            "executor":{"id":executor}
-        }
-        // updateApix(newData).then(()=>{
-        //     setExecutorId(executor)
-        //     setIsEdit(!isEdit)
-        // });
+
+        resData.apix.executor ={id:executor};
+
+        updateApxMethod(resData).then(()=>{
+            setExecutorId(executor)
+
+        });
     }
 
     //渲染状态下拉框
@@ -103,14 +105,12 @@ const ApxMethodDetail = (props) => {
 
     //设置状态
     const selectStatus = (statusId) =>{
-        const newData = {
-            ...resData,
-            "status":{"id":statusId}
-        }
-        // updateApix(newData).then(()=>{
-        //     setStatus(statusId)
-        //     setIsEdit(!isEdit)
-        // });
+
+        resData.apix.status ={id:statusId};
+
+        updateApxMethod(resData).then(()=>{
+            setStatus(statusId)
+        });
     }
 
 

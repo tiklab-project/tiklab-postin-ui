@@ -35,17 +35,15 @@ const WorkspaceInitPage = (props) => {
                         <Form
                             {...layout}
                             className='ws-edit-modal-form'
-                            name="basic"
+                            layout="vertical"
                             initialValues={{ remember: true }}
                             form={form}
                             onFinish={onFinish}
                             preserve={false}
-                            labelCol={{ style: { width: '100%', height: '30px' } }} //label样式
-                            labelAlign="left" //label样式
                         >
                             <Form.Item
                                 label="项目名称"
-                                rules={[{ required: true, message: '用户名不能包含非法字符，如&,%，&，#……等' }]}
+                                rules={[{ required: true, message: '请输入项目名称' }]}
                                 name="workspaceName"
                             >
                                 <Input />

@@ -90,14 +90,8 @@ export class ApxMethodStore {
 
     //更新接口
     @action
-	updateApxMethod = async (values) => {
-        const res = await updateMethod(values)
-        if( res.code === 0 ){
-            // this.findApxMethod(this.apxMethodId);
-            // this.findApxMethodPage(this.params);
-            return res;
-        }
-    }
+	updateApxMethod = async (values) =>  await updateMethod(values)
+
 
     //接口删除
     @action
@@ -111,78 +105,6 @@ export class ApxMethodStore {
         }
     }
 
-    // //查找版本
-    // @action
-    // findVersionPage = (id,value) => {
-    //     this.versionId = id;
-    //     this.verParams = {
-    //         orderParams:[{name:'name', orderType:'asc'}],
-    //         ...value
-    //     }
-    //     const data = Object.assign(toJS(this.verParams),{onVersionId:id})
-    //     const that = this;
-    //     return new Promise(function(resolve, reject){
-    //         findMethodVersionPage(data).then(res => {
-    //             if(res.code === 0 ) {
-    //                 that.versionList = res.data.dataList;
-    //                 that.totalRecord = res.data.totalRecord;
-    //                 resolve(res);
-    //             }
-    //         })
-    //     })
-    // }
-    //
-    // //添加版本
-    // @action
-    // createVersion = (values) => createVersion(values);
-    //
-    // //版本删除
-    // @action
-    // deleteVersion = (id) => {
-    //     const param = new FormData();
-    //     param.append('id', id);
-    //
-    //     deleteMethod(param).then((res) => {
-    //         if( res.code === 0 ){
-    //             this.findVersionPage(this.versionId,this.verParams);
-    //         }
-    //     })
-    // }
-    //
-    // //版本对比
-    // @action
-    // compareVersion = (currentId,oldId) => {
-    //     const params = {
-    //         currentId:currentId,
-    //         oldId:oldId
-    //     }
-    //     const that = this;
-    //     return new Promise(function (resolve, reject){
-    //         contrastVersion(params).then((res) => {
-    //             console.log(res)
-    //             if(res.code === 0){
-    //                 that.currentVersion = res.data.currentVersion
-    //                 that.oldVersion = res.data.oldVersion;
-    //                 resolve(res.data)
-    //             }
-    //         })
-    //     })
-    // }
-    //
-    // //版本详情
-    // @action
-    // queryVersionDetail = (id) => {
-    //     this.versionId = id;
-    //     const param = new FormData();
-    //     param.append('versionId', id);
-    //     return new Promise(function(resolve, reject){
-    //         queryVersionDetail(param).then((res) => {
-    //             if( res.code === 0 ){
-    //                 resolve(res.data)
-    //             }
-    //         })
-    //     })
-    // }
 
 }
 

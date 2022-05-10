@@ -18,7 +18,6 @@ const Request = (props) => {
     const { requestBodyStore } = props;
     const {
         findRequestBody,
-        createRequestBody,
         updateRequestBody,
         requestbodyType
     } = requestBodyStore;
@@ -29,11 +28,7 @@ const Request = (props) => {
 
     useEffect(()=>{
         findRequestBody(apxMethodId).then((res) => {
-            if(res){
-                setRadioValue(res)
-            }else{
-                createRequestBody({bodyType :'formdata'});
-            }
+            setRadioValue(res)
         })
     },[requestbodyType])
 

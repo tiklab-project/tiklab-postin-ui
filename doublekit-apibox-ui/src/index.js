@@ -17,35 +17,34 @@ import routers from './routers';
 import {useVersion} from "doublekit-portal-ui";
 
 
-export class Entry extends Component {
+export const Entry = (props) => {
 
-    render(){
-        let allStore = {
-            ...stores,
-            ...privilegeStores,
-            ...orgStores,
-            ...messageModuleStores,
-        }
-
-        useVersion();
-
-        //获取系统权限
-        const userInfo = getUser();
-        if(userInfo && userInfo.userId) {
-            allStore.systemRoleStore.getSystemPermissions(userInfo.userId);
-        }
-
-        allStore.pluginsStore.initLoadPlugin(fetchMethod, pluginAddressUrl)
-        allStore.pluginsStore.setProjectRouter(routers);
-
-        return (
-            <Provider {...allStore} >
-                <HashRouter>
-                    <App/>
-                </HashRouter>
-            </Provider>
-        )
+    let allStore = {
+        ...stores,
+        ...privilegeStores,
+        ...orgStores,
+        ...messageModuleStores,
     }
+
+    useVersion();
+
+    //获取系统权限
+    const userInfo = getUser();
+    if(userInfo && userInfo.userId) {
+        allStore.systemRoleStore.getSystemPermissions(userInfo.userId);
+    }
+
+    allStore.pluginsStore.initLoadPlugin(fetchMethod, pluginAddressUrl)
+    allStore.pluginsStore.setProjectRouter(routers);
+
+    return (
+        <Provider {...allStore} >
+            <HashRouter>
+                <App/>
+            </HashRouter>
+        </Provider>
+    )
+
 }
 
 ReactDOM.render(<Entry/>,document.getElementById('container'));
