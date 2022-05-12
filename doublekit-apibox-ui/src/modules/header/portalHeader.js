@@ -1,5 +1,5 @@
 import React from 'react';;
-import {LOGIN_STATUS, verifyUserHOC} from "doublekit-portal-ui";
+import {EAM_STORE, verifyUserHOC} from "doublekit-eam-ui";
 import {inject, observer} from "mobx-react";
 import HeaderContent from "./headerContent";
 import {renderRoutes} from "react-router-config";
@@ -33,5 +33,5 @@ export const  PortalHeader =(props)=> {
 }
 
 const  WrapPortal = verifyUserHOC(PortalHeader);
-export default inject(LOGIN_STATUS)(observer(WrapPortal));
+export default inject(EAM_STORE)(observer(WrapPortal));
 

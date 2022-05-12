@@ -1,4 +1,4 @@
-import { LoginStore,LOGIN_STATUS } from 'doublekit-portal-ui';
+import { EamStore,EAM_STORE } from 'doublekit-eam-ui';
 import {PluginStore, PLUGIN_STORE} from "doublekit-plugin-manage"
 import { SEARCHSTORE, SearchStore } from './modules/integration/search'
 
@@ -101,7 +101,7 @@ import {
 
 function createStores() {
     return {
-        [LOGIN_STATUS]: new LoginStore(),
+        [EAM_STORE]: new EamStore(),
         // search
         [SEARCHSTORE]: new SearchStore(),
 

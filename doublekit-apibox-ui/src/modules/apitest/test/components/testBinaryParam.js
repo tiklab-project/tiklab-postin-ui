@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import {getUser} from "doublekit-portal-ui";
+import {getUser} from "doublekit-core-ui";
 import {Button, message, Upload} from "antd";
 import {UploadOutlined} from "@ant-design/icons";
 

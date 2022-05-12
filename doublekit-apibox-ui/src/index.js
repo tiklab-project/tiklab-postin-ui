@@ -14,7 +14,7 @@ import { privilegeStores } from 'doublekit-privilege-ui';
 import { messageModuleStores } from 'doublekit-message-ui'
 import { stores } from './stores';
 import routers from './routers';
-import {useVersion} from "doublekit-portal-ui";
+import {useVersion} from "doublekit-eam-ui";
 
 
 export const Entry = (props) => {

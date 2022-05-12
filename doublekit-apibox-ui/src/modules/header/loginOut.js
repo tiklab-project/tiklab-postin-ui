@@ -1,12 +1,11 @@
 import React from "react";
-import {BaseLogOut,LOGIN_STATUS} from "doublekit-portal-ui"
-import {inject, observer} from "mobx-react";
+import {Logout} from "doublekit-eam-ui"
 
 const  LoginOut = (props) => {
 
     return (
-        <BaseLogOut {...props}/>
+        <Logout {...props}/>
     );
 };
 
-export default inject(LOGIN_STATUS)(observer(LoginOut));
+export default LoginOut;

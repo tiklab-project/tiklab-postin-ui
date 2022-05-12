@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import contentImg from '../../assets/img/contentimg.jpg';
-import { Login, LOGIN_STATUS } from 'doublekit-portal-ui'
+import { Login, EAM_STORE } from 'doublekit-eam-ui'
 
 import {inject, observer} from 'mobx-react'
 
@@ -26,4 +26,4 @@ const LoginContent = (props)=> {
 
 }
 
-export default inject(LOGIN_STATUS)(observer(LoginContent)) ;
+export default inject(EAM_STORE)(observer(LoginContent)) ;
