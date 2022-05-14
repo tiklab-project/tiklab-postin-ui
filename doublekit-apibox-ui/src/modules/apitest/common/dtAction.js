@@ -13,9 +13,7 @@ let result,
   = {};
 
 const darth =  {
-    md5:{
-        encode:md5
-    },
+    md5:md5,
     url:{
         set: (value) => {
             result={...result,url:value}
@@ -130,6 +128,11 @@ const getMethod = (data) => {
     methodData = data
 }
 
+function execute(express){
+    return eval(express)
+}
+
+
 export { 
     handelResult, 
     getUrl,
@@ -140,6 +143,6 @@ export {
     getForm,
     getJson,
     getRaw,
-    
+    execute,
+    darth
 }
-export default darth
