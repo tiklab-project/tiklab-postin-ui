@@ -5,14 +5,13 @@ const {  Content } = Layout;
 
 // 首页
 class Home extends Component {
+
     render() {
         return(
-            <Layout >
-                <Content className="home-content">
-                    <div className="content-left content-div"></div>
-                    <div className="content-right content-div"></div>
-                </Content>
-            </Layout>
+            <div className={"home-content"}>
+                <div className="content-left content-div">home</div>
+                <div className="content-right content-div">home</div>
+            </div>
         )
     }
 }

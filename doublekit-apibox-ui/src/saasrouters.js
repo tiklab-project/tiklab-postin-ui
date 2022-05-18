@@ -34,7 +34,7 @@ import {
     MessageSendType,
     MessageTemplate,
     MessageType,
-    MessageUser, Org, Usermgr, Login, SysManage,
+    MessageUser, SysManage,
 
 } from './modules';
 import {Redirect} from "react-router";
@@ -51,6 +51,8 @@ import TabsQuickTest from "./modules/quicktest/components/tabsQuickTest";
 import TestdetailQuickTest from "./modules/quicktest/components/testdetailQuickTest";
 import ApiInitPage from "./modules/category/components/apiInitPage";
 import LoginOut from "./modules/header/loginOut";
+import ElectronLoginContant from "./modules/login/electronLoginContant";
+import {AuthResult} from "doublekit-eam-ui";
 
 const routers =  [
     {
@@ -58,6 +60,17 @@ const routers =  [
         component: LoginOut,
         exact: true,
         key:'logout',
+    },
+    {
+        path:"/account",
+        component:ElectronLoginContant,
+        key:"account",
+        exact: true,
+    },{
+        path:"/auth_result",
+        component:AuthResult,
+        key:"auth_result",
+        exact: true,
     },
     {
         component: PortalHeader,

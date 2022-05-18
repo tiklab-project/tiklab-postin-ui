@@ -152,3 +152,12 @@
     0%{-webkit-transform:scale(1,0);}
     100%{-webkit-transform:scale(1,1);}
 }
+
+
+.api-footer{
+    border: 1px solid #e1e1e1;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

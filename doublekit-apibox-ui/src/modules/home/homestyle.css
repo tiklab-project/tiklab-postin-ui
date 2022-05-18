@@ -2,8 +2,7 @@
 
 .home-content{
     background-color:#f0f2f5;
-    height: 500px;
-    height: 800px;
+    height: calc(100% - 108px);
     display: flex;
     /* justify-content: center; */
     align-items: center;
@@ -11,7 +10,7 @@
 }
 
 .content-div{
-    width: 400px;
-    height: 250px;
-    border: 1px solid black;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #cecece;
 }

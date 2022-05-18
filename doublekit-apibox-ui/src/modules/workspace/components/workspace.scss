@@ -27,7 +27,7 @@ ul{
 
 .ws-layout{
     background-color: white;
-    height: calc(100% - 64px);
+    height: calc(100% - 108px);
 }
 
 .ws-content{
@@ -350,6 +350,7 @@ ul{
 
 .wscontant-contant{
     width: 100%;
+    overflow: auto;
 }
 
 .wsAside{

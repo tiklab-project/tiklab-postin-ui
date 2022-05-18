@@ -54,6 +54,8 @@ import TestdetailQuickTest from "./modules/quicktest/components/testdetailQuickT
 import ApiInitPage from "./modules/category/components/apiInitPage";
 import LoginOut from "./modules/header/loginOut";
 import LoginContent from "./modules/login/loginContent";
+import ElectronLoginContant from "./modules/login/electronLoginContant";
+import {AuthResult} from "doublekit-eam-ui"
 
 const routers =  [
     {
@@ -61,6 +63,17 @@ const routers =  [
         exact: true,
         component: LoginContent,
         key:'login',
+    },
+    {
+        path:"/account",
+        component:ElectronLoginContant,
+        key:"account",
+        exact: true,
+    },{
+        path:"/auth_result",
+        component:AuthResult,
+        key:"auth_result",
+        exact: true,
     },
     {
         path: "/logout",
@@ -77,8 +90,9 @@ const routers =  [
         path: '/',
         key:'poroute',
         routes:[
+
             {
-                path: "/home",
+                path: "/",
                 component: Home,
                 exact: true,
                 key:'Home',
@@ -393,8 +407,9 @@ const routers =  [
                     },
                 ]
             },
+
         ]
-    },
+    }
   ];
 
 export default routers
