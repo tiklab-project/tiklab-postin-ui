@@ -17,7 +17,7 @@ const HeaderMenu = (props) =>{
 
     const menuRouter = [
         {
-            to:'/',
+            to:'/home',
             title:'主页',
             key: 'home'
         },

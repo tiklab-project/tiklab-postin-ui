@@ -1,5 +1,5 @@
 import React from "react";
-import {PluginDetail,PluginList} from "doublekit-plugin-manage"
+import {PluginList} from "doublekit-plugin-manage"
 
 const PluginManage = (props) =>{
     return <PluginList {...props} detailRouter={"/plugindetail"}/>

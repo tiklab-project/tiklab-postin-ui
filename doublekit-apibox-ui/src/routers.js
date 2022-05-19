@@ -1,61 +1,31 @@
 
 import React from 'react'
-import PortalHeader from './modules/header/portalHeader.js';
+
 import {Directory} from 'doublekit-user-ui';
 import {Licence} from "doublekit-licence-ui";
-import {PluginDetail} from "doublekit-plugin-manage"
-import PluginManage from "./modules/sysmgr/pluginManage/pluginManage";
+import {PluginDetail} from "doublekit-plugin-manage";
+import {AuthResult} from "doublekit-eam-ui";
 
 import {
-    Home,
-    SearchResult,
+    PortalHeader,
+    Home, SearchResult,
 
-    WorkspaceRole,
-    WorkspacePrivilege,
-    Workspace,WorkspaceInitPage,
-    WorkspaceParticipation,
-    WorkspaceCreatePage,
-    WorkspaceList,
-    WorkspaceDetail,
-    Category,
-    ApxMethod,
-    ApxMethodDetail,
+    WorkspaceRole, WorkspacePrivilege, Workspace,WorkspaceInitPage, WorkspaceParticipation, WorkspaceCreatePage,
+    WorkspaceList, WorkspaceDetail, RecentBrowing,WorkspaceDetailLayout,
+    ApiContant,TabsPage,LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,ApiInitPage,
+    Category, ApxMethod, ApxMethodDetail,
 
-    Test,
-    TestCase,
-    TestCaseDetail,
-    Mock,
-    MockDetail,
+    Test, TestCase, TestCaseDetail,
+    Mock, MockDetail,
 
-    SysManage,
-    EvnMana,
-    DataStructure,
-    ApiStatus,
-    Usermgr, Org,
-    ProjectFeature,
-    ProjectRole,
-    SystemFeature,
-    SystemRole,
-    MessageManagement,
-    MessageSendType,
-    MessageTemplate,
-    MessageType,
-    MessageUser,
-
+    SysManage, EvnMana, DataStructure, ApiStatus,
+    Usermgr, Org, ProjectFeature, ProjectRole,
+    SystemFeature, SystemRole,PluginManage,
+    MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
+    LoginOut,LoginContent,ElectronLoginContant
 } from './modules';
+
 import {Redirect} from "react-router";
-import RecentBrowing from "./modules/workspace/components/recentBrowing";
-import WorkspaceDetailLayout from "./modules/workspaceDetail/workspaceDetailLayout";
-import ApiContant from "./modules/category/components/ApiContant";
-import TabsPage from "./modules/workspaceDetail/tabsPage";
-import LayoutQuickTest from "./modules/quicktest/components/layoutQuickTest";
-import TabsQuickTest from "./modules/quicktest/components/tabsQuickTest";
-import TestdetailQuickTest from "./modules/quicktest/components/testdetailQuickTest";
-import ApiInitPage from "./modules/category/components/apiInitPage";
-import LoginOut from "./modules/header/loginOut";
-import LoginContent from "./modules/login/loginContent";
-import ElectronLoginContant from "./modules/login/electronLoginContant";
-import {AuthResult} from "doublekit-eam-ui"
 
 const routers =  [
     {
@@ -92,7 +62,7 @@ const routers =  [
         routes:[
 
             {
-                path: "/",
+                path: "/home",
                 component: Home,
                 exact: true,
                 key:'Home',
@@ -240,7 +210,6 @@ const routers =  [
                         render: () => <Directory to={"/systemManagement/envMana"}/>,
                     },
                 ]
-
             },
             {
                 path: "/plugindetail",
