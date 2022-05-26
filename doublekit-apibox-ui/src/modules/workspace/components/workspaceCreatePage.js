@@ -20,7 +20,6 @@ const WorkspaceCreatePage = (props) => {
         deleteWorkspace,
         workspaceList,
         totalRecord,
-        findWorkspaceList
     } = workspaceStore;
 
     const { t } = useTranslation();

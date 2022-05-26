@@ -79,30 +79,30 @@ const LeftNav = (props) =>{
 
             sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(apiTabInfo))
 
-            localStorage.setItem("testCaseId","1")
+            localStorage.setItem("instanceId","-1")
         }
     }
 
     const showMenuItem = (data) =>{
         return data&&data.map(item=>{
-           return(
-               <li
-                   key={item.key}
-                   className={`ws-detail-left-nav-item `}
-                   onClick={()=>clickAddRouter(item.router)}
-               >
-                   <div className={`ws-detail-left-nav-item-box ${leftRouter===item.router?"selectlink":null}`}>
-                       <div className={"ws-detail-left-nav-item-detail"}>
-                           <svg className="icon" aria-hidden="true">
-                               <use xlinkHref= {`#icon-${item.icon}`}></use>
-                           </svg>
-                       </div>
-                       <div  className={"ws-detail-left-nav-item-detail"}>
-                           {item.name}
-                       </div>
-                   </div>
-               </li>
-           )
+            return(
+                <li
+                    key={item.key}
+                    className={`ws-detail-left-nav-item `}
+                    onClick={()=>clickAddRouter(item.router)}
+                >
+                    <div className={`ws-detail-left-nav-item-box ${leftRouter===item.router?"selectlink":null}`}>
+                        <div className={"ws-detail-left-nav-item-detail"}>
+                            <svg className="icon" aria-hidden="true">
+                                <use xlinkHref= {`#icon-${item.icon}`}></use>
+                            </svg>
+                        </div>
+                        <div  className={"ws-detail-left-nav-item-detail"}>
+                            {item.name}
+                        </div>
+                    </div>
+                </li>
+            )
         })
     }
 

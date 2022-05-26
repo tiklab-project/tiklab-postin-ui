@@ -13,15 +13,15 @@ const TabsQuickTest = (props) =>{
     const quickTestTabListInfo = JSON.parse(sessionStorage.getItem("quickTestTabListInfo"))
 
     useEffect(()=>{
-        console.log('12121212')
-    },[activeKey,action,quickTestTabListInfo])
+        console.log('quickTest')
+        localStorage.setItem("instanceId","-1")
+    },[activeKey,action])
 
 
 
     const onChange = (activeKey) => {
         setActiveKey(activeKey)
     };
-
 
 
     const onEdit  = (targetKey, action)=>{
@@ -34,6 +34,7 @@ const TabsQuickTest = (props) =>{
     const [newTabId, setNewTabId] = useState(1);
 
     const add = ()=>{
+
         setNewTabId(newTabId+1);
 
         let list = quickTestTabListInfo.tabList;
@@ -83,7 +84,7 @@ const TabsQuickTest = (props) =>{
 
         sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newTab))
 
-        localStorage.setItem("testCaseId",item.id)
+        localStorage.setItem("instanceId",item.id)
         props.history.push("/workspacepage/quickTest/detail/api")
 
 

@@ -34,10 +34,11 @@ const RawParamTestCase = (props) => {
     },[radioValue])
 
     const onFinish = (values) => {
-        if(rawParamTestCaseInfo?.raw === null){
-            createRawParamTestCase(values)
-        }else{
+        if(rawParamTestCaseInfo.raw){
             updateRawParamTestCase(values)
+
+        }else{
+            createRawParamTestCase(values)
         }
 
         setFocus(false)

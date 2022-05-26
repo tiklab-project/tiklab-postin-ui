@@ -22,7 +22,7 @@ export const sendTestDataProcess=(data)=>{
 
     //用于store获取数据
     data.getRequestInfo(requestInfo)
-
+debugger
     const sendData = {
         ...requestInfo,
         "assertList":data.assertList,

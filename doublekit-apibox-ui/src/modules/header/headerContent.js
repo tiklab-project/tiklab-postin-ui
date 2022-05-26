@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {Col, Row, Dropdown, Menu, Button, Badge} from "antd";
 import {Search} from "../index";
-import useAppConfig from "./useAppLink"
+import {useWorkAppConfig} from "doublekit-eam-ui"
+import {getUser} from "doublekit-core-ui"
 import { BellOutlined } from '@ant-design/icons';
 import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";
+
 
 const HeaderContent = props => {
     const {userMessageStore} = props;
@@ -18,14 +20,16 @@ const HeaderContent = props => {
 
     const { i18n } = useTranslation();
     const [lan, setLan] = useState(i18n.language);
+    let userInfo = getUser();
 
-    const [component, ModalComponent, editOrAddModal] = useAppConfig(false);
+    const [component, ModalComponent, editOrAddModal] = useWorkAppConfig(false);
 
     const onClickLan = ({ key }) => {
         i18n.changeLanguage(languageSelectData[key].value)
         setLan(languageSelectData[key].value)
     };
 
+    //语言包选项
     const menu = (
         <Menu onClick={onClickLan}>
             {
@@ -39,6 +43,40 @@ const HeaderContent = props => {
     const toMessage = () =>{
         props.history.push("/MessageUser");
     }
+
+    const isLocal =() =>{
+        let isLocal = JSON.parse(localStorage.getItem("authConfig"))
+
+        if(isLocal){
+            switch (isLocal.authType) {
+                case "local":
+                    return <span>(本地)</span>
+                case "acc":
+                    return <span>(统一)</span>
+            }
+        }else {
+            return <span>(本地)</span>
+        }
+
+    }
+
+    const version = ()=>{
+        let versionInfo = JSON.parse(localStorage.getItem("versionInfo"))
+        if(versionInfo){
+            switch (versionInfo.release) {
+                case 1:
+                    return <span>社区版</span>
+                case 2:
+                    return <span>企业版</span>
+                case 3:
+                    return <span>SaaS版</span>
+            }
+        }else {
+            return <span>社区版</span>
+        }
+    }
+
+
 
     return(
         <Row style={{height :"64px"}} className="frame-header">
@@ -61,7 +99,21 @@ const HeaderContent = props => {
                         <Dropdown overlay={menu} className={'frame-header-dropdown'}>
                             <Button>{lan}</Button>
                         </Dropdown>
-                        <span onClick={logout}>退出</span>
+                        <div>
+                            {version()}
+                            {isLocal()}
+                        </div>
+
+                        {
+                            props.isSignIn&&!userInfo.ticket
+                                ? props.isSignIn
+                                :null
+                        }
+                        {
+                            userInfo.ticket
+                                ?<span onClick={logout}>退出</span>
+                                :null
+                        }
                     </div>
                 </div>
                 {ModalComponent}

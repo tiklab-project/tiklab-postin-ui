@@ -21,7 +21,7 @@ export class WorkspaceStore {
 	@observable workspaceName = '';
 	@observable	totalRecord = "";
 	@observable params;
-	@observable pageParams;
+	@observable pagePar
 	@observable length;
 
 	//获取带分页列表的数据/

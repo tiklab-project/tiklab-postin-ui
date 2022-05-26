@@ -4,15 +4,14 @@ import React from 'react'
 import {Directory} from 'doublekit-user-ui';
 import {Licence} from "doublekit-licence-ui";
 import {PluginDetail} from "doublekit-plugin-manage";
-import {AuthResult} from "doublekit-eam-ui";
 
 import {
     PortalHeader,
     Home, SearchResult,
 
-    WorkspaceRole, WorkspacePrivilege, Workspace,WorkspaceInitPage, WorkspaceParticipation, WorkspaceCreatePage,
-    WorkspaceList, WorkspaceDetail, RecentBrowing,WorkspaceDetailLayout,
-    ApiContant,TabsPage,LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,ApiInitPage,
+    WorkspaceRole, WorkspacePrivilege, Workspace, WorkspaceInitPage, WorkspaceParticipation, WorkspaceCreatePage,
+    WorkspaceList, WorkspaceDetail, RecentBrowing, WorkspaceDetailLayout,
+    ApiContant, TabsPage, LayoutQuickTest, TabsQuickTest, TestdetailQuickTest, ApiInitPage,
     Category, ApxMethod, ApxMethodDetail,
 
     Test, TestCase, TestCaseDetail,
@@ -20,12 +19,13 @@ import {
 
     SysManage, EvnMana, DataStructure, ApiStatus,
     Usermgr, Org, ProjectFeature, ProjectRole,
-    SystemFeature, SystemRole,PluginManage,
+    SystemFeature, SystemRole, PluginManage,
     MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
-    LoginOut,LoginContent,ElectronLoginContant
+    LoginOut, LoginContent, ElectronLoginContant
 } from './modules';
 
 import {Redirect} from "react-router";
+import {AuthResult} from "doublekit-eam-ui";
 
 const routers =  [
     {
@@ -33,6 +33,12 @@ const routers =  [
         exact: true,
         component: LoginContent,
         key:'login',
+    },
+    {
+        path: "/logout",
+        component: LoginOut,
+        exact: true,
+        key:'logout',
     },
     {
         path:"/account",
@@ -44,12 +50,6 @@ const routers =  [
         component:AuthResult,
         key:"auth_result",
         exact: true,
-    },
-    {
-        path: "/logout",
-        component: LoginOut,
-        exact: true,
-        key:'logout',
     },
     {
         component: PortalHeader,
@@ -110,13 +110,13 @@ const routers =  [
                 component:SysManage,
                 routes:[
                     {
-                        path: "/systemManagement/organ/org",
+                        path: "/systemManagement/org",
                         key:'org',
                         exact: true,
                         component: Org,
                     },
                     {
-                        path: "/systemManagement/organ/user",
+                        path: "/systemManagement/user",
                         key:'user',
                         exact: true,
                         component: Usermgr,
@@ -207,7 +207,7 @@ const routers =  [
                         path: "/systemManagement",
                         key:'sysEnvMana',
                         exact: true,
-                        render: () => <Directory to={"/systemManagement/envMana"}/>,
+                        render: () => <Redirect to={"/systemManagement/envMana"}/>,
                     },
                 ]
             },
@@ -337,7 +337,7 @@ const routers =  [
                                 routes: [
                                     {
                                         path: "/workspacepage/quickTest/detail/api",
-                                        exact: true,
+
                                         key:'TestdetailQuickTest',
                                         component: TestdetailQuickTest,
                                     },{
@@ -376,7 +376,12 @@ const routers =  [
                     },
                 ]
             },
-
+            {
+                path: "/",
+                key:'tohome',
+                exact: true,
+                render: () => <Redirect to={"/home"}/>,
+            },
         ]
     }
   ];

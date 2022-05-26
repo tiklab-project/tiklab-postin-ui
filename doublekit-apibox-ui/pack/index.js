@@ -7,7 +7,7 @@ import routers from './components/routers';
 import saasrouters from './components/saasrouters';
 import App from "./components/app";
 import {
-    Home,PortalHeader,
+    Home,PortalHeader,HeaderContent,
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,
@@ -38,7 +38,7 @@ import {
 
 export {
     apiboxStore, routers, saasrouters, App,
-    Home,PortalHeader,
+    Home,PortalHeader,HeaderContent,
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,

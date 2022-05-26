@@ -41,6 +41,7 @@ const TestCaseRequest = (props) => {
     const onChange = e => {
         let changeRadioValue = {bodyType : e.target.value}
         updateRequestBodyTestCase(changeRadioValue)
+        setRadioValue( e.target.value)
     };
 
     const changeFormat = (radioValue) => {

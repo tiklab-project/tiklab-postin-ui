@@ -23,6 +23,7 @@ import {
 } from './sysmgr/index'
 
 import PortalHeader from './header/portalHeader.js';
+import HeaderContent from './header/headerContent'
 import PluginManage from "./sysmgr/pluginManage/pluginManage";
 import RecentBrowing from "./workspace/components/recentBrowing";
 import WorkspaceDetailLayout from "./workspaceDetail/workspaceDetailLayout";
@@ -37,7 +38,7 @@ import LoginContent from "./login/loginContent";
 import ElectronLoginContant from "./login/electronLoginContant";
 
 export {
-    Home,PortalHeader,
+    Home,PortalHeader,HeaderContent,
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,

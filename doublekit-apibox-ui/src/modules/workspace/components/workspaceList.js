@@ -19,7 +19,6 @@ const WorkspaceList = (props) => {
         deleteWorkspace,
         workspaceList,
         totalRecord,
-        findWorkspaceList,
         length
     } = workspaceStore;
 

@@ -1,4 +1,4 @@
-import React from 'react';;
+import React from 'react';
 import {EAM_STORE, verifyUserHOC} from "doublekit-eam-ui";
 import {inject, observer} from "mobx-react";
 import HeaderContent from "./headerContent";

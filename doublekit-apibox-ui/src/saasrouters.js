@@ -34,7 +34,7 @@ import {
     MessageSendType,
     MessageTemplate,
     MessageType,
-    MessageUser, SysManage,
+    MessageUser, SysManage, LoginContent, Org, Usermgr,
 
 } from './modules';
 import {Redirect} from "react-router";
@@ -81,6 +81,7 @@ const routers =  [
         path: '/',
         key:'poroute',
         routes:[
+
             {
                 path: "/home",
                 component: Home,
@@ -183,7 +184,6 @@ const routers =  [
                         exact: true,
                         component: EvnMana,
                     },
-
                     {
                         path: "/systemManagement/dataStructure",
                         key:'dataStucture',
@@ -201,24 +201,12 @@ const routers =  [
                         component: PluginManage,
                     },
                     {
-                        path: "/systemManagement/licence",
-                        key:'licence',
-                        exact: true,
-                        component: Licence,
-                    },{
-                        path: "/systemManagement/authConfig",
-                        key:'authConfig',
-                        exact: true,
-                        render: () => <Directory isPortal={false}/>,
-                    },
-                    {
                         path: "/systemManagement",
                         key:'sysEnvMana',
                         exact: true,
-                        render: () => <Directory to={"/systemManagement/envMana"}/>,
+                        render: () => <Redirect to={"/systemManagement/envMana"}/>,
                     },
                 ]
-
             },
             {
                 path: "/plugindetail",
@@ -346,7 +334,7 @@ const routers =  [
                                 routes: [
                                     {
                                         path: "/workspacepage/quickTest/detail/api",
-                                        exact: true,
+
                                         key:'TestdetailQuickTest',
                                         component: TestdetailQuickTest,
                                     },{
@@ -385,8 +373,14 @@ const routers =  [
                     },
                 ]
             },
+            {
+                path: "/",
+                key:'tohome',
+                exact: true,
+                render: () => <Redirect to={"/home"}/>,
+            },
         ]
-    },
+    }
 ];
 
 

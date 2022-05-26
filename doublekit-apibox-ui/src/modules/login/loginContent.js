@@ -18,7 +18,7 @@ const LoginContent = (props)=> {
             title={'接口管理'}
             contentImg={contentImg}
             {...props}
-            loginGoRouter={'/'}
+            loginGoRouter={'/workspacepage/quickTest/detail/api'}
             fetchMethod={fetchMethod}
             languageUrl={pluginAddressUrl}
         />

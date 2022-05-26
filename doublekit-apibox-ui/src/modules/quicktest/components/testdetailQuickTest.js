@@ -4,15 +4,13 @@ import RequestTabQuickTest from "./requestTabQuickTest";
 import {inject, observer} from "mobx-react";
 import {sendTestDataProcess} from "../../apitest/common/sendTestCommon";
 import ResponseQuickTest from "./responseQuickTest";
-import SaveTestcaseQuickTest from "./saveTestcaseQuickTest";
 import {methodDictionary} from "../../common/dictionary/dictionary";
 
 const { Option } = Select;
 
 const TestdetailQuickTest = (props) =>{
     const {
-        categoryStore,
-        testCaseStore,
+        instanceStore,
         quickTestStore,
         headerQuickTestStore,
         queryQuickTestStore,
@@ -26,7 +24,7 @@ const TestdetailQuickTest = (props) =>{
         assertQuickTestStore
     } = props;
 
-    const {findTestCase} = testCaseStore;
+    const {findInstance,createInstance} = instanceStore;
     const { getRequestInfo, getResponseInfo, getTime } = quickTestStore;
     const {headerQuickTestList,getRequestHeaderTestList} = headerQuickTestStore;
     const {queryQuickTestList,getQueryParamTestList} = queryQuickTestStore;
@@ -43,45 +41,45 @@ const TestdetailQuickTest = (props) =>{
     const [showResponse,setShowResponse]= useState(false);
     const [ form ] = Form.useForm();
 
-    const testcaseId = localStorage.getItem("testCaseId")
+    const instanceId = localStorage.getItem("instanceId")
 
     useEffect(()=>{
-        if(testcaseId!=="1"){
-        findTestCase(testcaseId).then(res=>{
-            form.setFieldsValue({
-                baseUrl:res.baseUrl,
-                requestType: res.requestType,
-                path: res.path,
+        if(instanceId!=="-1"){
+            findInstance(instanceId).then(res=>{
+                form.setFieldsValue({
+                    baseUrl:res.baseUrl,
+                    requestType: res.requestType,
+                    path: res.path,
+                })
+                getRequestHeaderTestList(res.requestHeaderCaseList);
+                getQueryParamTestList(res.queryParamCaseList);
+                getBodyType(res.requestBodyCase.bodyType)
+                switch (res.requestBodyCase.bodyType){
+                    case "formdata":
+                        getFormParamTestList(res.formParamCaseList);
+                        break;
+                    case "formUrlencoded":
+                        getFormUrlencodedTestList(res.formUrlencodedCaseList);
+                        break;
+                    case "json":
+                        getJsonParamTestList(res.jsonParamCaseList);
+                        break;
+                    case "raw":
+                        getRawInfo(res.rawParamCase)
+                        break;
+                    case "binary":
+                        //问题
+                        break;
+                    default:
+                        break;
+                }
+
+                getPreInfo(res.preScriptCase);
+                getAfterInfo(res.afterScriptCase)
+
             })
-            getRequestHeaderTestList(res.requestHeaderCaseList);
-            getQueryParamTestList(res.queryParamCaseList);
-            getBodyType(res.requestBodyCase.bodyType)
-            switch (res.requestBodyCase.bodyType){
-                case "formdata":
-                    getFormParamTestList(res.formParamCaseList);
-                    break;
-                case "formUrlencoded":
-                    getFormUrlencodedTestList(res.formUrlencodedCaseList);
-                    break;
-                case "json":
-                    getJsonParamTestList(res.jsonParamCaseList);
-                    break;
-                case "raw":
-                    getRawInfo(res.rawParamCase)
-                    break;
-                case "binary":
-                    //问题
-                    break;
-                default:
-                    break;
-            }
-
-            getPreInfo(res.preScriptCase);
-            getAfterInfo(res.afterScriptCase)
-
-        })
         }
-    },[testcaseId])
+    },[instanceId])
 
 
     // 点击测试
@@ -90,6 +88,8 @@ const TestdetailQuickTest = (props) =>{
             "getTime":getTime,
             "getRequestInfo":getRequestInfo,
             "getResponseInfo":getResponseInfo,
+            "belongId":"quickTestInstanceId",
+            "createInstance":createInstance,
             "method":values.requestType,
             "baseUrl":values.baseUrl,
             "path":values.path,
@@ -154,25 +154,6 @@ const TestdetailQuickTest = (props) =>{
                             </Button>
                         </Form.Item>
                     </div>
-                    <div className={"test-base-item"}>
-                        <Form.Item className='test-button'>
-                            <SaveTestcaseQuickTest
-                                formRef={form}
-                                testCaseStore={testCaseStore}
-                                categoryStore={categoryStore}
-                                headerList={headerQuickTestList}
-                                queryList={queryQuickTestList}
-                                bodyType={bodyType}
-                                formDataList={formQuickTestList}
-                                formUrlencodedList={formUrlencodedQuickTestList}
-                                jsonList={jsonQuickTestList}
-                                rawInfo={rawQuickTestInfo}
-                                preInfo={preQuickTestInfo}
-                                afterInfo={afterQuickTestInfo}
-                                assertList={assertQuickTestList}
-                            />
-                        </Form.Item>
-                    </div>
                 </Form>
             </div>
             <div>
@@ -189,8 +170,7 @@ const TestdetailQuickTest = (props) =>{
 }
 
 export default inject(
-    "categoryStore",
-    "testCaseStore",
+    "instanceStore",
     "quickTestStore",
     "headerQuickTestStore",
     "queryQuickTestStore",

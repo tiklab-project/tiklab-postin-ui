@@ -25,7 +25,7 @@ export class TestCaseStore {
     @observable requestHeaderCaseData;
     @observable responseHeaderCaseData;
     @observable responseBodyCaseData;
-
+    @observable requestType;
 
     @action
     findTestCasePage = async (id)=>{
@@ -133,10 +133,9 @@ export class TestCaseStore {
             "assertList":assertData
         }
 
-        debugger
+
         // 断言值的比较，结果返回 1，-1
         let allAssertResult=assertCommonStore.assertIsOrNotSuccess(assertNeedData)
-
 
 
         this.responseHeaderCaseData = JSON.stringify(headers);

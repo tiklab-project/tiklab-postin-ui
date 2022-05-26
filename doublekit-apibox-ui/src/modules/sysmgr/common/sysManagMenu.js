@@ -43,14 +43,14 @@ const SysManage = (props) => {
                 {
                     title: "组织管理",
                     icon: 'laptop',
-                    key: '/systemManagement/organ/org',
+                    key: '/systemManagement/org',
                     encoded: "SysOrga",
 
                 },
                 {
                     title: '用户管理',
                     icon: 'laptop',
-                    key: '/systemManagement/organ/user',
+                    key: '/systemManagement/user',
                     encoded: "SysUser",
                 },
             ]
@@ -108,12 +108,6 @@ const SysManage = (props) => {
             ]
         },
         {
-            title: '账号同步',
-            icon: 'laptop',
-            key: '/systemManagement/authConfig',
-            encoded: "authConfig",
-        },
-        {
             title: '插件管理',
             icon: 'laptop',
             key: '/systemManagement/pluginmanage',
@@ -127,11 +121,34 @@ const SysManage = (props) => {
         }
     ]
 
+    let authConfigMenu =[
+        {
+            title: '账号同步',
+            icon: 'laptop',
+            key: '/systemManagement/authConfig',
+            encoded: "authConfig",
+        }
+    ]
+
     const [selectKey,setSelectKey] = useState('/systemManagement/envMana')
 
-    const [menuRouter,setMenuRouter] = useState()
+    const [menuRouter,setMenuRouter] = useState();
+
+
+    let isLocal = JSON.parse(localStorage.getItem("authConfig"))
+
+    //如果是local， 需要添加账号同步中心
+    const setAuthConfig = ()=>{
+        if(isLocal.authType==="local"){
+            return [...settingMenu,...authConfigMenu]
+        }else {
+            return settingMenu
+        }
+    }
 
     useEffect(() => {
+        let localMenu = setAuthConfig();
+
         let data = pluginConfig("settingMenu").filter(item => item.menuTitle);
 
         if(data.length > 0){
@@ -145,9 +162,10 @@ const SysManage = (props) => {
                     }
                 })
             })
-            setMenuRouter(settingMenu.concat(newRouter));
+
+            setMenuRouter(localMenu.concat(newRouter));
         }else {
-            setMenuRouter(settingMenu);
+            setMenuRouter(localMenu);
         }
     }, [isInitLoadPlugin])
 

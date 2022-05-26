@@ -1,5 +1,5 @@
 /*
- * @Description: 本地环境
+ * @Description: acc
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-27 13:53:54
  */
@@ -19,7 +19,7 @@ const version = JSON.stringify('1.0.1');
 const client = JSON.stringify('1.1.0');
 
 
-const acc_url = JSON.stringify('http://portal.local.doublekit.net');
+const acc_url = JSON.stringify('http://portal-ce.dev.doublekit.net');
 
 
 module.exports = {

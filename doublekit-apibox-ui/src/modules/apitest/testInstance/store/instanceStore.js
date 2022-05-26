@@ -24,7 +24,7 @@ export class InstanceStore {
     findInstancePage = async (id,value) => {
         this.params = {
             ...value,
-            testcaseId:id,
+            httpCaseId:id,
             orderParams:[{name:'testNo', orderType:'asc' }]
         }
 
@@ -38,12 +38,12 @@ export class InstanceStore {
 
     @action
     findInstanceList = async (id) =>{
-        let param = {
-            "testcaseId":id,
+        this.param = {
+            "httpCaseId":id,
             orderParams:[{name:'createTime', orderType:'asc' }]
         }
 
-        const res = await findInstanceList(param);
+        const res = await findInstanceList(this.param);
         if(res.code===0){
             this.instanceList = res.data;
             return res.data;

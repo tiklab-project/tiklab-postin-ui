@@ -3,18 +3,18 @@ import {inject, observer} from "mobx-react";
 import {quickTestTabProcess} from "../../common/apiTabListInfoProcess";
 
 const LeftNavListQuickTest =(props)=>{
-    const {testCaseStore} = props;
-    const {findTestCaseList,testCaseList} = testCaseStore;
+    const {instanceStore} = props;
+    const {findInstanceList,instanceList} = instanceStore;
 
     useEffect(()=>{
-        findTestCaseList("quickTest")
+        findInstanceList("quickTestInstanceId")
     },[])
 
 
     const quickTestTabListInfo = JSON.parse(sessionStorage.getItem("quickTestTabListInfo"))
 
     const onClick=(item)=>{
-        localStorage.setItem("testCaseId",item.id)
+        localStorage.setItem("instanceId",item.id)
 
         quickTestTabProcess(item,quickTestTabListInfo)
 
@@ -29,7 +29,7 @@ const LeftNavListQuickTest =(props)=>{
                     key={item.id}
                     onClick={()=>onClick(item)}
                 >
-                    {item.name}
+                    {item.createTime}
                 </li>
             )
         })
@@ -39,11 +39,11 @@ const LeftNavListQuickTest =(props)=>{
     return(
         <ul className={"qt-left-list"}>
             {
-                showListView(testCaseList)
+                showListView(instanceList)
             }
         </ul>
     )
 
 }
 
-export default inject("testCaseStore")(observer(LeftNavListQuickTest));
+export default inject("instanceStore")(observer(LeftNavListQuickTest));
