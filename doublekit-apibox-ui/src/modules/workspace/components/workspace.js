@@ -85,12 +85,6 @@ const Workspace = (props) => {
                     theme="light"
                     width='240'
                 >
-                <div  className="ws-menu-side-header" >
-                    <div className="ws-menu-icon">
-                        <UnorderedListOutlined />
-                    </div>
-                    <div className="ws-menu-title">空 间</div>
-                </div>
                 <ul className="ws-menu-ul">
                     {
                         renderList()

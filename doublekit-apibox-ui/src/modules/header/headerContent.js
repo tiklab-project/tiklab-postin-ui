@@ -7,13 +7,12 @@ import {getUser} from "doublekit-core-ui"
 import { BellOutlined } from '@ant-design/icons';
 import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";
-
+import logo from "../../assets/img/log.png"
 
 const HeaderContent = props => {
     const {userMessageStore} = props;
     const {userMessageNum} = userMessageStore;
     const {
-        logo = 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1735300731,83723593&fm=26&gp=0.jpg',
         logout,
         languageSelectData = [], // 切换语言包的数据
     } = props;
@@ -79,11 +78,13 @@ const HeaderContent = props => {
 
 
     return(
-        <Row style={{height :"64px"}} className="frame-header">
+        <Row className="frame-header">
             <Col span={12}>
                 <div className={'frame-header-right'}>
                     {component}
-                    {logo && <div className={'frame-header-logo'}><img src={logo} alt={'logo'} /></div> }
+                    <div className={'frame-header-logo'}>
+                        {logo && < img src={logo} alt='logo' />}
+                    </div>
                     <div className={"header-menu-box"}>
                         <HeaderMenu {...props}/>
                     </div>

@@ -111,6 +111,7 @@ const WorkspaceList = (props) => {
     useEffect(()=>{
         const pluginComConfig = new PluginFun(props, "import", {});
         const plug = pluginComConfig.getPlugins();
+        debugger
         setPluginLength(plug.length)
     },[])
 
@@ -164,24 +165,24 @@ const WorkspaceList = (props) => {
                 <Breadcrumb.Item>{t('wsList')}</Breadcrumb.Item>
             </Breadcrumb>
             <div className='wslist-searchbtn'>
+                <div className='wslist-eibtn'>
+                    <WorkspaceEdit
+                        className="important-btn"
+                        name={`${t('addws')}`}
+                        type="add"
+                        style={{ width: 200 }}
+                        userId={userId}
+                    />
+                    {
+                        pluginLength && pluginLength>0 ? <PluginComponent point='import' pluginsStore={pluginsStore}/> : <Button disabled>导入</Button>
+                    }
+                </div>
                 <Input
                     placeholder={`${t('searchWorkspace')}`}
                     onPressEnter={onSearch}
                     className='search-input'
                     style={{width:240}}
                 />
-                <div className='wslist-eibtn'>
-                <WorkspaceEdit
-                    className="important-btn"
-                    name={`${t('addws')}`}
-                    type="add"
-                    style={{ width: 200 }}
-                    userId={userId}
-                />
-                {
-                  pluginLength && pluginLength>0 ? <PluginComponent point='import' pluginsStore={pluginsStore}/> : <Button disabled>导入</Button>
-                }
-                </div>
             </div>
 
             <Table

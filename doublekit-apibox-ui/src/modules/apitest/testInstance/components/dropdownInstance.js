@@ -33,7 +33,7 @@ const DropdownInstance = (props) =>{
     );
 
     return(
-        <Dropdown overlay={menu} placement="bottomCenter" trigger={"click"}>
+        <Dropdown overlay={menu} placement="bottom" trigger={"click"}>
             <a>
                 历史记录  <DownOutlined />
             </a>

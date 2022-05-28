@@ -1,4 +1,4 @@
-import  darth, { handelResult, getHeader, getParam, getForm, getJson, getRaw,getUrl,getBaseUrl,getMethod }  from './common/dtAction';
+import  { handelResult, getHeader, getParam, getForm, getJson, getRaw,getUrl,getBaseUrl,getMethod,darth }  from './common/dtAction';
 
 import { 
     Test,

@@ -54,6 +54,8 @@ const TestCaseDetail = (props) => {
 
     let dt =  {...darth}  //解构darth里的方法
 
+    console.log(dt.md5("12345"))
+
     const [form] = Form.useForm();
     const [showResponse,setShowResponse] = useState(false);
     const [caseName, setCaseName] = useState();

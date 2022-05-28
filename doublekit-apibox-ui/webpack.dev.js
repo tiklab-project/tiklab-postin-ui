@@ -1,8 +1,3 @@
-/*
- * @Description:
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-25 14:34:26
- */
 
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');

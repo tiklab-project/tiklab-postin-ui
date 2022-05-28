@@ -40,11 +40,12 @@
     align-items: center;
     background: #f8f8fa;
     border-bottom: 1px solid #e1e1e1;
+    height: 50px;
     //-webkit-app-region: drag;//electron无边框拖动
     //-webkit-app-region: no-drag;
 
     .frame-header-logo{
-        height: 64px;
+        height: 35px;
         width: 100px;
         margin-right: 20px;
         img {
@@ -111,7 +112,7 @@
         }
     }
     .frame-header-dropdown{
-        margin-left: 20px;
+        margin: 0 20px;
     }
 }
 
@@ -156,7 +157,7 @@
 
 .api-footer{
     border: 1px solid #e1e1e1;
-    padding: 10px;
+    padding: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
