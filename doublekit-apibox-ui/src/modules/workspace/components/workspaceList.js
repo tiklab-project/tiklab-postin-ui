@@ -111,7 +111,6 @@ const WorkspaceList = (props) => {
     useEffect(()=>{
         const pluginComConfig = new PluginFun(props, "import", {});
         const plug = pluginComConfig.getPlugins();
-        debugger
         setPluginLength(plug.length)
     },[])
 

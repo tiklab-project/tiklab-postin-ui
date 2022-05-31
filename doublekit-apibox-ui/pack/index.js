@@ -4,7 +4,6 @@
  */
 import { stores as apiboxStore  } from './components/stores';
 import routers from './components/routers';
-import saasrouters from './components/saasrouters';
 import App from "./components/app";
 import {
     Home,PortalHeader,HeaderContent,
@@ -37,7 +36,7 @@ import {
 
 
 export {
-    apiboxStore, routers, saasrouters, App,
+    apiboxStore, routers, App,
     Home,PortalHeader,HeaderContent,
     Search, SearchResult,
 

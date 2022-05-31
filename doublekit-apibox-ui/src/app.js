@@ -39,8 +39,11 @@ import resources from "./common/language/resource";
      return(
          <I18nextProvider i18n={newI18}>
              {
-                loading ? renderRoutes(routers) : <div>loading...</div>
+                 renderRoutes(routers)
              }
+             {/*{*/}
+             {/*   loading ? renderRoutes(routers) : <div>loading...</div>*/}
+             {/*}*/}
          </I18nextProvider>
     )
 }

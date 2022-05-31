@@ -56,6 +56,26 @@ const SysManage = (props) => {
             ]
         },
         {
+            title: '项目权限中心',
+            icon: 'laptop',
+            key: "/systemManagement/project",
+            encoded: "SysPriProject",
+            children: [
+                {
+                    title: '功能管理',
+                    icon: 'laptop',
+                    key: '/systemManagement/privilege',
+                    encoded: "SysFeatrueProject",
+                },
+                {
+                    title: '角色管理',
+                    icon: 'laptop',
+                    key: '/systemManagement/role',
+                    encoded: "SysRoleProject",
+                }
+            ]
+        },
+        {
             title: '系统权限中心',
             icon: 'laptop',
             key: "/systemManagement/system",
