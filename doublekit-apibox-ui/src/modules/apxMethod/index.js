@@ -23,7 +23,6 @@ import { JSONRESPONSE_STORE, JsonResponseStore } from './http/store/jsonResponse
 import { RAWRESPONSE_STORE, RawResponseStore } from './http/store/rawResponseStore';
 import { RESPONSERESULT_STORE, ResponseResultStore } from './http/store/responseResultStore';
 
-import {APIX_STORE, ApixStore} from "./apix/store/apixStore";
 
 export{
     ApxMethod,
@@ -51,5 +50,4 @@ export{
     RESPONSERESULT_STORE, ResponseResultStore,
 
 
-    APIX_STORE, ApixStore,
 }

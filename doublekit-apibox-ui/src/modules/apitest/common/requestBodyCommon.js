@@ -6,9 +6,10 @@ const RequestBodyCommon = (props) => {
     const { requestBodyData } = props;
 
     return (
-        <>
-            <TextArea autoSize={true}  value={requestBodyData}/>
-        </>
+        <TextArea
+            autoSize={{minRows: 4, maxRows: 10 }}
+            value={requestBodyData}
+        />
     )
 }
 

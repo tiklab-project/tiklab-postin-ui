@@ -3,7 +3,7 @@ import React from 'react'
 
 import {Directory} from 'doublekit-user-ui';
 import {Licence} from "doublekit-licence-ui";
-import {PluginDetail} from "doublekit-plugin-manage";
+import {PluginDetail} from "doublekit-plugin-ui";
 
 import {
     PortalHeader,
@@ -21,7 +21,7 @@ import {
     Usermgr, Org, ProjectFeature, ProjectRole,
     SystemFeature, SystemRole, PluginManage,
     MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
-    LoginOut, LoginContent, ElectronLoginContant
+    LoginOut, LoginContent, ElectronLoginContant, AccountMember, WorkspaceSetting
 } from './modules';
 
 import {Redirect} from "react-router";
@@ -110,18 +110,6 @@ const routers =  [
                 component:SysManage,
                 routes:[
                     {
-                        path: "/systemManagement/org",
-                        key:'org',
-                        exact: true,
-                        component: Org,
-                    },
-                    {
-                        path: "/systemManagement/user",
-                        key:'user',
-                        exact: true,
-                        component: Usermgr,
-                    },
-                    {
                         path: "/systemManagement/privilege",
                         key:'ProjectFeature',
                         exact: true,
@@ -170,24 +158,6 @@ const routers =  [
                         component: MessageType,
                     },
                     {
-                        path: "/systemManagement/envMana",
-                        key:'EvnMana',
-                        exact: true,
-                        component: EvnMana,
-                    },
-
-                    {
-                        path: "/systemManagement/dataStructure",
-                        key:'dataStucture',
-                        exact: true,
-                        component: DataStructure,
-                    },
-                    {
-                        path: "/systemManagement/apistatus",
-                        key:'apistatus',
-                        exact: true,
-                        component: ApiStatus,
-                    },{
                         path: "/systemManagement/pluginmanage",
                         key:'pluginmanage',
                         component: PluginManage,
@@ -197,17 +167,42 @@ const routers =  [
                         key:'licence',
                         exact: true,
                         component: Licence,
-                    },{
-                        path: "/systemManagement/authConfig",
-                        key:'authConfig',
-                        exact: true,
-                        render: () => <Directory isPortal={false}/>,
                     },
                     {
                         path: "/systemManagement",
                         key:'sysEnvMana',
                         exact: true,
-                        render: () => <Redirect to={"/systemManagement/envMana"}/>,
+                        render: () => <Redirect to={"/systemManagement/privilege"}/>,
+                    },
+                ]
+            },
+            {
+                path: "/accountMember",
+                key:'accountMember',
+                component: AccountMember,
+                routes: [
+                    {
+                        path: "/accountMember/org",
+                        key:'org',
+                        exact: true,
+                        component: Org,
+                    },
+                    {
+                        path: "/accountMember/user",
+                        key:'user',
+                        exact: true,
+                        component: Usermgr,
+                    },
+                    {
+                        path: "/accountMember/authConfig",
+                        key:'authConfig',
+                        exact: true,
+                        render: () => <Directory isPortal={false}/>,
+                    },{
+                        path: "/accountMember",
+                        key:'sysEnvMana',
+                        exact: true,
+                        render: () => <Redirect to={"/accountMember/org"}/>,
                     },
                 ]
             },
@@ -234,12 +229,6 @@ const routers =  [
                 path: "/workspacepage",
                 key:'DetailIndex',
                 routes:[
-                    {
-                        path: "/workspacepage/detail",
-                        exact: true,
-                        key:'WorkspaceDetail',
-                        component: WorkspaceDetail,
-                    },
                     {
                         path: "/workspacepage/apis",
                         key:'apis',
@@ -355,24 +344,52 @@ const routers =  [
                                 component: ()=><Redirect to='/workspacepage/quickTest/detail'/>,
                             },
                         ]
+                    },{
+                        path: "/workspacepage/dataStructure",
+                        key:'dataStucture',
+                        exact: true,
+                        component: DataStructure,
                     },
+                    {
+                        path: "/workspacepage/workspaceSetting",
+                        key:'workspaceSetting',
+                        component: WorkspaceSetting,
+                        routes: [
+                            {
+                                path: "/workspacepage/workspaceSetting/envMana",
+                                key:'EvnMana',
+                                exact: true,
+                                component: EvnMana,
+                            }, {
+                                path: "/workspacepage/workspaceSetting/apistatus",
+                                key:'apistatus',
+                                exact: true,
+                                component: ApiStatus,
+                            },{
+                                path: "/workspacepage/workspaceSetting/role",
+                                key:'role',
+                                exact: true,
+                                component: WorkspaceRole,
+                            },
+                            {
+                                path: "/workspacepage/workspaceSetting/workspacePrivilege",
+                                key:'privilege',
+                                exact: true,
+                                component: WorkspacePrivilege,
+                            },{
+                                path:"/workspacepage/workspaceSetting",
+                                key:'ridworkspaceSetting',
+                                exact: true,
+                                component: ()=><Redirect to='/workspacepage/workspaceSetting/envMana'/>,
+                            },
+                        ]
+                    },
+
                     {
                         path:"/workspacepage",
                         key:'ridapidetail',
                         exact: true,
-                        component: ()=><Redirect to='/workspacepage/detail'/>,
-                    },
-                    {
-                        path: "/workspacepage/role",
-                        key:'role',
-                        exact: true,
-                        component: WorkspaceRole,
-                    },
-                    {
-                        path: "/workspacepage/workspacePrivilege",
-                        key:'privilege',
-                        exact: true,
-                        component: WorkspacePrivilege,
+                        component: ()=><Redirect to='/workspacepage/apis'/>,
                     },
                 ]
             },

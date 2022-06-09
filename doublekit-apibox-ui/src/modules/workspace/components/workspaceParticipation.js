@@ -8,9 +8,10 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Breadcrumb, Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
-import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-manage'
+import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
 import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui";
+import BreadcrumbEx from "../../common/breadcrumbEx";
 
 const WorkspaceParticipation = (props) => {
     const { workspaceStore,pluginsStore } = props;
@@ -95,6 +96,8 @@ const WorkspaceParticipation = (props) => {
 
     // 保存空间id到缓存
     const setLocalStorage = (workspaceId,id) => {
+        localStorage.setItem("LEFT_MENU_SELECT","api");
+
         localStorage.setItem(workspaceId,id);
         props.history.push('/workspacepage');
     }
@@ -136,24 +139,25 @@ const WorkspaceParticipation = (props) => {
     return(
         <Fragment>
 
-            <Breadcrumb separator=">"  className={"apibox-breadcrumb"}>
-                <Breadcrumb.Item>{t('wsMgr')}</Breadcrumb.Item>
-                <Breadcrumb.Item>{t('wsList')}</Breadcrumb.Item>
-            </Breadcrumb>
-
+            <BreadcrumbEx
+                list={[
+                    t('wsMgr'),
+                    t('wsList')
+                ]}
+            />
             <div className='wslist-searchbtn'>
-                <Input
-                    placeholder={`${t('searchWorkspace')}`}
-                    onPressEnter={onSearch}
-                    className='search-input'
-                    style={{width:240}}
-                />
                 <div className='wslist-eibtn'>
                     <WorkspaceEdit className="important-btn" name={`${t('addws')}`} type="add"  style={{ width: 200 }}/>
                     {
                         pluginLength && pluginLength>0 ? <PluginComponent point='import' pluginsStore={pluginsStore}/> : <Button disabled>导入</Button>
                     }
                 </div>
+                <Input
+                    placeholder={`${t('searchWorkspace')}`}
+                    onPressEnter={onSearch}
+                    className='search-input'
+                    style={{width:240}}
+                />
             </div>
 
             <Table

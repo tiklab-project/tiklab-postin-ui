@@ -38,7 +38,7 @@ const MockEdit = (props) => {
     const showApxMethodName = () => {
         findApxMethod(apxMethodId).then((res)=> {
             form.setFieldsValue({
-                path: res.apix.path,
+                path: res.path,
             })
         })
     }

@@ -146,7 +146,7 @@ const ExTable = (props) => {
     return(
         <Table
             components={components}
-            rowClassName={() => 'editable-row'}
+            rowClassName={'editable-row'}
             pagination={false}
             rowKey = {record => record.id}
             expandable={{

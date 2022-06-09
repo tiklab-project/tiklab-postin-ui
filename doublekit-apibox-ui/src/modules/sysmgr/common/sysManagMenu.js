@@ -15,45 +15,17 @@ const SysManage = (props) => {
     const routers = props.route.routes
 
     const settingMenu = [
-
         {
-            title: '环境管理',
+            title: 'licence管理',
             icon: 'laptop',
-            key: '/systemManagement/envMana',
-            encoded: "environment"
+            key: '/systemManagement/licence',
+            encoded: "licence",
         },
         {
-            title: '数据结构',
+            title: '插件管理',
             icon: 'laptop',
-            key: '/systemManagement/dataStructure',
-            encoded: "dataStructure"
-        },
-        {
-            title: '接口状态管理',
-            icon: 'laptop',
-            key: '/systemManagement/apistatus',
-            encoded: "apistatus"
-        },
-        {
-            title: '组织中心',
-            icon: 'laptop',
-            key: "/systemManagement/organ",
-            encoded: "SysOrgaCon",
-            children: [
-                {
-                    title: "组织管理",
-                    icon: 'laptop',
-                    key: '/systemManagement/org',
-                    encoded: "SysOrga",
-
-                },
-                {
-                    title: '用户管理',
-                    icon: 'laptop',
-                    key: '/systemManagement/user',
-                    encoded: "SysUser",
-                },
-            ]
+            key: '/systemManagement/pluginmanage',
+            encoded: "pluginmanage",
         },
         {
             title: '项目权限中心',
@@ -127,47 +99,17 @@ const SysManage = (props) => {
                 },
             ]
         },
-        {
-            title: '插件管理',
-            icon: 'laptop',
-            key: '/systemManagement/pluginmanage',
-            encoded: "pluginmanage",
-        },
-        {
-            title: 'licence管理',
-            icon: 'laptop',
-            key: '/systemManagement/licence',
-            encoded: "licence",
-        }
+
     ]
 
-    let authConfigMenu =[
-        {
-            title: '账号同步',
-            icon: 'laptop',
-            key: '/systemManagement/authConfig',
-            encoded: "authConfig",
-        }
-    ]
-
-    const [selectKey,setSelectKey] = useState('/systemManagement/envMana')
+    const [selectKey,setSelectKey] = useState('/systemManagement/licence')
 
     const [menuRouter,setMenuRouter] = useState();
 
 
-    let isLocal = JSON.parse(localStorage.getItem("authConfig"))
 
-    //如果是local， 需要添加账号同步中心
-    const setAuthConfig = ()=>{
-        if(isLocal.authType==="local"){
-            return [...settingMenu,...authConfigMenu]
-        }else {
-            return settingMenu
-        }
-    }
 
     useEffect(() => {
-        let localMenu = setAuthConfig();
 
         let data = pluginConfig("settingMenu").filter(item => item.menuTitle);
 
@@ -183,9 +125,9 @@ const SysManage = (props) => {
                 })
             })
 
-            setMenuRouter(localMenu.concat(newRouter));
+            setMenuRouter(settingMenu.concat(newRouter));
         }else {
-            setMenuRouter(localMenu);
+            setMenuRouter(settingMenu);
         }
     }, [isInitLoadPlugin])
 

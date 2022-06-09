@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Input, Button, Form, Select} from 'antd';
+import {rawTypeDictionary} from "../../dictionary/dictionary";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -16,6 +17,12 @@ const RawParamCommon = (props) => {
         setFocus(false);
     }
 
+    const showSelectItem = (data)=>{
+        return data&&data.map(item=>{
+            return  <Option value={item.value} key={item.value}>{item.name}</Option>
+        })
+    }
+
     return (
         <Form
             form={form}
@@ -24,10 +31,13 @@ const RawParamCommon = (props) => {
             <div className={` ${focus === true ? 'textArea-focus' : 'textArea-blur'}`}>
                 <div className='mock-textarea'>
                     <Form.Item name='type'>
-                        <Select style={{ width: 100 }} >
-                            <Option value="json">Json</Option>
-                            <Option value="text">Text</Option>
-                            {/*<Option value="html">html</Option>*/}
+                        <Select
+                            style={{ width: 200 }}
+                            defaultValue={"text/plain"}
+                        >
+                            {
+                                showSelectItem(rawTypeDictionary)
+                            }
                         </Select>
                     </Form.Item>
                     <Form.Item>

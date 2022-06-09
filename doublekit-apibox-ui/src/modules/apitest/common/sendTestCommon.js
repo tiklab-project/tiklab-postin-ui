@@ -1,6 +1,7 @@
 import axios from "axios";
 import {testFunctionCommon} from "./testFunctionCommon";
 import qs from "qs";
+import {bodyTypeJsonDictionary as bodyTypeJson,rawTypeJsonDictionary as rawTypeJson} from "../../common/dictionary/dictionary";
 
 //发送测试 数据处理
 export const sendTestDataProcess=(data)=>{
@@ -31,6 +32,7 @@ debugger
         "testType":data.testType,
         "createInstance":data.createInstance,
         "belongId":data.belongId,
+        "workspaceId":data.workspaceId
     }
 
     //发送测试
@@ -71,6 +73,7 @@ const isCreateInstance=(res,data)=>{
     if(data.createInstance){
         data.getResponseInfo(res,data.assertList).then(res=>{
             res.httpCase = {"id":data.belongId}
+            res.workspace= {"id":data.workspaceId}
             data.createInstance(res)
         })
     }else {
@@ -81,15 +84,17 @@ const isCreateInstance=(res,data)=>{
 //获取相应的请求体数据
 const bodySwitch = (data,headers) =>{
     switch (data.bodyType) {
-        case "formdata":
+        case bodyTypeJson.none:
+            return null;
+        case bodyTypeJson.formdata:
             return formData(data.formDataList,headers);
-        case "formUrlencoded":
+        case bodyTypeJson.formUrlencoded:
             return formUrlencoded(data.formUrlencodedList,headers)
-        case "json":
+        case bodyTypeJson.json:
             return json(data.jsonList,headers)
-        case "raw":
+        case bodyTypeJson.raw:
             return rawSwitch(data.rawParam,headers)
-        case "binary":
+        // case "binary":
 
     }
 }
@@ -121,27 +126,21 @@ const json = (data,headers) =>{
 //获取相应的raw数据
 const rawSwitch = (data,headers) =>{
     switch (data&&data.type){
-        case "json":
-            headers['Content-Type']='application/json';
-            return data.raw;
-        case "raw":
+        case rawTypeJson.text:
             headers['Content-Type']='text/plain';
             return data.raw;
-        // case "application/javascript":
-        //     headers['Content-Type']='application/javascript';
-        //     return data.raw;
-        // case "application/xml":
-        //     headers['Content-Type']='application/xml';
-        //     return data.raw;
-        // case "text/xml":
-        //     headers['Content-Type']='text/xml';
-        //     return data.raw;
-        // case "text/html":
-        //     headers['Content-Type']='text/html';
-        //     return data.raw;
-        // case "text/plain":
-        //     headers['Content-Type']='text/plain';
-        //     return data.raw
+        case rawTypeJson.json:
+            headers['Content-Type']='application/json';
+            return data.raw;
+        case rawTypeJson.javascript:
+            headers['Content-Type']='application/javascript';
+            return data.raw;
+        case rawTypeJson.xml:
+            headers['Content-Type']='text/xml';
+            return data.raw;
+        case rawTypeJson.html:
+            headers['Content-Type']='text/html';
+            return data.raw;
     }
 }
 

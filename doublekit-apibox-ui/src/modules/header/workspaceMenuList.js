@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {getUser} from "doublekit-core-ui"
 import {inject, observer} from "mobx-react";
+import {globalTabListInit} from "../common/globalSharing";
 
 //顶部菜单栏，下拉框里的空间列表
 const WorkspaceMenuList = (props) =>{
@@ -11,11 +12,9 @@ const WorkspaceMenuList = (props) =>{
     let userId = getUser().userId;
 
     useEffect(()=>{
-        console.log("workspace")
         if(userId){
             findWorkspaceList(userId)
         }
-
     },[userId])
 
 
@@ -37,7 +36,9 @@ const WorkspaceMenuList = (props) =>{
     const switchWorkspace=(id)=>{
         localStorage.setItem('workspaceId',id);
 
-        localStorage.setItem("leftRouter","/workspacepage/detail");
+        globalTabListInit(id)
+
+        localStorage.setItem("LEFT_MENU_SELECT","api");
 
         props.history.push({pathname:'/workspacepage'});
 
@@ -47,7 +48,7 @@ const WorkspaceMenuList = (props) =>{
 
     return(
         <>
-            <ul style={{height: 130}}>
+            <ul style={{height: 130,overflow:"auto"}}>
                 {
                     showWorkspaceListView(workspaceList)
                 }

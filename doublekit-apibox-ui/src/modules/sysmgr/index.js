@@ -1,3 +1,4 @@
+import AccountMember from "./accountMember/accountMember";
 import SysManage from './common/sysManagMenu';
 import EvnMana from './environment/components/environment';
 import { ENVIRONMENT_STORE, EnvironmentStore } from './environment/store/environmentStore';
@@ -20,6 +21,7 @@ import MessageUser from './message/messageUser';
 
 
 export {
+    AccountMember,
     SysManage,
     EvnMana,
     ENVIRONMENT_STORE, EnvironmentStore,

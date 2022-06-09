@@ -48,3 +48,12 @@ export function findApiStatusPage(data){
     })
 }
 
+export function findApiStatusList(data){
+    return service.request({
+        url: "/apiStatus/findApiStatusList",
+        method: "post",
+        data
+    })
+}
+
+

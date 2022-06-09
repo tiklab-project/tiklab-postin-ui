@@ -30,13 +30,6 @@ export class ApxMethodStore {
     //根据查询对象按分页查询接口列表
     @action
     findApxMethodPage = async (values) => {
-        if(values.isAllApi==="isAllApi"){
-            delete values.categoryId;
-        }else {
-            delete values.workspaceId;
-        }
-        delete values.isAllApi;
-
         this.params = {
             orderParams:[{name:'name', orderType:'asc'}],
             ...values

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
 import {Input, Button, Form, Select} from 'antd';
+import {rawTypeDictionary} from "../../../common/dictionary/dictionary";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -44,6 +45,13 @@ const RawParamTestCase = (props) => {
         setFocus(false)
     }
 
+    const showSelectItem = (data)=>{
+        return data&&data.map(item=>{
+            return  <Option value={item.value} key={item.value}>{item.name}</Option>
+        })
+    }
+
+
     return (
         <Form
             form={form}
@@ -52,14 +60,17 @@ const RawParamTestCase = (props) => {
             <div className={` ${focus === true ? 'textArea-focus' : 'textArea-blur'}`}>
                 <div className='mock-textarea'>
                     <Form.Item name='type'>
-                        <Select style={{ width: 100 }} >
-                            <Option value="json">Json</Option>
-                            <Option value="text">Text</Option>
-                            {/*<Option value="html">html</Option>*/}
+                        <Select
+                            style={{ width: 200 }}
+                            defaultValue={"text/plain"}
+                        >
+                            {
+                                showSelectItem(rawTypeDictionary)
+                            }
                         </Select>
                     </Form.Item>
                     <Form.Item>
-                        <Button>格式化</Button>
+                        {/*<Button>格式化</Button>*/}
                         <Button  htmlType="submit" >保存</Button>
                     </Form.Item>
                 </div>

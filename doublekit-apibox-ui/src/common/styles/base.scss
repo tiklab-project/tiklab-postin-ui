@@ -65,8 +65,11 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
 .apibox-breadcrumb{
     font-size: 15px;
     font-weight: 600;
-    margin: 8px 0;
+    padding: 10px;
+    border-bottom: 1px solid #ececec;
+    margin: 0 0 5px 0;
 }
+
 .bread-cursor{
     cursor: pointer;
 }
@@ -114,22 +117,6 @@ table{
     border-radius: 15px;
 }
 
-//表单内组件背景
-.ant-select-selector {
-    background-color: #e3e8f07d;
-}
-
-.ant-input-affix-wrapper {
-    background-color: #e3e8f07d;
-}
-
-.ant-input {
-    background-color: #e3e8f07d;
-}
-
-.ant-picker {
-    background-color: #e3e8f07d;
-}
 
 
 //弹出框表单的弹框样式，遮罩层背景
@@ -148,7 +135,7 @@ table{
 }
 
 table .icon{
-    margin:0   ;
+    margin:0 ;
 }
 
 .important-btn{

@@ -52,9 +52,35 @@ const RecentBrowing = (props)=>{
         }
     }
 
+    const test =async ()=>{
+        let url = 'http://192.168.10.16:8080/passport/login';
+        try {
+            let response = await fetch(url, {
+                    method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                    body: JSON.stringify({"account":"admin@dc.com","password":"123456","userType":"1"}),
+                }
+            );
+            let json = await response.json()
+            let header = await response.headers
+            console.log(response,json)
+            console.log(header,response.url,response.body)
+            // return await response.json();
+
+
+        } catch (error) {
+            console.log('Request Failed', error);
+        }
+
+    }
+
+
+
     return(
         <div>
-            <Button onClick={clickSocket}>test</Button>
+            <Button onClick={test}>test</Button>
             <div>recent Page</div>
 
         </div>

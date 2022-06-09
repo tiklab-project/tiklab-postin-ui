@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {inject, observer} from "mobx-react"
 import { renderRoutes  } from "react-router-config";
-import {PLUGIN_STORE, loadLanguage} from 'doublekit-plugin-manage';
+import {PLUGIN_STORE, loadLanguage} from 'doublekit-plugin-ui';
 import {I18nextProvider,useTranslation} from "react-i18next";
+import "antd/dist/antd.css"
 import './common/styles/base.scss';
 import './common/language/i18n';
 import "./assets/iconfont/iconfont";

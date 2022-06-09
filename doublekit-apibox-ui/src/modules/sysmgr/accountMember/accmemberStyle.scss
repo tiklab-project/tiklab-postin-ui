@@ -1,0 +1,19 @@
+.account-member{
+    display: flex;
+    height: calc(100% - 90px);
+
+    .account-member-left{
+        //height: 100%;
+    }
+
+    .account-member-left-li{
+        width: 255px;
+    }
+
+
+    .account-member-right{
+        //display: contents;
+        padding: 0 10px;
+        width: 100%;
+    }
+}

@@ -5,7 +5,7 @@ import { observer, inject } from "mobx-react";
 import HeaderTableCommon from "../../common/tableCommon/components/headerTableCommon";
 
 const HeaderQuickTest = (props) =>{
-    const { headerQuickTestStore } = props;
+    const { headerQuickTestStore,instanceId } = props;
 
     const {
         saveList,
@@ -17,7 +17,7 @@ const HeaderQuickTest = (props) =>{
 
     useEffect(()=>{
         getRequestHeaderTestList()
-    },[])
+    },[instanceId])
 
     return (
         <HeaderTableCommon

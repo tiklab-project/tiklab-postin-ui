@@ -1,13 +1,17 @@
 import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
 import {quickTestTabProcess} from "../../common/apiTabListInfoProcess";
+import {Empty} from "antd";
 
 const LeftNavListQuickTest =(props)=>{
-    const {instanceStore} = props;
+    const {instanceStore,quickTestStore} = props;
     const {findInstanceList,instanceList} = instanceStore;
+    const {setResponseShow} = quickTestStore;
+
+    const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(()=>{
-        findInstanceList("quickTestInstanceId")
+        findInstanceList("quickTestInstanceId",workspaceId)
     },[])
 
 
@@ -16,7 +20,9 @@ const LeftNavListQuickTest =(props)=>{
     const onClick=(item)=>{
         localStorage.setItem("instanceId",item.id)
 
-        quickTestTabProcess(item,quickTestTabListInfo)
+        quickTestTabProcess(item,quickTestTabListInfo);
+
+        setResponseShow();
 
         props.history.push("/workspacepage/quickTest/detail/api")
     }
@@ -29,7 +35,7 @@ const LeftNavListQuickTest =(props)=>{
                     key={item.id}
                     onClick={()=>onClick(item)}
                 >
-                    {item.createTime}
+                    {item.requestInstance?.url}
                 </li>
             )
         })
@@ -37,13 +43,28 @@ const LeftNavListQuickTest =(props)=>{
 
 
     return(
-        <ul className={"qt-left-list"}>
+        <>
             {
-                showListView(instanceList)
+                instanceList&&instanceList.length>0
+                    ? <ul className={"qt-left-list"}>
+                        {
+                            showListView(instanceList)
+                        }
+                    </ul>
+                    :<div className={"qt-left-empty"}>
+                        <Empty
+                            description={
+                                <span>
+                                    send a request
+                                </span>
+                            }
+                        />
+                    </div>
             }
-        </ul>
+        </>
+
     )
 
 }
 
-export default inject("instanceStore")(observer(LeftNavListQuickTest));
+export default inject("instanceStore","quickTestStore")(observer(LeftNavListQuickTest));

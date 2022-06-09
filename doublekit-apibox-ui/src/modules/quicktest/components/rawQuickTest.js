@@ -7,7 +7,7 @@ import {Form} from "antd";
 const RawQuickTest = (props) => {
     const { rawQuickTestStore, bodyType }  = props;
     const {getRawInfo,setRawInfo} = rawQuickTestStore;
-    const methodId = localStorage.getItem("testCaseId")
+    const instanceId = localStorage.getItem("instanceId")
 
     const [form] = Form.useForm();
 
@@ -18,7 +18,7 @@ const RawQuickTest = (props) => {
                 type:res.type
             })
         })
-    },[methodId])
+    },[instanceId])
 
     return (
         <RawParamCommon

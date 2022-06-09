@@ -4,12 +4,13 @@ import {UserOutlined} from "@ant-design/icons";
 
 const LeftNav = (props) =>{
     const menuData = [
+        // {
+        //     "icon":"layers",
+        //     "name":"概况",
+        //     "key":"detail",
+        //     "router":"/workspacepage/detail"
+        // },
         {
-            "icon":"layers",
-            "name":"概况",
-            "key":"detail",
-            "router":"/workspacepage/detail"
-        },{
             "icon":"jiekou",
             "name":"API",
             "key":"api",
@@ -19,32 +20,51 @@ const LeftNav = (props) =>{
             "name":"快捷测试",
             "key":"quickTest",
             "router":"/workspacepage/quickTest"
-        },{
-            "icon":"chengyuan",
-            "name":"成员",
-            "key":"people",
-            "router":"/workspacepage/role"
-        },{
+        },
+        // {
+        //     "icon":"jiekou",
+        //     "name":"环境管理",
+        //     "key":"envMana",
+        //     "router":"/workspacepage/envMana"
+        // },
+        {
+            "icon":"jiekou",
+            "name":"数据结构",
+            "key":"dataStructure",
+            "router":"/workspacepage/dataStructure"
+        },
+        // {
+        //     "icon":"jiekou",
+        //     "name":"状态管理",
+        //     "key":"apistatus",
+        //     "router":"/workspacepage/apistatus"
+        // },{
+        //     "icon":"chengyuan",
+        //     "name":"成员",
+        //     "key":"people",
+        //     "router":"/workspacepage/role"
+        // },
+        {
             "icon":"quanxian",
-            "name":"权限",
-            "key":"admin",
-            "router":"/workspacepage/workspacePrivilege"
+            "name":"空间设置",
+            "key":"workspaceSetting",
+            "router":"/workspacepage/workspaceSetting"
         },
     ]
 
     const workspaceId = localStorage.getItem("workspaceId")
-    const leftRouter = localStorage.getItem("leftRouter")
+    const leftMenuSelect = localStorage.getItem("LEFT_MENU_SELECT")
 
-    const clickAddRouter = (router) =>{
+    const clickAddRouter = (data) =>{
 
-        addApiTabInfo(router);
+        addApiTabInfo(data.router);
 
-        addQuickTestTabInfo(router);
+        addQuickTestTabInfo(data.router);
 
         //点击左侧导航，设置选择项,用于刷新后还能选择。
-        localStorage.setItem("leftRouter",router);
+        localStorage.setItem("LEFT_MENU_SELECT",data.key);
 
-        props.history.push(router)
+        props.history.push(data.router)
     }
 
     //点击api按钮时初始化api中tab页信息
@@ -89,9 +109,9 @@ const LeftNav = (props) =>{
                 <li
                     key={item.key}
                     className={`ws-detail-left-nav-item `}
-                    onClick={()=>clickAddRouter(item.router)}
+                    onClick={()=>clickAddRouter(item)}
                 >
-                    <div className={`ws-detail-left-nav-item-box ${leftRouter===item.router?"selectlink":null}`}>
+                    <div className={`ws-detail-left-nav-item-box ${leftMenuSelect===item.key?"selectlink":null}`}>
                         <div className={"ws-detail-left-nav-item-detail"}>
                             <svg className="icon" aria-hidden="true">
                                 <use xlinkHref= {`#icon-${item.icon}`}></use>

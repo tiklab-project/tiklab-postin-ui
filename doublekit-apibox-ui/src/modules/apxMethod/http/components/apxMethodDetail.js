@@ -8,7 +8,7 @@ import ApxMethodEdit from './apxMethodEdit';
 import { Request, Response } from '../../index';
 import {Button, Select} from 'antd';
 import './apxMethod.scss'
-import RequestType from "../../../common/requestType";
+import MethodType from "../../../common/methodType";
 
 const {Option} = Select;
 
@@ -17,7 +17,7 @@ const ApxMethodDetail = (props) => {
     const {findCategoryList} = categoryStore;
     const { findApxMethod,deleteApxMethod,findApxMethodListByApix,updateApxMethod} = apxMethodStore;
     const { findUserSelectPage,userSelectList } = userSelectStore;
-    const {findAllApiStatus,apiStatusList} = apxMethodStatusStore;
+    const {findApiStatusList,apiStatusSourceList} = apxMethodStatusStore;
 
     const [editOk, setEdit] = useState(false);
 
@@ -59,7 +59,7 @@ const ApxMethodDetail = (props) => {
     },[workspaceId])
 
     useEffect(()=>{
-        findAllApiStatus();
+        findApiStatusList();
     },[])
 
     // 点击测试按钮，跳到测试页
@@ -127,7 +127,7 @@ const ApxMethodDetail = (props) => {
             </div>
             <div className={"method"}>
                 <div className={"method-info info-item"}>
-                    <span className={"method-info-item "}><RequestType type={requestType} /></span>
+                    <span className={"method-info-item "}><MethodType type={requestType} /></span>
                     <span className={"method-info-item method-info-path"}>{path}</span>
                     <span className={"method-info-item "}>
                          <Select
@@ -136,7 +136,7 @@ const ApxMethodDetail = (props) => {
                              onChange={(e)=>selectStatus(e)}
                          >
                              {
-                                 showStatus(apiStatusList)
+                                 showStatus(apiStatusSourceList)
                              }
                         </Select>
                     </span>

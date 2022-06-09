@@ -9,6 +9,65 @@ const methodDictionary = [
     "patch"
 ]
 
+const bodyTypeDictionary = [
+    {
+        "name":"none",
+        "value":"none"
+    },{
+        "name":"form-data",
+        "value":"formdata"
+    },{
+        "name":"x-www-form-urlencoded",
+        "value":"formUrlencoded"
+    },{
+        "name":"json",
+        "value":"json"
+    },{
+        "name":"raw",
+        "value":"raw"
+    }
+]
+
+export const bodyTypeJsonDictionary = {
+    "none":"none",
+    "formdata":"formdata",
+    "formUrlencoded":"formUrlencoded",
+    "json":"json",
+    "raw":"raw"
+}
+
+
+const rawTypeDictionary = [
+    {
+        "name":"Text(text/plain)",
+        "value":"text/plain"
+    },
+    {
+        "name":"Json(application/json)",
+        "value":"application/json"
+    },
+    {
+        "name":"Javascript(application/javascript)",
+        "value":"application/javascript"
+    },
+    {
+        "name":"Xml(text/xml)",
+        "value":"text/xml"
+    },
+    {
+        "name":"Html(text/html)",
+        "value":"text/html"
+    },
+]
+
+export const rawTypeJsonDictionary ={
+    "text":"text/plain",
+    "json":"application/json",
+    "javascript":"application/javascript",
+    "xml":"text/xml",
+    "html":"text/html"
+}
+
 
 const headerParamDictionary = [
     'accept',
@@ -62,5 +121,7 @@ export {
     headerParamDictionary,
     mockValueDictionary,
     dataTypeDictionary,
-    methodDictionary
+    methodDictionary,
+    rawTypeDictionary,
+    bodyTypeDictionary
 }

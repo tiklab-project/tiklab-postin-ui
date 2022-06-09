@@ -30,7 +30,7 @@ const ApxMethodTest = (props) => {
     const {findApxMethod} = apxMethodStore;
 
     const { getRequestInfo, getResponseInfo, getTime } = testStore;
-    const { findEnvironmentPage, environmentList } = environmentStore;
+    const { findEnvironmentList, envSourceList } = environmentStore;
     const { requestHeaderTestList,getRequestHeaderTestList } = requestHeaderTestStore;
     const { queryParamTestList,getQueryParamTestList } = queryParamTestStore;
     const { bodyTypeInfo,getBodyType } = requestBodyTestStore;
@@ -50,7 +50,7 @@ const ApxMethodTest = (props) => {
 
 
     useEffect(()=>{
-        findEnvironmentPage()
+        findEnvironmentList()
     },[])
 
     useEffect(()=>{
@@ -159,7 +159,7 @@ const ApxMethodTest = (props) => {
                     )}
                 >
                     {
-                        environmentList.map((item)=> {
+                        envSourceList.map((item)=> {
                             return <Option key={item.id} value={item.url}>{item.name}</Option>
                         })
                     }

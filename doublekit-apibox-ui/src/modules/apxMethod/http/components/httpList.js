@@ -3,7 +3,7 @@ import { observer, inject } from "mobx-react";
 import { Input, Popconfirm, Space, Table} from 'antd';
 import '../../../category/components/category.scss';
 import ApxMethodEdit from './apxMethodEdit';
-import RequestType from "../../../common/requestType";
+import MethodType from "../../../common/methodType";
 
 // 点击左侧导航栏目录，查看的所在目录中的接口
 const HttpList = (props) => {
@@ -25,7 +25,7 @@ const HttpList = (props) => {
             title: '类型',
             dataIndex: 'requestType',
             width: '8%',
-            render:(text,record)=>(<RequestType type={text}/>)
+            render:(text,record)=>(<MethodType type={text}/>)
         },
         {
             title: '地址',

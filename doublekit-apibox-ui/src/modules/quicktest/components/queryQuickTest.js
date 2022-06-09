@@ -4,7 +4,7 @@ import QueryTableCommon from "../../common/tableCommon/components/queryTableComm
 
 // 请求参数的可编辑表格
 const QueryQuickTest = (props) =>{
-    const { queryQuickTestStore } = props;
+    const { queryQuickTestStore,instanceId } = props;
     const {
         queryQuickTestList,
         saveList,
@@ -16,7 +16,7 @@ const QueryQuickTest = (props) =>{
 
     useEffect(()=>{
         getQueryParamTestList()
-    },[])
+    },[instanceId])
 
     return (
         <QueryTableCommon

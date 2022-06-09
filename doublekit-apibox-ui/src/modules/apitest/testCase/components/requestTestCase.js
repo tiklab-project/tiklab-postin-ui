@@ -11,6 +11,8 @@ import AssertParamTestCase from "./assertParamTestCase";
 import { Tabs, Radio } from 'antd';
 import FormUrlencodedTestCase from "./formUrlencodedTestCase";
 import BinaryParamTestCase from "./binaryParamTestCase";
+import RequestNoBody from "../../../common/tableCommon/components/requestNoBody";
+import {bodyTypeDictionary, bodyTypeJsonDictionary as bodyTypeJson} from "../../../common/dictionary/dictionary";
 
 const { TabPane } = Tabs;
 
@@ -29,7 +31,7 @@ const TestCaseRequest = (props) => {
     useEffect(()=>{
         findRequestBodyTestCase(testCaseId).then((res) => {
             if(res === null){
-                let initRadioValue ={bodyType :'formdata'};
+                let initRadioValue ={bodyType :'none'};
                 res = Object.assign(initRadioValue);
                 createRequestBodyTestCase(res);
             }else{
@@ -46,20 +48,26 @@ const TestCaseRequest = (props) => {
 
     const changeFormat = (radioValue) => {
         switch(radioValue) {
-            case 'none':
-                return <div>none</div>
-            case 'formdata':
+            case bodyTypeJson.none:
+                return <RequestNoBody />
+            case bodyTypeJson.formdata:
                 return <FromParamTestCase />
-            case 'formUrlencoded':
+            case bodyTypeJson.formUrlencoded:
                 return <FormUrlencodedTestCase />
-            case 'json':
+            case bodyTypeJson.json:
                 return <JsonParamTestCase />
-            case 'raw':
+            case bodyTypeJson.raw:
                 return <RawParamTestCase />
             // case 'binary':
             //     return <BinaryParamTestCase />
 
         }  
+    }
+
+    const showRadioItem = (data)=>{
+        return data&& data.map(item=>{
+            return <Radio value={item.value} key={item.value}>{item.name}</Radio>
+        })
     }
 
     return(
@@ -73,13 +81,12 @@ const TestCaseRequest = (props) => {
                 </TabPane>
                 <TabPane tab="请求体" key="3">
                     <div className='request-radio'>
-                        <Radio.Group name="radiogroup" onChange={(e)=>onChange(e)}  defaultValue={radioValue}>
-                            <Radio value={'none'}>none</Radio>
-                            <Radio value={'formdata'}>form-data </Radio>
-                            <Radio value={'formUrlencoded'}>x-www-form-urlencoded</Radio>
-                            <Radio value={'json'}>json</Radio>
-                            <Radio value={'raw'}>raw</Radio>
-                            {/*<Radio value={'binary'}>binary</Radio>*/}
+                        <Radio.Group
+                            name="radiogroup"
+                            onChange={(e)=>onChange(e)}
+                            defaultValue={radioValue}
+                        >
+                            {showRadioItem(bodyTypeDictionary)}
                         </Radio.Group>
                     </div>
                     <div>

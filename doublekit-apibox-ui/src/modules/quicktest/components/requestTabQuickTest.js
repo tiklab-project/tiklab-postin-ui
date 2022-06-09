@@ -12,7 +12,7 @@ import AfterQuickTest from "./afterQuickTest";
 import AssertQuickTest from "./assertQuickTest";
 
 const RequestTabQuickTest = (props) =>{
-    const {requestBodyQuickTestStore} = props;
+    const {requestBodyQuickTestStore,instanceId} = props;
     const {bodyType,getBodyType,setBodyType} = requestBodyQuickTestStore
 
     return(
@@ -20,15 +20,15 @@ const RequestTabQuickTest = (props) =>{
             bodyType={bodyType}
             getBodyType={getBodyType}
             setBodyType={setBodyType}
-            headerComponent={<HeaderQuickTest />}
-            queryComponent={<QueryQuickTest />}
-            formDataComponent={<FormDataQuickTest bodyType={bodyType} />}
-            formUrlencodedComponent={<FormUrlencodedQuickTest bodyType={bodyType} />}
-            jsonComponent={<JsonQuickTest bodyType={bodyType} />}
-            rawComponent={<RawQuickTest bodyType={bodyType} />}
-            preScript={<PreQuickTest />}
-            afterScript={<AfterQuickTest />}
-            assert={<AssertQuickTest />}
+            headerComponent={<HeaderQuickTest instanceId={instanceId}/>}
+            queryComponent={<QueryQuickTest instanceId={instanceId}/>}
+            formDataComponent={<FormDataQuickTest bodyType={bodyType} instanceId={instanceId}/>}
+            formUrlencodedComponent={<FormUrlencodedQuickTest bodyType={bodyType} instanceId={instanceId}/>}
+            jsonComponent={<JsonQuickTest bodyType={bodyType} instanceId={instanceId}/>}
+            rawComponent={<RawQuickTest bodyType={bodyType} instanceId={instanceId}/>}
+            preScript={<PreQuickTest instanceId={instanceId}/>}
+            afterScript={<AfterQuickTest instanceId={instanceId}/>}
+            assert={<AssertQuickTest instanceId={instanceId}/>}
         />
     )
 }

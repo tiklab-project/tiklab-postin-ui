@@ -37,8 +37,9 @@ ul{
 }
 
 .ws-content-box{
-    min-width: 1140px;
-    margin: 0 auto;
+    //min-width: 1140px;
+    //margin: 0 auto;
+    padding: 10px;
 }
 
 .ws-menu-ul-show{
@@ -116,7 +117,7 @@ ul{
 // --workspaceList --
 
 .wslist-searchbtn{
-    border-top: 1px solid #d9d9d9;
+    //border-top: 1px solid #d9d9d9;
     padding: 15px 0;
     display: flex;
     justify-content: space-between;

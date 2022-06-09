@@ -1,5 +1,5 @@
 import { EamStore,EAM_STORE } from 'doublekit-eam-ui';
-import {PluginStore, PLUGIN_STORE} from "doublekit-plugin-manage"
+import {PluginStore, PLUGIN_STORE} from "doublekit-plugin-ui"
 import { SEARCHSTORE, SearchStore } from './modules/integration/search'
 
 import {USERSELECT_STORE, UserSelectStore} from './modules/integration/userSelect/store/userSelectStore'
@@ -27,7 +27,7 @@ import {
     RAWRESPONSE_STORE, RawResponseStore,
     RESPONSERESULT_STORE, ResponseResultStore,
 
-    APIX_STORE, ApixStore,
+
 } from "./modules/apxMethod";
 
 import {
@@ -130,7 +130,6 @@ function createStores() {
         [RAWRESPONSE_STORE]: new RawResponseStore(),
         [RESPONSERESULT_STORE]: new ResponseResultStore(),
 
-        [APIX_STORE]:new ApixStore(),
 
         // test
         [TEST_STORE]: new TestStore(),

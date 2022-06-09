@@ -6,15 +6,28 @@ import {
     updateApiStatus,
     deleteApiStatus,
     findAllApiStatus,
+    findApiStatusList
 } from '../api/apxMethodStatus'
 
 export class ApxMethodStatusStore {
 
     @observable apiStatusList = [];
+    @observable apiStatusSourceList=[];
     @observable apiStatusId ;
     @observable	totalRecord ;
     @observable params = {};
     @observable statusType;
+    @observable dataLength;
+
+    @action
+    setList = (values) => {
+        this.apiStatusList = [...values]
+    }
+
+    @action
+    addNewList = (list) => {
+        this.apiStatusList = [...list];
+    }
 
     //根据查询对象按分页查询接口列表
     @action
@@ -27,17 +40,30 @@ export class ApxMethodStatusStore {
         if(res.code === 0 ) {
             this.apiStatusList = res.data.dataList;
             this.totalRecord = res.data.totalRecord;
-            return  res;
+            return res.data;
         }
     }
 
-    //根据查询条件查询接口列表
     @action
-    findAllApiStatus = async () => {
-        const res = await findAllApiStatus();
+    findApiStatusList = async (value) => {
+        this.params = {
+            orderParams:[{name:'name', orderType:'asc'}],
+        }
+
+        const res = await findApiStatusList(this.params);
+
+        let newRow = [{id:"apiStatusInitRow"}]
+
         if(res.code === 0 ) {
-            this.apiStatusList = res.data;
-            return  res;
+            this.dataLength = res.data.length
+            this.apiStatusSourceList = res.data;
+            if(res.data.length===0){
+                this.apiStatusList=newRow
+            }else {
+                this.apiStatusList=res.data;
+            }
+
+            return  res.data;
         }
     }
 
@@ -47,6 +73,7 @@ export class ApxMethodStatusStore {
         this.apiStatusId=id;
         const param = new FormData();
         param.append('id', id);
+
         const res = await findApiStatus(param);
         if(res.code === 0){
             this.statusType = res.data.type;
@@ -58,9 +85,10 @@ export class ApxMethodStatusStore {
     @action
     createApiStatus = async (values) => {
         values.type="custom";
+
         const res = await createApiStatus(values)
         if (res.code === 0) {
-            this.findApiStatusPage(this.params);
+            return this.findApiStatusList();
         }
     }
       
@@ -70,9 +98,10 @@ export class ApxMethodStatusStore {
     updateApiStatus = async (values) => {
         values.id = this.apiStatusId;
         values.type=this.statusType;
+
         const res = await updateApiStatus(values);
         if( res.code === 0 ){
-            this.findApiStatusPage(this.params);
+            return this.findApiStatusList();
         }
     }
 
@@ -81,9 +110,10 @@ export class ApxMethodStatusStore {
     deleteApiStatus = async (id) => {
         const param = new FormData();
         param.append('id', id);
+
         const res = await  deleteApiStatus(param)
         if(res.code === 0){
-            this.findApiStatusPage(this.params);
+            this.findApiStatusList();
         }
     }
 }

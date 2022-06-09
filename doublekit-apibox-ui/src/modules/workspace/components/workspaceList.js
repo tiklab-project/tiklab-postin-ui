@@ -4,13 +4,15 @@
  * @LastEditTime: 2021-05-08 17:20:46
  */
 
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
-import {Breadcrumb, Input, Table, Space, Button, Popconfirm} from 'antd';
+import { Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
-import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-manage'
+import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
 import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui"
+import BreadcrumbEx from "../../common/breadcrumbEx";
+import {globalTabListInit} from "../../common/globalSharing";
 
 const WorkspaceList = (props) => {
     const { workspaceStore, pluginsStore } = props;
@@ -33,7 +35,7 @@ const WorkspaceList = (props) => {
             align:"center",
             width:"25%",
             render: (text,record) =>(
-                <a onClick = {()=>toDetail('workspaceId',record.id)}>{text}</a>
+                <a onClick = {()=>toDetail(record.id)}>{text}</a>
             )
         },
         {
@@ -115,10 +117,12 @@ const WorkspaceList = (props) => {
     },[])
 
     // 保存空间id到缓存
-    const toDetail = (workspaceId,id) => {
-        localStorage.setItem("leftRouter","/workspacepage/detail");
+    const toDetail = (id) => {
+        globalTabListInit(id)
 
-        localStorage.setItem(workspaceId,id);
+        localStorage.setItem("LEFT_MENU_SELECT","api");
+
+        localStorage.setItem('workspaceId',id);
 
         props.history.push('/workspacepage');
     }
@@ -158,11 +162,8 @@ const WorkspaceList = (props) => {
     }
 
     return(
-        <Fragment>
-            <Breadcrumb separator=">"  className={"apibox-breadcrumb"}>
-                <Breadcrumb.Item>{t('wsMgr')}</Breadcrumb.Item>
-                <Breadcrumb.Item>{t('wsList')}</Breadcrumb.Item>
-            </Breadcrumb>
+        <>
+            <BreadcrumbEx list={[ t('wsMgr'), t('wsList')]}/>
             <div className='wslist-searchbtn'>
                 <div className='wslist-eibtn'>
                     <WorkspaceEdit
@@ -196,7 +197,7 @@ const WorkspaceList = (props) => {
                 }}
                 onChange = {(pagination) => onTableChange(pagination)}
             />
-        </Fragment>
+        </>
     )
 }
 

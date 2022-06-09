@@ -17,7 +17,7 @@ import{ Test, TestCase, TestCaseDetail }from'./apitest';
 import { Mock,MockDetail } from "./apimock"
 
 import {
-    SysManage, EvnMana, DataStructure, ApiStatus, Org, Usermgr,
+    AccountMember,SysManage, EvnMana, DataStructure, ApiStatus, Org, Usermgr,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole, MessageManagement,
     MessageSendType, MessageTemplate, MessageType, MessageUser,
 } from './sysmgr/index'
@@ -33,15 +33,18 @@ import LayoutQuickTest from "./quicktest/components/layoutQuickTest";
 import TabsQuickTest from "./quicktest/components/tabsQuickTest";
 import TestdetailQuickTest from "./quicktest/components/testdetailQuickTest";
 import ApiInitPage from "./category/components/apiInitPage";
+import WorkspaceSetting from "./integration/workspaceSetting/workspaceSetting";
 import LoginOut from "./header/loginOut";
 import LoginContent from "./login/loginContent";
 import ElectronLoginContant from "./login/electronLoginContant";
+
+
 
 export {
     Home,PortalHeader,HeaderContent,
     Search, SearchResult,
 
-    WorkspaceRole, WorkspacePrivilege,
+    WorkspaceRole, WorkspacePrivilege,WorkspaceSetting,
     Workspace,WorkspaceInitPage,WorkspaceCreatePage,RecentBrowing,
     WorkspaceParticipation,
     WorkspaceList,
@@ -56,7 +59,7 @@ export {
 
     Mock, MockDetail,
 
-    SysManage,
+    SysManage,AccountMember,
     EvnMana, DataStructure,ApiStatus,
     Usermgr, Org,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole,

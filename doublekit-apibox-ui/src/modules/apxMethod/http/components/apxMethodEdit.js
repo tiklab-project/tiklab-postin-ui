@@ -209,4 +209,4 @@ const ApxMethodEdit = (props) => {
     )
 }
 
-export default inject('apxMethodStore','categoryStore',"apixStore")(observer(ApxMethodEdit));
+export default inject('apxMethodStore','categoryStore')(observer(ApxMethodEdit));

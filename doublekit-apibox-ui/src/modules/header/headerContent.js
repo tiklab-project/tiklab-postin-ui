@@ -1,39 +1,39 @@
 import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {Col, Row, Dropdown, Menu, Button, Badge} from "antd";
+import {Col, Row, Dropdown, Menu, Button, Badge, Tooltip} from "antd";
 import {Search} from "../index";
 import {useWorkAppConfig} from "doublekit-eam-ui"
 import {getUser} from "doublekit-core-ui"
 import { BellOutlined } from '@ant-design/icons';
 import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";
-import logo from "../../assets/img/log.png"
+import logo from "../../assets/img/log.png";
+import localImage from "../../assets/img/local.png";
+import enterprise from "../../assets/img/enterprise.png"
 
 const HeaderContent = props => {
     const {userMessageStore} = props;
     const {userMessageNum} = userMessageStore;
-    const {
-        logout,
-        languageSelectData = [], // 切换语言包的数据
-    } = props;
+    const {logout} = props;
 
     const { i18n } = useTranslation();
-    const [lan, setLan] = useState(i18n.language);
+    const [languageData, setLanguageData] = useState(i18n.languages);
+
     let userInfo = getUser();
+
 
     const [component, ModalComponent, editOrAddModal] = useWorkAppConfig(false);
 
     const onClickLan = ({ key }) => {
-        i18n.changeLanguage(languageSelectData[key].value)
-        setLan(languageSelectData[key].value)
+        i18n.changeLanguage(languageData[key])
     };
 
     //语言包选项
     const menu = (
         <Menu onClick={onClickLan}>
             {
-                languageSelectData.map((item, index) => {
-                    return <Menu.Item key={index} value={item.value}>{item.label}</Menu.Item>
+                languageData.map((item, index) => {
+                    return <Menu.Item key={index} value={item}>{item}</Menu.Item>
                 })
             }
         </Menu>
@@ -43,38 +43,30 @@ const HeaderContent = props => {
         props.history.push("/MessageUser");
     }
 
-    const isLocal =() =>{
-        let isLocal = JSON.parse(localStorage.getItem("authConfig"))
 
-        if(isLocal){
-            switch (isLocal.authType) {
-                case "local":
-                    return <span>(本地)</span>
-                case "acc":
-                    return <span>(统一)</span>
-            }
-        }else {
-            return <span>(本地)</span>
-        }
-
-    }
+    let authConfigInfo = JSON.parse(localStorage.getItem("authConfig"))
 
     const version = ()=>{
         let versionInfo = JSON.parse(localStorage.getItem("versionInfo"))
         if(versionInfo){
             switch (versionInfo.release) {
                 case 1:
-                    return <span>社区版</span>
+                    return <img style={{width: 25}} src={localImage} alt='ce' />
                 case 2:
-                    return <span>企业版</span>
-                case 3:
-                    return <span>SaaS版</span>
+                    return <img style={{width: 25}} src={enterprise} alt='ee' />
             }
         }else {
-            return <span>社区版</span>
+            return  <img  style={{width: 25}} src={localImage} alt='ce' />
         }
     }
 
+    const toSystem = () =>{
+        props.history.push("/systemManagement")
+    }
+
+    const toAccountMember = () =>{
+        props.history.push("/accountMember")
+    }
 
 
     return(
@@ -83,7 +75,7 @@ const HeaderContent = props => {
                 <div className={'frame-header-right'}>
                     {component}
                     <div className={'frame-header-logo'}>
-                        {logo && < img src={logo} alt='logo' />}
+                        {logo && <img src={logo} alt='logo' />}
                     </div>
                     <div className={"header-menu-box"}>
                         <HeaderMenu {...props}/>
@@ -93,28 +85,71 @@ const HeaderContent = props => {
             <Col span={12}>
                 <div className={'frame-header-right'}>
                     <div className={'frame-header-right-text'}>
-                        <Search {...props}/>
-                        <Badge count={userMessageNum}>
-                            <BellOutlined style={{fontSize: 21}} onClick={toMessage}/>
-                        </Badge>
-                        <Dropdown overlay={menu} className={'frame-header-dropdown'}>
-                            <Button>{lan}</Button>
-                        </Dropdown>
-                        <div>
-                            {version()}
-                            {isLocal()}
+                        <div className={"header-right-item"}>
+                            <Search {...props}/>
                         </div>
+                        <div className={"header-right-item"}>
+                            <Badge count={userMessageNum}>
+                                <BellOutlined style={{fontSize: 21}} onClick={toMessage}/>
+                            </Badge>
+                        </div>
+                        {/*<div className={"header-right-item"}>*/}
+                            <Dropdown overlay={menu} className={'frame-header-dropdown'}>
+                                <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
+                                    <use xlinkHref= {`#icon-yuyan`} />
+                                </svg>
+                            </Dropdown>
+                        {/*</div>*/}
+                        <div className={"header-right-item"}>
+                            <div className={"toggle-hover"}>
+                                <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
+                                    <use xlinkHref= {`#icon-setting`} />
+                                </svg>
+                                <div className={"toggle-hidden-box setting-setting-box"}>
+                                    {
+                                        authConfigInfo.authType==="local"
+                                            ?<div className={"user-hidden-item"} onClick={toAccountMember}>帐号成员</div>
+                                            :<Tooltip placement="right" title="仅限本地登录使用">
+                                                <div className={"user-hidden-item-disable "} >帐号成员</div>
+                                            </Tooltip>
+                                    }
+
+                                    <div className={"user-hidden-item"} onClick={toSystem}>系统设置</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={"header-right-item"}>
+                            <div className={"toggle-hover"}>
+                                <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
+                                    <use xlinkHref= {`#icon-user__easyico`} />
+                                </svg>
+                                <div className={"toggle-hidden-box header-user-box"}>
+                                    <div className={"user-detail-box"}>
+                                        <div className={"user-detail-item  user-detail-item-icon"}>
+                                            <svg className="user-header-icon" aria-hidden="true">
+                                                <use xlinkHref= {`#icon-user__easyico`} />
+                                            </svg>
+                                        </div>
+                                        <div className={"user-detail-item"}>
+                                            <div className={"user-detail-item-name"}>{userInfo.name}</div>
+                                            <div>{userInfo.email}</div>
+                                        </div>
+                                    </div>
+                                    <div className={"user-hidden-item"} onClick={logout}>退出登录</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={"header-right-item"}>
+                            {version()}
+                        </div>
+
 
                         {
                             props.isSignIn&&!userInfo.ticket
                                 ? props.isSignIn
                                 :null
                         }
-                        {
-                            userInfo.ticket
-                                ?<span onClick={logout}>退出</span>
-                                :null
-                        }
+
                     </div>
                 </div>
                 {ModalComponent}

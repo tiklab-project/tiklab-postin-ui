@@ -32,6 +32,90 @@
     }
 }
 
+.header-right-item{
+    margin: 0 10px;
+}
+
+.user-header-icon{
+    width: 21px;
+    height: 21px;
+}
+
+.user-header-icon-hover{
+    cursor: pointer;
+}
+
+.toggle-hover{
+    position: relative;
+    line-height: 12px;
+
+
+    .toggle-hidden-box{
+        z-index: 9;
+        display: none;
+        position: absolute;
+        border: 1px solid #e9e9e9;
+        background: #fbfbfb;
+        box-shadow: 0 0 10px 2px #e4e4e4;
+
+
+        .user-detail-box{
+            display: flex;
+            //justify-content: space-between;
+            //align-items: center;
+            padding: 10px;
+
+
+            .user-detail-item{
+                //width: 50px;
+
+                .user-detail-item-name{
+                    font-weight: bold;
+                }
+            }
+
+            .user-detail-item-icon{
+                margin: 0 10px 0 0;
+            }
+
+        }
+
+        .user-hidden-item{
+            //border-bottom: 1px solid #e4e4e4;
+            padding: 10px;
+        }
+
+        .user-hidden-item-disable{
+            padding: 10px;
+            cursor: not-allowed;
+            color: #c9c9c9;
+        }
+
+        .user-hidden-item:hover{
+            background: #efefef;
+            cursor: pointer;
+        }
+    }
+
+    .header-user-box{
+        width: 230px;
+        left: -200px;
+    }
+
+    .setting-setting-box{
+        width: 100px;
+        /* height: 120px; */
+        left: -75px;
+    }
+
+}
+
+.toggle-hover:hover  .toggle-hidden-box{
+    display: block;
+
+
+}
+
 
 
 
@@ -162,3 +246,5 @@
     justify-content: space-between;
     align-items: center;
 }
+
+

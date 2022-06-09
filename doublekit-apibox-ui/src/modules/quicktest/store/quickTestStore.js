@@ -8,13 +8,14 @@ export  class QuickTestStore {
     @observable status = '';
     @observable time = '';
     @observable assertResponse = [];
-
+    @observable baseInfo;
     @observable baseData;
     @observable responseBodyData;
     @observable responseHeaderData;
     @observable requestBodyData;
     @observable requestHeaderData;
-    @observable requestType;
+    @observable methodType;
+    @observable isResponseShow="false";
 
     @action
     getRequestInfo = (data) => {
@@ -26,7 +27,7 @@ export  class QuickTestStore {
         //
         // this.requestBodyData = data.bodys;
         // this.requestHeaderData = JSON.stringify(data.headers);
-        this.requestType = data.method;
+        this.methodType = data.method;
 
         if(data.params&&Object.keys(data.params).length>0){
             this.baseInfo = data.baseUrl+data.url+'?'+qs.stringify(data.params)
@@ -65,15 +66,20 @@ export  class QuickTestStore {
         let allValueInfo = {
             'statusCode':this.status,
             'result':allAssertResult,
-            "requestType":this.requestType,
+            "time": this.time,
+            "size":"",
             'requestInstance':{
-                'requestBase':this.baseInfo,
-                'requestHeader':this.requestHeaderData,
-                'requestParam':this.requestBodyData
+                "url":this.baseInfo,
+                "methodType":this.methodType,
+                "mediaType":"application/json",
+                'headers':this.requestHeaderData,
+                'body':this.requestBodyData,
+                "preScript":null,
+                "afterScript":null
             },
             'responseInstance':{
-                'responseHeader':JSON.stringify(headers),
-                'responseBody':JSON.stringify(body)
+                'headers':JSON.stringify(headers),
+                'body':JSON.stringify(body)
             },
             'assertInstanceList':assertData
         }
@@ -95,6 +101,25 @@ export  class QuickTestStore {
     getTime = (value) => {
         this.time= value;
     }
+
+    @action
+    getInstance = (res,resInstance) =>{
+        this.time = res.time;
+        this.status = res.statusCode;
+
+        this.responseBodyData = resInstance.body;
+        this.responseHeaderData = resInstance.headers;
+
+        this.requestBodyData = res.requestInstance?.body;
+        this.requestHeaderData = res.requestInstance?.headers;
+    }
+
+    @action
+    setResponseShow = () =>{
+        this.isResponseShow = true
+    }
+
+
 }
 
 export const QUICKTEST_STORE = 'quickTestStore';

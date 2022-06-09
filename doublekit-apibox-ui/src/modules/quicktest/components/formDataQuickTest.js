@@ -4,7 +4,7 @@ import FormDataTableCommon from "../../common/tableCommon/components/formDataTab
 
 // 请求参数的可编辑表格
 const FormDataQuickTest = (props) =>{
-    const { formDataQuickTestStore, bodyType } = props;
+    const { formDataQuickTestStore, bodyType,instanceId } = props;
 
     const {
         getFormParamTestList,

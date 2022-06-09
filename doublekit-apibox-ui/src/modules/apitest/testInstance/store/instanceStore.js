@@ -25,7 +25,7 @@ export class InstanceStore {
         this.params = {
             ...value,
             httpCaseId:id,
-            orderParams:[{name:'testNo', orderType:'asc' }]
+            orderParams:[{name:'createTime', orderType:'asc' }]
         }
 
         const res = await findInstancePage(this.params );
@@ -37,9 +37,10 @@ export class InstanceStore {
     }
 
     @action
-    findInstanceList = async (id) =>{
+    findInstanceList = async (id,workspaceId) =>{
         this.param = {
             "httpCaseId":id,
+            "workspaceId":workspaceId,
             orderParams:[{name:'createTime', orderType:'asc' }]
         }
 
@@ -62,11 +63,11 @@ export class InstanceStore {
             let responseInstance = res.data.responseInstance;
             let requestInstance = res.data.requestInstance;
 
-            this.responseBodyData = JSON.parse(responseInstance.responseBody);
-            this.responseHeaderData = responseInstance.responseHeader;
+            this.responseBodyData = JSON.parse(responseInstance.body);
+            this.responseHeaderData = responseInstance.headers;
 
-            this.requestBodyData = requestInstance.requestParam;
-            this.requestHeaderData = requestInstance.requestHeader;
+            this.requestBodyData = requestInstance.body;
+            this.requestHeaderData = requestInstance.headers;
 
             this.assertList = res.data.assertInstanceList;
 

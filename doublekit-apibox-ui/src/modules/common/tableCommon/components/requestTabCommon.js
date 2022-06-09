@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { Tabs, Radio } from 'antd';
+import RequestNoBody from "./requestNoBody";
+import {bodyTypeDictionary, bodyTypeJsonDictionary as bodyTypeJson} from "../../dictionary/dictionary";
 
 const { TabPane } = Tabs;
+
 
 const RequestTabCommon = (props) => {
     const { bodyType,getBodyType } = props;
@@ -25,21 +28,26 @@ const RequestTabCommon = (props) => {
     //根据radio值，渲染相应的请求体
     const changeFormat = (radioValue) => {
         switch(radioValue) {
-            case 'none':
-                return <div>none</div>
-            case 'formdata':
+            case bodyTypeJson.none:
+                return <RequestNoBody/>
+            case bodyTypeJson.formdata:
                 return <>{props.formDataComponent}</>
-            case 'formUrlencoded':
+            case bodyTypeJson.formUrlencoded:
                 return <>{props.formUrlencodedComponent}</>
-            case 'json':
+            case bodyTypeJson.json:
                 return <>{props.jsonComponent}</>
-            case 'raw':
+            case bodyTypeJson.raw:
                 return <>{props.rawComponent}</>
             // case 'binary':
             //     return <TestBinaryParam bodyType={bodyTypeInfo} />
         }
     }
 
+    const showRadioItem = (data)=>{
+        return data&& data.map(item=>{
+            return <Radio value={item.value} key={item.value}>{item.name}</Radio>
+        })
+    }
 
     return(
         <>
@@ -57,12 +65,7 @@ const RequestTabCommon = (props) => {
                             value={radioValue}
                             onChange = {(e)=>onChange(e.target.value)}
                         >
-                            <Radio value={'none'}>none</Radio>
-                            <Radio value={'formdata'}>form-data </Radio>
-                            <Radio value={'formUrlencoded'}>x-www-form-urlencoded</Radio>
-                            <Radio value='json'>json</Radio>
-                            <Radio value='raw'>raw</Radio>
-                            {/*<Radio value='binary'>binary</Radio>*/}
+                            {showRadioItem(bodyTypeDictionary)}
                         </Radio.Group>
                     </div>
                     <div>

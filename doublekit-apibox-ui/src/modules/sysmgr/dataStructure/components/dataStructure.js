@@ -7,6 +7,7 @@ import {Breadcrumb, Col, Input, Popconfirm, Row, Space, Table} from "antd";
 import DataStructureEdit from "./dataStructureEdit";
 import {inject, observer} from "mobx-react";
 import SetData from "./setData";
+import BreadcrumbEx from "../../../common/breadcrumbEx";
 
 const DataStructure = (props) => {
     const {dataStructureStore} = props;
@@ -114,35 +115,30 @@ const DataStructure = (props) => {
 
 
     return(
-        <Row justify={'center'} style={{width:'100%'}}>
-            <Col xl={{span: 20}} lg={{span: 24}} xxl={{span:16}}>
-                <Breadcrumb separator=">"  className={"apibox-breadcrumb"}>
-                    <Breadcrumb.Item>数据管理</Breadcrumb.Item>
-                    <Breadcrumb.Item>数据结构</Breadcrumb.Item>
-                </Breadcrumb>
-                <div className='wslist-searchbtn'>
-                    <Input
-                        placeholder={`搜索`}
-                        onPressEnter={onSearch}
-                        className='search-input'
-                    />
-                    <DataStructureEdit name={'添加数据结构'}  />
-                </div>
-
-                <Table
-                    columns={columns}
-                    dataSource={dataStructureList}
-                    rowKey={record => record.id}
-                    pagination={{
-                        current:currentPage,
-                        pageSize:pageSize,
-                        total:totalRecord,
-                    }}
-                    onChange = {(pagination) => onTableChange(pagination)}
+        <div>
+            <BreadcrumbEx list={[ "空间设置", "数据结构"]}/>
+            <div className='wslist-searchbtn'>
+                <Input
+                    placeholder={`搜索`}
+                    onPressEnter={onSearch}
+                    className='search-input'
                 />
+                <DataStructureEdit name={'添加数据结构'}  />
+            </div>
 
-            </Col>
-        </Row>
+            <Table
+                columns={columns}
+                dataSource={dataStructureList}
+                rowKey={record => record.id}
+                pagination={{
+                    current:currentPage,
+                    pageSize:pageSize,
+                    total:totalRecord,
+                }}
+                onChange = {(pagination) => onTableChange(pagination)}
+            />
+        </div>
+
     )
 }
 

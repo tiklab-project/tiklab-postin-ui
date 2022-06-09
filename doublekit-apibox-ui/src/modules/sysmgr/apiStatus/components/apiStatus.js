@@ -1,15 +1,22 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
-import {Breadcrumb, Input, Table, Space, Popconfirm, Tooltip, Row, Col} from 'antd';
-import ApiStatusEdit from "./apiStatusEdit";
+import {Space, Popconfirm, Button} from 'antd';
+import BreadcrumbEx from "../../../common/breadcrumbEx";
+import {ExTable} from "../../../common/editTable";
+import ExSelect from "../../../common/exSelect";
+import "./apiStatus.scss"
 
 const ApiStatus = (props) => {
     const { apxMethodStatusStore } = props;
     const {
-        findApiStatusPage,
+        findApiStatusList,
         apiStatusList,
         deleteApiStatus,
-        totalRecord
+        createApiStatus,
+        updateApiStatus,
+        setList,
+        dataLength,
+        addNewList
     } = apxMethodStatusStore;
 
     const columns = [
@@ -17,142 +24,137 @@ const ApiStatus = (props) => {
             title: "名称",
             dataIndex: "name",
             key: "name",
-            align:"center",
             width:"30%",
+            editable: true,
         },
         {
             title: "编码",
             dataIndex: "code",
             key: "code",
-            align:"center",
             width:"30%",
+            editable: true,
         },
         {
             title: "类型",
             dataIndex: "type",
             key: "type",
-            align:"center",
             width:"20%",
-            render:(text,record)=>text==="system"?"系统":"自定义"
+            render: (text, record)=>(
+                <ExSelect
+                    dictionary={["system","custom"]}
+                    defaultValue={record.type}
+                    handleSave={handleSave}
+                    rowData={record}
+                    dataIndex={'type'}
+                />
+            )
         },
         {
             title: "操作",
             key: "action",
-            align:"center",
             width:"20%",
-            render: (text, record) => (actionView(record)),
+            render: (text, record) => (operation(record,dataSource)),
         },
     ]
 
-    const [pageSize] = useState(10);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [params, setParams] = useState({
-        pageParam: {
-            pageSize: pageSize,
-            currentPage: currentPage
-        }
-    })
+    const [dataSource,setDataSource] = useState([]);
 
     useEffect(()=> {
-        findApiStatusPage(params);
-    },[params])
+        findApiStatusList().then(res=>setDataSource(res));
+    },[dataLength])
 
-    //列表操作，系统不可编辑，自定义的可以编辑
-    const actionView = (record) => {
-        return(
-            <>
+    // 表格里的操作
+    const operation = (record,data) => {
+        if(record.id === 'apiStatusInitRow'){
+            return <a onClick={() =>onCreated(record)} >保存</a>
+        }else{
+            return <Space key={record.id}>
                 {
-                    record.type==="custom"
-                        ?<Space size="middle">
-                            <ApiStatusEdit name="编辑" apiStatusId={record.id}/>
-                            <Popconfirm
-                                title="确定删除？"
-                                onConfirm={() => deleteApiStatus(record.id)}
-                                okText='确定'
-                                cancelText='取消'
-                            >
-                                <a style={{color: 'red'}}>删除</a>
-                            </Popconfirm>
-                        </Space>
-                        :
-                        <Space size="middle">
-                            <Tooltip title="系统状态不可编辑">
-                                <span style={{color: '#d4d4d4'}}>编辑</span>
-                            </Tooltip>
-                            <Tooltip title="系统状态不可删除">
-                                <span style={{color: '#d4d4d4'}}>删除</span>
-                            </Tooltip>
-                        </Space>
+                    updateView(record,data)
                 }
-            </>
-        )
+                <Popconfirm
+                    title="确定删除？"
+                    onConfirm={() => deleteApiStatus(record.id)}
+                    okText='确定'
+                    cancelText='取消'
+                >
+                    <a href="#">删除</a>
+                </Popconfirm>
+            </Space>
+        }
     }
 
-    //搜索
-    const onSearch = (e) =>{
-        setCurrentPage(1)
-        let newParams = {
-            pageParam: {
-                pageSize: pageSize,
-                currentPage: 1
-            },
-        }
-        if (e.target.value) {
-            newParams = {
-                pageParam: {
-                    pageSize: pageSize,
-                    currentPage: 1
-                },
-                name:e.target.value,
-            }
-        }
-        setParams(newParams)
+    //本地编辑的值和返回的值比较，不想同的会显示更新按钮
+    const updateView = (record,data)=>{
+        return data&&data.map((item) => {
+            return (
+                item.id === record.id
+                    ?<>
+                        {
+                            item.headerName === record.headerName
+                            && item.required === record.required
+                            && item.desc === record.desc
+                            && item.value === record.value
+                                ? null
+                                : <a onClick={() => upData(record)}>更新</a>
+                        }
+                    </>
+                    :null
+            )
+        })
     }
 
-    // 分页
-    const onTableChange = (pagination) => {
-        setCurrentPage(pagination.current)
-        const newParams = {
-            ...params,
-            pageParam: {
-                pageSize: pageSize,
-                currentPage: pagination.current
-            },
+    // 添加
+    const onCreated = (values) => {
+        if(Object.keys(values).length === 1){
+            return
+        }else {
+            // 创建新行的时候自带一个id，所以删了，后台会自行创建id
+            delete values.id;
+            createApiStatus(values);
         }
-        setParams(newParams)
+    }
+
+    //更新
+    const upData = (value) => {
+        updateApiStatus(value).then(res => setDataSource(res))
+    }
+
+    // 单元格保存数据
+    const handleSave = (row) => {
+        const newData = apiStatusList;
+        const index = newData.findIndex((item) => row.id === item.id);
+        newData.splice(index, 1, { ...newData[index], ...row });
+        setList(newData)
+    };
+
+
+
+    const addNewRow = () =>{
+        let arr = apiStatusList.filter(item=> item.id==="apiStatusInitRow")
+
+        if(arr&&arr.length===1){
+            return
+        }
+        const newData = {id: "apiStatusInitRow"};
+        const  dataSource = [...apiStatusList, newData]
+        addNewList(dataSource)
+
     }
 
 
     return(
-        <Row justify={'center'} style={{width:'100%'}}>
-            <Col xl={{span: 20}} lg={{span: 24}} xxl={{span:16}}>
-            <Breadcrumb separator=">"  className={"apibox-breadcrumb"} >
-                <Breadcrumb.Item>系统管理</Breadcrumb.Item>
-                <Breadcrumb.Item>状态管理</Breadcrumb.Item>
-            </Breadcrumb>
-            <div className='wslist-searchbtn'>
-                <Input
-                    placeholder="搜索名称"
-                    onPressEnter={onSearch}
-                    className='search-input'
-                />
-                <ApiStatusEdit name="添加状态" />
-            </div>
-            <Table
-                className="tablelist"
+        <div>
+            <BreadcrumbEx list={[ "空间设置", "数据结构"]}/>
+            <ExTable
                 columns={columns}
                 dataSource={apiStatusList}
-                rowKey={record=>record.id}
-                pagination={{
-                    current:currentPage,
-                    pageSize:pageSize,
-                    total:totalRecord,
-                }}
-                onChange = {(pagination) => onTableChange(pagination)}
+                handleSave={handleSave}
             />
-
-            </Col>
-        </Row>
+            <div className={"api-status-add-box"} onClick={addNewRow}>
+                <div >  新 增  </div>
+            </div>
+        </div>
     )
 }
 

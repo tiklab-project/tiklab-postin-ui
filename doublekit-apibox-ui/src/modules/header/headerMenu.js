@@ -5,7 +5,7 @@ import WorkspaceMenuList from "./workspaceMenuList";
 import {getUser} from "doublekit-core-ui"
 
 const HeaderMenu = (props) =>{
-    const [currentLink, setCurrentLink] = useState(props.location.pathname);
+
     const [clickIcon, setClickIcon] = useState(false);
 
     const menuRouter = [
@@ -19,15 +19,9 @@ const HeaderMenu = (props) =>{
             title:'空间',
             key: 'Workspace'
         },
-        {
-            to:'/systemManagement',
-            title:'系统管理',
-            key: 'systemManagement'
-        }
     ]
 
     const changeCurrentLink = item => {
-        setCurrentLink(item)
         props.history.push(item)
         setClickIcon(false)
     }
@@ -41,7 +35,6 @@ const HeaderMenu = (props) =>{
                         key={item.key}
                     >
                         <div
-                            className={currentLink === item.to ? 'portal-header-link-active' : null}
                             onClick={()=>setClickIcon(!clickIcon)}
                         >
                             {item.title}
@@ -69,7 +62,6 @@ const HeaderMenu = (props) =>{
                     <div
                         key={item.key}
                         onClick={ () => changeCurrentLink(item.to)}
-                        className={currentLink === item.to ? 'portal-header-link-active' : null}
                     >
                         {item.title}
                     </div>

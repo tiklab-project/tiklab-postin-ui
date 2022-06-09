@@ -8,6 +8,7 @@ export  class FormDataQuickTestStore {
 
     @action
     getFormParamTestList= (data) => {
+        debugger
         this.formQuickTestList = tableCommonStore.getList(data)
     }
 

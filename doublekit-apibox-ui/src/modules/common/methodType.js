@@ -2,9 +2,9 @@ import React from "react";
 import "./commonStyle.scss"
 
 //请求类型，如：get，post
-const RequestType =(props) =>{
+const MethodType =(props) =>{
 
-    const showRequestType = (type)=>{
+    const showMethodType = (type)=>{
         switch (type){
             case "get":
                 return <span className={"requestType requestType-get"}>GET</span>
@@ -27,10 +27,10 @@ const RequestType =(props) =>{
     return(
         <>
             {
-                showRequestType(props.type)
+                showMethodType(props.type)
             }
         </>
     )
 }
 
-export default RequestType;
+export default MethodType;

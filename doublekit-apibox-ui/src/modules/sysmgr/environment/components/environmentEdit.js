@@ -57,15 +57,13 @@ const EnvironmentEdit = (props) => {
             title={props.name}
             visible={visible}
             onCancel={onCancel}
-            footer={null}
+            onFinish={onFinish}
             centered
         >
             <Form
-               
                 name="basic"
                 initialValues={{ remember: true }}
                 form={form}
-                onFinish={onFinish}
                 preserve={false}
             >
                 <Form.Item
@@ -82,9 +80,9 @@ const EnvironmentEdit = (props) => {
                 >
                      <Input />
                 </Form.Item>
-                <Form.Item  >
-                    <Button type="primary" htmlType="submit">提交</Button>
-                </Form.Item>
+                {/*<Form.Item  >*/}
+                {/*    <Button type="primary" htmlType="submit">提交</Button>*/}
+                {/*</Form.Item>*/}
             </Form>
         </Modal>
         </>

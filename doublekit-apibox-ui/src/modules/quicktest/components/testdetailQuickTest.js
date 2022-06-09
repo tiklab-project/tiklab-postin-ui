@@ -5,6 +5,7 @@ import {inject, observer} from "mobx-react";
 import {sendTestDataProcess} from "../../apitest/common/sendTestCommon";
 import ResponseQuickTest from "./responseQuickTest";
 import {methodDictionary} from "../../common/dictionary/dictionary";
+import {processHeaderData, processQueryData} from "../common/instanceDataProcess";
 
 const { Option } = Select;
 
@@ -25,10 +26,10 @@ const TestdetailQuickTest = (props) =>{
     } = props;
 
     const {findInstance,createInstance} = instanceStore;
-    const { getRequestInfo, getResponseInfo, getTime } = quickTestStore;
+    const { getRequestInfo, getResponseInfo, getTime,setResponseShow,isResponseShow,getInstance } = quickTestStore;
     const {headerQuickTestList,getRequestHeaderTestList} = headerQuickTestStore;
     const {queryQuickTestList,getQueryParamTestList} = queryQuickTestStore;
-    const {bodyType,getBodyType} = requestBodyQuickTestStore;
+    const {bodyType,getBodyType,getMediaType} = requestBodyQuickTestStore;
     const {formQuickTestList,getFormParamTestList} = formDataQuickTestStore;
     const {formUrlencodedQuickTestList,getFormUrlencodedTestList} = formUrlencodedQuickTestStore;
     const {jsonQuickTestList,getJsonParamTestList} = jsonQuickTestStore;
@@ -37,24 +38,29 @@ const TestdetailQuickTest = (props) =>{
     const {afterQuickTestInfo,getAfterInfo} = afterScriptQuickTestStore;
     const {assertQuickTestList} = assertQuickTestStore;
 
-
-    const [showResponse,setShowResponse]= useState(false);
     const [ form ] = Form.useForm();
 
     const instanceId = localStorage.getItem("instanceId")
+    const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(()=>{
         if(instanceId!=="-1"){
             findInstance(instanceId).then(res=>{
+                let request = res.requestInstance;
+                let resInstance = res.responseInstance;
+                getInstance(res,resInstance);
+
                 form.setFieldsValue({
-                    baseUrl:res.baseUrl,
-                    requestType: res.requestType,
-                    path: res.path,
+                    // baseUrl:res.baseUrl,
+                    requestType: request?.methodType,
+                    path: request?.url,
                 })
-                getRequestHeaderTestList(res.requestHeaderCaseList);
-                getQueryParamTestList(res.queryParamCaseList);
-                getBodyType(res.requestBodyCase.bodyType)
-                switch (res.requestBodyCase.bodyType){
+
+                getRequestHeaderTestList(processHeaderData(request.headers));
+                getQueryParamTestList(processQueryData(request.url));
+
+                getMediaType(request?.mediaType)
+                switch (bodyType){
                     case "formdata":
                         getFormParamTestList(res.formParamCaseList);
                         break;
@@ -65,7 +71,11 @@ const TestdetailQuickTest = (props) =>{
                         getJsonParamTestList(res.jsonParamCaseList);
                         break;
                     case "raw":
-                        getRawInfo(res.rawParamCase)
+                        let rawInfo = {
+                            raw:request?.body,
+
+                        }
+                        getRawInfo(rawInfo)
                         break;
                     case "binary":
                         //问题
@@ -74,8 +84,8 @@ const TestdetailQuickTest = (props) =>{
                         break;
                 }
 
-                getPreInfo(res.preScriptCase);
-                getAfterInfo(res.afterScriptCase)
+                getPreInfo(request?.preScript);
+                getAfterInfo(request?.afterScript)
 
             })
         }
@@ -85,6 +95,7 @@ const TestdetailQuickTest = (props) =>{
     // 点击测试
     const onFinish = (values)=> {
         const allSendData = {
+            "workspaceId":workspaceId,
             "getTime":getTime,
             "getRequestInfo":getRequestInfo,
             "getResponseInfo":getResponseInfo,
@@ -106,7 +117,7 @@ const TestdetailQuickTest = (props) =>{
         }
 
         sendTestDataProcess(allSendData)
-        setShowResponse(true)
+        setResponseShow()
     }
 
     //请求类型下拉选择框
@@ -133,18 +144,18 @@ const TestdetailQuickTest = (props) =>{
                     className="test-header"
                 >
                     <div className={"test-url"}>
-                        <Form.Item
-                            className='formItem'
-                            name="baseUrl"
-                        >
-                            <Input  addonBefore={prefixSelector}/>
-                        </Form.Item>
+                        {/*<Form.Item*/}
+                        {/*    className='formItem'*/}
+                        {/*    name="baseUrl"*/}
+                        {/*>*/}
+                        {/*    <Input  addonBefore={prefixSelector}/>*/}
+                        {/*</Form.Item>*/}
                         <Form.Item
                             className='formItem'
                             name="path"
                             rules={[{required: true,message: '接口的path'}]}
                         >
-                            <Input />
+                            <Input  addonBefore={prefixSelector}/>
                         </Form.Item>
                     </div>
                     <div className={"test-base-item"}>
@@ -157,13 +168,13 @@ const TestdetailQuickTest = (props) =>{
                 </Form>
             </div>
             <div>
-                <RequestTabQuickTest />
+                <RequestTabQuickTest instanceId={instanceId}/>
             </div>
             <div className='title ex-title'>
                 测试结果
             </div>
             <div>
-                <ResponseQuickTest showResponse={showResponse}/>
+                <ResponseQuickTest showResponse={isResponseShow}/>
             </div>
         </div>
     )

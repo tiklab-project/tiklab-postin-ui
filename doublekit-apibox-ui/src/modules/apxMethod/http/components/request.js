@@ -10,6 +10,8 @@ import PreParam from './preParam';
 import BackParam from './afterParam';
 import { Tabs, Radio } from 'antd';
 import BinaryParam from "./binaryParam";
+import RequestNoBody from "../../../common/tableCommon/components/requestNoBody";
+import {bodyTypeDictionary, bodyTypeJsonDictionary as bodyTypeJson} from "../../../common/dictionary/dictionary";
 
 const { TabPane } = Tabs;
 
@@ -22,7 +24,7 @@ const Request = (props) => {
         requestbodyType
     } = requestBodyStore;
 
-    const [radioValue, setRadioValue] = useState('formdata')
+    const [radioValue, setRadioValue] = useState('none')
 
     const apxMethodId = localStorage.getItem('apxMethodId');
 
@@ -41,15 +43,15 @@ const Request = (props) => {
     //根据radio值，渲染相应的请求体
     const changeFormat = (radioValue) => {
         switch(radioValue) {
-            case 'none':
-                return <div>none</div>
-            case 'formdata':
+            case bodyTypeJson.none:
+                return <RequestNoBody />
+            case bodyTypeJson.formdata:
                 return <FormParam  />
-            case 'formUrlencoded':
+            case bodyTypeJson.formUrlencoded:
                 return <FormUrlencoded />
-            case 'json':
+            case bodyTypeJson.json:
                 return <JsonParam />
-            case 'raw':
+            case bodyTypeJson.raw:
                 return <RawParam />
             // case 'binary':
             //     return <BinaryParam />
@@ -66,11 +68,16 @@ const Request = (props) => {
         }
     }
 
+    const showRadioItem = (data)=>{
+        return data&& data.map(item=>{
+            return <Radio value={item.value} key={item.value}>{item.name}</Radio>
+        })
+    }
+
     return(
         <Fragment>
             <Tabs
                 defaultActiveKey={defaultActiveKey}
-                // type="card"
                 className="tabs"
                 onChange = {(e)=>sessionStorage.setItem('apiReqTabs',e)}
             >
@@ -87,12 +94,7 @@ const Request = (props) => {
                             onChange={(e)=>onChange(e.target.value)}
                             value={radioValue}
                         >
-                            <Radio value={'none'}>none</Radio>
-                            <Radio value={'formdata'}>form-data </Radio>
-                            <Radio value={'formUrlencoded'}>x-www-form-urlencoded</Radio>
-                            <Radio value={'json'}>json</Radio>
-                            <Radio value={'raw'}>raw</Radio>
-                            {/*<Radio value={'binary'}>binary</Radio>*/}
+                            {showRadioItem(bodyTypeDictionary)}
                         </Radio.Group>
                     </div>
                     <div>

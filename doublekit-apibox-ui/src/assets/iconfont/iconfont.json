@@ -6,6 +6,104 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "27876623",
+      "name": "语言",
+      "font_class": "yuyan",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "1973188",
+      "name": "男头像",
+      "font_class": "user__easyico",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "4152742",
+      "name": "用户头像",
+      "font_class": "yonghutouxiang",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "687392",
+      "name": "返回",
+      "font_class": "fanhui2",
+      "unicode": "e6ff",
+      "unicode_decimal": 59135
+    },
+    {
+      "icon_id": "755540",
+      "name": "back",
+      "font_class": "back",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "431543",
+      "name": "节点-APP",
+      "font_class": "jiedianapp",
+      "unicode": "e6f1",
+      "unicode_decimal": 59121
+    },
+    {
+      "icon_id": "826062",
+      "name": "app1",
+      "font_class": "app1",
+      "unicode": "e6f2",
+      "unicode_decimal": 59122
+    },
+    {
+      "icon_id": "826073",
+      "name": "web",
+      "font_class": "web",
+      "unicode": "e6fa",
+      "unicode_decimal": 59130
+    },
+    {
+      "icon_id": "1817758",
+      "name": "分组",
+      "font_class": "fenzu",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "3020037",
+      "name": "二级-定时任务",
+      "font_class": "erji-dingshirenwu",
+      "unicode": "eaae",
+      "unicode_decimal": 60078
+    },
+    {
+      "icon_id": "6527112",
+      "name": "计划",
+      "font_class": "jihua",
+      "unicode": "e643",
+      "unicode_decimal": 58947
+    },
+    {
+      "icon_id": "9121576",
+      "name": "定时",
+      "font_class": "dingshi",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "9874532",
+      "name": "KHCFDC_添加到分组",
+      "font_class": "tianjiadaofenzu",
+      "unicode": "e6dd",
+      "unicode_decimal": 59101
+    },
+    {
+      "icon_id": "27290873",
+      "name": "web",
+      "font_class": "web1",
+      "unicode": "eab3",
+      "unicode_decimal": 60083
+    },
+    {
       "icon_id": "2742625",
       "name": "返回",
       "font_class": "fanhui",

@@ -85,9 +85,8 @@ const TabsQuickTest = (props) =>{
         sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newTab))
 
         localStorage.setItem("instanceId",item.id)
+
         props.history.push("/workspacepage/quickTest/detail/api")
-
-
     }
 
     //展示TabPane
@@ -106,7 +105,7 @@ const TabsQuickTest = (props) =>{
     }
 
     return (
-        <div style={{width:1240}}>
+        <div>
             <Tabs
                 type="editable-card"
                 onChange={onChange}

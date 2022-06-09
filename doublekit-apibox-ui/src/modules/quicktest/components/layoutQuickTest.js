@@ -1,6 +1,5 @@
 import React from "react";
 import "./quickTestStyle.scss";
-import LeftNavQuickTest from "./leftContantQuickTest";
 import {renderRoutes} from "react-router-config";
 import LeftNavListQuickTest from "./leftNavListQuickTest";
 
@@ -10,7 +9,6 @@ const LayoutQuickTest = (props) =>{
     return(
         <div className={"quicktest-contant"}>
             <div className={"quicktest-left"}>
-                {/*<LeftNavQuickTest />*/}
                 <LeftNavListQuickTest  {...props}/>
             </div>
             <div className={"quicktest-right"}>

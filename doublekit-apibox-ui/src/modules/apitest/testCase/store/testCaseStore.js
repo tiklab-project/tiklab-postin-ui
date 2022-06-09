@@ -144,17 +144,22 @@ export class TestCaseStore {
 
         //创建instance所需的参数
         let allValueInfo = {
-            'statusCode':this.status,
-            'result':allAssertResult,
-            "requestType":this.requestType,
-            'requestInstance':{
-                'requestBase':this.baseInfo,
-                'requestHeader':this.requestHeaderCaseData,
-                'requestParam':this.requestBodyCaseData
+            "statusCode":this.status,
+            "result":allAssertResult,
+            "time": this.time,
+            "size":"",
+            "requestInstance":{
+                "URL":this.baseInfo,
+                "methodType":this.requestType,
+                "headers":this.requestHeaderCaseData,
+                "mediaType":"application/json",
+                "body":this.requestBodyCaseData,
+                "preScript":null,
+                "afterScript":null
             },
             'responseInstance':{
-                'responseHeader':JSON.stringify(headers),
-                'responseBody':JSON.stringify(body)
+                'headers':JSON.stringify(headers),
+                'body':JSON.stringify(body)
             },
             'assertInstanceList':assertData
         }

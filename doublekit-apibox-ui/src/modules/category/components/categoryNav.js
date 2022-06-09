@@ -23,7 +23,7 @@ const CategoryNav = (props) => {
         setClickKey(item.id);
         setOpenOrClose(item.id);
         localStorage.setItem('categoryId',item.id);
-        sessionStorage.setItem("isAllApi","notAllApi");
+
 
         apiTabListInfoProcess(item,apiTabListInfo,"list")
 
@@ -94,7 +94,7 @@ const CategoryNav = (props) => {
 
     //删除分组，变成所有api
     const delCategory = (id)=>{
-        sessionStorage.setItem("isAllApi","isAllApi")
+
         deleteCategory(id)
     }
 
@@ -145,7 +145,7 @@ const CategoryNav = (props) => {
                     <svg className="icon" aria-hidden="true">
                         <use xlinkHref={`#icon-api`}/>
                     </svg>
-                    {/*<RequestType type={item.requestType}/>*/}
+                    {/*<MethodType type={item.requestType}/>*/}
                     {item.name}
                 </li>
             )
@@ -203,24 +203,11 @@ const CategoryNav = (props) => {
         )
     }
 
-    // const toInitPage = ()=>{
-    //     let item = {name:"初始页",id:"-1"}
-    //
-    //     apiTabListInfoProcess(item,apiTabListInfo,"list")
-    //
-    //     props.history.push("/workspacepage/apis/detail/apiInitPage")
-    // }
 
 
     return(
         <>
             <ul className="categoryNav-ui">
-                {/*<li*/}
-                {/*    className={"allapi"}*/}
-                {/*    onClick={toInitPage}*/}
-                {/*>*/}
-                {/*    初始页*/}
-                {/*</li>*/}
                 {
                     tree(categoryList)
                 }
