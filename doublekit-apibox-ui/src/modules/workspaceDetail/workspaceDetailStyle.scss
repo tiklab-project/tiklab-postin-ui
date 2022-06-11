@@ -1,6 +1,6 @@
 //workspaceDetailLayout
 .ws-detail-contant{
-    height: calc(100% - 90px);
+    height: calc(100% - 50px);
     display: flex;
 
 
@@ -8,7 +8,7 @@
         width: 80px;
         height: 100%;
         position:relative;
-        background: #e6e7e9;
+        background: #f3f3f3;
     }
 
     .ws-detail-right{
@@ -86,3 +86,12 @@
     //width: 1240px;
     margin: 0 auto;
 }
+
+.api-footer{
+    border: 1px solid #e1e1e1;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+

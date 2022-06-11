@@ -121,7 +121,7 @@ const ApxMethodDetail = (props) => {
                 <div className={"method-name"}>{name}</div>
                  <div className={'apidetail-title-tool'}>
                      <Button className="important-btn" onClick={handleTest}>测试</Button>
-                     <ApxMethodEdit setEdit={setEdit} name="编辑" isBtn={'btn'}  type="edit"/>
+                     <ApxMethodEdit setEdit={setEdit} name="编辑" isBtn={'btn'}  type="edit" {...props}/>
                      <Button danger onClick={()=>handleDeleteApxMethod(apxMethodId)}>删除</Button>
                  </div>
             </div>

@@ -1,17 +1,23 @@
 import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
 import {quickTestTabProcess} from "../../common/apiTabListInfoProcess";
-import {Empty} from "antd";
+import { Empty, Input} from "antd";
+import {TextMethodType} from "../../common/methodType";
+import {getUser} from "doublekit-core-ui";
 
 const LeftNavListQuickTest =(props)=>{
     const {instanceStore,quickTestStore} = props;
-    const {findInstanceList,instanceList} = instanceStore;
+    const {findInstanceList,instanceList,deleteAllInstance} = instanceStore;
     const {setResponseShow} = quickTestStore;
 
-    const workspaceId = localStorage.getItem("workspaceId")
+    const userId = getUser().userId;
 
     useEffect(()=>{
-        findInstanceList("quickTestInstanceId",workspaceId)
+        let params={
+            "httpCaseId":"quickTestInstanceId",
+            "userId":userId,
+        }
+        findInstanceList(params)
     },[])
 
 
@@ -35,6 +41,11 @@ const LeftNavListQuickTest =(props)=>{
                     key={item.id}
                     onClick={()=>onClick(item)}
                 >
+                    <div>
+                        <TextMethodType type={item.requestInstance?.methodType} />
+                        <span className={"qt-left-list-li-status"}>{item.statusCode}</span>
+                        <span>{item.time}ms</span>
+                    </div>
                     {item.requestInstance?.url}
                 </li>
             )
@@ -42,8 +53,16 @@ const LeftNavListQuickTest =(props)=>{
     }
 
 
+    const deleteAllInstanceFn = ()=>{
+        deleteAllInstance(userId)
+    }
+
+
     return(
         <>
+            <div className={"qt-left-header"}>
+                <div className={"qt-left-heaer-clear"} onClick={deleteAllInstanceFn} >清空</div>
+            </div>
             {
                 instanceList&&instanceList.length>0
                     ? <ul className={"qt-left-list"}>
@@ -53,11 +72,7 @@ const LeftNavListQuickTest =(props)=>{
                     </ul>
                     :<div className={"qt-left-empty"}>
                         <Empty
-                            description={
-                                <span>
-                                    send a request
-                                </span>
-                            }
+                            description={ <span> 暂无测试历史</span>}
                         />
                     </div>
             }

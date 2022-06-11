@@ -140,6 +140,7 @@ const HttpList = (props) => {
                     name="添加接口"
                     type="add"
                     isBtn={'btn'}
+                    {...props}
                     // pagination={params}
                 />
                 <Input

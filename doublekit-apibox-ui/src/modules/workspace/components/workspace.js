@@ -9,6 +9,7 @@ import { renderRoutes } from "react-router-config";
 import { UnorderedListOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
 import './workspace.scss';
+import SideMenu from "../../common/sideMenu";
 
 const {  Sider } = Layout;
 
@@ -16,7 +17,7 @@ const Workspace = (props) => {
     const router = props.route.routes;
 
     //空间列表左侧导航列表
-    const routers = [
+    const items = [
         {
             title: '所有空间',
             icon: 'icon-modular',
@@ -55,48 +56,23 @@ const Workspace = (props) => {
         props.history.push(key);
     }
 
-    /**
-     *左侧导航循环渲染
-     */
-    const renderList = () => {
-       return  routers && routers.map(Item=> {
-            return (
-                <li key={Item.key} >
-                    <div className={`ws-menu-li ${Item.key=== selectKey ? "ws-menu-li-action" : ""}`}
-                         key={Item.key}
-                         onClick={()=>selectKeyFun(Item.key)}
-                    >
-                        <svg className="icon" aria-hidden="true">
-                            <use xlinkHref= {`#${Item.icon}`}></use>
-                        </svg>
-                        <span >
-                            {Item.title}
-                        </span>
-                    </div>
-                </li>
-            )
-        })
-    }
+
 
     return(
         <Fragment>
-            <Layout className="ws-layout">
-                <Sider
-                    theme="light"
-                    width='240'
-                >
-                <ul className="ws-menu-ul">
-                    {
-                        renderList()
-                    }
-                </ul>
-                </Sider>
-                <Layout className='ws-content'>
+            <div className="ws-layout">
+                <SideMenu
+                    item={items}
+                    selectedKey={"/workspace/alllist"}
+                    {...props}
+                />
+
+                <div className='ws-content'>
                     <div className="ws-content-box">
                         {renderRoutes(router)}
                     </div>
-                </Layout>
-            </Layout>
+                </div>
+            </div>
         </Fragment>
     )
 }

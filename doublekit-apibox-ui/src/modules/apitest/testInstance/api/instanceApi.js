@@ -8,6 +8,14 @@ export function deleteInstance(data){
     })
 }
 
+export function deleteAllInstance(data){
+    return service.request({
+        url: "/testInstance/deleteAllTestInstance",
+        method: "post",
+        data
+    })
+}
+
 export function createInstance(data){
     return service.request({
         url: "/testInstance/createTestInstance",

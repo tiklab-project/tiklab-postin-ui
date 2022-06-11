@@ -97,7 +97,7 @@ const TabsPage = (props) =>{
                 onChange={onChange}
                 activeKey={activeKey?activeKey:String(apiTabListInfo.activeKey)}
                 onEdit={onEdit}
-                addIcon={<ApxMethodEdit name={"+"} type={"add"} />}
+                addIcon={<ApxMethodEdit name={"+"} type={"add"} {...props}/>}
                 onTabClick={changeTabPane}
             >
                 {

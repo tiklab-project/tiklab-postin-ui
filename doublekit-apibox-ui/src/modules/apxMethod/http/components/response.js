@@ -50,7 +50,7 @@ const Response = (props) =>{
 
     return(
         <Fragment>
-            <Tabs defaultActiveKey="1" type="card">
+            <Tabs defaultActiveKey="1" >
 
                 <TabPane tab="返回结果" key="1">
                 <div className='request-radio'>

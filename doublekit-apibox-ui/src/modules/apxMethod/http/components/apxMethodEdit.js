@@ -72,6 +72,7 @@ const ApxMethodEdit = (props) => {
 
     // 提交
     const onFinish =   () => {
+        debugger
         form.validateFields().then(values=>{
             delete values.category
             values.apix={
@@ -105,6 +106,9 @@ const ApxMethodEdit = (props) => {
                         sessionStorage.setItem("apiTabListInfo",JSON.stringify(newApiTabInfo))
                         setIsAddTab(!isAddTab);
                     }
+
+                    localStorage.setItem('apxMethodId',id);
+                    props.history.push('/workspacepage/apis/detail/interface');
                 })
             }else{
                 values.status={id:status}
@@ -155,7 +159,7 @@ const ApxMethodEdit = (props) => {
                     preserve={false}
                     name="basic"
                     onFinish={onFinish}
-                    initialValues={{ remember: true }}
+                    initialValues={{ requestType: "get" }}
                     form={form}
                 >
                     <Form.Item

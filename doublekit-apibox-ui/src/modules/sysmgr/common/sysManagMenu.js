@@ -16,18 +16,6 @@ const SysManage = (props) => {
 
     const settingMenu = [
         {
-            title: 'licence管理',
-            icon: 'laptop',
-            key: '/systemManagement/licence',
-            encoded: "licence",
-        },
-        {
-            title: '插件管理',
-            icon: 'laptop',
-            key: '/systemManagement/pluginmanage',
-            encoded: "pluginmanage",
-        },
-        {
             title: '项目权限中心',
             icon: 'laptop',
             key: "/systemManagement/project",
@@ -98,11 +86,23 @@ const SysManage = (props) => {
                     encoded: "SysMessageSendType",
                 },
             ]
+        },{
+            title: '插件管理',
+            icon: 'laptop',
+            key: '/systemManagement/pluginmanage',
+            encoded: "pluginmanage",
         },
+        {
+            title: 'licence管理',
+            icon: 'laptop',
+            key: '/systemManagement/licence',
+            encoded: "licence",
+        },
+
 
     ]
 
-    const [selectKey,setSelectKey] = useState('/systemManagement/licence')
+    const [selectKey,setSelectKey] = useState('/systemManagement/privilege')
 
     const [menuRouter,setMenuRouter] = useState();
 
@@ -138,7 +138,7 @@ const SysManage = (props) => {
     }
 
     // 树的展开与闭合
-    const [expandedTree, setExpandedTree] = useState([])
+    const [expandedTree, setExpandedTree] = useState(["/systemManagement/project"])
 
     const isExpandedTree = (key) => {
         return expandedTree.some(item => item ===key)
@@ -158,7 +158,7 @@ const SysManage = (props) => {
             <PrivilegeButton code={data.encoded}  key={data.key}>
                 <li
                     key={data.key}
-                    className={` orga-aside-li ${data.key=== selectKey ? "orga-aside-select" : ""}`}
+                    className={` orga-aside-li ${data.key=== selectKey ? "orga-aside-select" : null}`}
                     onClick={()=>select(data.key)}
                     style={{paddingLeft:`${deep*20+5}px`}}
                 >

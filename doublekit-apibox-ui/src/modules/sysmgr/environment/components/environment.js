@@ -101,7 +101,7 @@ const EvnMana = (props) => {
 
     // 添加
     const onCreated = (values) => {
-        if(Object.keys(values).length === 1){
+        if(Object.keys(values).length === 1&&!values.name){
             return
         }else {
             // 创建新行的时候自带一个id，所以删了，后台会自行创建id
@@ -134,7 +134,7 @@ const EvnMana = (props) => {
 
 
     return(
-        <div>
+        <div  style={{padding:5}}>
             <BreadcrumbEx list={[ "空间设置", "环境列表"]}/>
             <ExTable
                 dataSource={environmentList}

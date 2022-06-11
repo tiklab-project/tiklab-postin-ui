@@ -4,8 +4,9 @@ import RequestTabQuickTest from "./requestTabQuickTest";
 import {inject, observer} from "mobx-react";
 import {sendTestDataProcess} from "../../apitest/common/sendTestCommon";
 import ResponseQuickTest from "./responseQuickTest";
-import {methodDictionary} from "../../common/dictionary/dictionary";
+import {methodDictionary, methodJsonDictionary} from "../../common/dictionary/dictionary";
 import {processHeaderData, processQueryData} from "../common/instanceDataProcess";
+import {getUser} from "doublekit-core-ui";
 
 const { Option } = Select;
 
@@ -40,8 +41,8 @@ const TestdetailQuickTest = (props) =>{
 
     const [ form ] = Form.useForm();
 
+    const userId = getUser().userId;
     const instanceId = localStorage.getItem("instanceId")
-    const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(()=>{
         if(instanceId!=="-1"){
@@ -86,7 +87,6 @@ const TestdetailQuickTest = (props) =>{
 
                 getPreInfo(request?.preScript);
                 getAfterInfo(request?.afterScript)
-
             })
         }
     },[instanceId])
@@ -95,7 +95,7 @@ const TestdetailQuickTest = (props) =>{
     // 点击测试
     const onFinish = (values)=> {
         const allSendData = {
-            "workspaceId":workspaceId,
+            "userId":userId,
             "getTime":getTime,
             "getRequestInfo":getRequestInfo,
             "getResponseInfo":getResponseInfo,
@@ -123,12 +123,10 @@ const TestdetailQuickTest = (props) =>{
     //请求类型下拉选择框
     const prefixSelector = (
         <Form.Item name="requestType" noStyle>
-            <Select style={{width: 100,}} >
+            <Select style={{width: 100}} defaultValue={"get"} >
                 {
-                    methodDictionary.map(item=>{
-                        return (
-                            <Option value={item} key={item}>{item}</Option>
-                        )
+                    Object.keys(methodJsonDictionary).map(item=>{
+                        return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
                     })
                 }
             </Select>
@@ -144,12 +142,6 @@ const TestdetailQuickTest = (props) =>{
                     className="test-header"
                 >
                     <div className={"test-url"}>
-                        {/*<Form.Item*/}
-                        {/*    className='formItem'*/}
-                        {/*    name="baseUrl"*/}
-                        {/*>*/}
-                        {/*    <Input  addonBefore={prefixSelector}/>*/}
-                        {/*</Form.Item>*/}
                         <Form.Item
                             className='formItem'
                             name="path"

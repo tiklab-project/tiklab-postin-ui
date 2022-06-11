@@ -27,7 +27,8 @@ import HeaderContent from './header/headerContent'
 import PluginManage from "./sysmgr/pluginManage/pluginManage";
 import RecentBrowing from "./workspace/components/recentBrowing";
 import WorkspaceDetailLayout from "./workspaceDetail/workspaceDetailLayout";
-import ApiContant from "./category/components/ApiContant";
+import RightContent from "./common/rightContent";
+import LayoutApiContent from "./apxMethod/http/components/layoutApiContent"
 import TabsPage from "./workspaceDetail/tabsPage";
 import LayoutQuickTest from "./quicktest/components/layoutQuickTest";
 import TabsQuickTest from "./quicktest/components/tabsQuickTest";
@@ -49,7 +50,7 @@ export {
     WorkspaceParticipation,
     WorkspaceList,
 
-    WorkspaceDetailLayout,ApiContant,TabsPage,
+    WorkspaceDetailLayout,LayoutApiContent,TabsPage,
     DetailIndex, WorkspaceDetail,
     Category, ApxMethod, ApxMethodDetail,
 

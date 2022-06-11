@@ -5,7 +5,7 @@ import WorkspacePrivilege from '../integration/workspacePrivilege/workspacePrivi
 import Workspace from './components/workspace';
 import WorkspaceList from './components/workspaceList';
 import WorkspaceDetail from '../workspaceDetail/workspaceDetailPage';
-import DetailIndex from '../category/components/ApiContant';
+import DetailIndex from '../common/rightContent';
 import { WORKSPACE_STORE, WorkspaceStore } from './store/workspaceStore';
 import WorkspaceInitPage from "./components/workspaceInitPage";
 import WorkspaceCreatePage from "./components/workspaceCreatePage";

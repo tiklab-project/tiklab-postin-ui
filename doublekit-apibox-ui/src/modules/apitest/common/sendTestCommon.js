@@ -32,11 +32,16 @@ debugger
         "testType":data.testType,
         "createInstance":data.createInstance,
         "belongId":data.belongId,
-        "workspaceId":data.workspaceId
+        "userId":data.userId
     }
 
     //发送测试
-    sendTest(sendData);
+    if(data.belongId==="quickTestInstanceId"){
+        fetchSend(sendData)
+    }else {
+        sendTest(sendData);
+    }
+
 }
 
 
@@ -68,12 +73,55 @@ const sendTest=(data)=>{
     });
 }
 
+const fetchSend = async (data)=>{
+    // 请求前的毫秒数
+    let sendDate = (new Date()).getTime();
+
+    try{
+        let res = await fetch(data.url, {
+            method: data.method,
+            headers:data.headers,
+            body: data.bodys,
+            mode:"cors"
+        })
+
+        // 请求后的毫秒数
+        let receiveDate = (new Date()).getTime();
+        let responseTimeMs = receiveDate - sendDate;
+
+        data.getTime(responseTimeMs);
+
+        let json = await res.json();
+
+        let header={};
+        res.headers.forEach(function(val, key) {
+            header[key]=val
+        });
+
+        let resData = {
+            status:res.status,
+            headers:header,
+            data:json,
+        }
+
+
+        console.log(json)
+
+        isCreateInstance(resData,data)
+    }catch (error){
+        console.log(error,error.message)
+        isCreateInstance(error.response,data)
+    }
+
+}
+
+
 //如果是测试用例的页的测试，需要创建instance
 const isCreateInstance=(res,data)=>{
     if(data.createInstance){
         data.getResponseInfo(res,data.assertList).then(res=>{
             res.httpCase = {"id":data.belongId}
-            res.workspace= {"id":data.workspaceId}
+            res.user= {"id":data.userId}
             data.createInstance(res)
         })
     }else {

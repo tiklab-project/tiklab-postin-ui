@@ -115,7 +115,7 @@ const DataStructure = (props) => {
 
 
     return(
-        <div>
+        <div style={{padding:5}}>
             <BreadcrumbEx list={[ "空间设置", "数据结构"]}/>
             <div className='wslist-searchbtn'>
                 <Input

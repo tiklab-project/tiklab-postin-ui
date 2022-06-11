@@ -10,35 +10,61 @@
     background: #d55e4d;
 }
 
+.requestType-post-text{
+    color: #d55e4d;
+}
+
 .requestType-get{
     color: white;
     background: #2bd583;
+}
+.requestType-get-text{
+    color: #2bd583;
 }
 
 .requestType-delete{
     color: white;
     background: #ff0000;
 }
+.requestType-delete-text{
+    color: #ff0000;
+}
 
 .requestType-head{
     color: white;
     background: #439591;
+}
+.requestType-head-text{
+    color: #439591;
 }
 
 .requestType-put{
     color: white;
     background: #7e97bd;
 }
+.requestType-put-text{
+    color: #7e97bd;
+}
 
 .requestType-options{
     color: white;
     background: #7e97bd;
+}
+.requestType-options-text{
+    color: #7e97bd;
 }
 
 .requestType-patch{
     color: white;
     background: #7e97bd;
 }
+.requestType-patch-text{
+    color: #7e97bd;
+}
 
+
+.ws-side-menu{
+    border-right: 1px solid #e4e4e4;
+}
 
 

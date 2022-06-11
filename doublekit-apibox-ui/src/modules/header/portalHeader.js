@@ -27,10 +27,6 @@ export const  PortalHeader =(props)=> {
             {
                 renderRoutes(router)
             }
-            <div className={"api-footer"}>
-                <div>footer</div>
-                <div>version: 1.0.0</div>
-            </div>
         </div>
 
     )

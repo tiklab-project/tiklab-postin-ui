@@ -143,5 +143,10 @@ table .icon{
     color: #f0f0f0!important;
 }
 
+.ant-tabs-bottom>.ant-tabs-nav, .ant-tabs-bottom>div>.ant-tabs-nav, .ant-tabs-top>.ant-tabs-nav, .ant-tabs-top>div>.ant-tabs-nav{
+    margin: 0;
+}
+
+
 
 

@@ -5,7 +5,7 @@ import { TestRequest, TestResponse } from '../index';
 import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
 import {sendTestDataProcess} from "../../common/sendTestCommon";
-import {methodDictionary} from "../../../common/dictionary/dictionary";
+import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
 
 const { Option } = Select;
 
@@ -121,10 +121,8 @@ const ApxMethodTest = (props) => {
         <Form.Item name="requestType" noStyle>
           <Select style={{width: 100,}}>
               {
-                  methodDictionary.map(item=>{
-                      return (
-                          <Option value={item}  key={item}>{item}</Option>
-                      )
+                  Object.keys(methodJsonDictionary).map(item=>{
+                      return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
                   })
               }
           </Select>
@@ -150,7 +148,7 @@ const ApxMethodTest = (props) => {
 
                             <Divider style={{ margin: '8px 0' }} />
                             <span
-                                onClick={()=>props.history.push("/systemManagement/envMana")}
+                                onClick={()=>props.history.push("/workspacepage/workspaceSetting/envMana")}
                                 style={{"color":"#00adff","cursor":"pointer","margin":"0 0 0 20px"}}
                             >
                                 环境设置

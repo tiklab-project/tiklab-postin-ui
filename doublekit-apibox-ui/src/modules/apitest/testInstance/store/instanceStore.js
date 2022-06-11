@@ -3,7 +3,7 @@ import {
     findInstancePage, 
     createInstance, 
     findInstance,
-    updateInstance, 
+    deleteAllInstance,
     deleteInstance,
     findInstanceList
 } from '../api/instanceApi'
@@ -37,11 +37,10 @@ export class InstanceStore {
     }
 
     @action
-    findInstanceList = async (id,workspaceId) =>{
+    findInstanceList = async (values) =>{
         this.param = {
-            "httpCaseId":id,
-            "workspaceId":workspaceId,
-            orderParams:[{name:'createTime', orderType:'asc' }]
+            orderParams:[{name:'createTime', orderType:'asc' }],
+            ...values
         }
 
         const res = await findInstanceList(this.param);
@@ -89,10 +88,15 @@ export class InstanceStore {
         const param = new FormData();
         param.append('id', id);
 
-		const res = await deleteInstance(param)
-        if(res.code === 0) {
-            this.findInstanceList(this.params )
-        }
+        await deleteInstance(param)
+    }
+
+    @action
+    deleteAllInstance = async (id) => {
+        const param = new FormData();
+        param.append('userId', id);
+
+        await deleteAllInstance(param)
     }
 
 

@@ -71,7 +71,7 @@ const CategoryNav = (props) => {
     const menu = (id)=>(
         <Menu>
             <Menu.Item >
-                <ApxMethodEdit name="添加API"  type="add" categoryItemId={id}/>
+                <ApxMethodEdit name="添加API"  type="add" categoryItemId={id} {...props}/>
             </Menu.Item>
             <Menu.Item >
                 <CategoryEdit name="添加子目录"  type="api"  categoryId={id}/>

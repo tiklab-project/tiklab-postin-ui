@@ -144,7 +144,7 @@ const ApiStatus = (props) => {
 
 
     return(
-        <div>
+        <div style={{padding:5}}>
             <BreadcrumbEx list={[ "空间设置", "数据结构"]}/>
             <ExTable
                 columns={columns}

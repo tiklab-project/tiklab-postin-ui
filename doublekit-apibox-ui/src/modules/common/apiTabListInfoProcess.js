@@ -24,7 +24,6 @@ const tabProcessCommon = (data,info,type)=>{
 }
 
 export const quickTestTabProcess = (data,info)=>{
-    debugger
     let newApiTabInfo = quickTestTabProcessCommon(data,info,"api");
 
     sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newApiTabInfo))

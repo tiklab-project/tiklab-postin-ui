@@ -17,7 +17,7 @@ import { TestCaseRequest } from "../index";
 import DropdownInstance from "../../testInstance/components/dropdownInstance";
 import TestResultCase from "./testResultCase";
 import {sendTestDataProcess} from "../../common/sendTestCommon";
-import {methodDictionary} from "../../../common/dictionary/dictionary";
+import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
 
 const {Option} = Select;
 
@@ -142,12 +142,10 @@ const TestCaseDetail = (props) => {
     //请求类型下拉选择框
     const prefixSelector = (
         <Form.Item name="requestType" noStyle>
-            <Select style={{width: 100,}} disabled>
+            <Select style={{width: 100}} >
                 {
-                    methodDictionary.map(item=>{
-                        return (
-                            <Option value={item} key={item}>{item}</Option>
-                        )
+                    Object.keys(methodJsonDictionary).map(item=>{
+                        return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
                     })
                 }
             </Select>

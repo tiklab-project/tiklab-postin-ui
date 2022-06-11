@@ -8,6 +8,7 @@ const WorkspaceDetailLayout = (props) =>{
     const routes = props.route.routes;
 
     return(
+
         <div className={"ws-detail-contant"}>
             <div className={"ws-detail-left"}>
                 <LeftNav {...props}/>

@@ -3,7 +3,7 @@
 .home-content{
     overflow: auto;
     background-color:#f0f2f5;
-    height: calc(100% - 90px);
+    height: calc(100% - 50px);
     display: flex;
     /* justify-content: center; */
     align-items: center;

@@ -20,7 +20,6 @@ const TestResultCommon = (props) =>  {
                 <Tabs
                     defaultActiveKey="1"
                     tabBarExtraContent={responseInfo}
-                    type="card"
                 >
                     <TabPane tab="响应体" key="1">
                         {props.responseBody}

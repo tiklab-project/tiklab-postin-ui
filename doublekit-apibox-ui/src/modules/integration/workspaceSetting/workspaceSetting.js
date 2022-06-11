@@ -2,6 +2,7 @@ import {renderRoutes} from "react-router-config";
 import {Menu} from "antd";
 import React from "react";
 import "./workspaceSetting.scss"
+import SideMenu from "../../common/sideMenu";
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -17,61 +18,36 @@ function getItem(label, key, icon, children, type) {
 const WorkspaceSetting = (props) =>{
     const routes = props.route.routes;
 
-    const toPage=(router)=>{
-        props.history.push(router)
-    }
-
-    const items = [
-        getItem(
-            <div className={"account-member-left-li"} onClick={()=>toPage("/workspacepage/workspaceSetting/envMana")}>环境管理</div>,
-            "apistatus",
-           null,
-        ),
-        getItem(
-            <div
-                className={"account-member-left-li"}
-                onClick={()=>toPage("/workspacepage/workspaceSetting/apistatus")}
-            >
-                状态管理
-            </div>,
-            "dataStucture",
-            null,
-        ),
-        getItem(
-            <div
-                className={"account-member-left-li"}
-                onClick={()=>toPage("/workspacepage/workspaceSetting/role")}
-            >
-                空间成员
-            </div>,
-            "role",
-            null,
-        ),
-        getItem(
-            <div
-                className={"account-member-left-li"}
-                onClick={()=>toPage("/workspacepage/workspaceSetting/workspacePrivilege")}
-            >
-                空间权限
-            </div>,
-            "privilege",
-            null,
-        ),
-
+    const items=[
+        {
+            title: '环境管理',
+            key: '/workspacepage/workspaceSetting/envMana',
+            icon: 'icon-modular',
+        },{
+            title: '状态管理',
+            key: '/workspacepage/workspaceSetting/apistatus',
+            icon: 'icon-modular',
+        },{
+            title: '空间成员',
+            key: '/workspacepage/workspaceSetting/role',
+            icon: 'icon-modular',
+        },{
+            title: '空间权限',
+            key: '/workspacepage/workspaceSetting/workspacePrivilege',
+            icon: 'icon-modular',
+        }
     ]
+
 
 
     return(
         <div className={"workspace-setting-box"}>
-            <Menu
-                style={{
-                    width: 256,
-                    height:"100%"
-                }}
-                defaultSelectedKeys={['apistatus']}
-                theme={"light"}
-                items={items}
+            <SideMenu
+                item={items}
+                selectedKey={"/workspacepage/workspaceSetting/envMana"}
+                {...props}
             />
+
             <div className={"workspace-setting-right"}>
                 {
                     renderRoutes(routes)

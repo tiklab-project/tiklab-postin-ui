@@ -122,8 +122,7 @@
 .frame-header{
     display: flex;
     align-items: center;
-    background: #f8f8fa;
-    border-bottom: 1px solid #e1e1e1;
+    background: #f3f3f3;
     height: 50px;
     //-webkit-app-region: drag;//electron无边框拖动
     //-webkit-app-region: no-drag;
@@ -141,7 +140,7 @@
 
     .header-menu-box{
         display: flex;
-        width: 200px;
+        width: 120px;
         justify-content: space-around;
 
         div{
@@ -236,15 +235,6 @@
 @-webkit-keyframes slide-down{
     0%{-webkit-transform:scale(1,0);}
     100%{-webkit-transform:scale(1,1);}
-}
-
-
-.api-footer{
-    border: 1px solid #e1e1e1;
-    padding: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 

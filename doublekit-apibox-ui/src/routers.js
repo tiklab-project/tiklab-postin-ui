@@ -11,7 +11,7 @@ import {
 
     WorkspaceRole, WorkspacePrivilege, Workspace, WorkspaceInitPage, WorkspaceParticipation, WorkspaceCreatePage,
     WorkspaceList, WorkspaceDetail, RecentBrowing, WorkspaceDetailLayout,
-    ApiContant, TabsPage, LayoutQuickTest, TabsQuickTest, TestdetailQuickTest, ApiInitPage,
+    LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest, TestdetailQuickTest, ApiInitPage,
     Category, ApxMethod, ApxMethodDetail,
 
     Test, TestCase, TestCaseDetail,
@@ -232,7 +232,7 @@ const routers =  [
                     {
                         path: "/workspacepage/apis",
                         key:'apis',
-                        component: ApiContant,
+                        component: LayoutApiContent,
                         routes:[
                             {
                                 path: "/workspacepage/apis/detail",

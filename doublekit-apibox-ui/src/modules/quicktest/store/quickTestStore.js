@@ -30,9 +30,17 @@ export  class QuickTestStore {
         this.methodType = data.method;
 
         if(data.params&&Object.keys(data.params).length>0){
-            this.baseInfo = data.baseUrl+data.url+'?'+qs.stringify(data.params)
+            if(data.baseUrl){
+                this.baseInfo = data.baseUrl+data.url+'?'+qs.stringify(data.params)
+            }else {
+                this.baseInfo =data.url+'?'+qs.stringify(data.params)
+            }
         }else {
-            this.baseInfo = data.baseUrl+data.url
+            if(data.baseUrl){
+                this.baseInfo = data.baseUrl+data.url
+            }else {
+                this.baseInfo =data.url
+            }
         }
 
         this.requestHeaderData = JSON.stringify(data.headers);
@@ -78,8 +86,8 @@ export  class QuickTestStore {
                 "afterScript":null
             },
             'responseInstance':{
-                'headers':JSON.stringify(headers),
-                'body':JSON.stringify(body)
+                'headers':headers?JSON.stringify(headers):"",
+                'body':body?JSON.stringify(body):""
             },
             'assertInstanceList':assertData
         }

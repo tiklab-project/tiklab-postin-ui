@@ -1,5 +1,5 @@
 
-const methodDictionary = [
+export const methodDictionary = [
     "post",
     "get",
     "head",
@@ -8,8 +8,17 @@ const methodDictionary = [
     "options",
     "patch"
 ]
+export const methodJsonDictionary = {
+    "get":"GET",
+    "post":"POST",
+    "head":"HEAD",
+    "put":"PUT",
+    "delete":"DELETE",
+    "options":"OPTIONS",
+    "patch":"PATCH",
+}
 
-const bodyTypeDictionary = [
+export const bodyTypeDictionary = [
     {
         "name":"none",
         "value":"none"
@@ -37,7 +46,7 @@ export const bodyTypeJsonDictionary = {
 }
 
 
-const rawTypeDictionary = [
+export const rawTypeDictionary = [
     {
         "name":"Text(text/plain)",
         "value":"text/plain"
@@ -69,7 +78,7 @@ export const rawTypeJsonDictionary ={
 }
 
 
-const headerParamDictionary = [
+export const headerParamDictionary = [
     'accept',
     'accept-charset',
     'accept-encoding',
@@ -85,7 +94,7 @@ const headerParamDictionary = [
 ];
 
 
-const mockValueDictionary = [
+export const mockValueDictionary = [
     '@id',
     '@url',
     '@guid',
@@ -105,7 +114,7 @@ const mockValueDictionary = [
     '@color',
 ];
 
-const dataTypeDictionary = [
+export const dataTypeDictionary = [
     'string',
     'int',
     'object',
@@ -115,13 +124,3 @@ const dataTypeDictionary = [
     'long',
     'null'
 ]
-
-
-export {
-    headerParamDictionary,
-    mockValueDictionary,
-    dataTypeDictionary,
-    methodDictionary,
-    rawTypeDictionary,
-    bodyTypeDictionary
-}

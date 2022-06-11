@@ -13,9 +13,26 @@ ul{
 
 //------------------------------------------
 //dragbox
-.dragbox{
-    width: 3px;
+.changeBox{
+    width: 240px;
 }
+
+
+.middleBox{
+    width:4px;
+    border-right: 1px solid #e4e4e4;
+}
+
+.middleBox:hover{
+    cursor: col-resize;
+    background:#8282ff;
+    border: none;
+}
+
+.middleBox:active{
+
+}
+
 
 .dragbox:hover{
     background-color: #6aa5ff;
@@ -26,11 +43,18 @@ ul{
 // --workspace--
 
 .ws-layout{
+    display: flex;
     background-color: white;
-    height: calc(100% - 90px);
+    height: calc(100% - 50px);
+}
+
+.ws-side{
+    border-right: 1px solid #e4e4e4;
 }
 
 .ws-content{
+    flex: 1;
+
     background-color: white;
     height: 100%;
     //background-color: #f0f0f0;
@@ -248,9 +272,7 @@ ul{
 }
 
 
-.ant-menu{
-   background-color: #f7f7f7;
-}
+
 .ws-detail-menu-ul-show{
    display: block;
 }
@@ -261,7 +283,6 @@ ul{
 
 .ws-detail-menu-serchbtn{
     padding: 10px 8px;
-    border-top:1px solid #e4e4e4 ;
     border-bottom:1px solid #e4e4e4 ;
     display: flex;
     justify-content: center;
@@ -341,17 +362,13 @@ ul{
     height: 100%;
 }
 
-.changeBox{
-    //border-right: 3px solid #f0f2f5;
-    width: 280px;
-    background: #f0f1f2;
-}
 
 
 
 .wscontant-contant{
-    width: 100%;
+    flex:1;
     overflow: auto;
+    padding: 0 5px;
 }
 
 .wsAside{
