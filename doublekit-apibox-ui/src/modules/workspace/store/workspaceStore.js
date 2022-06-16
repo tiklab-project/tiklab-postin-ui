@@ -12,11 +12,13 @@ import {
 	updateWorkspace, 
 	findWorkspacePage,
 	findWorkspaceList,
-	findWorkspaceJoinList
+	findWorkspaceJoinList,
+	findWorkspaceTotal
 } from '../api/workspaceApi';
 
 export class WorkspaceStore {
 	@observable workspaceList = [];
+	@observable workspaceInfo;
 	@observable workspaceId ='';
 	@observable workspaceName = '';
 	@observable	totalRecord = "";
@@ -105,9 +107,21 @@ export class WorkspaceStore {
 		this.workspaceId = id;
 		const param = new FormData();
 		param.append('id', id);
+
 		const res = await findWorkspace(param);
 		if(res.code === 0){
-			this.workspaceName = res.data.workspaceName;
+			this.workspaceInfo = res.data
+			return res.data;
+		}
+	}
+
+	@action
+	findWorkspaceTotal = async (id) =>{
+		const param = new FormData();
+		param.append('id', id);
+
+		const res = await findWorkspaceTotal(param);
+		if(res.code === 0){
 			return res.data;
 		}
 	}

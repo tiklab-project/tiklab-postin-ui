@@ -5,9 +5,9 @@ import {globalTabListInit} from "../common/globalSharing";
 
 //顶部菜单栏，下拉框里的空间列表
 const WorkspaceMenuList = (props) =>{
-    const {workspaceStore,changeCurrentLink,setClickIcon} = props;
+    const {workspaceStore,workspaceRecentStore,changeCurrentLink,setClickIcon} = props;
     const {findWorkspaceList,workspaceList} = workspaceStore;
-
+    const {workspaceRecent}=workspaceRecentStore;
 
     let userId = getUser().userId;
 
@@ -34,6 +34,12 @@ const WorkspaceMenuList = (props) =>{
 
     // 切换空间
     const switchWorkspace=(id)=>{
+        let params = {
+            workspace: {id:id},
+            userId:userId
+        }
+        workspaceRecent(params)
+
         localStorage.setItem('workspaceId',id);
 
         globalTabListInit(id)
@@ -62,4 +68,4 @@ const WorkspaceMenuList = (props) =>{
     )
 }
 
-export default inject("workspaceStore")(observer(WorkspaceMenuList));
+export default inject("workspaceStore","workspaceRecentStore")(observer(WorkspaceMenuList));

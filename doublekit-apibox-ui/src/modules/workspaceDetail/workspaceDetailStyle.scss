@@ -95,3 +95,55 @@
     align-items: center;
 }
 
+//workspaceDetailInitPage
+.wd-content{
+    width: 1200px;
+
+    .wd-content-header{
+        width: 600px;
+        padding: 10px;
+
+        .wd-header-name{
+            height: 50px;
+            font-size: 28px;
+            border: none;
+        }
+
+        .wd-header-desc{
+            border: none;
+        }
+    }
+
+    .wd-title{
+        padding: 10px;
+        font-weight: 600;
+        margin: 35px 0  0 ;
+    }
+
+    .wd-total{
+
+        .wd-total-box{
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid #e4e4e4;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        &-item{
+            width: 100px;
+
+            &-title{
+                padding: 5px;
+                font-size: 28px;
+            }
+
+            &-name{
+                padding: 5px;
+            }
+        }
+
+    }
+
+}
+

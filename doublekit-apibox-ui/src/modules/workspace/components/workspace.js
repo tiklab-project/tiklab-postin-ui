@@ -28,21 +28,21 @@ const Workspace = (props) => {
             icon: 'icon-modular',
             key: `/workspace/recently`
         },
-        {
-            title: '我创建的空间',
-            icon: 'icon-modular',
-            key: `/workspace/create`
-        },
-        {
-            title: '我参与的空间',
-            icon: 'icon-modular',
-            key: `/workspace/participation`
-        },
-        {
-            title: '我关注的空间',
-            icon: 'icon-modular',
-            key: `/workspace/follow`
-        }
+        // {
+        //     title: '我创建的空间',
+        //     icon: 'icon-modular',
+        //     key: `/workspace/create`
+        // },
+        // {
+        //     title: '我参与的空间',
+        //     icon: 'icon-modular',
+        //     key: `/workspace/participation`
+        // },
+        // {
+        //     title: '我关注的空间',
+        //     icon: 'icon-modular',
+        //     key: `/workspace/follow`
+        // }
     ];
 
     const [selectKey,setSelectKey] = useState(`/workspace/alllist`);

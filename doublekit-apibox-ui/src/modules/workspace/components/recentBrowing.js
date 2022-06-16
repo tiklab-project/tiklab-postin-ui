@@ -1,78 +1,102 @@
-import React from "react";
+import React, {useState} from "react";
 import {Button} from "antd";
+import qs from "qs";
+const HTTP = require('http')
+import {Input} from "antd";
+const {TextArea} = Input
+
+
+// 格式化返回的参数 对json格式的数据进行格式化
+function formatResData(data, headers) {
+    let type = headers['content-type'];
+    if (!type || type && type.indexOf('application/json') !== -1) {
+        if (typeof data === 'string') {
+            try {
+                data = JSON.parse(data);
+            } catch (e) { /* Ignore */
+            }
+        }
+    }
+    return data;
+}
+
+
+// 调用示例
+const POST_DATA =  {"account":"admin","password":"12345","userType":"1"}
+
+const POST_OPTIONS = {
+    port: 8080,
+    host: "192.168.10.16",
+    path: "/passport/login",
+    method: 'POST',
+    headers: {
+        "Content-Type": "application/json",
+        'user-agent': 'apiBox/1.0.0',
+        accept: '*/*'
+    }
+};
 
 
 const RecentBrowing = (props)=>{
 
-    var ws = new WebSocket('ws://192.168.10.6:8080/ws?userId=16');
-    ws.onopen = function(event) {
-        console.log('open');
-        ws.send('{"type":"getRecentBrowing"}');
-    };
 
-    ws.onmessage = function(event) {
-        console.log(event.data);
-    };
+    const [resData, setResData] = useState();
+    const [headers, setHeaders] = useState();
+    const [rawHeaders, setRawHeaders] = useState();
+    const [reqHeader, setReqHeader] = useState();
 
-    ws.onclose = function(event) {
-        console.log('close');
-    };
+// 接受返回的数据
+    function requestOnResponse(incomingMessage){
+        setResData(JSON.stringify(incomingMessage,null,4))
+        setHeaders(JSON.stringify(incomingMessage.headers,null,4))
+        setRawHeaders(JSON.stringify(incomingMessage.rawHeaders))
+        console.log('STATUS: ' + incomingMessage.statusCode);
+        console.log('HEADERS: ' + JSON.stringify(incomingMessage.headers));
+        console.log('HEADERS: ' + JSON.stringify(incomingMessage.rawHeaders));
+        console.log('HEADERS: ' ,incomingMessage);
+        incomingMessage.setEncoding('utf8');
 
-    ws.onerror = function(event) {
-        console.log('error');
-    };
+        let data = []
+        let dataStr = '';
+        incomingMessage.on('data', chunk => {
+            dataStr=chunk
+            // data.push(...chunk)
+        })
 
-    const clickSocket = ()=>{
-        // ws.on('open', () => {
-        //     console.log('客户端已连接')
-        // })
-
-
-        switch (ws.readyState) {
-            case WebSocket.CONNECTING:
-                // do something
-                console.log("CONNECTING ...");
-                break;
-            case WebSocket.OPEN:
-                // do something
-                console.log("OPEN ...");
-                ws.send("hello Netty!!!");
-                break;
-            case WebSocket.CLOSING:
-                // do something
-                console.log("CLOSING ...");
-                break;
-            case WebSocket.CLOSED:
-                // do something
-                console.log("CLOSED...");
-                break;
-            default:
-                // this never happens
-                break;
-        }
+        incomingMessage.on('end', () => {
+            // let _date = JSON.parse( new TextDecoder().decode(new Uint8Array(data)))
+            console.log('data: ', dataStr)
+        })
     }
 
+
     const test =async ()=>{
-        let url = 'http://192.168.10.16:8080/passport/login';
-        try {
-            let response = await fetch(url, {
-                    method: "post",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                    body: JSON.stringify({"account":"admin@dc.com","password":"123456","userType":"1"}),
-                }
-            );
-            let json = await response.json()
-            let header = await response.headers
-            console.log(response,json)
-            console.log(header,response.url,response.body)
-            // return await response.json();
-
-
-        } catch (error) {
-            console.log('Request Failed', error);
+        // 创建 http 连接
+        const REQUEST = HTTP.request(POST_OPTIONS, requestOnResponse)
+        setReqHeader(JSON.stringify(REQUEST,null,4))
+       console.log("header----",REQUEST.headers)
+// 超时 事件处理器
+        function requestOnTimeout(){
+            REQUEST.destroy()
         }
+
+// 错误  事件处理器
+        function requestOnError(err){
+            console.log('err: ', err)
+        }
+
+
+// 添加事件监听
+        REQUEST.on('error', requestOnError)
+        REQUEST.on('timeout', requestOnTimeout)
+
+// 设置超时
+        REQUEST.setTimeout(6000)
+
+// 通过连接发送数据
+        REQUEST.write(JSON.stringify(POST_DATA), 'utf8')
+        REQUEST.end()
+
 
     }
 
@@ -81,8 +105,11 @@ const RecentBrowing = (props)=>{
     return(
         <div>
             <Button onClick={test}>test</Button>
-            <div>recent Page</div>
+            <TextArea value={resData} autoSize={true}/>
+            <div>{headers}</div>
+            <div>{rawHeaders}</div>
 
+            <TextArea value={reqHeader} autoSize={true}/>
         </div>
     )
 }

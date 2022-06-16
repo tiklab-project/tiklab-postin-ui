@@ -10,8 +10,8 @@ import {
     Home, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege, Workspace, WorkspaceInitPage, WorkspaceParticipation, WorkspaceCreatePage,
-    WorkspaceList, WorkspaceDetail, RecentBrowing, WorkspaceDetailLayout,
-    LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest, TestdetailQuickTest, ApiInitPage,
+    WorkspaceList, WorkspaceRecent, RecentBrowing, WorkspaceDetailLayout,
+    LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest, TestdetailQuickTest, WorkspaceDetailInitPage,
     Category, ApxMethod, ApxMethodDetail,
 
     Test, TestCase, TestCaseDetail,
@@ -88,7 +88,7 @@ const routers =  [
                         path: "/workspace/recently",
                         key:'WorkspaceList',
                         exact: true,
-                        component: RecentBrowing,
+                        component: WorkspaceRecent,
                     },
                     {
                         path: "/workspace/create",
@@ -243,7 +243,7 @@ const routers =  [
                                         path: "/workspacepage/apis/detail/apiInitPage",
                                         exact: true,
                                         key:'Category',
-                                        component: ApiInitPage,
+                                        component: WorkspaceDetailInitPage,
                                     },
                                     {
                                         path: "/workspacepage/apis/detail/category",

@@ -13,9 +13,10 @@ import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui"
 import BreadcrumbEx from "../../common/breadcrumbEx";
 import {globalTabListInit} from "../../common/globalSharing";
+import {workspaceRecent} from "../api/workspaceRecentApi";
 
 const WorkspaceList = (props) => {
-    const { workspaceStore, pluginsStore } = props;
+    const { workspaceStore, pluginsStore,workspaceRecentStore } = props;
     const {
         findWorkspacePage,
         deleteWorkspace,
@@ -23,6 +24,8 @@ const WorkspaceList = (props) => {
         totalRecord,
         length
     } = workspaceStore;
+
+    const {workspaceRecent}=workspaceRecentStore;
 
     const { t } = useTranslation();
 
@@ -37,13 +40,6 @@ const WorkspaceList = (props) => {
             render: (text,record) =>(
                 <a onClick = {()=>toDetail(record.id)}>{text}</a>
             )
-        },
-        {
-            title:` ${t('wsId')}`,
-            dataIndex: "id",
-            key: "id",
-            align:"center",
-            width:"20%",
         },
         {
             title: `创建人`,
@@ -118,6 +114,13 @@ const WorkspaceList = (props) => {
 
     // 保存空间id到缓存
     const toDetail = (id) => {
+
+        let params = {
+            workspace: {id:id},
+            userId:userId
+        }
+        workspaceRecent(params)
+
         globalTabListInit(id)
 
         localStorage.setItem("LEFT_MENU_SELECT","api");
@@ -201,4 +204,4 @@ const WorkspaceList = (props) => {
     )
 }
 
-export default inject('workspaceStore', PLUGIN_STORE)(observer(WorkspaceList));
+export default inject('workspaceStore', PLUGIN_STORE,"workspaceRecentStore")(observer(WorkspaceList));

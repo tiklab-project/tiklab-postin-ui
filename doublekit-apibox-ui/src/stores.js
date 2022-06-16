@@ -4,7 +4,12 @@ import { SEARCHSTORE, SearchStore } from './modules/integration/search'
 
 import {USERSELECT_STORE, UserSelectStore} from './modules/integration/userSelect/store/userSelectStore'
 
-import {WORKSPACE_STORE, WorkspaceStore} from './modules/workspace';
+import {
+    WORKSPACE_STORE, WorkspaceStore,
+    WORKSPACE_RECENT_STORE,WorkspaceRecentStore
+} from './modules/workspace';
+
+import {DYNAMIC_STORE,DynamicStore} from "./modules/integration/dynamic/store/dynamicStore";
 
 import {CATEGORY_STORE, CategoryStore} from "./modules/category";
 
@@ -107,6 +112,9 @@ function createStores() {
 
         // workspace
         [WORKSPACE_STORE]: new WorkspaceStore(),
+        [WORKSPACE_RECENT_STORE]: new WorkspaceRecentStore(),
+
+        [DYNAMIC_STORE]:new DynamicStore(),
 
         // 目录
         [CATEGORY_STORE]: new CategoryStore(),

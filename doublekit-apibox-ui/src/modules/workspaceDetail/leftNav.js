@@ -4,12 +4,7 @@ import {UserOutlined} from "@ant-design/icons";
 
 const LeftNav = (props) =>{
     const menuData = [
-        // {
-        //     "icon":"layers",
-        //     "name":"概况",
-        //     "key":"detail",
-        //     "router":"/workspacepage/detail"
-        // },
+
         {
             "icon":"jiekou",
             "name":"API",
@@ -21,29 +16,12 @@ const LeftNav = (props) =>{
             "key":"quickTest",
             "router":"/workspacepage/quickTest"
         },
-        // {
-        //     "icon":"jiekou",
-        //     "name":"环境管理",
-        //     "key":"envMana",
-        //     "router":"/workspacepage/envMana"
-        // },
         {
             "icon":"jiekou",
             "name":"数据结构",
             "key":"dataStructure",
             "router":"/workspacepage/dataStructure"
         },
-        // {
-        //     "icon":"jiekou",
-        //     "name":"状态管理",
-        //     "key":"apistatus",
-        //     "router":"/workspacepage/apistatus"
-        // },{
-        //     "icon":"chengyuan",
-        //     "name":"成员",
-        //     "key":"people",
-        //     "router":"/workspacepage/role"
-        // },
         {
             "icon":"quanxian",
             "name":"空间设置",
@@ -114,7 +92,7 @@ const LeftNav = (props) =>{
                     <div className={`ws-detail-left-nav-item-box ${leftMenuSelect===item.key?"selectlink":null}`}>
                         <div className={"ws-detail-left-nav-item-detail"}>
                             <svg className="icon" aria-hidden="true">
-                                <use xlinkHref= {`#icon-${item.icon}`}></use>
+                                <use xlinkHref= {`#icon-${item.icon}`} />
                             </svg>
                         </div>
                         <div  className={"ws-detail-left-nav-item-detail"}>

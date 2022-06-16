@@ -29,7 +29,9 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
 
 /*滚动条两端方向按钮*/
 ::-webkit-scrollbar-button {
-    background-color: white;
+    height: 0;
+    width: 0;
+    //background-color: white;
 }
 
 /*滚动条中间滑动部分*/

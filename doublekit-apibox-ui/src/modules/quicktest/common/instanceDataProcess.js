@@ -16,6 +16,7 @@ export const processHeaderData = (data) =>{
     return arr;
 }
 
+//Query处理
 export const processQueryData = (url) =>{
     let arr = [];
 
@@ -41,6 +42,43 @@ export const processQueryData = (url) =>{
 
     return arr;
 }
+
+//formData处理
+export const processFormParamData = (data) =>{
+    let json = JSON.parse(data);
+
+    let arr = [];
+
+    for (let key in json){
+        arr.push({
+            "paramName":key,
+            "dataType":"string",
+            "value":json[key],
+            "id":createID(),
+        })
+    }
+    return arr;
+}
+
+//FormUrlencoded处理
+export const processFormUrlencodedData = (data) =>{
+    let json = JSON.parse(data);
+
+    let arr = [];
+
+    for (let key in json){
+        arr.push({
+            "paramName":key,
+            "dataType":"string",
+            "value":json[key],
+            "id":createID(),
+        })
+    }
+    return arr;
+}
+
+
+
 
 
 

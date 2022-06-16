@@ -33,3 +33,7 @@ export function findWorkspaceList(data){
 export function findWorkspaceJoinList(data){
     return Axios.post("/workspace/findWorkspaceJoinList",data)
 }
+
+export function findWorkspaceTotal(data){
+    return Axios.post("/workspace/findWorkspaceTotal",data)
+}

@@ -2,7 +2,7 @@ import axios from "axios";
 // 创建实例
 const service = axios.create({
     baseURL: base_url ? base_url : '/',
-    timeout: 5000
+    timeout: 10000
 });
 // 请求拦截
 service.interceptors.request.use(function (config) {

@@ -26,7 +26,7 @@ const SideMenu = (props) =>{
                          onClick={()=>selectKeyFun(Item.key)}
                     >
                         <svg className="icon" aria-hidden="true">
-                            <use xlinkHref= {`#${Item.icon}`}></use>
+                            <use xlinkHref= {`#${Item.icon}`} />
                         </svg>
                         <span >
                             {Item.title}

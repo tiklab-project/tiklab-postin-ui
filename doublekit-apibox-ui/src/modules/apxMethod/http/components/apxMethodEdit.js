@@ -77,6 +77,7 @@ const ApxMethodEdit = (props) => {
             delete values.category
             values.apix={
                 id:httpId?httpId:apxMethodId,
+                workspaceId:workspaceId,
                 name:values.name,
                 requestType:values.requestType,
                 path:values.path,

@@ -5,7 +5,12 @@ import {inject, observer} from "mobx-react";
 import {sendTestDataProcess} from "../../apitest/common/sendTestCommon";
 import ResponseQuickTest from "./responseQuickTest";
 import {methodDictionary, methodJsonDictionary} from "../../common/dictionary/dictionary";
-import {processHeaderData, processQueryData} from "../common/instanceDataProcess";
+import {
+    processFormParamData,
+    processFormUrlencodedData,
+    processHeaderData,
+    processQueryData
+} from "../common/instanceDataProcess";
 import {getUser} from "doublekit-core-ui";
 
 const { Option } = Select;
@@ -63,10 +68,11 @@ const TestdetailQuickTest = (props) =>{
                 getMediaType(request?.mediaType)
                 switch (bodyType){
                     case "formdata":
-                        getFormParamTestList(res.formParamCaseList);
+
+                        getFormParamTestList(processFormParamData(res.formParamCaseList));
                         break;
                     case "formUrlencoded":
-                        getFormUrlencodedTestList(res.formUrlencodedCaseList);
+                        getFormUrlencodedTestList(processFormUrlencodedData(res.formUrlencodedCaseList));
                         break;
                     case "json":
                         getJsonParamTestList(res.jsonParamCaseList);
@@ -123,7 +129,7 @@ const TestdetailQuickTest = (props) =>{
     //请求类型下拉选择框
     const prefixSelector = (
         <Form.Item name="requestType" noStyle>
-            <Select style={{width: 100}} defaultValue={"get"} >
+            <Select style={{width: 100}} >
                 {
                     Object.keys(methodJsonDictionary).map(item=>{
                         return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
@@ -140,6 +146,7 @@ const TestdetailQuickTest = (props) =>{
                     onFinish={onFinish}
                     form = {form}
                     className="test-header"
+                    initialValues={{ requestType: "get" }}
                 >
                     <div className={"test-url"}>
                         <Form.Item
