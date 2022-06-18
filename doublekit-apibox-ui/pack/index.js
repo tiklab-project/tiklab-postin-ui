@@ -9,22 +9,22 @@ import {
     Home,PortalHeader,HeaderContent,
     Search, SearchResult,
 
-    WorkspaceRole, WorkspacePrivilege,
-    Workspace,WorkspaceInitPage,WorkspaceCreatePage,RecentBrowing,
-    WorkspaceParticipation,
+    WorkspaceRole, WorkspacePrivilege,WorkspaceSetting,
+    Workspace,RecentBrowing,WorkspaceRecent,WorkspaceFollow,
+    WorkspaceCreate, WorkspaceJoin, WorkspaceInit,
     WorkspaceList,
 
-    WorkspaceDetailLayout,ApiContant,TabsPage,
+    WorkspaceDetailLayout,LayoutApiContent,TabsPage,
     DetailIndex, WorkspaceDetail,
     Category, ApxMethod, ApxMethodDetail,
 
-    LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,ApiInitPage,
+    LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,WorkspaceDetailInitPage,
 
     Test, TestCase, TestCaseDetail,
 
     Mock, MockDetail,
 
-    SysManage,
+    SysManage,AccountMember,
     EvnMana, DataStructure,ApiStatus,
     Usermgr, Org,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole,
@@ -32,6 +32,8 @@ import {
     PluginManage,
     LoginOut,LoginContent,
     ElectronLoginContant,
+
+    WorkspaceWidget,
 } from "./components/modules/index"
 
 
@@ -40,22 +42,22 @@ export {
     Home,PortalHeader,HeaderContent,
     Search, SearchResult,
 
-    WorkspaceRole, WorkspacePrivilege,
-    Workspace,WorkspaceInitPage,WorkspaceCreatePage,RecentBrowing,
-    WorkspaceParticipation,
+    WorkspaceRole, WorkspacePrivilege,WorkspaceSetting,
+    Workspace,RecentBrowing,WorkspaceRecent,WorkspaceFollow,
+    WorkspaceCreate, WorkspaceJoin, WorkspaceInit,
     WorkspaceList,
 
-    WorkspaceDetailLayout,ApiContant,TabsPage,
+    WorkspaceDetailLayout,LayoutApiContent,TabsPage,
     DetailIndex, WorkspaceDetail,
     Category, ApxMethod, ApxMethodDetail,
 
-    LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,ApiInitPage,
+    LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,WorkspaceDetailInitPage,
 
     Test, TestCase, TestCaseDetail,
 
     Mock, MockDetail,
 
-    SysManage,
+    SysManage,AccountMember,
     EvnMana, DataStructure,ApiStatus,
     Usermgr, Org,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole,
@@ -63,4 +65,6 @@ export {
     PluginManage,
     LoginOut,LoginContent,
     ElectronLoginContant,
+
+    WorkspaceWidget,
 }

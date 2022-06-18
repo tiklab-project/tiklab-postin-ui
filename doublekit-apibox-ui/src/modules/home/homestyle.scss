@@ -21,6 +21,7 @@ $borderRadius:5px;
     font-weight: 500;
     padding: 10px;
 }
+
 .home-item-box{
     border: 1px solid #e4e4e4;
     padding: 20px;
@@ -63,56 +64,46 @@ $borderRadius:5px;
         }
     }
 
-    .home-detail-right{
-        flex: 1;
-        margin: 0 0 0 100px;
+}
 
-        &-top{
+.home-detail-right{
+    flex: 1;
+    margin: 0 0 0 100px;
+
+    &-top{
+        height: 200px;
+        display: flex;
+        margin: 0 0 40px 0;
+        //border: 1px solid #e4e4e4;
+
+        &-begin{
             height: 200px;
-            display: flex;
-            margin: 0 0 40px 0;
+            width: 200px;
             //border: 1px solid #e4e4e4;
 
-            &-begin{
-                height: 200px;
-                width: 200px;
-                //border: 1px solid #e4e4e4;
 
-
-                &-detail{
-                    border-radius: $borderRadius;
-                }
+            &-detail{
+                border-radius: $borderRadius;
             }
+        }
 
-            .home-begin-start{
-                margin: 40px 0 0 0;
-                padding: 5px;
-                color: #0d8fff;
-                cursor: pointer;
-            }
+        .home-begin-start{
+            margin: 40px 0 0 0;
+            padding: 5px;
+            color: #0d8fff;
+            cursor: pointer;
+        }
 
-            &-workspace{
-                margin: 0 0 0 60px;
+        &-workspace{
+            margin: 0 0 0 60px;
 
-                &-detail{
-                    display: flex;
-                    width: 600px;
-                    justify-content: space-around;
-                    border-radius: $borderRadius;
+            &-detail{
+                display: flex;
+                width: 600px;
+                justify-content: space-around;
+                border-radius: $borderRadius;
 
-                    .home-item{
-                        width: 100px;
 
-                        &-total{
-                            padding: 5px;
-                            font-size: 28px;
-                        }
-
-                        &-name{
-                            padding: 5px;
-                        }
-                    }
-                }
             }
         }
     }

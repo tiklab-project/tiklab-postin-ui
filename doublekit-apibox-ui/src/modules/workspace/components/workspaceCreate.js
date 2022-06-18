@@ -6,22 +6,24 @@
 
 import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
-import {Breadcrumb, Input, Table, Space, Button, Popconfirm} from 'antd';
+import { Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
 import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
 import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui";
 import BreadcrumbEx from "../../common/breadcrumbEx";
 
-const WorkspaceParticipation = (props) => {
-    const { workspaceStore,pluginsStore } = props;
+const WorkspaceCreate = (props) => {
+    const { workspaceStore,pluginsStore,workspaceFollowStore } = props;
+
     const {
         findWorkspacePage,
         deleteWorkspace,
         workspaceList,
         totalRecord,
-        findWorkspaceJoinList
     } = workspaceStore;
+
+    const {} = workspaceFollowStore;
 
     const { t } = useTranslation();
 
@@ -31,7 +33,8 @@ const WorkspaceParticipation = (props) => {
             title:` ${t('wsName')}`,
             dataIndex: "workspaceName",
             key: "workspaceName",
-            align:"center",
+            width:"30%",
+            // align:"center",
             render: (text,record) =>(
                 <a onClick = {()=>setLocalStorage('workspaceId',record.id)}>{text}</a>
             )
@@ -40,23 +43,24 @@ const WorkspaceParticipation = (props) => {
             title:` ${t('wsId')}`,
             dataIndex: "id",
             key: "id",
-            align:"center",
+            width:"20%",
+            // align:"center",
         },
         {
             title: ` ${t('desc')}`,
             dataIndex: "desc",
             key: "desc",
-            align:"center",
+            width:"30%",
+            // align:"center",
         },
         {
             title: ` ${t('operation')}`,
             key: "action",
-            align:"center",
+            // align:"center",
+            width:"20%",
             render: (text, record) => (
                 <Space size="middle">
-                    <div>
-                        <WorkspaceEdit name={`${t('edit')}`} type='edit' workspaceId={record.id} />
-                    </div>
+                    <WorkspaceEdit name={`${t('edit')}`} type='edit' workspaceId={record.id} />
                     <Popconfirm
                         title="确定删除？"
                         onConfirm={() =>deleteWorkspace(record.id)}
@@ -65,13 +69,14 @@ const WorkspaceParticipation = (props) => {
                     >
                         <a href="#" style={{color:'red'}}>{t('delete')}</a>
                     </Popconfirm>
+
                     <PluginComponent point='export' pluginsStore={pluginsStore}/>
                 </Space>
             ),
         },
     ]
 
-    const userId = getUser().userId;
+     const userId = getUser().userId;
     const [ pluginLength, setPluginLength ] = useState()
     const [pageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
@@ -84,9 +89,9 @@ const WorkspaceParticipation = (props) => {
 
 
     useEffect(()=> {
-        findWorkspacePage(userId,params);
-        // findWorkspaceJoinList(userId)
-    },[userId])
+        const param = {userId:userId,...params}
+        findWorkspacePage(param)
+    },[userId,params])
 
     useEffect(()=>{
         const pluginComConfig = new PluginFun({pluginsStore}, "import", {});
@@ -97,9 +102,8 @@ const WorkspaceParticipation = (props) => {
     // 保存空间id到缓存
     const setLocalStorage = (workspaceId,id) => {
         localStorage.setItem("LEFT_MENU_SELECT","api");
-
         localStorage.setItem(workspaceId,id);
-        props.history.push('/workspacepage');
+        props.history.push('/workspace');
     }
 
     //搜索
@@ -138,7 +142,6 @@ const WorkspaceParticipation = (props) => {
 
     return(
         <Fragment>
-
             <BreadcrumbEx
                 list={[
                     t('wsMgr'),
@@ -147,7 +150,13 @@ const WorkspaceParticipation = (props) => {
             />
             <div className='wslist-searchbtn'>
                 <div className='wslist-eibtn'>
-                    <WorkspaceEdit className="important-btn" name={`${t('addws')}`} type="add"  style={{ width: 200 }}/>
+                    <WorkspaceEdit
+                        className="important-btn"
+                        name={`${t('addws')}`}
+                        type="add"
+                        style={{ width: 200 }}
+                        userId={userId}
+                    />
                     {
                         pluginLength && pluginLength>0 ? <PluginComponent point='import' pluginsStore={pluginsStore}/> : <Button disabled>导入</Button>
                     }
@@ -176,4 +185,4 @@ const WorkspaceParticipation = (props) => {
     )
 }
 
-export default inject('workspaceStore',PLUGIN_STORE)(observer(WorkspaceParticipation));
+export default inject('workspaceStore',PLUGIN_STORE,"workspaceFollowStore")(observer(WorkspaceCreate));

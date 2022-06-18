@@ -6,12 +6,9 @@
 
 import React, { Fragment, useState } from 'react';
 import { renderRoutes } from "react-router-config";
-import { UnorderedListOutlined } from '@ant-design/icons';
-import { Layout } from 'antd';
 import './workspace.scss';
 import SideMenu from "../../common/sideMenu";
 
-const {  Sider } = Layout;
 
 const Workspace = (props) => {
     const router = props.route.routes;
@@ -19,43 +16,27 @@ const Workspace = (props) => {
     //空间列表左侧导航列表
     const items = [
         {
-            title: '所有空间',
+            title: '我创建的空间',
             icon: 'icon-modular',
-            key: `/workspace/alllist`
-        },
-        {
+            key: `/workspacePage/create`
+        },{
+            title: '我参与的空间',
+            icon: 'icon-modular',
+            key: `/workspacePage/join`
+        },{
             title: `最近浏览`,
             icon: 'icon-modular',
-            key: `/workspace/recently`
-        },
-        // {
-        //     title: '我创建的空间',
-        //     icon: 'icon-modular',
-        //     key: `/workspace/create`
-        // },
-        // {
-        //     title: '我参与的空间',
-        //     icon: 'icon-modular',
-        //     key: `/workspace/participation`
-        // },
-        // {
-        //     title: '我关注的空间',
-        //     icon: 'icon-modular',
-        //     key: `/workspace/follow`
-        // }
+            key: `/workspacePage/recent`
+        },{
+            title: '我关注的空间',
+            icon: 'icon-modular',
+            key: `/workspacePage/follow`
+        },{
+            title: '所有空间',
+            icon: 'icon-modular',
+            key: `/workspacePage/all`
+        }
     ];
-
-    const [selectKey,setSelectKey] = useState(`/workspace/alllist`);
-
-    /**
-     * 点击左侧菜单，设置路由地址
-     * @param {*} key
-     */
-    const selectKeyFun = (key)=>{
-        setSelectKey(key);
-        props.history.push(key);
-    }
-
 
 
     return(
@@ -63,7 +44,7 @@ const Workspace = (props) => {
             <div className="ws-layout">
                 <SideMenu
                     item={items}
-                    selectedKey={"/workspace/alllist"}
+                    selectedKey={"/workspacePage/create"}
                     {...props}
                 />
 

@@ -4,28 +4,24 @@
  * @LastEditTime: 2021-05-08 17:20:46
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
-import { Input, Table, Space, Button, Popconfirm} from 'antd';
+import {Breadcrumb, Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
 import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
 import  { useTranslation } from 'react-i18next'
-import {getUser} from "doublekit-core-ui"
+import {getUser} from "doublekit-core-ui";
 import BreadcrumbEx from "../../common/breadcrumbEx";
-import {globalTabListInit} from "../../common/globalSharing";
-import {workspaceRecent} from "../api/workspaceRecentApi";
-import {toWorkspaceDetail} from "../common/workspaceFn";
 
-const WorkspaceList = (props) => {
-    const { workspaceStore, pluginsStore,workspaceRecentStore } = props;
+const WorkspaceJoin = (props) => {
+    const { workspaceStore,pluginsStore } = props;
     const {
-        findAllWorkspace,
+        findWorkspacePage,
         deleteWorkspace,
+        workspaceList,
         totalRecord,
-        length
+        findWorkspaceJoinList
     } = workspaceStore;
-
-    const {workspaceRecent}=workspaceRecentStore;
 
     const { t } = useTranslation();
 
@@ -35,16 +31,16 @@ const WorkspaceList = (props) => {
             title:` ${t('wsName')}`,
             dataIndex: "workspaceName",
             key: "workspaceName",
-            // align:"center",
             width:"30%",
+            // align:"center",
             render: (text,record) =>(
-                <a onClick = {()=>toDetail(record.id)}>{text}</a>
+                <a onClick = {()=>setLocalStorage('workspaceId',record.id)}>{text}</a>
             )
         },
         {
-            title: `创建人`,
-            dataIndex: ["user","name"],
-            key: "userName",
+            title:` ${t('wsId')}`,
+            dataIndex: "id",
+            key: "id",
             // align:"center",
             width:"20%",
         },
@@ -52,77 +48,73 @@ const WorkspaceList = (props) => {
             title: ` ${t('desc')}`,
             dataIndex: "desc",
             key: "desc",
-            // align:"center",
             width:"50%",
+            // align:"center",
         },
-
         // {
         //     title: ` ${t('operation')}`,
         //     key: "action",
         //     align:"center",
-        //     width:"20%",
         //     render: (text, record) => (
-        //     <Space size="middle">
-        //         <div>
-        //             <WorkspaceEdit
-        //                 name={`${t('edit')}`}
-        //                 type='edit'
-        //                 workspaceId={record.id}
-        //                 userId={userId}
-        //             />
-        //         </div>
-        //         <Popconfirm
-        //             title="确定删除？"
-        //             onConfirm={() =>deleteWorkspace(record.id)}
-        //             okText='确定'
-        //             cancelText='取消'
-        //         >
-        //             <a href="#" style={{color:'red'}}>{t('delete')}</a>
-        //         </Popconfirm>
-        //         <PluginComponent point='export' pluginsStore={pluginsStore}/>
-        //     </Space>
+        //         <Space size="middle">
+        //             <div>
+        //                 <WorkspaceEdit name={`${t('edit')}`} type='edit' workspaceId={record.id} />
+        //             </div>
+        //             <Popconfirm
+        //                 title="确定删除？"
+        //                 onConfirm={() =>deleteWorkspace(record.id)}
+        //                 okText='确定'
+        //                 cancelText='取消'
+        //             >
+        //                 <a href="#" style={{color:'red'}}>{t('delete')}</a>
+        //             </Popconfirm>
+        //             <PluginComponent point='export' pluginsStore={pluginsStore}/>
+        //         </Space>
         //     ),
         // },
     ]
 
     const userId = getUser().userId;
     const [ pluginLength, setPluginLength ] = useState()
-    // const [pageSize] = useState(5);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [params, setParams] = useState({
-    //     pageParam: {
-    //         pageSize: pageSize,
-    //         currentPage: currentPage
-    //     }
-    // })
+    const [pageSize] = useState(5);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [params, setParams] = useState({
+        pageParam: {
+            pageSize: pageSize,
+            currentPage: currentPage
+        }
+    })
 
-    const [workspaceList, setWorkspaceList] = useState();
 
     useEffect(()=> {
-        findList()
-    },[])
+        // let param = {
+        //     userId:userId,
+        //     params
+        // }
+        // findWorkspacePage(param);
+        findWorkspaceJoinList(userId)
+    },[userId])
 
-    useEffect(()=>{
-        const pluginComConfig = new PluginFun(props, "import", {});
-        const plug = pluginComConfig.getPlugins();
-        setPluginLength(plug.length)
-    },[])
+    // useEffect(()=>{
+    //     const pluginComConfig = new PluginFun({pluginsStore}, "import", {});
+    //     const plug = pluginComConfig.getPlugins();
+    //     setPluginLength(plug.length)
+    // },[])
 
-    const findList = (data)=>{
-        findAllWorkspace(data).then(res=>{
-            setWorkspaceList(res)
-        })
+    // 保存空间id到缓存
+    const setLocalStorage = (workspaceId,id) => {
+        localStorage.setItem("LEFT_MENU_SELECT","api");
+
+        localStorage.setItem(workspaceId,id);
+        props.history.push('/workspace');
     }
 
-    // 去往详情页
-    const toDetail = (workspaceId) => {
-        toWorkspaceDetail(workspaceId,userId,workspaceRecent)
-        props.history.push('/workspace');
+    const findList = (data)=>{
+        findWorkspaceJoinList()
     }
 
     //搜索
     const onSearch = (e) =>{
-
         findList({workspaceName:e.target.value})
         // setCurrentPage(1)
         // let newParams = {
@@ -143,19 +135,31 @@ const WorkspaceList = (props) => {
         // setParams(newParams)
     }
 
+    // 分页
+    // const onTableChange = (pagination) => {
+    //     setCurrentPage(pagination.current)
+    //     const newParams = {
+    //         ...params,
+    //         pageParam: {
+    //             pageSize: pageSize,
+    //             currentPage: pagination.current
+    //         },
+    //     }
+    //     setParams(newParams)
+    // }
 
     return(
-        <>
-            <BreadcrumbEx list={[ t('wsMgr'), t('wsList')]}/>
+        <Fragment>
+
+            <BreadcrumbEx
+                list={[
+                    t('wsMgr'),
+                    t('wsList')
+                ]}
+            />
             {/*<div className='wslist-searchbtn'>*/}
             {/*    <div className='wslist-eibtn'>*/}
-            {/*        <WorkspaceEdit*/}
-            {/*            className="important-btn"*/}
-            {/*            name={`${t('addws')}`}*/}
-            {/*            type="add"*/}
-            {/*            style={{ width: 200 }}*/}
-            {/*            userId={userId}*/}
-            {/*        />*/}
+            {/*        <WorkspaceEdit className="important-btn" name={`${t('addws')}`} type="add"  style={{ width: 200 }}/>*/}
             {/*        {*/}
             {/*            pluginLength && pluginLength>0 ? <PluginComponent point='import' pluginsStore={pluginsStore}/> : <Button disabled>导入</Button>*/}
             {/*        }*/}
@@ -181,8 +185,8 @@ const WorkspaceList = (props) => {
                 // }}
                 // onChange = {(pagination) => onTableChange(pagination)}
             />
-        </>
+        </Fragment>
     )
 }
 
-export default inject('workspaceStore', PLUGIN_STORE,"workspaceRecentStore")(observer(WorkspaceList));
+export default inject('workspaceStore',PLUGIN_STORE)(observer(WorkspaceJoin));

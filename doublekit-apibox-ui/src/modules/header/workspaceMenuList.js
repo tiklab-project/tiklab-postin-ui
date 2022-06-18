@@ -1,19 +1,18 @@
 import React, {useEffect} from "react";
 import {getUser} from "doublekit-core-ui"
 import {inject, observer} from "mobx-react";
-import {globalTabListInit} from "../common/globalSharing";
+import {toWorkspaceDetail} from "../workspace/common/workspaceFn";
 
 //顶部菜单栏，下拉框里的空间列表
 const WorkspaceMenuList = (props) =>{
-    const {workspaceStore,workspaceRecentStore,changeCurrentLink,setClickIcon} = props;
-    const {findWorkspaceList,workspaceList} = workspaceStore;
-    const {workspaceRecent}=workspaceRecentStore;
+    const {workspaceRecentStore,changeCurrentLink,setClickIcon} = props;
+    const {workspaceRecent,findWorkspaceRecentList,recentList}=workspaceRecentStore;
 
     let userId = getUser().userId;
 
     useEffect(()=>{
         if(userId){
-            findWorkspaceList(userId)
+            findWorkspaceRecentList(userId)
         }
     },[userId])
 
@@ -23,31 +22,19 @@ const WorkspaceMenuList = (props) =>{
             return(
                 <li
                     key={item.id}
-                    onClick={()=>switchWorkspace(item.id)}
+                    onClick={()=>switchWorkspace(item.workspace?.id)}
                     className={"header-workspace-list-item"}
                 >
-                    {item.workspaceName}
+                    {item.workspace?.workspaceName}
                 </li>
             )
         })
     }
 
-    // 切换空间
-    const switchWorkspace=(id)=>{
-        let params = {
-            workspace: {id:id},
-            userId:userId
-        }
-        workspaceRecent(params)
-
-        localStorage.setItem('workspaceId',id);
-
-        globalTabListInit(id)
-
-        localStorage.setItem("LEFT_MENU_SELECT","api");
-
-        props.history.push({pathname:'/workspacepage'});
-
+    // 去往详情页
+    const switchWorkspace=(workspaceId)=>{
+        toWorkspaceDetail(workspaceId,userId,workspaceRecent)
+        props.history.push('/workspace');
         setClickIcon(false)
     }
 
@@ -56,11 +43,11 @@ const WorkspaceMenuList = (props) =>{
         <>
             <ul style={{height: 130,overflow:"auto"}}>
                 {
-                    showWorkspaceListView(workspaceList)
+                    showWorkspaceListView(recentList)
                 }
             </ul>
             <div
-                onClick={()=>changeCurrentLink("/workspace/alllist")}
+                onClick={()=>changeCurrentLink("/workspacePage/create")}
             >
                 进入所有空间
             </div>

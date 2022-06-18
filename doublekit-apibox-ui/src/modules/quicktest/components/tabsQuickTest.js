@@ -86,7 +86,7 @@ const TabsQuickTest = (props) =>{
 
         localStorage.setItem("instanceId",item.id)
 
-        props.history.push("/workspacepage/quickTest/detail/api")
+        props.history.push("/workspace/quickTest/detail/api")
     }
 
     //展示TabPane

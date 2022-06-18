@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4319294",
+      "name": "项目",
+      "font_class": "xiangmu",
+      "unicode": "e6c7",
+      "unicode_decimal": 59079
+    },
+    {
+      "icon_id": "9673166",
+      "name": "项目",
+      "font_class": "xiangmu1",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
       "icon_id": "1264",
       "name": "编辑",
       "font_class": "bianji",
@@ -293,32 +307,11 @@
       "unicode_decimal": 59000
     },
     {
-      "icon_id": "15838542",
-      "name": "toggle-left",
-      "font_class": "toggle-left",
-      "unicode": "e680",
-      "unicode_decimal": 59008
-    },
-    {
-      "icon_id": "15838543",
-      "name": "toggle-right",
-      "font_class": "toggle-right",
-      "unicode": "e681",
-      "unicode_decimal": 59009
-    },
-    {
       "icon_id": "15838607",
       "name": "setting-filling",
       "font_class": "setting-filling",
       "unicode": "e68b",
       "unicode_decimal": 59019
-    },
-    {
-      "icon_id": "11372647",
-      "name": "创作",
-      "font_class": "chuangzuo",
-      "unicode": "e8ad",
-      "unicode_decimal": 59565
     },
     {
       "icon_id": "11372693",

@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, Form, Input} from "antd";
 import {inject, observer} from "mobx-react";
-import initPage from '../../../assets/img/backgroundimg.jpg'
 import {getUser} from "doublekit-core-ui"
 
 const layout = {
@@ -9,7 +8,7 @@ const layout = {
     wrapperCol: {span: 16},
 };
 
-const WorkspaceInitPage = (props) => {
+const WorkspaceInit = (props) => {
     const {workspaceStore} = props;
     const {createWorkspace} = workspaceStore;
     const [form] = Form.useForm();
@@ -19,7 +18,7 @@ const WorkspaceInitPage = (props) => {
             values.user= {id:getUser().userId};
             createWorkspace(values).then(res=>{
                 localStorage.setItem('workspaceId',res.data);
-                props.history.push("/workspacepage")
+                props.history.push("/workspace")
             });
         })
     };
@@ -64,4 +63,4 @@ const WorkspaceInitPage = (props) => {
     )
 }
 
-export  default inject('workspaceStore')(observer(WorkspaceInitPage));
+export  default inject('workspaceStore')(observer(WorkspaceInit));

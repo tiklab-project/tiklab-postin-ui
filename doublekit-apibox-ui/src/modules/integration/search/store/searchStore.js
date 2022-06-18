@@ -28,6 +28,7 @@ export class SearchStore {
         }
         const res = await searchForTop(params)
         if( res.code === 0) {
+            debugger
             this.searchList = res.data.responseList;
             return res.data
         }

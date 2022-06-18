@@ -27,7 +27,7 @@ const CategoryNav = (props) => {
 
         apiTabListInfoProcess(item,apiTabListInfo,"list")
 
-        props.history.push('/workspacepage/apis/detail/category');
+        props.history.push('/workspace/apis/detail/category');
     }
 
     //保存接口id，跳往接口详情页
@@ -37,7 +37,7 @@ const CategoryNav = (props) => {
         apiTabListInfoProcess(item,apiTabListInfo,"api")
 
         localStorage.setItem('apxMethodId',item.id);
-        props.history.push('/workspacepage/apis/detail/interface');
+        props.history.push('/workspace/apis/detail/interface');
     }
 
 

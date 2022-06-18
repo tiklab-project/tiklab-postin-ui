@@ -8,7 +8,7 @@ import { UserMessage } from 'doublekit-message-ui';
 
 const MsgUser = (props) => {
     return (
-            <UserMessage {...props}/>
+            <UserMessage {...props} application={"apibox"}/>
     )
 }
 

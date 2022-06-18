@@ -97,7 +97,7 @@ const Mock = (props) => {
 
     const setLocalStorage = (mockId,id) => {
         localStorage.setItem(mockId,id)
-        props.history.push('/workspacepage/apis/detail/interface/mockdetail')
+        props.history.push('/workspace/apis/detail/interface/mockdetail')
     }
 
     const mockUrl = "http://192.168.10.16:8080/mockx/"+workspaceId;

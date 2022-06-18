@@ -21,19 +21,19 @@ const WorkspaceSetting = (props) =>{
     const items=[
         {
             title: '环境管理',
-            key: '/workspacepage/workspaceSetting/envMana',
+            key: '/workspace/workspaceSetting/envMana',
             icon: 'icon-modular',
         },{
             title: '状态管理',
-            key: '/workspacepage/workspaceSetting/apistatus',
+            key: '/workspace/workspaceSetting/apistatus',
             icon: 'icon-modular',
         },{
             title: '空间成员',
-            key: '/workspacepage/workspaceSetting/role',
+            key: '/workspace/workspaceSetting/role',
             icon: 'icon-modular',
         },{
             title: '空间权限',
-            key: '/workspacepage/workspaceSetting/workspacePrivilege',
+            key: '/workspace/workspaceSetting/workspacePrivilege',
             icon: 'icon-modular',
         }
     ]
@@ -44,7 +44,7 @@ const WorkspaceSetting = (props) =>{
         <div className={"workspace-setting-box"}>
             <SideMenu
                 item={items}
-                selectedKey={"/workspacepage/workspaceSetting/envMana"}
+                selectedKey={"/workspace/workspaceSetting/envMana"}
                 {...props}
             />
 

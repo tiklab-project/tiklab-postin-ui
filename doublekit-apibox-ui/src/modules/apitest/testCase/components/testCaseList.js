@@ -90,7 +90,7 @@ const TestCaseList = (props) => {
 
     const setLocalStorage = (id) => {
         localStorage.setItem('testCaseId',id)
-        props.history.push('/workspacepage/apis/detail/interface/testcasedetail')
+        props.history.push('/workspace/apis/detail/interface/testcasedetail')
     }
 
     const rowSelection = {

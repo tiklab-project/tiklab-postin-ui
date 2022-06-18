@@ -1,32 +1,39 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './homestyle.scss';
 import {getUser} from "doublekit-core-ui"
-import {Table} from "antd";
 import {inject, observer} from "mobx-react";
-import {globalTabListInit} from "../common/globalSharing";
 import {WorkspaceRecent} from "../workspace";
+import WorkspaceWidget from "../workspaceWidget/components/workspaceWidget";
+import WorkspaceRecentHome from "../workspace/components/workspaceRecentHome";
 
 // 首页
 const Home =(props)=> {
+    // const {workspaceStore} = props;
+    // const {findWorkspaceHomeTotal} = workspaceStore;
 
     const userName = getUser().name;
+    // const userId = getUser().userId
 
     const listItem = [
         {
             title:"空间",
             icon:"icon-modular",
-            key:"/workspace/alllist"
+            key:"/workspacePage/create"
         },
-        {
-            title:"快捷测试",
-            icon:"icon-modular",
-            key:"/workspace/quicktest"
-        }
+        // {
+        //     title:"快捷测试",
+        //     icon:"icon-modular",
+        //     key:"/workspace/quicktest"
+        // }
     ]
 
-    const toPage = (router) =>{
-        props.history.push(router)
-    }
+    // const [total, setTotal] = useState();
+    //
+    // useEffect(()=>{
+    //     findWorkspaceHomeTotal(userId).then(res=>{
+    //         setTotal(res)
+    //     })
+    // },[])
 
     const showListItem = (data) =>{
         return data&&data.map(item=>{
@@ -40,6 +47,13 @@ const Home =(props)=> {
             )
         })
     }
+
+    const toPage = (router) =>{
+        props.history.push(router)
+        localStorage.setItem("LEFT_NAV_SELECTED",router)
+    }
+
+
 
 
     return(
@@ -80,35 +94,23 @@ const Home =(props)=> {
                                     <div className={"home"}>先创建空间</div>
                                     <div>再开始之前先创建空间</div>
                                     <div
-                                        onClick={()=>toPage("/workspaceinitpage")}
+                                        onClick={()=>toPage("/workspaceinit")}
                                         className={"home-begin-start"}
                                     >
                                         前往创建
                                     </div>
                                 </div>
                             </div>
+
                             <div className={"home-detail-right-top-workspace"}>
                                 <div className={"home-title"}>空间</div>
-                                <div className={"home-detail-right-top-workspace-detail  home-item-box"}>
-                                    <div className={"home-item"}>
-                                        <div className={"home-item-total"}>5</div>
-                                        <div className={"home-item-name"}>空间总数</div>
-                                    </div>
-                                    <div className={"home-item"}>
-                                        <div className={"home-item-total"}>3</div>
-                                        <div className={"home-item-name"}>我创建的</div>
-                                    </div>
-                                    <div className={"home-item"}>
-                                        <div className={"home-item-total"}>2</div>
-                                        <div className={"home-item-name"}>我参与的</div>
-                                    </div>
-                                </div>
+                                <WorkspaceWidget {...props}/>
                             </div>
                         </div>
                         <div>
                             <div className={"home-title"}>最近访问的空间</div>
 
-                            <WorkspaceRecent {...props}/>
+                            <WorkspaceRecentHome />
                         </div>
                     </div>
                 </div>
@@ -117,4 +119,4 @@ const Home =(props)=> {
     )
 }
 
-export default Home;
+export default inject("workspaceStore")(observer(Home));

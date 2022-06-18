@@ -1,9 +1,9 @@
 .search-list{
-    width: 100%;
+    width: 400px;
     min-height: 100px;
     position: absolute;
     background-color: #fff;
-    box-shadow: 0 0 10px 0 rgb(0,0,0,0.2);
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
     margin: 5px 0 0 0;
     border-radius: 5px;
     z-index: 1;
@@ -62,7 +62,7 @@
         min-height: 101px;
         position: absolute;
         background-color: #fff;
-        box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+        box-shadow: 0 0 10px 0 rgba(0 0 0 / 20%);
         margin: 35px 0 0 0;
         border-radius: 5px;
         z-index: 1;
@@ -123,7 +123,7 @@
     }
 
     .item:hover{
-        box-shadow: 0 0 8px 0 rgb(0,0,0,0.35);
+        box-shadow: 0 0 8px 0 rgba(0,0,0,0.35);
     }
 
     .pagination{

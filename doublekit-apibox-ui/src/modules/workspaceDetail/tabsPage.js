@@ -68,10 +68,10 @@ const TabsPage = (props) =>{
         let addRouter = props.history.push
         if(item.type==="api"){
             localStorage.setItem("apxMethodId",item.id)
-            addRouter("/workspacepage/apis/detail/interface")
+            addRouter("/workspace/apis/detail/interface")
         }else {
             localStorage.setItem("categoryId",item.id)
-            addRouter("/workspacepage/apis/detail/category")
+            addRouter("/workspace/apis/detail/category")
         }
     }
 

@@ -46,12 +46,12 @@ const MockDetail = (props) =>{
     }
 
     const backToList = () => {
-        props.history.push({pathname:'/workspacepage/apis/detail/interface/mock',state:{tabKey:'3'}})
+        props.history.push({pathname:'/workspace/apis/detail/interface/mock',state:{tabKey:'3'}})
     }
 
     const deleteMockFn = () =>{
         deleteMock(mockId).then(()=>{
-            props.history.push("/workspacepage/apis/detail/interface/mock")
+            props.history.push("/workspace/apis/detail/interface/mock")
         })
     }
 

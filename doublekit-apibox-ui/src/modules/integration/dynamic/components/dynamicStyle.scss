@@ -4,6 +4,13 @@
     justify-content: space-between;
     padding: 10px;
 
+    &-operation{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80px;
+    }
+
     &-refresh{
         cursor: pointer;
         color: #00adff;

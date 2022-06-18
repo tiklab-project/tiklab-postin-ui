@@ -101,13 +101,13 @@ const TestCaseDetail = (props) => {
 
     // 返回列表
     const backToList = () => {
-        props.history.push({pathname:'/workspacepage/apis/detail/interface/testcase',state:{tabKey:'3'}})
+        props.history.push({pathname:'/workspace/apis/detail/interface/testcase',state:{tabKey:'3'}})
     }
 
     // 删除用例
     const handleDeleteTestCase = () => {
         deleteTestCase(testCaseId);
-        props.history.push({pathname:'/workspacepage/apis/detail/interface/testcase'})
+        props.history.push({pathname:'/workspace/apis/detail/interface/testcase'})
     }
 
     // 测试

@@ -4,8 +4,8 @@ import {Search, SearchResult} from './integration/search';
 
 import {
     WorkspaceRole, WorkspacePrivilege, Workspace,WorkspaceRecent,
-    WorkspaceCreatePage, WorkspaceParticipation, WorkspaceInitPage, WorkspaceList,
-    DetailIndex, WorkspaceDetail,
+    WorkspaceCreate, WorkspaceJoin, WorkspaceInit, WorkspaceList,
+    DetailIndex, WorkspaceDetail,WorkspaceFollow
 } from './workspace';
 
 import { Category } from "./category";
@@ -38,15 +38,16 @@ import LoginOut from "./header/loginOut";
 import LoginContent from "./login/loginContent";
 import ElectronLoginContant from "./login/electronLoginContant";
 
-
+import WorkspaceWidget from "./workspaceWidget/components/workspaceWidget";
+import {WIDGET_STORE,WidgetStore} from "./workspaceWidget/store/widgetStore";
 
 export {
     Home,PortalHeader,HeaderContent,
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,WorkspaceSetting,
-    Workspace,WorkspaceInitPage,WorkspaceCreatePage,RecentBrowing,WorkspaceRecent,
-    WorkspaceParticipation,
+    Workspace,RecentBrowing,WorkspaceRecent,WorkspaceFollow,
+    WorkspaceCreate, WorkspaceJoin, WorkspaceInit,
     WorkspaceList,
 
     WorkspaceDetailLayout,LayoutApiContent,TabsPage,
@@ -67,5 +68,8 @@ export {
     PluginManage,
     LoginOut,LoginContent,
     ElectronLoginContant,
+
+    WorkspaceWidget,
+    WIDGET_STORE,WidgetStore,
 }
 

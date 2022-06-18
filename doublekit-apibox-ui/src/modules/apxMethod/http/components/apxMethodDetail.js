@@ -64,7 +64,7 @@ const ApxMethodDetail = (props) => {
 
     // 点击测试按钮，跳到测试页
     const handleTest = () => {
-        props.history.push('/workspacepage/apis/detail/interface/test')
+        props.history.push('/workspace/apis/detail/interface/test')
     }
 
     // 删除接口
@@ -75,7 +75,7 @@ const ApxMethodDetail = (props) => {
 
         })
 
-        props.history.push({pathname:'/workspacepage/apis/detail/category'})
+        props.history.push({pathname:'/workspace/apis/detail/category'})
     }
 
     //渲染执行者下拉框

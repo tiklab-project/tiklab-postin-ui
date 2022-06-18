@@ -8,6 +8,7 @@ import React, { Fragment, useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import {Modal, Form, Input, Button, Select, Cascader} from 'antd';
 import {methodDictionary} from "../../../common/dictionary/dictionary";
+import {getUser} from "doublekit-core-ui";
 
 
 const { Option } = Select;
@@ -72,10 +73,10 @@ const ApxMethodEdit = (props) => {
 
     // 提交
     const onFinish =   () => {
-        debugger
         form.validateFields().then(values=>{
             delete values.category
             values.apix={
+                userId:getUser().userId,
                 id:httpId?httpId:apxMethodId,
                 workspaceId:workspaceId,
                 name:values.name,
@@ -109,7 +110,7 @@ const ApxMethodEdit = (props) => {
                     }
 
                     localStorage.setItem('apxMethodId',id);
-                    props.history.push('/workspacepage/apis/detail/interface');
+                    props.history.push('/workspace/apis/detail/interface');
                 })
             }else{
                 values.status={id:status}

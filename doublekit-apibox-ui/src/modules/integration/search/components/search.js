@@ -33,7 +33,7 @@ const Search = (props) => {
     //点击搜索到空间，跳到对应的空间
     const toWorkspace = (id) =>{
         localStorage.setItem('workspaceId',id);
-        props.history.push('/workspacepage');
+        props.history.push('/workspace');
         setToggleSearch('hide');
     }
 
@@ -41,7 +41,7 @@ const Search = (props) => {
     const toMethod = (apxMethodId,workspaceId) => {
         localStorage.setItem('workspaceId',workspaceId);
         localStorage.setItem('apxMethodId',apxMethodId);
-        props.history.push('/workspacepage/apis/detail/interface');
+        props.history.push('/workspace/apis/detail/interface');
         setToggleSearch('hide');
     }
 

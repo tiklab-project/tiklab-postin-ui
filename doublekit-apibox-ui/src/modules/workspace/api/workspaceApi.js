@@ -3,7 +3,6 @@
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-25 14:28:21
  */
-
 import { Axios } from "doublekit-core-ui";
 
 export function deleteWorkspace(data){
@@ -20,6 +19,11 @@ export function findWorkspace(data){
 
 export function updateWorkspace(data){
     return Axios.post("/workspace/updateWorkspace",data)
+}
+
+
+export function findAllWorkspace(data){
+    return Axios.post("/workspace/findAllWorkspace",data)
 }
 
 export function findWorkspacePage(data){

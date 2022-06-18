@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import Avatar from "antd/es/avatar/avatar";
-import {UserOutlined} from "@ant-design/icons";
 
 const LeftNav = (props) =>{
     const menuData = [
@@ -9,24 +7,24 @@ const LeftNav = (props) =>{
             "icon":"jiekou",
             "name":"API",
             "key":"api",
-            "router":"/workspacepage/apis"
+            "router":"/workspace/apis"
         },{
             "icon":"kuaijieyingyon",
             "name":"快捷测试",
             "key":"quickTest",
-            "router":"/workspacepage/quickTest"
+            "router":"/workspace/quickTest"
         },
         {
             "icon":"jiekou",
             "name":"数据结构",
             "key":"dataStructure",
-            "router":"/workspacepage/dataStructure"
+            "router":"/workspace/dataStructure"
         },
         {
             "icon":"quanxian",
             "name":"空间设置",
             "key":"workspaceSetting",
-            "router":"/workspacepage/workspaceSetting"
+            "router":"/workspace/workspaceSetting"
         },
     ]
 
@@ -47,7 +45,7 @@ const LeftNav = (props) =>{
 
     //点击api按钮时初始化api中tab页信息
     const addApiTabInfo = (router) => {
-        if(router==="/workspacepage/apis"){
+        if(router==="/workspace/apis"){
             const apiTabInfo = {
                 activeKey:0,
                 tabList:[
@@ -63,7 +61,7 @@ const LeftNav = (props) =>{
     }
 
     const addQuickTestTabInfo = (router) =>{
-        if(router==="/workspacepage/quickTest"){
+        if(router==="/workspace/quickTest"){
             const apiTabInfo = {
                 activeKey:0,
                 tabList:[
@@ -79,6 +77,15 @@ const LeftNav = (props) =>{
 
             localStorage.setItem("instanceId","-1")
         }
+    }
+
+    const clickWorkspaceIcon = () =>{
+        let data = {
+            router:"/workspace/apis",
+            key:"api"
+        }
+
+        clickAddRouter(data)
     }
 
     const showMenuItem = (data) =>{
@@ -106,10 +113,12 @@ const LeftNav = (props) =>{
 
     return(
         <>
-            {/*<div className={"ws-detail-left-nav-ws "}>*/}
-            {/*    <Avatar icon={<UserOutlined />} />*/}
-            {/*</div>*/}
             <ul className={"ws-detail-left-nav"}>
+                <li  className={`ws-detail-left-nav-item-workspace `}  onClick={clickWorkspaceIcon}>
+                    <svg className="ws-detail-left-nav-icon" aria-hidden="true">
+                        <use xlinkHref= {`#icon-xiangmu`} />
+                    </svg>
+                </li>
                 {
                     showMenuItem(menuData)
                 }

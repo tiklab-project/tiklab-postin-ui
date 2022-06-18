@@ -85,7 +85,7 @@ const HttpList = (props) => {
     //保存接口id，并跳往接口页面
     const setLocalStorage = (apixId,id) => {
         localStorage.setItem(apixId,id)
-        props.history.push('/workspacepage/apis/detail/interface')
+        props.history.push('/workspace/apis/detail/interface')
     }
 
     useEffect(()=>{

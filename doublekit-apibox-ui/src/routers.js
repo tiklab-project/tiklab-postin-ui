@@ -9,7 +9,7 @@ import {
     PortalHeader,
     Home, SearchResult,
 
-    WorkspaceRole, WorkspacePrivilege, Workspace, WorkspaceInitPage, WorkspaceParticipation, WorkspaceCreatePage,
+    WorkspaceRole, WorkspacePrivilege, Workspace, WorkspaceCreate, WorkspaceJoin, WorkspaceInit,
     WorkspaceList, WorkspaceRecent, RecentBrowing, WorkspaceDetailLayout,
     LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest, TestdetailQuickTest, WorkspaceDetailInitPage,
     Category, ApxMethod, ApxMethodDetail,
@@ -21,7 +21,7 @@ import {
     Usermgr, Org, ProjectFeature, ProjectRole,
     SystemFeature, SystemRole, PluginManage,
     MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
-    LoginOut, LoginContent, ElectronLoginContant, AccountMember, WorkspaceSetting
+    LoginOut, LoginContent, ElectronLoginContant, AccountMember, WorkspaceSetting, WorkspaceFollow
 } from './modules';
 
 import {Redirect} from "react-router";
@@ -68,39 +68,44 @@ const routers =  [
                 key:'Home',
             },
             {
-                path: "/workspaceinitpage",
-                component: WorkspaceInitPage,
+                path: "/workspaceinit",
+                component: WorkspaceInit,
                 exact: true,
                 key:'WorkspaceInitPage',
             },
             {
-                path: "/workspace",
+                path: "/workspacePage",
                 component: Workspace,
-                key:'Workspace',
+                key:'workspacePage',
                 routes:[
                     {
-                        path: "/workspace/alllist",
+                        path: "/workspacePage/all",
                         key:'WorkspaceList',
                         exact: true,
                         component: WorkspaceList,
                     },
                     {
-                        path: "/workspace/recently",
+                        path: "/workspacePage/recent",
                         key:'WorkspaceList',
                         exact: true,
                         component: WorkspaceRecent,
                     },
                     {
-                        path: "/workspace/create",
+                        path: "/workspacePage/create",
                         key:'WorkspaceList',
                         exact: true,
-                        component: WorkspaceCreatePage,
+                        component: WorkspaceCreate,
                     },
                     {
-                        path: "/workspace/participation",
+                        path: "/workspacePage/join",
                         key:'WorkspaceList',
                         exact: true,
-                        component: WorkspaceParticipation,
+                        component: WorkspaceJoin,
+                    },{
+                        path: "/workspacePage/follow",
+                        key:'WorkspaceList',
+                        exact: true,
+                        component: WorkspaceFollow,
                     },
                 ]
             },
@@ -226,170 +231,170 @@ const routers =  [
             },
             {
                 component: WorkspaceDetailLayout,
-                path: "/workspacepage",
+                path: "/workspace",
                 key:'DetailIndex',
                 routes:[
                     {
-                        path: "/workspacepage/apis",
+                        path: "/workspace/apis",
                         key:'apis',
                         component: LayoutApiContent,
                         routes:[
                             {
-                                path: "/workspacepage/apis/detail",
+                                path: "/workspace/apis/detail",
                                 key:'TabsPage',
                                 component: TabsPage,
                                 routes:[
                                     {
-                                        path: "/workspacepage/apis/detail/apiInitPage",
+                                        path: "/workspace/apis/detail/apiInitPage",
                                         exact: true,
                                         key:'Category',
                                         component: WorkspaceDetailInitPage,
                                     },
                                     {
-                                        path: "/workspacepage/apis/detail/category",
+                                        path: "/workspace/apis/detail/category",
                                         exact: true,
                                         key:'Category',
                                         component: Category,
                                     },{
-                                        path:"/workspacepage/apis/detail/interface",
+                                        path:"/workspace/apis/detail/interface",
                                         component: ApxMethod,
                                         key:'ApxMethod',
                                         routes:[
                                             {
-                                                path:"/workspacepage/apis/detail/interface/detail",
+                                                path:"/workspace/apis/detail/interface/detail",
                                                 exact: true,
                                                 key:'ApxMethodDetail',
                                                 component: ApxMethodDetail,
                                             },
                                             {
-                                                path:"/workspacepage/apis/detail/interface/test",
+                                                path:"/workspace/apis/detail/interface/test",
                                                 exact: true,
                                                 key:'test',
                                                 component: Test,
                                             },{
-                                                path:"/workspacepage/apis/detail/interface/testcase",
+                                                path:"/workspace/apis/detail/interface/testcase",
                                                 exact: true,
                                                 key:'testcase',
                                                 component: TestCase,
                                             },
                                             {
-                                                path:"/workspacepage/apis/detail/interface/testcasedetail",
+                                                path:"/workspace/apis/detail/interface/testcasedetail",
                                                 exact: true,
                                                 key:'testCaseDetail',
                                                 component: TestCaseDetail,
                                             },
                                             {
-                                                path:'/workspacepage/apis/detail/interface/mock',
+                                                path:'/workspace/apis/detail/interface/mock',
                                                 key:'mock',
                                                 exact: true,
                                                 component: Mock
                                             },
                                             {
-                                                path:'/workspacepage/apis/detail/interface/mockdetail',
+                                                path:'/workspace/apis/detail/interface/mockdetail',
                                                 exact: true,
                                                 key:'mockDetail',
                                                 component:MockDetail
                                             },
                                             {
-                                                path:"/workspacepage/apis/detail/interface",
+                                                path:"/workspace/apis/detail/interface",
                                                 exact: true,
                                                 key:'ridinterfacedetail',
-                                                component: ()=><Redirect to='/workspacepage/apis/detail/interface/detail'/>,
+                                                component: ()=><Redirect to='/workspace/apis/detail/interface/detail'/>,
                                             },
                                         ]
                                     },
                                     {
-                                        path:"/workspacepage/apis/detail",
+                                        path:"/workspace/apis/detail",
                                         exact: true,
                                         key:'ridapidetail',
-                                        component: ()=><Redirect to='/workspacepage/apis/detail/apiInitPage'/>,
+                                        component: ()=><Redirect to='/workspace/apis/detail/apiInitPage'/>,
                                     },
                                 ]
                             },
                             {
-                                path:"/workspacepage/apis",
+                                path:"/workspace/apis",
                                 exact: true,
                                 key:'ridapisdetail',
-                                component: ()=><Redirect to='/workspacepage/apis/detail'/>,
+                                component: ()=><Redirect to='/workspace/apis/detail'/>,
                             },
                         ]
                     },
                     {
-                        path: "/workspacepage/quickTest",
+                        path: "/workspace/quickTest",
                         key:'quickTest',
                         component: LayoutQuickTest,
                         routes:[
                             {
-                                path: "/workspacepage/quickTest/detail",
+                                path: "/workspace/quickTest/detail",
                                 key: 'TabsQuickTest',
                                 component: TabsQuickTest,
                                 routes: [
                                     {
-                                        path: "/workspacepage/quickTest/detail/api",
+                                        path: "/workspace/quickTest/detail/api",
 
                                         key:'TestdetailQuickTest',
                                         component: TestdetailQuickTest,
                                     },{
-                                        path:"/workspacepage/quickTest/detail",
+                                        path:"/workspace/quickTest/detail",
                                         exact: true,
                                         key:'reTestdetailQuickTest',
-                                        component: ()=><Redirect to='/workspacepage/quickTest/detail/api'/>,
+                                        component: ()=><Redirect to='/workspace/quickTest/detail/api'/>,
                                     },
                                 ]
                             },
                             {
-                                path:"/workspacepage/quickTest",
+                                path:"/workspace/quickTest",
                                 exact: true,
                                 key:'ridquickTestdetail',
-                                component: ()=><Redirect to='/workspacepage/quickTest/detail'/>,
+                                component: ()=><Redirect to='/workspace/quickTest/detail'/>,
                             },
                         ]
                     },{
-                        path: "/workspacepage/dataStructure",
+                        path: "/workspace/dataStructure",
                         key:'dataStucture',
                         exact: true,
                         component: DataStructure,
                     },
                     {
-                        path: "/workspacepage/workspaceSetting",
+                        path: "/workspace/workspaceSetting",
                         key:'workspaceSetting',
                         component: WorkspaceSetting,
                         routes: [
                             {
-                                path: "/workspacepage/workspaceSetting/envMana",
+                                path: "/workspace/workspaceSetting/envMana",
                                 key:'EvnMana',
                                 exact: true,
                                 component: EvnMana,
                             }, {
-                                path: "/workspacepage/workspaceSetting/apistatus",
+                                path: "/workspace/workspaceSetting/apistatus",
                                 key:'apistatus',
                                 exact: true,
                                 component: ApiStatus,
                             },{
-                                path: "/workspacepage/workspaceSetting/role",
+                                path: "/workspace/workspaceSetting/role",
                                 key:'role',
                                 exact: true,
                                 component: WorkspaceRole,
                             },
                             {
-                                path: "/workspacepage/workspaceSetting/workspacePrivilege",
+                                path: "/workspace/workspaceSetting/workspacePrivilege",
                                 key:'privilege',
                                 exact: true,
                                 component: WorkspacePrivilege,
                             },{
-                                path:"/workspacepage/workspaceSetting",
+                                path:"/workspace/workspaceSetting",
                                 key:'ridworkspaceSetting',
                                 exact: true,
-                                component: ()=><Redirect to='/workspacepage/workspaceSetting/envMana'/>,
+                                component: ()=><Redirect to='/workspace/workspaceSetting/envMana'/>,
                             },
                         ]
                     },
 
                     {
-                        path:"/workspacepage",
+                        path:"/workspace",
                         key:'ridapidetail',
                         exact: true,
-                        component: ()=><Redirect to='/workspacepage/apis'/>,
+                        component: ()=><Redirect to='/workspace/apis'/>,
                     },
                 ]
             },

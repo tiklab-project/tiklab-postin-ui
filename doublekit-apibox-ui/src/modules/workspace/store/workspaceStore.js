@@ -13,7 +13,8 @@ import {
 	findWorkspacePage,
 	findWorkspaceList,
 	findWorkspaceJoinList,
-	findWorkspaceTotal
+	findWorkspaceTotal,
+	findAllWorkspace,
 } from '../api/workspaceApi';
 
 export class WorkspaceStore {
@@ -64,6 +65,15 @@ export class WorkspaceStore {
 			this.workspaceList = res.data;
 			this.length = res.data.length;
 			return res;
+		}
+	}
+
+	@action
+	findAllWorkspace = async (data) =>{
+		const res = await findAllWorkspace(data);
+
+		if(res.code === 0 ){
+			return res.data;
 		}
 	}
 
@@ -125,6 +135,9 @@ export class WorkspaceStore {
 			return res.data;
 		}
 	}
+
+
+
 }
 
 export const WORKSPACE_STORE = 'workspaceStore';

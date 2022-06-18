@@ -2,11 +2,14 @@ import { EamStore,EAM_STORE } from 'doublekit-eam-ui';
 import {PluginStore, PLUGIN_STORE} from "doublekit-plugin-ui"
 import { SEARCHSTORE, SearchStore } from './modules/integration/search'
 
+import {WIDGET_STORE,WidgetStore} from "./modules";
+
 import {USERSELECT_STORE, UserSelectStore} from './modules/integration/userSelect/store/userSelectStore'
 
 import {
     WORKSPACE_STORE, WorkspaceStore,
-    WORKSPACE_RECENT_STORE,WorkspaceRecentStore
+    WORKSPACE_RECENT_STORE,WorkspaceRecentStore,
+    WORKSPACE_FOLLOW_STORE,WorkspaceFollowStore
 } from './modules/workspace';
 
 import {DYNAMIC_STORE,DynamicStore} from "./modules/integration/dynamic/store/dynamicStore";
@@ -110,9 +113,12 @@ function createStores() {
         // search
         [SEARCHSTORE]: new SearchStore(),
 
+        [WIDGET_STORE]: new WidgetStore(),
+
         // workspace
         [WORKSPACE_STORE]: new WorkspaceStore(),
         [WORKSPACE_RECENT_STORE]: new WorkspaceRecentStore(),
+        [WORKSPACE_FOLLOW_STORE]: new WorkspaceFollowStore(),
 
         [DYNAMIC_STORE]:new DynamicStore(),
 

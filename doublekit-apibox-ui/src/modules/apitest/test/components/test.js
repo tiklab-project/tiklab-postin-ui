@@ -148,7 +148,7 @@ const ApxMethodTest = (props) => {
 
                             <Divider style={{ margin: '8px 0' }} />
                             <span
-                                onClick={()=>props.history.push("/workspacepage/workspaceSetting/envMana")}
+                                onClick={()=>props.history.push("/workspace/workspaceSetting/envMana")}
                                 style={{"color":"#00adff","cursor":"pointer","margin":"0 0 0 20px"}}
                             >
                                 环境设置

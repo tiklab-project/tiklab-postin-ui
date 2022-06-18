@@ -98,7 +98,7 @@ const Dynamic = (props) =>{
                         <Option value={"api"}>接口</Option>
                     </Select>
                 </div>
-                <div>
+                <div className={"dynamic-header-operation"}>
                     <div onClick={refresh} className={"dynamic-header-refresh"}>刷新</div>
                     <DynamicDrawer
                        workspaceId={workspaceId}

@@ -30,7 +30,7 @@ const LeftNavListQuickTest =(props)=>{
 
         setResponseShow();
 
-        props.history.push("/workspacepage/quickTest/detail/api")
+        props.history.push("/workspace/quickTest/detail/api")
     }
 
     const showListView = (data) =>{

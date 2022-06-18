@@ -19,7 +19,10 @@ const version = JSON.stringify('1.0.1');
 const client = JSON.stringify('1.1.0');
 
 
-const acc_url = JSON.stringify('http://portal-ce.dev.doublekit.net');
+// const acc_url = JSON.stringify('http://portal-ce.dev.doublekit.net');
+
+
+const acc_url = JSON.stringify('http://192.168.10.6:3001');
 
 
 module.exports = {

@@ -39,6 +39,7 @@ const SearchResult = (props) => {
             ...params
         }
         searchForPage(param).then((res)=>{
+            debugger
             setLastRecord(res.lastRecord)
         })
     },[params,keyword])
@@ -94,14 +95,14 @@ const SearchResult = (props) => {
     //点击搜索到空间，跳到对应的空间
     const toWorkspace = (id) =>{
         localStorage.setItem('workspaceId',id);
-        props.history.push('/workspacepage');
+        props.history.push('/workspace');
     }
 
     //点击搜索到接口，跳到对应的接口
     const toMethod = (id,workspaceId) => {
         localStorage.setItem('workspaceId',workspaceId)
         localStorage.setItem('apxMethodId',id)
-        props.history.push('/workspacepage/apis/detail/interface')
+        props.history.push('/workspace/apis/detail/interface')
     }
 
     const childItem = (item,dataItem)=>{
@@ -143,6 +144,10 @@ const SearchResult = (props) => {
         }
     }
 
+
+
+
+
      //防抖
      const debounce = (fn, ms)=> {
         let timer;
@@ -168,6 +173,31 @@ const SearchResult = (props) => {
     }
 
 
+    const showSearch = (data)=>{
+        return  data && data.map((item,index)=> {
+            return(
+                <div className="same-index" key={item.index}>
+                    {
+                        item.index==='Workspace'
+                            ?<div className="title">空间</div>
+                            :<div className="title">接口</div>
+                    }
+                    {
+                        item.dataList && item.dataList.map((dataItem,index)=> {
+                            return (
+                                <div key={dataItem.id}>
+                                    {
+                                        resutlList(item,dataItem)
+                                    }
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            )
+        })
+
+    }
 
     return(
         <Fragment>
@@ -184,28 +214,8 @@ const SearchResult = (props) => {
                             />
                              <div className={`searchresult-list ${searchList.length !== 0 && toggleSearch ==='show' ? 'show':'hide' }`}>
                                 {
-                                    searchList && searchList.map((item,index)=> {
-                                        return(
-                                            <div className="same-index" key={item.index}>
-                                                {
-                                                    item.index==='Workspace'
-                                                        ?<div className="title">空间</div>
-                                                        :<div className="title">接口</div>
-                                                }
-                                                {
-                                                    item.dataList && item.dataList.map((dataItem,index)=> {
-                                                        return (
-                                                            <div key={dataItem.id}>
-                                                                {
-                                                                    resutlList(item,dataItem)
-                                                                }
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                        )
-                                    })
+                                    showSearch(searchList)
+
                                 }
                             </div>
                             <Button type="primary" onClick={handelSearch}>搜索</Button>

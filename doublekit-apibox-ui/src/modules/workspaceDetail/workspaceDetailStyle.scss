@@ -45,7 +45,18 @@
     width: 80px;
     height: 100%;
 
+    .ws-detail-left-nav-item-workspace{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        cursor: pointer;
+    }
 
+    .ws-detail-left-nav-icon{
+        width: 32px;
+        height: 32px;
+    }
 
     .ws-detail-left-nav-item{
         padding: 6px;

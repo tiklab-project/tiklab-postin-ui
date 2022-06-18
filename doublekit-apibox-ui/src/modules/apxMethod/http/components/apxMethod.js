@@ -12,26 +12,26 @@ import { ApiOutlined, RetweetOutlined, SnippetsOutlined } from '@ant-design/icon
 
 const ApxMethod = (props) =>  {
     const router = props.route.routes;
-    const [current, setCurrent] = useState('/workspacepage/apis/detail/interface');
+    const [current, setCurrent] = useState('/workspace/apis/detail/interface');
 
     const items = [
         {
             label: '接口',
-            key: '/workspacepage/apis/detail/interface',
+            key: '/workspace/apis/detail/interface',
             icon: <ApiOutlined />,
         },
         {
             label: '测试',
-            key: '/workspacepage/apis/detail/interface/test',
+            key: '/workspace/apis/detail/interface/test',
             icon: <RetweetOutlined />,
         },
         {
             label: '测试用例',
-            key: '/workspacepage/apis/detail/interface/testcase',
+            key: '/workspace/apis/detail/interface/testcase',
             icon: <RetweetOutlined />,
         },{
             label: 'Mock',
-            key: '/workspacepage/apis/detail/interface/mock',
+            key: '/workspace/apis/detail/interface/mock',
             icon: <SnippetsOutlined />,
         }
     ];
