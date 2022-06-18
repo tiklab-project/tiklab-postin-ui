@@ -97,7 +97,7 @@ export class WorkspaceStore {
 		if(res.code === 0 ) {
 			// this.findWorkspacePage(this.params);
 			this.findWorkspacePage(this.pageParams)
-			return res
+			return res.data
 		}
 	}
 

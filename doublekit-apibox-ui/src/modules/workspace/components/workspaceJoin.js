@@ -103,6 +103,19 @@ const WorkspaceJoin = (props) => {
 
     // 保存空间id到缓存
     const setLocalStorage = (workspaceId,id) => {
+        //点击api按钮时初始化api中tab页信息
+        const apiTabInfo = {
+            activeKey:0,
+            tabList:[
+                {
+                    name:"初始页",
+                    id:workspaceId,
+                    type:"list",
+                }
+            ]
+        }
+        sessionStorage.setItem("apiTabListInfo",JSON.stringify(apiTabInfo))
+
         localStorage.setItem("LEFT_MENU_SELECT","api");
 
         localStorage.setItem(workspaceId,id);

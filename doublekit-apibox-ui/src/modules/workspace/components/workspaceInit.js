@@ -16,8 +16,21 @@ const WorkspaceInit = (props) => {
     const onFinish = () => {
         form.validateFields().then((values)=>{
             values.user= {id:getUser().userId};
-            createWorkspace(values).then(res=>{
-                localStorage.setItem('workspaceId',res.data);
+            createWorkspace(values).then(id=>{
+                //点击api按钮时初始化api中tab页信息
+                const apiTabInfo = {
+                    activeKey:0,
+                    tabList:[
+                        {
+                            name:"初始页",
+                            id:id,
+                            type:"list",
+                        }
+                    ]
+                }
+                sessionStorage.setItem("apiTabListInfo",JSON.stringify(apiTabInfo))
+
+                localStorage.setItem('workspaceId',id);
                 props.history.push("/workspace")
             });
         })

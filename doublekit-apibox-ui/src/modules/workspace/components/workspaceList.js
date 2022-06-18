@@ -116,6 +116,19 @@ const WorkspaceList = (props) => {
 
     // 去往详情页
     const toDetail = (workspaceId) => {
+        //点击api按钮时初始化api中tab页信息
+        const apiTabInfo = {
+            activeKey:0,
+            tabList:[
+                {
+                    name:"初始页",
+                    id:workspaceId,
+                    type:"list",
+                }
+            ]
+        }
+        sessionStorage.setItem("apiTabListInfo",JSON.stringify(apiTabInfo))
+
         toWorkspaceDetail(workspaceId,userId,workspaceRecent)
         props.history.push('/workspace');
     }
