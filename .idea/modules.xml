@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/doublekit-apibox-ui.iml" filepath="$PROJECT_DIR$/.idea/doublekit-apibox-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/doublekit.iml" filepath="$PROJECT_DIR$/.idea/doublekit.iml" />
     </modules>
   </component>
 </project>
