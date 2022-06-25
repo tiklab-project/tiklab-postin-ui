@@ -9,11 +9,13 @@ import { Request, Response } from '../../index';
 import {Button, Select} from 'antd';
 import './apxMethod.scss'
 import MethodType from "../../../common/methodType";
+import Version from "../../../version/components";
+import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
 
 const {Option} = Select;
 
 const ApxMethodDetail = (props) => {
-    const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore } = props;
+    const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore ,pluginsStore} = props;
     const {findCategoryList} = categoryStore;
     const { findApxMethod,deleteApxMethod,findApxMethodListByApix,updateApxMethod} = apxMethodStore;
     const { findUserSelectPage,userSelectList } = userSelectStore;
@@ -36,7 +38,7 @@ const ApxMethodDetail = (props) => {
     const [updataUser, setUpdataUser] = useState("");
     const [executorId, setExecutorId] = useState("");
     const [category, setCategory] = useState("");
-    const [updateTime, setUpdateTime] = useState("");
+    const [createTime, setCreateTime] = useState("");
 
     useEffect(()=>{
         findApxMethod(apxMethodId).then((res)=>{
@@ -50,7 +52,7 @@ const ApxMethodDetail = (props) => {
             setUpdataUser(res.apix.updateUser?.name);
             setExecutorId(res.apix.executor?.id)
             setCategory(res.apix.category?.name);
-            setUpdateTime(res.apix.updateTime);
+            setCreateTime(res.apix.createTime);
         })
     },[editOk,apxMethodId]);
 
@@ -90,7 +92,6 @@ const ApxMethodDetail = (props) => {
 
         resData.apix.executor ={id:executor};
 
-
         updateApxMethod(resData).then(()=>{
             setExecutorId(executor)
 
@@ -121,8 +122,10 @@ const ApxMethodDetail = (props) => {
             <div className="apidetail-header-btn">
                 <div className={"method-name"}>{name}</div>
                  <div className={'apidetail-title-tool'}>
+                     {/*<Version {...props} />*/}
                      <Button className="important-btn" onClick={handleTest}>测试</Button>
-                     <ApxMethodEdit setEdit={setEdit} name="编辑" isBtn={'btn'}  type="edit" {...props}/>
+                     <PluginComponent point='version' pluginsStore={pluginsStore}  extraProps={{ history: props.history}}/>
+                     {/*<ApxMethodEdit setEdit={setEdit} name="编辑" isBtn={'btn'}  type="edit" {...props}/>*/}
                      <Button danger onClick={()=>handleDeleteApxMethod(apxMethodId)}>删除</Button>
                  </div>
             </div>
@@ -158,7 +161,7 @@ const ApxMethodDetail = (props) => {
                     <span className={"people-item "}>分组: {category}</span>
                     <span className={"people-item "}>创建人: {createUser}</span>
                     <span className={"people-item "}>更新者: {updataUser}</span>
-                    <span className={"people-item "}>更新时间: {updateTime}</span>
+                    <span className={"people-item "}>更新时间: {createTime}</span>
                 </div>
             </div>
             <div className="title ex-title">输入参数</div>
@@ -171,4 +174,4 @@ const ApxMethodDetail = (props) => {
     )
 }
 
-export default inject('apxMethodStore','categoryStore',"userSelectStore","apxMethodStatusStore")(observer(ApxMethodDetail));
+export default inject(PLUGIN_STORE,'apxMethodStore','categoryStore',"userSelectStore","apxMethodStatusStore")(observer(ApxMethodDetail));

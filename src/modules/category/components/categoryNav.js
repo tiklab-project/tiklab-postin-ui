@@ -9,7 +9,9 @@ import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
 //分类导航
 const CategoryNav = (props) => {
     const { categoryStore } = props;
-    const { findCategoryList, deleteCategory, categoryList } = categoryStore;
+    const { findCategoryList, deleteCategory,categoryList } = categoryStore;
+
+
     const [expandedTree, setExpandedTree] = useState([]);
     const [clickKey, setClickKey] = useState();
 
@@ -23,7 +25,6 @@ const CategoryNav = (props) => {
         setClickKey(item.id);
         setOpenOrClose(item.id);
         localStorage.setItem('categoryId',item.id);
-
 
         apiTabListInfoProcess(item,apiTabListInfo,"list")
 
@@ -42,7 +43,7 @@ const CategoryNav = (props) => {
 
 
     useEffect(() => {
-        findCategoryList(workspaceId);
+        findCategoryList(workspaceId)
     },[workspaceId])
 
     const isExpandedTree = (key) => {

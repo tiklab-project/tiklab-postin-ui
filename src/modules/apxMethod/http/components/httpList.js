@@ -18,7 +18,7 @@ const HttpList = (props) => {
             dataIndex: ["apix",'name'],
             width: '25%',
             render: (text,record) => (
-                <a onClick = {()=>setLocalStorage('apxMethodId',record.id)}>{text}</a>
+                <a onClick = {()=>setLocalStorage(record)}>{text}</a>
             )
         },
         {
@@ -30,7 +30,12 @@ const HttpList = (props) => {
         {
             title: '地址',
             dataIndex: 'path',
-            width: '25%',
+            width: '20%',
+        },
+        {
+            title: '时间',
+            dataIndex: ['apix','createTime'],
+            width: '10%',
         },
         {
             title: '状态',
@@ -43,7 +48,7 @@ const HttpList = (props) => {
         {
             title: '执行人',
             dataIndex: ['apix','executor','name'],
-            width: '15%',
+            width: '10%',
         },
         {
             title: '操作',
@@ -83,8 +88,8 @@ const HttpList = (props) => {
     const workspaceId = localStorage.getItem('workspaceId');
 
     //保存接口id，并跳往接口页面
-    const setLocalStorage = (apixId,id) => {
-        localStorage.setItem(apixId,id)
+    const setLocalStorage = (record) => {
+        localStorage.setItem("apxMethodId",record.id)
         props.history.push('/workspace/apis/detail/interface')
     }
 
@@ -154,6 +159,7 @@ const HttpList = (props) => {
                 dataSource={apxMethodList}
                 columns={columns}
                 rowKey={record => record.id}
+                pagination={false}
                 // pagination={{
                 //     current:currentPage,
                 //     pageSize:pageSize,

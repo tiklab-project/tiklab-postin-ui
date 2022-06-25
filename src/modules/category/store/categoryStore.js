@@ -26,7 +26,6 @@ export class CategoryStore{
 
         let res = await FindCategoryListTree(params)
         if(res.code === 0) {
-            this.categoryLength = res.data.length
             this.categoryList = res.data;
             return res.data;
         }

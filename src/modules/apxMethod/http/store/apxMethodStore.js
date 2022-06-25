@@ -48,6 +48,7 @@ export class ApxMethodStore {
         let param ={
             categoryId:id,
             protocolType:'http',
+            apiUid:null
         }
         const res = await findMethodListByApix(param);
         if(res.code === 0 ) {

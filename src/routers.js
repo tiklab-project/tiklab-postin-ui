@@ -26,6 +26,7 @@ import {
 
 import {Redirect} from "react-router";
 import {AuthResult} from "doublekit-eam-ui";
+import VersionCompare from "./modules/version/components/versionCompare";
 
 const routers =  [
     {
@@ -60,7 +61,10 @@ const routers =  [
         path: '/',
         key:'poroute',
         routes:[
-
+            // {
+            //     component: VersionCompare,
+            //     path: '/version',
+            // },
             {
                 path: "/home",
                 component: Home,

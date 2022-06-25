@@ -6,5 +6,6 @@ target/
 *.iml
 node_modules/
 plugins/
+plugin/
 es/
 dist/

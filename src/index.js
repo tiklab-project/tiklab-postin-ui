@@ -34,7 +34,7 @@ export const Entry = (props) => {
         allStore.systemRoleStore.getSystemPermissions(userInfo.userId);
     }
 
-    allStore.pluginsStore.initLoadPlugin(fetchMethod, pluginAddressUrl)
+    allStore.pluginsStore.initLoadPlugin(fetchMethod, pluginAddressUrl,plugin_base_url)
     allStore.pluginsStore.setProjectRouter(routers);
 
     return (

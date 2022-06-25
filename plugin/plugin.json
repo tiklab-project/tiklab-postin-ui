@@ -1,0 +1,55 @@
+{
+  "code": 0,
+  "data": {
+    "bundle": [
+      {
+        "name": "apibox-plugin",
+        "auth": "s",
+        "desc": "这是一个新增用户是我增强功能。",
+        "tag": [
+          "用户",
+          "导入",
+          "新增"
+        ],
+        "previewImgs": [
+          "https://img0.baidu.com/it/u=1165226539,2557398339&fm=26&fmt=auto",
+          "https://img2.baidu.com/it/u=4007240083,716495009&fm=26&fmt=auto"
+        ],
+        "extensions": [
+          {
+            "id": "version",
+            "point": "version",
+            "type": "function",
+            "version": "1.0.0",
+            "js": "/button/button.umd.js",
+            "css": "/button/button.css",
+            "extraProps": {
+              "history": "$history"
+            }
+          },
+          {
+            "id": "compare",
+            "point": "compare",
+            "type": "function",
+            "version": "1.0.0",
+            "js": "/compare/compare.umd.js",
+            "css": "/compare/compare.css",
+            "routers": [{
+              "mount": "/",
+              "menuTitle": "版本",
+              "router":"/version"
+            }]
+
+
+          },{
+            "id": "language_en",
+            "type": "language",
+            "country": "en",
+            "path": "language-en/language-en.json"
+          }
+        ]
+      }
+    ],
+    "ext": []
+  }
+}
