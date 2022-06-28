@@ -5,7 +5,7 @@ import {Search, SearchResult} from './integration/search';
 import {
     WorkspaceRole, WorkspacePrivilege, Workspace,WorkspaceRecent,
     WorkspaceCreate, WorkspaceJoin, WorkspaceInit, WorkspaceList,
-    DetailIndex, WorkspaceDetail,WorkspaceFollow
+    DetailIndex,WorkspaceFollow
 } from './workspace';
 
 import { Category } from "./category";
@@ -51,7 +51,7 @@ export {
     WorkspaceList,
 
     WorkspaceDetailLayout,LayoutApiContent,TabsPage,
-    DetailIndex, WorkspaceDetail,
+    DetailIndex,
     Category, ApxMethod, ApxMethodDetail,
 
     LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,WorkspaceDetailInitPage,

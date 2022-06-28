@@ -4,13 +4,13 @@
 
 import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from 'mobx-react';
-import ApxMethodEdit from './apxMethodEdit';
 import { Request, Response } from '../../index';
 import {Button, Select} from 'antd';
 import './apxMethod.scss'
 import MethodType from "../../../common/methodType";
-import Version from "../../../version/components";
 import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
+import EdiText from "react-editext";
+import EdiTextToggle from "../../../common/ediTextToggle";
 
 const {Option} = Select;
 
@@ -29,30 +29,18 @@ const ApxMethodDetail = (props) => {
 
 
     const [resData, setResData] = useState({});
-    const [name,setName]=useState("");
+    const [httpId, setHttpId] = useState();
     const [requestType,setRequestType] =useState("");
-    const [path, setPath] = useState("");
     const [status, setStatus] = useState("");
-    const [desc, setDesc] = useState("");
-    const [createUser, setCreateUser] = useState("");
-    const [updataUser, setUpdataUser] = useState("");
     const [executorId, setExecutorId] = useState("");
-    const [category, setCategory] = useState("");
-    const [createTime, setCreateTime] = useState("");
 
     useEffect(()=>{
         findApxMethod(apxMethodId).then((res)=>{
+            setHttpId(res.id)
             setResData(res)
             setRequestType(res.requestType);
-            setPath(res.path);
-            setName(res.apix.name);
             setStatus(res.apix.status?.id);
-            setDesc(res.apix.desc);
-            setCreateUser(res.apix.createUser?.name);
-            setUpdataUser(res.apix.updateUser?.name);
             setExecutorId(res.apix.executor?.id)
-            setCategory(res.apix.category?.name);
-            setCreateTime(res.apix.createTime);
         })
     },[editOk,apxMethodId]);
 
@@ -87,16 +75,6 @@ const ApxMethodDetail = (props) => {
         })
     }
 
-    //设置执行者
-    const selectExecutor = (executor) =>{
-
-        resData.apix.executor ={id:executor};
-
-        updateApxMethod(resData).then(()=>{
-            setExecutorId(executor)
-
-        });
-    }
 
     //渲染状态下拉框
     const showStatus = (data)=>{
@@ -105,35 +83,136 @@ const ApxMethodDetail = (props) => {
         })
     }
 
+    //设置执行者
+    const selectExecutor = (executor) =>{
+        let param = {
+            id:httpId,
+            apix:{
+                id:httpId,
+                executor:{id:executor}
+            }
+        }
+
+        updateApxMethod(param).then(()=>{
+            setExecutorId(executor)
+
+        });
+    }
+
+
     //设置状态
     const selectStatus = (statusId) =>{
+        let param = {
+            id:httpId,
+            apix:{
+                id:httpId,
+                status:{id:statusId}
+            }
+        }
 
-        resData.apix.status ={id:statusId};
-
-        updateApxMethod(resData).then(()=>{
+        updateApxMethod(param).then(()=>{
             setStatus(statusId)
         });
     }
 
+    //编辑名称
+    const editName = (value) => {
+        let param = {
+            id:httpId,
+            apix:{
+                id:httpId,
+                name:value,
+            }
+        }
+        updateApxMethod(param)
+    };
+
+    //编辑路径
+    const editPath = (value) => {
+        let param = {
+            id:httpId,
+            path:value,
+            apix:{
+                id:httpId,
+            }
+        }
+        updateApxMethod(param)
+    };
+
+    //编辑详情
+    const editDesc = (value) => {
+        let param = {
+            id:httpId,
+            apix:{
+                id:httpId,
+                desc:value
+            }
+        }
+        updateApxMethod(param)
+    };
 
 
     return(
         <Fragment>
             <div className="apidetail-header-btn">
-                <div className={"method-name"}>{name}</div>
+                <EdiTextToggle
+                    value={resData?.apix?.name}
+                    tabIndex={1}
+                    save={editName}
+                />
                  <div className={'apidetail-title-tool'}>
-                     {/*<Version {...props} />*/}
                      <Button className="important-btn" onClick={handleTest}>测试</Button>
                      <PluginComponent point='version' pluginsStore={pluginsStore}  extraProps={{ history: props.history}}/>
-                     {/*<ApxMethodEdit setEdit={setEdit} name="编辑" isBtn={'btn'}  type="edit" {...props}/>*/}
                      <Button danger onClick={()=>handleDeleteApxMethod(apxMethodId)}>删除</Button>
                  </div>
             </div>
             <div className={"method"}>
                 <div className={"method-info info-item"}>
                     <span className={"method-info-item "}><MethodType type={requestType} /></span>
-                    <span className={"method-info-item method-info-path"}>{path}</span>
-                    <span className={"method-info-item "}>
+                    <EdiText
+                        value={resData?.path}
+                        tabIndex={2}
+                        onSave={editPath}
+                        startEditingOnFocus
+                        submitOnUnfocus
+                        showButtonsOnHover
+                        viewProps={{ className: 'edit-api-title' }}
+                        editButtonClassName="ediText-edit"
+                        saveButtonClassName="ediText-save"
+                        cancelButtonClassName="ediText-cancel"
+                        editButtonContent={
+                            <svg className="icon" aria-hidden="true">
+                                <use xlinkHref= {`#icon-bianji1`} />
+                            </svg>
+                        }
+                        hideIcons
+                    />
+
+                </div>
+                <div className={"info-item"}>
+                    <span>描述:</span>
+                    <EdiText
+                        value={resData?.apix?.desc}
+                        tabIndex={3}
+                        onSave={editDesc}
+                        type={"textarea"}
+                        startEditingOnFocus
+                        submitOnUnfocus
+                        showButtonsOnHover
+                        viewProps={{ className: 'edit-api-title' }}
+                        editButtonClassName="ediText-edit"
+                        saveButtonClassName="ediText-save"
+                        cancelButtonClassName="ediText-cancel"
+                        editButtonContent={
+                            <svg className="icon" aria-hidden="true">
+                                <use xlinkHref= {`#icon-bianji1`} />
+                            </svg>
+                        }
+                        hideIcons
+                    />
+                </div>
+                <div className={"info-item"}>
+                    <span className={"method-info-item "}>状态 ：
                          <Select
                              style={{width:100}}
                              value={status}
@@ -145,7 +224,6 @@ const ApxMethodDetail = (props) => {
                         </Select>
                     </span>
                 </div>
-                <div className={"info-item"}><span>描述:</span>{desc}</div>
                 <div className={"info-item"}>
                     <span className={"people-item "}>执行者:
                         <Select
@@ -158,10 +236,11 @@ const ApxMethodDetail = (props) => {
                     </span>
                 </div>
                 <div className={"method-people-info"}>
-                    <span className={"people-item "}>分组: {category}</span>
-                    <span className={"people-item "}>创建人: {createUser}</span>
-                    <span className={"people-item "}>更新者: {updataUser}</span>
-                    <span className={"people-item "}>更新时间: {createTime}</span>
+                    <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
+                    <span className={"people-item "}>创建人: {resData?.apix?.createUser?.name}</span>
+                    <span className={"people-item "}>更新者: {resData?.apix?.updataUser?.name}</span>
+                    <span className={"people-item "}>创建时间: {resData?.apix?.createTime}</span>
+                    <span className={"people-item "}>更新时间: {resData?.apix?.updateTime}</span>
                 </div>
             </div>
             <div className="title ex-title">输入参数</div>

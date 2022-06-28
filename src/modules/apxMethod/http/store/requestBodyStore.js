@@ -9,6 +9,7 @@ export class RequestBodyStore {
     @observable requestbodyType = '';
     @observable apxMethodId = '';
     @observable requestBodyId = "";
+    @observable bodyType;
 
     @action
     findRequestBody = async (id) => {
@@ -21,7 +22,8 @@ export class RequestBodyStore {
         const res  = await findRequestBody(param);
         if( res.code === 0){
             this.requestbodyType = res.data?.bodyType;
-            return res.data?.bodyType;
+            this.bodyType = res.data?.bodyType;
+            return res.data;
         }
     }
 
@@ -35,7 +37,7 @@ export class RequestBodyStore {
 
     @action
 	updateRequestBody = async (values) => {
-        values.http = {id: this.apxMethodId,}
+        values.http = {id: this.apxMethodId}
         values.id= this.requestBodyId;
 
         await updateRequestBody(values);

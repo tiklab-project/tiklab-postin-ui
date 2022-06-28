@@ -36,7 +36,6 @@
             "css": "/compare/compare.css",
             "routers": [{
               "mount": "/",
-              "menuTitle": "版本",
               "router":"/version"
             }]
 

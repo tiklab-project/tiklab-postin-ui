@@ -36,6 +36,7 @@ import resources from "./common/language/resource";
 
      const newI18 = i18n.cloneInstance({ resources: resourcesLanguage });
 
+     console.log(routers)
 
      return(
          <I18nextProvider i18n={newI18}>

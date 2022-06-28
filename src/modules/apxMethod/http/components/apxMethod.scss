@@ -18,6 +18,34 @@
 
 }
 
+
+.edit-api-name{
+    padding:10px;
+    font-size:20px;
+    cursor: auto
+}
+
+.ediText-edit{
+    background: #fff;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.ediText-save{
+    display: none;
+}
+
+.ediText-cancel{
+    display: none;
+}
+
+.edit-api-title{
+    cursor: auto;
+}
+
+
+
 // apxMethod
 $backgroud-color: #fff;
 .method-header{
@@ -29,7 +57,7 @@ $backgroud-color: #fff;
 }
 
 .method-menu-box>.ant-menu-horizontal{
-    border-bottom:0px
+    border-bottom:0
 }
 
 .method-content{
@@ -48,6 +76,7 @@ $backgroud-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 0 0 25px;
 }
 
 .apidetail-title-tool{
@@ -102,6 +131,7 @@ $backgroud-color: #fff;
 
     .info-item{
         margin: 0 0 25px 0;
+        display: flex;
     }
 
     .method-people-info{
@@ -183,10 +213,21 @@ $backgroud-color: #fff;
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
     color:#0053ca;
 }
+.raw-box{
+    .ant-form-item{
+        margin: 0;
+    }
 
-.mock-textarea{
-    display: flex;
-    justify-content: flex-end;
+    .ant-select-selector{
+        border: none;
+    }
+
+    &-header{
+        display: flex;
+        background: #f3f3f3;
+        align-items: center;
+        padding: 5px;
+    }
 }
 
 .textArea-focus{
@@ -200,7 +241,7 @@ $backgroud-color: #fff;
 
 //
 .request-radio{
-    margin:10px 0 20px 0;
+    margin:5px 0 ;
 }
 
 //

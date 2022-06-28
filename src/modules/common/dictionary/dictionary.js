@@ -1,4 +1,13 @@
 
+export const requestTabDictionary = {
+    "header":"请求头",
+    "query":"查询参数",
+    "body":"请求体",
+    "pre":"前置脚本",
+    "after":"后置脚本"
+}
+
+
 export const methodDictionary = [
     "post",
     "get",
@@ -18,24 +27,15 @@ export const methodJsonDictionary = {
     "patch":"PATCH",
 }
 
-export const bodyTypeDictionary = [
-    {
-        "name":"none",
-        "value":"none"
-    },{
-        "name":"form-data",
-        "value":"formdata"
-    },{
-        "name":"x-www-form-urlencoded",
-        "value":"formUrlencoded"
-    },{
-        "name":"json",
-        "value":"json"
-    },{
-        "name":"raw",
-        "value":"raw"
-    }
-]
+export const bodyTypeDictionary ={
+    none:"none",
+    formdata:"form-data",
+    formUrlencoded:"x-www-form-urlencoded",
+    json:"json",
+    raw:"raw",
+    // binary:"binary"
+}
+
 
 export const bodyTypeJsonDictionary = {
     "none":"none",
@@ -49,23 +49,28 @@ export const bodyTypeJsonDictionary = {
 export const rawTypeDictionary = [
     {
         "name":"Text(text/plain)",
-        "value":"text/plain"
+        "value":"text/plain",
+        "key":"text"
     },
     {
         "name":"Json(application/json)",
-        "value":"application/json"
+        "value":"application/json",
+        "key":"json"
     },
     {
         "name":"Javascript(application/javascript)",
-        "value":"application/javascript"
+        "value":"application/javascript",
+        "key":"javascript"
     },
     {
         "name":"Xml(text/xml)",
-        "value":"text/xml"
+        "value":"text/xml",
+        "key":"xml"
     },
     {
         "name":"Html(text/html)",
-        "value":"text/html"
+        "value":"text/html",
+        "key":"html"
     },
 ]
 

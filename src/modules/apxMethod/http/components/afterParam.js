@@ -11,7 +11,7 @@ import { Input, Button, Form } from 'antd';
 
 const { TextArea } = Input;
 
-const BackParam = (props) => {
+const AfterScript = (props) => {
     const {afterParamStore }  = props;
     const {createAfterScript, updateAfterScript, findAfterScript, afterScriptInfo} = afterParamStore;
 
@@ -59,4 +59,4 @@ const BackParam = (props) => {
     )
 }
 
-export default inject(AFTERPARAM_STORE)(observer(BackParam));
+export default inject(AFTERPARAM_STORE)(observer(AfterScript));

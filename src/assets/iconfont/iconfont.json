@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "425606",
+      "name": "编辑",
+      "font_class": "bianji1",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "435893",
+      "name": "编辑",
+      "font_class": "bianji2",
+      "unicode": "e795",
+      "unicode_decimal": 59285
+    },
+    {
+      "icon_id": "7817213",
+      "name": "编辑",
+      "font_class": "bianji3",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
       "icon_id": "4319294",
       "name": "项目",
       "font_class": "xiangmu",

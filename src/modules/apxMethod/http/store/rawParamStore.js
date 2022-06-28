@@ -30,7 +30,7 @@ export class RawParamStore {
     createRawParam = async (values) => {
         values.http = {id:this.apxMethodId}
         values.id =  this.rawParamId;
-
+debugger
         await createRawParam(values);
     }
 
@@ -38,7 +38,7 @@ export class RawParamStore {
 	updateRawParam = async (values) => {
         values.http = {id: this.apxMethodId}
         values.id= this.rawParamId;
-
+debugger
 		await updateRawParam(values)
     }
     
