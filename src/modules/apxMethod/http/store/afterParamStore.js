@@ -30,7 +30,7 @@ export class AfterParamStore {
         values.http = {id: this.apxMethodId};
         values.id =  this.apxMethodId;
 
-        await createAfterScript(values);
+        return await createAfterScript(values);
     }
 
     @action
@@ -38,7 +38,7 @@ export class AfterParamStore {
         values.http = {id: this.apxMethodId};
         values.id= this.apxMethodId;
 
-		await updateAfterScript(values);
+		return await updateAfterScript(values);
     }
 }
 

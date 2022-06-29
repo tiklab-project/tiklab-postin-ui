@@ -3,16 +3,24 @@ import { observable,  action } from "mobx";
 
 export class RequestBodyTestStore {
     @observable bodyTypeInfo;
+    @observable bodyType;
 
     @action
-    getBodyType = (value) => {
-        this.bodyTypeInfo = value;
+    getBodyType = (type) => {
+        this.bodyTypeInfo = type;
+        this.bodyType = type;
     }
 
     @action
     setBodyType = () => {
         return this.bodyTypeInfo;
     }
+
+    @action
+    updateBodyType = (data) => {
+        this.bodyType  = data.bodyType
+    }
+
 }
 
 

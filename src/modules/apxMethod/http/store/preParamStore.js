@@ -27,7 +27,7 @@ export class PreParamStore {
         values.http = {id: this.apxMethodId};
         values.id =  this.apxMethodId;
 
-        await createPreScript(values);
+        return await createPreScript(values);
     }
 
     @action
@@ -35,7 +35,7 @@ export class PreParamStore {
         values.http = {id: this.apxMethodId}
         values.id = this.apxMethodId;
 
-        await updatePreScript(values);
+        return await updatePreScript(values);
     }
 }
 

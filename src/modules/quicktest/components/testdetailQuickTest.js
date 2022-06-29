@@ -4,7 +4,11 @@ import RequestTabQuickTest from "./requestTabQuickTest";
 import {inject, observer} from "mobx-react";
 import {sendTestDataProcess} from "../../apitest/common/sendTestCommon";
 import ResponseQuickTest from "./responseQuickTest";
-import {methodDictionary, methodJsonDictionary} from "../../common/dictionary/dictionary";
+import {
+    methodDictionary,
+    methodJsonDictionary,
+    bodyTypeJsonDictionary as bodyTypeJsonDic
+} from "../../common/dictionary/dictionary";
 import {
     processFormParamData,
     processFormUrlencodedData,
@@ -52,6 +56,7 @@ const TestdetailQuickTest = (props) =>{
     useEffect(()=>{
         if(instanceId!=="-1"){
             findInstance(instanceId).then(res=>{
+                debugger
                 let request = res.requestInstance;
                 let resInstance = res.responseInstance;
                 getInstance(res,resInstance);
@@ -65,28 +70,30 @@ const TestdetailQuickTest = (props) =>{
                 getRequestHeaderTestList(processHeaderData(request.headers));
                 getQueryParamTestList(processQueryData(request.url));
 
-                getMediaType(request?.mediaType)
-                switch (bodyType){
-                    case "formdata":
+                let type = getMediaType(request?.mediaType)
+                switch (type){
+                    case bodyTypeJsonDic.none:
+                        break;
+                    case bodyTypeJsonDic.formdata:
 
                         getFormParamTestList(processFormParamData(res.formParamCaseList));
                         break;
-                    case "formUrlencoded":
+                    case bodyTypeJsonDic.formUrlencoded:
                         getFormUrlencodedTestList(processFormUrlencodedData(res.formUrlencodedCaseList));
                         break;
-                    case "json":
+                    case bodyTypeJsonDic.json:
                         getJsonParamTestList(res.jsonParamCaseList);
                         break;
-                    case "raw":
+                    case bodyTypeJsonDic.raw:
                         let rawInfo = {
                             raw:request?.body,
 
                         }
                         getRawInfo(rawInfo)
                         break;
-                    case "binary":
+                    // case bodyTypeJsonDic.binary:
                         //问题
-                        break;
+                        // break;
                     default:
                         break;
                 }

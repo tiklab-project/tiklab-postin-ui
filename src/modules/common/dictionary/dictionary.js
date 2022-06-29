@@ -27,6 +27,7 @@ export const methodJsonDictionary = {
     "patch":"PATCH",
 }
 
+//body中radio渲染使用
 export const bodyTypeDictionary ={
     none:"none",
     formdata:"form-data",

@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import { Button, Form, Select} from 'antd';
 import {rawTypeDictionary} from "../../../common/dictionary/dictionary";
@@ -15,26 +15,32 @@ const RawParam = (props) => {
         findRawParam,
     } = rawParamStore;
 
-
-    // const [type, setType] = useState("text/plain");
-    const [mediaType, setMediaType] = useState("text/plain");
-    const [rawData, setRawData] = useState();
+    //获取当前文本数据
+    const ediTextRef = useRef(null);
+    //获取当前的raw的数据
+    const rawDataRef = useRef(null);
+    //获取当前raw中的类型
+    const typeRef =  useRef("text/plain")
+    //用于传入codemirror中的类型，直接通过typeRef.current无法传入
+    const [typeValue, setTypeValue] = useState(typeRef.current);
 
     const [form] = Form.useForm();
 
     const  apxMethodId =localStorage.getItem('apxMethodId');
     useEffect(()=>{
+
         findRawParam(apxMethodId).then((res)=>{
             if(res){
-                setRawData(res)
-                setMediaType(res.type)
+                rawDataRef.current = res
+                typeRef.current=res.type
+                setTypeValue(typeRef.current)
                 form.setFieldsValue({
                     raw: res.raw,
                     type:res.type
                 })
             }
         })
-    },[])
+    },[apxMethodId])
 
     const showSelectItem = (data)=>{
         return data&&data.map(item=>{
@@ -42,8 +48,32 @@ const RawParam = (props) => {
         })
     }
 
+    //更改raw中的类型
     const changeType = (type)=>{
-        setMediaType(type)
+        typeRef.current=type
+        setTypeValue(typeRef.current)
+        blurFn()
+    }
+
+    //失去焦点，获取更改raw中类型执行
+    const blurFn = ()=>{
+        //获取EdiText文本数据
+        let text = ediTextRef.current.editor.getValue()
+        //获取raw中type类型
+        let type = typeRef.current
+
+        let param = {
+            raw:text,
+            type:type
+        }
+
+        if(rawDataRef.current){
+            updateRawParam(param)
+        }else {
+            if(!text) return
+
+            createRawParam(param)
+        }
     }
 
     return (
@@ -65,14 +95,11 @@ const RawParam = (props) => {
                 </div>
 
                 <Form.Item  name='raw'>
-                    {
-                        mediaType&&<CodeMirror
-                            mediaType={mediaType}
-                            rawData={rawData}
-                            createFn={createRawParam}
-                            updateFn={updateRawParam}
-                        />
-                    }
+                    <CodeMirror
+                        mediaType={typeValue}
+                        blurFn={blurFn}
+                        ediTextRef={ediTextRef}
+                    />
                 </Form.Item>
 
             </Form>

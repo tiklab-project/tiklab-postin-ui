@@ -4,59 +4,68 @@
  * @LastEditTime: 2021-05-08 18:03:26
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
-import { toJS } from 'mobx'
 import { PREPARAM_STORE } from '../store/preParamStore';
-import { Input, Button, Form } from 'antd';
-const { TextArea } = Input;
+import { Form } from 'antd';
+import CodeMirror from "../../../common/codeMirror";
+
 
 const PreParam = (props) => {
     const { preParamStore }  = props;
-    const {createPreScript, updatePreScript, findPreScript, preScriptInfo} = preParamStore;
+    const {createPreScript, updatePreScript, findPreScript} = preParamStore;
 
-    const [focus, setFocus] = useState(false);
+    const ediTextRef = useRef(null);
+    const rawDataRef = useRef(null);
     const [form] = Form.useForm();
 
     const apxMethodId =localStorage.getItem('apxMethodId') ;
 
     useEffect(()=>{
         findPreScript(apxMethodId).then((res)=>{
+            if(!res ) return
+
+            rawDataRef.current=res
             form.setFieldsValue({
                 scriptex: res.scriptex,
             })
         })
-    },[])
+    },[apxMethodId])
 
-    //提交数据
-    const onFinish = (values) => {
-        if(preScriptInfo){
-            updatePreScript(values)
+
+    const blurFn = () =>{
+        //获取EdiText文本数据
+        let text = ediTextRef.current.editor.getValue()
+
+        let param = {scriptex:text}
+
+        if(rawDataRef.current){
+            updatePreScript(param)
         }else{
-            createPreScript(values)
+            if(!text) return
+
+            createPreScript(param).then((res)=>{
+                if(res.code!==0) return
+
+                findPreScript(apxMethodId).then(res=>{
+                    if(!res ) return
+
+                    rawDataRef.current=res
+                })
+            })
         }
-        setFocus(false)
     }
 
+
     return (
-        <Form
-            form={form}
-            onFinish={onFinish}
-        >
-            <div className={` ${focus === true ? 'textArea-focus' : 'textArea-blur'}`}>
-                <div className='mock-textarea'>
-                    <Form.Item>
-                        <Button>格式化</Button>
-                        <Button  htmlType="submit" >保存</Button> 
-                    </Form.Item>
-                </div>
-            </div>
-            <Form.Item
-                name='scriptex'
-            >
-                <TextArea autoSize={{minRows: 4, maxRows: 10 }} onFocus={()=>setFocus(true)}/>
+        <Form form={form} >
+            <Form.Item name='scriptex'>
+                <CodeMirror
+                    mediaType={"application/javascript"}
+                    blurFn={blurFn}
+                    ediTextRef={ediTextRef}
+                />
             </Form.Item>
-            
         </Form>
     )
 }

@@ -5,10 +5,10 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Request, Response } from '../../index';
-import {Button, Select} from 'antd';
+import {Button, Select, Space} from 'antd';
 import './apxMethod.scss'
 import MethodType from "../../../common/methodType";
-import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
+import { RemoteUmdComponent, useSelector} from 'doublekit-plugin-ui'
 import EdiText from "react-editext";
 import EdiTextToggle from "../../../common/ediTextToggle";
 
@@ -21,8 +21,6 @@ const ApxMethodDetail = (props) => {
     const { findUserSelectPage,userSelectList } = userSelectStore;
     const {findApiStatusList,apiStatusSourceList} = apxMethodStatusStore;
 
-    const [editOk, setEdit] = useState(false);
-
     const workspaceId = localStorage.getItem('workspaceId');
     const categoryId = localStorage.getItem('categoryId');
     const apxMethodId = localStorage.getItem('apxMethodId');
@@ -34,6 +32,8 @@ const ApxMethodDetail = (props) => {
     const [status, setStatus] = useState("");
     const [executorId, setExecutorId] = useState("");
 
+    const pluginStore = useSelector(store => store.pluginStore)
+
     useEffect(()=>{
         findApxMethod(apxMethodId).then((res)=>{
             setHttpId(res.id)
@@ -42,7 +42,7 @@ const ApxMethodDetail = (props) => {
             setStatus(res.apix.status?.id);
             setExecutorId(res.apix.executor?.id)
         })
-    },[editOk,apxMethodId]);
+    },[apxMethodId]);
 
     useEffect(()=>{
         findUserSelectPage(workspaceId)
@@ -160,11 +160,16 @@ const ApxMethodDetail = (props) => {
                     tabIndex={1}
                     save={editName}
                 />
-                 <div className={'apidetail-title-tool'}>
+                 <Space >
                      <Button className="important-btn" onClick={handleTest}>测试</Button>
-                     <PluginComponent point='version' pluginsStore={pluginsStore}  extraProps={{ history: props.history}}/>
+                     <RemoteUmdComponent
+                         point='version'
+                         pluginStore={pluginStore}
+                         extraProps={{ history: props.history}}
+                     />
                      <Button danger onClick={()=>handleDeleteApxMethod(apxMethodId)}>删除</Button>
-                 </div>
+                 </Space>
+
             </div>
             <div className={"method"}>
                 <div className={"method-info info-item"}>
@@ -253,4 +258,9 @@ const ApxMethodDetail = (props) => {
     )
 }
 
-export default inject(PLUGIN_STORE,'apxMethodStore','categoryStore',"userSelectStore","apxMethodStatusStore")(observer(ApxMethodDetail));
+export default inject(
+    'apxMethodStore',
+    'categoryStore',
+    "userSelectStore",
+    "apxMethodStatusStore"
+)(observer(ApxMethodDetail));

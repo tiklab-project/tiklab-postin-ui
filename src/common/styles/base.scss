@@ -93,8 +93,14 @@ $blue-main: #0053ca;
 
 // 表头设置
 .ant-table-thead>tr .ant-table-cell{
-    background: #e6edfa;
+    background: #f3f3f3;
     font-weight: 600;
+    padding: 10px;
+}
+
+//表格体单元格
+.ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
+    padding: 8px !important;
 }
 
 .ant-table-tbody .ant-table-cell{
@@ -104,10 +110,6 @@ $blue-main: #0053ca;
 //表格头单元格
 .ant-table-thead>tr>th{
     padding: 12px;
-}
-//表格体单元格
-.ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-    padding: 6px;
 }
 
 table{

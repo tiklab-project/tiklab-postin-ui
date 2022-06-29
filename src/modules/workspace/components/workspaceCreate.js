@@ -8,14 +8,14 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import { Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
-import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
+import { RemoteUmdComponent, useSelector} from 'doublekit-plugin-ui'
 import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui";
 import BreadcrumbEx from "../../common/breadcrumbEx";
 import {toWorkspaceDetail} from "../common/workspaceFn";
 
 const WorkspaceCreate = (props) => {
-    const { workspaceStore,pluginsStore,workspaceRecentStore } = props;
+    const { workspaceStore,workspaceRecentStore } = props;
 
     const {
         findWorkspacePage,
@@ -25,6 +25,8 @@ const WorkspaceCreate = (props) => {
     } = workspaceStore;
 
     const {workspaceRecent}=workspaceRecentStore;
+
+    const pluginStore = useSelector(store => store.pluginStore)
 
     const { t } = useTranslation();
 
@@ -71,14 +73,13 @@ const WorkspaceCreate = (props) => {
                         <a href="#" style={{color:'red'}}>{t('delete')}</a>
                     </Popconfirm>
 
-                    <PluginComponent point='export' pluginsStore={pluginsStore}/>
+                    <RemoteUmdComponent point='export' pluginStore={pluginStore}/>
                 </Space>
             ),
         },
     ]
 
      const userId = getUser().userId;
-    const [ pluginLength, setPluginLength ] = useState()
     const [pageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(1);
     const [params, setParams] = useState({
@@ -94,11 +95,7 @@ const WorkspaceCreate = (props) => {
         findWorkspacePage(param)
     },[userId,params])
 
-    useEffect(()=>{
-        const pluginComConfig = new PluginFun({pluginsStore}, "import", {});
-        const plug = pluginComConfig.getPlugins();
-        setPluginLength(plug.length)
-    },[])
+
 
     // 保存空间id到缓存
     const setLocalStorage = (workspaceId) => {
@@ -159,9 +156,8 @@ const WorkspaceCreate = (props) => {
                         style={{ width: 200 }}
                         userId={userId}
                     />
-                    {
-                        pluginLength && pluginLength>0 ? <PluginComponent point='import' pluginsStore={pluginsStore}/> : <Button disabled>导入</Button>
-                    }
+                    <RemoteUmdComponent point='import' pluginStore={pluginStore}/>
+
                 </div>
                 <Input
                     placeholder={`${t('searchWorkspace')}`}
@@ -187,4 +183,4 @@ const WorkspaceCreate = (props) => {
     )
 }
 
-export default inject('workspaceStore',PLUGIN_STORE,"workspaceFollowStore","workspaceRecentStore")(observer(WorkspaceCreate));
+export default inject('workspaceStore',"workspaceFollowStore","workspaceRecentStore")(observer(WorkspaceCreate));

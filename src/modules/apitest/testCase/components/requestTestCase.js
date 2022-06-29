@@ -65,8 +65,10 @@ const TestCaseRequest = (props) => {
     }
 
     const showRadioItem = (data)=>{
-        return data&& data.map(item=>{
-            return <Radio value={item.value} key={item.value}>{item.name}</Radio>
+        let arr = Object.keys(data)
+
+        return arr.map(item=>{
+            return <Radio value={item} key={item}>{data[item]}</Radio>
         })
     }
 

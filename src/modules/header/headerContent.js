@@ -17,7 +17,7 @@ const HeaderContent = props => {
     const {logout} = props;
 
     const { i18n } = useTranslation();
-    const [languageData, setLanguageData] = useState(i18n.languages);
+    const [languageData, setLanguageData] = useState([]);
 
     let userInfo = getUser();
 
@@ -142,7 +142,6 @@ const HeaderContent = props => {
                         <div className={"header-right-item"}>
                             {version()}
                         </div>
-
 
                         {
                             props.isSignIn&&!userInfo.ticket

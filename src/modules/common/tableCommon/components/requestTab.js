@@ -16,9 +16,11 @@ const RequestTab = (props) =>{
         return arr.map(item=>{
             return(
                 <TabPane tab={data[item]} key={item} >
-                    {
-                        showTabPaneComponent(item)
-                    }
+                    <div className={"tabPane-item-box"}>
+                        {
+                            showTabPaneComponent(item)
+                        }
+                    </div>
                 </TabPane>
             )
         })
@@ -36,6 +38,8 @@ const RequestTab = (props) =>{
             case "pre":
                 return props.pre
             case "after":
+                return props.after
+            case "assert":
                 return props.after
         }
     }

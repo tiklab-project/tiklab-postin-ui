@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import RawParamCommon from "../../../common/tableCommon/components/rawParamCommon";
 import {Form} from "antd";
 
-const TestRawParam = (props) => {
+const RawParamTest = (props) => {
     const { rawParamTestStore, bodyType }  = props;
     const {getRawInfo,setRawInfo} = rawParamTestStore;
     const [form] = Form.useForm();
@@ -29,4 +29,4 @@ const TestRawParam = (props) => {
     )
 }
 
-export default inject('rawParamTestStore')(observer(TestRawParam));
+export default inject('rawParamTestStore')(observer(RawParamTest));

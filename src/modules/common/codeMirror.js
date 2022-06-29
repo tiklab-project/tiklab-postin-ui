@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from "react";
-import { UnControlled as ReactCodeMirror } from 'react-codemirror2';
+import React, {useImperativeHandle, useRef} from "react";
+import {UnControlled as ReactCodeMirror} from 'react-codemirror2';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/lib/codemirror.js';
@@ -20,32 +20,12 @@ import 'codemirror/mode/xml/xml';
 // import 'codemirror/addon/display/fullscreen.js';
 
 const CodeMirror = (props) => {
-    const { value,mediaType,rawData,updateFn,createFn} = props;
+    const { value,mediaType,blurFn,ediTextRef} = props;
 
-
-    const ediTextRef = useRef(null)
-
-
-    console.log("tttt----",mediaType,rawData)
+    console.log(mediaType)
 
     const onBlur = ()=>{
-        let text =  ediTextRef.current.editor.getValue();
-
-        if(!text){
-            return
-        }
-
-        let param = {
-            raw:text,
-            type:mediaType
-        }
-
-        if(rawData ===null){
-            createFn(param)
-        }else {
-            updateFn(param)
-        }
-
+        blurFn()
     }
 
     return (

@@ -3,7 +3,7 @@ import { observer, inject } from "mobx-react";
 import JsonTableCommon from "../../../common/tableCommon/components/jsonTableCommon";
 
 // 请求参数的可编辑表格组件
-const TestJsonParam = (props) => {
+const JsonParamTest = (props) => {
     const { jsonParamTestStore, bodyType } = props;
 
     const {
@@ -30,4 +30,4 @@ const TestJsonParam = (props) => {
     );
 }
 
-export default inject('jsonParamTestStore')(observer(TestJsonParam));
+export default inject('jsonParamTestStore')(observer(JsonParamTest));
