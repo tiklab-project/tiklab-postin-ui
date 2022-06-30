@@ -35,11 +35,9 @@
             "js": "/compare/compare.umd.js",
             "css": "/compare/compare.css",
             "routers": [{
-              "mount": "/",
-              "router":"/version"
+              "mount": "",
+              "router":"version"
             }]
-
-
           },{
             "id": "language_en",
             "type": "language",

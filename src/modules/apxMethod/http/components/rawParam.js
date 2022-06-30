@@ -72,7 +72,12 @@ const RawParam = (props) => {
         }else {
             if(!text) return
 
-            createRawParam(param)
+            createRawParam(param).then(res=>{
+                findRawParam(apxMethodId).then((res)=>{
+                    if(!res) return
+                    rawDataRef.current = res
+                })
+            })
         }
     }
 
@@ -101,7 +106,6 @@ const RawParam = (props) => {
                         ediTextRef={ediTextRef}
                     />
                 </Form.Item>
-
             </Form>
 
         </div>

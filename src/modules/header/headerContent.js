@@ -17,7 +17,7 @@ const HeaderContent = props => {
     const {logout} = props;
 
     const { i18n } = useTranslation();
-    const [languageData, setLanguageData] = useState([]);
+    const [languageData, setLanguageData] = useState(i18n.languages);
 
     let userInfo = getUser();
 

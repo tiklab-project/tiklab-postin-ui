@@ -1,18 +1,19 @@
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import RawParamCommon from "../../../common/tableCommon/components/rawParamCommon";
 import {Form} from "antd";
 
 const RawParamTest = (props) => {
     const { rawParamTestStore, bodyType }  = props;
-    const {getRawInfo,setRawInfo} = rawParamTestStore;
+    const {getRawInfo,setRawInfo,rawParamTestInfo} = rawParamTestStore;
+
     const [form] = Form.useForm();
-
-
 
     useEffect(()=>{
         setRawInfo().then(res=>{
+            if(!res) return
+
             form.setFieldsValue({
                 raw: res.raw,
                 type:res.type
@@ -22,9 +23,11 @@ const RawParamTest = (props) => {
 
     return (
         <RawParamCommon
-            getInfo={getRawInfo}
-            setInfo={setRawInfo}
             form={form}
+            dataSource={rawParamTestInfo}
+            type={rawParamTestInfo?.type}
+            updateFn={getRawInfo}
+            online={false}
         />
     )
 }

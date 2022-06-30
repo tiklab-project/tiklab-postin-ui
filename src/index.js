@@ -16,11 +16,12 @@ import { stores } from './stores';
 import routers from './routers';
 import {useVersion} from "doublekit-eam-ui";
 import resources from "./common/language/resource";
-import {renderRoutes} from "react-router-config";
 import App from "./app";
-
+import {useTranslation} from "react-i18next";
 
 export const Entry = (props) => {
+
+    const {i18n,t} = useTranslation();
 
     let allStore = {
         ...stores,
@@ -29,16 +30,19 @@ export const Entry = (props) => {
         ...messageModuleStores,
     }
 
+    const [viable,setViable] = useState(false);
+
     const [pluginData,setPluginData] = useState({
         routes:routers,
-        languages:resources,
         pluginStore:[],
         languageStore:[]
     });
 
+
     useEffect(() => {
-        initFetch('post', routers, resources).then(res => {
+        initFetch('post', routers, resources,i18n).then(res => {
             setPluginData(res)
+            setViable(true)
         })
     }, []);
 
@@ -51,6 +55,11 @@ export const Entry = (props) => {
         allStore.systemRoleStore.getSystemPermissions(userInfo.userId);
     }
 
+
+    if (!viable) {
+        return <div>加载中</div>
+    }
+    console.log(i18n)
     return (
         <PluginProvider store={pluginData}>
             <Provider {...allStore} >

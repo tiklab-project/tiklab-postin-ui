@@ -4,7 +4,8 @@ export const requestTabDictionary = {
     "query":"查询参数",
     "body":"请求体",
     "pre":"前置脚本",
-    "after":"后置脚本"
+    "after":"后置脚本",
+    "assert":"断言"
 }
 
 

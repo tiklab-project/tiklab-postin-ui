@@ -14,6 +14,9 @@ const RequestTab = (props) =>{
         let arr = Object.keys(data)
 
         return arr.map(item=>{
+            //如果没有传进来的assert组件，并且当前item是asset，直接返回null
+            if(!props.assert&&item==="assert") return null
+
             return(
                 <TabPane tab={data[item]} key={item} >
                     <div className={"tabPane-item-box"}>
@@ -40,7 +43,7 @@ const RequestTab = (props) =>{
             case "after":
                 return props.after
             case "assert":
-                return props.after
+                return props.assert
         }
     }
 

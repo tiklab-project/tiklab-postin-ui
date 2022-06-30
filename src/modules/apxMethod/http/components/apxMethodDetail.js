@@ -216,7 +216,8 @@ const ApxMethodDetail = (props) => {
                         hideIcons
                     />
                 </div>
-                <div className={"info-item"}>
+                <Space>
+                    <div className={"info-item"}>
                     <span className={"method-info-item "}>状态 ：
                          <Select
                              style={{width:100}}
@@ -228,8 +229,8 @@ const ApxMethodDetail = (props) => {
                              }
                         </Select>
                     </span>
-                </div>
-                <div className={"info-item"}>
+                    </div>
+                    <div className={"info-item"}>
                     <span className={"people-item "}>执行者:
                         <Select
                             style={{width:100}}
@@ -239,7 +240,9 @@ const ApxMethodDetail = (props) => {
                             {showExecutor(userSelectList)}
                         </Select>
                     </span>
-                </div>
+                    </div>
+                </Space>
+
                 <div className={"method-people-info"}>
                     <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
                     <span className={"people-item "}>创建人: {resData?.apix?.createUser?.name}</span>
