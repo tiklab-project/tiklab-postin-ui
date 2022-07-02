@@ -50,7 +50,7 @@ const MockRequest = (props) => {
      
     return(
         <Fragment>
-            <Tabs defaultActiveKey="1" type="card">
+            <Tabs defaultActiveKey="1" >
                 <TabPane tab="请求头部" key="1">
                     <MockRequestHeader />
                 </TabPane>

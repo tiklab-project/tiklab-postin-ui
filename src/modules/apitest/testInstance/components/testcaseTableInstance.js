@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from "react";
 import InstanceDetail from "./instanceDetail";
 import {inject, observer} from "mobx-react";
+import {getUser} from "doublekit-core-ui";
 
 const TestcaseTableInstance = (props) =>{
     const {testcaseId,instanceStore} = props;
@@ -9,8 +10,14 @@ const TestcaseTableInstance = (props) =>{
     const [instanceId, setInstanceId] = useState("");
     const [result, setResult] = useState("");
 
-    // useEffect(()=>{
-        findInstanceList(testcaseId).then(res=>{
+    const userId = getUser().userId;
+
+    let params={
+        "httpCaseId":testcaseId,
+        "userId":userId,
+    }
+    useEffect(()=>{
+        findInstanceList(params).then(res=>{
             if(res.length>0){
                 setInstanceId(res[0]?.id);
                 setResult(res[0]?.result===1?"成功":"失败")
@@ -18,7 +25,7 @@ const TestcaseTableInstance = (props) =>{
                 setResult("暂无测试")
             }
         })
-    // },[testcaseId])
+    },[testcaseId])
 
     return(
         <>

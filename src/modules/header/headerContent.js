@@ -118,37 +118,35 @@ const HeaderContent = props => {
                                 </div>
                             </div>
                         </div>
-                        <div className={"header-right-item"}>
-                            <div className={"toggle-hover"}>
-                                <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
-                                    <use xlinkHref= {`#icon-user__easyico`} />
-                                </svg>
-                                <div className={"toggle-hidden-box header-user-box"}>
-                                    <div className={"user-detail-box"}>
-                                        <div className={"user-detail-item  user-detail-item-icon"}>
-                                            <svg className="user-header-icon" aria-hidden="true">
-                                                <use xlinkHref= {`#icon-user__easyico`} />
-                                            </svg>
-                                        </div>
-                                        <div className={"user-detail-item"}>
-                                            <div className={"user-detail-item-name"}>{userInfo.name}</div>
-                                            <div>{userInfo.email}</div>
-                                        </div>
-                                    </div>
-                                    <div className={"user-hidden-item"} onClick={logout}>退出登录</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={"header-right-item"}>
-                            {version()}
-                        </div>
-
                         {
                             props.isSignIn&&!userInfo.ticket
                                 ? props.isSignIn
-                                :null
+                                :<div className={"header-right-item"}>
+                                    <div className={"toggle-hover"}>
+                                        <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
+                                            <use xlinkHref= {`#icon-user__easyico`} />
+                                        </svg>
+                                        <div className={"toggle-hidden-box header-user-box"}>
+                                            <div className={"user-detail-box"}>
+                                                <div className={"user-detail-item  user-detail-item-icon"}>
+                                                    <svg className="user-header-icon" aria-hidden="true">
+                                                        <use xlinkHref= {`#icon-user__easyico`} />
+                                                    </svg>
+                                                </div>
+                                                <div className={"user-detail-item"}>
+                                                    <div className={"user-detail-item-name"}>{userInfo.name}</div>
+                                                    <div>{userInfo.email}</div>
+                                                </div>
+                                            </div>
+                                            <div className={"user-hidden-item"} onClick={logout}>退出登录</div>
+                                        </div>
+                                    </div>
+                                </div>
                         }
 
+                        <div className={"header-right-item"}>
+                            {version()}
+                        </div>
                     </div>
                 </div>
                 {ModalComponent}

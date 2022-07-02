@@ -3,6 +3,7 @@ import {Tabs} from "antd";
 import {renderRoutes} from "react-router-config";
 import ApxMethodEdit from "../apxMethod/http/components/apxMethodEdit";
 import {inject, observer} from "mobx-react";
+import EnvSelect from "../sysmgr/environment/components/envSelect";
 const { TabPane } = Tabs;
 
 const TabsPage = (props) =>{
@@ -99,6 +100,8 @@ const TabsPage = (props) =>{
                 onEdit={onEdit}
                 addIcon={<ApxMethodEdit name={"+"} type={"add"} {...props}/>}
                 onTabClick={changeTabPane}
+
+                tabBarExtraContent={<EnvSelect {...props}/>}
             >
                 {
                     showTabPaneView(apiTabListInfo)

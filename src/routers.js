@@ -4,13 +4,13 @@ import React from 'react'
 import {Directory} from 'doublekit-user-ui';
 import {Licence} from "doublekit-licence-ui";
 import {PluginDetail} from "doublekit-plugin-ui";
+import PortalHeader from "./modules/header/portalHeader"
 
 import {
-    PortalHeader,
     Home, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege, Workspace, WorkspaceCreate, WorkspaceJoin, WorkspaceInit,
-    WorkspaceList, WorkspaceRecent, RecentBrowing, WorkspaceDetailLayout,
+    WorkspaceList, WorkspaceRecent, WorkspaceDetailLayout,
     LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest, TestdetailQuickTest, WorkspaceDetailInitPage,
     Category, ApxMethod, ApxMethodDetail,
 
@@ -50,12 +50,7 @@ const routers =  [
         component:AuthResult,
         key:"auth_result",
         exact: true,
-    },
-    {
-        component: PortalHeader,
-        path: '/pluginfull',
-    },
-    {
+    },{
         component: PortalHeader,
         path: '/',
         key:'poroute',

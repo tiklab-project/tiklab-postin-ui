@@ -13,7 +13,7 @@ const WorkspaceRecentHome = (props) =>{
 
     const columns = [
         {
-            title:"空间名",
+            title:"空间名称",
             dataIndex:["workspace","workspaceName"],
             key: 'name',
             width:"30%",

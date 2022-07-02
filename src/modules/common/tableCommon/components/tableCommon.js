@@ -4,7 +4,7 @@
  */
 import React, {useEffect, useState, useRef, useContext} from 'react';
 import {Form, Input, Table} from "antd";
-import "./commonStyle.scss"
+import "./tableCommonStyle.scss"
 
 
 // 共享父组件的值

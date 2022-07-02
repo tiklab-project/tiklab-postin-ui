@@ -16,7 +16,7 @@ const InstanceDetail = (props) => {
 
     const [requestInstance,setRequestInstance]=useState({})
     const [testNo, setTestNo] = useState();
-    const [requestType, setRequestType] = useState("");
+    const [methodType, setMethodType] = useState("");
     const [statusCode, setStatusCode] = useState("");
     const [result, setResult] = useState();
     const [testTime, setTestTime] = useState();
@@ -25,7 +25,6 @@ const InstanceDetail = (props) => {
     const showModal = () => {
         findInstance(instanceId).then((res)=>{
             setTestNo(testNo)
-            setRequestType(res.requestType);
             setStatusCode(res.statusCode);
             setResult(res.result)
             setRequestInstance(res.requestInstance);
@@ -51,11 +50,11 @@ const InstanceDetail = (props) => {
             >
                 <div>
                     <span>请求地址:  </span>
-                    <span>{requestInstance.requestBase}</span>
+                    <span>{requestInstance?.url}</span>
                 </div>
                 <div>
                     <span>请求方式:  </span>
-                    <span>{requestType}</span>
+                    <span>{requestInstance?.methodType}</span>
                 </div>
                 <div>
                     <span>状态码:  </span>

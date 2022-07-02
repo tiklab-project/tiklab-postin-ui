@@ -83,7 +83,7 @@ const MockDetail = (props) =>{
             </Form.Item>
         </Form>
         <div className='title ex-title'>期望输入参数 </div>
-        <MockRequest {...props}></MockRequest>
+        <MockRequest {...props} />
         <div className='title ex-title'>预期输出结果</div>
         <Form
             form={form}
@@ -104,7 +104,7 @@ const MockDetail = (props) =>{
                 </Select>
             </Form.Item>
         </Form>
-        <MockResponse  {...props}></MockResponse>
+        <MockResponse  {...props}/>
         </>
     )
 

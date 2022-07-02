@@ -24,13 +24,11 @@ const ApxMethodTest = (props) => {
         afterParamTestStore,
         assertParamTestStore,
         testStore,
-        environmentStore,
     } = props;
 
     const {findApxMethod} = apxMethodStore;
 
     const { getRequestInfo, getResponseInfo, getTime } = testStore;
-    const { findEnvironmentList, envSourceList } = environmentStore;
     const { requestHeaderTestList,getRequestHeaderTestList } = requestHeaderTestStore;
     const { queryParamTestList,getQueryParamTestList } = queryParamTestStore;
     const { bodyTypeInfo,getBodyType } = requestBodyTestStore;
@@ -45,17 +43,15 @@ const ApxMethodTest = (props) => {
 
     const [ form ] = Form.useForm();
 
+    const [apiData, setApiData] = useState();
     const [showResponse,setShowResponse]= useState(false);
     const methodId = localStorage.getItem('apxMethodId');
 
 
     useEffect(()=>{
-        findEnvironmentList()
-    },[])
-
-    useEffect(()=>{
         findApxMethod(methodId).then(res=>{
-            debugger
+            // debugger
+            setApiData(res)
             form.setFieldsValue({
                 requestType: res.requestType,
                 path: res.path,
@@ -119,7 +115,7 @@ const ApxMethodTest = (props) => {
     //请求类型下拉选择框
     const prefixSelector = (
         <Form.Item name="requestType" noStyle>
-          <Select style={{width: 100,}}>
+          <Select style={{width: 100}} disabled={true}>
               {
                   Object.keys(methodJsonDictionary).map(item=>{
                       return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
@@ -129,40 +125,8 @@ const ApxMethodTest = (props) => {
         </Form.Item>
     );
 
-    // 选择测试环境 input框呈现相应的地址
-    const onSelectChange = (value) => {
-        form.setFieldsValue({
-            serverUrl:value
-        })
-    }
-
     return(
         <Fragment>
-            <div className='test-environment'>
-                <Select
-                    className="test-environment-select"
-                    onSelect={(value)=> onSelectChange(value)}
-                    dropdownRender={item=>(
-                        <>
-                            <div style={{"overflow":"auto","height":"100px"}}>{item}</div>
-
-                            <Divider style={{ margin: '8px 0' }} />
-                            <span
-                                onClick={()=>props.history.push("/workspace/workspaceSetting/envMana")}
-                                style={{"color":"#00adff","cursor":"pointer","margin":"0 0 0 20px"}}
-                            >
-                                环境设置
-                            </span>
-                        </>
-                    )}
-                >
-                    {
-                        envSourceList.map((item)=> {
-                            return <Option key={item.id} value={item.url}>{item.name}</Option>
-                        })
-                    }
-                </Select>
-            </div>
             <div className={"test-base"}>
                 <Form
                     onFinish={onFinish}
@@ -196,6 +160,7 @@ const ApxMethodTest = (props) => {
                     </div>
                 </Form>
             </div>
+
             {/*<div className='title ex-title'>输入参数</div>*/}
             <div>
                 <TestRequest {...props}/>
@@ -223,7 +188,7 @@ export default inject(
     'assertParamTestStore',
     'testStore',
     'testCaseStore',
-    'environmentStore',
+
     "apxMethodStore"
  )(observer(ApxMethodTest));
 

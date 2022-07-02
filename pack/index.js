@@ -5,8 +5,9 @@
 import { stores as apiboxStore  } from './components/stores';
 import routers from './components/routers';
 import App from "./components/app";
+
 import {
-    Home,PortalHeader,HeaderContent,
+    Home,PageContent,HeaderContent,
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,WorkspaceSetting,
@@ -39,7 +40,7 @@ import {
 
 export {
     apiboxStore, routers, App,
-    Home,PortalHeader,HeaderContent,
+    Home,PageContent,HeaderContent,
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,WorkspaceSetting,
@@ -48,7 +49,7 @@ export {
     WorkspaceList,
 
     WorkspaceDetailLayout,LayoutApiContent,TabsPage,
-    DetailIndex, WorkspaceDetail,
+    DetailIndex,
     Category, ApxMethod, ApxMethodDetail,
 
     LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,WorkspaceDetailInitPage,

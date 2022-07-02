@@ -8,8 +8,6 @@ import React, { Fragment, useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import {Modal, Form, Input, Button, Select, Cascader} from 'antd';
 import {methodDictionary} from "../../../common/dictionary/dictionary";
-import {getUser} from "doublekit-core-ui";
-
 
 const { Option } = Select;
 const layout = {
@@ -36,7 +34,7 @@ const ApxMethodEdit = (props) => {
     const apxMethodId = localStorage.getItem('apxMethodId');
     const categoryId = localStorage.getItem("categoryId");
     const workspaceId = localStorage.getItem('workspaceId');
-    const [cascaderCategoryId, setCascaderCategoryId] = useState();
+    const [cascaderCategoryId, setCascaderCategoryId] = useState(categoryItemId);
     const apiTabListInfo = JSON.parse(sessionStorage.getItem("apiTabListInfo"))
 
     // 弹框展示
@@ -50,18 +48,15 @@ const ApxMethodEdit = (props) => {
         setVisible(true);
     };
 
-    const [status, setStatus] = useState();
 
     // 展示接口信息
     const showApxMethodInfo = () => {
         findApxMethod(httpId?httpId:apxMethodId).then((res)=>{
-            setStatus(res.apix.status?.id)
             form.setFieldsValue({
                 name: res.apix.name,
                 requestType: res.requestType,
                 path: res.path,
                 desc: res.apix.desc,
-                // category:res.apix.category.id
             })
         })
     }
@@ -72,57 +67,59 @@ const ApxMethodEdit = (props) => {
     };
 
     // 提交
-    const onFinish =   () => {
-        form.validateFields().then(values=>{
-            delete values.category
+    const onFinish =  async () => {
+        let values =await form.validateFields()
+        delete values.category
+
+        if(props.type === 'add'){
             values.apix={
-                userId:getUser().userId,
-                id:httpId?httpId:apxMethodId,
                 workspaceId:workspaceId,
                 name:values.name,
                 requestType:values.requestType,
                 path:values.path,
                 desc:values.desc,
-                status: {id:status},
-                category:{id:cascaderCategoryId?cascaderCategoryId:categoryItemId},
+                status: {id:"developmentid"},
+                category:{id:cascaderCategoryId?cascaderCategoryId:categoryId},
                 protocolType:"http",
             }
-            
-            if(props.type === 'add'){
-                createApxMethod(values).then((id)=>{
-                    findApxMethodListByApix(categoryId);
-                    findCategoryList(workspaceId);
-                    if(props.name==="+"){
-                        let tablist = apiTabListInfo.tabList;
-                        let length = apiTabListInfo.tabList.length;
-                        tablist.push({
-                            id:id,
-                            name:values.name,
-                            type:"api"
-                        })
-                        let newApiTabInfo = {
-                            workspaceId:workspaceId,
-                            activeKey:length++,
-                            tabList:[...tablist]
-                        }
-                        sessionStorage.setItem("apiTabListInfo",JSON.stringify(newApiTabInfo))
-                        setIsAddTab(!isAddTab);
-                    }
 
-                    localStorage.setItem('apxMethodId',id);
-                    props.history.push('/workspace/apis/detail/interface');
-                })
-            }else{
-                values.status={id:status}
-                values.id=httpId;
-                updateApxMethod(values).then(()=>{
-                    findApxMethodListByApix(categoryId);
-                    findCategoryList(workspaceId)
-                    setEdit?setEdit(true):null
-                });
+            createApxMethod(values).then((id)=>{
+                findApxMethodListByApix(categoryId);
+                findCategoryList(workspaceId);
+                if(props.name==="+"){
+                    let tablist = apiTabListInfo.tabList;
+                    let length = apiTabListInfo.tabList.length;
+                    tablist.push({
+                        id:id,
+                        name:values.name,
+                        type:"api"
+                    })
+                    let newApiTabInfo = {
+                        workspaceId:workspaceId,
+                        activeKey:length++,
+                        tabList:[...tablist]
+                    }
+                    sessionStorage.setItem("apiTabListInfo",JSON.stringify(newApiTabInfo))
+                    setIsAddTab(!isAddTab);
+                }
+
+                localStorage.setItem('apxMethodId',id);
+                props.history.push('/workspace/apis/detail/interface');
+            })
+        }else{
+            values.id=httpId;
+            values.apix={
+                id:httpId,
+                name:values.name
             }
-            setVisible(false);
-        })
+            updateApxMethod(values).then(()=>{
+                findApxMethodListByApix(categoryId);
+                findCategoryList(workspaceId)
+                setEdit?setEdit(true):null
+            });
+        }
+        setVisible(false);
+
     };
 
     //渲染 http 方法，如post，get
@@ -164,20 +161,24 @@ const ApxMethodEdit = (props) => {
                     initialValues={{ requestType: "get" }}
                     form={form}
                 >
-                    <Form.Item
-                        label="分组"
-                        name="category"
-                        rules={[{ required: true, message: 'Please input your category!' }]}
-                    >
-                        <Cascader
-                            fieldNames={{ label: 'name', value: 'id', children: 'children' }}
-                            options={categoryList}
-                            onChange={changeCategory}
-                            changeOnSelect
-                            expandTrigger={"hover"}
-                            placeholder="请选择分组"
-                        />
-                    </Form.Item>
+                    {
+                        props.name==="+"
+                        && <Form.Item
+                            label="分组"
+                            name="category"
+                            rules={[{ required: true, message: 'Please input your category!' }]}
+                        >
+                            <Cascader
+                                fieldNames={{ label: 'name', value: 'id', children: 'children' }}
+                                options={categoryList}
+                                onChange={changeCategory}
+                                changeOnSelect
+                                expandTrigger={"hover"}
+                                placeholder="请选择分组"
+                            />
+                        </Form.Item>
+                    }
+
                     <Form.Item
                         label="接口名称"
                         name="name"

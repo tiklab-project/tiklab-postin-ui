@@ -25,7 +25,7 @@ const JsonParamMock = (props) =>{
 
     let columns= [
         {
-            title: '表达式',
+            title: 'JsonPath表达式',
             dataIndex: 'exp',
             width: '25%',
             editable: true,

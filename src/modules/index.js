@@ -22,7 +22,7 @@ import {
     MessageSendType, MessageTemplate, MessageType, MessageUser,
 } from './sysmgr/index'
 
-import PortalHeader from './header/portalHeader.js';
+import PageContent from "./header/pageContent";
 import HeaderContent from './header/headerContent'
 import PluginManage from "./sysmgr/pluginManage/pluginManage";
 import RecentBrowing from "./workspace/components/recentBrowing";
@@ -42,7 +42,7 @@ import WorkspaceWidget from "./workspaceWidget/components/workspaceWidget";
 import {WIDGET_STORE,WidgetStore} from "./workspaceWidget/store/widgetStore";
 
 export {
-    Home,PortalHeader,HeaderContent,
+    Home,PageContent,HeaderContent,
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,WorkspaceSetting,

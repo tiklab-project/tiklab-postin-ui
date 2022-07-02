@@ -109,7 +109,7 @@ const Mock = (props) => {
                 <div
                     id={"link"}
                     onClick={()=>copyMockUrl("link")}
-                    style={{width:450,display:"flex",justifyContent:"space-between",cursor:"pointer"}}
+                    style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}
                 >
                     <Tooltip title="点击复制">
                         <span>{mockUrl}</span>

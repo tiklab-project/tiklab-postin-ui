@@ -25,7 +25,7 @@ export class TestCaseStore {
     @observable requestHeaderCaseData;
     @observable responseHeaderCaseData;
     @observable responseBodyCaseData;
-    @observable requestType;
+    @observable methodType;
 
     @action
     findTestCasePage = async (id)=>{
@@ -108,7 +108,8 @@ export class TestCaseStore {
 
     @action
     getRequestInfo = (data) => {
-        this.requestType = data.http;
+        debugger
+        this.methodType = data.method;
 
         if(data.params&&Object.keys(data.params).length>0){
             this.baseInfo = data.baseUrl+data.url+'?'+qs.stringify(data.params)
@@ -149,8 +150,8 @@ export class TestCaseStore {
             "time": this.time,
             "size":"",
             "requestInstance":{
-                "URL":this.baseInfo,
-                "methodType":this.requestType,
+                "url":this.baseInfo,
+                "methodType":this.methodType,
                 "headers":this.requestHeaderCaseData,
                 "mediaType":"application/json",
                 "body":this.requestBodyCaseData,

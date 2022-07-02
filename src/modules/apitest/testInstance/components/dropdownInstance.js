@@ -3,13 +3,20 @@ import {inject, observer} from "mobx-react";
 import {Dropdown, Menu} from "antd";
 import InstanceDetail from "./instanceDetail";
 import {DownOutlined} from "@ant-design/icons";
+import {getUser} from "doublekit-core-ui";
 
 const DropdownInstance = (props) =>{
     const {instanceStore,testcaseId} = props;
     const {findInstanceList,instanceList} = instanceStore;
 
+    const userId = getUser().userId;
+
     useEffect(()=>{
-        findInstanceList(testcaseId)
+        let params={
+            "httpCaseId":testcaseId,
+            "userId":userId,
+        }
+        findInstanceList(params)
     },[testcaseId])
 
     const showInstanceList = (data)=>{

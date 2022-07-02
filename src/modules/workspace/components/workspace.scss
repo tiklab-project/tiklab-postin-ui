@@ -84,14 +84,18 @@ ul{
         line-height: 40px;
         display: block;
         cursor: pointer;
+        border-radius: 10px;
+        margin: 5px;
     }
 
     .ws-menu-li:hover{
-        background-color:#EDF0F5;
+        background-color: #f3f3f3;
+        //margin: 5px 20px;
     }
     .ws-menu-li-action{
-        background-color: #e3e8f0;
-        border-right: 3px solid #1296db;
+
+        background-color: #f3f3f3;
+
     }
 }
 
