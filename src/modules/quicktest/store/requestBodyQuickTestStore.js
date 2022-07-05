@@ -20,7 +20,7 @@ export class RequestBodyQuickTestStore {
     @action
     getMediaType = (value) => {
         this.mediaType = value;
-debugger
+
         //设置body下的body类型
          switch (value){
              case "none":

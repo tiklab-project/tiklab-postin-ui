@@ -1,6 +1,5 @@
 import AccountMember from "./accountMember/accountMember";
 import SysManage from './common/sysManagMenu';
-import EvnMana from './environment/components/environment';
 import { ENVIRONMENT_STORE, EnvironmentStore } from './environment/store/environmentStore';
 import DataStructure from "./dataStructure/components/dataStructure";
 import {DATASTRUCTURE_STORE ,DataStructureStore} from './dataStructure/store/dataStructureStore';
@@ -23,7 +22,6 @@ import MessageUser from './message/messageUser';
 export {
     AccountMember,
     SysManage,
-    EvnMana,
     ENVIRONMENT_STORE, EnvironmentStore,
     DataStructure,
     DATASTRUCTURE_STORE ,DataStructureStore,

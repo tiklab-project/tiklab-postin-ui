@@ -15,9 +15,9 @@ const JsonParamTest = (props) => {
         setJsonParamListChild,
     } = jsonParamTestStore;
 
-    useEffect(()=>{
-        getJsonParamTestList()
-    },[bodyType])
+    // useEffect(()=>{
+    //     getJsonParamTestList()
+    // },[bodyType])
 
     return (
         <JsonTableCommon

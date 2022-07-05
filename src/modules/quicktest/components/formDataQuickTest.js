@@ -14,6 +14,10 @@ const FormDataQuickTest = (props) =>{
         deleteList,
     } = formDataQuickTestStore;
 
+    useEffect(()=>{
+        getFormParamTestList()
+    },[instanceId])
+
     return (
         <FormDataTableCommon
             dataList={formQuickTestList}

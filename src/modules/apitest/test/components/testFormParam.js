@@ -14,10 +14,6 @@ const FormParamTest = (props) =>{
         deleteList,
     } = formParamTestStore;
 
-    useEffect(()=>{
-        getFormParamTestList()
-    },[bodyType])
-
     return (
         <FormDataTableCommon
             dataList={formParamTestList}

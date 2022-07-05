@@ -20,10 +20,6 @@ const WorkspaceSetting = (props) =>{
 
     const items=[
         {
-            title: '环境管理',
-            key: '/workspace/workspaceSetting/envMana',
-            icon: 'icon-modular',
-        },{
             title: '状态管理',
             key: '/workspace/workspaceSetting/apistatus',
             icon: 'icon-modular',
@@ -44,7 +40,7 @@ const WorkspaceSetting = (props) =>{
         <div className={"workspace-setting-box"}>
             <SideMenu
                 item={items}
-                selectedKey={"/workspace/workspaceSetting/envMana"}
+                selectedKey={"/workspace/workspaceSetting/apistatus"}
                 {...props}
             />
 

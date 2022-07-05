@@ -5,9 +5,7 @@
  */
 import React, {useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
-import {Table, Space, Popconfirm} from 'antd';
-import EnvironmentEdit from './environmentEdit';
-import BreadcrumbEx from "../../../common/breadcrumbEx";
+import {Table, Space, Popconfirm, Drawer, Modal} from 'antd';
 import {ExTable} from "../../../common/tableCommon/components/tableCommon";
 
 //
@@ -132,19 +130,45 @@ const EvnMana = (props) => {
 
     }
 
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
 
     return(
-        <div  style={{padding:5}}>
-            <BreadcrumbEx list={[ "空间设置", "环境列表"]}/>
-            <ExTable
-                dataSource={environmentList}
-                columns={columns}
-                handleSave={handleSave}
-            />
-            <div className={"api-status-add-box"} onClick={addNewRow}>
-                <div >  新 增  </div>
-            </div>
-        </div>
+        <>
+            <a  style={{"color":"#00adff","cursor":"pointer","margin":"0 0 0 20px"}} onClick={showModal}> 环境设置</a>
+            <Modal
+                title="环境管理"
+                visible={isModalVisible}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                footer={false}
+                width={800}
+            >
+                <div  style={{padding:5}}>
+                    <ExTable
+                        dataSource={environmentList}
+                        columns={columns}
+                        handleSave={handleSave}
+                    />
+                    <div className={"api-status-add-box"} onClick={addNewRow}>
+                        <div >  新 增  </div>
+                    </div>
+                </div>
+            </Modal>
+
+        </>
     )
 }
 

@@ -17,7 +17,7 @@ import {
     Test, TestCase, TestCaseDetail,
     Mock, MockDetail,
 
-    SysManage, EvnMana, DataStructure, ApiStatus,
+    SysManage,  DataStructure, ApiStatus,
     Usermgr, Org, ProjectFeature, ProjectRole,
     SystemFeature, SystemRole, PluginManage,
     MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
@@ -355,11 +355,6 @@ const routers =  [
                         component: WorkspaceSetting,
                         routes: [
                             {
-                                path: "/workspace/workspaceSetting/envMana",
-                                key:'EvnMana',
-                                exact: true,
-                                component: EvnMana,
-                            }, {
                                 path: "/workspace/workspaceSetting/apistatus",
                                 key:'apistatus',
                                 exact: true,
@@ -379,7 +374,7 @@ const routers =  [
                                 path:"/workspace/workspaceSetting",
                                 key:'ridworkspaceSetting',
                                 exact: true,
-                                component: ()=><Redirect to='/workspace/workspaceSetting/envMana'/>,
+                                component: ()=><Redirect to='/workspace/workspaceSetting/apistatus'/>,
                             },
                         ]
                     },

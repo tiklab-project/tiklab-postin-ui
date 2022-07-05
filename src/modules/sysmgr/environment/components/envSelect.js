@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Divider, Select, Tooltip} from "antd";
 import {inject, observer} from "mobx-react";
+import EvnMana from "./environment";
 
 const { Option } = Select;
 
@@ -46,12 +47,7 @@ const EnvSelect = (props) =>{
                     <div style={{"overflow":"auto","height":"100px"}}>{item}</div>
 
                     <Divider style={{ margin: '8px 0' }} />
-                    <span
-                        onClick={()=>props.history.push("/workspace/workspaceSetting/envMana")}
-                        style={{"color":"#00adff","cursor":"pointer","margin":"0 0 0 20px"}}
-                    >
-                        环境设置
-                    </span>
+                    <EvnMana />
                 </>
             )}
         >

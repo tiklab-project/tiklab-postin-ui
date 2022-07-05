@@ -5,11 +5,15 @@ const tableCommonStore = new TableCommonStore();
 
 export  class FormDataQuickTestStore {
     @observable formQuickTestList = [];
+    @observable initRow=[{id: "formDataQuickTest"}];
 
     @action
     getFormParamTestList= (data) => {
-        debugger
-        this.formQuickTestList = tableCommonStore.getList(data)
+        if(data){
+            this.formQuickTestList = [...data,...this.initRow]
+        }else {
+            this.formQuickTestList=this.initRow
+        }
     }
 
     @action

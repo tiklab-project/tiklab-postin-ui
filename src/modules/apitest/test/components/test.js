@@ -46,7 +46,7 @@ const ApxMethodTest = (props) => {
     const [apiData, setApiData] = useState();
     const [showResponse,setShowResponse]= useState(false);
     const methodId = localStorage.getItem('apxMethodId');
-
+    let testEnv = localStorage.getItem("TEST_ENV")
 
     useEffect(()=>{
         findApxMethod(methodId).then(res=>{
@@ -63,13 +63,14 @@ const ApxMethodTest = (props) => {
 
             switch (res.requestBody.bodyType){
                 case "formdata":
+                    debugger
                     getFormParamTestList(res.formParamList);
                     break;
                 case "formUrlencoded":
                     getFormUrlencodedTestList(res.formUrlencodedList);
                     break;
                 case "json":
-                    getJsonParamTestList(res.formParamList);
+                    getJsonParamTestList(res.jsonParamList);
                     break;
                 case "raw":
                     getRawInfo(res.rawParam)
@@ -125,6 +126,8 @@ const ApxMethodTest = (props) => {
         </Form.Item>
     );
 
+
+
     return(
         <Fragment>
             <div className={"test-base"}>
@@ -132,6 +135,7 @@ const ApxMethodTest = (props) => {
                     onFinish={onFinish}
                     form = {form}
                     className="test-header"
+                    initialValues={{serverUrl:`${testEnv}`}}
                 >
                     <div className={"test-url"}>
                         <Form.Item

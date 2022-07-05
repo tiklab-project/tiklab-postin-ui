@@ -19,9 +19,9 @@ const FormUrlencodedTest = (props) =>{
         deleteList,
     } = formUrlencodedTestStore;
 
-    useEffect(()=>{
-        getFormUrlencodedTestList()
-    },[bodyType])
+    // useEffect(()=>{
+    //     getFormUrlencodedTestList()
+    // },[bodyType])
 
     return (
         <FormUrlencodedTableCommon

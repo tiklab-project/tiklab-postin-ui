@@ -5,10 +5,15 @@ const tableCommonStore = new TableCommonStore()
 
 export  class JsonParamTestStore {
     @observable jsonParamTestList = [];
+    @observable initRow=[{id:"JsonTestInitRow"}]
 
     @action
     getJsonParamTestList= (data) => {
-        this.jsonParamTestList = tableCommonStore.getList(data)
+        if(data){
+            this.jsonParamTestList = [...data,...this.initRow]
+        }else {
+            this.jsonParamTestList =this.initRow
+        }
     }
 
     @action
