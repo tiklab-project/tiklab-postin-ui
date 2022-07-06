@@ -1,24 +1,35 @@
-import React from "react";
-import RequestBodyCom from "../../../common/tableCommon/components/requestBodyCom";
+import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import FormParamTest from './testFormParam';
-import JsonParamTest from "./testJsonParam";
-import FormUrlencodedTest from "./FormUrlencodedTest";
-import RawParamTest from "./testRawParam";
+import FormParamTestCase from "./formParamTestCase";
+import JsonParamTestCase from "./jsonParamTestCase";
+import FormUrlencodedTestCase from "./formUrlencodedTestCase";
+import RawParamTestCase from "./rawParamTestCase";
 import {bodyTypeJsonDictionary as bodyTypeJson, mediaTypeDictionary} from "../../../common/dictionary/dictionary";
 import RequestNoBody from "../../../common/tableCommon/components/requestNoBody";
 
-const RequestBodyTest = (props)=>{
-    const { requestBodyTestStore } = props;
+const RequestBodyTestCase = (props)=>{
+    const { requestBodyTestCaseStore } =props;
+    const {
+        findRequestBodyTestCase,
+        requestBodyTestCaseInfo
+    } = requestBodyTestCaseStore;
 
-    const { bodyType } = requestBodyTestStore;
+    const [bodyType, setBodyType] = useState();
+
+    const testCaseId = localStorage.getItem('testCaseId');
+    useEffect(()=>{
+        findRequestBodyTestCase(testCaseId).then((res) => {
+            setBodyType(res.bodyType)
+        })
+    },[requestBodyTestCaseInfo])
+
 
     const showBodyType = (type) =>{
         let bodyKeyArr = Object.keys(mediaTypeDictionary)
 
         return bodyKeyArr.map(item=>{
             if(item===type){
-               return  <div className={"test-body-type-item"}>type : {mediaTypeDictionary[item]}</div>
+                return  <div className={"test-body-type-item"}>type : {mediaTypeDictionary[item]}</div>
             }
         })
     }
@@ -30,13 +41,13 @@ const RequestBodyTest = (props)=>{
             case bodyTypeJson.none:
                 return <RequestNoBody/>
             case bodyTypeJson.formdata:
-                return <FormParamTest />
+                return <FormParamTestCase />
             case bodyTypeJson.formUrlencoded:
-                return <FormUrlencodedTest />
+                return <FormUrlencodedTestCase />
             case bodyTypeJson.json:
-                return <JsonParamTest />
+                return <JsonParamTestCase />
             case bodyTypeJson.raw:
-                return <RawParamTest />
+                return <RawParamTestCase />
             // case 'binary':
             //     return ""
         }
@@ -53,7 +64,6 @@ const RequestBodyTest = (props)=>{
                 {
                     showItemComponent(bodyType)
                 }
-
             </div>
 
 
@@ -62,4 +72,4 @@ const RequestBodyTest = (props)=>{
     )
 }
 
-export default inject('requestBodyTestStore')(observer(RequestBodyTest));
+export default inject('requestBodyTestCaseStore')(observer(RequestBodyTestCase));

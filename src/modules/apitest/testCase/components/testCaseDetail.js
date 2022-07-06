@@ -12,12 +12,13 @@ import {
     getMethod,
 } from '../../index';
 import { observer, inject } from 'mobx-react';
-import {Form, Button, Input, Select} from 'antd';
+import {Form, Button, Input, Select, Tooltip} from 'antd';
 import { TestCaseRequest } from "../index";
 import DropdownInstance from "../../testInstance/components/dropdownInstance";
 import TestResultCase from "./testResultCase";
 import {sendTestDataProcess} from "../../common/sendTestCommon";
 import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
+import BackCommon from "../../../common/backCommon";
 
 const {Option} = Select;
 
@@ -35,11 +36,12 @@ const TestCaseDetail = (props) => {
         preParamTestCaseStore,
         afterScriptTestCaseStore,
         assertParamTestCaseStore,
-        instanceStore
+        instanceStore,
+        environmentStore
     } = props;
 
     const {deleteTestCase, findTestCase, getResponseInfo, getRequestInfo, getTime } = testCaseStore;
-
+    const {testEnvUrl} = environmentStore;
     const { requestHeaderTestCaseDataSource,processHeaderCaseList } = requestHeaderTestCaseStore;
     const { queryParamTestCaseDataSource, processQueryCaseList } = queryParamTestCaseStore;
     const { requestBodyTestCaseInfo, getBodyType} = requestBodyTestCaseStore;
@@ -66,9 +68,8 @@ const TestCaseDetail = (props) => {
             setCaseName(res.name);
             form.setFieldsValue({
                 name: res.name,
-                baseUrl:res.baseUrl,
-                requestType: res.requestType,
-                path: res.path,
+                methodType: res.http.methodType,
+                path: res.http.path,
             })
             processHeaderCaseList(res.requestHeaderCaseList);
             processQueryCaseList(res.queryParamCaseList);
@@ -118,8 +119,8 @@ const TestCaseDetail = (props) => {
             "getResponseInfo":getResponseInfo,
             "belongId":testCaseId,
             "createInstance":createInstance,
-            "method":values.requestType,
-            "baseUrl":values.baseUrl,
+            "method":values.methodType,
+            "baseUrl":values.host?values.host:testEnvUrl,
             "path":values.path,
             "headerList":requestHeaderTestCaseDataSource,
             "queryList":queryParamTestCaseDataSource,
@@ -139,32 +140,42 @@ const TestCaseDetail = (props) => {
         setShowResponse(true);
     }
 
-    //请求类型下拉选择框
-    const prefixSelector = (
-        <Form.Item name="requestType" noStyle>
-            <Select style={{width: 100}} >
-                {
-                    Object.keys(methodJsonDictionary).map(item=>{
-                        return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
-                    })
-                }
-            </Select>
-        </Form.Item>
-    );
+    const showHost = () =>{
+        if(testEnvUrl&&testEnvUrl.trim().length!==0){
+            return (
+                <Tooltip placement="top" title={"请从环境管理修改"}>
+                    <div className={"test-host-url"} >
+                        {testEnvUrl}
+                    </div>
+                </Tooltip>
+            )
+        }else {
+            return (
+                <Form.Item
+                    className='formItem'
+                    name="host"
+                >
+                    <Input />
+                </Form.Item>
+            )
+        }
+    }
+
 
     return(
         <>
             <div className='testCase-baseInfo'>
-                <div>
-                    <Button onClick={backToList}>
-                        <svg className="icon" aria-hidden="true"  style={{cursor:"pointer"}}>
-                            <use xlinkHref= {`#icon-fanhui`}> </use>
-                        </svg>
-                        返回
-                    </Button>
-                    {/*<span className={"testcase-name"}>{caseName}</span>*/}
-                    <span className={"testcase-name"}>{caseName}</span>
-                </div>
+                <BackCommon clickBack={backToList} />
+                {/*<div>*/}
+                {/*    <Button onClick={backToList}>*/}
+                {/*        <svg className="icon" aria-hidden="true"  style={{cursor:"pointer"}}>*/}
+                {/*            <use xlinkHref= {`#icon-fanhui`}> </use>*/}
+                {/*        </svg>*/}
+                {/*        返回*/}
+                {/*    </Button>*/}
+                {/*    /!*<span className={"testcase-name"}>{caseName}</span>*!/*/}
+                {/*    <span className={"testcase-name"}>{caseName}</span>*/}
+                {/*</div>*/}
 
                 <div>
                     <DropdownInstance testcaseId={testCaseId}/>
@@ -178,12 +189,18 @@ const TestCaseDetail = (props) => {
                     className="test-header"
                 >
                     <div className={"test-url"}>
-                        <Form.Item
-                            className='formItem'
-                            name="baseUrl"
-                        >
-                            <Input  addonBefore={prefixSelector}/>
+                        <Form.Item name="methodType" noStyle>
+                            <Select style={{width: 100,height:40}} disabled={true} showArrow={false}>
+                                {
+                                    Object.keys(methodJsonDictionary).map(item=>{
+                                        return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
+                                    })
+                                }
+                            </Select>
                         </Form.Item>
+                        {
+                            showHost()
+                        }
                         <Form.Item
                             className='formItem'
                             name="path"
@@ -204,8 +221,6 @@ const TestCaseDetail = (props) => {
                     </div>
                 </Form>
             </div>
-            {/*<div> 名称： <span className={"testcase-name"}>{caseName}</span> </div>*/}
-            {/*<div className="title ex-title">输入参数</div>*/}
             <TestCaseRequest />
             <div className='title ex-title'>
                 测试结果
@@ -227,5 +242,6 @@ export default inject(
     'preParamTestCaseStore',
     'afterScriptTestCaseStore',
     'assertParamTestCaseStore',
-    'instanceStore'
+    'instanceStore',
+    "environmentStore"
     )(observer(TestCaseDetail));

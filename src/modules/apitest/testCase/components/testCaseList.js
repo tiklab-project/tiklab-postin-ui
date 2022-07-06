@@ -10,7 +10,7 @@ import TestcaseTableInstance from "../../testInstance/components/testcaseTableIn
 const TestCaseList = (props) => {
     const { testCaseStore,instanceStore } = props;
     const {
-        findTestCasePage,
+        findTestCaseList,
         deleteTestCase,
         testCaseList,
         getResponseInfo,
@@ -31,25 +31,18 @@ const TestCaseList = (props) => {
             )
         },
         {
-            title: '请求路径',
-            dataIndex: 'baseUrl',
-            // align:'center',
-            key: 'baseUrl',
-            width:"20%",
-        },
-        {
             title: '路径',
-            dataIndex:'path',
+            dataIndex:['http','path'],
             // align:'center',
             key: 'method',
-            width:"20%",
+            width:"30%",
         },
         {
             title: '测试结果',
             dataIndex:"result",
             // align:'center',
             key: 'result',
-            width:"15%",
+            width:"20%",
             render: (text, record )=>(
                 <>
                     <TestcaseTableInstance testcaseId={record.id}/>
@@ -70,9 +63,10 @@ const TestCaseList = (props) => {
                     </div>
                     <Popconfirm
                         title="确定删除？"
-                        onConfirm={() =>deleteTestCase(record.id)}
+                        onConfirm={() =>deleteTestCase(record.id).then(()=>findTestCaseList(methodId))}
                         okText='确定'
                         cancelText='取消'
+                        placement="topRight"
                     >
                         <a className="table-delete" > 删除 </a>
                     </Popconfirm>
@@ -85,7 +79,7 @@ const TestCaseList = (props) => {
     const [selectTestList,setSelectTestList] = useState([]);
 
     useEffect(()=>{
-        findTestCasePage(methodId);
+        findTestCaseList(methodId);
     },[methodId]);
 
     const setLocalStorage = (id) => {
@@ -172,6 +166,7 @@ const TestCaseList = (props) => {
                 rowSelection ={{
                     ...rowSelection,
                 }}
+                pagination={false}
             />
         </Fragment>
     )

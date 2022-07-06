@@ -44,7 +44,10 @@ export class TestCaseStore {
 
     @action
     findTestCaseList = async (id) =>{
-        let params = { "httpId":id }
+        let params = {
+            "httpId":id,
+            orderParams:[{name:'name', orderType:'asc'}],
+        }
 
         const res = await findTestCaseList(params)
         if(res.code===0){
@@ -57,7 +60,7 @@ export class TestCaseStore {
     createTestCase = async (values) => {
         const res = await createTestCase(values);
         if( res.code === 0){
-            this.findTestCasePage(this.apxMethodId);
+            return res.data
         }
     }
 
@@ -66,7 +69,7 @@ export class TestCaseStore {
     createTestcaseWithNest = async (values) => {
         const res = await createTestcaseWithNest(values);
         if( res.code === 0){
-            return res
+            return res.data
         }
     }
 
@@ -76,7 +79,7 @@ export class TestCaseStore {
 
         const res = await updateTestCase(values);
         if( res.code === 0){
-            this.findTestCasePage(this.apxMethodId)
+            return res.data
         }
     }
 
@@ -87,7 +90,7 @@ export class TestCaseStore {
 
         const res = await deleteTestCase(param);
         if( res.code === 0){
-            this.findTestCasePage(this.apxMethodId);
+            return res.data
         }
     }
 

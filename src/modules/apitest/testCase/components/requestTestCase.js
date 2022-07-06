@@ -13,6 +13,14 @@ import FormUrlencodedTestCase from "./formUrlencodedTestCase";
 import BinaryParamTestCase from "./binaryParamTestCase";
 import RequestNoBody from "../../../common/tableCommon/components/requestNoBody";
 import {bodyTypeDictionary, bodyTypeJsonDictionary as bodyTypeJson} from "../../../common/dictionary/dictionary";
+import TestRequestHeader from "../../test/components/testRequestHeader";
+import TestQueryParam from "../../test/components/testQueryParam";
+import RequestBodyTest from "../../test/components/requestBodyTest";
+import TestPreParam from "../../test/components/testPreParam";
+import TestAfterParam from "../../test/components/testAfterParam";
+import AssertParamTest from "../../test/components/assertParamTest";
+import RequestTab from "../../../common/tableCommon/components/requestTab";
+import RequestBodyTestCase from "./requestBodyTestCase";
 
 const { TabPane } = Tabs;
 
@@ -73,41 +81,49 @@ const TestCaseRequest = (props) => {
     }
 
     return(
-        <Fragment>
-            <Tabs defaultActiveKey="1"  >
-                <TabPane tab="请求头部" key="1" >
-                    <RequestHeaderTestCase />
-                </TabPane>
-                <TabPane tab="查询参数" key="2">
-                    <QueryParamTestCase />
-                </TabPane>
-                <TabPane tab="请求体" key="3">
-                    <div className='request-radio'>
-                        <Radio.Group
-                            name="radiogroup"
-                            onChange={(e)=>onChange(e)}
-                            defaultValue={radioValue}
-                        >
-                            {showRadioItem(bodyTypeDictionary)}
-                        </Radio.Group>
-                    </div>
-                    <div>
-                        { 
-                            changeFormat(radioValue)
-                        } 
-                    </div>      
-                </TabPane>
-                <TabPane tab="前置脚本" key="4">
-                    <PreParamTestCase />
-                </TabPane>
-                <TabPane tab="后置脚本" key="5">
-                    <BackParamTestCase />
-                </TabPane>
-                <TabPane tab="断言" key="6">
-                    <AssertParamTestCase/>
-                </TabPane>
-            </Tabs>
-        </Fragment>
+        <RequestTab
+            header={<RequestHeaderTestCase />}
+            query={<QueryParamTestCase />}
+            body={<RequestBodyTestCase/>}
+            pre={<PreParamTestCase />}
+            after={<BackParamTestCase />}
+            assert={<AssertParamTestCase />}
+        />
+        // <Fragment>
+        //     <Tabs defaultActiveKey="1"  >
+        //         <TabPane tab="请求头部" key="1" >
+        //             <RequestHeaderTestCase />
+        //         </TabPane>
+        //         <TabPane tab="查询参数" key="2">
+        //             <QueryParamTestCase />
+        //         </TabPane>
+        //         <TabPane tab="请求体" key="3">
+        //             <div className='request-radio'>
+        //                 <Radio.Group
+        //                     name="radiogroup"
+        //                     onChange={(e)=>onChange(e)}
+        //                     defaultValue={radioValue}
+        //                 >
+        //                     {showRadioItem(bodyTypeDictionary)}
+        //                 </Radio.Group>
+        //             </div>
+        //             <div>
+        //                 {
+        //                     changeFormat(radioValue)
+        //                 }
+        //             </div>
+        //         </TabPane>
+        //         <TabPane tab="前置脚本" key="4">
+        //             <PreParamTestCase />
+        //         </TabPane>
+        //         <TabPane tab="后置脚本" key="5">
+        //             <BackParamTestCase />
+        //         </TabPane>
+        //         <TabPane tab="断言" key="6">
+        //             <AssertParamTestCase/>
+        //         </TabPane>
+        //     </Tabs>
+        // </Fragment>
     )
 }
 

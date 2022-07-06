@@ -5,7 +5,6 @@ import {saveTestcaseProcess} from "../../../common/tableCommon/components/saveTe
 
 const SaveTestcase = (props) => {
     const {
-        apxMethodStore,
         testCaseStore,
         requestHeaderTestStore,
         queryParamTestStore,
@@ -31,7 +30,6 @@ const SaveTestcase = (props) => {
     const { afterParamTestInfo } = afterParamTestStore;
     const { assertParamTestList } = assertParamTestStore;
 
-    const { findApxMethod } = apxMethodStore;
     const { createTestcaseWithNest } = testCaseStore;
 
     const [form] = Form.useForm();
@@ -42,12 +40,6 @@ const SaveTestcase = (props) => {
 
     const showModal = () => {
         setVisible(true);
-        findApxMethod(apxMethodId).then((res)=> {
-            form.setFieldsValue({
-                requestType:res.requestType,
-                path: res.path,
-            })
-        })
     };
 
 
@@ -120,37 +112,6 @@ const SaveTestcase = (props) => {
                     }]}
                 >
                     <Input />
-                </Form.Item>
-                <Form.Item
-                    label="基础路径"
-                    name="baseUrl"
-                    rules={[{
-                            required: true,
-                            message: '添加接口路径!'
-                        }]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="请求方式"
-                    name="requestType"
-                    rules={[{
-                            required: true,
-                            message: '添加请求方式!'
-                        }]}
-                >
-                    <Input disabled/>
-                </Form.Item>
-
-                <Form.Item
-                    label="接口路径"
-                    name="path"
-                    rules={[{
-                            required: true,
-                            message: '添加接口路径!'
-                        }]}
-                >
-                    <Input disabled/>
                 </Form.Item>
             </Form>
         </Modal>

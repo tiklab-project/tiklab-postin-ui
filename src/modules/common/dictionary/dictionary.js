@@ -28,6 +28,15 @@ export const methodJsonDictionary = {
     "patch":"PATCH",
 }
 
+export const mediaTypeDictionary={
+    none:"none",
+    formdata:"multipart/form-data",
+    formUrlencoded:"application/x-www-form-urlencode",
+    json:"application/json",
+    raw:"raw",
+    // binary:"binary"
+}
+
 //body中radio渲染使用
 export const bodyTypeDictionary ={
     none:"none",

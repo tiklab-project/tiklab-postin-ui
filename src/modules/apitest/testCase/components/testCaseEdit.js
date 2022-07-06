@@ -3,9 +3,8 @@ import { observer, inject } from 'mobx-react';
 import { Form, Modal, Button, Input } from 'antd';
 
 const TestCaseEdit = (props) => {
-    const { testCaseStore, apxMethodStore, testcaseId, setEdit } = props;
-    const { findTestCase, createTestCase, updateTestCase } = testCaseStore;
-    const { findApxMethod } = apxMethodStore;
+    const { testCaseStore, testcaseId } = props;
+    const { findTestCase, createTestCase, updateTestCase,findTestCaseList } = testCaseStore;
 
     const [visible, setVisible] = useState(false);
 
@@ -19,42 +18,33 @@ const TestCaseEdit = (props) => {
             findTestCase(testcaseId).then((res)=> {
                 form.setFieldsValue({
                     name:res.name,
-                    baseUrl: res.baseUrl
                 })
             })
         }
-        showApxMethodInfo();
     };
 
-    
-    // 展示接口信息
-    const showApxMethodInfo = () => {
-        
-        findApxMethod(apxMethodId).then((res)=> {
-            form.setFieldsValue({
-                requestType:res.requestType,
-                path: res.path,
+    const onFinish = async () => {
+        let values = await form.validateFields()
+        values.http ={id:apxMethodId}
+        if(props.type === '编辑') {
+            values.id = testcaseId;
+            updateTestCase(values).then((res)=> {
+                findList()
             })
-        })
-    }
+        }else{
+            values.requestBodyCase= {bodyType: "raw"}
 
-    const onFinish = () => {
-        form.validateFields().then((values)=>{
-            values.http ={id:apxMethodId}
-            if(props.type === '编辑') {
-                values.id = props.id;
-                updateTestCase(values).then((res)=> {
-                    if(res.code === 0){
-                        setVisible(false);
-                        setEdit(true)
-                    }
-                })
-            }else{
-                createTestCase(values)
-            }  
-        })
+            createTestCase(values).then(res=>{
+                findList()
+            })
+        }
+
         setVisible(false);
     };
+
+    const findList = ()=>{
+        findTestCaseList(apxMethodId)
+    }
 
     const onFinishFailed = (errorInfo) => {console.log('Failed:', errorInfo)};
     
@@ -63,8 +53,9 @@ const TestCaseEdit = (props) => {
     return(
         <>
         {
-            props.btn === 'btn' ? <Button className="important-btn" onClick={showModal}>{props.type}</Button>
-                                 : <a style={{'cursor':'pointer'}} onClick={showModal}>{props.type}</a>
+            props.btn === 'btn'
+                ? <Button className="important-btn" onClick={showModal}>{props.type}</Button>
+                : <a style={{'cursor':'pointer'}} onClick={showModal}>{props.type}</a>
         }
         <Modal
             destroyOnClose={true}
@@ -91,37 +82,6 @@ const TestCaseEdit = (props) => {
                     }]}
                 >
                     <Input />
-                </Form.Item>
-                <Form.Item
-                    label="基础路径"
-                    name="baseUrl"
-                    rules={[{
-                            required: true,
-                            message: '添加接口路径!'
-                        }]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="请求方式"
-                    name="requestType"
-                    rules={[{
-                            required: true,
-                            message: '添加请求方式!'
-                        }]}
-                >
-                    <Input disabled/>
-                </Form.Item>
-                
-                <Form.Item
-                    label="接口路径"
-                    name="path"
-                    rules={[{
-                            required: true,
-                            message: '添加接口路径!'
-                        }]}
-                >
-                    <Input disabled/>
                 </Form.Item>
             </Form>
         </Modal>

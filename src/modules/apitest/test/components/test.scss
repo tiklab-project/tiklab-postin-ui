@@ -5,6 +5,22 @@
         margin: 0;
     }
 
+
+    .test-host-url{
+        //cursor: pointer;
+        padding: 8px;
+        width: 400px;
+        border: 1px solid #dcdcdc;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .test-host-url:hover{
+        cursor: auto;
+        color: #00adff;
+    }
+
+
     .ant-input[disabled]{
         color: #000;
         background: white;
@@ -68,19 +84,19 @@
     margin: 0;
 }
 
-.test-host-url{
-    //cursor: pointer;
-    padding: 8px;
-    width: 400px;
-    border: 1px solid #dcdcdc;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.test-body-type-box{
+    padding:10px 0;
+    background: #f9f9f9;
+
+
+    .test-body-type-item{
+        width:200px;
+        margin:0 auto;
+        text-align: center;
+    }
 }
-.test-host-url:hover{
-    cursor: auto;
-    color: #00adff;
-}
+
+
 
 
 

@@ -54,7 +54,7 @@ const ApxMethodTest = (props) => {
             // debugger
             setApiData(res)
             form.setFieldsValue({
-                requestType: res.requestType,
+                methodType: res.methodType,
                 path: res.path,
             })
 
@@ -99,8 +99,8 @@ const ApxMethodTest = (props) => {
             "getTime":getTime,
             "getRequestInfo":getRequestInfo,
             "getResponseInfo":getResponseInfo,
-            "method":values.requestType,
-            "baseUrl":values.serverUrl?values.serverUrl:testEnvUrl,
+            "method":values.methodType,
+            "baseUrl":values.host?values.host:testEnvUrl,
             "path":values.path,
             "headerList":requestHeaderTestList,
             "queryList":queryParamTestList,
@@ -134,7 +134,7 @@ const ApxMethodTest = (props) => {
             return (
                 <Form.Item
                     className='formItem'
-                    name="serverUrl"
+                    name="host"
                 >
                     <Input />
                 </Form.Item>
@@ -153,10 +153,9 @@ const ApxMethodTest = (props) => {
                     onFinish={onFinish}
                     form = {form}
                     className="test-header"
-                    // initialValues={{serverUrl:`${testEnv}`}}
                 >
                     <div className={"test-url"}>
-                        <Form.Item name="requestType" noStyle>
+                        <Form.Item name="methodType" noStyle>
                             <Select style={{width: 100,height:40}} disabled={true} showArrow={false}>
                                 {
                                     Object.keys(methodJsonDictionary).map(item=>{
