@@ -11,6 +11,12 @@ export class EnvironmentStore {
 	@observable environmentList = [];
 	@observable envSourceList = [];
 	@observable dataLength;
+	@observable testEnvUrl;
+
+	@action
+	getTestEnvUrl=(url)=>{
+		this.testEnvUrl=url
+	}
 
 	@action
 	setList = (values) => {
@@ -86,8 +92,6 @@ export class EnvironmentStore {
             })
         })
 	}
-
-
 
 }
 

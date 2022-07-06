@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
-import {Form, Input, Select, Button, Divider} from 'antd';
+import {Form, Input, Select, Button, Divider, Space, Tooltip} from 'antd';
 import { TestRequest, TestResponse } from '../index';
 import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
@@ -23,11 +23,12 @@ const ApxMethodTest = (props) => {
         preParamTestStore,
         afterParamTestStore,
         assertParamTestStore,
+        environmentStore,
         testStore,
     } = props;
 
     const {findApxMethod} = apxMethodStore;
-
+    const {testEnvUrl} = environmentStore;
     const { getRequestInfo, getResponseInfo, getTime } = testStore;
     const { requestHeaderTestList,getRequestHeaderTestList } = requestHeaderTestStore;
     const { queryParamTestList,getQueryParamTestList } = queryParamTestStore;
@@ -46,7 +47,7 @@ const ApxMethodTest = (props) => {
     const [apiData, setApiData] = useState();
     const [showResponse,setShowResponse]= useState(false);
     const methodId = localStorage.getItem('apxMethodId');
-    let testEnv = localStorage.getItem("TEST_ENV")
+
 
     useEffect(()=>{
         findApxMethod(methodId).then(res=>{
@@ -87,14 +88,19 @@ const ApxMethodTest = (props) => {
         })
     },[methodId])
 
+
+
     // 点击测试
-    const onFinish = (values)=> {
+    const onFinish =async ()=> {
+
+        let values =await form.getFieldsValue()
+
         const allSendData = {
             "getTime":getTime,
             "getRequestInfo":getRequestInfo,
             "getResponseInfo":getResponseInfo,
             "method":values.requestType,
-            "baseUrl":values.serverUrl,
+            "baseUrl":values.serverUrl?values.serverUrl:testEnvUrl,
             "path":values.path,
             "headerList":requestHeaderTestList,
             "queryList":queryParamTestList,
@@ -113,56 +119,70 @@ const ApxMethodTest = (props) => {
         setShowResponse(true)
     }
 
-    //请求类型下拉选择框
-    const prefixSelector = (
-        <Form.Item name="requestType" noStyle>
-          <Select style={{width: 100}} disabled={true}>
-              {
-                  Object.keys(methodJsonDictionary).map(item=>{
-                      return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
-                  })
-              }
-          </Select>
-        </Form.Item>
-    );
 
+
+    const showHost = () =>{
+        if(testEnvUrl&&testEnvUrl.trim().length!==0){
+            return (
+                <Tooltip placement="top" title={"请从环境管理修改"}>
+                    <div className={"test-host-url"} >
+                         {testEnvUrl}
+                    </div>
+                </Tooltip>
+            )
+        }else {
+            return (
+                <Form.Item
+                    className='formItem'
+                    name="serverUrl"
+                >
+                    <Input />
+                </Form.Item>
+            )
+        }
+    }
 
 
     return(
         <Fragment>
             <div className={"test-base"}>
+                <div>
+
+                </div>
                 <Form
                     onFinish={onFinish}
                     form = {form}
                     className="test-header"
-                    initialValues={{serverUrl:`${testEnv}`}}
+                    // initialValues={{serverUrl:`${testEnv}`}}
                 >
                     <div className={"test-url"}>
-                        <Form.Item
-                            className='formItem'
-                            name="serverUrl"
-                        >
-                            <Input  addonBefore={prefixSelector}/>
+                        <Form.Item name="requestType" noStyle>
+                            <Select style={{width: 100,height:40}} disabled={true} showArrow={false}>
+                                {
+                                    Object.keys(methodJsonDictionary).map(item=>{
+                                        return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
+                                    })
+                                }
+                            </Select>
                         </Form.Item>
+                        {
+                            showHost()
+                        }
                         <Form.Item
                             className='formItem'
                             name="path"
-                            rules={[{required: true,message: '接口的path'}]}
+                            rules={[{required: true,message: '接口的路径'}]}
                         >
                             <Input disabled/>
                         </Form.Item>
                     </div>
-                    <div className={"test-base-item"}>
-                        <Form.Item className='test-button'>
-                            <Button className="important-btn" htmlType="submit">
-                                测试
-                            </Button>
-                        </Form.Item>
-                    </div>
-                    <div className={"test-base-item"}>
+
+                    <Space>
+                        <Button className="important-btn" onClick={onFinish}> 测试 </Button>
                         <SaveTestCase  {...props}/>
-                    </div>
+                    </Space>
                 </Form>
+
             </div>
 
             {/*<div className='title ex-title'>输入参数</div>*/}
@@ -192,7 +212,7 @@ export default inject(
     'assertParamTestStore',
     'testStore',
     'testCaseStore',
-
+    "environmentStore",
     "apxMethodStore"
  )(observer(ApxMethodTest));
 

@@ -1,6 +1,29 @@
 .test-base{
     margin: 10px 0;
 
+    .ant-form-item{
+        margin: 0;
+    }
+
+    .ant-input[disabled]{
+        color: #000;
+        background: white;
+        border-left: none;
+        flex: 1;
+    }
+
+    .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+        height: 40px;
+        align-items: center;
+        color: #000;
+        background: white;
+        border-right: none;
+    }
+
+    .ant-btn{
+        height: 40px;
+        border-radius: 5px;
+    }
 
     .test-header{
         display: flex;
@@ -44,6 +67,21 @@
 .test-button{
     margin: 0;
 }
+
+.test-host-url{
+    //cursor: pointer;
+    padding: 8px;
+    width: 400px;
+    border: 1px solid #dcdcdc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.test-host-url:hover{
+    cursor: auto;
+    color: #00adff;
+}
+
 
 
 

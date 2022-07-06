@@ -64,3 +64,12 @@
     align-items: center;
     overflow: auto;
 }
+
+
+//tab
+.tab-pane{
+    max-width:300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

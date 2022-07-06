@@ -8,11 +8,11 @@ const { Option } = Select;
 const EnvSelect = (props) =>{
     const { environmentStore} = props;
 
-    const { findEnvironmentList, envSourceList } = environmentStore;
+    const { findEnvironmentList, envSourceList,getTestEnvUrl } = environmentStore;
 
-    let testEnv=localStorage.getItem("TEST_ENV")
+    // let testEnv=localStorage.getItem("TEST_ENV")
 
-    const [selectEnv, setSelectEnv] = useState(testEnv);
+    // const [selectEnv, setSelectEnv] = useState(testEnv);
 
     useEffect(()=>{
         findEnvironmentList()
@@ -21,8 +21,9 @@ const EnvSelect = (props) =>{
 
     // 选择测试环境 input框呈现相应的地址
     const onSelectChange = (value) => {
-        setSelectEnv(value)
-        localStorage.setItem("TEST_ENV",value)
+        // setSelectEnv(value)
+        getTestEnvUrl(value)
+
     }
 
     const showOption = (data)=>{
@@ -41,7 +42,7 @@ const EnvSelect = (props) =>{
         <Select
             style={{width:200}}
             onSelect={(value)=> onSelectChange(value)}
-            defaultValue={selectEnv}
+            // defaultValue={selectEnv}
             dropdownRender={item=>(
                 <>
                     <div style={{"overflow":"auto","height":"100px"}}>{item}</div>

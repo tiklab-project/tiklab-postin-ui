@@ -87,7 +87,7 @@ const TestdetailQuickTest = (props) =>{
                     case bodyTypeJsonDic.raw:
                         let rawInfo = {
                             raw:request?.body,
-
+                            type:request?.mediaType
                         }
                         getRawInfo(rawInfo)
                         break;

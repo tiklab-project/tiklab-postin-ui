@@ -46,11 +46,12 @@ const TabsQuickTest = (props) =>{
         newList.push({name:"新标签", id:tabId,type: "api"})
 
         let newTabInfo ={
-            activeKey:newList.length,
+            activeKey:newList.length-1,
             tabList:newList
         }
 
         sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newTabInfo))
+        props.history.push("/workspace/quickTest/detail/api")
         setAction(!action)
     }
 
@@ -96,6 +97,7 @@ const TabsQuickTest = (props) =>{
             <TabPane
                 tab={item.name}
                 key={index}
+                forceRender
             >
                 {
                     renderRoutes(router)

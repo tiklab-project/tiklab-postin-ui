@@ -83,6 +83,8 @@ const TabsPage = (props) =>{
             <TabPane
                 tab={item.name}
                 key={index}
+                forceRender
+                // className={"tab-pane"}
             >
                 {
                     renderRoutes(router)
