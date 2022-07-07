@@ -1,10 +1,9 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
-import { toJS } from 'mobx'
 import { PREPARAM_TESTCASE_STORE } from '../store/preParamTestCaseStore';
-import { Input, Button, Form } from 'antd';
-const { TextArea } = Input;
+import {  Form } from 'antd';
+import CodeMirror from "../../../common/codeMirror";
 
 const PreParamTestCase = (props) => {
     const { preParamTestCaseStore }  = props;
@@ -12,57 +11,59 @@ const PreParamTestCase = (props) => {
     const { 
         createPreParamTestCase, 
         updatePreParamTestCase, 
-        findPreParamTestCase, 
-        preParamTestCaseInfo ,
-        getPreParamCaseInfo
+        findPreParamTestCase,
     } = preParamTestCaseStore;
-
-    const [focus, setFocus] = useState(false);
-    
+    const ediTextRef = useRef(null);
+    const rawDataRef = useRef(null);
     const [form] = Form.useForm();
 
-    const id = localStorage.getItem('testCaseId') ;
+    const testCaseId = localStorage.getItem('testCaseId') ;
 
     useEffect(()=>{
-        findPreParamTestCase(id).then((res)=>{
-            if(res){
-                form.setFieldsValue({
-                    scriptex: res.scriptex,
-                })
-            }
+        findPreParamTestCase(testCaseId).then((res)=>{
+            if(!res ) return
+
+            rawDataRef.current=res
+            form.setFieldsValue({
+                scriptex: res.scriptex,
+            })
         })
-    },[])
+    },[testCaseId])
 
-    const onFinish = (values) => {
-        if(preParamTestCaseInfo){
-            getPreParamCaseInfo(values)
-            updatePreParamTestCase(values)
+
+    const blurFn = () =>{
+        //获取EdiText文本数据
+        let text = ediTextRef.current.editor.getValue()
+
+        let param = {scriptex:text}
+
+        if(rawDataRef.current){
+            updatePreParamTestCase(param)
         }else{
-            createPreParamTestCase(values)
-        }
+            if(!text) return
 
-        setFocus(false)
+            createPreParamTestCase(param).then((res)=>{
+                if(res.code!==0) return
+
+                findPreParamTestCase(testCaseId).then(res=>{
+                    if(!res ) return
+
+                    rawDataRef.current=res
+                })
+            })
+        }
     }
 
+
     return (
-        <Form
-            form={form}
-            onFinish={onFinish}
-        >
-            <div className={` ${focus === true ? 'textArea-focus' : 'textArea-blur'}`}>
-                <div className='mock-textarea'>
-                    <Form.Item>
-                        <Button>格式化</Button>
-                        <Button  htmlType="submit" >保存</Button> 
-                    </Form.Item>
-                </div>
-            </div>
-            <Form.Item
-                name='scriptex'
-            >
-                <TextArea  autoSize={{minRows: 4, maxRows: 10 }}  onFocus={()=>setFocus(true)}/>
+        <Form form={form} >
+            <Form.Item name='scriptex'>
+                <CodeMirror
+                    mediaType={"application/javascript"}
+                    blurFn={blurFn}
+                    ediTextRef={ediTextRef}
+                />
             </Form.Item>
-            
         </Form>
     )
 }

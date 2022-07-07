@@ -4,6 +4,25 @@
     margin-bottom: 20px;
 }
 
+.testcase-header-right{
+    display: flex;
+    align-items: center;
+    height: 35px;
+
+    input{
+        padding: 5px;
+    }
+
+    .testcase-header-right-back{
+        cursor: pointer;
+
+    }
+    .testcase-header-right-back:hover{
+        color: #00adff;
+    }
+
+}
+
 .testCase-search{
     width: 200px;
 }
@@ -14,6 +33,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 5px;
 }
 
 .testcase-name{

@@ -6,6 +6,7 @@ import ResponseHeaderInstance from "./responseHeaderInstance";
 import RequestBodyInstance from "./requestBodyInstance";
 import RequestHeaderInstance from "./requestHeaderInstance";
 import AssertInstance from "./assertInstance";
+import {TextMethodType} from "../../../common/methodType";
 const { TabPane } = Tabs;
 
 const InstanceDetail = (props) => {
@@ -15,8 +16,6 @@ const InstanceDetail = (props) => {
     const [visible, setVisible] = useState(false);
 
     const [requestInstance,setRequestInstance]=useState({})
-    const [testNo, setTestNo] = useState();
-    const [methodType, setMethodType] = useState("");
     const [statusCode, setStatusCode] = useState("");
     const [result, setResult] = useState();
     const [testTime, setTestTime] = useState();
@@ -24,7 +23,6 @@ const InstanceDetail = (props) => {
     //展示测试结果详情
     const showModal = () => {
         findInstance(instanceId).then((res)=>{
-            setTestNo(testNo)
             setStatusCode(res.statusCode);
             setResult(res.result)
             setRequestInstance(res.requestInstance);
@@ -34,12 +32,53 @@ const InstanceDetail = (props) => {
         setVisible(true);
     }
 
+    const detail = [
+        {
+            title:"请求地址:",
+            value:requestInstance?.url,
+            key:"url"
+        },{
+            title:"请求方式:",
+            value:requestInstance?.methodType,
+            key:"methodType"
+        },{
+            title:"状态码:",
+            value:statusCode,
+            key:"statusCode"
+        },{
+            title:"测试结果:",
+            value:result=== 1 ? '成功' : '失败',
+            key:"result"
+        },{
+            title:"测试时间:",
+            value:testTime,
+            key:"testTime"
+        },
+    ]
+
+    const showDetail = (data) =>{
+        return data.map(item=>{
+            return(
+                <div key={item.key} className={"history-detail-item-box"}>
+                    <span className={"history-detail-item-box-title"}>{item.title}</span>
+                    {
+                        item.key==="methodType"
+                            ? <TextMethodType type={requestInstance?.methodType} />
+                            :<span className={"history-detail-item-box-value"}>{item.value}</span>
+                    }
+
+
+                </div>
+            )
+        })
+    }
+
 
     const handleCancel = () => {setVisible(false)};
 
     return(
         <>
-            <a onClick={showModal}  className={"instance-list-item"}>{props.name}</a>
+            <div onClick={showModal}  className={"instance-list-item"}>{  props.item }</div>
             <Modal
                 title='查看测试详情'
                 destroyOnClose={true}
@@ -48,44 +87,55 @@ const InstanceDetail = (props) => {
                 width={800}
                 footer={null}
             >
-                <div>
-                    <span>请求地址:  </span>
-                    <span>{requestInstance?.url}</span>
-                </div>
-                <div>
-                    <span>请求方式:  </span>
-                    <span>{requestInstance?.methodType}</span>
-                </div>
-                <div>
-                    <span>状态码:  </span>
-                    <span>{statusCode}</span>
-                </div>
-                <div>
-                    <span>测试结果:  </span>
-                    <span>{result=== 1 ? '成功' : '失败'}</span>
-                </div>
-                <div>
-                    <span>测试时间:  </span>
-                    <span>{testTime}</span>
-                </div>
-                <Tabs
-                    defaultActiveKey="1"
-                    type="card"
-                >
+                {
+                    showDetail(detail)
+                }
+                {/*<div>*/}
+                {/*    <span>请求地址:  </span>*/}
+                {/*    <span>{requestInstance?.url}</span>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <span>请求方式:  </span>*/}
+                {/*    <TextMethodType type={requestInstance?.methodType} />*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <span>状态码:  </span>*/}
+                {/*    <span>{statusCode}</span>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <span>测试结果:  </span>*/}
+                {/*    <span>{result=== 1 ? '成功' : '失败'}</span>*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                {/*    <span>测试时间:  </span>*/}
+                {/*    <span>{testTime}</span>*/}
+                {/*</div>*/}
+                <Tabs defaultActiveKey="1"  >
                     <TabPane tab="响应体" key="1">
-                        <ResponseBodyInstance />
+                        <div className={"history-res-height"}>
+                            <ResponseBodyInstance />
+                        </div>
+
                     </TabPane>
                     <TabPane tab="响应头" key="2">
-                        <ResponseHeaderInstance />
+                        <div className={"history-res-height"}>
+                            <ResponseHeaderInstance />
+                        </div>
                     </TabPane>
                     <TabPane tab="请求内容" key="4">
+                        <div className={"history-res-height"}>
                         <RequestBodyInstance />
+                        </div>
                     </TabPane>
                     <TabPane tab="请求头" key="3">
+                        <div className={"history-res-height"}>
                         <RequestHeaderInstance />
+                        </div>
                     </TabPane>
                     <TabPane tab="断言" key="5">
+                        <div className={"history-res-height"}>
                         <AssertInstance />
+                        </div>
                     </TabPane>
                 </Tabs>
             </Modal>

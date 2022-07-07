@@ -1,10 +1,9 @@
-import React, {useImperativeHandle, useRef} from "react";
+import React from "react";
 import {UnControlled as ReactCodeMirror} from 'react-codemirror2';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/lib/codemirror.js';
-import "codemirror/theme/ambiance.css";
-import "codemirror/theme/blackboard.css";
+import "codemirror/theme/idea.css"
 // 高亮行功能
 import 'codemirror/addon/selection/active-line';
 import 'codemirror/addon/selection/selection-pointer';
@@ -22,9 +21,11 @@ import 'codemirror/mode/xml/xml';
 const CodeMirror = (props) => {
     const { value,mediaType,blurFn,ediTextRef} = props;
 
+
     console.log(mediaType)
 
     const onBlur = ()=>{
+        if(!blurFn) return
         blurFn()
     }
 
@@ -35,14 +36,17 @@ const CodeMirror = (props) => {
                 value={value}
                 options={{
                     mode:mediaType,
-                    theme: 'blackboard',
+                    theme: 'idea',
                     lineWiseCopyCut: true,
-                    autofocus: true, //自动获取焦点
+                    // autofocus: {autofocus}, //自动获取焦点
                     styleActiveLine: true, //光标代码高亮
                     lineNumbers: true, //显示行号
                     smartIndent: true, //自动缩进
                     lineWrapping: true,
                     foldGutter: true,
+                    matchBrackets: true,
+                    // readOnly:{readOnly},
+                    indentUnit:4,
                     // fullScreen: true,//全屏
                     gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'], //end
                 }}

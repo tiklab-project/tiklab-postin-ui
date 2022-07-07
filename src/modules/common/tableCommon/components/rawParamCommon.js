@@ -6,12 +6,10 @@ import CodeMirror from "../../codeMirror";
 const { Option } = Select;
 
 const RawParamCommon = (props) => {
-    const { form,dataSource,type,updateFn}  = props;
+    const { form,type,updateFn}  = props;
 
     //获取当前文本数据
     const ediTextRef = useRef(null);
-    //获取当前的raw的数据
-    const rawDataRef = useRef(dataSource);
     //获取当前raw中的类型
     const typeRef =  useRef(type?type:"text/plain")
     //用于传入codemirror中的类型，直接通过typeRef.current无法传入
@@ -50,7 +48,7 @@ console.log(param)
 
     return (
         <div className={"raw-box"}>
-            <Form form={form}>
+            <Form form={form} initialValues={{"type":"text/plain"}}>
 
                 <div className='raw-box-header'>
                     <Form.Item name='type'>

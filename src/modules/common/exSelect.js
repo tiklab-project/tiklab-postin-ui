@@ -58,7 +58,7 @@ const ExSelect = (props) => {
             onChange={(e) => onChangeSelect(e)}
             onSearch={value => onSearchSelect(value)}
             onBlur={() => onBlurSelect()}
-            style={{ width: 170 }}
+            style={{ width:  "100%"}}
             value={record }
             bordered={false}
         >

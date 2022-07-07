@@ -16,7 +16,7 @@ const TestResultCommon = (props) =>  {
 
     return(
         <>
-            <div className={`test-response-after  ${showResponse === true? 'test-response-show':'test-response-hide'}`}>
+            <div style={{"min-height":300}} className={`test-response-after  ${showResponse === true? 'test-response-show':'test-response-hide'}`}>
                 <Tabs
                     defaultActiveKey="1"
                     tabBarExtraContent={responseInfo}

@@ -146,9 +146,6 @@ const ApxMethodTest = (props) => {
     return(
         <Fragment>
             <div className={"test-base"}>
-                <div>
-
-                </div>
                 <Form
                     onFinish={onFinish}
                     form = {form}

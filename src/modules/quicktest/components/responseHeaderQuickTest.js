@@ -1,13 +1,16 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import ResponseHeaderCommon from "../../apitest/common/responseHeaderCommon";
+import ResHeaderCommon from "../../apitest/common/resHeaderCommon";
+import {processResHeader} from "../../apitest/common/testResponseFnCommon";
 
 const ResponseHeaderQuickTest = (props) => {
     const {quickTestStore} = props;
     const {responseHeaderData} = quickTestStore;
 
     return(
-        <ResponseHeaderCommon responseHeaderData={responseHeaderData}/>
+        <ResHeaderCommon
+            headers={processResHeader(responseHeaderData)}
+        />
     )
 }
 

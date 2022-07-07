@@ -3,15 +3,16 @@
     height: 25px;
     padding: 2px 5px;
     border-radius: 3px;
+    font-weight: 500;
 }
 
 .requestType-post{
     color: white;
-    background: #d55e4d;
+    background: #ff2000;
 }
 
 .requestType-post-text{
-    color: #d55e4d;
+    color: #ff1d00;
 }
 
 .requestType-get{
@@ -24,10 +25,10 @@
 
 .requestType-delete{
     color: white;
-    background: #ff0000;
+    background: #ff8181;
 }
 .requestType-delete-text{
-    color: #ff0000;
+    color: #ff8181;
 }
 
 .requestType-head{

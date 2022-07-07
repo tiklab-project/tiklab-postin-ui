@@ -88,7 +88,10 @@ export class InstanceStore {
         const param = new FormData();
         param.append('id', id);
 
-        await deleteInstance(param)
+        const res = await deleteInstance(param)
+        if(res.code===0){
+            return res
+        }
     }
 
     @action

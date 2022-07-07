@@ -4,13 +4,12 @@
  * @LastEditTime: 2021-05-08 17:42:56
  */
 
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
 import { AFTERPARAM_STORE } from '../store/afterParamStore';
-import { Input, Button, Form } from 'antd';
+import { Form } from 'antd';
 import CodeMirror from "../../../common/codeMirror";
 
-const { TextArea } = Input;
 
 const AfterScript = (props) => {
     const {afterParamStore }  = props;

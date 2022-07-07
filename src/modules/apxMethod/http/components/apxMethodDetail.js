@@ -28,7 +28,7 @@ const ApxMethodDetail = (props) => {
 
     const [resData, setResData] = useState({});
     const [httpId, setHttpId] = useState();
-    const [requestType,setRequestType] =useState("");
+    const [methodType,setMethodType] =useState("");
     const [status, setStatus] = useState("");
     const [executorId, setExecutorId] = useState("");
 
@@ -38,7 +38,7 @@ const ApxMethodDetail = (props) => {
         findApxMethod(apxMethodId).then((res)=>{
             setHttpId(res.id)
             setResData(res)
-            setRequestType(res.requestType);
+            setMethodType(res.methodType);
             setStatus(res.apix.status?.id);
             setExecutorId(res.apix.executor?.id)
         })
@@ -173,7 +173,7 @@ const ApxMethodDetail = (props) => {
             </div>
             <div className={"method"}>
                 <div className={"method-info info-item"}>
-                    <span className={"method-info-item "}><MethodType type={requestType} /></span>
+                    <span className={"method-info-item "}><MethodType type={methodType} /></span>
                     <EdiText
                         value={resData?.path}
                         tabIndex={2}

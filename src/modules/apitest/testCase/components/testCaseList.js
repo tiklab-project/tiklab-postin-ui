@@ -8,7 +8,7 @@ import {toJS} from "mobx";
 import TestcaseTableInstance from "../../testInstance/components/testcaseTableInstance";
 
 const TestCaseList = (props) => {
-    const { testCaseStore,instanceStore } = props;
+    const { testCaseStore,instanceStore , environmentStore} = props;
     const {
         findTestCaseList,
         deleteTestCase,
@@ -18,7 +18,7 @@ const TestCaseList = (props) => {
         getTime
     } = testCaseStore;
     const { createInstance  } = instanceStore;
-
+    const {testEnvUrl} = environmentStore;
     const column = [
         {
             title: '用例名称',
@@ -37,18 +37,18 @@ const TestCaseList = (props) => {
             key: 'method',
             width:"30%",
         },
-        {
-            title: '测试结果',
-            dataIndex:"result",
-            // align:'center',
-            key: 'result',
-            width:"20%",
-            render: (text, record )=>(
-                <>
-                    <TestcaseTableInstance testcaseId={record.id}/>
-                </>
-            )
-        },
+        // {
+        //     title: '测试结果',
+        //     dataIndex:"result",
+        //     // align:'center',
+        //     key: 'result',
+        //     width:"20%",
+        //     render: (text, record )=>(
+        //         <>
+        //             <TestcaseTableInstance testcaseId={record.id}/>
+        //         </>
+        //     )
+        // },
         {
             title: '操作',
             dataIndex: 'operation',
@@ -57,7 +57,7 @@ const TestCaseList = (props) => {
             width:"15%",
             render: (text, record )=>(
                 <Space  size="middle">
-                    <a onClick={()=>singleTest(record)}>测试</a>
+                    {/*<a onClick={()=>singleTest(record)}>测试</a>*/}
                     <div>
                         <TestCaseEdit type="编辑"  testcaseId={record.id} {...props} >编辑</TestCaseEdit>
                     </div>
@@ -94,50 +94,20 @@ const TestCaseList = (props) => {
         }
     };
 
-    //批量测试
-    const batchTest = () =>{
-        if(selectTestList.length>0){
-            selectTestList.map(item=>{
-                console.log(toJS(item))
-                let testData = {
-                    "getTime":getTime,
-                    "getRequestInfo":getRequestInfo,
-                    "getResponseInfo":getResponseInfo,
-                    "belongId":item.id,
-                    "createInstance":createInstance,
-                    "method":item.requestType,
-                    "baseUrl":item.baseUrl,
-                    "path":item.path,
-                    "headerList":item.requestHeaderCaseList,
-                    "queryList":item.queryParamCaseList,
-                    "bodyType":item.requestBodyCase.bodyType,
-                    "formDataList":item.formParamCaseList,
-                    "formUrlencoded":item.formUrlencodedCaseList,
-                    "jsonList":item.jsonParamCaseList,
-                    "rawParam":item.rawParamCase,
-                    "assertList":item.assertCaseList,
-                    "preScript":item.preScriptCase,
-                    "afterScript":item.afterScriptCase,
-                }
-
-                sendTestDataProcess(testData)
-            })
-
-        }else {
-            message.warning("请选择用例")
-        }
-    }
-
     //列表中单次测试
     const singleTest = (item)=>{
+        if(!testEnvUrl){
+            return  message.warning("请选择环境")
+        }
+
         let testData = {
             "getTime":getTime,
             "getRequestInfo":getRequestInfo,
             "getResponseInfo":getResponseInfo,
             "belongId":item.id,
             "createInstance":createInstance,
-            "method":item.requestType,
-            "baseUrl":item.baseUrl,
+            "method":item.methodType,
+            "baseUrl":testEnvUrl,
             "path":item.path,
             "headerList":item.requestHeaderCaseList,
             "queryList":item.queryParamCaseList,
@@ -153,19 +123,34 @@ const TestCaseList = (props) => {
         sendTestDataProcess(testData)
     }
 
+    //批量测试
+    const batchTest = () =>{
+        if(selectTestList.length>0){
+            selectTestList.map(item=>{
+                console.log(toJS(item))
+                singleTest(item)
+            })
+
+        }else {
+            message.warning("请选择用例")
+        }
+    }
+
+
+
     return(
         <Fragment>
             <div className='testCase-header'>
-                <Button onClick={batchTest}>批量测试</Button>
+                {/*<Button onClick={batchTest}>批量测试</Button>*/}
                 <TestCaseEdit  btn='btn' type="添加用例" {...props}>添加用例</TestCaseEdit>
             </div>
             <Table
                 columns={column}
                 dataSource={testCaseList}
                 rowKey = {record => record.id}
-                rowSelection ={{
-                    ...rowSelection,
-                }}
+                // rowSelection ={{
+                //     ...rowSelection,
+                // }}
                 pagination={false}
             />
         </Fragment>
@@ -173,4 +158,4 @@ const TestCaseList = (props) => {
 
 }
 
-export default inject('testCaseStore',"instanceStore")(observer(TestCaseList));
+export default inject('testCaseStore',"instanceStore", "environmentStore")(observer(TestCaseList));

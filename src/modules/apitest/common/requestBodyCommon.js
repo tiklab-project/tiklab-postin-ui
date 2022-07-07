@@ -1,14 +1,15 @@
 import React from 'react'
-import { Input } from 'antd';
-const { TextArea } = Input;
+import CodeMirror from "../../common/codeMirror";
+
 
 const RequestBodyCommon = (props) => {
     const { requestBodyData } = props;
 
     return (
-        <TextArea
-            autoSize={{minRows: 4, maxRows: 10 }}
+        <CodeMirror
             value={requestBodyData}
+            mediaType={"application/javascript"}
+            readOnly={true}
         />
     )
 }

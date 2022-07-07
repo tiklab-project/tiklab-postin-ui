@@ -1,47 +1,38 @@
 
-import React, { useState, useEffect } from 'react';
-import { Input, Button, Form } from 'antd';
+import React, { useRef} from 'react';
+import { Form } from 'antd';
+import CodeMirror from "../../codeMirror";
 
-const { TextArea } = Input;
+
 
 const ScriptCommon = (props) => {
-    const { getInfo,setInfo }  = props;
+    const {form,updateFn}  = props;
 
-    const [focus, setFocus] = useState(false);
-    const [form] = Form.useForm();
+    //获取当前文本数据
+    const ediTextRef = useRef(null);
 
-    useEffect(()=>{
-        setInfo().then(res=>{
-            if(res){
-                form.setFieldsValue({
-                    scriptex: res.scriptex,
-                })
-            }
-        })
-    },[])
 
-    const onFinish = (values) => {
-        getInfo(values);
-        setFocus(false);
+    //失去焦点，获取更改raw中类型执行
+    const blurFn = ()=>{
+        //获取EdiText文本数据
+        let text = ediTextRef.current.editor.getValue()
+
+        let param = {scriptex:text }
+        console.log(param)
+        //本地获取值
+        updateFn(param)
     }
 
-    return (
-        <Form
-            form={form}
-            onFinish={onFinish}
-        >
-            <div className={` ${focus === true ? 'textArea-focus' : 'textArea-blur'}`}>
-                <div className='mock-textarea'>
-                    <Form.Item>
-                        {/*<Button>格式化</Button>*/}
-                        <Button  htmlType="submit" >保存</Button>
-                    </Form.Item>
-                </div>
-            </div>
-            <Form.Item name='scriptex'>
-                <TextArea autoSize={{minRows: 4, maxRows: 10 }} onFocus={()=>setFocus(true)}/>
-            </Form.Item>
 
+    return (
+        <Form form={form} >
+            <Form.Item  name='scriptex'>
+                <CodeMirror
+                    mediaType={"application/javascript"}
+                    blurFn={blurFn}
+                    ediTextRef={ediTextRef}
+                />
+            </Form.Item>
         </Form>
     )
 }

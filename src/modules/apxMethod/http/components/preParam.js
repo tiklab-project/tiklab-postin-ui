@@ -64,6 +64,7 @@ const PreParam = (props) => {
                     mediaType={"application/javascript"}
                     blurFn={blurFn}
                     ediTextRef={ediTextRef}
+                    readOnly={false}
                 />
             </Form.Item>
         </Form>

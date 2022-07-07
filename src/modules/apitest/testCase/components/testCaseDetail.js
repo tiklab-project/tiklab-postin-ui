@@ -14,11 +14,13 @@ import {
 import { observer, inject } from 'mobx-react';
 import {Form, Button, Input, Select, Tooltip} from 'antd';
 import { TestCaseRequest } from "../index";
-import DropdownInstance from "../../testInstance/components/dropdownInstance";
+import DropdownInstance from "../../testInstance/components/histroyList";
 import TestResultCase from "./testResultCase";
 import {sendTestDataProcess} from "../../common/sendTestCommon";
 import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import BackCommon from "../../../common/backCommon";
+import EdiTextToggle from "../../../common/ediTextToggle";
+import EdiText from "react-editext";
 
 const {Option} = Select;
 
@@ -40,7 +42,7 @@ const TestCaseDetail = (props) => {
         environmentStore
     } = props;
 
-    const {deleteTestCase, findTestCase, getResponseInfo, getRequestInfo, getTime } = testCaseStore;
+    const {deleteTestCase,updateTestCase , findTestCase, getResponseInfo, getRequestInfo, getTime } = testCaseStore;
     const {testEnvUrl} = environmentStore;
     const { requestHeaderTestCaseDataSource,processHeaderCaseList } = requestHeaderTestCaseStore;
     const { queryParamTestCaseDataSource, processQueryCaseList } = queryParamTestCaseStore;
@@ -62,6 +64,7 @@ const TestCaseDetail = (props) => {
     const [showResponse,setShowResponse] = useState(false);
     const [caseName, setCaseName] = useState();
     const testCaseId = localStorage.getItem("testCaseId");
+    const methodId =  localStorage.getItem('apxMethodId');
 
     useEffect(() => {
         findTestCase(testCaseId).then(res=>{
@@ -161,26 +164,43 @@ const TestCaseDetail = (props) => {
         }
     }
 
+    //编辑名称
+    const editName = (value) => {
+        let param = {
+            http:{id:methodId},
+            id:testCaseId,
+            name:value
+        }
+        updateTestCase(param)
+    };
 
     return(
         <>
             <div className='testCase-baseInfo'>
-                <BackCommon clickBack={backToList} />
-                {/*<div>*/}
-                {/*    <Button onClick={backToList}>*/}
-                {/*        <svg className="icon" aria-hidden="true"  style={{cursor:"pointer"}}>*/}
-                {/*            <use xlinkHref= {`#icon-fanhui`}> </use>*/}
-                {/*        </svg>*/}
-                {/*        返回*/}
-                {/*    </Button>*/}
-                {/*    /!*<span className={"testcase-name"}>{caseName}</span>*!/*/}
-                {/*    <span className={"testcase-name"}>{caseName}</span>*/}
-                {/*</div>*/}
-
-                <div>
-                    <DropdownInstance testcaseId={testCaseId}/>
-                    {/*<a style={{margin:"0 0 0 10px"}} onClick={()=> backToList()}>返回</a>*/}
+                <div className={"testcase-header-right"}>
+                    <div className={"testcase-header-right-back"} onClick={backToList}>用例列表</div>
+                    <div >/</div>
+                    <EdiText
+                        value={caseName}
+                        tabIndex={2}
+                        onSave={editName}
+                        startEditingOnFocus
+                        submitOnUnfocus
+                        showButtonsOnHover
+                        viewProps={{ className: 'edit-api-title' }}
+                        editButtonClassName="ediText-edit"
+                        saveButtonClassName="ediText-save"
+                        cancelButtonClassName="ediText-cancel"
+                        editButtonContent={
+                            <svg className="icon" aria-hidden="true">
+                                <use xlinkHref= {`#icon-bianji1`} />
+                            </svg>
+                        }
+                        hideIcons
+                    />
                 </div>
+
+                <DropdownInstance testcaseId={testCaseId}/>
             </div>
             <div className={"test-base"}>
                 <Form
