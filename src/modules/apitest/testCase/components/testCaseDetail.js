@@ -16,10 +16,8 @@ import {Form, Button, Input, Select, Tooltip} from 'antd';
 import { TestCaseRequest } from "../index";
 import DropdownInstance from "../../testInstance/components/histroyList";
 import TestResultCase from "./testResultCase";
-import {sendTestDataProcess} from "../../common/sendTestCommon";
-import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
-import BackCommon from "../../../common/backCommon";
-import EdiTextToggle from "../../../common/ediTextToggle";
+import {sendTest, sendTestDataProcess} from "../../common/sendTestCommon";
+import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import EdiText from "react-editext";
 
 const {Option} = Select;
@@ -42,7 +40,7 @@ const TestCaseDetail = (props) => {
         environmentStore
     } = props;
 
-    const {deleteTestCase,updateTestCase , findTestCase, getResponseInfo, getRequestInfo, getTime } = testCaseStore;
+    const {deleteTestCase,updateTestCase , findTestCase, getResponseInfo, getRequestInfo, getResponseError } = testCaseStore;
     const {testEnvUrl} = environmentStore;
     const { requestHeaderTestCaseDataSource,processHeaderCaseList } = requestHeaderTestCaseStore;
     const { queryParamTestCaseDataSource, processQueryCaseList } = queryParamTestCaseStore;
@@ -62,6 +60,7 @@ const TestCaseDetail = (props) => {
 
     const [form] = Form.useForm();
     const [showResponse,setShowResponse] = useState(false);
+    const [errorMsg, setErrorMsg] = useState();
     const [caseName, setCaseName] = useState();
     const testCaseId = localStorage.getItem("testCaseId");
     const methodId =  localStorage.getItem('apxMethodId');
@@ -105,23 +104,20 @@ const TestCaseDetail = (props) => {
 
     // 返回列表
     const backToList = () => {
-        props.history.push({pathname:'/workspace/apis/detail/interface/testcase',state:{tabKey:'3'}})
+        props.history.push('/workspace/apis/detail/interface/testcase')
     }
 
     // 删除用例
     const handleDeleteTestCase = () => {
         deleteTestCase(testCaseId);
-        props.history.push({pathname:'/workspace/apis/detail/interface/testcase'})
+        props.history.push('/workspace/apis/detail/interface/testcase')
     }
 
     // 测试
-    const exeTest = (values) => {
+    const exeTest = async () => {
+        let values =await form.getFieldsValue()
+
         const allSendData = {
-            "getTime":getTime,
-            "getRequestInfo":getRequestInfo,
-            "getResponseInfo":getResponseInfo,
-            "belongId":testCaseId,
-            "createInstance":createInstance,
             "method":values.methodType,
             "baseUrl":values.host?values.host:testEnvUrl,
             "path":values.path,
@@ -133,11 +129,37 @@ const TestCaseDetail = (props) => {
             "jsonList":jsonParamTestCaseList,
             "rawParam":rawParamTestCaseInfo,
             "assertList":assertParamTestCaseDataSource,
-            "preScript":preParamTestCaseInfo,
-            "afterScript":afterScriptTestCaseInfo,
         }
 
-        sendTestDataProcess(allSendData)
+        //处理后的数据
+        const processData = sendTestDataProcess(allSendData)
+
+        //发送测试，返回结果
+        let response =await sendTest(processData)
+        //获取请求参数
+        getRequestInfo(processData)
+
+        //获取响应结果
+        if(!response.error){
+            getResponseInfo(response,assertParamTestCaseDataSource).then(res=>{
+                res.httpCase = {"id":testCaseId}
+                createInstance(res)
+            })
+
+            setErrorMsg({showError:false})
+        }else {
+
+            getResponseError(response).then(res=>{
+                res.httpCase = {"id":testCaseId}
+                createInstance(res)
+            })
+
+            let errorValue = {
+                errorMessage:response.error,
+                showError:true
+            }
+            setErrorMsg(errorValue)
+        }
 
         //点击测试按钮显示输出结果详情
         setShowResponse(true);
@@ -245,7 +267,10 @@ const TestCaseDetail = (props) => {
             <div className='title ex-title'>
                 测试结果
             </div>
-            <TestResultCase showResponse={showResponse}/>
+            <TestResultCase
+                showResponse={showResponse}
+                errorMsg={errorMsg}
+            />
         </>
     )
 }

@@ -1,7 +1,8 @@
 .mock-header{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    align-items: center;
+    padding: 5px;
 }
 
 .mock-search{
@@ -18,6 +19,11 @@
 
 // --------------------------
 // detail
+.mock-header-box{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
 
 .mock-baseInfo{
     display: flex;

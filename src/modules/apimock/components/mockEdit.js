@@ -8,54 +8,51 @@ const layout = {
 };
 
 const MockEdit = (props) => {
-    const { mockStore, apxMethodStore, setEdit } = props;
-    const { findMock, createMock, updateMock } = mockStore;
-    const { findApxMethod } = apxMethodStore;
+    const { mockStore, } = props;
+    const { findMock, createMock, updateMock, findMockPage} = mockStore;
+
 
     const [visible, setVisible] = useState(false);
     const [enable,setEnable] = useState()
 
     const [form] = Form.useForm();
 
+    const apxMethodId =  localStorage.getItem('apxMethodId');
+
     const showModal = () => {
-        setVisible(true);
+
         if(props.type === '编辑') {
-            showApxMethodName();
-            findMock(props.id).then((res)=>{
+            findMock(props.mockId).then((res)=>{
                 setEnable(res.enable)
                 form.setFieldsValue({
                     name:res.name,
                     desc:res.desc
                 })
             })
-        }else{
-            showApxMethodName();
         }
+
+        setVisible(true);
     };
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
-    // 弹框展示mock接口
-    const showApxMethodName = () => {
-        findApxMethod(apxMethodId).then((res)=> {
-            form.setFieldsValue({
-                path: res.path,
-            })
-        })
-    }
 
-    const onFinish = () => {
-        form.validateFields().then((values)=>{
-            if(props.type === '编辑') {
-                values.id = props.id;
-                values.enable = enable;
-                updateMock(values).then(()=>{
-                    setEdit(true)
-                })
-            }else{
-                values.enable=0
-                createMock(values)
-            }
-        })
+
+    const onFinish = async () => {
+        let values = await form.validateFields();
+
+        values.http={id:apxMethodId}
+        if(props.type === '编辑') {
+            values.id = props.mockId;
+            values.enable = enable;
+            updateMock(values).then(()=>{
+                findMockPage(apxMethodId)
+            })
+        }else{
+            values.enable=0
+            createMock(values).then(()=>{
+                findMockPage(apxMethodId)
+            })
+        }
+
         setVisible(false)
     };
 
@@ -83,14 +80,6 @@ const MockEdit = (props) => {
                 onFinish={onFinish}
                 preserve={false}
             >
-                <Form.Item
-                    label="mock接口"
-                    name="path"
-                    rules={[ {required: true} ]}
-                >
-                    <Input disabled/>
-                </Form.Item>
-
                 <Form.Item
                     label="mock名称"
                     name="name"

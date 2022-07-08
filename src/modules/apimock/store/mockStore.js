@@ -11,80 +11,60 @@ export class MockStore {
     @observable mockList = [];
     @observable apxMethodId='';
     @observable mockInfo=[];
-    @observable mockId = '';
     @observable totalRecord = ''
 
     @action
-    findMockPage = (id,value)=>{
-        this.apxMethodId = id;
+    findMockPage = async (id,value)=>{
         const params ={
             ...value,
             httpId:id
         }
-        const that = this;
-        return new Promise(function(resolve, reject){
-            findMockPage(params).then(res => {
-                if( res.code === 0){
-                    that.mockList = res.data.dataList;
-                    that.totalRecord = res.data.totalRecord;
-                    resolve(res.data)
-                }
-            })
-        })
+        const res = await findMockPage(params);
+        if( res.code === 0){
+            this.mockList = res.data.dataList;
+            this.totalRecord = res.data.totalRecord;
+            return res.data
+        }
     }
 
     @action
-    createMock = (values) => {
-        values.http ={
-            id:this.apxMethodId
+    createMock = async (values) => {
+        const res = await createMock(values)
+        if( res.code === 0){
+            return res
         }
-        createMock(values).then((res) => {
-            if( res.code === 0){
-                this.findMockPage(this.apxMethodId)
-            }
-        })
     }
 
     @action
-    updateMock = (values) => {
-        values.http ={
-            id:this.apxMethodId
+    updateMock = async (values) => {
+        const res = await updateMock(values)
+        if( res.code === 0){
+            return res
         }
-        const that = this;
-        return new Promise((resolve,reject)=> {
-            updateMock(values).then((res) => {
-                if( res.code === 0){
-                    that.findMockPage(that.apxMethodId)
-                    resolve(res)
-                }
-            })
-        })
     }
 
     @action
     deleteMock = async (id) => {
         const param = new FormData();
         param.append('id', id)
+
         const res = await deleteMock(param)
         if( res.code === 0){
-            this.findMockPage(this.apxMethodId)
+            return res
         }
     }
 
     @action
-    findMock = (id) => {
-        this.mockId = id;
-        const that =this;
+    findMock = async (id) => {
         const param = new FormData();
         param.append('id', id)
-        return new Promise(function(resolve, reject){
-            findMock(param).then((res) => {
-                if( res.code === 0){
-                   that.mockInfo = res.data;
-                }
-                resolve(that.mockInfo)
-            })
-        })
+
+        const res = await findMock(param);
+        if( res.code === 0){
+            this.mockInfo = res.data;
+
+            return res.data
+        }
     }
 
 }

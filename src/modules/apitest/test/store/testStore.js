@@ -8,36 +8,28 @@ export class TestStore {
     @observable time = '';
     @observable assertResponse = [];
 
-    @observable baseData;
     @observable responseBodyData;
     @observable responseHeaderData;
     @observable requestBodyData;
     @observable requestHeaderData;
 
+
     @action
     getRequestInfo = (data) => {
-        this.baseData = {
-            "method":data.method,
-            "baseUrl":data.baseUrl,
-            "path":data.url
-        }
 
         this.requestBodyData = data.bodys;
-        // for(let [key,value] of data.bodys.entries()){
-        //     let obj ={};
-        //     obj[key]=value;
-        //
-        //     this.requestBodyData = JSON.stringify(obj);
-        // }
 
         this.requestHeaderData = JSON.stringify(data.headers);
     }
 
     @action
-    getResponseInfo = (res,assertData) => {
+    getResponseInfo = (data,assertData) => {
+        let res = data.res;
+
+        this.time=data.time;
         this.status = res.status;
         const headers = res.headers;
-        const body = res.data;
+        const body = JSON.stringify(res.data);
 
 
         //断言处理

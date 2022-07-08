@@ -9,13 +9,14 @@ import AssertResponseTestCase from "./assertResponseTestCase";
 
 const TestResultCase = (props) => {
     const { testCaseStore, showResponse } = props;
-    const { status, time } = testCaseStore;
+    const { status, time, error} = testCaseStore;
     
     return(
         <TestResultCommon
             status={status}
             time={time}
             showResponse={showResponse}
+            error={error}
             responseBody={<TestResultResponseBodyCase />}
             responseHeader={<TestResultResponseHeaderCase />}
             requestHeader={<TestResultRequestHeaderCase />}

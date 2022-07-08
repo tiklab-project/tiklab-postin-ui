@@ -4,7 +4,7 @@ import {Form, Input, Select, Button, Divider, Space, Tooltip} from 'antd';
 import { TestRequest, TestResponse } from '../index';
 import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
-import {sendTestDataProcess} from "../../common/sendTestCommon";
+import {sendTest, sendTestDataProcess} from "../../common/sendTestCommon";
 import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
 
 const { Option } = Select;
@@ -29,7 +29,7 @@ const ApxMethodTest = (props) => {
 
     const {findApxMethod} = apxMethodStore;
     const {testEnvUrl} = environmentStore;
-    const { getRequestInfo, getResponseInfo, getTime } = testStore;
+    const { getRequestInfo, getResponseInfo, getResponseError } = testStore;
     const { requestHeaderTestList,getRequestHeaderTestList } = requestHeaderTestStore;
     const { queryParamTestList,getQueryParamTestList } = queryParamTestStore;
     const { bodyTypeInfo,getBodyType } = requestBodyTestStore;
@@ -46,6 +46,7 @@ const ApxMethodTest = (props) => {
 
     const [apiData, setApiData] = useState();
     const [showResponse,setShowResponse]= useState(false);
+    const [errorMsg, setErrorMsg] = useState();
     const methodId = localStorage.getItem('apxMethodId');
 
 
@@ -96,9 +97,6 @@ const ApxMethodTest = (props) => {
         let values =await form.getFieldsValue()
 
         const allSendData = {
-            "getTime":getTime,
-            "getRequestInfo":getRequestInfo,
-            "getResponseInfo":getResponseInfo,
             "method":values.methodType,
             "baseUrl":values.host?values.host:testEnvUrl,
             "path":values.path,
@@ -109,12 +107,29 @@ const ApxMethodTest = (props) => {
             "formUrlencoded":formUrlencodedTestList,
             "jsonList":jsonParamTestList,
             "rawParam":rawParamTestInfo,
-            "assertList":assertParamTestList,
-            "preScript":preParamTestInfo,
-            "afterScript":afterParamTestInfo,
         }
 
-        sendTestDataProcess(allSendData)
+        //处理后的数据
+        const processData = sendTestDataProcess(allSendData)
+
+        //发送测试，返回结果
+        let response =await sendTest(processData)
+        //获取请求参数
+        getRequestInfo(processData)
+
+        //获取响应结果
+        if(!response.error){
+            getResponseInfo(response,assertParamTestList)
+
+            setErrorMsg({showError:false})
+        }else {
+            let errorValue = {
+                errorMessage:response.error,
+                showError:true
+            }
+            setErrorMsg(errorValue)
+        }
+
 
         setShowResponse(true)
     }
@@ -188,7 +203,10 @@ const ApxMethodTest = (props) => {
             <div className='title ex-title'>
                 测试结果
             </div>
-            <TestResponse showResponse={showResponse}/>
+            <TestResponse
+                showResponse={showResponse}
+                errorMsg={errorMsg}
+            />
         </Fragment>
     )
 }

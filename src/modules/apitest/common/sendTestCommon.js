@@ -1,133 +1,80 @@
 import axios from "axios";
 import {testFunctionCommon} from "./testFunctionCommon";
 import qs from "qs";
-import {bodyTypeJsonDictionary as bodyTypeJson,rawTypeJsonDictionary as rawTypeJson} from "../../common/dictionary/dictionary";
+import {
+    bodyTypeJsonDictionary as bodyTypeJson,
+    rawTypeJsonDictionary as rawTypeJson
+} from "../../common/dictionary/dictionary";
 
 //发送测试 数据处理
 export const sendTestDataProcess=(data)=>{
 
+    //header
     let headers = testFunctionCommon.headerData(data.headerList);
 
+    //query
     let params = testFunctionCommon.transData(data.queryList);
 
+    //body
     let bodys = bodySwitch(data,headers)
 
-    const requestInfo = {
-        "method":data.method,
-        "baseUrl":data.baseUrl,
-        "url":data.path,
-        "headers":headers,
-        "params":params,
-        "bodys":bodys,
-    }
-
-    //用于store获取数据
-    data.getRequestInfo(requestInfo)
-debugger
-    const sendData = {
-        ...requestInfo,
-        "assertList":data.assertList,
-        "getTime":data.getTime,
-        "getResponseInfo":data.getResponseInfo,
-        "testType":data.testType,
-        "createInstance":data.createInstance,
-        "belongId":data.belongId,
-        "userId":data.userId
-    }
-
-    //发送测试
-    if(data.belongId==="quickTestInstanceId"){
-        fetchSend(sendData)
-    }else {
-        sendTest(sendData);
-    }
+    //请求参数
+    return {
+        "method": data.method,
+        "url": data.baseUrl ? data.baseUrl + data.path : data.path,
+        "headers": headers,
+        "params": params,
+        "bodys": bodys,
+    };
 
 }
 
 
 //发送测试
-const sendTest=(data)=>{
+export const sendTest=async (data)=>{
 
     // 请求前的毫秒数
     let sendDate = (new Date()).getTime();
 
     // 请求
-    axios({
+    let res = await axios({
         method: data.method,
-        baseURL: data.baseUrl,
         url: data.url,
         data: data.bodys,
         params: data.params,
         headers: data.headers,
-        timeout: 10000,
-    }).then((res)=>{
-        // 请求后的毫秒数
+    }).then(res=>{
+
         let receiveDate = (new Date()).getTime();
+        //time, ms
         let responseTimeMs = receiveDate - sendDate;
 
-        data.getTime(responseTimeMs);
-
-        isCreateInstance(res,data)
-    }).catch((error) => {
-        isCreateInstance(error.response,data)
-    });
-}
-
-const fetchSend = async (data)=>{
-    // 请求前的毫秒数
-    let sendDate = (new Date()).getTime();
-
-    try{
-        let res = await fetch(data.url, {
-            method: data.method,
-            headers:data.headers,
-            body: data.bodys,
-            mode:"cors"
-        })
-
-        // 请求后的毫秒数
-        let receiveDate = (new Date()).getTime();
-        let responseTimeMs = receiveDate - sendDate;
-
-        data.getTime(responseTimeMs);
-
-        let json = await res.json();
-
-        let header={};
-        res.headers.forEach(function(val, key) {
-            header[key]=val
-        });
-
-        let resData = {
-            status:res.status,
-            headers:header,
-            data:json,
+        return {
+            time:responseTimeMs,
+            res:res
         }
+    }).catch(error=>{
+        if (error.response) {
+            // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+            let receiveDate = (new Date()).getTime();
+            let responseTimeMs = receiveDate - sendDate;
 
+            return  {
+                time:responseTimeMs,
+                res:error.response
+            }
+        } else {
+            // network Error
+            console.log('Error', error.message);
 
-        console.log(json)
+            return {error:error.message}
+        }
+    })
 
-        isCreateInstance(resData,data)
-    }catch (error){
-        console.log(error,error.message)
-        isCreateInstance(error.response,data)
-    }
-
+    return res
 }
 
 
-//如果是测试用例的页的测试，需要创建instance
-const isCreateInstance=(res,data)=>{
-    if(data.createInstance){
-        data.getResponseInfo(res,data.assertList).then(res=>{
-            res.httpCase = {"id":data.belongId}
-            res.user= {"id":data.userId}
-            data.createInstance(res)
-        })
-    }else {
-        data.getResponseInfo(res,data.assertList)
-    }
-}
 
 //获取相应的请求体数据
 const bodySwitch = (data,headers) =>{
@@ -149,15 +96,13 @@ const bodySwitch = (data,headers) =>{
 
 //获取formdata数据
 const formData = (data,headers)=>{
-    headers['Content-Type']='multipart/form-data';
-    let formdata = testFunctionCommon.formData(data);
-
-    return formdata
+    headers['content-type']='multipart/form-data';
+    return testFunctionCommon.formData(data)
 }
 
 //获取formUrlencoded数据
 const formUrlencoded = (data,headers) =>{
-    headers['Content-Type']='application/x-www-form-urlencoded';
+    headers['content-type']='application/x-www-form-urlencoded';
     let formUrlencoded =testFunctionCommon.transData(data);
 
     return qs.stringify(formUrlencoded);
@@ -165,29 +110,27 @@ const formUrlencoded = (data,headers) =>{
 
 //获取json数据
 const json = (data,headers) =>{
-    headers['Content-Type']='application/json';
-    let jsonResult =  testFunctionCommon.jsonData(data);
-
-    return jsonResult
+    headers['content-type']='application/json';
+    return testFunctionCommon.jsonData(data)
 }
 
 //获取相应的raw数据
 const rawSwitch = (data,headers) =>{
     switch (data&&data.type){
         case rawTypeJson.text:
-            headers['Content-Type']='text/plain';
+            headers['content-type']='text/plain';
             return data.raw;
         case rawTypeJson.json:
-            headers['Content-Type']='application/json';
+            headers['content-type']='application/json';
             return data.raw;
         case rawTypeJson.javascript:
-            headers['Content-Type']='application/javascript';
+            headers['content-type']='application/javascript';
             return data.raw;
         case rawTypeJson.xml:
-            headers['Content-Type']='text/xml';
+            headers['content-type']='text/xml';
             return data.raw;
         case rawTypeJson.html:
-            headers['Content-Type']='text/html';
+            headers['content-type']='text/html';
             return data.raw;
     }
 }

@@ -14,7 +14,7 @@ const Mock = (props) => {
             title: '启用',
             dataIndex: 'enable',
             key: 'enable',
-            width:'8%',
+            width:'10%',
             render:(text,record )=>(
                 <Switch
                     checkedChildren="启用"
@@ -45,12 +45,6 @@ const Mock = (props) => {
             width:'10%',
         },
         {
-            title: '描述',
-            dataIndex: 'desc',
-            key: 'desc',
-            width:'20%',
-        },
-        {
             title: '操作',
             dataIndex: 'operation',
             key: 'operation',
@@ -59,19 +53,16 @@ const Mock = (props) => {
                 <Space  size="middle">
                     <Tooltip title="编辑">
                         <svg className="icon" aria-hidden="true">
-                            <use xlinkHref="#icon-chuangzuo"></use>
+                            <use xlinkHref="#icon-chuangzuo"/>
                         </svg>
-                        <MockEdit type="编辑" {...props } id={record.id}/>
+                        <MockEdit type="编辑" {...props } mockId={record.id}/>
                     </Tooltip>
                     <Popconfirm
                         title="确定删除？"
-                        onConfirm={() =>deleteMock(record.id)}
+                        onConfirm={() =>deleteMock(record.id).then(()=>findMockPage(apxMethodId))}
                         okText='确定'
                         cancelText='取消'
                     >
-                        <svg className="icon" aria-hidden="true">
-                            <use xlinkHref="#icon-shanchu"></use>
-                        </svg>
                         <a className="table-delete" style={{color:'red'}}>删除</a>
                     </Popconfirm>
                 </Space>
@@ -100,7 +91,7 @@ const Mock = (props) => {
         props.history.push('/workspace/apis/detail/interface/mockdetail')
     }
 
-    const mockUrl = "http://192.168.10.16:8080/mockx/"+workspaceId;
+    const mockUrl = `${base_url}/mockx/`+workspaceId;
 
 
     return (

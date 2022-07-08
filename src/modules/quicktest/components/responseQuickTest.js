@@ -10,7 +10,7 @@ import ResponseAssertQuickTest from "./responseAssertQuickTest";
 
 // 输出参数 请求头部与请求参数的切换
 const ResponseQuickTest = (props) =>  {
-    const { quickTestStore, showResponse } = props;
+    const { quickTestStore, showResponse,errorMsg } = props;
     const { status, time } = quickTestStore;
 
     return(
@@ -18,6 +18,7 @@ const ResponseQuickTest = (props) =>  {
             status={status}
             time={time}
             showResponse={showResponse}
+            error={errorMsg}
             responseBody={<ResponseBodyQuickTest />}
             responseHeader={<ResponseHeaderQuickTest />}
             requestHeader={<ResponseReqHeaderQuickTest />}

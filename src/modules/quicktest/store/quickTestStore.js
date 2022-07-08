@@ -1,4 +1,4 @@
-import { observable, action } from "mobx";
+import {action, observable} from "mobx";
 import {AssertCommonStore} from "../../apitest/common/assertCommonStore";
 import qs from "qs";
 
@@ -9,7 +9,7 @@ export  class QuickTestStore {
     @observable time = '';
     @observable assertResponse = [];
     @observable baseInfo;
-    @observable baseData;
+    @observable error;
     @observable responseBodyData;
     @observable responseHeaderData;
     @observable requestBodyData;
@@ -19,39 +19,26 @@ export  class QuickTestStore {
 
     @action
     getRequestInfo = (data) => {
-        // this.baseData = {
-        //     "method":data.method,
-        //     "baseUrl":data.baseUrl,
-        //     "path":data.url
-        // }
-        //
-        // this.requestBodyData = data.bodys;
-        // this.requestHeaderData = JSON.stringify(data.headers);
         this.methodType = data.method;
 
         if(data.params&&Object.keys(data.params).length>0){
-            if(data.baseUrl){
-                this.baseInfo = data.baseUrl+data.url+'?'+qs.stringify(data.params)
-            }else {
-                this.baseInfo =data.url+'?'+qs.stringify(data.params)
-            }
+            this.baseInfo = data.url+'?'+qs.stringify(data.params)
         }else {
-            if(data.baseUrl){
-                this.baseInfo = data.baseUrl+data.url
-            }else {
-                this.baseInfo =data.url
-            }
+            this.baseInfo = data.url
         }
 
-        this.requestHeaderData = JSON.stringify(data.headers);
+        this.requestHeaderData = data.headers;
         this.requestBodyData = data.bodys;
     }
 
     @action
-    getResponseInfo = async (res,assertData) => {
+    getResponseInfo = async (data,assertData) => {
+        let res = data.res;
+
+        this.time=data.time;
         this.status = res.status;
         const headers = res.headers;
-        const body = res.data;
+        const body = JSON.stringify(res.data);
 
         //断言处理
         let assertList = this.assertListProcess(assertData);
@@ -71,28 +58,51 @@ export  class QuickTestStore {
         this.assertResponse = assertList;
 
         //创建instance所需的参数
-        let allValueInfo = {
-            'statusCode':this.status,
-            'result':allAssertResult,
+        return {
+            'statusCode': this.status,
+            'result': allAssertResult,
             "time": this.time,
-            "size":"",
-            'requestInstance':{
-                "url":this.baseInfo,
-                "methodType":this.methodType,
-                "mediaType":"application/json",
-                'headers':this.requestHeaderData,
-                'body':this.requestBodyData,
-                "preScript":null,
-                "afterScript":null
+            "size": "",
+            'requestInstance': {
+                "url": this.baseInfo,
+                "methodType": this.methodType,
+                "mediaType": this.requestHeaderData["content-type"],
+                'headers': JSON.stringify(this.requestHeaderData),
+                'body': this.requestBodyData,
+                "preScript": null,
+                "afterScript": null
             },
-            'responseInstance':{
-                'headers':headers?JSON.stringify(headers):"",
-                'body':body?JSON.stringify(body):""
+            'responseInstance': {
+                'headers': headers ? JSON.stringify(headers) : "",
+                'body': body ? JSON.stringify(body) : ""
             },
-            'assertInstanceList':assertData
+            'assertInstanceList': assertData
+        }
+    }
+
+    @action
+    getResponseError= async (res)=>{
+        this.time=null;
+        this.status=null;
+
+        this.error ={
+            errorMessage:res.error,
+            showError:false
         }
 
-        return allValueInfo
+        return {
+            "result":-1,
+            "errorMessage":res.error,
+            "requestInstance":{
+                "url":this.baseInfo,
+                "methodType":this.methodType,
+                "headers":JSON.stringify(this.requestHeaderData),
+                "mediaType":this.requestHeaderData["content-type"],
+                "body":this.requestBodyData,
+                "preScript":null,
+                "afterScript":null
+            }
+        }
     }
 
 
@@ -111,12 +121,15 @@ export  class QuickTestStore {
     }
 
     @action
-    getInstance = (res,resInstance) =>{
+    getInstance = (res) =>{
         this.time = res.time;
         this.status = res.statusCode;
 
-        this.responseBodyData = resInstance.body;
-        this.responseHeaderData = resInstance.headers;
+        if(!res.errorMessage){
+            this.responseBodyData = res.responseInstance?.body;
+            this.responseHeaderData = res.responseInstance?.headers;
+        }
+
 
         this.requestBodyData = res.requestInstance?.body;
         this.requestHeaderData = res.requestInstance?.headers;

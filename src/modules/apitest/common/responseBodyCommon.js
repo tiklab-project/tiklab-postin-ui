@@ -5,28 +5,30 @@ import CodeMirror from "../../common/codeMirror";
 const ResponseBodyCommon = (props) => {
     const {responseBodyData} = props;
 
-    const processData = (data)=>{
+    const processData =(data)=>{
 
         //空值
-        if(!data) return ""
+        if(!data) return null
 
-        //object类型
-        let dataType = data instanceof Object;
-        if(dataType){
-            return JSON.stringify(data,null,4)
-        }else{
-            return data
-        }
+        // if(JSON.parse(data) ){
+        //     if(JSON.parse(data) instanceof Object){
+        //         return JSON.stringify(JSON.parse(data),null,4)
+        //     }else {
+        //         return JSON.parse(data)
+        //     }
+        // }else {
+        //     return data
+        // }
+        return data
+
     }
 
     return(
-        <>
-            <CodeMirror
-                value={processData(responseBodyData)}
-                mediaType={"application/javascript"}
-                readOnly={true}
-            />
-        </>
+        <CodeMirror
+            value={processData(responseBodyData)}
+            mediaType={"application/javascript"}
+            readOnly={true}
+        />
     )
 
 }

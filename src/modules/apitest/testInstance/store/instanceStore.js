@@ -59,11 +59,13 @@ export class InstanceStore {
 
         const res = await findInstance(param)
         if(res.code === 0){
-            let responseInstance = res.data.responseInstance;
             let requestInstance = res.data.requestInstance;
 
-            this.responseBodyData = JSON.parse(responseInstance.body);
-            this.responseHeaderData = responseInstance.headers;
+            if(!res.data.errorMessage){
+                let responseInstance = res.data.responseInstance;
+                this.responseBodyData = JSON.parse(responseInstance.body);
+                this.responseHeaderData = responseInstance.headers;
+            }
 
             this.requestBodyData = requestInstance.body;
             this.requestHeaderData = requestInstance.headers;
@@ -78,7 +80,7 @@ export class InstanceStore {
     createInstance = async (values) => {
         const res = await createInstance(values)
         if(res.code === 0) {
-            this.findInstanceList(this.params );
+
             return res.data
         }
     }

@@ -75,7 +75,6 @@ const ApxMethodDetail = (props) => {
         })
     }
 
-
     //渲染状态下拉框
     const showStatus = (data)=>{
         return data&&data.map(item=>{
@@ -95,10 +94,8 @@ const ApxMethodDetail = (props) => {
 
         updateApxMethod(param).then(()=>{
             setExecutorId(executor)
-
         });
     }
-
 
     //设置状态
     const selectStatus = (statusId) =>{

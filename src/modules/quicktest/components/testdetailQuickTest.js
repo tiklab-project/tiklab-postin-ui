@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./requestTabQuickTest";
 import {inject, observer} from "mobx-react";
-import {sendTestDataProcess} from "../../apitest/common/sendTestCommon";
+import {sendTest, sendTestDataProcess} from "../../apitest/common/sendTestCommon";
 import ResponseQuickTest from "./responseQuickTest";
 import {
     methodDictionary,
@@ -35,8 +35,8 @@ const TestdetailQuickTest = (props) =>{
         assertQuickTestStore
     } = props;
 
-    const {findInstance,createInstance} = instanceStore;
-    const { getRequestInfo, getResponseInfo, getTime,setResponseShow,isResponseShow,getInstance } = quickTestStore;
+    const {findInstance,createInstance,findInstanceList} = instanceStore;
+    const { getRequestInfo, getResponseInfo, setResponseShow,isResponseShow,getInstance,getResponseError } = quickTestStore;
     const {headerQuickTestList,getRequestHeaderTestList} = headerQuickTestStore;
     const {queryQuickTestList,getQueryParamTestList} = queryQuickTestStore;
     const {bodyType,getBodyType,getMediaType} = requestBodyQuickTestStore;
@@ -51,24 +51,33 @@ const TestdetailQuickTest = (props) =>{
     const [ form ] = Form.useForm();
 
     const userId = getUser().userId;
+    const [errorMsg, setErrorMsg] = useState();
     const instanceId = localStorage.getItem("instanceId")
 
     useEffect(()=>{
         if(instanceId!=="-1"){
             findInstance(instanceId).then(res=>{
-                debugger
+                getInstance(res);
                 let request = res.requestInstance;
-                let resInstance = res.responseInstance;
-                getInstance(res,resInstance);
 
                 form.setFieldsValue({
-                    // baseUrl:res.baseUrl,
-                    requestType: request?.methodType,
+                    methodType: request?.methodType,
                     path: request?.url,
                 })
+                debugger
+
+                if(res.errorMessage){
+                    let errorValue = {
+                        errorMessage:res.errorMessage,
+                        showError:true
+                    }
+                    setErrorMsg(errorValue)
+                }
+
 
                 getRequestHeaderTestList(processHeaderData(request.headers));
                 getQueryParamTestList(processQueryData(request.url));
+
 
                 let type = getMediaType(request?.mediaType)
                 switch (type){
@@ -106,16 +115,11 @@ const TestdetailQuickTest = (props) =>{
 
 
     // 点击测试
-    const onFinish = (values)=> {
+    const onFinish = async ()=> {
+        let values =await form.getFieldsValue();
+
         const allSendData = {
-            "userId":userId,
-            "getTime":getTime,
-            "getRequestInfo":getRequestInfo,
-            "getResponseInfo":getResponseInfo,
-            "belongId":"quickTestInstanceId",
-            "createInstance":createInstance,
-            "method":values.requestType,
-            "baseUrl":values.baseUrl,
+            "method":values.methodType,
             "path":values.path,
             "headerList":headerQuickTestList,
             "queryList":queryQuickTestList,
@@ -125,17 +129,55 @@ const TestdetailQuickTest = (props) =>{
             "jsonList":jsonQuickTestList,
             "rawParam":rawQuickTestInfo,
             "assertList":assertQuickTestList,
-            "preScript":preQuickTestInfo,
-            "afterScript":afterQuickTestInfo,
         }
 
-        sendTestDataProcess(allSendData)
+        //处理后的数据
+        const processData = sendTestDataProcess(allSendData)
+
+        //发送测试，返回结果
+        let response =await sendTest(processData)
+        //获取请求参数
+        getRequestInfo(processData)
+
+        //获取响应结果
+        if(!response.error){
+            getResponseInfo(response,assertQuickTestList).then(res=>{
+                res.httpCase = {"id":"quickTestInstanceId"}
+                createInstance(res).then(()=>{
+                    let params={
+                        "httpCaseId":"quickTestInstanceId",
+                        "userId":userId,
+                    }
+                    findInstanceList(params)
+                })
+            })
+
+            setErrorMsg({showError:false})
+        }else {
+            getResponseError(response).then((res)=>{
+                res.httpCase = {"id":"quickTestInstanceId"}
+                createInstance(res).then(()=>{
+                    let params={
+                        "httpCaseId":"quickTestInstanceId",
+                        "userId":userId,
+                    }
+                    findInstanceList(params)
+                })
+            })
+
+            let errorValue = {
+                errorMessage:response.error,
+                showError:true
+            }
+            setErrorMsg(errorValue)
+        }
+
         setResponseShow()
     }
 
     //请求类型下拉选择框
     const prefixSelector = (
-        <Form.Item name="requestType" noStyle>
+        <Form.Item name="methodType" noStyle>
             <Select style={{width: 100}} >
                 {
                     Object.keys(methodJsonDictionary).map(item=>{
@@ -153,14 +195,10 @@ const TestdetailQuickTest = (props) =>{
                     onFinish={onFinish}
                     form = {form}
                     className="test-header"
-                    initialValues={{ requestType: "get" }}
+                    initialValues={{ methodType: "get" }}
                 >
                     <div className={"test-url"}>
-                        <Form.Item
-                            className='formItem'
-                            name="path"
-                            rules={[{required: true,message: '接口的path'}]}
-                        >
+                        <Form.Item className='formItem' name="path" >
                             <Input  addonBefore={prefixSelector}/>
                         </Form.Item>
                     </div>
@@ -180,7 +218,10 @@ const TestdetailQuickTest = (props) =>{
                 测试结果
             </div>
             <div>
-                <ResponseQuickTest showResponse={isResponseShow}/>
+                <ResponseQuickTest
+                    showResponse={isResponseShow}
+                    errorMsg={errorMsg}
+                />
             </div>
         </div>
     )

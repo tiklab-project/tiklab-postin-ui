@@ -6,6 +6,7 @@ import './testCase.scss'
 import {sendTestDataProcess} from "../../common/sendTestCommon";
 import {toJS} from "mobx";
 import TestcaseTableInstance from "../../testInstance/components/testcaseTableInstance";
+import axios from "axios";
 
 const TestCaseList = (props) => {
     const { testCaseStore,instanceStore , environmentStore} = props;
@@ -137,11 +138,9 @@ const TestCaseList = (props) => {
     }
 
 
-
     return(
         <Fragment>
             <div className='testCase-header'>
-                {/*<Button onClick={batchTest}>批量测试</Button>*/}
                 <TestCaseEdit  btn='btn' type="添加用例" {...props}>添加用例</TestCaseEdit>
             </div>
             <Table

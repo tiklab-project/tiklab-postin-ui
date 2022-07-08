@@ -1,13 +1,13 @@
-import { observable,  action  } from "mobx";
+import {action, observable} from "mobx";
 import qs from 'qs';
 import {
     createTestCase,
-    updateTestCase,
+    createTestcaseWithNest,
     deleteTestCase,
     findTestCase,
-    findTestCasePage,
     findTestCaseList,
-    createTestcaseWithNest,
+    findTestCasePage,
+    updateTestCase,
 } from '../api/testCaseApi';
 import {AssertCommonStore} from "../../common/assertCommonStore";
 
@@ -20,6 +20,7 @@ export class TestCaseStore {
     @observable testCaseId = '';
     @observable status = '';
     @observable time = '';
+    @observable error;
     @observable assertResponse = [];
     @observable requestBodyCaseData;
     @observable requestHeaderCaseData;
@@ -111,24 +112,27 @@ export class TestCaseStore {
 
     @action
     getRequestInfo = (data) => {
-        debugger
+
         this.methodType = data.method;
 
         if(data.params&&Object.keys(data.params).length>0){
-            this.baseInfo = data.baseUrl+data.url+'?'+qs.stringify(data.params)
+            this.baseInfo = data.url+'?'+qs.stringify(data.params)
         }else {
-            this.baseInfo = data.baseUrl+data.url
+            this.baseInfo = data.url
         }
 
-        this.requestHeaderCaseData = JSON.stringify(data.headers);
+        this.requestHeaderCaseData = data.headers;
         this.requestBodyCaseData = data.bodys;
     }
 
     @action
-    getResponseInfo = async (res,assertData) => {
+    getResponseInfo = async (data,assertData) => {
+        let res = data.res;
+
+        this.time=data.time;
         this.status = res.status;
         const headers = res.headers;
-        const body = res.data;
+        const body = JSON.stringify(res.data);
 
         const assertNeedData = {
             "status":res.status,
@@ -147,29 +151,53 @@ export class TestCaseStore {
         this.assertResponse = assertData;
 
         //创建instance所需的参数
-        let allValueInfo = {
-            "statusCode":this.status,
-            "result":allAssertResult,
+        return {
+            "statusCode": this.status,
+            "result": allAssertResult,
             "time": this.time,
-            "size":"",
+            "size": "",
+            "requestInstance": {
+                "url": this.baseInfo,
+                "methodType": this.methodType,
+                "headers": JSON.stringify(this.requestHeaderCaseData),
+                "mediaType":this.requestHeaderCaseData["content-type"],
+                "body": this.requestBodyCaseData,
+                "preScript": null,
+                "afterScript": null
+            },
+            'responseInstance': {
+                'headers': JSON.stringify(headers),
+                'body': JSON.stringify(body)
+            },
+            'assertInstanceList': assertData
+        }
+    }
+
+    @action
+    getResponseError= async (res) =>{
+        this.time=null;
+        this.status=null;
+
+        this.error ={
+            errorMessage:res.error,
+            showError:true
+        }
+
+        return {
+            "result":-1,
+            "errorMessage":res.error,
             "requestInstance":{
                 "url":this.baseInfo,
                 "methodType":this.methodType,
-                "headers":this.requestHeaderCaseData,
-                "mediaType":"application/json",
+                "headers":JSON.stringify(this.requestHeaderCaseData),
+                "mediaType":this.requestHeaderCaseData["content-type"],
                 "body":this.requestBodyCaseData,
                 "preScript":null,
                 "afterScript":null
-            },
-            'responseInstance':{
-                'headers':JSON.stringify(headers),
-                'body':JSON.stringify(body)
-            },
-            'assertInstanceList':assertData
+            }
         }
-
-        return allValueInfo
     }
+
 
 
     @action

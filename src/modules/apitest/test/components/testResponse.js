@@ -11,7 +11,7 @@ import './testResponse.scss'
 
 // 输出参数 请求头部与请求参数的切换
 const TestResponse = (props) =>  {
-    const { testStore, showResponse } = props;
+    const { testStore, showResponse,errorMsg } = props;
     const { status, time } = testStore;
 
     return(
@@ -19,6 +19,7 @@ const TestResponse = (props) =>  {
             status={status}
             time={time}
             showResponse={showResponse}
+            error={errorMsg}
             responseBody={<TestResponseResBody />}
             responseHeader={<TestResponseResHeader />}
             requestHeader={<TestResponseReqHeader />}

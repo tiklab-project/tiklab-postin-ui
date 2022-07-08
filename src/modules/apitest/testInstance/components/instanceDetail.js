@@ -90,26 +90,7 @@ const InstanceDetail = (props) => {
                 {
                     showDetail(detail)
                 }
-                {/*<div>*/}
-                {/*    <span>请求地址:  </span>*/}
-                {/*    <span>{requestInstance?.url}</span>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <span>请求方式:  </span>*/}
-                {/*    <TextMethodType type={requestInstance?.methodType} />*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <span>状态码:  </span>*/}
-                {/*    <span>{statusCode}</span>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <span>测试结果:  </span>*/}
-                {/*    <span>{result=== 1 ? '成功' : '失败'}</span>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <span>测试时间:  </span>*/}
-                {/*    <span>{testTime}</span>*/}
-                {/*</div>*/}
+
                 <Tabs defaultActiveKey="1"  >
                     <TabPane tab="响应体" key="1">
                         <div className={"history-res-height"}>
