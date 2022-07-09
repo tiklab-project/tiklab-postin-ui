@@ -13,7 +13,7 @@ const QueryTableCommon = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '25%',
+            width: '30%',
             editable: true,
         },{
             title: '参数值',
@@ -31,7 +31,7 @@ const QueryTableCommon = (props) =>{
 
         },{
             title: '操作',
-            width: '10%',
+            width: '30%',
             dataIndex: 'operation',
             render: (text, record,index) =>(
                 <Space>
@@ -51,7 +51,6 @@ const QueryTableCommon = (props) =>{
 
         addNewList(dataSource)
     };
-
 
 
     // 保存数据

@@ -121,7 +121,7 @@ export class TestCaseStore {
             this.baseInfo = data.url
         }
 
-        this.requestHeaderCaseData = data.headers;
+        this.requestHeaderCaseData = JSON.stringify(data.headers);
         this.requestBodyCaseData = data.bodys;
     }
 
@@ -132,7 +132,7 @@ export class TestCaseStore {
         this.time=data.time;
         this.status = res.status;
         const headers = res.headers;
-        const body = JSON.stringify(res.data);
+        const body = res.data;
 
         const assertNeedData = {
             "status":res.status,
@@ -147,7 +147,8 @@ export class TestCaseStore {
 
 
         this.responseHeaderCaseData = JSON.stringify(headers);
-        this.responseBodyCaseData=body;
+
+        this.responseBodyCaseData=JSON.stringify(body);
         this.assertResponse = assertData;
 
         //创建instance所需的参数
@@ -159,15 +160,15 @@ export class TestCaseStore {
             "requestInstance": {
                 "url": this.baseInfo,
                 "methodType": this.methodType,
-                "headers": JSON.stringify(this.requestHeaderCaseData),
-                "mediaType":this.requestHeaderCaseData["content-type"],
+                "headers": this.requestHeaderCaseData,
+                "mediaType":JSON.parse(this.requestHeaderCaseData)["content-type"],
                 "body": this.requestBodyCaseData,
                 "preScript": null,
                 "afterScript": null
             },
             'responseInstance': {
-                'headers': JSON.stringify(headers),
-                'body': JSON.stringify(body)
+                'headers': this.responseHeaderCaseData,
+                'body': this.responseBodyCaseData
             },
             'assertInstanceList': assertData
         }
@@ -189,8 +190,8 @@ export class TestCaseStore {
             "requestInstance":{
                 "url":this.baseInfo,
                 "methodType":this.methodType,
-                "headers":JSON.stringify(this.requestHeaderCaseData),
-                "mediaType":this.requestHeaderCaseData["content-type"],
+                "headers":this.requestHeaderCaseData,
+                "mediaType":JSON.parse(this.requestHeaderCaseData)["content-type"],
                 "body":this.requestBodyCaseData,
                 "preScript":null,
                 "afterScript":null

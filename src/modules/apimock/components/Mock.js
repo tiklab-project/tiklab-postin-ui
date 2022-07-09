@@ -91,8 +91,13 @@ const Mock = (props) => {
         props.history.push('/workspace/apis/detail/interface/mockdetail')
     }
 
-    const mockUrl = `${base_url}/mockx/`+workspaceId;
+    let mockUrl ;
 
+    if(base_url==="/"){
+        mockUrl = `${window.location.host}/mockx/`+workspaceId;
+    }else {
+        mockUrl = `${base_url}/mockx/`+workspaceId;
+    }
 
     return (
         <Fragment>

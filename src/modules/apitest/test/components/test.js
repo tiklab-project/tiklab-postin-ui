@@ -4,8 +4,9 @@ import {Form, Input, Select, Button, Divider, Space, Tooltip} from 'antd';
 import { TestRequest, TestResponse } from '../index';
 import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
-import {sendTest, sendTestDataProcess} from "../../common/sendTestCommon";
+import {sendTest, sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -157,9 +158,17 @@ const ApxMethodTest = (props) => {
         }
     }
 
+    const testAxios = ()=>{
+        axios.post("/passport/login",{
+            "account": "admin",
+            "password": "123456",
+            "userType": "1"
+        })
+    }
 
     return(
         <Fragment>
+            <div onClick={testAxios}>test</div>
             <div className={"test-base"}>
                 <Form
                     onFinish={onFinish}

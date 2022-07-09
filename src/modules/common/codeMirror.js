@@ -38,7 +38,7 @@ const CodeMirror = (props) => {
                     mode:mediaType,
                     theme: 'idea',
                     lineWiseCopyCut: true,
-                    // autofocus: {autofocus}, //自动获取焦点
+                    autofocus: true, //自动获取焦点
                     styleActiveLine: true, //光标代码高亮
                     lineNumbers: true, //显示行号
                     smartIndent: true, //自动缩进

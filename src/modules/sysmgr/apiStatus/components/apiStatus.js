@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
-import {Space, Popconfirm, Button} from 'antd';
+import {Space, Popconfirm} from 'antd';
 import BreadcrumbEx from "../../../common/breadcrumbEx";
 import {ExTable} from "../../../common/editTable";
 import ExSelect from "../../../common/exSelect";
@@ -24,21 +24,14 @@ const ApiStatus = (props) => {
             title: "名称",
             dataIndex: "name",
             key: "name",
-            width:"30%",
-            editable: true,
-        },
-        {
-            title: "编码",
-            dataIndex: "code",
-            key: "code",
-            width:"30%",
+            width:"40%",
             editable: true,
         },
         {
             title: "类型",
             dataIndex: "type",
             key: "type",
-            width:"20%",
+            width:"40%",
             render: (text, record)=>(
                 <ExSelect
                     dictionary={["system","custom"]}
@@ -145,7 +138,7 @@ const ApiStatus = (props) => {
 
     return(
         <div style={{padding:5}}>
-            <BreadcrumbEx list={[ "空间设置", "数据结构"]}/>
+            <BreadcrumbEx list={[ "空间设置", "状态管理"]}/>
             <ExTable
                 columns={columns}
                 dataSource={apiStatusList}

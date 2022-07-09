@@ -16,7 +16,7 @@ import {Form, Button, Input, Select, Tooltip} from 'antd';
 import { TestCaseRequest } from "../index";
 import DropdownInstance from "../../testInstance/components/histroyList";
 import TestResultCase from "./testResultCase";
-import {sendTest, sendTestDataProcess} from "../../common/sendTestCommon";
+import {sendTest, sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import EdiText from "react-editext";
 
@@ -136,6 +136,7 @@ const TestCaseDetail = (props) => {
 
         //发送测试，返回结果
         let response =await sendTest(processData)
+
         //获取请求参数
         getRequestInfo(processData)
 
@@ -154,6 +155,7 @@ const TestCaseDetail = (props) => {
                 createInstance(res)
             })
 
+            //用于错误展示
             let errorValue = {
                 errorMessage:response.error,
                 showError:true

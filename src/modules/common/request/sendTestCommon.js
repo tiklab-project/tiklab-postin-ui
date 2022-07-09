@@ -1,10 +1,10 @@
 import axios from "axios";
-import {testFunctionCommon} from "./testFunctionCommon";
+import {testFunctionCommon} from "../../apitest/common/testFunctionCommon";
 import qs from "qs";
 import {
     bodyTypeJsonDictionary as bodyTypeJson,
     rawTypeJsonDictionary as rawTypeJson
-} from "../../common/dictionary/dictionary";
+} from "../dictionary/dictionary";
 
 //发送测试 数据处理
 export const sendTestDataProcess=(data)=>{

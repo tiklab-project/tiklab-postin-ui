@@ -48,12 +48,28 @@
         text-overflow:ellipsis;
         white-space: nowrap;
         border-bottom: 1px solid #e4e4e4;
+        position: relative;
+
+        .qt-left-list-icon{
+            display: none;
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            top: 16px;
+            right: 10px;
+        }
+
 
         .qt-left-list-li-status{
             margin: 0 10px;
-            color: green;
+
         }
     }
+
+    .qt-left-list-li:hover .qt-left-list-icon{
+        display: block;
+    }
+
     .qt-left-list-li:hover{
         background: #fafafa;
     }

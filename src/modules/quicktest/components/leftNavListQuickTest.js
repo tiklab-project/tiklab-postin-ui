@@ -7,18 +7,22 @@ import {getUser} from "doublekit-core-ui";
 
 const LeftNavListQuickTest =(props)=>{
     const {instanceStore,quickTestStore} = props;
-    const {findInstanceList,instanceList,deleteAllInstance} = instanceStore;
+    const {findInstanceList,instanceList,deleteAllInstance,deleteInstance} = instanceStore;
     const {setResponseShow} = quickTestStore;
 
     const userId = getUser().userId;
 
     useEffect(()=>{
+        findList()
+    },[])
+
+    let findList = ()=>{
         let params={
             "httpCaseId":"quickTestInstanceId",
             "userId":userId,
         }
         findInstanceList(params)
-    },[])
+    }
 
 
     const quickTestTabListInfo = JSON.parse(sessionStorage.getItem("quickTestTabListInfo"))
@@ -39,14 +43,18 @@ const LeftNavListQuickTest =(props)=>{
                 <li
                     className={"qt-left-list-li"}
                     key={item.id}
-                    onClick={()=>onClick(item)}
                 >
-                    <div>
-                        <TextMethodType type={item.requestInstance?.methodType} />
-                        <span className={"qt-left-list-li-status"}>{item.statusCode}</span>
-                        <span>{item.time}ms</span>
+                    <div className={"qt-left-list-box"} onClick={()=>onClick(item)}>
+                        <div>
+                            <TextMethodType type={item.requestInstance?.methodType} />
+                            <span className={"qt-left-list-li-status"} >{item.statusCode}</span>
+                            <span>{item.time}ms</span>
+                        </div>
+                        {item.requestInstance?.url}
                     </div>
-                    {item.requestInstance?.url}
+                    <svg className="qt-left-list-icon" aria-hidden="true" onClick={()=> deleteInstance(item.id).then(()=> findList())}>
+                        <use xlinkHref= {`#icon-shanchu1`} />
+                    </svg>
                 </li>
             )
         })
@@ -54,7 +62,7 @@ const LeftNavListQuickTest =(props)=>{
 
 
     const deleteAllInstanceFn = ()=>{
-        deleteAllInstance(userId)
+        deleteAllInstance(userId).then(()=>findList())
     }
 
 

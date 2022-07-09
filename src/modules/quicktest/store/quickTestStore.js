@@ -27,7 +27,7 @@ export  class QuickTestStore {
             this.baseInfo = data.url
         }
 
-        this.requestHeaderData = data.headers;
+        this.requestHeaderData = JSON.stringify(data.headers);
         this.requestBodyData = data.bodys;
     }
 
@@ -38,7 +38,7 @@ export  class QuickTestStore {
         this.time=data.time;
         this.status = res.status;
         const headers = res.headers;
-        const body = JSON.stringify(res.data);
+        const body =res.data;
 
         //断言处理
         let assertList = this.assertListProcess(assertData);
@@ -54,7 +54,7 @@ export  class QuickTestStore {
         let allAssertResult=assertCommonStore.assertCompare(assertNeedData);
 
         this.responseHeaderData = JSON.stringify(headers);
-        this.responseBodyData = body;
+        this.responseBodyData = JSON.stringify(body);
         this.assertResponse = assertList;
 
         //创建instance所需的参数
@@ -66,8 +66,8 @@ export  class QuickTestStore {
             'requestInstance': {
                 "url": this.baseInfo,
                 "methodType": this.methodType,
-                "mediaType": this.requestHeaderData["content-type"],
-                'headers': JSON.stringify(this.requestHeaderData),
+                "mediaType": JSON.parse(this.requestHeaderData)["content-type"],
+                'headers': this.requestHeaderData,
                 'body': this.requestBodyData,
                 "preScript": null,
                 "afterScript": null
@@ -96,8 +96,8 @@ export  class QuickTestStore {
             "requestInstance":{
                 "url":this.baseInfo,
                 "methodType":this.methodType,
-                "headers":JSON.stringify(this.requestHeaderData),
-                "mediaType":this.requestHeaderData["content-type"],
+                "headers":this.requestHeaderData,
+                "mediaType":JSON.parse(this.requestHeaderData)["content-type"],
                 "body":this.requestBodyData,
                 "preScript":null,
                 "afterScript":null

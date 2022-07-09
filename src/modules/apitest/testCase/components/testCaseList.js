@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import {Table, Space, Popconfirm, Button,message} from 'antd';
 import TestCaseEdit from "./testCaseEdit"
 import './testCase.scss'
-import {sendTestDataProcess} from "../../common/sendTestCommon";
+import {sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import {toJS} from "mobx";
 import TestcaseTableInstance from "../../testInstance/components/testcaseTableInstance";
 import axios from "axios";

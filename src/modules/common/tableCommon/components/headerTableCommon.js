@@ -33,7 +33,7 @@ const {dataList, saveList, addNewList, deleteList} = props;
             render: (text, record,index) =>(
                 <Space>
                     <a onClick={()=>deleteList(record.id)}> 删除 </a>
-                    {/*<a onClick={handleAdd}> 新行 </a>*/}
+                    <a onClick={handleAdd}> 新行 </a>
                 </Space>
             )
         }

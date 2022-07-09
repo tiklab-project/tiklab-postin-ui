@@ -41,6 +41,9 @@ export class RawParamTestCaseStore {
 
     @action
 	updateRawParamTestCase =async (values) => {
+        //为了获取最新数据
+        this.processRawInfo(values)
+
         values.httpCase = {id: this.testCaseId}
         values.id= this.rawParamTestCaseId;
 

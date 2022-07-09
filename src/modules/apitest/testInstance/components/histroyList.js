@@ -34,9 +34,7 @@ const HistroyList = (props) =>{
     };
 
     const deleteFn = (id)=>{
-        deleteInstance(id).then(()=>{
-            findList()
-        })
+        deleteInstance(id).then(()=> findList())
     }
 
     const showInstanceList = (data)=>{

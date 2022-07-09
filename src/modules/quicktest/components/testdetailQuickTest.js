@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./requestTabQuickTest";
 import {inject, observer} from "mobx-react";
-import {sendTest, sendTestDataProcess} from "../../apitest/common/sendTestCommon";
+import {sendTest, sendTestDataProcess} from "../../common/request/sendTestCommon";
 import ResponseQuickTest from "./responseQuickTest";
 import {
     methodDictionary,
@@ -72,6 +72,8 @@ const TestdetailQuickTest = (props) =>{
                         showError:true
                     }
                     setErrorMsg(errorValue)
+                }else {
+                    setErrorMsg({showError:false})
                 }
 
 
