@@ -15,6 +15,7 @@ const InstanceDetail = (props) => {
 
     const [visible, setVisible] = useState(false);
 
+    const [allData, setAllData] = useState();
     const [requestInstance,setRequestInstance]=useState({})
     const [statusCode, setStatusCode] = useState("");
     const [result, setResult] = useState();
@@ -23,6 +24,7 @@ const InstanceDetail = (props) => {
     //展示测试结果详情
     const showModal = () => {
         findInstance(instanceId).then((res)=>{
+            setAllData(res)
             setStatusCode(res.statusCode);
             setResult(res.result)
             setRequestInstance(res.requestInstance);
@@ -67,7 +69,6 @@ const InstanceDetail = (props) => {
                             :<span className={"history-detail-item-box-value"}>{item.value}</span>
                     }
 
-
                 </div>
             )
         })
@@ -94,28 +95,38 @@ const InstanceDetail = (props) => {
                 <Tabs defaultActiveKey="1"  >
                     <TabPane tab="响应体" key="1">
                         <div className={"history-res-height"}>
-                            <ResponseBodyInstance />
+                            <ResponseBodyInstance
+                                resBody={allData?.responseInstance?.body}
+                            />
                         </div>
 
                     </TabPane>
                     <TabPane tab="响应头" key="2">
                         <div className={"history-res-height"}>
-                            <ResponseHeaderInstance />
+                            <ResponseHeaderInstance
+                                resHeader={allData?.responseInstance?.headers}
+                            />
                         </div>
                     </TabPane>
                     <TabPane tab="请求内容" key="4">
                         <div className={"history-res-height"}>
-                        <RequestBodyInstance />
+                            <RequestBodyInstance
+                                reqBody={allData?.requestInstance?.body}
+                            />
                         </div>
                     </TabPane>
                     <TabPane tab="请求头" key="3">
                         <div className={"history-res-height"}>
-                        <RequestHeaderInstance />
+                            <RequestHeaderInstance
+                                reqHeader={allData?.requestInstance?.headers}
+                            />
                         </div>
                     </TabPane>
                     <TabPane tab="断言" key="5">
                         <div className={"history-res-height"}>
-                        <AssertInstance />
+                            <AssertInstance
+                                assertList={allData?.assertInstanceList}
+                            />
                         </div>
                     </TabPane>
                 </Tabs>

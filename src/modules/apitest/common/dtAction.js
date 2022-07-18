@@ -1,148 +1,95 @@
 import md5 from 'js-md5';
 import jsonPath from '../../../common/utils/jsonPath';
 
-let result,
-    headerResult,
-    paramResult,
-    formResult,
-    jsonResult,
-    rawResult,
-    urlData,
-    baseUrlData,
-    methodData
+let response,
+    headers,
+    querys,
+    forms,
+    urlencodeds,
+    json
   = {};
 
-const darth =  {
+export const darth =  {
     md5:md5,
-    url:{
-        set: (value) => {
-            result={...result,url:value}
-        },
-        get:()=>{
-            return urlData
-        }
-    },
-    baseUrl:{
-        set: (value) => {
-            result={...result,baseUrl:value}
-        },
-        get:()=>{
-            return baseUrlData
-        }
-    },
-    method:{
-        set: (value) => {
-            result={...result,method:value}
-        },
-        get:()=>{
-            return methodData
-        }
-    },
-    
+
     header:{
         set: (key, value) => {
             let setValue = {[key]:value}
-            result={...result,header:{...setValue}}
+            return  {...headers,...setValue}
         },
         get:(key)=>{
-            return headerResult[key]
-        }
+            return headers[key]
+        },
     },
-    param:{
+
+    query:{
         set: (key, value) => {
             let setValue = {[key]:value}
-            result={...result,param:{...setValue}}
+            querys={...querys,...setValue}
         },
         get:(key)=>{
-            return paramResult[key]
+            return querys[key]
         }
     },
+
     body:{
         form:{
             set: (key, value) => {
                 let setValue = {[key]:value}
-                result={...result,body:{...setValue}}
+                forms={...forms,...setValue}
             },
             get:(key)=>{
-                return formResult[key]
+                return forms[key]
+            }
+        },
+        urlencoded:{
+            set: (key, value) => {
+                let setValue = {[key]:value}
+                urlencodeds={...urlencodeds,...setValue}
+            },
+            get:(key)=>{
+                return urlencodeds[key]
             }
         },
         json:{
             set: (key,value) => {
                 let setValue = {[key]:value}
-                result={...result,body:setValue}
+                json={...json,...setValue}
             },
             get:(key)=>{
-                let jsonData = jsonPath(jsonResult, `$.${key}`).toString();
-                return jsonData;
+                return jsonPath(json, `$.${key}`).toString();
             }
         },
-        raw:{
-            set: (value) => {
-                result={...result,body:value}
-            },
-            get:() => {
-                return rawResult
-            }
-        }
     },
+
     response:{
         set: (value)=>{
-            result = {...result,response:value}
+            response = {...response,response:value}
         }
     }
 }
-const handelResult= () => {
-    return result
+
+export const getHeader =(data)=>{
+    headers = data
 }
 
-const getHeader =(data)=>{
-    headerResult = data
+export const getQuery =(data)=>{
+    querys = data
 }
 
-const getParam =(data)=>{
-    paramResult = data
+export const getForm =(data)=>{
+    forms = data
 }
 
-const getForm =(data)=>{
-    formResult = data
+export const getUrlencoded =(data)=>{
+    urlencodeds = data
 }
 
-const getJson =(data)=>{
-    jsonResult = data
+export const getJson =(data)=>{
+    json = data
 }
 
-const getRaw =(data)=>{
-    rawResult = data
-}
 
-const getUrl=(data)=>{
-    urlData = data
-}
-
-const getBaseUrl=(data)=>{
-    baseUrlData = data
-}
-
-const getMethod = (data) => {
-    methodData = data
-}
-
-function execute(express){
+export const execute=(express)=>{
     return eval(express)
-}
-
-
-export { 
-    handelResult, 
-    getUrl,
-    getBaseUrl,
-    getMethod,
-    getHeader, 
-    getParam,
-    getForm,
-    getJson,
-    getRaw,
-    execute,
-    darth
 }

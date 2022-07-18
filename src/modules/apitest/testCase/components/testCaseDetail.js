@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-    darth,
-    handelResult,
-    getHeader,
-    getParam,
-    getForm,
-    getJson,
-    getRaw,
-    getUrl,
-    getBaseUrl,
-    getMethod,
-} from '../../index';
+
 import { observer, inject } from 'mobx-react';
 import {Form, Button, Input, Select, Tooltip} from 'antd';
 import { TestCaseRequest } from "../index";

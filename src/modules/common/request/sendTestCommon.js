@@ -5,18 +5,34 @@ import {
     bodyTypeJsonDictionary as bodyTypeJson,
     rawTypeJsonDictionary as rawTypeJson
 } from "../dictionary/dictionary";
+import {darth, execute, getHeader, getQuery} from "../../apitest/common/dtAction";
+
 
 //发送测试 数据处理
-export const sendTestDataProcess=(data)=>{
+export const sendTestDataProcess=(data,preParamTestInfo)=>{
 
     //header
-    let headers = testFunctionCommon.headerData(data.headerList);
+    let header = testFunctionCommon.headerData(data.headerList);
+
+    //前置：获取header进行操作
+    getHeader(header);
+
+    let headers =  darth.header.set("accept","123")
+
 
     //query
     let params = testFunctionCommon.transData(data.queryList);
 
+    //前置：获取header进行操作
+    getQuery(params);
+
     //body
     let bodys = bodySwitch(data,headers)
+
+    //前置
+    // if(preParamTestInfo){
+    //     execute(preParamTestInfo?.scriptex)
+    // }
 
     //请求参数
     return {

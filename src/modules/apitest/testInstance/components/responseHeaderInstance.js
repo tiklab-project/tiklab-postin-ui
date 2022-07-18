@@ -1,17 +1,15 @@
 import React from "react";
-import {inject, observer} from "mobx-react";
 import ResHeaderCommon from "../../common/resHeaderCommon";
 import {processResHeader} from "../../common/testResponseFnCommon";
 
 const ResponseHeaderInstance = (props) => {
-    const {instanceStore} = props;
-    const {responseHeaderData} = instanceStore;
+    const {resHeader} = props;
 
     return(
         <ResHeaderCommon
-            headers={processResHeader(responseHeaderData)}
+            headers={processResHeader(resHeader)}
         />
     )
 }
 
-export default inject("instanceStore")(observer(ResponseHeaderInstance));
+export default ResponseHeaderInstance;

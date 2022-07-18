@@ -1,15 +1,13 @@
 import React from "react";
-import {inject, observer} from "mobx-react";
 import ResponseBodyCommon from "../../common/responseBodyCommon";
 
 const ResponseBodyInstance = (props) => {
-    const {instanceStore} = props;
-    const {responseBodyData} = instanceStore;
+    const {resBody} = props;
 
     return(
-        <ResponseBodyCommon responseBodyData={responseBodyData}/>
+        <ResponseBodyCommon responseBodyData={resBody}/>
     )
 
 }
 
-export default inject("instanceStore")(observer(ResponseBodyInstance));
+export default ResponseBodyInstance;

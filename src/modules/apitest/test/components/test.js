@@ -6,7 +6,8 @@ import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
 import {sendTest, sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
-import axios from "axios";
+import {execute} from "../../common/dtAction";
+
 
 const { Option } = Select;
 
@@ -91,7 +92,6 @@ const ApxMethodTest = (props) => {
     },[methodId])
 
 
-
     // 点击测试
     const onFinish =async ()=> {
 
@@ -110,8 +110,9 @@ const ApxMethodTest = (props) => {
             "rawParam":rawParamTestInfo,
         }
 
+
         //处理后的数据
-        const processData = sendTestDataProcess(allSendData)
+        const processData = sendTestDataProcess(allSendData,preParamTestInfo)
 
         //发送测试，返回结果
         let response =await sendTest(processData)
@@ -148,27 +149,24 @@ const ApxMethodTest = (props) => {
             )
         }else {
             return (
-                <Form.Item
-                    className='formItem'
-                    name="host"
-                >
+                <Form.Item name="host" className='formItem'>
                     <Input />
                 </Form.Item>
             )
         }
     }
 
-    const testAxios = ()=>{
-        axios.post("/passport/login",{
-            "account": "admin",
-            "password": "123456",
-            "userType": "1"
-        })
-    }
+    // const testAxios = ()=>{
+    //     axios.post("/passport/login",{
+    //         "account": "admin",
+    //         "password": "123456",
+    //         "userType": "1"
+    //     })
+    // }
 
     return(
         <Fragment>
-            <div onClick={testAxios}>test</div>
+            {/*<div onClick={testAxios}>test</div>*/}
             <div className={"test-base"}>
                 <Form
                     onFinish={onFinish}

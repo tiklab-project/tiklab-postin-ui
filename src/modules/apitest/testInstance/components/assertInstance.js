@@ -3,8 +3,8 @@ import { observer, inject } from "mobx-react";
 import { Table } from 'antd';
 
 const AssertInstance = (props) =>{
-    const { instanceStore } = props;
-    const { assertList } = instanceStore;
+    const { assertList } = props;
+
     let columns= [
         {
             title: '来源',
@@ -76,4 +76,4 @@ const AssertInstance = (props) =>{
 
 
 
-export default inject('instanceStore')(observer(AssertInstance));
+export default AssertInstance;
