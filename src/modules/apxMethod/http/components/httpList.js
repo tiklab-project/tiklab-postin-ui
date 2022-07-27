@@ -23,7 +23,7 @@ const HttpList = (props) => {
         },
         {
             title: '类型',
-            dataIndex: 'requestType',
+            dataIndex: 'methodType',
             width: '8%',
             render:(text,record)=>(<MethodType type={text}/>)
         },

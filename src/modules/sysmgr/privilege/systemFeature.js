@@ -1,11 +1,11 @@
 import React from "react";
-import { FeatureList } from 'doublekit-privilege-ui';
+import { SystemFeatureList } from 'doublekit-privilege-ui';
 
 // 系统功能管理
 const SystemFeature = props => {
 
     return (
-            <FeatureList {...props}/>
+            <SystemFeatureList />
     )
 }
 

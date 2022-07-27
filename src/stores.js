@@ -1,5 +1,4 @@
-import { EamStore,EAM_STORE } from 'doublekit-eam-ui';
-import {PluginStore, PLUGIN_STORE} from "doublekit-plugin-ui"
+import {EAM_STORE, EamStore} from 'doublekit-eam-ui/es/store'
 import { SEARCHSTORE, SearchStore } from './modules/integration/search'
 
 import {WIDGET_STORE,WidgetStore} from "./modules";
@@ -197,8 +196,6 @@ function createStores() {
 
         //导入导出
         [IM_EX_PORT_STORE]: new ImexportStore(),
-
-        [PLUGIN_STORE]: new PluginStore(),
 
         [HEADER_QUICKTEST_STORE]:new HeaderQuickTestStore(),
         [REQUESTBODY_QUICKTEST_STORE]:new RequestBodyQuickTestStore(),

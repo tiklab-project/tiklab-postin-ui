@@ -1,9 +1,7 @@
 
 import React from 'react'
-
 import {Directory} from 'doublekit-user-ui';
 import {Licence} from "doublekit-licence-ui";
-import {PluginDetail} from "doublekit-plugin-ui";
 import PortalHeader from "./modules/header/portalHeader"
 
 import {
@@ -26,6 +24,7 @@ import {
 
 import {Redirect} from "react-router";
 import {AuthResult} from "doublekit-eam-ui";
+import PluginDetailPage from "./modules/sysmgr/pluginManage/pluginDetail";
 
 const routers =  [
     {
@@ -162,6 +161,12 @@ const routers =  [
                         component: PluginManage,
                     },
                     {
+                        path: "/systemManagement/plugindetail",
+                        key:'plugindetail',
+                        exact: true,
+                        component: PluginDetailPage,
+                    },
+                    {
                         path: "/systemManagement/licence",
                         key:'licence',
                         exact: true,
@@ -204,12 +209,6 @@ const routers =  [
                         render: () => <Redirect to={"/accountMember/org"}/>,
                     },
                 ]
-            },
-            {
-                path: "/plugindetail",
-                key:'plugindetail',
-                exact: true,
-                component: PluginDetail,
             },
             {
                 path: "/searchResult",

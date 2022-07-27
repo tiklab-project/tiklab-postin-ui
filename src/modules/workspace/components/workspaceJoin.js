@@ -8,14 +8,13 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Breadcrumb, Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
-import { PluginComponent,PluginFun, PLUGIN_STORE} from 'doublekit-plugin-ui'
 import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui";
 import BreadcrumbEx from "../../common/breadcrumbEx";
 import {toWorkspaceDetail} from "../common/workspaceFn";
 
 const WorkspaceJoin = (props) => {
-    const { workspaceStore,pluginsStore,workspaceRecentStore } = props;
+    const { workspaceStore,workspaceRecentStore } = props;
     const {
         findWorkspacePage,
         deleteWorkspace,
@@ -192,4 +191,4 @@ const WorkspaceJoin = (props) => {
     )
 }
 
-export default inject('workspaceStore',PLUGIN_STORE,"workspaceRecentStore")(observer(WorkspaceJoin));
+export default inject('workspaceStore',"workspaceRecentStore")(observer(WorkspaceJoin));

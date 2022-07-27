@@ -1,10 +1,10 @@
 import React from 'react';
-import {verifyUserHOC} from "doublekit-eam-ui";
-import {connect} from 'doublekit-plugin-ui';
+import {verifyUserHoc} from "doublekit-eam-ui";
+import {connect} from 'doublekit-plugin-ui/es/_utils';
 import './portalStyle.scss'
 import PageContent from "./pageContent";
 
-const  PortalHeader = verifyUserHOC(PageContent);
+const  PortalHeader = verifyUserHoc(PageContent);
 
 function mapStateToProps(state) {
     return {

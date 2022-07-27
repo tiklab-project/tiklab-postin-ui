@@ -17,7 +17,7 @@ export const sendTestDataProcess=(data,preParamTestInfo)=>{
     //前置：获取header进行操作
     getHeader(header);
 
-    let headers =  darth.header.set("accept","123")
+    // let headers =  darth.header.set("accept","123")
 
 
     //query
@@ -27,7 +27,7 @@ export const sendTestDataProcess=(data,preParamTestInfo)=>{
     getQuery(params);
 
     //body
-    let bodys = bodySwitch(data,headers)
+    let bodys = bodySwitch(data,header)
 
     //前置
     // if(preParamTestInfo){
@@ -38,7 +38,7 @@ export const sendTestDataProcess=(data,preParamTestInfo)=>{
     return {
         "method": data.method,
         "url": data.baseUrl ? data.baseUrl + data.path : data.path,
-        "headers": headers,
+        "headers": header,
         "params": params,
         "bodys": bodys,
     };

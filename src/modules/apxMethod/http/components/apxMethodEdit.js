@@ -54,7 +54,7 @@ const ApxMethodEdit = (props) => {
         findApxMethod(httpId?httpId:apxMethodId).then((res)=>{
             form.setFieldsValue({
                 name: res.apix.name,
-                requestType: res.requestType,
+                methodType: res.methodType,
                 path: res.path,
                 desc: res.apix.desc,
             })
@@ -75,7 +75,7 @@ const ApxMethodEdit = (props) => {
             values.apix={
                 workspaceId:workspaceId,
                 name:values.name,
-                requestType:values.requestType,
+                methodType:values.methodType,
                 path:values.path,
                 desc:values.desc,
                 status: {id:"developmentid"},
@@ -158,7 +158,7 @@ const ApxMethodEdit = (props) => {
                     preserve={false}
                     name="basic"
                     onFinish={onFinish}
-                    initialValues={{ requestType: "get" }}
+                    initialValues={{ methodType: "get" }}
                     form={form}
                 >
                     {
@@ -188,7 +188,7 @@ const ApxMethodEdit = (props) => {
                     </Form.Item>
                     <Form.Item
                         label="请求方式"
-                        name="requestType"
+                        name="methodType"
                         rules={[{ required: true, message: 'Please input your request!' }]}
                     >
                         <Select>

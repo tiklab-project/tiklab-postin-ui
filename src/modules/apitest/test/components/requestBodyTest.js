@@ -1,5 +1,4 @@
 import React from "react";
-import RequestBodyCom from "../../../common/tableCommon/components/requestBodyCom";
 import {inject, observer} from "mobx-react";
 import FormParamTest from './testFormParam';
 import JsonParamTest from "./testJsonParam";
@@ -18,7 +17,7 @@ const RequestBodyTest = (props)=>{
 
         return bodyKeyArr.map(item=>{
             if(item===type){
-               return  <div className={"test-body-type-item"}>type : {mediaTypeDictionary[item]}</div>
+               return  <div className={"test-body-type-item"} key={item}>type : {mediaTypeDictionary[item]}</div>
             }
         })
     }

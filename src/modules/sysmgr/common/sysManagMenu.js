@@ -3,15 +3,13 @@ import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
 import { DownOutlined,UpOutlined} from '@ant-design/icons';
 import { PrivilegeButton } from "doublekit-privilege-ui";
-
+import {useSelector} from 'doublekit-plugin-ui/es/_utils'
 import './sysMana.scss'
-import {inject, observer} from "mobx-react";
 
 const { Sider, Content } = Layout;
 
 const SysManage = (props) => {
-    const {pluginsStore} = props;
-    const {pluginConfig, isInitLoadPlugin} = pluginsStore;
+    const pluginStore = useSelector(store => store.pluginStore)
     const routers = props.route.routes
 
     const settingMenu = [
@@ -111,7 +109,7 @@ const SysManage = (props) => {
 
     useEffect(() => {
 
-        let data = pluginConfig("settingMenu").filter(item => item.menuTitle);
+        let data = pluginStore.filter(item=>item.point==="settingMenu").filter(item => item.menuTitle);
 
         if(data.length > 0){
             let newRouter;
@@ -129,7 +127,7 @@ const SysManage = (props) => {
         }else {
             setMenuRouter(settingMenu);
         }
-    }, [isInitLoadPlugin])
+    }, [])
 
 
     const select = (key)=>{
@@ -242,4 +240,4 @@ const SysManage = (props) => {
 }
 
 
-export default inject("pluginsStore")(observer(SysManage));
+export default SysManage;

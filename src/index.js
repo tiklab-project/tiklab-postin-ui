@@ -7,13 +7,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
-import { orgStores } from 'doublekit-user-ui';
-import { privilegeStores } from 'doublekit-privilege-ui';
-import { messageModuleStores } from 'doublekit-message-ui'
+import { orgStores } from 'doublekit-user-ui/es/store';
+import { privilegeStores } from 'doublekit-privilege-ui/es/store';
+import { messageModuleStores } from 'doublekit-message-ui/es/store';
 import { stores } from './stores';
 import routers from './routers';
 
-import {useVersion} from "doublekit-eam-ui";
+import {useVersion} from "doublekit-eam-ui/es/_utils";
+
 import App from "./app";
 
 export const Entry = (props) => {

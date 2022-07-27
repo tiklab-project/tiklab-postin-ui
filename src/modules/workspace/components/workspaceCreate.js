@@ -8,7 +8,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import { Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
-import { RemoteUmdComponent, useSelector} from 'doublekit-plugin-ui'
+import { RemoteUmdComponent } from 'doublekit-plugin-ui'
+import {useSelector} from "doublekit-plugin-ui/es/_utils"
 import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui";
 import BreadcrumbEx from "../../common/breadcrumbEx";
