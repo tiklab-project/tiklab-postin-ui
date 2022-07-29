@@ -61,7 +61,7 @@ const Import = (props) => {
                 >
                     <Form.Item
                         label="导入类型"
-                        rules={[{ required: true, message: '用户名不能包含非法字符，如&,%，&，#……等' }]}
+                        rules={[{ required: true, message: '' }]}
                         name="type"
                     >
                         <Select>

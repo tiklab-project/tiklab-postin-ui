@@ -14,6 +14,25 @@ const SysManage = (props) => {
 
     const settingMenu = [
         {
+            title: '系统权限中心',
+            icon: 'laptop',
+            key: "/systemManagement/system",
+            encoded: "SysPrisystem",
+            children: [
+                {
+                    title: '功能管理',
+                    icon: 'laptop',
+                    key: '/systemManagement/systemFeature',
+                    encoded: "SysFeatruestem",
+                },
+                {
+                    title: '角色管理',
+                    icon: 'laptop',
+                    key: '/systemManagement/systemRole',
+                    encoded: "SysRoleSystem",
+                }
+            ]
+        },{
             title: '项目权限中心',
             icon: 'laptop',
             key: "/systemManagement/project",
@@ -33,43 +52,24 @@ const SysManage = (props) => {
                 }
             ]
         },
-        {
-            title: '系统权限中心',
-            icon: 'laptop',
-            key: "/systemManagement/system",
-            encoded: "SysPrisystem",
-            children: [
-                {
-                    title: '功能管理',
-                    icon: 'laptop',
-                    key: '/systemManagement/systemFeature',
-                    encoded: "SysFeatruestem",
-                },
-                {
-                    title: '角色管理',
-                    icon: 'laptop',
-                    key: '/systemManagement/systemRole',
-                    encoded: "SysRoleSystem",
-                }
-            ]
-        },
+
         {
             title: "消息中心",
             icon: 'laptop',
             key: '/systemManagement/message',
-            encoded: "SysMessage",
+            encoded: "MessageCenter",
             children: [
                 {
                     title: '消息管理',
                     icon: 'laptop',
                     key: '/systemManagement/messageManagement',
-                    encoded: "SysMessageManagement",
+                    encoded: "MessageManagement",
                 },
                 {
                     title: '消息模板管理',
                     icon: 'laptop',
                     key: '/systemManagement/messageTemplate',
-                    encoded: "SysMessageTemplate",
+                    encoded: "MessageTemplate",
                 },
                 {
                     title: '消息类型管理',
@@ -88,7 +88,7 @@ const SysManage = (props) => {
             title: '插件管理',
             icon: 'laptop',
             key: '/systemManagement/pluginmanage',
-            encoded: "pluginmanage",
+            encoded: "plugin",
         },
         {
             title: 'licence管理',
@@ -100,7 +100,7 @@ const SysManage = (props) => {
 
     ]
 
-    const [selectKey,setSelectKey] = useState('/systemManagement/privilege')
+    const [selectKey,setSelectKey] = useState('/systemManagement/systemFeature')
 
     const [menuRouter,setMenuRouter] = useState();
 
@@ -136,7 +136,7 @@ const SysManage = (props) => {
     }
 
     // 树的展开与闭合
-    const [expandedTree, setExpandedTree] = useState(["/systemManagement/project"])
+    const [expandedTree, setExpandedTree] = useState(["/systemManagement/system"])
 
     const isExpandedTree = (key) => {
         return expandedTree.some(item => item ===key)
@@ -171,7 +171,7 @@ const SysManage = (props) => {
     // 子级菜单处理
     const renderSubMenu = ({title,key,children,encoded},deep)=> {
         return (
-              <PrivilegeButton code={encoded} disabled ={"hidden"} key={key}>
+              <PrivilegeButton code={encoded} key={key}>
                   <li key={key} title={title} >
                       <div className="orga-aside-item aside-li"
                            onClick={() => setOpenOrClose(key)}

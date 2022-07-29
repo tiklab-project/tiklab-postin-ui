@@ -176,7 +176,7 @@ const routers =  [
                         path: "/systemManagement",
                         key:'sysEnvMana',
                         exact: true,
-                        render: () => <Redirect to={"/systemManagement/privilege"}/>,
+                        render: () => <Redirect to={"/systemManagement/systemFeature"}/>,
                     },
                 ]
             },

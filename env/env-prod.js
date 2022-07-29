@@ -12,7 +12,7 @@ let plugin_base_url = JSON.stringify( '/');
 let pluginAddressUrl = JSON.stringify('/pluginConfig/getPluginConfig');
 let fetchMethod = JSON.stringify("post");
 
-const userProduction = false;
+const userProduction = true;
 
 const appKey =  JSON.stringify('ghuyuhh');
 const appSecret = JSON.stringify('koon');

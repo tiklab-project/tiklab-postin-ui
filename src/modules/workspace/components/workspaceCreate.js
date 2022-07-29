@@ -14,6 +14,7 @@ import  { useTranslation } from 'react-i18next'
 import {getUser} from "doublekit-core-ui";
 import BreadcrumbEx from "../../common/breadcrumbEx";
 import {toWorkspaceDetail} from "../common/workspaceFn";
+import { PrivilegeButton } from "doublekit-privilege-ui";
 
 const WorkspaceCreate = (props) => {
     const { workspaceStore,workspaceRecentStore } = props;
@@ -150,13 +151,15 @@ const WorkspaceCreate = (props) => {
             />
             <div className='wslist-searchbtn'>
                 <div className='wslist-eibtn'>
-                    <WorkspaceEdit
-                        className="important-btn"
-                        name={`${t('addws')}`}
-                        type="add"
-                        style={{ width: 200 }}
-                        userId={userId}
-                    />
+                    {/*<PrivilegeButton   code={"workspaceEdit"} >*/}
+                        <WorkspaceEdit
+                            className="important-btn"
+                            name={`${t('addws')}`}
+                            type="add"
+                            style={{ width: 200 }}
+                            userId={userId}
+                        />
+                    {/*</PrivilegeButton>*/}
                     <RemoteUmdComponent point='import' pluginStore={pluginStore}/>
 
                 </div>
