@@ -4,7 +4,7 @@
  * @Author: sunxiancheng
  * @LastEditTime: 2022-06-17 20:28:21
  */
-import { Axios } from "doublekit-core-ui";
+import { Axios } from "tiklab-core-ui";
 
 export function deleteWorkspaceFollow(data){
     return Axios.post("/workspaceFollow/deleteWorkspaceFollow",data)

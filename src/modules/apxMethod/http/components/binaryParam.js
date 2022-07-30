@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 
 const BinaryParam = (props) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageTemplate } from 'doublekit-message-ui';
+import { MessageTemplate } from 'tiklab-message-ui';
 
 const MsgTemplate = (props) => {
     return (

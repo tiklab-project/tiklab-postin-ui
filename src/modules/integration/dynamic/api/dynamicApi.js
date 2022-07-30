@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-06-16 20:28:21
  */
 
-import { Axios } from "doublekit-core-ui";
+import { Axios } from "tiklab-core-ui";
 
 export function deleteDynamic(data){
     return Axios.post("/dynamic/deleteDynamic",data)

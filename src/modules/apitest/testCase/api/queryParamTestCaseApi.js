@@ -3,7 +3,7 @@
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-25 14:04:24
  */
-import {Axios as service} from "doublekit-core-ui";
+import {Axios as service} from "tiklab-core-ui";
 // QueryParamCase
 export function createQueryParamTestCase(data){
     return service.request({

@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import {quickTestTabProcess} from "../../common/apiTabListInfoProcess";
 import { Empty, Input} from "antd";
 import {TextMethodType} from "../../common/methodType";
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 
 const LeftNavListQuickTest =(props)=>{
     const {instanceStore,quickTestStore} = props;

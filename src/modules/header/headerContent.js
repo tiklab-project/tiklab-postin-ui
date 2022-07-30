@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {Col, Row, Dropdown, Menu, Button, Badge, Tooltip} from "antd";
 import {Search} from "../index";
-import {useWorkAppConfig} from "doublekit-eam-ui"
-import {getUser} from "doublekit-core-ui"
+import {useWorkAppConfig} from "tiklab-eam-ui"
+import {getUser} from "tiklab-core-ui"
 import { BellOutlined } from '@ant-design/icons';
 import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";

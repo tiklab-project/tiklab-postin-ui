@@ -2,8 +2,8 @@ import React, {Fragment, useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
 import { DownOutlined,UpOutlined} from '@ant-design/icons';
-import { PrivilegeButton } from "doublekit-privilege-ui";
-import {useSelector} from 'doublekit-plugin-ui/es/_utils'
+import { PrivilegeButton } from "tiklab-privilege-ui";
+import {useSelector} from 'tiklab-plugin-ui/es/_utils'
 import './sysMana.scss'
 
 const { Sider, Content } = Layout;
@@ -223,7 +223,7 @@ const SysManage = (props) => {
                     width={240}
                     theme={'light'}
                 >
-                    <div className="doublekit-orga-aside">
+                    <div className="tiklab-orga-aside">
                         <ul style={{padding: 0}} >
                             {
                                 showUlView(menuRouter)

@@ -2,7 +2,7 @@
  * @Description:用于打包
  * @LastEditTime: 2021-05-31 13:29:01
  */
-import { stores as apiboxStore  } from './components/stores';
+import { stores as postinStore  } from './components/stores';
 import routers from './components/routers';
 import App from "./components/app";
 
@@ -39,7 +39,7 @@ import {
 
 
 export {
-    apiboxStore, routers, App,
+    postinStore, routers, App,
     Home,PageContent,HeaderContent,
     Search, SearchResult,
 

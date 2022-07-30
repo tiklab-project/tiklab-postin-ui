@@ -4,8 +4,8 @@
  * @LastEditTime: 2021-06-01 10:37:36
  */
 import React from 'react';
-import { Login } from 'doublekit-eam-ui';
-import {EAM_STORE} from "doublekit-eam-ui/es/store"
+import { Login } from 'tiklab-eam-ui';
+import {EAM_STORE} from "tiklab-eam-ui/es/store"
 
 import {inject, observer} from 'mobx-react'
 

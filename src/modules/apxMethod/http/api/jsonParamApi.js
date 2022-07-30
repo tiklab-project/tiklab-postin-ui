@@ -5,7 +5,7 @@
  */
 
 
-import {Axios} from "doublekit-core-ui";
+import {Axios} from "tiklab-core-ui";
 
 export function createJsonParam(data){
     return Axios.post("/jsonParam/createJsonParam",data)

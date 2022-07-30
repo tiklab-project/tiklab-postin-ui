@@ -1,4 +1,4 @@
-import {Axios} from "doublekit-core-ui";
+import {Axios} from "tiklab-core-ui";
 
 export function findWorkspaceHomeTotal(data,apiUrl){
     let url

@@ -3,7 +3,7 @@
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-25 14:28:21
  */
-import { Axios } from "doublekit-core-ui";
+import { Axios } from "tiklab-core-ui";
 
 export function deleteWorkspace(data){
     return Axios.post("/workspace/deleteWorkspace",data)

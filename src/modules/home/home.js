@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './homestyle.scss';
-import {getUser} from "doublekit-core-ui"
+import {getUser} from "tiklab-core-ui"
 import {inject, observer} from "mobx-react";
 import {WorkspaceRecent} from "../workspace";
 import WorkspaceWidget from "../workspaceWidget/components/workspaceWidget";
@@ -74,13 +74,13 @@ const Home =(props)=> {
                                     <svg className="icon" aria-hidden="true">
                                         <use xlinkHref= {`#icon-modular`} />
                                     </svg>
-                                    <a href={"http://homes.test.doublekit.net"} target={"_blank"}>官网</a>
+                                    <a href={"http://homes.test.tiklab.net"} target={"_blank"}>官网</a>
                                 </div>
                                 <div className={"home-help-item"} >
                                     <svg className="icon" aria-hidden="true">
                                         <use xlinkHref= {`#icon-modular`} />
                                     </svg>
-                                    <a href={"http://homes.test.doublekit.net"} target={"_blank"}>帮助文档</a>
+                                    <a href={"http://homes.test.tiklab.net"} target={"_blank"}>帮助文档</a>
 
                                 </div>
                             </div>

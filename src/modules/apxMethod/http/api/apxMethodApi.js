@@ -5,7 +5,7 @@
  */
 
 
-import {Axios} from "doublekit-core-ui";
+import {Axios} from "tiklab-core-ui";
 
 export function createMethod(data){
     return Axios.post("/http/createHttpApi",data)

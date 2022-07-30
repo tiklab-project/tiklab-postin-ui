@@ -9,7 +9,7 @@ import { observer, inject } from "mobx-react";
 import {Breadcrumb, Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
 import  { useTranslation } from 'react-i18next'
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 import BreadcrumbEx from "../../common/breadcrumbEx";
 import {toWorkspaceDetail} from "../common/workspaceFn";
 

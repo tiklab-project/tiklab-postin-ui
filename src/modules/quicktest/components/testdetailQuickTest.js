@@ -15,7 +15,7 @@ import {
     processHeaderData,
     processQueryData
 } from "../common/instanceDataProcess";
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 
 const { Option } = Select;
 

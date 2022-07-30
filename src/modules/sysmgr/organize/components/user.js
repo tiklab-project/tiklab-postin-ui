@@ -4,7 +4,7 @@
  * @LastEditTime: 2021-06-01 13:21:47
  */
 import React from 'react';
-import { UserList } from 'doublekit-user-ui'
+import { UserList } from 'tiklab-user-ui'
 
 // 用户管理
 const Usermgr = props =>{

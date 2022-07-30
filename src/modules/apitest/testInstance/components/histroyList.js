@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import {Drawer, Dropdown, Menu, Space} from "antd";
 import InstanceDetail from "./instanceDetail";
 import {DownOutlined} from "@ant-design/icons";
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {TextMethodType} from "../../../common/methodType";
 import "./instanceStyle.scss"
 

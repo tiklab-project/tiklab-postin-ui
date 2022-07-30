@@ -5,7 +5,7 @@
  */
 
 
-import {Axios} from "doublekit-core-ui";
+import {Axios} from "tiklab-core-ui";
 
 export function createBinaryParamCase(data){
     return Axios.post("/binaryParamCase/createBinaryParamCase",data)

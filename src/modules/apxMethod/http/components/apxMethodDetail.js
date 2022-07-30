@@ -8,8 +8,8 @@ import { Request, Response } from '../../index';
 import {Button, Select, Space} from 'antd';
 import './apxMethod.scss'
 import MethodType from "../../../common/methodType";
-import { RemoteUmdComponent } from 'doublekit-plugin-ui'
-import {useSelector} from  "doublekit-plugin-ui/es/_utils"
+import { RemoteUmdComponent } from 'tiklab-plugin-ui'
+import {useSelector} from  "tiklab-plugin-ui/es/_utils"
 import EdiText from "react-editext";
 import EdiTextToggle from "../../../common/ediTextToggle";
 

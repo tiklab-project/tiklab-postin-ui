@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {DownOutlined, UpOutlined} from "@ant-design/icons";
 import {inject, observer} from "mobx-react";
 import WorkspaceMenuList from "./workspaceMenuList";
-import {getUser} from "doublekit-core-ui"
+import {getUser} from "tiklab-core-ui"
 
 const HeaderMenu = (props) =>{
 

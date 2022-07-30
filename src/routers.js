@@ -1,7 +1,7 @@
 
 import React from 'react'
-import {Directory} from 'doublekit-user-ui';
-import {Licence} from "doublekit-licence-ui";
+import {Directory} from 'tiklab-user-ui';
+import {Licence} from "tiklab-licence-ui";
 import PortalHeader from "./modules/header/portalHeader"
 
 import {
@@ -23,7 +23,7 @@ import {
 } from './modules';
 
 import {Redirect} from "react-router";
-import {AuthResult} from "doublekit-eam-ui";
+import {AuthResult} from "tiklab-eam-ui";
 import PluginDetailPage from "./modules/sysmgr/pluginManage/pluginDetail";
 
 const routers =  [

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Form, Input} from "antd";
 import {inject, observer} from "mobx-react";
-import {getUser} from "doublekit-core-ui"
+import {getUser} from "tiklab-core-ui"
 
 const layout = {
     labelCol: {span: 8},

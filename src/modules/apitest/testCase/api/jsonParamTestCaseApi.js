@@ -1,4 +1,4 @@
-import {Axios as service} from "doublekit-core-ui";
+import {Axios as service} from "tiklab-core-ui";
 // JsonParamCase
 export function createJsonParamTestCase(data){
     return service.request({

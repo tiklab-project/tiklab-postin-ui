@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
 import HeaderContent from "./headerContent";
 import {renderRoutes} from "react-router-config";
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 
 import {inject, observer} from "mobx-react";
-import {EAM_STORE} from "doublekit-eam-ui/es/store";
-import { SYSTEM_ROLE_STORE } from 'doublekit-privilege-ui/es/store';
+import {EAM_STORE} from "tiklab-eam-ui/es/store";
+import { SYSTEM_ROLE_STORE } from 'tiklab-privilege-ui/es/store';
 
  const  PageContent =(props)=> {
     const router = props.route.routes;

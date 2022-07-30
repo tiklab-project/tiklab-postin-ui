@@ -1,5 +1,5 @@
 import React from "react";
-import { DomainUserList  } from 'doublekit-user-ui';
+import { DomainUserList  } from 'tiklab-user-ui';
 
 const WorkspaceRole = props => {
     const workspaceId = localStorage.getItem('workspaceId')

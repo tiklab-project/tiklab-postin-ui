@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 import "./widgetStyle.scss"
 
 import {findWorkspaceHomeTotal} from "../api/widgetApi"

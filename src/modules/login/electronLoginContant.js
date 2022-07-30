@@ -1,5 +1,5 @@
 import React from "react";
-import {ElectronLogin} from "doublekit-eam-ui";
+import {ElectronLogin} from "tiklab-eam-ui";
 
 
 const ElectronLoginContant =(props)=>{

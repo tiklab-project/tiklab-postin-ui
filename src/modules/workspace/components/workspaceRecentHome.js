@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Table} from "antd";
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 import {toWorkspaceDetail} from "../common/workspaceFn";
 

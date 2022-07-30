@@ -1,5 +1,5 @@
 
-import {Axios} from "doublekit-core-ui";
+import {Axios} from "tiklab-core-ui";
 
 export function createFormUrlencoded(data){
     return Axios.post("/formUrlencoded/createFormUrlencoded",data)

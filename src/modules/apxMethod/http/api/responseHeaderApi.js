@@ -1,4 +1,4 @@
-import {Axios as service} from "doublekit-core-ui";
+import {Axios as service} from "tiklab-core-ui";
 export function createResponseHeader(data){
     return service.request({
         url: "/responseHeader/createResponseHeader",

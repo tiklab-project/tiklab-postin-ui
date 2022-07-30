@@ -8,13 +8,13 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import { Input, Table, Space, Button, Popconfirm} from 'antd';
 import WorkspaceEdit from './workspaceEdit';
-import { RemoteUmdComponent } from 'doublekit-plugin-ui'
-import {useSelector} from "doublekit-plugin-ui/es/_utils"
+import { RemoteUmdComponent } from 'tiklab-plugin-ui'
+import {useSelector} from "tiklab-plugin-ui/es/_utils"
 import  { useTranslation } from 'react-i18next'
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 import BreadcrumbEx from "../../common/breadcrumbEx";
 import {toWorkspaceDetail} from "../common/workspaceFn";
-import { PrivilegeButton } from "doublekit-privilege-ui";
+import { PrivilegeButton } from "tiklab-privilege-ui";
 
 const WorkspaceCreate = (props) => {
     const { workspaceStore,workspaceRecentStore } = props;

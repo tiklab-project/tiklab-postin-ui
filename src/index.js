@@ -7,13 +7,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
-import { orgStores } from 'doublekit-user-ui/es/store';
-import { privilegeStores } from 'doublekit-privilege-ui/es/store';
-import { messageModuleStores } from 'doublekit-message-ui/es/store';
+import { orgStores } from 'tiklab-user-ui/es/store';
+import { privilegeStores } from 'tiklab-privilege-ui/es/store';
+import { messageModuleStores } from 'tiklab-message-ui/es/store';
 import { stores } from './stores';
 import routers from './routers';
 
-import {useVersion} from "doublekit-eam-ui/es/_utils";
+import {useVersion} from "tiklab-eam-ui/es/_utils";
 
 import App from "./app";
 

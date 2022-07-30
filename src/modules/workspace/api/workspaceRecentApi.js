@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-06-16 20:28:21
  */
 
-import { Axios } from "doublekit-core-ui";
+import { Axios } from "tiklab-core-ui";
 
 export function deleteWorkspaceRecent(data){
     return Axios.post("/workspaceRecent/deleteWorkspaceRecent",data)

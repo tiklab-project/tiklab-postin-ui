@@ -1,4 +1,4 @@
-import {EAM_STORE, EamStore} from 'doublekit-eam-ui/es/store'
+import {EAM_STORE, EamStore} from 'tiklab-eam-ui/es/store'
 import { SEARCHSTORE, SearchStore } from './modules/integration/search'
 
 import {WIDGET_STORE,WidgetStore} from "./modules";

@@ -1,5 +1,5 @@
 import React from "react";
-import { ProjectRoleList  } from 'doublekit-privilege-ui';
+import { ProjectRoleList  } from 'tiklab-privilege-ui';
 
 const ProjectRole = props => {
     return (

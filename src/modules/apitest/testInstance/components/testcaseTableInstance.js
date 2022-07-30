@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import InstanceDetail from "./instanceDetail";
 import {inject, observer} from "mobx-react";
-import {getUser} from "doublekit-core-ui";
+import {getUser} from "tiklab-core-ui";
 
 const TestcaseTableInstance = (props) =>{
     const {testcaseId,instanceStore} = props;

@@ -1,5 +1,5 @@
 import React from "react";
-import {PluginDetail} from "doublekit-plugin-ui"
+import {PluginDetail} from "tiklab-plugin-ui"
 
 const PluginDetailPage = () =>{
 

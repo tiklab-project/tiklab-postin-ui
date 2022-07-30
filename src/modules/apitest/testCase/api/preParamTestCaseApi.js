@@ -1,4 +1,4 @@
-import {Axios as service} from "doublekit-core-ui";
+import {Axios as service} from "tiklab-core-ui";
 // PreScriptCase
 export function createPreParamTestCase(data){
     return service.request({
