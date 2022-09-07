@@ -1,6 +1,5 @@
-import {renderRoutes} from "react-router-config";
-import {Menu} from "antd";
 import React from "react";
+import {renderRoutes} from "react-router-config";
 import "./workspaceSetting.scss"
 import SideMenu from "../../common/sideMenu";
 

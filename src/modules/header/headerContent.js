@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {Col, Row, Dropdown, Menu, Button, Badge, Tooltip} from "antd";
+import {Col, Row, Dropdown, Menu, Badge} from "antd";
 import {Search} from "../index";
 import {useWorkAppConfig} from "tiklab-eam-ui"
 import {getUser} from "tiklab-core-ui"
@@ -8,19 +8,17 @@ import { BellOutlined } from '@ant-design/icons';
 import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";
 import logo from "../../assets/img/log.png";
-import localImage from "../../assets/img/local.png";
-import enterprise from "../../assets/img/enterprise.png"
+
 
 const HeaderContent = props => {
     const {userMessageStore} = props;
     const {userMessageNum} = userMessageStore;
-    const {logout} = props;
+    const {logout,versionImg} = props;
 
     const { i18n } = useTranslation();
     const [languageData, setLanguageData] = useState(i18n.languages);
 
     let userInfo = getUser();
-
 
     const [component, ModalComponent, editOrAddModal] = useWorkAppConfig(false);
 
@@ -43,31 +41,23 @@ const HeaderContent = props => {
         props.history.push("/MessageUser");
     }
 
-
-    let authConfigInfo = JSON.parse(localStorage.getItem("authConfig"))
-
-    const version = ()=>{
-        let versionInfo = JSON.parse(localStorage.getItem("versionInfo"))
-        if(versionInfo){
-            switch (versionInfo.release) {
-                case 1:
-                    return <img style={{width: 25}} src={localImage} alt='ce' />
-                case 2:
-                    return <img style={{width: 25}} src={enterprise} alt='ee' />
-            }
-        }else {
-            return  <img  style={{width: 25}} src={localImage} alt='ce' />
-        }
-    }
+    // const version = ()=>{
+    //     let versionInfo = JSON.parse(localStorage.getItem("versionInfo"))
+    //     if(versionInfo){
+    //         switch (versionInfo.release) {
+    //             case 1:
+    //                 return <img style={{width: 25}} src={localImage} alt='ce' />
+    //             case 2:
+    //                 return <img style={{width: 25}} src={enterprise} alt='ee' />
+    //         }
+    //     }else {
+    //         return  <img  style={{width: 25}} src={localImage} alt='ce' />
+    //     }
+    // }
 
     const toSystem = () =>{
         props.history.push("/systemManagement")
     }
-
-    const toAccountMember = () =>{
-        props.history.push("/accountMember")
-    }
-
 
     return(
         <Row className="frame-header">
@@ -100,23 +90,10 @@ const HeaderContent = props => {
                                 </svg>
                             </Dropdown>
                         {/*</div>*/}
-                        <div className={"header-right-item"}>
-                            <div className={"toggle-hover"}>
-                                <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
-                                    <use xlinkHref= {`#icon-setting`} />
-                                </svg>
-                                <div className={"toggle-hidden-box setting-setting-box"}>
-                                    {
-                                        authConfigInfo.authType==="local"
-                                            ?<div className={"user-hidden-item"} onClick={toAccountMember}>帐号成员</div>
-                                            :<Tooltip placement="right" title="仅限本地登录使用">
-                                                <div className={"user-hidden-item-disable "} >帐号成员</div>
-                                            </Tooltip>
-                                    }
-
-                                    <div className={"user-hidden-item"} onClick={toSystem}>系统设置</div>
-                                </div>
-                            </div>
+                        <div className={"header-right-item"} onClick={toSystem}>
+                            <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
+                                <use xlinkHref= {`#icon-setting`}/>
+                            </svg>
                         </div>
                         {
                             props.isSignIn&&!userInfo.ticket
@@ -145,7 +122,7 @@ const HeaderContent = props => {
                         }
 
                         <div className={"header-right-item"}>
-                            {version()}
+                            <img style={{width: 25}} src={versionImg} alt='ce' />
                         </div>
                     </div>
                 </div>

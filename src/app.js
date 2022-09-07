@@ -12,7 +12,7 @@ import resources from "./common/language/resource";
 import {getUser} from "tiklab-core-ui";
 
 
- const App = (props) => {
+const App = (props) => {
      const {allStore,routers} = props;
 
      const {i18n,t} = useTranslation();

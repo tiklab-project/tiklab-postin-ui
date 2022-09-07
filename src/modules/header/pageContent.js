@@ -2,14 +2,16 @@ import React, {useEffect} from "react";
 import HeaderContent from "./headerContent";
 import {renderRoutes} from "react-router-config";
 import {getUser} from "tiklab-core-ui";
-
+import './portalStyle.scss'
 import {inject, observer} from "mobx-react";
 import {EAM_STORE} from "tiklab-eam-ui/es/store";
 import { SYSTEM_ROLE_STORE } from 'tiklab-privilege-ui/es/store';
 
- const  PageContent =(props)=> {
-    const router = props.route.routes;
 
+const PageContent =(props)=> {
+    const {versionImg} = props;
+
+    const router = props.route.routes;
 
      const user = getUser();
      useEffect(() => {
@@ -32,6 +34,7 @@ import { SYSTEM_ROLE_STORE } from 'tiklab-privilege-ui/es/store';
         <div style={{height:"100%"}}>
             <HeaderContent
                 logout={Logout}
+                versionImg={versionImg}
                 {...props}
             />
             {

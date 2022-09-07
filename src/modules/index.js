@@ -17,7 +17,7 @@ import{ Test, TestCase, TestCaseDetail }from'./apitest';
 import { Mock,MockDetail } from "./apimock"
 
 import {
-    AccountMember,SysManage, DataStructure, ApiStatus, Org, Usermgr,
+    SystemContent, SysManage,DataStructure, ApiStatus,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole, MessageManagement,
     MessageSendType, MessageTemplate, MessageType, MessageUser,
 } from './sysmgr/index'
@@ -60,9 +60,8 @@ export {
 
     Mock, MockDetail,
 
-    SysManage,AccountMember,
+    SystemContent,SysManage,
     DataStructure,ApiStatus,
-    Usermgr, Org,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole,
     MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
     PluginManage,

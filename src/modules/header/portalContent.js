@@ -1,10 +1,15 @@
 import React from 'react';
 import {verifyUserHoc} from "tiklab-eam-ui";
 import {connect} from 'tiklab-plugin-ui/es/_utils';
-import './portalStyle.scss'
 import PageContent from "./pageContent";
+import localImage from "../../assets/img/local.png";
 
-const  PortalHeader = verifyUserHoc(PageContent);
+//用于个性化配置，传入不同的图片
+const Page = (props)=>{
+    return( <PageContent versionImg={localImage} {...props}/>)
+}
+
+
 
 function mapStateToProps(state) {
     return {
@@ -12,7 +17,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(PortalHeader);
+export default connect(mapStateToProps)(verifyUserHoc(Page));
 
 
 

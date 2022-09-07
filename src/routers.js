@@ -1,8 +1,6 @@
 
 import React from 'react'
-import {Directory} from 'tiklab-user-ui';
-import {Licence} from "tiklab-licence-ui";
-import PortalHeader from "./modules/header/portalHeader"
+import PortalHeader from "./modules/header/portalContent"
 
 import {
     Home, SearchResult,
@@ -15,11 +13,11 @@ import {
     Test, TestCase, TestCaseDetail,
     Mock, MockDetail,
 
-    SysManage,  DataStructure, ApiStatus,
-    Usermgr, Org, ProjectFeature, ProjectRole,
+    SystemContent,  DataStructure, ApiStatus,
+    ProjectFeature, ProjectRole,
     SystemFeature, SystemRole, PluginManage,
     MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
-    LoginOut, LoginContent, ElectronLoginContant, AccountMember, WorkspaceSetting, WorkspaceFollow
+    LoginOut, LoginContent, ElectronLoginContant, WorkspaceSetting, WorkspaceFollow
 } from './modules';
 
 import {Redirect} from "react-router";
@@ -27,12 +25,6 @@ import {AuthResult} from "tiklab-eam-ui";
 import PluginDetailPage from "./modules/sysmgr/pluginManage/pluginDetail";
 
 const routers =  [
-    {
-        path: "/login",
-        exact: true,
-        component: LoginContent,
-        key:'login',
-    },
     {
         path: "/logout",
         component: LoginOut,
@@ -105,7 +97,7 @@ const routers =  [
             {
                 path:'/systemManagement',
                 key:'systemManagement',
-                component:SysManage,
+                component:SystemContent,
                 routes:[
                     {
                         path: "/systemManagement/privilege",
@@ -167,46 +159,10 @@ const routers =  [
                         component: PluginDetailPage,
                     },
                     {
-                        path: "/systemManagement/licence",
-                        key:'licence',
-                        exact: true,
-                        component: Licence,
-                    },
-                    {
                         path: "/systemManagement",
                         key:'sysEnvMana',
                         exact: true,
                         render: () => <Redirect to={"/systemManagement/systemFeature"}/>,
-                    },
-                ]
-            },
-            {
-                path: "/accountMember",
-                key:'accountMember',
-                component: AccountMember,
-                routes: [
-                    {
-                        path: "/accountMember/org",
-                        key:'org',
-                        exact: true,
-                        component: Org,
-                    },
-                    {
-                        path: "/accountMember/user",
-                        key:'user',
-                        exact: true,
-                        component: Usermgr,
-                    },
-                    {
-                        path: "/accountMember/authConfig",
-                        key:'authConfig',
-                        exact: true,
-                        render: () => <Directory isPortal={false}/>,
-                    },{
-                        path: "/accountMember",
-                        key:'sysEnvMana',
-                        exact: true,
-                        render: () => <Redirect to={"/accountMember/org"}/>,
                     },
                 ]
             },

@@ -3,9 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button, Input, Select} from 'antd';
 import { MockRequest, MockResponse } from '../index';
 import { observer, inject } from 'mobx-react';
-import MockEdit from './mockEdit';
-import BackCommon from "../../common/backCommon";
-import EdiTextToggle from "../../common/ediTextToggle";
 import EdiText from "react-editext";
 
 const { Option } = Select;
