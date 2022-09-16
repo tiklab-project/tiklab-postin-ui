@@ -17,7 +17,7 @@ import {
     ProjectFeature, ProjectRole,
     SystemFeature, SystemRole, PluginManage,
     MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
-    LoginOut, LoginContent, ElectronLoginContant, WorkspaceSetting, WorkspaceFollow
+    LoginOut, ElectronLoginContant, WorkspaceSetting, WorkspaceFollow
 } from './modules';
 
 import {Redirect} from "react-router";

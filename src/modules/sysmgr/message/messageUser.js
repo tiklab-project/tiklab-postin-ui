@@ -8,7 +8,7 @@ import { UserMessage } from 'tiklab-message-ui';
 
 const MsgUser = (props) => {
     return (
-            <UserMessage {...props} application={"apibox"}/>
+            <UserMessage {...props}  bgroup={"postin"}/>
     )
 }
 

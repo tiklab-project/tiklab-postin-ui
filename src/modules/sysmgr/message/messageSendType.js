@@ -3,7 +3,7 @@ import { MessageSendType } from 'tiklab-message-ui';
 
 const MsgSendType = (props) => {
     return (
-            <MessageSendType />
+            <MessageSendType bgroup={"postin"}/>
     )
 }
 

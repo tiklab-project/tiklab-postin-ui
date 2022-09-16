@@ -11,9 +11,8 @@ import logo from "../../assets/img/log.png";
 
 
 const HeaderContent = props => {
-    const {userMessageStore} = props;
+    const {userMessageStore,logout,versionImg,accountAndMember} = props;
     const {userMessageNum} = userMessageStore;
-    const {logout,versionImg} = props;
 
     const { i18n } = useTranslation();
     const [languageData, setLanguageData] = useState(i18n.languages);
@@ -41,19 +40,6 @@ const HeaderContent = props => {
         props.history.push("/MessageUser");
     }
 
-    // const version = ()=>{
-    //     let versionInfo = JSON.parse(localStorage.getItem("versionInfo"))
-    //     if(versionInfo){
-    //         switch (versionInfo.release) {
-    //             case 1:
-    //                 return <img style={{width: 25}} src={localImage} alt='ce' />
-    //             case 2:
-    //                 return <img style={{width: 25}} src={enterprise} alt='ee' />
-    //         }
-    //     }else {
-    //         return  <img  style={{width: 25}} src={localImage} alt='ce' />
-    //     }
-    // }
 
     const toSystem = () =>{
         props.history.push("/systemManagement")
@@ -90,10 +76,19 @@ const HeaderContent = props => {
                                 </svg>
                             </Dropdown>
                         {/*</div>*/}
-                        <div className={"header-right-item"} onClick={toSystem}>
-                            <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
-                                <use xlinkHref= {`#icon-setting`}/>
-                            </svg>
+                        <div className={"header-right-item"} >
+                            <div className={"toggle-hover"}>
+                                <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
+                                    <use xlinkHref= {`#icon-setting`} />
+                                </svg>
+                                <div className={"toggle-hidden-box setting-setting-box"}>
+                                    {
+                                        accountAndMember?accountAndMember():null
+                                    }
+                                    <div className={"user-hidden-item"} onClick={toSystem}>系统设置</div>
+                                </div>
+                            </div>
+
                         </div>
                         {
                             props.isSignIn&&!userInfo.ticket
@@ -122,7 +117,7 @@ const HeaderContent = props => {
                         }
 
                         <div className={"header-right-item"}>
-                            <img style={{width: 25}} src={versionImg} alt='ce' />
+                            {versionImg()}
                         </div>
                     </div>
                 </div>

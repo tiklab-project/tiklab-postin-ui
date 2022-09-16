@@ -3,7 +3,7 @@ import { MessageTemplate } from 'tiklab-message-ui';
 
 const MsgTemplate = (props) => {
     return (
-            <MessageTemplate />
+            <MessageTemplate bgroup={"postin"}/>
     )
 }
 

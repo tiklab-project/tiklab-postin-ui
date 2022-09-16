@@ -3,7 +3,7 @@ import { MessageManagement } from 'tiklab-message-ui';
 
 const MsgManagement = (props) => {
     return (
-            <MessageManagement />
+            <MessageManagement bgroup={"postin"}/>
     )
 }
 

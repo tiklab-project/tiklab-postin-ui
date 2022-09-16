@@ -3,7 +3,7 @@ import { ProjectFeatureList } from 'tiklab-privilege-ui';
 
 const ProjectFeature = props => {
     return (
-            <ProjectFeatureList {...props}/>
+            <ProjectFeatureList {...props} bgroup={"postin"}/>
     )
 }
 

@@ -5,7 +5,7 @@ import { SystemFeatureList } from 'tiklab-privilege-ui';
 const SystemFeature = props => {
 
     return (
-            <SystemFeatureList />
+            <SystemFeatureList bgroup={"postin"}/>
     )
 }
 
