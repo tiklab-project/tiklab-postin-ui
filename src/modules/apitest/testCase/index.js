@@ -6,7 +6,7 @@ import { TESTCASESTORE, TestCaseStore } from './store/testCaseStore';
 import TestCaseRequest from "./components/requestTestCase";
 import { REQUESTHEADER_TESTCASE_STORE, RequestHeaderTestCaseStore } from "./store/requestHeaderTestCaseStore";
 import { QUERYPARAM_TESTCASE_STORE, QueryParamTestCaseStore } from "./store/queryParamTestCaseStore";
-import { REQUESTBODY_TESTCASE_STORE, RequestBodyTestCaseStore } from "./store/requestBodyTestCaseStore";
+import { REQUEST_CASE_STORE, RequestCaseStore } from "./store/requestCaseStore";
 import { FORMPARAM_TESTCASE_STORE, FormParamTestCaseStore } from "./store/formParamTestCaseStore";
 import { FORM_URLENCODED_TESTCASE_STORE, FormUrlencodedTestCaseStore } from './store/formUrlencodedTestCaseStore';
 import { JSONPARAM_TESTCASE_STORE, JsonParamTestCaseStore } from "./store/jsonParamTestCaseStore";
@@ -25,7 +25,7 @@ export {
     TestCaseRequest,
     REQUESTHEADER_TESTCASE_STORE, RequestHeaderTestCaseStore,
     QUERYPARAM_TESTCASE_STORE, QueryParamTestCaseStore,
-    REQUESTBODY_TESTCASE_STORE, RequestBodyTestCaseStore,
+    REQUEST_CASE_STORE, RequestCaseStore,
     FORMPARAM_TESTCASE_STORE, FormParamTestCaseStore,
     FORM_URLENCODED_TESTCASE_STORE, FormUrlencodedTestCaseStore,
     JSONPARAM_TESTCASE_STORE, JsonParamTestCaseStore,

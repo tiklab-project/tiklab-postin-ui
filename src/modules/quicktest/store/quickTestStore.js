@@ -34,7 +34,7 @@ export  class QuickTestStore {
     @action
     getResponseInfo = async (data,assertData) => {
         let res = data.res;
-
+debugger
         this.time=data.time;
         this.status = res.status;
         const headers = res.headers;

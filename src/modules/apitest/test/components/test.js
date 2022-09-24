@@ -4,7 +4,7 @@ import {Form, Input, Select, Button, Divider, Space, Tooltip} from 'antd';
 import { TestRequest, TestResponse } from '../index';
 import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
-import {sendTest, sendTestDataProcess} from "../../../common/request/sendTestCommon";
+import {localProxySendTest, sendTest, sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import {execute} from "../../common/dtAction";
 
@@ -14,6 +14,7 @@ const { Option } = Select;
 // 接口测试组件
 const ApxMethodTest = (props) => {
     const {
+        getRes,
         apxMethodStore,
         requestHeaderTestStore,
         queryParamTestStore,
@@ -50,7 +51,9 @@ const ApxMethodTest = (props) => {
     const [showResponse,setShowResponse]= useState(false);
     const [errorMsg, setErrorMsg] = useState();
     const methodId = localStorage.getItem('apxMethodId');
-
+    let proxyItem = localStorage.getItem("PROXY_ITEM")
+        ?localStorage.getItem("PROXY_ITEM")
+        :"default";
 
     useEffect(()=>{
         findApxMethod(methodId).then(res=>{
@@ -61,20 +64,19 @@ const ApxMethodTest = (props) => {
                 path: res.path,
             })
 
-            getRequestHeaderTestList(res.requestHeaderList);
-            getQueryParamTestList(res.queryParamList);
-            getBodyType(res.requestBody.bodyType);
+            getRequestHeaderTestList(res.headerList);
+            getQueryParamTestList(res.queryList);
+            getBodyType(res.request.bodyType);
 
-            switch (res.requestBody.bodyType){
+            switch (res.request.bodyType){
                 case "formdata":
-                    debugger
-                    getFormParamTestList(res.formParamList);
+                    getFormParamTestList(res.formList);
                     break;
                 case "formUrlencoded":
-                    getFormUrlencodedTestList(res.formUrlencodedList);
+                    getFormUrlencodedTestList(res.urlencodedList);
                     break;
                 case "json":
-                    getJsonParamTestList(res.jsonParamList);
+                    getJsonParamTestList(res.jsonList);
                     break;
                 case "raw":
                     getRawInfo(res.rawParam)
@@ -86,10 +88,11 @@ const ApxMethodTest = (props) => {
                     break;
             }
 
-            getPreInfo(res.preScript);
-            getAfterInfo(res.afterScript);
+            // getPreInfo(res.request.preScript);
+            // getAfterInfo(res.request.afterScript);
         })
     },[methodId])
+
 
 
     // 点击测试
@@ -114,13 +117,16 @@ const ApxMethodTest = (props) => {
         //处理后的数据
         const processData = sendTestDataProcess(allSendData,preParamTestInfo)
 
+
         //发送测试，返回结果
-        let response =await sendTest(processData)
+        let response =await getRes(processData)
+
+
         //获取请求参数
         getRequestInfo(processData)
 
         //获取响应结果
-        if(!response.error){
+        if(response&&!response.error){
             getResponseInfo(response,assertParamTestList)
 
             setErrorMsg({showError:false})
@@ -196,7 +202,7 @@ const ApxMethodTest = (props) => {
                     </div>
 
                     <Space>
-                        <Button className="important-btn" onClick={onFinish}> 测试 </Button>
+                        <Button className="important-btn" onClick={onFinish}> 发送 </Button>
                         <SaveTestCase  {...props}/>
                     </Space>
                 </Form>

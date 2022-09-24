@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { observer, inject } from 'mobx-react';
-import {Form, Button, Input, Select, Tooltip} from 'antd';
+import {Form, Button, Input, Select, Tooltip, Space} from 'antd';
 import { TestCaseRequest } from "../index";
 import DropdownInstance from "../../testInstance/components/histroyList";
 import TestResultCase from "./testResultCase";
@@ -14,16 +14,17 @@ const {Option} = Select;
 const TestCaseDetail = (props) => {
 
     const {
+        getRes,
         testCaseStore,
         requestHeaderTestCaseStore,
         queryParamTestCaseStore,
-        requestBodyTestCaseStore,
+        requestCaseStore,
         formParamTestCaseStore,
         formUrlencodedTestCaseStore,
         jsonParamTestCaseStore,
         rawParamTestCaseStore,
-        preParamTestCaseStore,
-        afterScriptTestCaseStore,
+        // preParamTestCaseStore,
+        // afterScriptTestCaseStore,
         assertParamTestCaseStore,
         instanceStore,
         environmentStore
@@ -33,13 +34,13 @@ const TestCaseDetail = (props) => {
     const {testEnvUrl} = environmentStore;
     const { requestHeaderTestCaseDataSource,processHeaderCaseList } = requestHeaderTestCaseStore;
     const { queryParamTestCaseDataSource, processQueryCaseList } = queryParamTestCaseStore;
-    const { requestBodyTestCaseInfo, getBodyType} = requestBodyTestCaseStore;
+    const { bodyTypeCase, getBodyType} = requestCaseStore;
     const { formParamTestCaseDataSource,processFormList } = formParamTestCaseStore;
     const { formUrlencodedTestCaseDataSource,processFormUrlencodedList } = formUrlencodedTestCaseStore;
     const { jsonParamTestCaseList,processJsonParamList } = jsonParamTestCaseStore;
     const { rawParamTestCaseInfo,processRawInfo } = rawParamTestCaseStore;
-    const { preParamTestCaseInfo,getPreParamCaseInfo } =preParamTestCaseStore;
-    const { afterScriptTestCaseInfo,getAfterScriptCaseInfo } = afterScriptTestCaseStore;
+    // const { preParamTestCaseInfo,getPreParamCaseInfo } =preParamTestCaseStore;
+    // const { afterScriptTestCaseInfo,getAfterScriptCaseInfo } = afterScriptTestCaseStore;
     const { assertParamTestCaseDataSource } =assertParamTestCaseStore;
     const { createInstance  } = instanceStore;
 
@@ -62,19 +63,19 @@ const TestCaseDetail = (props) => {
                 methodType: res.http.methodType,
                 path: res.http.path,
             })
-            processHeaderCaseList(res.requestHeaderCaseList);
-            processQueryCaseList(res.queryParamCaseList);
-            getBodyType(res.requestBodyCase.bodyType);
+            processHeaderCaseList(res.headerList);
+            processQueryCaseList(res.queryList);
+            getBodyType(res.request.bodyType);
 
-            switch (res.requestBodyCase.bodyType){
+            switch (res.request.bodyType){
                 case "formdata":
-                    processFormList(res.formParamCaseList);
+                    processFormList(res.formList);
                     break;
                 case "formUrlencoded":
-                    processFormUrlencodedList(res.formUrlencodedCaseList);
+                    processFormUrlencodedList(res.urlencodedList);
                     break;
                 case "json":
-                    processJsonParamList(res.jsonParamCaseList);
+                    processJsonParamList(res.jsonList);
                     break;
                 case "raw":
                     processRawInfo(res.rawParamCase)
@@ -86,8 +87,8 @@ const TestCaseDetail = (props) => {
                     break;
             }
 
-            getPreParamCaseInfo(res.preScriptCase);
-            getAfterScriptCaseInfo(res.afterScriptCase)
+            // getPreParamCaseInfo(res.request?.preScriptCase);
+            // getAfterScriptCaseInfo(res.request?.afterScriptCase)
         })
     },[testCaseId])
 
@@ -104,6 +105,7 @@ const TestCaseDetail = (props) => {
 
     // 测试
     const exeTest = async () => {
+
         let values =await form.getFieldsValue()
 
         const allSendData = {
@@ -112,7 +114,7 @@ const TestCaseDetail = (props) => {
             "path":values.path,
             "headerList":requestHeaderTestCaseDataSource,
             "queryList":queryParamTestCaseDataSource,
-            "bodyType":requestBodyTestCaseInfo,
+            "bodyType":bodyTypeCase,
             "formDataList":formParamTestCaseDataSource,
             "formUrlencoded":formUrlencodedTestCaseDataSource,
             "jsonList":jsonParamTestCaseList,
@@ -124,7 +126,7 @@ const TestCaseDetail = (props) => {
         const processData = sendTestDataProcess(allSendData)
 
         //发送测试，返回结果
-        let response =await sendTest(processData)
+        let response =await getRes(processData)
 
         //获取请求参数
         getRequestInfo(processData)
@@ -217,7 +219,6 @@ const TestCaseDetail = (props) => {
             </div>
             <div className={"test-base"}>
                 <Form
-                    onFinish={exeTest}
                     form = {form}
                     className="test-header"
                 >
@@ -242,16 +243,12 @@ const TestCaseDetail = (props) => {
                             <Input disabled/>
                         </Form.Item>
                     </div>
-                    <div className={"test-base-item"}>
-                        <Form.Item className='test-button'>
-                            <Button className="important-btn" htmlType="submit">
-                                测试
-                            </Button>
-                        </Form.Item>
-                    </div>
-                    <div className={"test-base-item"}>
+
+                    <Space className={"test-base-item"}>
+                        <Button className="important-btn" onClick={exeTest}> 测试 </Button>
                         <Button onClick={()=>handleDeleteTestCase()} >删除</Button>
-                    </div>
+                    </Space>
+
                 </Form>
             </div>
             <TestCaseRequest />
@@ -270,13 +267,11 @@ export default inject(
     'testCaseStore',
     'requestHeaderTestCaseStore',
     'queryParamTestCaseStore',
-    'requestBodyTestCaseStore',
+    'requestCaseStore',
     'formParamTestCaseStore',
     "formUrlencodedTestCaseStore",
     'jsonParamTestCaseStore',
     'rawParamTestCaseStore',
-    'preParamTestCaseStore',
-    'afterScriptTestCaseStore',
     'assertParamTestCaseStore',
     'instanceStore',
     "environmentStore"

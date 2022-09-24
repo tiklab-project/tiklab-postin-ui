@@ -32,8 +32,6 @@ const TestCaseEdit = (props) => {
                 findList()
             })
         }else{
-            values.requestBodyCase= {bodyType: "raw"}
-
             createTestCase(values).then(res=>{
                 findList()
             })

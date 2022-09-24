@@ -158,3 +158,23 @@
 
 }
 
+
+.proxy-box{
+    position: relative;
+
+    .proxy-content{
+        display: none;
+        width: 125px;
+        position: absolute;
+        top: 0;
+        left: 80px;
+        padding: 10px;
+        box-shadow: 0 0 12px 1px #ddd;
+    }
+
+
+}
+
+.proxy-box:hover .proxy-content{
+    display: block;
+}

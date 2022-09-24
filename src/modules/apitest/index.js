@@ -24,7 +24,7 @@ import {
 
     REQUESTHEADER_TESTCASE_STORE, RequestHeaderTestCaseStore,
     QUERYPARAM_TESTCASE_STORE, QueryParamTestCaseStore,
-    REQUESTBODY_TESTCASE_STORE, RequestBodyTestCaseStore,
+    REQUEST_CASE_STORE, RequestCaseStore,
     FORMPARAM_TESTCASE_STORE, FormParamTestCaseStore,
     FORM_URLENCODED_TESTCASE_STORE, FormUrlencodedTestCaseStore,
     JSONPARAM_TESTCASE_STORE, JsonParamTestCaseStore,
@@ -61,7 +61,7 @@ export {
 
     REQUESTHEADER_TESTCASE_STORE, RequestHeaderTestCaseStore,
     QUERYPARAM_TESTCASE_STORE, QueryParamTestCaseStore,
-    REQUESTBODY_TESTCASE_STORE, RequestBodyTestCaseStore,
+    REQUEST_CASE_STORE, RequestCaseStore,
     FORMPARAM_TESTCASE_STORE, FormParamTestCaseStore,
     FORM_URLENCODED_TESTCASE_STORE, FormUrlencodedTestCaseStore,
     JSONPARAM_TESTCASE_STORE, JsonParamTestCaseStore,

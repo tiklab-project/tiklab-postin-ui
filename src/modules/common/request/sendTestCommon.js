@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axiosIns from "axios";
 import {testFunctionCommon} from "../../apitest/common/testFunctionCommon";
 import qs from "qs";
 import {
@@ -6,7 +6,7 @@ import {
     rawTypeJsonDictionary as rawTypeJson
 } from "../dictionary/dictionary";
 import {darth, execute, getHeader, getQuery} from "../../apitest/common/dtAction";
-
+import axiosIns from "../../../common/utils/localrequest";
 
 //发送测试 数据处理
 export const sendTestDataProcess=(data,preParamTestInfo)=>{
@@ -52,8 +52,7 @@ export const sendTest=async (data)=>{
     // 请求前的毫秒数
     let sendDate = (new Date()).getTime();
 
-    // 请求
-    let res = await axios({
+    let res = await axiosIns({
         method: data.method,
         url: data.url,
         data: data.bodys,
@@ -89,6 +88,31 @@ export const sendTest=async (data)=>{
 
     return res
 }
+
+//localProxy send test
+
+//发送测试
+export const localProxySendTest=async (data)=>{
+
+
+    let req = {
+        method: data.method,
+        url: data.url,
+        data: data.bodys,
+        params: data.params,
+        headers: data.headers,
+    }
+
+    let res = await axiosIns.post("/proxy",req).then(res=>{
+
+        return res
+    }).catch(error=>{
+        console.log("error-------:",error)
+    })
+
+    return res
+}
+
 
 
 

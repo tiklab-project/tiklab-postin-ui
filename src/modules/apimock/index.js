@@ -6,7 +6,7 @@ import MockJsonResponse from './components/mockJsonResponse';
 import { MOCKSTORE, MockStore } from './store/mockStore';
 import { MOCK_REQUESTHEADER_STORE, MockRequestHeaderStore } from './store/mockRequestHeaderStore';
 import { MOCK_QUERYPARAM_STORE, MockQueryParamStore } from './store/mockQueryParamStore';
-import { REQUESTBODY_MOCK_STORE, RequestBodyMockStore } from './store/requestBodyMock';
+import { REQUEST_MOCK_STORE, RequestMockStore } from './store/requestMockStore';
 import { MOCK_FORMPARAM_STORE, MockFormParamStore } from './store/mockFormParamStore';
 import { MOCK_JSONPARAM_STORE, MockJsonParamStore } from './store/mockJsonParamStore';
 import { MOCK_RESPONSEHEADER_STORE, MockResponseHeaderStore } from './store/mockResponseHeaderStore';
@@ -25,7 +25,7 @@ export {
     MOCKSTORE, MockStore ,
     MOCK_REQUESTHEADER_STORE, MockRequestHeaderStore,
     MOCK_QUERYPARAM_STORE, MockQueryParamStore, 
-    REQUESTBODY_MOCK_STORE, RequestBodyMockStore,
+    REQUEST_MOCK_STORE, RequestMockStore,
     MOCK_FORMPARAM_STORE ,MockFormParamStore,
     MOCK_JSONPARAM_STORE, MockJsonParamStore,
     MOCK_RESPONSEHEADER_STORE, MockResponseHeaderStore,

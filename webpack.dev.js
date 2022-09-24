@@ -4,7 +4,7 @@ const { merge } = require('webpack-merge');
 const path = require('path');
 const baseWebpackConfig = require('./webpack.base');
 
-const PORT = 3000;
+const PORT = 3005;
 
 module.exports = merge(baseWebpackConfig, {
     devtool: 'source-map',
@@ -54,6 +54,11 @@ module.exports = merge(baseWebpackConfig, {
         open:false,//自动打开浏览器
         historyApiFallback: true,
         disableHostCheck: true,
+        proxy:{
+            "/proxy":{
+                target:"http://127.0.0.1:3009"
+            }
+        }
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()

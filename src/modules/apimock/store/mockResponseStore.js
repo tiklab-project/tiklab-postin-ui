@@ -24,14 +24,14 @@ export class ResponseMockStore {
     
     @action
     createResponseMock = async (values) => {
-        values.mock = { id: this.mockId}
+        values.mockId = this.mockId;
         values.id =  this.mockId;
         await createResponseMock(values)
     }
 
     @action
 	updateResponseMock = async (values) => {
-        values.mock = {id: this.mockId}
+        values.mockId = this.mockId;
         values.id =  this.mockId;
 		await updateResponseMock(values)
     }
@@ -40,3 +40,4 @@ export class ResponseMockStore {
 }
 
 export const MOCK_RESPONSE_STORE = 'responseMockStore';
+

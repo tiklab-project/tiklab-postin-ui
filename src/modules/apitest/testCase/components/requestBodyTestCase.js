@@ -8,20 +8,20 @@ import {bodyTypeJsonDictionary as bodyTypeJson, mediaTypeDictionary} from "../..
 import RequestNoBody from "../../../common/tableCommon/components/requestNoBody";
 
 const RequestBodyTestCase = (props)=>{
-    const { requestBodyTestCaseStore } =props;
+    const { requestCaseStore } =props;
     const {
-        findRequestBodyTestCase,
-        requestBodyTestCaseInfo
-    } = requestBodyTestCaseStore;
+        findRequestCase,
+        bodyTypeCase
+    } = requestCaseStore;
 
     const [bodyType, setBodyType] = useState();
 
     const testCaseId = localStorage.getItem('testCaseId');
     useEffect(()=>{
-        findRequestBodyTestCase(testCaseId).then((res) => {
+        findRequestCase(testCaseId).then((res) => {
             setBodyType(res.bodyType)
         })
-    },[requestBodyTestCaseInfo])
+    },[bodyTypeCase])
 
 
     const showBodyType = (type) =>{
@@ -72,4 +72,4 @@ const RequestBodyTestCase = (props)=>{
     )
 }
 
-export default inject('requestBodyTestCaseStore')(observer(RequestBodyTestCase));
+export default inject('requestCaseStore')(observer(RequestBodyTestCase));

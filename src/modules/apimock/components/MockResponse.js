@@ -9,32 +9,26 @@ const { TabPane } = Tabs;
 
 // 输出参数 请求头部与请求参数的切换
 const MockResponse = (props) => {
-    const { responseResultMockStore } = props;
+    const { responseMockStore } = props;
     const { 
-        findResponseResultMock, 
-        updateResponseResultMock, 
-        createResponseResultMock,
-        mockResponseResultInfo 
-    } = responseResultMockStore;
+        findResponseMock, 
+        updateResponseMock, 
+        createResponseMock,
+    } = responseMockStore;
 
     const [ radioValue, setRadioValue ] = useState();
 
-    const mockId = localStorage.getItem('mockId')
+    const mockId = localStorage.getItem('mockId');
+    
     useEffect(()=> {
-        findResponseResultMock(mockId).then((res)=>{ 
-            if(res === null){
-                let initRadioValue ={resultType :'json'};
-                res = Object.assign(initRadioValue);
-                createResponseResultMock(res);
-            }else{
-                setRadioValue(res.resultType)
-            }
+        findResponseMock(mockId).then((res)=>{
+            setRadioValue(res.bodyType)
         })
-    },[mockResponseResultInfo])
+    },[mockId])
 
-    const onChange = e => {
-        let changeRadioValue = {resultType : e.target.value}
-        updateResponseResultMock(changeRadioValue)
+    const onChange = bodyType => {
+        setRadioValue(bodyType)
+        updateResponseMock( {bodyType : bodyType})
     };
 
     const changeFormat = (radioValue) => {
@@ -57,7 +51,7 @@ const MockResponse = (props) => {
                     <div className='request-radio'>
                         <Radio.Group 
                             name="radiogroup" 
-                            onChange={(e)=>onChange(e)}  
+                            onChange={(e)=>onChange( e.target.value)}  
                             defaultValue={radioValue}
                         >
                             <Radio value={'json'}>json </Radio>
@@ -76,4 +70,4 @@ const MockResponse = (props) => {
     
 }
 
-export default inject('responseResultMockStore')(observer(MockResponse));
+export default inject('responseMockStore')(observer(MockResponse));

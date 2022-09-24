@@ -12,7 +12,8 @@ import {
     SysManage,
     LoginOut,LoginContent,
     ElectronLoginContant,
-    LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,
+    LayoutQuickTest,TabsQuickTest,
+    Test, TestdetailQuickTest,TestCaseDetail,
     WorkspaceWidget,
 } from "./components/modules/index"
 
@@ -20,7 +21,8 @@ import {
 export {
     postinStore, routers, App,
     Home,PageContent,HeaderContent,
-    LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,
+    LayoutQuickTest,TabsQuickTest,
+    Test, TestdetailQuickTest,TestCaseDetail,
 
     SysManage,
     LoginOut,LoginContent,

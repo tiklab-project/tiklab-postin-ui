@@ -17,7 +17,7 @@ import {CATEGORY_STORE, CategoryStore} from "./modules/category";
 
 import {
     APXMETHOD_STORE, ApxMethodStore,
-
+    APIREQUEST_STORE,ApiRequestStore,
     REQUESTHEADER_STORE , RequestHeaderStore,
     QUERYPARAM_STORE, QueryParamStore,
     FORMPARAM_STORE, FormParamStore,
@@ -32,8 +32,7 @@ import {
     RESPONSEHEADER_STORE, ResponseHeaderStore,
     JSONRESPONSE_STORE, JsonResponseStore,
     RAWRESPONSE_STORE, RawResponseStore,
-    RESPONSERESULT_STORE, ResponseResultStore,
-
+    APIRESPONSE_STORE, ApiResponseStore,
 
 } from "./modules/apxMethod";
 
@@ -55,7 +54,7 @@ import {
 
     REQUESTHEADER_TESTCASE_STORE, RequestHeaderTestCaseStore,
     QUERYPARAM_TESTCASE_STORE, QueryParamTestCaseStore,
-    REQUESTBODY_TESTCASE_STORE, RequestBodyTestCaseStore,
+    REQUEST_CASE_STORE, RequestCaseStore,
     FORMPARAM_TESTCASE_STORE, FormParamTestCaseStore,
     FORM_URLENCODED_TESTCASE_STORE, FormUrlencodedTestCaseStore,
     JSONPARAM_TESTCASE_STORE, JsonParamTestCaseStore,
@@ -72,7 +71,7 @@ import {
     MOCKSTORE, MockStore ,
     MOCK_REQUESTHEADER_STORE, MockRequestHeaderStore,
     MOCK_QUERYPARAM_STORE, MockQueryParamStore,
-    REQUESTBODY_MOCK_STORE, RequestBodyMockStore,
+    REQUEST_MOCK_STORE, RequestMockStore,
     MOCK_FORMPARAM_STORE ,MockFormParamStore,
     MOCK_JSONPARAM_STORE, MockJsonParamStore,
     MOCK_RESPONSEHEADER_STORE, MockResponseHeaderStore,
@@ -125,6 +124,7 @@ function createStores() {
         [CATEGORY_STORE]: new CategoryStore(),
 
         // 接口
+        [APIREQUEST_STORE]: new ApiRequestStore(),
         [APXMETHOD_STORE]: new ApxMethodStore(),
         [APXMETHOD_STATUS_STORE]: new ApxMethodStatusStore(),
         [REQUESTHEADER_STORE]: new RequestHeaderStore(),
@@ -141,7 +141,7 @@ function createStores() {
         [RESPONSEHEADER_STORE]: new ResponseHeaderStore(),
         [JSONRESPONSE_STORE]: new JsonResponseStore(),
         [RAWRESPONSE_STORE]: new RawResponseStore(),
-        [RESPONSERESULT_STORE]: new ResponseResultStore(),
+        [APIRESPONSE_STORE]: new ApiResponseStore(),
 
 
         // test
@@ -160,7 +160,7 @@ function createStores() {
         [TESTCASESTORE]: new TestCaseStore(),
         [REQUESTHEADER_TESTCASE_STORE]: new RequestHeaderTestCaseStore(),
         [QUERYPARAM_TESTCASE_STORE]: new QueryParamTestCaseStore(),
-        [REQUESTBODY_TESTCASE_STORE]: new RequestBodyTestCaseStore(),
+        [REQUEST_CASE_STORE]: new RequestCaseStore(),
         [FORMPARAM_TESTCASE_STORE]: new FormParamTestCaseStore(),
         [FORM_URLENCODED_TESTCASE_STORE]: new FormUrlencodedTestCaseStore,
         [JSONPARAM_TESTCASE_STORE]: new JsonParamTestCaseStore(),
@@ -176,7 +176,7 @@ function createStores() {
         [MOCKSTORE]: new MockStore(),
         [MOCK_REQUESTHEADER_STORE]: new MockRequestHeaderStore(),
         [MOCK_QUERYPARAM_STORE]: new MockQueryParamStore(),
-        [REQUESTBODY_MOCK_STORE]: new RequestBodyMockStore(),
+        [REQUEST_MOCK_STORE]: new RequestMockStore(),
         [MOCK_FORMPARAM_STORE]: new MockFormParamStore(),
         [MOCK_JSONPARAM_STORE]: new MockJsonParamStore(),
         [MOCK_RESPONSEHEADER_STORE]: new MockResponseHeaderStore(),

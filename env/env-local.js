@@ -4,7 +4,7 @@
  * @LastEditTime: 2021-05-27 13:53:54
  */
 
-const base_url =  JSON.stringify('http://192.168.10.16:8080');
+const base_url =  JSON.stringify('http://localhost:8080');
 const plugin_base_url = JSON.stringify("http://127.0.0.1:3000");
 // const pluginAddressUrl = JSON.stringify('/pluginConfig/getPluginConfig');
 
@@ -20,7 +20,7 @@ const appSecret = JSON.stringify('appsecret');
 const version = JSON.stringify('1.0.1');
 const client = JSON.stringify('1.1.0');
 
-const acc_url = JSON.stringify('http://127.0.0.1:3000');
+const acc_url = JSON.stringify('http://127.0.0.1:3005');
 
 
 module.exports = {

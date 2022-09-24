@@ -12,6 +12,7 @@ const Page = (props)=>{
         return <img style={{width: 25}} src={localImage} alt='versionImg' />
     }
 
+    //跳转到账号与成员
     let authConfig = JSON.parse(localStorage.getItem("authConfig"))
     const accountAndMember = () =>{
         let url;

@@ -24,9 +24,12 @@ export const saveTestcaseProcess = (data) =>{
     const dataInfo = {
         "requestHeaderCaseList":processList(data.headerList),
         "queryParamCaseList":processList(data.queryList),
-        "requestBodyCase":{"bodyType":data.bodyType},
-        "preScriptCase":processInfo(data.preInfo),
-        "afterScriptCase":processInfo(data.afterInfo),
+        "request":{
+            "bodyType":data.bodyType,
+            "preScriptCase":processInfo(data.preInfo),
+            "afterScriptCase":processInfo(data.afterInfo),
+        },
+
         "assertCaseList":processList(data.assertList)
     }
 

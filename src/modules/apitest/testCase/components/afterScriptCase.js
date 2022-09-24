@@ -4,14 +4,14 @@ import { observer, inject } from 'mobx-react';
 import { Form } from 'antd';
 import CodeMirror from "../../../common/codeMirror";
 
-const AfterScriptTestCase = (props) => {
-    const { afterScriptTestCaseStore }  = props;
+const AfterScriptCase = (props) => {
+    const { requestCaseStore }  = props;
 
     const { 
-        createAfterScriptTestCase, 
-        updateAfterScriptTestCase, 
-        findAfterScriptTestCase,
-    } = afterScriptTestCaseStore;
+        createRequestCase, 
+        updateRequestCase, 
+        findRequestCase,
+    } = requestCaseStore;
 
     const ediTextRef = useRef(null);
     const rawDataRef = useRef(null);
@@ -20,12 +20,12 @@ const AfterScriptTestCase = (props) => {
     const testCaseId =localStorage.getItem('testCaseId');
 
     useEffect(()=>{
-        findAfterScriptTestCase(testCaseId).then((res)=>{
+        findRequestCase(testCaseId).then((res)=>{
             if(!res) return
 
             rawDataRef.current=res
             form.setFieldsValue({
-                scriptex: res.scriptex,
+                afterScript: res.afterScript,
             })
         })
     },[testCaseId])
@@ -34,17 +34,17 @@ const AfterScriptTestCase = (props) => {
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
 
-        let param = {scriptex:text}
+        let param = {afterScript:text}
 
         if(rawDataRef.current){
-            updateAfterScriptTestCase(param)
+            updateRequestCase(param)
         }else{
             if(!text) return
 
-            createAfterScriptTestCase(param).then((res)=>{
+            createRequestCase(param).then((res)=>{
                 if(res.code!==0) return
 
-                findAfterScriptTestCase(testCaseId).then(res=>{
+                findRequestCase(testCaseId).then(res=>{
                     if(!res ) return
 
                     rawDataRef.current=res
@@ -56,7 +56,7 @@ const AfterScriptTestCase = (props) => {
     return (
         <Form form={form} >
 
-            <Form.Item name='scriptex' >
+            <Form.Item name='afterScript' >
                 <CodeMirror
                     mediaType={"application/javascript"}
                     blurFn={blurFn}
@@ -67,4 +67,4 @@ const AfterScriptTestCase = (props) => {
     )
 }
 
-export default inject('afterScriptTestCaseStore')(observer(AfterScriptTestCase));
+export default inject('requestCaseStore')(observer(AfterScriptCase));

@@ -11,19 +11,19 @@ import RawParam from "./rawParam";
  *接口定义中的请求体
  */
 const RequestBody  = (props) =>{
-    const { requestBodyStore } = props;
+    const { apiRequestStore } = props;
     const {
-        findRequestBody,
-        updateRequestBody,
+        findApiRequest,
+        updateApiRequest,
         bodyType
-    } = requestBodyStore;
+    } = apiRequestStore;
 
     const [radioType, setRadioType] = useState("none");
 
     const apxMethodId = localStorage.getItem('apxMethodId');
 
     useEffect(()=>{
-        findRequestBody(apxMethodId).then(res=>{
+        findApiRequest(apxMethodId).then(res=>{
             setRadioType(res.bodyType)
         })
     },[bodyType])
@@ -32,7 +32,7 @@ const RequestBody  = (props) =>{
     return(
         <RequestBodyCom
             radioValue={radioType}
-            updateFn={updateRequestBody}
+            updateFn={updateApiRequest}
             setRadioType={setRadioType}
             form={<FormParam  />}
             formUrlencoded={<FormUrlencoded />}
@@ -43,4 +43,4 @@ const RequestBody  = (props) =>{
     )
 }
 
-export default inject('requestBodyStore')(observer(RequestBody));
+export default inject('apiRequestStore')(observer(RequestBody));

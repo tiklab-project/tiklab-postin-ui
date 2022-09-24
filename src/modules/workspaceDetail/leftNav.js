@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import ProxySelect from "../common/request/proxySelect";
 
 const LeftNav = (props) =>{
     const menuData = [
@@ -111,6 +112,7 @@ const LeftNav = (props) =>{
         })
     }
 
+
     return(
         <>
             <ul className={"ws-detail-left-nav"}>
@@ -122,6 +124,7 @@ const LeftNav = (props) =>{
                 {
                     showMenuItem(menuData)
                 }
+                <ProxySelect />
             </ul>
         </>
     )

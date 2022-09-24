@@ -7,10 +7,10 @@ import {
 
     WorkspaceRole, WorkspacePrivilege, Workspace, WorkspaceCreate, WorkspaceJoin, WorkspaceInit,
     WorkspaceList, WorkspaceRecent, WorkspaceDetailLayout,
-    LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest, TestdetailQuickTest, WorkspaceDetailInitPage,
+    LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest,  WorkspaceDetailInitPage,
     Category, ApxMethod, ApxMethodDetail,
 
-    Test, TestCase, TestCaseDetail,
+    Test, TestCase,
     Mock, MockDetail,
 
     SystemContent,  DataStructure, ApiStatus,
@@ -23,6 +23,13 @@ import {
 import {Redirect} from "react-router";
 import {AuthResult} from "tiklab-eam-ui";
 import PluginDetailPage from "./modules/sysmgr/pluginManage/pluginDetail";
+import TestBoxQuickTest from "./modules/quicktest/components/testBoxQuickTest";
+import TestCaseBox from "./modules/apitest/testCase/components/testCaseBox";
+import TestBox from "./modules/apitest/test/components/testBox";
+import LogList from "./modules/sysmgr/log/Log";
+import TaskList from "./modules/sysmgr/todo/todo";
+import TodoTemp from "./modules/sysmgr/todo/todoTempList";
+import MyTodo from "./modules/sysmgr/todo/myTodo";
 
 const routers =  [
     {
@@ -148,8 +155,8 @@ const routers =  [
                         component: MessageType,
                     },
                     {
-                        path: "/systemManagement/pluginmanage",
-                        key:'pluginmanage',
+                        path: "/systemManagement/plugin",
+                        key:'plugin',
                         component: PluginManage,
                     },
                     {
@@ -157,6 +164,26 @@ const routers =  [
                         key:'plugindetail',
                         exact: true,
                         component: PluginDetailPage,
+                    },{
+                        path: "/systemManagement/log",
+                        key:'log',
+                        exact: true,
+                        component: LogList,
+                    },{
+                        path: "/systemManagement/taskList",
+                        key:'todo',
+                        exact: true,
+                        component: TaskList,
+                    },{
+                        path: "/systemManagement/todoTemp",
+                        key:'todoTemp',
+                        exact: true,
+                        component: TodoTemp,
+                    },{
+                        path: "/systemManagement/myTodo",
+                        key:'myTodo',
+                        exact: true,
+                        component: MyTodo,
                     },
                     {
                         path: "/systemManagement",
@@ -219,7 +246,7 @@ const routers =  [
                                                 path:"/workspace/apis/detail/interface/test",
                                                 exact: true,
                                                 key:'test',
-                                                component: Test,
+                                                component: TestBox,
                                             },{
                                                 path:"/workspace/apis/detail/interface/testcase",
                                                 exact: true,
@@ -230,7 +257,7 @@ const routers =  [
                                                 path:"/workspace/apis/detail/interface/testcasedetail",
                                                 exact: true,
                                                 key:'testCaseDetail',
-                                                component: TestCaseDetail,
+                                                component: TestCaseBox,
                                             },
                                             {
                                                 path:'/workspace/apis/detail/interface/mock',
@@ -282,7 +309,7 @@ const routers =  [
                                         path: "/workspace/quickTest/detail/api",
 
                                         key:'TestdetailQuickTest',
-                                        component: TestdetailQuickTest,
+                                        component: TestBoxQuickTest,
                                     },{
                                         path:"/workspace/quickTest/detail",
                                         exact: true,

@@ -6,14 +6,13 @@
 
 import React, { useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
-import { PREPARAM_STORE } from '../store/preParamStore';
 import { Form } from 'antd';
 import CodeMirror from "../../../common/codeMirror";
 
 
 const PreParam = (props) => {
-    const { preParamStore }  = props;
-    const {createPreScript, updatePreScript, findPreScript} = preParamStore;
+    const { apiRequestStore }  = props;
+    const {createApiRequest, updateApiRequest, findApiRequest} = apiRequestStore;
 
     const ediTextRef = useRef(null);
     const rawDataRef = useRef(null);
@@ -22,12 +21,12 @@ const PreParam = (props) => {
     const apxMethodId =localStorage.getItem('apxMethodId') ;
 
     useEffect(()=>{
-        findPreScript(apxMethodId).then((res)=>{
+        findApiRequest(apxMethodId).then((res)=>{
             if(!res ) return
 
             rawDataRef.current=res
             form.setFieldsValue({
-                scriptex: res.scriptex,
+                preScript: res.preScript,
             })
         })
     },[apxMethodId])
@@ -37,17 +36,17 @@ const PreParam = (props) => {
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
 
-        let param = {scriptex:text}
+        let param = {preScript:text}
 
         if(rawDataRef.current){
-            updatePreScript(param)
+            updateApiRequest(param)
         }else{
             if(!text) return
 
-            createPreScript(param).then((res)=>{
+            createApiRequest(param).then((res)=>{
                 if(res.code!==0) return
 
-                findPreScript(apxMethodId).then(res=>{
+                findApiRequest(apxMethodId).then(res=>{
                     if(!res ) return
 
                     rawDataRef.current=res
@@ -59,7 +58,7 @@ const PreParam = (props) => {
 
     return (
         <Form form={form} >
-            <Form.Item name='scriptex'>
+            <Form.Item name='preScript'>
                 <CodeMirror
                     mediaType={"application/javascript"}
                     blurFn={blurFn}
@@ -71,4 +70,4 @@ const PreParam = (props) => {
     )
 }
 
-export default inject(PREPARAM_STORE)(observer(PreParam));
+export default inject("apiRequestStore")(observer(PreParam));

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./requestTabQuickTest";
 import {inject, observer} from "mobx-react";
-import {sendTest, sendTestDataProcess} from "../../common/request/sendTestCommon";
+import {localProxySendTest, sendTest, sendTestDataProcess} from "../../common/request/sendTestCommon";
 import ResponseQuickTest from "./responseQuickTest";
 import {
     methodDictionary,
@@ -21,6 +21,7 @@ const { Option } = Select;
 
 const TestdetailQuickTest = (props) =>{
     const {
+        getRes,
         instanceStore,
         quickTestStore,
         headerQuickTestStore,
@@ -53,6 +54,9 @@ const TestdetailQuickTest = (props) =>{
     const userId = getUser().userId;
     const [errorMsg, setErrorMsg] = useState();
     const instanceId = localStorage.getItem("instanceId")
+    let proxyItem = localStorage.getItem("PROXY_ITEM")
+        ?localStorage.getItem("PROXY_ITEM")
+        :"default";
 
     useEffect(()=>{
         if(instanceId!=="-1"){
@@ -137,12 +141,13 @@ const TestdetailQuickTest = (props) =>{
         const processData = sendTestDataProcess(allSendData)
 
         //发送测试，返回结果
-        let response =await sendTest(processData)
+        let response =await getRes(processData)
+
         //获取请求参数
         getRequestInfo(processData)
 
         //获取响应结果
-        if(!response.error){
+        if(response&&!response.error){
             getResponseInfo(response,assertQuickTestList).then(res=>{
                 res.httpCase = {"id":"quickTestInstanceId"}
                 createInstance(res).then(()=>{
@@ -194,7 +199,6 @@ const TestdetailQuickTest = (props) =>{
         <div className={"quicktest-contant-box"}>
             <div className={"test-base"}>
                 <Form
-                    onFinish={onFinish}
                     form = {form}
                     className="test-header"
                     initialValues={{ methodType: "get" }}
@@ -205,11 +209,10 @@ const TestdetailQuickTest = (props) =>{
                         </Form.Item>
                     </div>
                     <div className={"test-base-item"}>
-                        <Form.Item className='test-button'>
-                            <Button className="important-btn" htmlType="submit">
-                                测试
-                            </Button>
-                        </Form.Item>
+                        {/*<Form.Item className='test-button'>*/}
+                        {/*    <Button className="important-btn" htmlType="submit"> 测试  </Button>*/}
+                        {/*</Form.Item>*/}
+                        <Button className="important-btn" onClick={onFinish}> 发送 </Button>
                     </div>
                 </Form>
             </div>

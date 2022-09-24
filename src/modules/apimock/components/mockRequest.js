@@ -12,36 +12,31 @@ const { TabPane } = Tabs;
 
 // 输出参数 请求头部与请求参数的切换
 const MockRequest = (props) => {
-    const { requestBodyMockStore } =props;
+    const { requestMockStore } =props;
     const { 
-        findRequestBodyMock, 
-        createRequestBodyMock, 
-        updateRequestBodyMock,
-        requestBodyMockInfo
-    } = requestBodyMockStore; 
+        findRequestMock, 
+        createRequestMock, 
+        updateRequestMock,
+    } = requestMockStore; 
 
-    const [radioValue, setRadioValue] = useState()
+    const [radioType, setRadioType] = useState()
     const mockId = localStorage.getItem('mockId');
 
     useEffect(()=>{
-        findRequestBodyMock(mockId).then((res) => {
-            if(res){
-                setRadioValue(res)
-            }else{
-                createRequestBodyMock({bodyType :'formdata'});
-            }
+        findRequestMock(mockId).then((res) => {
+            setRadioType(res.bodyType)
         })
-    },[requestBodyMockInfo])
+    },[mockId])
 
-    const onChange = e => {
-        setRadioValue(e);
-        updateRequestBodyMock({bodyType : e})
+    const onChange = bodyType => {
+        setRadioType(bodyType);
+        updateRequestMock({bodyType : bodyType})
     };
 
-    const changeFormat = (radioValue) => {
+    const changeFormat = (radioType) => {
 
-        switch(radioValue) {
-            case 'formdata':
+        switch(radioType) {
+            case 'form':
                 return <MockFormParam />
             case 'json':
                 return <JsonParamMock />
@@ -62,15 +57,15 @@ const MockRequest = (props) => {
                         <Radio.Group 
                             name="radiogroup" 
                             onChange={(e)=>onChange(e.target.value)}
-                            defaultValue={radioValue}
+                            defaultValue={radioType}
                         >
-                            <Radio value={'formdata'}>formData </Radio>
+                            <Radio value={'form'}>formData </Radio>
                             <Radio value={'json'}>json</Radio>
                         </Radio.Group>
                     </div>
                     <div>
                         { 
-                            changeFormat(radioValue)
+                            changeFormat(radioType)
                         } 
                     </div>  
                 </TabPane>
@@ -80,4 +75,4 @@ const MockRequest = (props) => {
     
 }
 
-export default inject('requestBodyMockStore')(observer(MockRequest));
+export default inject('requestMockStore')(observer(MockRequest));

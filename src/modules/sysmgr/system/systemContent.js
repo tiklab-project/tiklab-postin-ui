@@ -78,8 +78,32 @@ const SystemContent = (props) =>{
         {
             title: '插件管理',
             icon: 'laptop',
-            key: '/systemManagement/pluginmanage',
+            key: '/systemManagement/plugin',
             encoded: "plugin",
+        },
+        {
+            title: '日志',
+            icon: 'laptop',
+            key: '/systemManagement/log',
+            encoded: "log",
+        },
+        {
+            title: 'TODO模板',
+            icon: 'laptop',
+            key: '/systemManagement/todoTemp',
+            encoded: "todoTemp",
+        },
+        {
+            title: '我的TODO',
+            icon: 'laptop',
+            key: '/systemManagement/myTodo',
+            encoded: "myTodo",
+        },
+        {
+            title: '任务',
+            icon: 'laptop',
+            key: '/systemManagement/taskList',
+            encoded: "taskList",
         }
     ]
 

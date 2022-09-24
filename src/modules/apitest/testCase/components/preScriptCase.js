@@ -1,18 +1,17 @@
 
 import React, { useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
-import { PREPARAM_TESTCASE_STORE } from '../store/preParamTestCaseStore';
 import {  Form } from 'antd';
 import CodeMirror from "../../../common/codeMirror";
 
-const PreParamTestCase = (props) => {
-    const { preParamTestCaseStore }  = props;
+const PreScriptCase = (props) => {
+    const { requestCaseStore }  = props;
 
     const { 
-        createPreParamTestCase, 
-        updatePreParamTestCase, 
-        findPreParamTestCase,
-    } = preParamTestCaseStore;
+        createRequestCase,
+        updateRequestCase,
+        findRequestCase,
+    } = requestCaseStore;
     const ediTextRef = useRef(null);
     const rawDataRef = useRef(null);
     const [form] = Form.useForm();
@@ -20,12 +19,12 @@ const PreParamTestCase = (props) => {
     const testCaseId = localStorage.getItem('testCaseId') ;
 
     useEffect(()=>{
-        findPreParamTestCase(testCaseId).then((res)=>{
+        findRequestCase(testCaseId).then((res)=>{
             if(!res ) return
 
             rawDataRef.current=res
             form.setFieldsValue({
-                scriptex: res.scriptex,
+                preScript: res.preScript,
             })
         })
     },[testCaseId])
@@ -35,17 +34,17 @@ const PreParamTestCase = (props) => {
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
 
-        let param = {scriptex:text}
+        let param = {preScript:text}
 
         if(rawDataRef.current){
-            updatePreParamTestCase(param)
+            updateRequestCase(param)
         }else{
             if(!text) return
 
-            createPreParamTestCase(param).then((res)=>{
+            createRequestCase(param).then((res)=>{
                 if(res.code!==0) return
 
-                findPreParamTestCase(testCaseId).then(res=>{
+                findRequestCase(testCaseId).then(res=>{
                     if(!res ) return
 
                     rawDataRef.current=res
@@ -57,7 +56,7 @@ const PreParamTestCase = (props) => {
 
     return (
         <Form form={form} >
-            <Form.Item name='scriptex'>
+            <Form.Item name='preScript'>
                 <CodeMirror
                     mediaType={"application/javascript"}
                     blurFn={blurFn}
@@ -68,4 +67,4 @@ const PreParamTestCase = (props) => {
     )
 }
 
-export default inject(PREPARAM_TESTCASE_STORE)(observer(PreParamTestCase));
+export default inject( 'requestCaseStore')(observer(PreScriptCase));

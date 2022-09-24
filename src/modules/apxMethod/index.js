@@ -5,7 +5,7 @@ import ApxMethodEdit from './http/components/apxMethodEdit';
 import { APXMETHOD_STORE, ApxMethodStore } from './http/store/apxMethodStore';
 
 import Request from './http/components/request';
-import requestStore from './http/store/requestStore';
+import {ApiRequestStore,APIREQUEST_STORE} from "./http/store/apiRequestStore";
 import { REQUESTHEADER_STORE, RequestHeaderStore } from './http/store/requestHeaderStore'
 import { QUERYPARAM_STORE, QueryParamStore} from './http/store/queryParamStore';
 import { FORMPARAM_STORE, FormParamStore } from './http/store/formParamStore';
@@ -21,7 +21,7 @@ import Response from './http/components/response';
 import { RESPONSEHEADER_STORE, ResponseHeaderStore } from './http/store/responseHeaderStore';
 import { JSONRESPONSE_STORE, JsonResponseStore } from './http/store/jsonResponseStore';
 import { RAWRESPONSE_STORE, RawResponseStore } from './http/store/rawResponseStore';
-import { RESPONSERESULT_STORE, ResponseResultStore } from './http/store/responseResultStore';
+import { APIRESPONSE_STORE, ApiResponseStore } from './http/store/apiResponseStore';
 
 
 export{
@@ -31,7 +31,7 @@ export{
     APXMETHOD_STORE, ApxMethodStore,
 
     Request,
-    requestStore,
+    ApiRequestStore,APIREQUEST_STORE,
     REQUESTHEADER_STORE , RequestHeaderStore,
     QUERYPARAM_STORE, QueryParamStore,
     FORMPARAM_STORE, FormParamStore,
@@ -47,7 +47,7 @@ export{
     RESPONSEHEADER_STORE, ResponseHeaderStore,
     JSONRESPONSE_STORE, JsonResponseStore,
     RAWRESPONSE_STORE, RawResponseStore,
-    RESPONSERESULT_STORE, ResponseResultStore,
+    APIRESPONSE_STORE, ApiResponseStore,
 
 
 }

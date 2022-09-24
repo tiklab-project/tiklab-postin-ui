@@ -4,6 +4,8 @@ import {AssertCommonStore} from "../../common/assertCommonStore";
 let assertCommonStore = new AssertCommonStore();
 
 export class TestStore {
+    @observable proxyItem;
+
     @observable status = '';
     @observable time = '';
     @observable assertResponse = [];
@@ -63,6 +65,12 @@ export class TestStore {
     @action
     getTime = (value) => {
         this.time= value;
+    }
+
+
+    @action
+    getProxySelect = (type) =>{
+        this.proxyItem = type
     }
 }
 

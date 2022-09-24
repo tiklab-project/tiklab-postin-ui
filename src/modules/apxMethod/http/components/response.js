@@ -3,44 +3,37 @@ import { observer, inject } from 'mobx-react';
 import ResponseHeader from "./responseHeader";
 import JsonResponse  from "./jsonResponse";
 import RawResponse from './rawResponse';
-import { RESPONSERESULT_STORE } from '../store/responseResultStore';
 import { Tabs, Radio } from 'antd';
 const { TabPane } = Tabs;
 
 // 输出参数 返回头部与返回结果的切换
 const Response = (props) =>{
-    const { responseResultStore } = props;
+    const { apiResponseStore } = props;
     const { 
-        findResponseResult, 
-        createResponseResult, 
-        updateResponseResult,
-        responseResultType
-    } = responseResultStore;
+        findApiResponse,
+        updateApiResponse,
+        bodyType
+    } = apiResponseStore;
 
-    const [ radioValue, setRadioValue ] = useState()
+    const [ radioType, setRadioType ] = useState()
 
     const apxMethodId = localStorage.getItem('apxMethodId');
 
     useEffect(()=> {
-        findResponseResult(apxMethodId).then((res)=>{
-            if(res){
-                setRadioValue(res.resultType)
-            }else{
-                createResponseResult({resultType :'json'});
-                setRadioValue("json")
-            }
+        findApiResponse(apxMethodId).then((res)=>{
+            setRadioType(res.bodyType)
         })
-    },[responseResultType])
+    },[bodyType])
     
     // radio切换，更新为当前radio的值
     const onChange = e => {
-        setRadioValue(e);
-        updateResponseResult({resultType : e});
+        setRadioType(e);
+        updateApiResponse({bodyType : e});
     };
 
     //根据radio值，渲染相应的请求体
-    const changeFormat = (radioValue) => {
-        switch(radioValue) {
+    const changeFormat = (radioType) => {
+        switch(radioType) {
             case 'json':
                 return <JsonResponse />
             case 'raw':
@@ -57,7 +50,7 @@ const Response = (props) =>{
                         <Radio.Group 
                             name="radiogroup" 
                             onChange={(e)=>onChange(e.target.value)}
-                            value={radioValue}
+                            value={radioType}
                         >
                             <Radio value={'json'}>json </Radio>
                             <Radio value={'raw'}>raw</Radio>
@@ -65,7 +58,7 @@ const Response = (props) =>{
                     </div>
                     <div>
                         {
-                            changeFormat(radioValue)
+                            changeFormat(radioType)
                         } 
                     </div>  
                 </TabPane>
@@ -78,4 +71,4 @@ const Response = (props) =>{
     
 }
 
-export default inject(RESPONSERESULT_STORE)(observer(Response));
+export default inject("apiResponseStore")(observer(Response));

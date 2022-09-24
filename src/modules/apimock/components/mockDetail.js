@@ -27,15 +27,13 @@ const MockDetail = (props) =>{
 
     useEffect(()=>{
         findResponseMock(mockId).then((res)=>{
-            if(res){
+            if(res.httpCode){
                 form.setFieldsValue({
                     httpCode: res.httpCode
                 })
-            }else{
-                createResponseMock({httpCode : 200 });
             }
         })
-    },[])
+    },[mockId])
 
 
 
