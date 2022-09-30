@@ -46,7 +46,7 @@ export class WorkspaceFollowStore {
 	}
 
 
-	// 删除空间
+	// 删除
 	@action
 	deleteWorkspaceFollow = async (id) => {
 		const param = new FormData();
@@ -58,7 +58,7 @@ export class WorkspaceFollowStore {
 
 	}
 
-	// 新建空间
+	// 新建
 	@action
 	createWorkspaceFollow = async (values) => {
 
@@ -68,7 +68,7 @@ export class WorkspaceFollowStore {
 		}
 	}
 
-	//更新空间
+	//更新
 	@action
 	updateWorkspaceFollow = async (values) => {
 

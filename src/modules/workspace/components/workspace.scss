@@ -43,14 +43,50 @@ ul{
 // --workspace--
 
 .ws-layout{
-    display: flex;
-    background-color: white;
+    width: 1280px;
+    padding: 0 16px;
+    margin: 0 auto;
     height: calc(100% - 50px);
 }
 
 .ws-side{
     border-right: 1px solid #e4e4e4;
 }
+
+.ws-header-menu{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom:1px solid #e4e4e4 ;
+    margin: 0 0 10px 0;
+
+    .ws-header-menu-left{
+        display: flex;
+    }
+
+    .ws-header-menu-right{
+        display: flex;
+    }
+
+    .ws-header-menu-item{
+        padding: 14px;
+        margin: 0 15px 0 0;
+        cursor: pointer;
+
+    }
+
+    .ws-header-menu-item:hover{
+        border-bottom:3px solid #2196f3;
+    }
+
+    .ws-header-menu-item-selected{
+        color: #008aff;
+        border-bottom:3px solid #008cff;
+    }
+}
+
+
 
 .ws-content{
     flex: 1;

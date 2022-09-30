@@ -19,9 +19,9 @@ export class TestStore {
     @action
     getRequestInfo = (data) => {
 
-        this.requestBodyData = data.bodys;
-
-        this.requestHeaderData = JSON.stringify(data.headers);
+        // this.requestBodyData = data.bodys;
+        //
+        // this.requestHeaderData = JSON.stringify(data.headers);
     }
 
     @action
@@ -30,6 +30,9 @@ export class TestStore {
 
         this.time=data.time;
         this.status = res.status;
+        let requestHeaders= res?.config?.headers;
+        let requestBody =  res?.config?.data;
+
         const headers = res.headers;
         const body = JSON.stringify(res.data);
 
@@ -47,6 +50,9 @@ export class TestStore {
         //断言list，添加result 字段。用于测试结果中的断言回显
         assertCommonStore.assertCompare(assertNeedData);
 
+
+        this.requestBodyData = requestBody;
+        this.requestHeaderData = JSON.stringify(requestHeaders);
         this.responseHeaderData = JSON.stringify(headers);
         this.responseBodyData = body;
         this.assertResponse = assertList;

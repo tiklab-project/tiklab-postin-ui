@@ -142,48 +142,60 @@ const WorkspaceCreate = (props) => {
     }
 
     return(
-        <Fragment>
-            <BreadcrumbEx
-                list={[
-                    t('wsMgr'),
-                    t('wsList')
-                ]}
-            />
-            <div className='wslist-searchbtn'>
-                <div className='wslist-eibtn'>
-                    {/*<PrivilegeButton   code={"workspaceEdit"} >*/}
-                        <WorkspaceEdit
-                            className="important-btn"
-                            name={`${t('addws')}`}
-                            type="add"
-                            style={{ width: 200 }}
-                            userId={userId}
-                        />
-                    {/*</PrivilegeButton>*/}
-                    <RemoteUmdComponent point='import' pluginStore={pluginStore}/>
-
-                </div>
-                <Input
-                    placeholder={`${t('searchWorkspace')}`}
-                    onPressEnter={onSearch}
-                    className='search-input'
-                    style={{width:240}}
-                />
-            </div>
-
-            <Table
-                className="tablelist"
-                columns={columns}
-                dataSource={workspaceList}
-                rowKey={record => record.id}
-                pagination={{
-                    current:currentPage,
-                    pageSize:pageSize,
-                    total:totalRecord,
-                }}
-                onChange = {(pagination) => onTableChange(pagination)}
-            />
-        </Fragment>
+        <Table
+            className="tablelist"
+            columns={columns}
+            dataSource={workspaceList}
+            rowKey={record => record.id}
+            pagination={{
+                current:currentPage,
+                pageSize:pageSize,
+                total:totalRecord,
+            }}
+            onChange = {(pagination) => onTableChange(pagination)}
+        />
+        // <Fragment>
+        //     <BreadcrumbEx
+        //         list={[
+        //             t('wsMgr'),
+        //             t('wsList')
+        //         ]}
+        //     />
+        //     <div className='wslist-searchbtn'>
+        //         <div className='wslist-eibtn'>
+        //             {/*<PrivilegeButton   code={"workspaceEdit"} >*/}
+        //                 <WorkspaceEdit
+        //                     className="important-btn"
+        //                     name={`${t('addws')}`}
+        //                     type="add"
+        //                     style={{ width: 200 }}
+        //                     userId={userId}
+        //                 />
+        //             {/*</PrivilegeButton>*/}
+        //             <RemoteUmdComponent point='import' pluginStore={pluginStore}/>
+        //
+        //         </div>
+        //         <Input
+        //             placeholder={`${t('searchWorkspace')}`}
+        //             onPressEnter={onSearch}
+        //             className='search-input'
+        //             style={{width:240}}
+        //         />
+        //     </div>
+        //
+        //     <Table
+        //         className="tablelist"
+        //         columns={columns}
+        //         dataSource={workspaceList}
+        //         rowKey={record => record.id}
+        //         pagination={{
+        //             current:currentPage,
+        //             pageSize:pageSize,
+        //             total:totalRecord,
+        //         }}
+        //         onChange = {(pagination) => onTableChange(pagination)}
+        //     />
+        // </Fragment>
     )
 }
 

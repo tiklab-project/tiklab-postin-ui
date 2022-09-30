@@ -30,6 +30,7 @@ import LogList from "./modules/sysmgr/log/Log";
 import TaskList from "./modules/sysmgr/todo/todo";
 import TodoTemp from "./modules/sysmgr/todo/todoTempList";
 import MyTodo from "./modules/sysmgr/todo/myTodo";
+import LogTemplate from "./modules/sysmgr/log/LogTemplate";
 
 const routers =  [
     {
@@ -169,6 +170,11 @@ const routers =  [
                         key:'log',
                         exact: true,
                         component: LogList,
+                    },{
+                        path: "/systemManagement/logTemplate",
+                        key:'logTemplate',
+                        exact: true,
+                        component: LogTemplate,
                     },{
                         path: "/systemManagement/taskList",
                         key:'todo',
@@ -331,36 +337,52 @@ const routers =  [
                         exact: true,
                         component: DataStructure,
                     },
+                    // {
+                    //     path: "/workspace/workspaceSetting",
+                    //     key:'workspaceSetting',
+                    //     component: WorkspaceSetting,
+                    //     routes: [
+                    //         {
+                    //             path: "/workspace/workspaceSetting/apistatus",
+                    //             key:'apistatus',
+                    //             exact: true,
+                    //             component: ApiStatus,
+                    //         },{
+                    //             path: "/workspace/workspaceSetting/role",
+                    //             key:'role',
+                    //             exact: true,
+                    //             component: WorkspaceRole,
+                    //         },
+                    //         {
+                    //             path: "/workspace/workspaceSetting/workspacePrivilege",
+                    //             key:'privilege',
+                    //             exact: true,
+                    //             component: WorkspacePrivilege,
+                    //         },{
+                    //             path:"/workspace/workspaceSetting",
+                    //             key:'ridworkspaceSetting',
+                    //             exact: true,
+                    //             component: ()=><Redirect to='/workspace/workspaceSetting/apistatus'/>,
+                    //         },
+                    //     ]
+                    // },
                     {
-                        path: "/workspace/workspaceSetting",
-                        key:'workspaceSetting',
-                        component: WorkspaceSetting,
-                        routes: [
-                            {
-                                path: "/workspace/workspaceSetting/apistatus",
-                                key:'apistatus',
-                                exact: true,
-                                component: ApiStatus,
-                            },{
-                                path: "/workspace/workspaceSetting/role",
-                                key:'role',
-                                exact: true,
-                                component: WorkspaceRole,
-                            },
-                            {
-                                path: "/workspace/workspaceSetting/workspacePrivilege",
-                                key:'privilege',
-                                exact: true,
-                                component: WorkspacePrivilege,
-                            },{
-                                path:"/workspace/workspaceSetting",
-                                key:'ridworkspaceSetting',
-                                exact: true,
-                                component: ()=><Redirect to='/workspace/workspaceSetting/apistatus'/>,
-                            },
-                        ]
+                        path: "/workspace/status",
+                        key:'apistatus',
+                        exact: true,
+                        component: ApiStatus,
+                    },{
+                        path: "/workspace/role",
+                        key:'role',
+                        exact: true,
+                        component: WorkspaceRole,
                     },
-
+                    {
+                        path: "/workspace/workspacePrivilege",
+                        key:'privilege',
+                        exact: true,
+                        component: WorkspacePrivilege,
+                    },
                     {
                         path:"/workspace",
                         key:'ridapidetail',

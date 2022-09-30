@@ -24,8 +24,9 @@ export class WorkspaceStore {
 	@observable workspaceName = '';
 	@observable	totalRecord = "";
 	@observable params;
-	@observable pagePar
+	@observable pageParams;
 	@observable length;
+	@observable selectedItem="all";
 
 	//获取带分页列表的数据/
 	@action
@@ -134,6 +135,11 @@ export class WorkspaceStore {
 		if(res.code === 0){
 			return res.data;
 		}
+	}
+
+	@action
+	menuSelected = (selected)=>{
+		this.selectedItem = selected;
 	}
 
 

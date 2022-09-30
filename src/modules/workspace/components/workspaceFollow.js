@@ -44,21 +44,12 @@ const WorkspaceFollow = (props) =>{
 
 
     return(
-        <>
-            <BreadcrumbEx
-                list={[
-                    t('wsMgr'),
-                    t('wsList')
-                ]}
-            />
-            <Table
-                columns={columns}
-                dataSource={followList}
-                pagination={false}
-                rowKey={(record => record.id)}
-            />
-
-        </>
+        <Table
+            columns={columns}
+            dataSource={followList}
+            pagination={false}
+            rowKey={(record => record.id)}
+        />
     )
 }
 

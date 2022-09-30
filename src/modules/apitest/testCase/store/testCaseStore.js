@@ -121,8 +121,8 @@ export class TestCaseStore {
             this.baseInfo = data.url
         }
 
-        this.requestHeaderCaseData = JSON.stringify(data.headers);
-        this.requestBodyCaseData = data.bodys;
+        // this.requestHeaderCaseData = JSON.stringify(data.headers);
+        // this.requestBodyCaseData = data.bodys;
     }
 
     @action
@@ -131,6 +131,9 @@ export class TestCaseStore {
 
         this.time=data.time;
         this.status = res.status;
+
+        let requestHeaders= res?.config?.headers;
+        let requestBody =  res?.config?.data;
         const headers = res.headers;
         const body = res.data;
 
@@ -145,10 +148,12 @@ export class TestCaseStore {
         // 断言值的比较，结果返回 1，-1
         let allAssertResult=assertCommonStore.assertIsOrNotSuccess(assertNeedData)
 
+        this.requestBodyCaseData= requestBody
+        this.requestHeaderCaseData=JSON.stringify(requestHeaders);
 
         this.responseHeaderCaseData = JSON.stringify(headers);
-
         this.responseBodyCaseData=JSON.stringify(body);
+
         this.assertResponse = assertData;
 
         //创建instance所需的参数
@@ -161,7 +166,7 @@ export class TestCaseStore {
                 "url": this.baseInfo,
                 "methodType": this.methodType,
                 "headers": this.requestHeaderCaseData,
-                "mediaType":JSON.parse(this.requestHeaderCaseData)["content-type"],
+                "mediaType":requestHeaders["content-type"],
                 "body": this.requestBodyCaseData,
                 "preScript": null,
                 "afterScript": null

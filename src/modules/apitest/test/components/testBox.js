@@ -14,7 +14,11 @@ const TestBox =(props)=>{
         }
 
         if(proxyItem==="local"){
-            response=  localProxySendTest(data)
+            response=  localProxySendTest("/local-proxy",data)
+        }
+
+        if(proxyItem==="cloud"){
+            response=  localProxySendTest("/cloud-proxy",data)
         }
 
         return response;

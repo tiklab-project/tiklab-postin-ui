@@ -44,11 +44,10 @@ const WorkspaceEdit = (props) => {
      */
     const onFinish = () => {
         form.validateFields().then((values)=>{
-            values.user = {id:userId};
-            if(props.type === "add" ){
-                createWorkspace(values);
-            }else{
+            if(props.type === "edit" ){
                 updateWorkspace(values);
+            }else{
+                createWorkspace(values);
             }
         })
         setVisible(false);
@@ -59,7 +58,7 @@ const WorkspaceEdit = (props) => {
     return (
         <>
         {
-            props.type === 'add'
+            props.btn === 'btn'
                 ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
                 : <a style={{'cursor':'pointer'}} onClick={showModal}>{props.name}</a>
         }

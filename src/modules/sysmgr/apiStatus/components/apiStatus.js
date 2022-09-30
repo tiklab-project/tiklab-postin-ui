@@ -137,7 +137,7 @@ const ApiStatus = (props) => {
 
 
     return(
-        <div style={{padding:5}}>
+        <div className={"page-center"}>
             <BreadcrumbEx list={[ "空间设置", "状态管理"]}/>
             <ExTable
                 columns={columns}

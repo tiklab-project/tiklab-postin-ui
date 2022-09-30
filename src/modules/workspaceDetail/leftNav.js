@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import ProxySelect from "../common/request/proxySelect";
+import WorkspaceSetting from "../integration/workspaceSetting/workspaceSetting";
 
 const LeftNav = (props) =>{
     const menuData = [
@@ -21,12 +22,12 @@ const LeftNav = (props) =>{
             "key":"dataStructure",
             "router":"/workspace/dataStructure"
         },
-        {
-            "icon":"quanxian",
-            "name":"空间设置",
-            "key":"workspaceSetting",
-            "router":"/workspace/workspaceSetting"
-        },
+        // {
+        //     "icon":"quanxian",
+        //     "name":"空间设置",
+        //     "key":"workspaceSetting",
+        //     "router":"/workspace/workspaceSetting"
+        // },
     ]
 
     const workspaceId = localStorage.getItem("workspaceId")
@@ -124,6 +125,8 @@ const LeftNav = (props) =>{
                 {
                     showMenuItem(menuData)
                 }
+                <WorkspaceSetting {...props}/>
+
                 <ProxySelect />
             </ul>
         </>

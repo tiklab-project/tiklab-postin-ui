@@ -92,7 +92,7 @@ export const sendTest=async (data)=>{
 //localProxy send test
 
 //发送测试
-export const localProxySendTest=async (data)=>{
+export const localProxySendTest=async (proxyPath,data)=>{
 
 
     let req = {
@@ -103,9 +103,9 @@ export const localProxySendTest=async (data)=>{
         headers: data.headers,
     }
 
-    let res = await axiosIns.post("/proxy",req).then(res=>{
-
-        return res
+    let res = await axiosIns.post(proxyPath,req).then(res=>{
+console.log(res.data)
+        return res.data
     }).catch(error=>{
         console.log("error-------:",error)
     })

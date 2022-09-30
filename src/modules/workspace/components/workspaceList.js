@@ -76,17 +76,13 @@ const WorkspaceList = (props) => {
 
 
     return(
-        <>
-            <BreadcrumbEx list={[ t('wsMgr'), t('wsList')]}/>
-
-            <Table
-                className="tablelist"
-                columns={columns}
-                dataSource={workspaceList}
-                rowKey={record => record.id}
-                pagination={false}
-            />
-        </>
+        <Table
+            className="tablelist"
+            columns={columns}
+            dataSource={workspaceList}
+            rowKey={record => record.id}
+            pagination={false}
+        />
     )
 }
 

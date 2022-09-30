@@ -27,8 +27,8 @@ export  class QuickTestStore {
             this.baseInfo = data.url
         }
 
-        this.requestHeaderData = JSON.stringify(data.headers);
-        this.requestBodyData = data.bodys;
+        // this.requestHeaderData = JSON.stringify(data.headers);
+        // this.requestBodyData = data.bodys;
     }
 
     @action
@@ -37,6 +37,9 @@ export  class QuickTestStore {
 debugger
         this.time=data.time;
         this.status = res.status;
+        let requestHeaders= res?.config?.headers;
+        let requestBody =  res?.config?.data;
+
         const headers = res.headers;
         const body =res.data;
 
@@ -53,6 +56,8 @@ debugger
         //断言list，添加result 字段。用于测试结果中的断言回显
         let allAssertResult=assertCommonStore.assertCompare(assertNeedData);
 
+        this.requestBodyData= requestBody
+        this.requestHeaderData=JSON.stringify(requestHeaders);
         this.responseHeaderData = JSON.stringify(headers);
         this.responseBodyData = JSON.stringify(body);
         this.assertResponse = assertList;
@@ -66,7 +71,7 @@ debugger
             'requestInstance': {
                 "url": this.baseInfo,
                 "methodType": this.methodType,
-                "mediaType": JSON.parse(this.requestHeaderData)["content-type"],
+                "mediaType": requestHeaders["content-type"],
                 'headers': this.requestHeaderData,
                 'body': this.requestBodyData,
                 "preScript": null,

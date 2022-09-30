@@ -151,14 +151,7 @@ const WorkspaceJoin = (props) => {
     // }
 
     return(
-        <Fragment>
-
-            <BreadcrumbEx
-                list={[
-                    t('wsMgr'),
-                    t('wsList')
-                ]}
-            />
+        <>
             {/*<div className='wslist-searchbtn'>*/}
             {/*    <div className='wslist-eibtn'>*/}
             {/*        <WorkspaceEdit className="important-btn" name={`${t('addws')}`} type="add"  style={{ width: 200 }}/>*/}
@@ -187,7 +180,7 @@ const WorkspaceJoin = (props) => {
                 // }}
                 // onChange = {(pagination) => onTableChange(pagination)}
             />
-        </Fragment>
+        </>
     )
 }
 
