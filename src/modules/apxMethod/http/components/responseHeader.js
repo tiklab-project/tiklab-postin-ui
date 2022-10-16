@@ -29,7 +29,7 @@ const ResponseHeader = (props) =>{
             title: '必须',
             dataIndex: 'required',
             width: '6%',
-            // align:'center',
+            align:'center',
             render:(text,record) =>  (
                 <Checkbox
                     defaultChecked={record.required}
@@ -44,7 +44,7 @@ const ResponseHeader = (props) =>{
             editable: true,
         },{
             title: '说明',
-            width: '25%',
+            width: '20%',
             dataIndex: 'desc',
             // align:'center',
             editable: true,
@@ -52,9 +52,14 @@ const ResponseHeader = (props) =>{
         {
             title: '操作',
             width: '10%',
-            // align:'center',
             dataIndex: 'operation',
+            fixed: 'right',
             render: (text, record,index) =>(operation(record,dataSource))
+        },
+        {
+            title: '',
+            width: '24%',
+            dataIndex: 'none',
         }
     ]
 

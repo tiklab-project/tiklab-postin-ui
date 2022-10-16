@@ -2,9 +2,11 @@ import React from 'react';
 import { observer, inject } from "mobx-react";
 import { Table } from 'antd';
 
-const AssertResponseTest = (props) =>{
-    const { testStore } = props;
-    const { assertResponse } = testStore;
+const AssertResponseCommon = (props) =>{
+    const {assertList} = props;
+
+    // const { testStore } = props;
+    // const { assertResponse } = testStore;
     let columns= [
         {
             title: '来源',
@@ -62,18 +64,16 @@ const AssertResponseTest = (props) =>{
     }
    
     return (
-        <div>
-            <Table
-                pagination={false}
-                dataSource={assertResponse}
-                columns={columns}
-                rowKey = {record => record.id}
-            />
-        </div>
+        <Table
+            pagination={false}
+            dataSource={assertList}
+            columns={columns}
+            rowKey = {record => record.id}
+        />
     ); 
 }
 
 
+export default AssertResponseCommon;
 
-
-export default inject('testStore')(observer(AssertResponseTest));
+// export default inject('testStore')(observer(AssertResponseCommon));

@@ -31,8 +31,18 @@ import TaskList from "./modules/sysmgr/todo/todo";
 import TodoTemp from "./modules/sysmgr/todo/todoTempList";
 import MyTodo from "./modules/sysmgr/todo/myTodo";
 import LogTemplate from "./modules/sysmgr/log/LogTemplate";
+import {Login} from "tiklab-eam-ui";
+import {Directory, OrgaList, UserList} from "tiklab-user-ui";
+import AccountMember from "./modules/sysmgr/accountMember/accountMember";
+import LoginContent from "./modules/login/loginContent";
 
 const routers =  [
+    {
+        path: "/login",
+        component: LoginContent,
+        exact: true,
+        key:'Login',
+    },
     {
         path: "/logout",
         component: LoginOut,
@@ -200,6 +210,37 @@ const routers =  [
                 ]
             },
             {
+                path: "/accountMember",
+                key:'accountMember',
+                component: AccountMember,
+                routes: [
+                    {
+                        path: "/accountMember/org",
+                        key:'org',
+                        exact: true,
+                        component: OrgaList,
+                    },
+                    {
+                        path: "/accountMember/user",
+                        key:'user',
+                        exact: true,
+                        component: UserList ,
+                    },
+                    {
+                        path: "/accountMember/authConfig",
+                        key:'authConfig',
+                        exact: true,
+                        render: () => <Directory isPortal={false}/>,
+                    },{
+                        path: "/accountMember",
+                        key:'sysEnvMana',
+                        exact: true,
+                        render: () => <Redirect to={"/accountMember/org"}/>,
+                    },
+                ]
+            },
+
+            {
                 path: "/searchResult",
                 key:'searchResult',
                 exact: true,
@@ -336,41 +377,6 @@ const routers =  [
                         key:'dataStucture',
                         exact: true,
                         component: DataStructure,
-                    },
-                    // {
-                    //     path: "/workspace/workspaceSetting",
-                    //     key:'workspaceSetting',
-                    //     component: WorkspaceSetting,
-                    //     routes: [
-                    //         {
-                    //             path: "/workspace/workspaceSetting/apistatus",
-                    //             key:'apistatus',
-                    //             exact: true,
-                    //             component: ApiStatus,
-                    //         },{
-                    //             path: "/workspace/workspaceSetting/role",
-                    //             key:'role',
-                    //             exact: true,
-                    //             component: WorkspaceRole,
-                    //         },
-                    //         {
-                    //             path: "/workspace/workspaceSetting/workspacePrivilege",
-                    //             key:'privilege',
-                    //             exact: true,
-                    //             component: WorkspacePrivilege,
-                    //         },{
-                    //             path:"/workspace/workspaceSetting",
-                    //             key:'ridworkspaceSetting',
-                    //             exact: true,
-                    //             component: ()=><Redirect to='/workspace/workspaceSetting/apistatus'/>,
-                    //         },
-                    //     ]
-                    // },
-                    {
-                        path: "/workspace/status",
-                        key:'apistatus',
-                        exact: true,
-                        component: ApiStatus,
                     },{
                         path: "/workspace/role",
                         key:'role',

@@ -51,6 +51,7 @@ const FormParam = (props) =>{
             title: '必须',
             dataIndex: 'required',
             width: '6%',
+            align:"center",
             render:(text,record) =>  (
                 <Checkbox
                     defaultChecked={record.required}
@@ -64,16 +65,21 @@ const FormParam = (props) =>{
             editable: true,
         },{
             title: '说明',
-            width: '30%',
+            width: '20%',
             dataIndex: 'desc',
             editable: true,
 
         },{
             title: '操作',
-            align:'center',
             width: '10%',
             dataIndex: 'operation',
+            fixed: 'right',
             render: (text, record) =>(operation(record,dataSource))
+        },
+        {
+            title: '',
+            width: '20%',
+            dataIndex: 'none',
         }
     ]
 

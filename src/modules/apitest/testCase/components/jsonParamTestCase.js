@@ -28,12 +28,12 @@ const JsonParamTestCase = (props) => {
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '25%',
+            width: '20%',
             editable: true,
         },
         {
             title: '数据类型',
-            width: '10%',
+            width: '15%',
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <FileTextSelect
@@ -45,7 +45,7 @@ const JsonParamTestCase = (props) => {
         },
         {
             title: '参数值',
-            width: '40%',
+            width: '20%',
             dataIndex: 'value',
             render: (text, record)=>(
                 <ExSelect
@@ -60,6 +60,7 @@ const JsonParamTestCase = (props) => {
         },
         {
             title: '操作',
+            fixed: 'right',
             align:'center',
             dataIndex: 'operation',
             render: (text, record, index) =>(
@@ -74,6 +75,11 @@ const JsonParamTestCase = (props) => {
                     <Button shape="circle">下</Button> */}
                 </Space> 
             ) 
+        },
+        {
+            title: '',
+            width: '30%',
+            dataIndex: 'none',
         }
     ]
     

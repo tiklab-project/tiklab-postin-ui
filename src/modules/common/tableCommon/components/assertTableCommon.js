@@ -11,7 +11,7 @@ const AssertTableCommon = (props)=>{
         {
             title: '来源',
             dataIndex: 'source',
-            width: '15%',
+            width: '10%',
             // align:'center',
             render:(text,record) =>  (
                 <Select
@@ -29,13 +29,13 @@ const AssertTableCommon = (props)=>{
         {
             title: '属性名称',
             dataIndex: 'propertyName',
-            width: '25%',
+            width: '20%',
             // align:'center',
             editable: true,
         },
         {
             title: '比较符',
-            width: '10%',
+            width: '5%',
             dataIndex: 'comparator',
             // align:'center',
             // editable: true,
@@ -43,17 +43,15 @@ const AssertTableCommon = (props)=>{
         },
         {
             title: '参数值',
-            width: '25%',
+            width: '20%',
             dataIndex: 'value',
             // align:'center',
             editable: true,
-
-
         },
         {
             title: '操作',
             width: '10%',
-            // align:'center',
+            fixed: 'right',
             dataIndex: 'operation',
             render:(text,record,index)=>(
                 <Space>
@@ -62,6 +60,11 @@ const AssertTableCommon = (props)=>{
                 </Space>
             )
 
+        },
+        {
+            title: '',
+            width: '25%',
+            dataIndex: 'none',
         }
     ]
 

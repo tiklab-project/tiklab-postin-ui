@@ -1,6 +1,5 @@
 import Test from './components/test';
 import TestRequest from './components/testRequest';
-import TestResponse from './components/testResponse';
 import { TEST_STORE, TestStore }  from './store/testStore';
 import { ASSERTPARAM_TEST_STORE, AssertParamTestStore } from './store/assertParamTestStore';
 import { REQUESTHEADER_TEST_STORE, RequestHeaderTestStore } from './store/requestHeaderTestStore';
@@ -17,7 +16,6 @@ export {
     Test,
     TEST_STORE, TestStore,
     TestRequest,
-    TestResponse,
     ASSERTPARAM_TEST_STORE, AssertParamTestStore,
 
     REQUESTHEADER_TEST_STORE, RequestHeaderTestStore,

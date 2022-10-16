@@ -1,37 +1,38 @@
 import React, {useEffect, useState} from "react";
 import ApxMethodTest from "./test";
 import {localProxySendTest, sendTest} from "../../../common/request/sendTestCommon";
+import {inject, observer} from "mobx-react";
 
 const TestBox =(props)=>{
+    const {testStore} = props;
+    const {proxyItem} = testStore;
 
-    const [proxyItem, setProxyItem] = useState("default");
+    let proxy = localStorage.getItem("PROXY_ITEM")
+
 
     const getRes =  (data) =>{
         let response ;
 
-        if(proxyItem==="default"){
-            response=  sendTest(data);
-        }
 
-        if(proxyItem==="local"){
-            response=  localProxySendTest("/local-proxy",data)
-        }
+        switch (proxy?proxy:proxyItem) {
+            case "local":
+                response=  localProxySendTest("http://localhost:3009/local-proxy",data)
+                break;
+            case "cloud":
+                response=  localProxySendTest("http://172.11.1.15:3009/cloud-proxy",data)
+                break;
+            default:
+                response=  sendTest(data);
+                break
 
-        if(proxyItem==="cloud"){
-            response=  localProxySendTest("/cloud-proxy",data)
         }
 
         return response;
     }
-
-    useEffect(()=>{
-        setProxyItem(localStorage.getItem("PROXY_ITEM"))
-    },[proxyItem])
-
 
     return(
         <ApxMethodTest {...props}   getRes={getRes}/>
     )
 }
 
-export default TestBox;
+export default inject("testStore")(observer(TestBox));

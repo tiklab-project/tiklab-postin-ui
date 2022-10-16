@@ -16,6 +16,7 @@ import {
     processQueryData
 } from "../common/instanceDataProcess";
 import {getUser} from "tiklab-core-ui";
+import TestResultCommon from "../../apitest/common/testResultCommon";
 
 const { Option } = Select;
 
@@ -52,7 +53,8 @@ const TestdetailQuickTest = (props) =>{
     const [ form ] = Form.useForm();
 
     const userId = getUser().userId;
-    const [errorMsg, setErrorMsg] = useState();
+    const [showResponse,setShowResponse] = useState(false);
+    const [testResponse, setTestResponse] = useState();
     const instanceId = localStorage.getItem("instanceId")
     let proxyItem = localStorage.getItem("PROXY_ITEM")
         ?localStorage.getItem("PROXY_ITEM")
@@ -75,9 +77,9 @@ const TestdetailQuickTest = (props) =>{
                         errorMessage:res.errorMessage,
                         showError:true
                     }
-                    setErrorMsg(errorValue)
+                    // setErrorMsg(errorValue)
                 }else {
-                    setErrorMsg({showError:false})
+                    // setErrorMsg({showError:false})
                 }
 
 
@@ -143,8 +145,9 @@ const TestdetailQuickTest = (props) =>{
         //发送测试，返回结果
         let response =await getRes(processData)
 
-        //获取请求参数
-        getRequestInfo(processData)
+        response.assertList = assertQuickTestList;
+        //获取响应结果
+        setTestResponse(response)
 
         //获取响应结果
         if(response&&!response.error){
@@ -159,7 +162,6 @@ const TestdetailQuickTest = (props) =>{
                 })
             })
 
-            setErrorMsg({showError:false})
         }else {
             getResponseError(response).then((res)=>{
                 res.httpCase = {"id":"quickTestInstanceId"}
@@ -172,14 +174,10 @@ const TestdetailQuickTest = (props) =>{
                 })
             })
 
-            let errorValue = {
-                errorMessage:response.error,
-                showError:true
-            }
-            setErrorMsg(errorValue)
         }
 
-        setResponseShow()
+        //点击测试按钮显示输出结果详情
+        setShowResponse(true);
     }
 
     //请求类型下拉选择框
@@ -209,25 +207,19 @@ const TestdetailQuickTest = (props) =>{
                         </Form.Item>
                     </div>
                     <div className={"test-base-item"}>
-                        {/*<Form.Item className='test-button'>*/}
-                        {/*    <Button className="important-btn" htmlType="submit"> 测试  </Button>*/}
-                        {/*</Form.Item>*/}
                         <Button className="important-btn" onClick={onFinish}> 发送 </Button>
                     </div>
                 </Form>
             </div>
-            <div>
-                <RequestTabQuickTest instanceId={instanceId}/>
-            </div>
-            <div className='title ex-title'>
-                测试结果
-            </div>
-            <div>
-                <ResponseQuickTest
-                    showResponse={isResponseShow}
-                    errorMsg={errorMsg}
-                />
-            </div>
+
+            <div className='title ex-title'>请求</div>
+            <RequestTabQuickTest instanceId={instanceId}/>
+
+            <div className='title ex-title'> 响应</div>
+            <TestResultCommon
+                testResponse={testResponse}
+                showResponse={showResponse}
+            />
         </div>
     )
 }

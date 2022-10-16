@@ -41,12 +41,13 @@ const WorkspaceMenuList = (props) =>{
 
     return(
         <>
-            <ul style={{height: 130,overflow:"auto"}}>
+            <ul style={{height: 145,overflow:"auto"}}>
                 {
                     showWorkspaceListView(recentList)
                 }
             </ul>
             <div
+                className={"header-workspace-list-footer"}
                 onClick={()=>changeCurrentLink("/workspacePage/create")}
             >
                 进入所有空间

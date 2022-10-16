@@ -80,7 +80,7 @@ const SysManage = (props) => {
     }
 
     // 子级菜单处理
-    const renderSubMenu = ({title,key,children,encoded},deep)=> {
+    const renderSubMenu = ({title,key,children,encoded,icon},deep)=> {
         return (
               <PrivilegeButton code={encoded} key={key}>
                   <li key={key} title={title} >
@@ -88,6 +88,9 @@ const SysManage = (props) => {
                            onClick={() => setOpenOrClose(key)}
                            style={{paddingLeft:`${deep*20+5}px`}}
                       >
+                          {/*<svg style={{width:18}} aria-hidden="true">*/}
+                          {/*    <use xlinkHref= {`#icon-${icon}`} />*/}
+                          {/*</svg>*/}
                           <span key={key}>
                               {title}
                           </span>
@@ -127,7 +130,7 @@ const SysManage = (props) => {
 
 
     return (
-        <Fragment>
+        <>
             <Layout className = 'sysmana-layout'>
                 <Sider
                     className = 'sysmana-sider'
@@ -146,7 +149,7 @@ const SysManage = (props) => {
                     {renderRoutes(routers)}
                 </Content>
             </Layout>
-        </Fragment>
+        </>
     )
 }
 

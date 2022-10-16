@@ -34,7 +34,10 @@ export  class QuickTestStore {
     @action
     getResponseInfo = async (data,assertData) => {
         let res = data.res;
-debugger
+
+        this.methodType =res?.config?.method;
+        this.baseInfo = res?.config?.url;
+
         this.time=data.time;
         this.status = res.status;
         let requestHeaders= res?.config?.headers;
@@ -42,6 +45,9 @@ debugger
 
         const headers = res.headers;
         const body =res.data;
+
+        //大小
+        this.size = JSON.stringify(body).length;
 
         //断言处理
         let assertList = this.assertListProcess(assertData);

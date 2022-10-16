@@ -10,3 +10,39 @@
 .api-status-add-box:hover{
     background: #f5f5f5;
 }
+
+
+.api-status-title{
+    padding: 10px;
+}
+
+.api-status-system-box{
+    display: flex;
+    //justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+
+    .api-status-system-item{
+        //width: 50px;
+    }
+}
+
+.api-status-bottom{
+    padding: 10px;
+    .ant-form-item{
+        margin: 0;
+    }
+
+    .api-status-create {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.api-status-custom-box{
+    //display: flex;
+    //min-height: 200px;
+    padding: 10px;
+
+}
+

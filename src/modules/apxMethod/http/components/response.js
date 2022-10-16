@@ -35,7 +35,7 @@ const Response = (props) =>{
     const changeFormat = (radioType) => {
         switch(radioType) {
             case 'json':
-                return <JsonResponse />
+                return <div className={"tabPane-item-box"}><JsonResponse /></div>
             case 'raw':
                 return <RawResponse />
         }
@@ -63,7 +63,7 @@ const Response = (props) =>{
                     </div>  
                 </TabPane>
                 <TabPane tab="返回头部" key="2">
-                    <ResponseHeader />
+                    <div className={"tabPane-item-box"}><ResponseHeader /></div>
                 </TabPane>
             </Tabs>
         </Fragment>

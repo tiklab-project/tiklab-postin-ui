@@ -47,6 +47,7 @@ const FormUrlencoded = (props) =>{
             title: '必须',
             dataIndex: 'required',
             width: '6%',
+            align:"center",
             render:(text,record) =>  (
                 <Checkbox
                     defaultChecked={record.required}
@@ -68,14 +69,21 @@ const FormUrlencoded = (props) =>{
             )
         }, {
             title: '说明',
-            width: '25%',
+            width: '20%',
             dataIndex: 'desc',
             editable: true,
 
         }, {
             title: '操作',
             dataIndex: 'operation',
+            width: '10%',
+            fixed: 'right',
             render: (text, record,index) =>(operation(record,dataSource))
+        },
+        {
+            title: '',
+            width: '24%',
+            dataIndex: 'none',
         }
     ]
 

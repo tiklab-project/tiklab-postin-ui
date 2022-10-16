@@ -1,29 +1,35 @@
 import React from "react";
 import CodeMirror from "../../common/codeMirror";
-
+import "./testResponseStyle.scss"
 
 const ResponseBodyCommon = (props) => {
-    const {responseBodyData} = props;
+    const {responseBodyData,mediaType} = props;
 
     const processData =(data)=>{
 
         //空值
-        if(!data) return ""
+        if(!data) return
 
-        try{
+        if(JSON.parse(data) instanceof Object){
+            console.log("333")
             return JSON.stringify(JSON.parse(data),null,4)
-        }catch (e) {
-            return data
+        }else {
+            return  JSON.parse(data)
         }
+
+
+
 
     }
 
     return(
-        <CodeMirror
-            value={processData(responseBodyData)}
-            mediaType={"application/javascript"}
-            readOnly={true}
-        />
+        <div className={"codemirror-box"}>
+            <CodeMirror
+                value={processData(responseBodyData)}
+                mediaType={mediaType}
+                readOnly={true}
+            />
+        </div>
     )
 
 }

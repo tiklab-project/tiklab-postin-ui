@@ -6,70 +6,70 @@ const SystemContent = (props) =>{
     const settingMenu = [
         {
             title: '系统权限中心',
-            icon: 'laptop',
+            icon: 'modular',
             key: "/systemManagement/system",
-            encoded: "SysPrisystem",
+            encoded: "systemPrivilege",
             children: [
                 {
                     title: '功能管理',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/systemFeature',
-                    encoded: "SysFeatruestem",
+                    encoded: "systemFeature",
                 },
                 {
                     title: '角色管理',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/systemRole',
-                    encoded: "SysRoleSystem",
+                    encoded: "systemRole",
                 }
             ]
         },{
             title: '项目权限中心',
-            icon: 'laptop',
+            icon: 'modular',
             key: "/systemManagement/project",
-            encoded: "SysPriProject",
+            encoded: "projectPrivilege",
             children: [
                 {
                     title: '功能管理',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/privilege',
-                    encoded: "SysFeatrueProject",
+                    encoded: "projectPrivilege",
                 },
                 {
                     title: '角色管理',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/role',
-                    encoded: "SysRoleProject",
+                    encoded: "projectRole",
                 }
             ]
         },
         {
             title: "消息中心",
-            icon: 'laptop',
+            icon: 'modular',
             key: '/systemManagement/message',
             encoded: "MessageCenter",
             children: [
                 {
                     title: '消息管理',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/messageManagement',
                     encoded: "MessageManagement",
                 },
                 {
                     title: '消息模板管理',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/messageTemplate',
                     encoded: "MessageTemplate",
                 },
                 {
                     title: '消息类型管理',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/messageType',
                     encoded: "SysMessageType",
                 },
                 {
                     title: '发送方式管理',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/messageSendType',
                     encoded: "SysMessageSendType",
                 },
@@ -78,48 +78,48 @@ const SystemContent = (props) =>{
 
         {
             title: '插件管理',
-            icon: 'laptop',
+            icon: 'modular',
             key: '/systemManagement/plugin',
             encoded: "plugin",
         },{
             title: "日志",
-            icon: 'laptop',
+            icon: 'modular',
             key: '/systemManagement/opLog',
-            encoded: "MessageCenter",
+            encoded: "opLog",
             children: [
                 {
                     title: '日志列表',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/log',
                     encoded: "log",
                 },{
                     title: '日志模板',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/logTemplate',
                     encoded: "logTemplate",
                 },
             ]
         },{
             title: "TODO",
-            icon: 'laptop',
+            icon: 'modular',
             key: '/systemManagement/todo',
-            encoded: "MessageCenter",
+            encoded: "TODO",
             children: [
                 {
                     title: 'TODO模板',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/todoTemp',
                     encoded: "todoTemp",
                 },
                 {
                     title: '我的TODO',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/myTodo',
                     encoded: "myTodo",
                 },
                 {
                     title: '任务',
-                    icon: 'laptop',
+                    icon: 'modular',
                     key: '/systemManagement/taskList',
                     encoded: "taskList",
                 }

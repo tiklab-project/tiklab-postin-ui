@@ -2,7 +2,7 @@
 import { 
     Test,
     TEST_STORE, TestStore,
-    TestRequest, TestResponse,
+    TestRequest,
     ASSERTPARAM_TEST_STORE, AssertParamTestStore,
     REQUESTHEADER_TEST_STORE, RequestHeaderTestStore,
     QUERYPARAM_TEST_STORE, QueryParamTestStore,
@@ -44,7 +44,6 @@ export {
     Test,
     TEST_STORE, TestStore,
     TestRequest,
-    TestResponse,
     ASSERTPARAM_TEST_STORE, AssertParamTestStore,
     REQUESTHEADER_TEST_STORE, RequestHeaderTestStore,
     QUERYPARAM_TEST_STORE, QueryParamTestStore,

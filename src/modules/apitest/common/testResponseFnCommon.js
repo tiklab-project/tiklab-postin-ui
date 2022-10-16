@@ -21,3 +21,11 @@ export const processResHeader = (data)=>{
 
     return list
 }
+
+
+export const processAssert = (data) =>{
+    return data && data.filter((item) => {
+        let itemKeys = Object.keys(item);
+        return !(itemKeys.length === 1 && itemKeys[0] === "id")
+    });
+}

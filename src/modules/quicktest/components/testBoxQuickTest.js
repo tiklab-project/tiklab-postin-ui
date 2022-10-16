@@ -2,37 +2,39 @@ import React, {useEffect, useState} from "react";
 import {Button} from "antd";
 import TestdetailQuickTest from "./testdetailQuickTest";
 import {localProxySendTest, sendTest} from "../../common/request/sendTestCommon";
+import {inject, observer} from "mobx-react";
 
 
 const TestBoxQuickTest = (props) =>{
+    const {testStore} = props;
+    const {proxyItem} = testStore;
 
-    const [proxyItem, setProxyItem] = useState("default");
+    let proxy = localStorage.getItem("PROXY_ITEM")
+
 
     const getRes =  (data) =>{
         let response ;
 
-        if(proxyItem==="default"){
-            response=  sendTest(data);
-        }
 
-        if(proxyItem==="local"){
-            response=  localProxySendTest("/local-proxy",data)
-        }
+        switch (proxy?proxy:proxyItem) {
+            case "local":
+                response=  localProxySendTest("/local-proxy",data)
+                break;
+            case "cloud":
+                response=  localProxySendTest("/cloud-proxy",data)
+                break;
+            default:
+                response=  sendTest(data);
+                break
 
-        if(proxyItem==="cloud"){
-            response=  localProxySendTest("/cloud-proxy",data)
         }
 
         return response;
     }
-
-    useEffect(()=>{
-        setProxyItem(localStorage.getItem("PROXY_ITEM"))
-    },[proxyItem])
 
     return(
         <TestdetailQuickTest {...props} getRes={getRes} />
     )
 }
 
-export default TestBoxQuickTest;
+export default inject("testStore")(observer(TestBoxQuickTest));

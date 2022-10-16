@@ -1,10 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
-import {Input, Button, Form, Select} from 'antd';
+import { Form} from 'antd';
+import CodeMirror from "../../../common/codeMirror";
 
-const { TextArea } = Input;
-const { Option } = Select;
+
 
 const RawResponse = (props) => {
     const { rawResponseStore, radioValue }  = props;
@@ -16,57 +16,61 @@ const RawResponse = (props) => {
         rawResponseInfo 
     } = rawResponseStore;
 
-    const [focus, setFocus] = useState(false);
-    
+    const ediTextRef = useRef(null);
+    const rawDataRef = useRef(null);
     const [form] = Form.useForm();
 
 
     const apxMethodId = localStorage.getItem('apxMethodId');
+
     useEffect(()=>{
         findRawResponse(apxMethodId).then((res)=>{
-            if(res){
-                form.setFieldsValue({
-                    raw: res.raw,
-                    type:res.type
-                })
-            }
-        })
-    },[radioValue])
+            if(!res) return
 
-    const onFinish = (values) => {
-        if(rawResponseInfo?.raw === null){
-            createRawResponse(values)
-        }else{
-            updateRawResponse(values)
+            rawDataRef.current=res
+            form.setFieldsValue({
+                raw: res.raw,
+                type:res.type
+            })
+        })
+    },[apxMethodId])
+
+
+    const blurFn = () =>{
+        //获取EdiText文本数据
+        let text = ediTextRef.current.editor.getValue()
+
+        let param = {
+            raw:text,
+            type:"application/json"
         }
 
-        setFocus(false)
+        if(rawDataRef.current){
+            updateRawResponse(param)
+        }else{
+            if(!text) return
+
+            createRawResponse(param).then((res)=>{
+                if(res.code!==0) return
+
+                findRawResponse(apxMethodId).then(res=>{
+                    if(!res ) return
+
+                    rawDataRef.current=res
+                })
+            })
+        }
     }
 
+
     return (
-        <Form
-            form={form}
-            onFinish={onFinish}
-        >
-            <div className={` ${focus === true ? 'textArea-focus' : 'textArea-blur'}`}>
-                <div className='mock-textarea'>
-                    <Form.Item name='type'>
-                        <Select style={{ width: 100 }} >
-                            <Option value="json">Json</Option>
-                            <Option value="text">Text</Option>
-                            {/*<Option value="html">html</Option>*/}
-                        </Select>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button>格式化</Button>
-                        <Button  htmlType="submit" >保存</Button> 
-                    </Form.Item>
-                </div>
-            </div>
-            <Form.Item
-                name='raw'
-            >
-                <TextArea autoSize={{ minRows: 4, maxRows: 10 }}  onFocus={()=>setFocus(true)}/>
+        <Form form={form}>
+            <Form.Item name='raw'>
+                <CodeMirror
+                    mediaType={"application/json"}
+                    blurFn={blurFn}
+                    ediTextRef={ediTextRef}
+                />
             </Form.Item>
             
         </Form>

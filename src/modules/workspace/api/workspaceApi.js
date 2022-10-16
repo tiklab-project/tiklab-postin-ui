@@ -41,3 +41,8 @@ export function findWorkspaceJoinList(data){
 export function findWorkspaceTotal(data){
     return Axios.post("/workspace/findWorkspaceTotal",data)
 }
+
+export function findWorkspaceHomeTotal(data){
+    return Axios.post("/workspace/findWorkspaceHomeTotal",data)
+}
+

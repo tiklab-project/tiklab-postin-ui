@@ -7,12 +7,12 @@ import {
 
 export class ApiResponseStore {
     @observable bodyType = '';
-    @observable apxMethodId = '';
+    @observable httpId = '';
     @observable apiResponseId = '';
 
     @action
     findApiResponse = async (id) => {
-        this.apxMethodId = id;
+        this.httpId = id;
         this.apiResponseId = id;
 
         const param = new FormData();
@@ -27,7 +27,7 @@ export class ApiResponseStore {
 
     @action
     createApiResponse = async (values) => {
-        values.http = {id: this.apxMethodId}
+        values.httpId = this.httpId
         values.id =  this.apiResponseId;
 
         await createApiResponse(values);
@@ -35,7 +35,7 @@ export class ApiResponseStore {
 
     @action
 	updateApiResponse = async (values) => {
-        values.http = {id: this.apxMethodId}
+        values.httpId = this.httpId
         values.id= this.apiResponseId;
 
 		await updateApiResponse(values)

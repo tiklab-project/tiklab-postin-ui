@@ -9,7 +9,7 @@ import { SYSTEM_ROLE_STORE } from 'tiklab-privilege-ui/es/store';
 
 
 const PageContent =(props)=> {
-    const {versionImg,accountAndMember} = props;
+    const {versionImg} = props;
 
     const router = props.route.routes;
 
@@ -35,7 +35,6 @@ const PageContent =(props)=> {
             <HeaderContent
                 logout={Logout}
                 versionImg={versionImg}
-                accountAndMember={accountAndMember}
                 {...props}
             />
             {

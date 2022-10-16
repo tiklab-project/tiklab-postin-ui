@@ -12,6 +12,7 @@ import { RemoteUmdComponent } from 'tiklab-plugin-ui'
 import {useSelector} from  "tiklab-plugin-ui/es/_utils"
 import EdiText from "react-editext";
 import EdiTextToggle from "../../../common/ediTextToggle";
+import ApiStatusModal from "../../../sysmgr/apiStatus/components/apiStatusSelect";
 
 const {Option} = Select;
 
@@ -76,12 +77,6 @@ const ApxMethodDetail = (props) => {
         })
     }
 
-    //渲染状态下拉框
-    const showStatus = (data)=>{
-        return data&&data.map(item=>{
-            return <Option key={item.id} value={item.id}>{item.name}</Option>
-        })
-    }
 
     //设置执行者
     const selectExecutor = (executor) =>{
@@ -216,28 +211,20 @@ const ApxMethodDetail = (props) => {
                 </div>
                 <Space>
                     <div className={"info-item"}>
-                    <span className={"method-info-item "}>状态 ：
-                         <Select
-                             style={{width:100}}
-                             value={status}
-                             onChange={(e)=>selectStatus(e)}
-                         >
-                             {
-                                 showStatus(apiStatusSourceList)
-                             }
-                        </Select>
-                    </span>
+                        <span className={"method-info-item "}>状态 ：
+                            <ApiStatusModal selectStatus={selectStatus} status={status} {...props}/>
+                        </span>
                     </div>
                     <div className={"info-item"}>
-                    <span className={"people-item "}>执行者:
-                        <Select
-                            style={{width:100}}
-                            value={executorId}
-                            onChange={(e)=>selectExecutor(e)}
-                        >
-                            {showExecutor(userSelectList)}
-                        </Select>
-                    </span>
+                        <span className={"people-item "}>执行者:
+                            <Select
+                                style={{width:100}}
+                                value={executorId}
+                                onChange={(e)=>selectExecutor(e)}
+                            >
+                                {showExecutor(userSelectList)}
+                            </Select>
+                        </span>
                     </div>
                 </Space>
 

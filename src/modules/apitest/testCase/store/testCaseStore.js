@@ -20,6 +20,7 @@ export class TestCaseStore {
     @observable testCaseId = '';
     @observable status = '';
     @observable time = '';
+    @observable size;
     @observable error;
     @observable assertResponse = [];
     @observable requestBodyCaseData;
@@ -113,13 +114,13 @@ export class TestCaseStore {
     @action
     getRequestInfo = (data) => {
 
-        this.methodType = data.method;
-
-        if(data.params&&Object.keys(data.params).length>0){
-            this.baseInfo = data.url+'?'+qs.stringify(data.params)
-        }else {
-            this.baseInfo = data.url
-        }
+        // this.methodType = data.method;
+        //
+        // if(data.params&&Object.keys(data.params).length>0){
+        //     this.baseInfo = data.url+'?'+qs.stringify(data.params)
+        // }else {
+        //     this.baseInfo = data.url
+        // }
 
         // this.requestHeaderCaseData = JSON.stringify(data.headers);
         // this.requestBodyCaseData = data.bodys;
@@ -129,6 +130,9 @@ export class TestCaseStore {
     getResponseInfo = async (data,assertData) => {
         let res = data.res;
 
+        this.methodType =res?.config?.method;
+        this.baseInfo = res?.config?.url;
+
         this.time=data.time;
         this.status = res.status;
 
@@ -136,6 +140,9 @@ export class TestCaseStore {
         let requestBody =  res?.config?.data;
         const headers = res.headers;
         const body = res.data;
+
+        //大小
+        this.size = JSON.stringify(body).length;
 
         const assertNeedData = {
             "status":res.status,

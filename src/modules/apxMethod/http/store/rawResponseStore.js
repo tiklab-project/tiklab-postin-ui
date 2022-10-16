@@ -26,27 +26,19 @@ export class RawResponseStore {
     }
 
     @action
-    createRawResponse = (values) => {
+    createRawResponse = async (values) => {
         values.http = {id: this.apxMethodId}
         values.id =  this.rawResponseId;
 
-        createRawResponse(values).then((res) => {
-            if( res.code === 0){
-                this.findRawResponse(this.apxMethodId);
-            }
-        })
+        return await createRawResponse(values)
     }
 
     @action
-	updateRawResponse = (values) => {
+	updateRawResponse =async (values) => {
         values.http = { id: this.apxMethodId}
         values.id =  this.rawResponseId;
 
-		updateRawResponse(values).then((res) => {
-            if( res.code === 0){
-                this.findRawResponse(this.apxMethodId);
-            }
-        })
+		return await updateRawResponse(values)
     }
     
 }

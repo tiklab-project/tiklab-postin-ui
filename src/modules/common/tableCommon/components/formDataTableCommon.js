@@ -14,7 +14,7 @@ const FormDataTableCommon = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '25%',
+            width: '20%',
             editable: true,
         },
         {
@@ -31,7 +31,7 @@ const FormDataTableCommon = (props) =>{
         },
         {
             title: '参数值',
-            width: '40%',
+            width: '30%',
             dataIndex: 'value',
             render: (text, record)=>(
                 <>
@@ -61,7 +61,8 @@ const FormDataTableCommon = (props) =>{
         },
         {
             title: '操作',
-            width: '10%',
+            width: '15%',
+            fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(
                 <Space>
@@ -69,6 +70,11 @@ const FormDataTableCommon = (props) =>{
                     <a onClick={handleAdd}> 新行 </a>
                 </Space>
             )
+        },
+        {
+            title: '',
+            width: '30%',
+            dataIndex: 'none',
         }
     ]
 

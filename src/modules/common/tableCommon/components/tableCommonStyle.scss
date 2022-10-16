@@ -12,5 +12,14 @@
 }
 
 .tabPane-item-box{
-    min-height: 200px;
+    min-height: 120px;
+    overflow: auto;
+
+    .ant-table-wrapper{
+        min-width: 960px;
+    }
+}
+
+.column-name{
+    width: 150px;
 }

@@ -11,7 +11,7 @@ const {dataList, saveList, addNewList, deleteList} = props;
         {
             title: '参数名称',
             dataIndex: 'headerName',
-            width: '30%',
+            width: '20%',
             render: (text, record)=>(
                 <ExSelect
                     dictionary={headerParamDictionary}
@@ -23,12 +23,13 @@ const {dataList, saveList, addNewList, deleteList} = props;
             )
         },{
             title: '参数值',
-            width: '40%',
+            width: '30%',
             dataIndex: 'value',
             editable: true,
         },{
             title: '操作',
-            width: '30%',
+            width: '20%',
+            fixed: 'right',
             dataIndex: 'operation',
             render: (text, record,index) =>(
                 <Space>
@@ -36,6 +37,11 @@ const {dataList, saveList, addNewList, deleteList} = props;
                     <a onClick={handleAdd}> 新行 </a>
                 </Space>
             )
+        },
+        {
+            title: '',
+            width: '30%',
+            dataIndex: 'none',
         }
     ]
 

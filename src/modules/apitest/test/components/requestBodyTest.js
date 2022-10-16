@@ -10,14 +10,19 @@ import RequestNoBody from "../../../common/tableCommon/components/requestNoBody"
 const RequestBodyTest = (props)=>{
     const { requestBodyTestStore } = props;
 
-    const { bodyType } = requestBodyTestStore;
+    const { bodyType,mediaType } = requestBodyTestStore;
 
     const showBodyType = (type) =>{
         let bodyKeyArr = Object.keys(mediaTypeDictionary)
 
         return bodyKeyArr.map(item=>{
             if(item===type){
-               return  <div className={"test-body-type-item"} key={item}>type : {mediaTypeDictionary[item]}</div>
+
+                if(type==="raw"){
+                    return <div className={"test-body-type-item"} key={item}>type : {mediaType}</div>
+                }else {
+                    return  <div className={"test-body-type-item"} key={item}>type : {mediaTypeDictionary[item]}</div>
+                }
             }
         })
     }
@@ -52,12 +57,9 @@ const RequestBodyTest = (props)=>{
                 {
                     showItemComponent(bodyType)
                 }
-
             </div>
 
-
         </>
-
     )
 }
 

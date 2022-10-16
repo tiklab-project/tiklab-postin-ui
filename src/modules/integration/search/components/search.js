@@ -110,7 +110,7 @@ const Search = (props) => {
                 onChange={debounce(changeValue,500) }
                 onPressEnter={toSearchResult}
                 className='search-input'
-                style={{width:260}}
+                style={{width:260,margin: "-10px"}}
                 onBlur={onBlur}
                 onFocus={onFocus}
             />

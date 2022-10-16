@@ -45,6 +45,10 @@ const HeaderContent = props => {
         props.history.push("/systemManagement")
     }
 
+    const toAccMember = () =>{
+        props.history.push("/accountMember")
+    }
+
     return(
         <Row className="frame-header">
             <Col span={12}>
@@ -82,9 +86,7 @@ const HeaderContent = props => {
                                     <use xlinkHref= {`#icon-setting`} />
                                 </svg>
                                 <div className={"toggle-hidden-box setting-setting-box"}>
-                                    {
-                                        accountAndMember?accountAndMember():null
-                                    }
+                                    <div className={"user-hidden-item"} onClick={toAccMember} > 账号与成员  </div>
                                     <div className={"user-hidden-item"} onClick={toSystem}>系统设置</div>
                                 </div>
                             </div>

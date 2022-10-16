@@ -25,14 +25,14 @@ export class MockRawResponseStore {
     createRawResponseMock = async (values) => {
         values.mock = {id: this.mockId,}
         values.id =  this.mockId;
-        await createRawResponseMock(values);
+        return await createRawResponseMock(values);
     }
 
     @action
 	updateRawResponseMock = async (values) => {
         values.mock = {id: this.mockId,}
         values.id =  this.mockId;
-		await updateRawResponseMock(values)
+		return await updateRawResponseMock(values)
     }
     
 

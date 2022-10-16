@@ -45,24 +45,14 @@ export class ApxMethodStatusStore {
     }
 
     @action
-    findApiStatusList = async (value) => {
+    findApiStatusList = async (param) => {
         this.params = {
+            ...param,
             orderParams:[{name:'name', orderType:'asc'}],
         }
 
         const res = await findApiStatusList(this.params);
-
-        let newRow = [{id:"apiStatusInitRow"}]
-
         if(res.code === 0 ) {
-            this.dataLength = res.data.length
-            this.apiStatusSourceList = res.data;
-            if(res.data.length===0){
-                this.apiStatusList=newRow
-            }else {
-                this.apiStatusList=res.data;
-            }
-
             return  res.data;
         }
     }
@@ -83,14 +73,8 @@ export class ApxMethodStatusStore {
 
     //创建接口
     @action
-    createApiStatus = async (values) => {
-        values.type="custom";
+    createApiStatus = async (values) =>  await createApiStatus(values);
 
-        const res = await createApiStatus(values)
-        if (res.code === 0) {
-            return this.findApiStatusList();
-        }
-    }
       
 
     //更新接口
@@ -111,10 +95,8 @@ export class ApxMethodStatusStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await  deleteApiStatus(param)
-        if(res.code === 0){
-            this.findApiStatusList();
-        }
+        return await  deleteApiStatus(param)
+
     }
 }
 

@@ -17,7 +17,7 @@ const QueryTableCommon = (props) =>{
             editable: true,
         },{
             title: '参数值',
-            width: '40%',
+            width: '30%',
             dataIndex: 'value',
             render: (text, record)=>(
                 <ExSelect
@@ -31,7 +31,8 @@ const QueryTableCommon = (props) =>{
 
         },{
             title: '操作',
-            width: '30%',
+            width: '10%',
+            fixed: 'right',
             dataIndex: 'operation',
             render: (text, record,index) =>(
                 <Space>
@@ -39,6 +40,11 @@ const QueryTableCommon = (props) =>{
                     <a onClick={handleAdd}> 新行 </a>
                 </Space>
             )
+        },
+        {
+            title: '',
+            width: '30%',
+            dataIndex: 'none',
         }
     ]
 

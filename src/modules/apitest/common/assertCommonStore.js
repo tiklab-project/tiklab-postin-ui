@@ -70,7 +70,8 @@ export class AssertCommonStore{
 
     @action
     assertStatusCommon=(status,item)=>{
-        if(item.status==="status"){
+
+        if(item.propertyName==="status"){
             return this.assertCompareCommon(status,item.value);
         }else {
             return -1

@@ -29,7 +29,7 @@ const RequestHeaderTestCase = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'headerName',
-            width: '25%',
+            width: '20%',
             render: (text, record)=>(
                 <ExSelect
                     dictionary={headerParamDictionary}
@@ -42,15 +42,21 @@ const RequestHeaderTestCase = (props) =>{
         },
         {
             title: '参数值',
-            width: '40%',
+            width: '20%',
             dataIndex: 'value',
             editable: true,
         },
         {
             title: '操作',
-            width: '10%',
+            width: '15%',
+            fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(operation(record,dataSource))
+        },
+        {
+            title: '',
+            width: '25%',
+            dataIndex: 'none',
         }
     ]
 

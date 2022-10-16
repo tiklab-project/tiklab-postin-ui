@@ -8,6 +8,7 @@ export class TestStore {
 
     @observable status = '';
     @observable time = '';
+    @observable size;
     @observable assertResponse = [];
 
     @observable responseBodyData;
@@ -28,14 +29,19 @@ export class TestStore {
     getResponseInfo = (data,assertData) => {
         let res = data.res;
 
+        //时间
         this.time=data.time;
+        //状态码
         this.status = res.status;
+
+
         let requestHeaders= res?.config?.headers;
         let requestBody =  res?.config?.data;
 
         const headers = res.headers;
         const body = JSON.stringify(res.data);
-
+        //大小
+        this.size = body.length;
 
         //断言处理
         let assertList = this.assertListProcess(assertData);

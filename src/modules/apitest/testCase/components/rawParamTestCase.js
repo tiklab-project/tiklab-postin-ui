@@ -87,20 +87,20 @@ const RawParamTestCase = (props) => {
     return (
         <div className={"raw-box"}>
             <Form form={form} initialValues={{"type":"text/plain"}}>
-                <div className='raw-box-header'>
-                    <Form.Item name='type'>
-                        <Select
-                            style={{ width: 180 ,color:"#0095ff"}}
-                            onChange={changeType}
-                            bordered={false}
-                            suffixIcon={null}
-                        >
-                            {
-                                showSelectItem(rawTypeDictionary)
-                            }
-                        </Select>
-                    </Form.Item>
-                </div>
+                {/*<div className='raw-box-header'>*/}
+                {/*    <Form.Item name='type'>*/}
+                {/*        <Select*/}
+                {/*            style={{ width: 180 ,color:"#0095ff"}}*/}
+                {/*            onChange={changeType}*/}
+                {/*            bordered={false}*/}
+                {/*            suffixIcon={null}*/}
+                {/*        >*/}
+                {/*            {*/}
+                {/*                showSelectItem(rawTypeDictionary)*/}
+                {/*            }*/}
+                {/*        </Select>*/}
+                {/*    </Form.Item>*/}
+                {/*</div>*/}
 
                 <Form.Item  name='raw'>
                     <CodeMirror

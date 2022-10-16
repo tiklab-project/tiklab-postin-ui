@@ -4,6 +4,7 @@ import { observable,  action } from "mobx";
 export class RequestBodyTestStore {
     @observable bodyTypeInfo;
     @observable bodyType;
+    @observable mediaType;
 
     @action
     getBodyType = (type) => {
@@ -19,6 +20,11 @@ export class RequestBodyTestStore {
     @action
     updateBodyType = (data) => {
         this.bodyType  = data.bodyType
+    }
+
+    @action
+    getMediaType = (type) =>{
+        this.mediaType = type;
     }
 
 }

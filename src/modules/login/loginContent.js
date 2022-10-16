@@ -5,9 +5,7 @@
  */
 import React from 'react';
 import { Login } from 'tiklab-eam-ui';
-import {EAM_STORE} from "tiklab-eam-ui/es/store"
-
-import {inject, observer} from 'mobx-react'
+import logo from "../../assets/img/log.png"
 
 
 // 登录
@@ -16,12 +14,11 @@ const LoginContent = (props)=> {
     return(
         <Login
             {...props}
-            loginGoRouter={'/'}
-            fetchMethod={fetchMethod}
-            languageUrl={pluginAddressUrl}
+            title={"Postin"}
+            // logoIcon={logo}
         />
     )
 
 }
 
-export default inject(EAM_STORE)(observer(LoginContent)) ;
+export default LoginContent ;

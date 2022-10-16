@@ -66,6 +66,7 @@
 
 .ws-side-menu{
     border-right: 1px solid #e4e4e4;
+    background: #f9f9f9;
 }
 
 
@@ -87,3 +88,6 @@
 }
 
 
+.CodeMirror-scroll{
+    min-height: 150px;
+}

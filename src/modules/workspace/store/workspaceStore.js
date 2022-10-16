@@ -15,6 +15,7 @@ import {
 	findWorkspaceJoinList,
 	findWorkspaceTotal,
 	findAllWorkspace,
+	findWorkspaceHomeTotal
 } from '../api/workspaceApi';
 
 export class WorkspaceStore {
@@ -134,6 +135,17 @@ export class WorkspaceStore {
 		const res = await findWorkspaceTotal(param);
 		if(res.code === 0){
 			return res.data;
+		}
+	}
+
+	@action
+	findWorkspaceHomeTotal = async (userId) =>{
+		let param = new FormData();
+		param.append("userId",userId)
+
+		let res = await findWorkspaceHomeTotal(param)
+		if(res.code===0){
+			return res.data
 		}
 	}
 

@@ -68,7 +68,7 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
     font-size: 15px;
     font-weight: 600;
     padding: 10px;
-    border-bottom: 1px solid #ececec;
+    //border-bottom: 1px solid #ececec;
     margin: 0 0 5px 0;
 }
 
@@ -100,7 +100,7 @@ $blue-main: #0053ca;
 
 //表格体单元格
 .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-    padding: 8px !important;
+    padding: 4px !important;
 }
 
 .ant-table-tbody .ant-table-cell{

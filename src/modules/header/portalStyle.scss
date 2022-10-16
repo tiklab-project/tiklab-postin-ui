@@ -10,26 +10,34 @@
     position: relative;
 
     .header-workspaceBox{
-        background: #f7f7f7;
+        background: #ffffff;
         position: absolute;
         top: 28px;
-        left: -40px;
+        left: -88px;
         z-index: 100;
-        width: 180px;
-        box-shadow: 2px 5px 10px #cbcbcb;
+        width: 260px;
+        box-shadow: 0px 10px 16px #dadada;
         height: 180px;
-        padding: 10px;
 
         .header-workspace-list-item{
-            padding: 5px;
-            border-bottom: 1px solid #d9d9d9;
+            padding: 6px;
+            border-bottom: 1px solid #f3f3f3;
             cursor: pointer;
+            margin: 5px ;
         }
 
         .header-workspace-list-item:hover{
-            background: #efefef;
+            background: #f3f3f3;
+            border-radius: 5px;
         }
     }
+}
+
+.header-workspace-list-footer{
+    background: #efefef;
+    height: 35px;
+    line-height: 18px;
+    padding: 8px;
 }
 
 .header-right-item{

@@ -11,10 +11,16 @@ export class RequestCaseStore {
     @observable requestCaseId;
     @observable afterScript;
     @observable preScript;
+    @observable mediaType
 
     @action
     getBodyType = (bodyType) =>{
         this.bodyTypeCase = bodyType;
+    }
+
+    @action
+    getMediaType = (mediaType) =>{
+        this.mediaType = mediaType;
     }
 
     @action

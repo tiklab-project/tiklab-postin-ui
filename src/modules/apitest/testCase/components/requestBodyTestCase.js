@@ -11,7 +11,8 @@ const RequestBodyTestCase = (props)=>{
     const { requestCaseStore } =props;
     const {
         findRequestCase,
-        bodyTypeCase
+        bodyTypeCase,
+        mediaType
     } = requestCaseStore;
 
     const [bodyType, setBodyType] = useState();
@@ -29,7 +30,12 @@ const RequestBodyTestCase = (props)=>{
 
         return bodyKeyArr.map(item=>{
             if(item===type){
-                return  <div className={"test-body-type-item"}>type : {mediaTypeDictionary[item]}</div>
+                if(type==="raw"){
+                    return  <div className={"test-body-type-item"}>type : {mediaType}</div>
+                }else {
+                    return  <div className={"test-body-type-item"}>type : {mediaTypeDictionary[item]}</div>
+                }
+
             }
         })
     }

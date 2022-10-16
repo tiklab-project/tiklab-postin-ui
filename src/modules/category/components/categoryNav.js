@@ -71,16 +71,16 @@ const CategoryNav = (props) => {
     //目录悬浮的操作项
     const menu = (id)=>(
         <Menu>
-            <Menu.Item >
+            <Menu.Item key={1}>
                 <ApxMethodEdit name="添加API"  type="add" categoryItemId={id} {...props}/>
             </Menu.Item>
-            <Menu.Item >
+            <Menu.Item  key={2}>
                 <CategoryEdit name="添加子目录"  type="api"  categoryId={id}/>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item  key={3}>
                 <CategoryEdit  name="编辑"  type="api"  categoryId={id}/>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item  key={4}>
                 <Popconfirm
                     title="确定删除？"
                     onConfirm={() =>delCategory(id)}

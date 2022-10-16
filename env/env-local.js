@@ -20,7 +20,7 @@ const appSecret = JSON.stringify('appsecret');
 const version = JSON.stringify('1.0.1');
 const client = JSON.stringify('1.1.0');
 
-const acc_url = JSON.stringify('http://127.0.0.1:3005');
+const acc_url = JSON.stringify('http://127.0.0.1:3000');
 
 
 module.exports = {

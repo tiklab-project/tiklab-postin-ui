@@ -12,7 +12,7 @@ const JsonTableCommon = (props) => {
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '25%',
+            width: '20%',
             editable: true,
         },{
             title: '数据类型',
@@ -29,7 +29,7 @@ const JsonTableCommon = (props) => {
             )
         },{
             title: '值',
-            width: '40%',
+            width: '30%',
             dataIndex: 'value',
             render: (text, record)=>(
                 <ExSelect
@@ -43,6 +43,7 @@ const JsonTableCommon = (props) => {
         },{
             title: '操作',
             width: '10%',
+            fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(
                 <Space>
@@ -51,6 +52,11 @@ const JsonTableCommon = (props) => {
                     <Tooltip title="新增一行"><a onClick={() =>handleAdd()} > + </a></Tooltip>
                 </Space>
             )
+        },
+        {
+            title: '',
+            width: '25%',
+            dataIndex: 'none',
         }
     ]
 

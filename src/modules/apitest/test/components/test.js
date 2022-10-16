@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Form, Input, Select, Button, Divider, Space, Tooltip} from 'antd';
-import { TestRequest, TestResponse } from '../index';
+import { TestRequest } from '../index';
 import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
-import {localProxySendTest, sendTest, sendTestDataProcess} from "../../../common/request/sendTestCommon";
-import {methodDictionary, methodJsonDictionary} from "../../../common/dictionary/dictionary";
+import { sendTestDataProcess} from "../../../common/request/sendTestCommon";
+import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import {execute} from "../../common/dtAction";
+import TestResultCommon from "../../common/testResultCommon";
 
 
 const { Option } = Select;
@@ -32,10 +33,10 @@ const ApxMethodTest = (props) => {
 
     const {findApxMethod} = apxMethodStore;
     const {testEnvUrl} = environmentStore;
-    const { getRequestInfo, getResponseInfo, getResponseError } = testStore;
+    const { getResponseInfo, getResponseError } = testStore;
     const { requestHeaderTestList,getRequestHeaderTestList } = requestHeaderTestStore;
     const { queryParamTestList,getQueryParamTestList } = queryParamTestStore;
-    const { bodyTypeInfo,getBodyType } = requestBodyTestStore;
+    const { bodyTypeInfo,getBodyType,getMediaType } = requestBodyTestStore;
     const { formParamTestList,getFormParamTestList } = formParamTestStore;
     const { formUrlencodedTestList,getFormUrlencodedTestList } = formUrlencodedTestStore;
     const { jsonParamTestList,getJsonParamTestList } = jsonParamTestStore;
@@ -49,11 +50,8 @@ const ApxMethodTest = (props) => {
 
     const [apiData, setApiData] = useState();
     const [showResponse,setShowResponse]= useState(false);
-    const [errorMsg, setErrorMsg] = useState();
+    const [testResponse, setTestResponse] = useState();
     const methodId = localStorage.getItem('apxMethodId');
-    let proxyItem = localStorage.getItem("PROXY_ITEM")
-        ?localStorage.getItem("PROXY_ITEM")
-        :"default";
 
     useEffect(()=>{
         findApxMethod(methodId).then(res=>{
@@ -79,7 +77,8 @@ const ApxMethodTest = (props) => {
                     getJsonParamTestList(res.jsonList);
                     break;
                 case "raw":
-                    getRawInfo(res.rawParam)
+                    getRawInfo(res.rawParam);
+                    getMediaType(res.rawParam.type);
                     break;
                 case "binary":
                     //问题
@@ -117,26 +116,11 @@ const ApxMethodTest = (props) => {
         //处理后的数据
         const processData = sendTestDataProcess(allSendData,preParamTestInfo)
 
-
         //发送测试，返回结果
         let response =await getRes(processData)
 
-
-        //获取请求参数
-        getRequestInfo(processData)
-
-        //获取响应结果
-        if(response&&!response.error){
-            getResponseInfo(response,assertParamTestList)
-
-            setErrorMsg({showError:false})
-        }else {
-            let errorValue = {
-                errorMessage:response.error,
-                showError:true
-            }
-            setErrorMsg(errorValue)
-        }
+        response.assertList = assertParamTestList;
+        setTestResponse(response)
 
 
         setShowResponse(true)
@@ -162,17 +146,8 @@ const ApxMethodTest = (props) => {
         }
     }
 
-    // const testAxios = ()=>{
-    //     axios.post("/passport/login",{
-    //         "account": "admin",
-    //         "password": "123456",
-    //         "userType": "1"
-    //     })
-    // }
-
     return(
         <Fragment>
-            {/*<div onClick={testAxios}>test</div>*/}
             <div className={"test-base"}>
                 <Form
                     onFinish={onFinish}
@@ -206,19 +181,15 @@ const ApxMethodTest = (props) => {
                         <SaveTestCase  {...props}/>
                     </Space>
                 </Form>
-
             </div>
 
-            {/*<div className='title ex-title'>输入参数</div>*/}
-            <div>
-                <TestRequest {...props}/>
-            </div>
-            <div className='title ex-title'>
-                测试结果
-            </div>
-            <TestResponse
+            <div className='title ex-title'>请求</div>
+            <TestRequest {...props}/>
+
+            <div className='title ex-title'>响应</div>
+            <TestResultCommon
+                testResponse={testResponse}
                 showResponse={showResponse}
-                errorMsg={errorMsg}
             />
         </Fragment>
     )

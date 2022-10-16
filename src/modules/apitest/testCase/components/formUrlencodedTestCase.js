@@ -36,11 +36,11 @@ const FormUrlencodedTestCase = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '25%',
+            width: '20%',
             editable: true,
         },{
             title: '数据类型',
-            width: '10%',
+            width: '15%',
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <DataTypeSelect
@@ -51,7 +51,7 @@ const FormUrlencodedTestCase = (props) =>{
             )
         },{
             title: '参数值',
-            width: '40%',
+            width: '20%',
             dataIndex: 'value',
             render: (text, record)=>(
                 <ExSelect
@@ -66,9 +66,15 @@ const FormUrlencodedTestCase = (props) =>{
 
         {
             title: '操作',
-            width: '10%',
+            width: '15%',
+            fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(operation(record,dataSource))
+        },
+        {
+            title: '',
+            width: '30%',
+            dataIndex: 'none',
         }
     ]
 

@@ -9,8 +9,8 @@ import { observer, inject } from "mobx-react";
 import { Form, Modal, Button, Input } from 'antd';
 
 const layout = {
-    labelCol: {span: 8},
-    wrapperCol: {span: 16},
+    labelCol: {span: 5},
+    wrapperCol: {span: 18},
 };
 const WorkspaceEdit = (props) => {
     const { workspaceStore, workspaceId,userId } = props;

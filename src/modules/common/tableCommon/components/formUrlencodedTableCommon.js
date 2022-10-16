@@ -11,7 +11,7 @@ const FormUrlencodedTableCommon = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '25%',
+            width: '20%',
             editable: true,
         },
         {
@@ -27,12 +27,13 @@ const FormUrlencodedTableCommon = (props) =>{
             )
         },{
             title: '参数值',
-            width: '40%',
+            width: '30%',
             dataIndex: 'value',
             editable: true,
         },{
             title: '操作',
-            width: '10%',
+            width: '15%',
+            fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(
                 <Space>
@@ -40,6 +41,11 @@ const FormUrlencodedTableCommon = (props) =>{
                     <a onClick={handleAdd}> 新行 </a>
                 </Space>
             )
+        },
+        {
+            title: '',
+            width: '25%',
+            dataIndex: 'none',
         }
     ]
 

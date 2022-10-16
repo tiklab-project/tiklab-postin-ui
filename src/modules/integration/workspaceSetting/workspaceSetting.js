@@ -19,10 +19,6 @@ const WorkspaceSetting = (props) =>{
 
     const items=[
         {
-            title: '状态管理',
-            key: '/workspace/status',
-            icon: 'icon-modular',
-        },{
             title: '空间成员',
             key: '/workspace/role',
             icon: 'icon-modular',

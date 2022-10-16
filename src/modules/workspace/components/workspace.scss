@@ -15,12 +15,13 @@ ul{
 //dragbox
 .changeBox{
     width: 240px;
+    background: #fafafa;
 }
 
 
 .middleBox{
     width:4px;
-    border-right: 1px solid #e4e4e4;
+    //border-right: 1px solid #e4e4e4;
 }
 
 .middleBox:hover{
@@ -125,12 +126,12 @@ ul{
     }
 
     .ws-menu-li:hover{
-        background-color: #f3f3f3;
+        background-color: #ececec;
         //margin: 5px 20px;
     }
     .ws-menu-li-action{
 
-        background-color: #f3f3f3;
+        background-color: #ececec;
 
     }
 }
@@ -296,6 +297,7 @@ ul{
 
 .detailmenu-fold{
     height: 100%;
+    background: #f9f9f9;
 }
 
 .ws-detail-menu{
@@ -309,6 +311,7 @@ ul{
     overflow: auto;
     overflow-x: hidden;
     height: 85%;
+    padding: 5px
 }
 
 

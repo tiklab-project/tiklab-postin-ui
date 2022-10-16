@@ -4,10 +4,10 @@ import { observer, inject } from 'mobx-react';
 import {Form, Button, Input, Select, Tooltip, Space} from 'antd';
 import { TestCaseRequest } from "../index";
 import DropdownInstance from "../../testInstance/components/histroyList";
-import TestResultCase from "./testResultCase";
-import {sendTest, sendTestDataProcess} from "../../../common/request/sendTestCommon";
+import { sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import EdiText from "react-editext";
+import TestResultCommon from "../../common/testResultCommon";
 
 const {Option} = Select;
 
@@ -34,7 +34,7 @@ const TestCaseDetail = (props) => {
     const {testEnvUrl} = environmentStore;
     const { requestHeaderTestCaseDataSource,processHeaderCaseList } = requestHeaderTestCaseStore;
     const { queryParamTestCaseDataSource, processQueryCaseList } = queryParamTestCaseStore;
-    const { bodyTypeCase, getBodyType} = requestCaseStore;
+    const { bodyTypeCase, getBodyType,getMediaType} = requestCaseStore;
     const { formParamTestCaseDataSource,processFormList } = formParamTestCaseStore;
     const { formUrlencodedTestCaseDataSource,processFormUrlencodedList } = formUrlencodedTestCaseStore;
     const { jsonParamTestCaseList,processJsonParamList } = jsonParamTestCaseStore;
@@ -44,13 +44,10 @@ const TestCaseDetail = (props) => {
     const { assertParamTestCaseDataSource } =assertParamTestCaseStore;
     const { createInstance  } = instanceStore;
 
-    // let dt =  {...darth}  //解构darth里的方法
-
-    // console.log(dt.md5("12345"))
 
     const [form] = Form.useForm();
     const [showResponse,setShowResponse] = useState(false);
-    const [errorMsg, setErrorMsg] = useState();
+    const [testResponse, setTestResponse] = useState();
     const [caseName, setCaseName] = useState();
     const testCaseId = localStorage.getItem("testCaseId");
     const methodId =  localStorage.getItem('apxMethodId');
@@ -78,7 +75,8 @@ const TestCaseDetail = (props) => {
                     processJsonParamList(res.jsonList);
                     break;
                 case "raw":
-                    processRawInfo(res.rawParamCase)
+                    processRawInfo(res.rawParamCase);
+                    getMediaType(res.rawParamCase.type)
                     break;
                 case "binary":
                     //问题
@@ -128,30 +126,21 @@ const TestCaseDetail = (props) => {
         //发送测试，返回结果
         let response =await getRes(processData)
 
-        //获取请求参数
-        getRequestInfo(processData)
-
+        response.assertList = assertParamTestCaseDataSource;
         //获取响应结果
+        setTestResponse(response)
+
+        //保存用例
         if(!response.error){
             getResponseInfo(response,assertParamTestCaseDataSource).then(res=>{
                 res.httpCase = {"id":testCaseId}
                 createInstance(res)
             })
-
-            setErrorMsg({showError:false})
         }else {
-
             getResponseError(response).then(res=>{
                 res.httpCase = {"id":testCaseId}
                 createInstance(res)
             })
-
-            //用于错误展示
-            let errorValue = {
-                errorMessage:response.error,
-                showError:true
-            }
-            setErrorMsg(errorValue)
         }
 
         //点击测试按钮显示输出结果详情
@@ -251,13 +240,12 @@ const TestCaseDetail = (props) => {
 
                 </Form>
             </div>
+            <div className='title ex-title'>请求</div>
             <TestCaseRequest />
-            <div className='title ex-title'>
-                测试结果
-            </div>
-            <TestResultCase
+            <div className='title ex-title'> 响应</div>
+            <TestResultCommon
+                testResponse={testResponse}
                 showResponse={showResponse}
-                errorMsg={errorMsg}
             />
         </>
     )

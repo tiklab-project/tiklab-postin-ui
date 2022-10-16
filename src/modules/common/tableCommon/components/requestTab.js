@@ -48,15 +48,11 @@ const RequestTab = (props) =>{
     }
 
     return(
-        <>
-            <Tabs
-                className="tabs"
-            >
-                {
-                    showTabPane(requestTabDictionary)
-                }
-            </Tabs>
-        </>
+        <Tabs  className="tabs"  >
+            {
+                showTabPane(requestTabDictionary)
+            }
+        </Tabs>
     )
 }
 

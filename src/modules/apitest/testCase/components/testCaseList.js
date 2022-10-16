@@ -139,7 +139,7 @@ const TestCaseList = (props) => {
 
 
     return(
-        <Fragment>
+        <>
             <div className='testCase-header'>
                 <TestCaseEdit  btn='btn' type="添加用例" {...props}>添加用例</TestCaseEdit>
             </div>
@@ -152,7 +152,7 @@ const TestCaseList = (props) => {
                 // }}
                 pagination={false}
             />
-        </Fragment>
+        </>
     )
 
 }
