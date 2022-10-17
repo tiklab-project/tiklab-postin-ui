@@ -19,6 +19,11 @@ const HeaderMenu = (props) =>{
             title:'空间',
             key: 'Workspace'
         },
+        // {
+        //     to:'/workbench',
+        //     title:'工作台',
+        //     key: 'workbench'
+        // }
     ]
 
     const changeCurrentLink = item => {

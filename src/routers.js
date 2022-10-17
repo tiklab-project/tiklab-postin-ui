@@ -35,6 +35,7 @@ import {Login} from "tiklab-eam-ui";
 import {Directory, OrgaList, UserList} from "tiklab-user-ui";
 import AccountMember from "./modules/sysmgr/accountMember/accountMember";
 import LoginContent from "./modules/login/loginContent";
+import {WidgetWork} from "tiklab-widget-ui";
 
 const routers =  [
     {
@@ -251,6 +252,12 @@ const routers =  [
                 key:'MessageUser',
                 exact: true,
                 component: MessageUser,
+            },
+            {
+                path: "/workbench",
+                key:'user',
+                exact: true,
+                render: () => <WidgetWork bgroup={"postin"}/>,
             },
             {
                 component: WorkspaceDetailLayout,

@@ -72,6 +72,11 @@
             "libraryDirectory": "es",
             "style": true
         }, "tiklab-todotask-ui"],
+        ["import", {
+            "libraryName": "tiklab-widget-ui",
+            "libraryDirectory": "es",
+            "style":  true
+        },"tiklab-widget-ui"],
 
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
         ["dynamic-import-webpack"],
