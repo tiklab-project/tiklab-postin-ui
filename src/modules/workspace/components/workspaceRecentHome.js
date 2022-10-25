@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import {Table} from "antd";
+import {Space, Table} from "antd";
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
-import {toWorkspaceDetail} from "../common/workspaceFn";
+import {toWorkspaceDetail} from "./workspaceFn";
 
 const WorkspaceRecentHome = (props) =>{
     const {workspaceRecentStore} = props;
@@ -18,7 +18,12 @@ const WorkspaceRecentHome = (props) =>{
             key: 'name',
             width:"30%",
             render: (text,record) =>(
-                <a onClick = {()=>toDetail(record.workspace.id)}>{text}</a>
+                <Space size={"large"}>
+                    <svg className={"workspace-icon"} aria-hidden="true">
+                        <use xlinkHref= {`#icon-xiangmu`} />
+                    </svg>
+                    <a onClick = {()=>toDetail(record.workspace.id)}>{text}</a>
+                </Space>
             )
         },
         {
@@ -40,7 +45,7 @@ const WorkspaceRecentHome = (props) =>{
 
 
     return(
-        <>
+        <div className={"list-box-cell"}>
             <Table
                 columns={columns}
                 dataSource={recentList}
@@ -48,7 +53,7 @@ const WorkspaceRecentHome = (props) =>{
                 rowKey={(record => record.id)}
             />
 
-        </>
+        </div>
     )
 }
 

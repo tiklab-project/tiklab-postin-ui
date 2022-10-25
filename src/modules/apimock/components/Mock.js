@@ -14,7 +14,7 @@ const Mock = (props) => {
             title: '启用',
             dataIndex: 'enable',
             key: 'enable',
-            width:'10%',
+            width:'5%',
             render:(text,record )=>(
                 <Switch
                     checkedChildren="启用"
@@ -42,7 +42,7 @@ const Mock = (props) => {
             title: '创建时间',
             dataIndex: 'createTime',
             key: 'createTime',
-            width:'10%',
+            width:'15%',
         },
         {
             title: '操作',
@@ -51,19 +51,18 @@ const Mock = (props) => {
             width:'15%',
             render: (text, record )=>(
                 <Space  size="middle">
-                    <Tooltip title="编辑">
-                        <svg className="icon" aria-hidden="true">
-                            <use xlinkHref="#icon-chuangzuo"/>
-                        </svg>
-                        <MockEdit type="编辑" {...props } mockId={record.id}/>
-                    </Tooltip>
+
+                    <MockEdit type="edit"  name={"编辑"}  {...props } mockId={record.id}/>
+
                     <Popconfirm
                         title="确定删除？"
                         onConfirm={() =>deleteMock(record.id).then(()=>findMockPage(apxMethodId))}
                         okText='确定'
                         cancelText='取消'
                     >
-                        <a className="table-delete" style={{color:'red'}}>删除</a>
+                        <svg className="edit-icon" aria-hidden="true">
+                            <use xlinkHref= {`#icon-shanchu3`} />
+                        </svg>
                     </Popconfirm>
                 </Space>
             )
@@ -100,26 +99,28 @@ const Mock = (props) => {
     }
 
     return (
-        <Fragment>
-            <div className='mock-header'>
-                <div
-                    id={"link"}
-                    onClick={()=>copyMockUrl("link")}
-                    style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}
-                >
-                    <Tooltip title="点击复制">
-                        <span>{mockUrl}</span>
-                    </Tooltip>
+        <div className={"content-box-center"}>
+            <div className='list-content-center'>
+                <div className='mock-header'>
+                    <div
+                        id={"link"}
+                        onClick={()=>copyMockUrl("link")}
+                        style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}
+                    >
+                        <Tooltip title="点击复制">
+                            <span>{mockUrl}</span>
+                        </Tooltip>
+                    </div>
+                    <MockEdit btn="btn"  name={"添加Mock"} {...props }>添加Mock</MockEdit>
                 </div>
-                <MockEdit btn="btn" type="添加Mock" {...props }>添加Mock</MockEdit>
+                <Table
+                    columns={columns}
+                    dataSource={mockList}
+                    rowKey = {record => record.id}
+                    pagination={false}
+                />
             </div>
-            <Table
-                columns={columns}
-                dataSource={mockList}
-                rowKey = {record => record.id}
-                pagination={false}
-            />
-        </Fragment>
+        </div>
     )
 }
 

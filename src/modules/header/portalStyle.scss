@@ -48,10 +48,18 @@
 .user-header-icon{
     width: 21px;
     height: 21px;
+    margin: 5px;
 }
 
 .user-header-icon-hover{
     cursor: pointer;
+    width: 22px;
+    height: 22px;
+
+    .ant-avatar{
+        width: 22px;
+        height: 22px;
+    }
 }
 
 .toggle-hover{
@@ -91,7 +99,9 @@
 
         .user-hidden-item{
             //border-bottom: 1px solid #e4e4e4;
-            padding: 10px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
         }
 
         .user-hidden-item-disable{
@@ -103,18 +113,25 @@
         .user-hidden-item:hover{
             background: #efefef;
             cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .header-user-icon{
+            width: 50px;
+            height: 50px;
         }
     }
 
     .header-user-box{
         width: 230px;
         left: -200px;
+        padding: 10px;
     }
 
     .setting-setting-box{
-        width: 100px;
-        /* height: 120px; */
-        left: -75px;
+        width: 180px;
+        left: -150px;
+        padding: 10px;
     }
 
 }
@@ -131,8 +148,8 @@
 .frame-header{
     display: flex;
     align-items: center;
-    background: #f3f3f3;
     height: 50px;
+    border-bottom: 1px solid #e4e4e4;
     //-webkit-app-region: drag;//electron无边框拖动
     //-webkit-app-region: no-drag;
 
@@ -149,7 +166,7 @@
 
     .header-menu-box{
         display: flex;
-        width: 200px;
+        width: 120px;
         justify-content: space-around;
 
         div{

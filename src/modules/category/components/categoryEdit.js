@@ -56,7 +56,7 @@ const CategoryEdit =(props)=>{
             <a onClick={showModal}>{props.name}</a>
             <Modal
                 title="添加目录"
-                visible={visible}
+                open={visible}
                 onCancel={hideModal}
                 destroyOnClose={true}
                 onOk={onFinish}
@@ -65,16 +65,14 @@ const CategoryEdit =(props)=>{
                 centered
             >
                 <Form
-                    {...layout}
-                    name="basic"
                     form={form}
                     preserve={false}
-                    onFinish={onFinish}
+                    layout={"vertical"}
                 >
                     <Form.Item
                         label="目录名称"
                         name="name"
-                        rules={[{ required: true, message: 'Please input your catalogename!' }]}
+                        rules={[{ required: true, message: '添加目录名称!' }]}
                     >
                         <Input />
                     </Form.Item>

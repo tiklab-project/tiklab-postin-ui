@@ -6,7 +6,7 @@ const SystemContent = (props) =>{
     const settingMenu = [
         {
             title: '系统权限中心',
-            icon: 'modular',
+            icon: 'quanxian',
             key: "/systemManagement/system",
             encoded: "systemPrivilege",
             children: [
@@ -45,7 +45,7 @@ const SystemContent = (props) =>{
         },
         {
             title: "消息中心",
-            icon: 'modular',
+            icon: 'xiaoxi',
             key: '/systemManagement/message',
             encoded: "MessageCenter",
             children: [
@@ -83,7 +83,7 @@ const SystemContent = (props) =>{
             encoded: "plugin",
         },{
             title: "日志",
-            icon: 'modular',
+            icon: 'rizhijilu',
             key: '/systemManagement/opLog',
             encoded: "opLog",
             children: [
@@ -92,7 +92,7 @@ const SystemContent = (props) =>{
                     icon: 'modular',
                     key: '/systemManagement/log',
                     encoded: "log",
-                },{
+                }, {
                     title: '日志模板',
                     icon: 'modular',
                     key: '/systemManagement/logTemplate',
@@ -101,7 +101,7 @@ const SystemContent = (props) =>{
             ]
         },{
             title: "TODO",
-            icon: 'modular',
+            icon: 'zu',
             key: '/systemManagement/todo',
             encoded: "TODO",
             children: [
@@ -122,16 +122,53 @@ const SystemContent = (props) =>{
                     icon: 'modular',
                     key: '/systemManagement/taskList',
                     encoded: "taskList",
-                }
-            ]
-        },
-
-
+                },
+            ],
+        }
     ]
+
+    let accountMember = [
+        {
+            title: "账号与成员",
+            icon: 'team',
+            key: 'accountMember',
+            // encoded: "accountMember",
+            children: [
+                {
+                    title: '组织管理',
+                    key: '/systemManagement/org',
+                    icon: 'modular',
+                    // encoded: "org",
+                },{
+                    title: '用户管理',
+                    key: '/systemManagement/user',
+                    icon: 'modular',
+                    // encoded: "user",
+                },{
+                    title: '目录管理',
+                    key: '/systemManagement/authConfig',
+                    icon: 'modular',
+                    // encoded: "authConfig",
+                },
+            ]
+        }
+    ]
+
+    let authConfig = JSON.parse(localStorage.getItem("authConfig"))
+
+
+    //判断是否为本地登录，如果authType===true 为本地登录，需要添加账号与成员
+    let menu = ()=>{
+        if(authConfig&&authConfig.authType===true){
+            return [...settingMenu,...accountMember]
+        }else {
+            return settingMenu
+        }
+    }
 
     return(
         <SysManage
-            settingMenu={settingMenu}
+            settingMenu={menu}
             {...props}
         />
     )

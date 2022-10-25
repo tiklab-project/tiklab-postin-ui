@@ -44,13 +44,16 @@
 .ws-detail-left-nav{
     width: 80px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .ws-detail-left-nav-item-workspace{
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 10px;
-        cursor: pointer;
+
     }
 
     .ws-detail-left-nav-icon{
@@ -166,7 +169,7 @@
         display: none;
         width: 188px;
         position: absolute;
-        top: 0;
+        top: -80px;
         left: 80px;
         padding: 10px;
         box-shadow: 0 0 12px 1px #ddd;
@@ -185,4 +188,46 @@
     width: 1280px;
     padding: 0 16px;
     margin: 0 auto;
+}
+
+.ws-icon-box{
+    position: relative;
+
+    .ws-hover-box{
+        display: none;
+        width: 240px;
+        position: absolute;
+        top: -10px;
+        left: 56px;
+        padding: 10px;
+        box-shadow: 0 0 12px 1px #ddd;
+        background: #fff;
+        z-index: 10;
+        min-height:285px;
+        overflow: auto;
+    }
+
+    .ws-hover-item{
+        border-bottom: 1px solid #eeeeee;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 2px 0 0 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .ws-hover-item:hover{
+        background: #f6f6f6;
+        cursor: pointer;
+    }
+
+    .ws-hover-box-title{
+        border-bottom: 1px solid #d5d5d5;
+        padding: 0 0 5px 5px;
+        font-weight: 600;
+    }
+}
+
+.ws-detail-left-nav-item-workspace:hover .ws-hover-box{
+    display: block;
 }

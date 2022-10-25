@@ -183,10 +183,10 @@ const ApxMethodTest = (props) => {
                 </Form>
             </div>
 
-            <div className='title ex-title'>请求</div>
+            <div className='header-title ex-title'>请求</div>
             <TestRequest {...props}/>
 
-            <div className='title ex-title'>响应</div>
+            <div className='header-title ex-title'>响应</div>
             <TestResultCommon
                 testResponse={testResponse}
                 showResponse={showResponse}

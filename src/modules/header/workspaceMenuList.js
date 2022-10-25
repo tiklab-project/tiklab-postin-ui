@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {getUser} from "tiklab-core-ui"
 import {inject, observer} from "mobx-react";
-import {toWorkspaceDetail} from "../workspace/common/workspaceFn";
+import {toWorkspaceDetail} from "../workspace/components/workspaceFn";
 
 //顶部菜单栏，下拉框里的空间列表
 const WorkspaceMenuList = (props) =>{

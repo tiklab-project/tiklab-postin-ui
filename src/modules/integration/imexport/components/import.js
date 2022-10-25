@@ -45,7 +45,7 @@ const Import = (props) => {
             <Modal
                 destroyOnClose={true}
                 title={'导入'}
-                visible={visible}
+                open={visible}
                 onCancel={onCancel}
                 onOk={onFinish}
                 okText="提交"

@@ -3,21 +3,18 @@
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-08 17:22:18
  */
-
 import React from 'react';
 import { observer, inject } from "mobx-react";
 import { Form, Modal, Button, Input } from 'antd';
 
-const layout = {
-    labelCol: {span: 5},
-    wrapperCol: {span: 18},
-};
+
 const WorkspaceEdit = (props) => {
-    const { workspaceStore, workspaceId,userId } = props;
+    const { workspaceStore, workspaceId,findList,selectItem } = props;
     const {
         findWorkspace,
         createWorkspace,
-        updateWorkspace
+        updateWorkspace,
+        menuSelected
      } = workspaceStore;
 
     const [form] = Form.useForm();
@@ -27,29 +24,37 @@ const WorkspaceEdit = (props) => {
     /**
      * 弹框展示
      */
-    const showModal = () => {
-        setVisible(true);
+    const showModal = async () => {
+
         if(props.type === "edit"){
-            findWorkspace(workspaceId).then((res)=>{
-                form.setFieldsValue({
-                    workspaceName: res.workspaceName,
-                    desc:res.desc
-                })
+            let res = await findWorkspace(workspaceId)
+            form.setFieldsValue({
+                workspaceName: res.workspaceName,
+                desc:res.desc
             })
         }
+
+        setVisible(true);
     };
 
     /**
      * 提交
      */
-    const onFinish = () => {
-        form.validateFields().then((values)=>{
-            if(props.type === "edit" ){
-                updateWorkspace(values);
-            }else{
-                createWorkspace(values);
-            }
-        })
+    const onFinish = async () => {
+        let values = await form.validateFields();
+        if(props.type === "edit" ){
+            values.id = workspaceId;
+            updateWorkspace(values).then(()=>{
+                findList({},selectItem)
+            });
+        }else{
+            createWorkspace(values).then(()=>{
+                findList({},selectItem)
+            });
+            props.history.push("/workspacePage/create");
+            menuSelected("create")
+        }
+
         setVisible(false);
     };
 
@@ -65,7 +70,7 @@ const WorkspaceEdit = (props) => {
         <Modal
             destroyOnClose={true}
             title={props.name}
-            visible={visible}
+            open={visible}
             onCancel={onCancel}
             onOk={onFinish}
             okText="提交"
@@ -73,17 +78,14 @@ const WorkspaceEdit = (props) => {
             centered
         >
             <Form
-                {...layout}
                 className='ws-edit-modal-form'
-                name="basic"
-                initialValues={{ remember: true }}
                 form={form}
-                onFinish={onFinish}
                 preserve={false}
+                layout={"vertical"}
             >
                 <Form.Item
                     label="应用名称"
-                    rules={[{ required: true, message: '用户名不能包含非法字符，如&,%，&，#……等' }]}
+                    rules={[{ required: true, message: '添加目录名称!' }]}
                     name="workspaceName"
                 >
                     <Input />
@@ -92,7 +94,7 @@ const WorkspaceEdit = (props) => {
                     label="描述"
                     name="desc"
                 >
-                     <Input />
+                    <Input />
                 </Form.Item>
             </Form>
         </Modal>

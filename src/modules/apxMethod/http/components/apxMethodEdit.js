@@ -8,6 +8,7 @@ import React, { Fragment, useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import {Modal, Form, Input, Button, Select, Cascader} from 'antd';
 import {methodDictionary} from "../../../common/dictionary/dictionary";
+import {TextMethodType} from "../../../common/methodType";
 
 const { Option } = Select;
 const layout = {
@@ -125,7 +126,11 @@ const ApxMethodEdit = (props) => {
     //渲染 http 方法，如post，get
     const showMethod = (data) =>{
         return data&&data.map(item=>{
-            return <Option value={item} key={item}>{item}</Option>
+            return(
+                <Option value={item} key={item}>
+                    <TextMethodType type={item}/>
+                </Option>
+            )
         })
     }
 
@@ -139,14 +144,20 @@ const ApxMethodEdit = (props) => {
     return(
         <Fragment>
             {
-                props.isBtn === 'btn'
-                    ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
-                    :<a onClick={showModal}>{props.name}</a>
+                props.type === 'edit'
+                    ? <svg className="edit-icon" aria-hidden="true" onClick={showModal}>
+                        <use xlinkHref= {`#icon-bianji11`} />
+                    </svg>
+
+                    : props.isBtn ==="btn"
+                        ?<Button className="important-btn" onClick={showModal}>{props.name}</Button>
+                        :<a onClick={showModal}>{props.name}</a>
+
             }
             <Modal
                 destroyOnClose={true}
                 title={props.name === '+' ?"添加接口":props.name}
-                visible={visible}
+                open={visible}
                 onCancel={onCancel}
                 onOk={onFinish}
                 okText="提交"
@@ -154,12 +165,10 @@ const ApxMethodEdit = (props) => {
                 centered
             >
                 <Form
-                    {...layout}
                     preserve={false}
-                    name="basic"
-                    onFinish={onFinish}
                     initialValues={{ methodType: "get" }}
                     form={form}
+                    layout={"vertical"}
                 >
                     {
                         props.name==="+"

@@ -1,6 +1,5 @@
 .editable-row-padding>.ant-table-cell{
     padding: 5px;
-
 }
 
 .request-body-none{
@@ -17,6 +16,10 @@
 
     .ant-table-wrapper{
         min-width: 960px;
+    }
+
+    .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
+        padding: 5px !important;
     }
 }
 

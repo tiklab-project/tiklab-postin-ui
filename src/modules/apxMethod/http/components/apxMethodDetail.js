@@ -220,6 +220,7 @@ const ApxMethodDetail = (props) => {
                             <Select
                                 style={{width:100}}
                                 value={executorId}
+                                showArrow={false}
                                 onChange={(e)=>selectExecutor(e)}
                             >
                                 {showExecutor(userSelectList)}
@@ -236,10 +237,10 @@ const ApxMethodDetail = (props) => {
                     <span className={"people-item "}>更新时间: {resData?.apix?.updateTime}</span>
                 </div>
             </div>
-            <div className="title ex-title">输入参数</div>
+            <div className="header-title ex-title">输入参数</div>
             <Request  />
 
-            <div className="title ex-title">输出结果</div>
+            <div className="header-title ex-title">输出结果</div>
             <Response  />
 
         </Fragment>

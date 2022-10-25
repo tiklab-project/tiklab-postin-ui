@@ -12,21 +12,21 @@ const TestCaseEdit = (props) => {
 
     const [form] = Form.useForm();
 
-    const showModal = () => {
-        setVisible(true);
-        if(props.type === "编辑"){
-            findTestCase(testcaseId).then((res)=> {
-                form.setFieldsValue({
-                    name:res.name,
-                })
+    const showModal = async () => {
+        if(props.type === "edit") {
+            let res = await findTestCase(testcaseId)
+            form.setFieldsValue({
+                name: res.name,
             })
         }
+
+        setVisible(true);
     };
 
     const onFinish = async () => {
         let values = await form.validateFields()
         values.http ={id:apxMethodId}
-        if(props.type === '编辑') {
+        if(props.type === 'edit') {
             values.id = testcaseId;
             updateTestCase(values).then((res)=> {
                 findList()
@@ -44,21 +44,21 @@ const TestCaseEdit = (props) => {
         findTestCaseList(apxMethodId)
     }
 
-    const onFinishFailed = (errorInfo) => {console.log('Failed:', errorInfo)};
-    
     const onCancel = () => {setVisible(false)};
 
     return(
         <>
         {
             props.btn === 'btn'
-                ? <Button className="important-btn" onClick={showModal}>{props.type}</Button>
-                : <a style={{'cursor':'pointer'}} onClick={showModal}>{props.type}</a>
+                ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+                :  <svg className="edit-icon" aria-hidden="true" onClick={showModal}>
+                    <use xlinkHref= {`#icon-bianji11`} />
+                </svg>
         }
         <Modal
             destroyOnClose={true}
-            title={props.type}
-            visible={visible}
+            title={props.name}
+            open={visible}
             onCancel={onCancel}
             onOk={onFinish}
             okText="提交"
@@ -68,8 +68,7 @@ const TestCaseEdit = (props) => {
                 preserve={false}
                 className='testCase-edit-form'
                 form={form}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
+                layout={"vertical"}
             >
                 <Form.Item
                     label="用例名称"

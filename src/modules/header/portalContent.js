@@ -10,7 +10,7 @@ import localImage from "../../assets/img/local.png";
 const Page = (props)=>{
 
     const image= ()=>{
-        return <img style={{width: 25}} src={localImage} alt='versionImg' />
+        return <img style={{width: 21,"verticalAlign":"baseline"}} src={localImage} alt='versionImg' />
     }
 
 
@@ -30,7 +30,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(verifyUserHoc(Page));
+export default connect(mapStateToProps)(verifyUserHoc(Page,"postin"));
 
 
 

@@ -44,7 +44,7 @@ const ApiStatusModal = (props) =>{
             return(
                 <Tag
                     key={item.id}
-                    color={"cyan"}
+                    color={item.color}
                     closable
                     onClose={()=>onClose(item.id)}
                 >
@@ -58,7 +58,7 @@ const ApiStatusModal = (props) =>{
         let value = await form.getFieldsValue();
         value.type="custom";
         value.workspaceId = workspaceId;
-
+        value.color=color;
         createApiStatus(value).then(()=>findCustomList())
     }
 
@@ -73,7 +73,18 @@ const ApiStatusModal = (props) =>{
 
     const handleCancel = () =>  setIsModalVisible(false);
 
-    const [color, setColor] = useState("#333");
+    const [color, setColor] = useState("#F06161");
+
+    const toggleColorPick = () =>{
+        return <div className={"status-color-box"}>
+            <div className={`status-color-box-select`} style={{"background":`${color}`}}> </div>
+            <div className={"status-color-box-picker"}>
+                <SketchPicker  color={color} onChangeComplete={(color)=>setColor(color.hex)}/>
+            </div>
+
+        </div>
+    }
+
 
     return(
         <>
@@ -100,10 +111,13 @@ const ApiStatusModal = (props) =>{
                         <div className={"api-status-create"}>
                             <Form  preserve={false} form={form}>
                                 <Form.Item  name="name"  >
-                                    <Input style={{width:500}}  placeholder={"状态名称"} />
+                                    <Input style={{width:450}}  placeholder={"状态名称"} />
                                 </Form.Item>
                             </Form>
                             {/*<SketchPicker color={color} onChangeComplete={(color)=>setColor(color.hex)}/>*/}
+                            {
+                                toggleColorPick()
+                            }
                             <Button type="primary" onClick={onSave}>新建</Button>
                         </div>
                     </div>

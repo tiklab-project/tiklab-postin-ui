@@ -58,7 +58,7 @@ const DataStructureEdit = (props) => {
             <Modal
                 destroyOnClose={true}
                 title={props.name}
-                visible={visible}
+                open={visible}
                 onCancel={onCancel}
                 onOk={onFinish}
                 okText="提交"
@@ -66,11 +66,9 @@ const DataStructureEdit = (props) => {
                 centered
             >
                 <Form
-                    name="basic"
-                    initialValues={{ remember: true }}
                     form={form}
-                    onFinish={onFinish}
                     preserve={false}
+                    layout={"vertical"}
                 >
                     <Form.Item
                         label="编码"

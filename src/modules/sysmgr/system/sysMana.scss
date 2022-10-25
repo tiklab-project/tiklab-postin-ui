@@ -31,6 +31,8 @@
         .aside-li{
             cursor: pointer;
             padding: 0 15px 0 30px;
+            display: flex;
+            align-items: center;
         }
 
         .orga-aside-item {
@@ -99,5 +101,12 @@
 .ant-modal-close-x{
     display: flex !important;
     justify-content: center;
+    align-items: center;
+}
+
+.menu-name-icon{
+    display: flex;
+    width: 120px;
+    height: 30px;
     align-items: center;
 }

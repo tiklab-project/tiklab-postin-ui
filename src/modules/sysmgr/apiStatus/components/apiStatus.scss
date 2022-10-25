@@ -36,6 +36,7 @@
     .api-status-create {
         display: flex;
         justify-content: space-between;
+        align-items: center;
     }
 }
 
@@ -44,5 +45,48 @@
     //min-height: 200px;
     padding: 10px;
 
+}
+
+.status-color-box{
+    position: relative;
+
+    &-picker{
+        display: none;
+        position: absolute;
+        top: 30px;
+        left: -95px;
+    }
+
+    &-select{
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+    }
+
+}
+.status-color-box:hover .status-color-box-picker{
+    display: block;
+    z-index: 10;
+    background: #fff;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.status-option-bg{
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin: 0 5px 3px 0;
+    border-radius: 10px;
+}
+
+.workspace-text-icon-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: #d6efff;
+    width: 36px;
+    height: 36px;
 }
 

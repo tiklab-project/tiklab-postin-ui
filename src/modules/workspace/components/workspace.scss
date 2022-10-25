@@ -16,6 +16,7 @@ ul{
 .changeBox{
     width: 240px;
     background: #fafafa;
+    border-right: 1px solid #f0f0f0;
 }
 
 
@@ -34,9 +35,22 @@ ul{
 
 }
 
+.workspace-icon{
+    width:36px;
+    height:36px;
+    margin:2px 0 0 0;
+}
+
 
 .dragbox:hover{
     background-color: #6aa5ff;
+}
+
+.list-box-cell{
+
+    .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
+        padding: 6px ;
+    }
 }
 
 
@@ -59,11 +73,12 @@ ul{
     height: 50px;
     align-items: center;
     justify-content: space-between;
-    border-bottom:1px solid #e4e4e4 ;
-    margin: 0 0 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 0 0 5px 0;
 
     .ws-header-menu-left{
         display: flex;
+        align-items: center;
     }
 
     .ws-header-menu-right{
@@ -84,6 +99,14 @@ ul{
     .ws-header-menu-item-selected{
         color: #008aff;
         border-bottom:3px solid #008cff;
+    }
+
+    .ws-header-menu-input{
+        padding: 14px;
+        margin: 0 15px 0 0;
+        width: 200px;
+        height: 32px;
+        border-radius: 5px;
     }
 }
 

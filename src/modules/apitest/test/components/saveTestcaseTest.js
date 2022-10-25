@@ -90,7 +90,7 @@ const SaveTestcase = (props) => {
         <Modal
             destroyOnClose={true}
             title='保存用例'
-            visible={visible}
+            open={visible}
             onCancel={onCancel}
             onOk={onFinish}
             okText="提交"

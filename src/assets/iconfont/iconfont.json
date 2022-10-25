@@ -6,6 +6,146 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "8802669",
+      "name": "切换",
+      "font_class": "qiehuan",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
+      "icon_id": "22391273",
+      "name": "项目升级",
+      "font_class": "xiangmushengji",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "31170187",
+      "name": "消息",
+      "font_class": "xiaoxi1",
+      "unicode": "e774",
+      "unicode_decimal": 59252
+    },
+    {
+      "icon_id": "1120961",
+      "name": "编辑",
+      "font_class": "bianji11",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "1304884",
+      "name": "删除",
+      "font_class": "shanchu3",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "11372701",
+      "name": "收藏",
+      "font_class": "shoucang",
+      "unicode": "e8b9",
+      "unicode_decimal": 59577
+    },
+    {
+      "icon_id": "11372777",
+      "name": "收藏",
+      "font_class": "shoucang1",
+      "unicode": "e8c6",
+      "unicode_decimal": 59590
+    },
+    {
+      "icon_id": "2076271",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e892",
+      "unicode_decimal": 59538
+    },
+    {
+      "icon_id": "826132",
+      "name": "日志记录",
+      "font_class": "rizhijilu",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "10934999",
+      "name": "消息",
+      "font_class": "xiaoxi",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "11975949",
+      "name": "Todo-List",
+      "font_class": "zu",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "658017",
+      "name": "个人",
+      "font_class": "geren",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "2674477",
+      "name": "身份证",
+      "font_class": "shenfenzheng",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "9743338",
+      "name": "集群-面性",
+      "font_class": "jiqun-mianxing",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "24275425",
+      "name": "场景",
+      "font_class": "changjing",
+      "unicode": "e673",
+      "unicode_decimal": 58995
+    },
+    {
+      "icon_id": "1302",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "1125606",
+      "name": "添加",
+      "font_class": "tianjia",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "4657681",
+      "name": "添加",
+      "font_class": "tianjia-",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "16290359",
+      "name": "创建&添加&批量添加",
+      "font_class": "chuangjiantianjiapiliangtianjia",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "29972101",
+      "name": "头像 商务男人",
+      "font_class": "a-ziyuan106",
+      "unicode": "e699",
+      "unicode_decimal": 59033
+    },
+    {
       "icon_id": "82754",
       "name": "删除2",
       "font_class": "shanchu2",
@@ -74,13 +214,6 @@
       "font_class": "user__easyico",
       "unicode": "e600",
       "unicode_decimal": 58880
-    },
-    {
-      "icon_id": "4152742",
-      "name": "用户头像",
-      "font_class": "yonghutouxiang",
-      "unicode": "e634",
-      "unicode_decimal": 58932
     },
     {
       "icon_id": "687392",

@@ -32,15 +32,15 @@ export class WorkspaceFollowStore {
 	}
 
 	@action
-	findWorkspaceFollowList = async (userId) => {
+	findWorkspaceFollowList = async (value) => {
 		this.params = {
-			userId:userId,
+			...value,
 			orderParams:[{name:'createTime', orderType:'desc'}],
 		}
 		const res = await findWorkspaceFollowList(this.params)
 		if(res.code === 0 ) {
 			this.followList = res.data;
-			this.length = res.data.length;
+
 			return res;
 		}
 	}
@@ -60,24 +60,11 @@ export class WorkspaceFollowStore {
 
 	// 新建
 	@action
-	createWorkspaceFollow = async (values) => {
-
-		const res = await createWorkspaceFollow(values);
-		if(res.code === 0 ) {
-			return res.data
-		}
-	}
+	createWorkspaceFollow = async (values) => await createWorkspaceFollow(values);
 
 	//更新
 	@action
-	updateWorkspaceFollow = async (values) => {
-
-		const res = await updateWorkspaceFollow(values);
-		if(res.code === 0 ) {
-			return res.data
-		}
-	}
-
+	updateWorkspaceFollow = async (values) => await updateWorkspaceFollow(values);
 
 }
 

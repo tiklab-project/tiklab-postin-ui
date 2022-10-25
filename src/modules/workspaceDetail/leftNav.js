@@ -1,8 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ProxySelect from "../common/request/proxySelect";
-import WorkspaceSetting from "../integration/workspaceSetting/workspaceSetting";
+import {inject, observer} from "mobx-react";
+import {getUser} from "tiklab-core-ui";
+import {Space} from "antd";
+import {toWorkspaceDetail} from "../workspace/components/workspaceFn";
 
 const LeftNav = (props) =>{
+    const {workspaceStore,workspaceRecentStore} = props;
+    const {workspaceName,workspaceList,findWorkspaceList } = workspaceStore;
+    const {workspaceRecent}=workspaceRecentStore;
     const menuData = [
 
         {
@@ -22,16 +28,22 @@ const LeftNav = (props) =>{
             "key":"dataStructure",
             "router":"/workspace/dataStructure"
         },
-        // {
-        //     "icon":"quanxian",
-        //     "name":"空间设置",
-        //     "key":"workspaceSetting",
-        //     "router":"/workspace/workspaceSetting"
-        // },
     ]
+
+    const setting= {
+            "icon":"setting",
+            "name":"空间设置",
+            "key":"workspaceSetting",
+            "router":"/workspace/setting"
+        }
+
 
     const workspaceId = localStorage.getItem("workspaceId")
     const leftMenuSelect = localStorage.getItem("LEFT_MENU_SELECT")
+
+    useEffect(()=>{
+        findWorkspaceList({userId:getUser().userId})
+    },[])
 
     const clickAddRouter = (data) =>{
 
@@ -113,24 +125,84 @@ const LeftNav = (props) =>{
         })
     }
 
+    const showIcon = (text)=>{
+        let t = text.substring(0,1).toUpperCase();
+
+        return <div className={"workspace-text-icon-box"}>
+            <span>{t}</span>
+        </div>
+    }
+
+    const showWorkspaceList = (list) =>{
+        return list&&list.map(item=>{
+            return (
+                <div className={"ws-hover-item"} key={item.id} onClick={()=>toggleWorkspace(item.id)}>
+                    <Space>
+                        {showIcon(item.workspaceName)}
+                        {item.workspaceName}
+                    </Space>
+                </div>
+            )
+        })
+    }
+
+
+
+    const toggleWorkspace = (workspaceId)=>{
+        toWorkspaceDetail(workspaceId,getUser().userId,workspaceRecent)
+
+        props.history.push('/workspace');
+    }
 
     return(
         <>
             <ul className={"ws-detail-left-nav"}>
-                <li  className={`ws-detail-left-nav-item-workspace `}  onClick={clickWorkspaceIcon}>
-                    <svg className="ws-detail-left-nav-icon" aria-hidden="true">
-                        <use xlinkHref= {`#icon-xiangmu`} />
-                    </svg>
-                </li>
-                {
-                    showMenuItem(menuData)
-                }
-                <WorkspaceSetting {...props}/>
+                <div>
+                    <li
+                        className={`ws-detail-left-nav-item-workspace `}
+                        onClick={clickWorkspaceIcon}
 
-                <ProxySelect />
+                    >
+                        <div className={"ws-icon-box"}>
+
+                            <span style={{"cursor":"pointer"}}>
+                                {showIcon(workspaceName)}
+                            </span>
+                            <div className={"ws-hover-box"}>
+                                <div className={"ws-hover-box-title"}>
+                                    <svg className="icon" aria-hidden="true" >
+                                        <use xlinkHref= {`#icon-qiehuan`} />
+                                    </svg>
+                                    切换空间
+                                </div>
+                                {
+                                    showWorkspaceList(workspaceList)
+                                }
+                            </div>
+                        </div>
+
+                    </li>
+                    {
+                        showMenuItem(menuData)
+                    }
+                </div>
+                <div>
+                    <ProxySelect />
+
+                    <div className={`ws-detail-left-nav-item`} onClick={()=>clickAddRouter(setting)}>
+                        <div className={`ws-detail-left-nav-item-box  ws-detail-left-nav-item-setting`}>
+                            <div className={"ws-detail-left-nav-item-detail"}>
+                                <svg className="icon" aria-hidden="true">
+                                    <use xlinkHref= {`#icon-setting`}/>
+                                </svg>
+                            </div>
+                            <div  className={"ws-detail-left-nav-item-detail"} >  设置 </div>
+                        </div>
+                    </div>
+                </div>
             </ul>
         </>
     )
 }
 
-export default LeftNav;
+export default inject("workspaceStore","workspaceRecentStore")(observer(LeftNav));

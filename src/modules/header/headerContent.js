@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {Col, Row, Dropdown, Menu, Badge} from "antd";
+import {Col, Row, Dropdown, Menu, Badge, Space} from "antd";
 import {Search} from "../index";
-import {useWorkAppConfig} from "tiklab-eam-ui"
+import {Profile, WorkAppConfig} from "tiklab-eam-ui"
 import {getUser} from "tiklab-core-ui"
 import { BellOutlined } from '@ant-design/icons';
 import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";
-import logo from "../../assets/img/log.png";
+import logo from "../../assets/img/postin.png";
+import MessageDrawer from "../sysmgr/message/messageDrawer";
 
 
 const HeaderContent = props => {
-    const {userMessageStore,logout,versionImg,accountAndMember} = props;
+    const {userMessageStore,logout,versionImg} = props;
     const {userMessageNum} = userMessageStore;
 
     const { i18n } = useTranslation();
@@ -19,7 +20,7 @@ const HeaderContent = props => {
 
     let userInfo = getUser();
 
-    const [component, ModalComponent, editOrAddModal] = useWorkAppConfig(false);
+
 
     const onClickLan = ({ key }) => {
         i18n.changeLanguage(languageData[key])
@@ -36,31 +37,34 @@ const HeaderContent = props => {
         </Menu>
     );
 
+
     const toMessage = () =>{
         props.history.push("/MessageUser");
     }
 
 
+    //去往系统设置页
     const toSystem = () =>{
         props.history.push("/systemManagement")
     }
 
-    const toAccMember = () =>{
-        props.history.push("/accountMember")
-    }
 
     return(
         <Row className="frame-header">
             <Col span={12}>
-                <div className={'frame-header-right'}>
-                    {component}
+                {/*<div className={'frame-header-right'}>*/}
+                <Space size={"large"}>
+
+
+                    <WorkAppConfig isSSO={false}/>
                     <div className={'frame-header-logo'}>
                         {logo && <img src={logo} alt='logo' />}
                     </div>
                     <div className={"header-menu-box"}>
                         <HeaderMenu {...props}/>
                     </div>
-                </div>
+                </Space>
+                {/*</div>*/}
             </Col>
             <Col span={12}>
                 <div className={'frame-header-right'}>
@@ -69,62 +73,50 @@ const HeaderContent = props => {
                             <Search {...props}/>
                         </div>
                         <div className={"header-right-item"}>
-                            <Badge count={userMessageNum}>
-                                <BellOutlined style={{fontSize: 21}} onClick={toMessage}/>
-                            </Badge>
+                            <MessageDrawer />
                         </div>
-                        {/*<div className={"header-right-item"}>*/}
-                            <Dropdown overlay={menu} className={'frame-header-dropdown'}>
-                                <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
-                                    <use xlinkHref= {`#icon-yuyan`} />
-                                </svg>
-                            </Dropdown>
-                        {/*</div>*/}
+                        <Dropdown overlay={menu} className={'frame-header-dropdown'}>
+                            <svg className=" user-header-icon-hover" aria-hidden="true">
+                                <use xlinkHref= {`#icon-yuyan`} />
+                            </svg>
+                        </Dropdown>
                         <div className={"header-right-item"} >
-                            <div className={"toggle-hover"}>
-                                <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
-                                    <use xlinkHref= {`#icon-setting`} />
-                                </svg>
-                                <div className={"toggle-hidden-box setting-setting-box"}>
-                                    <div className={"user-hidden-item"} onClick={toAccMember} > 账号与成员  </div>
-                                    <div className={"user-hidden-item"} onClick={toSystem}>系统设置</div>
-                                </div>
-                            </div>
-
+                            <svg className=" user-header-icon-hover" aria-hidden="true"  onClick={toSystem}>
+                                <use xlinkHref= {`#icon-setting`} />
+                            </svg>
                         </div>
-                        {
-                            props.isSignIn&&!userInfo.ticket
-                                ? props.isSignIn
-                                :<div className={"header-right-item"}>
-                                    <div className={"toggle-hover"}>
-                                        <svg className="user-header-icon user-header-icon-hover" aria-hidden="true">
-                                            <use xlinkHref= {`#icon-user__easyico`} />
-                                        </svg>
-                                        <div className={"toggle-hidden-box header-user-box"}>
-                                            <div className={"user-detail-box"}>
-                                                <div className={"user-detail-item  user-detail-item-icon"}>
-                                                    <svg className="user-header-icon" aria-hidden="true">
-                                                        <use xlinkHref= {`#icon-user__easyico`} />
-                                                    </svg>
-                                                </div>
-                                                <div className={"user-detail-item"}>
-                                                    <div className={"user-detail-item-name"}>{userInfo.name}</div>
-                                                    <div>{userInfo.email}</div>
-                                                </div>
-                                            </div>
-                                            <div className={"user-hidden-item"} onClick={logout}>退出登录</div>
+                        <div className={"header-right-item"}>
+                            <div className={"toggle-hover"}>
+                                <div className="user-header-icon-hover">
+                                    <Profile userInfo={getUser()}/>
+                                </div>
+                                <div className={"toggle-hidden-box header-user-box"}>
+                                    <div className={"user-detail-box"}>
+                                        <div className={"user-detail-item  user-detail-item-icon"}>
+                                            <svg className="header-user-icon" aria-hidden="true">
+                                                <use xlinkHref= {`#icon-a-ziyuan106`} />
+                                            </svg>
+                                        </div>
+                                        <div className={"user-detail-item"}>
+                                            <div className={"user-detail-item-name"}>{userInfo.name}</div>
+                                            <div>{userInfo.email}</div>
                                         </div>
                                     </div>
+                                    <div className={"user-hidden-item"} onClick={logout}>
+                                        <svg className="user-header-icon" aria-hidden="true">
+                                            <use xlinkHref= {`#icon-tuichu`} />
+                                        </svg>
+                                        <span>退出登录</span>
+                                    </div>
                                 </div>
-                        }
+                            </div>
+                        </div>
 
                         <div className={"header-right-item"}>
                             {versionImg()}
                         </div>
                     </div>
                 </div>
-                {ModalComponent}
-                {editOrAddModal}
             </Col>
         </Row>
     )

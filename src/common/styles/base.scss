@@ -93,15 +93,12 @@ $blue-main: #0053ca;
 
 // 表头设置
 .ant-table-thead>tr .ant-table-cell{
-    background: #f3f3f3;
     font-weight: 600;
-    padding: 10px;
+    padding: 5px;
+    font-size: 13px;
 }
 
-//表格体单元格
-.ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-    padding: 4px !important;
-}
+
 
 .ant-table-tbody .ant-table-cell{
     //border:none
@@ -117,8 +114,8 @@ table{
 }
 
 .search-input{
-    width: 300px!important;
-    border-radius: 15px;
+    width: 200px!important;
+    border-radius: 5px;
 }
 
 

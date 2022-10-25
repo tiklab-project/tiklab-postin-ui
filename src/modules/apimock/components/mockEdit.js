@@ -21,7 +21,7 @@ const MockEdit = (props) => {
 
     const showModal = () => {
 
-        if(props.type === '编辑') {
+        if(props.type === 'edit') {
             findMock(props.mockId).then((res)=>{
                 setEnable(res.enable)
                 form.setFieldsValue({
@@ -40,7 +40,7 @@ const MockEdit = (props) => {
         let values = await form.validateFields();
 
         values.http={id:apxMethodId}
-        if(props.type === '编辑') {
+        if(props.type === 'edit') {
             values.id = props.mockId;
             values.enable = enable;
             updateMock(values).then(()=>{
@@ -62,23 +62,25 @@ const MockEdit = (props) => {
         <>
         {
             props.btn === 'btn'
-                ? <Button className="important-btn" onClick={showModal}>{props.type}</Button>
-                : <a style={{'cursor':'pointer'}} onClick={showModal}>{props.type}</a>
+                ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+                : <svg className="edit-icon" aria-hidden="true" onClick={showModal}>
+                    <use xlinkHref= {`#icon-bianji11`} />
+                </svg>
         }
         <Modal
             destroyOnClose={true}
-            title={props.type}
-            visible={visible}
+            title={props.name}
+            open={visible}
             onCancel={onCancel}
             onOk={onFinish}
             okText="提交"
             cancelText="取消"
         >
             <Form
-                {...layout}
                 form={form}
                 onFinish={onFinish}
                 preserve={false}
+                layout={"vertical"}
             >
                 <Form.Item
                     label="mock名称"

@@ -58,10 +58,8 @@ const TestCaseList = (props) => {
             width:"15%",
             render: (text, record )=>(
                 <Space  size="middle">
-                    {/*<a onClick={()=>singleTest(record)}>测试</a>*/}
-                    <div>
-                        <TestCaseEdit type="编辑"  testcaseId={record.id} {...props} >编辑</TestCaseEdit>
-                    </div>
+
+                    <TestCaseEdit type="edit" name={"编辑"}  testcaseId={record.id} {...props} />
                     <Popconfirm
                         title="确定删除？"
                         onConfirm={() =>deleteTestCase(record.id).then(()=>findTestCaseList(methodId))}
@@ -69,7 +67,9 @@ const TestCaseList = (props) => {
                         cancelText='取消'
                         placement="topRight"
                     >
-                        <a className="table-delete" > 删除 </a>
+                        <svg className="edit-icon" aria-hidden="true">
+                            <use xlinkHref= {`#icon-shanchu3`} />
+                        </svg>
                     </Popconfirm>
                 </Space>
             )
@@ -139,20 +139,22 @@ const TestCaseList = (props) => {
 
 
     return(
-        <>
-            <div className='testCase-header'>
-                <TestCaseEdit  btn='btn' type="添加用例" {...props}>添加用例</TestCaseEdit>
+        <div className={"content-box-center"}>
+            <div className='list-content-center'>
+                <div className='testCase-header'>
+                    <TestCaseEdit  btn='btn' name="添加用例" {...props}/>
+                </div>
+                <Table
+                    columns={column}
+                    dataSource={testCaseList}
+                    rowKey = {record => record.id}
+                    // rowSelection ={{
+                    //     ...rowSelection,
+                    // }}
+                    pagination={false}
+                />
             </div>
-            <Table
-                columns={column}
-                dataSource={testCaseList}
-                rowKey = {record => record.id}
-                // rowSelection ={{
-                //     ...rowSelection,
-                // }}
-                pagination={false}
-            />
-        </>
+        </div>
     )
 
 }

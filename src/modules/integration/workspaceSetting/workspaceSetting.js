@@ -1,100 +1,95 @@
-import React from "react";
-import {renderRoutes} from "react-router-config";
-import "./workspaceSetting.scss"
-import SideMenu from "../../common/sideMenu";
-import {Radio, Space} from "antd";
+import React, {useEffect, useState} from "react";
+import {Button, Collapse, Form, Input} from "antd";
+import EdiText from "react-editext";
+import {inject, observer} from "mobx-react";
 
-function getItem(label, key, icon, children, type) {
-    return {
-        key,
-        icon,
-        children,
-        label,
-        type,
-    };
-}
+const { Panel } = Collapse;
+const {TextArea} = Input;
 
+
+const formItemLayout = {
+    labelCol: { span: 0 },
+    wrapperCol: { span: 1 },
+};
 
 const WorkspaceSetting = (props) =>{
+    const {workspaceStore} = props;
+    const {updateWorkspace,findWorkspace,deleteWorkspace} = workspaceStore;
 
-    const items=[
-        {
-            title: '空间成员',
-            key: '/workspace/role',
-            icon: 'icon-modular',
-        },{
-            title: '空间权限',
-            key: '/workspace/workspacePrivilege',
-            icon: 'icon-modular',
+    let workspaceId = localStorage.getItem("workspaceId");
+    const [form] = Form.useForm();
+
+    useEffect(()=>{
+        findWorkspace(workspaceId).then(res=>{
+            form.setFieldsValue({
+                workspaceName: res.workspaceName,
+                desc:res.desc
+            })
+        })
+    },[workspaceId])
+
+    const onFinish = (values) =>{
+        let param = {
+            id:workspaceId,
+            ...values,
         }
-    ]
-
-    const selectKeyFun = (key)=>{
-        //点击左侧导航，设置选择项,用于刷新后还能选择。
-        localStorage.setItem("LEFT_MENU_SELECT","setting");
-
-        props.history.push(key);
+        updateWorkspace(param);
     }
 
+    const deleteFn = (workspaceId) =>{
+        deleteWorkspace(workspaceId)
 
-
-    const showSetting = (data) =>{
-        return data&&data.map(item=>{
-            return (
-                <li key={item.key} style={{  margin:"0 auto"}} >
-                    <div className={`nav-setting-item`}
-                         key={item.key}
-                         onClick={()=>selectKeyFun(item.key)}
-                    >
-                        <svg className="icon" aria-hidden="true">
-                            <use xlinkHref= {`#${item.icon}`} />
-                        </svg>
-                        <span >
-                            {item.title}
-                        </span>
-                    </div>
-                </li>
-            )
-        })
+        props.history.push("/workspacePage")
     }
 
 
     return(
-        // <div className={"workspace-setting-box"}>
-        //     <SideMenu
-        //         item={items}
-        //         selectedKey={"/workspace/workspaceSetting/apistatus"}
-        //         {...props}
-        //     />
-        //
-        //     <div className={"workspace-setting-right"}>
-        //         {
-        //             renderRoutes(routes)
-        //         }
-        //     </div>
-        //
-        // </div>
-        <div className={"ws-nav-setting"}>
-            <div className={`ws-detail-left-nav-item`} >
-                <div className={`ws-detail-left-nav-item-box  ws-detail-left-nav-item-setting`}>
-                    <div className={"ws-detail-left-nav-item-detail"}>
-                        <svg className="icon" aria-hidden="true">
-                            <use xlinkHref= {`#icon-setting`}/>
-                        </svg>
-                    </div>
-                    <div  className={"ws-detail-left-nav-item-detail"}>设置</div>
-                </div>
+        <div className={"ws-setting-flex"}>
+            <div className={"ws-setting-box"}>
+                <div className={"ws-setting-title"}>空间设置 </div>
+
+                <Collapse  >
+                    <Panel header="编辑空间" key="1">
+                        <div style={{width:800}}>
+                            <Form
+                                className='ws-edit-modal-form'
+                                form={form}
+                                preserve={false}
+                                layout={"vertical"}
+                                onFinish={onFinish}
+                            >
+                                <Form.Item
+                                    label="应用名称"
+                                    rules={[{ required: true, message: '添加目录名称!' }]}
+                                    name="workspaceName"
+                                >
+                                    <Input />
+                                </Form.Item>
+                                <Form.Item
+                                    label="描述"
+                                    name="desc"
+                                >
+                                    <TextArea rows={4} />
+                                </Form.Item>
+                                <Form.Item {...formItemLayout}>
+                                    <Button type="primary" htmlType="submit">  保存 </Button>
+                                </Form.Item>
+                            </Form>
+
+
+                        </div>
+
+                    </Panel>
+                    <Panel header="删除空间" key="2">
+                        <div style={{color:"#ff6767","margin":"0 0 10px 0"}}>删除存储库后，将无法找回</div>
+                        <Button type="primary" danger onClick={()=>deleteFn(workspaceId)}>删除空间</Button>
+                    </Panel>
+                </Collapse>
             </div>
-            <div className={`nav-setting-box `}>
-                <ul className="nav-setting-menu">
-                    {
-                        showSetting(items)
-                    }
-                </ul>
-            </div>
+
         </div>
+
     )
 }
 
-
-export default WorkspaceSetting;
+export default inject("workspaceStore")(observer(WorkspaceSetting));

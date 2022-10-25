@@ -102,9 +102,9 @@ const MockDetail = (props) =>{
                 </div>
                 <Button danger onClick={deleteMockFn}>删除</Button>
             </div>
-            <div className='title ex-title'>期望参数</div>
+            <div className='header-title ex-title'>期望参数</div>
             <MockRequest {...props} />
-            <div className='title ex-title'>返回结果</div>
+            <div className='header-title  ex-title'>返回结果</div>
             <Form
                 form={form}
             >

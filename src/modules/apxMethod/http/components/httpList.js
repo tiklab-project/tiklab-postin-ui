@@ -16,16 +16,14 @@ const HttpList = (props) => {
         {
             title: '名称',
             dataIndex: ["apix",'name'],
-            width: '25%',
+            width: '15%',
             render: (text,record) => (
-                <a onClick = {()=>setLocalStorage(record)}>{text}</a>
+                <Space size={"middle"}>
+                    <MethodType type={record.methodType}/>
+                    <a onClick = {()=>setLocalStorage(record)}>{text}</a>
+                </Space>
+
             )
-        },
-        {
-            title: '类型',
-            dataIndex: 'methodType',
-            width: '8%',
-            render:(text,record)=>(<MethodType type={text}/>)
         },
         {
             title: '地址',
@@ -40,7 +38,7 @@ const HttpList = (props) => {
         {
             title: '状态',
             dataIndex: ['apix','status','name'],
-            width: '10%',
+            width: '8%',
             render:(text) =>(
                 <span>{text}</span>
             )
@@ -55,7 +53,7 @@ const HttpList = (props) => {
             dataIndex: 'operation',
             width: '10%',
             render: (text, record) =>(
-                <Space>
+                <Space  size="middle">
                     <ApxMethodEdit
                         name="编辑"
                         httpId={record.id}
@@ -67,7 +65,9 @@ const HttpList = (props) => {
                         okText='确定'
                         cancelText='取消'
                     >
-                        <a href="#" style={{color:'red'}}>删除</a>
+                        <svg className="edit-icon" aria-hidden="true">
+                            <use xlinkHref= {`#icon-shanchu3`} />
+                        </svg>
                     </Popconfirm>
                 </Space>
             )
@@ -139,34 +139,37 @@ const HttpList = (props) => {
     }
 
     return(
-        <div className='main-contant'>
-            <div className={'category-search'}>
-                <ApxMethodEdit
-                    name="添加接口"
-                    type="add"
-                    isBtn={'btn'}
-                    {...props}
-                    // pagination={params}
-                />
-                <Input
-                    placeholder={'搜索接口'}
-                    onPressEnter={onSearch}
-                    className='search-input'
-                    style={{width:240}}
+        <div className={"content-box-center"}>
+            <div className='list-content-center'>
+                <div className={'category-search'}>
+                    <Input
+                        placeholder={'搜索接口'}
+                        onPressEnter={onSearch}
+                        className='search-input'
+                        style={{width:240}}
+                    />
+                    <ApxMethodEdit
+                        name="添加接口"
+                        type="add"
+                        isBtn={'btn'}
+                        {...props}
+                        // pagination={params}
+                    />
+                </div>
+                <Table
+                    dataSource={apxMethodList}
+                    columns={columns}
+                    rowKey={record => record.id}
+                    pagination={false}
+                    // pagination={{
+                    //     current:currentPage,
+                    //     pageSize:pageSize,
+                    //     total:totalRecord,
+                    // }}
+                    // onChange = {(pagination) => onTableChange(pagination)}
                 />
             </div>
-            <Table
-                dataSource={apxMethodList}
-                columns={columns}
-                rowKey={record => record.id}
-                pagination={false}
-                // pagination={{
-                //     current:currentPage,
-                //     pageSize:pageSize,
-                //     total:totalRecord,
-                // }}
-                // onChange = {(pagination) => onTableChange(pagination)}
-            />
+
         </div>
     )
 }

@@ -1,54 +1,51 @@
 
-import React, { Fragment, useState } from 'react';
-import { renderRoutes } from "react-router-config";
+import React, { useEffect, useState} from 'react';
 import './workspace.scss';
 import BreadcrumbEx from "../../common/breadcrumbEx";
 import {Input, Space} from "antd";
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 import WorkspaceEdit from "./workspaceEdit";
+import WorkspaceList from "./workspaceList";
 
-
+//空间页
 const Workspace = (props) => {
     const {workspaceStore} = props;
 
-    const {selectedItem,menuSelected} = workspaceStore;
+    const {findWorkspaceList,findWorkspaceJoinList,findWorkspaceFollowList,findWorkspaceRecentList} = workspaceStore;
+
 
     const userId = getUser().userId;
-    const router = props.route.routes;
+    const [selectItem, setSelectItem] = useState("all");
 
-    //空间列表左侧导航列表
+    //空间筛选列表
     const items = [
         {
-            title: '我创建的空间',
+            title: '创建',
             key: `create`,
-            router:"/workspacePage/create"
         },{
-            title: '我参与的空间',
+            title: '参与',
             key: `join`,
-            router:"/workspacePage/join"
         },{
-            title: `最近浏览`,
+            title: `浏览`,
             key: `recent`,
-            router:"/workspacePage/recent"
         },{
-            title: '我关注的空间',
+            title: '收藏',
             key: `follow`,
-            router:"/workspacePage/follow"
         },{
-            title: '所有空间',
+            title: '所有',
             key: `all`,
-            router:"/workspacePage/all"
         }
     ];
 
 
+    //渲染筛选项
     const showMenu = (data) =>{
         return data&&data.map(item=>{
             return(
                 <div
                     key={item.key}
-                    className={`ws-header-menu-item  ${item.key === selectedItem ? "ws-header-menu-item-selected" : ""}`}
+                    className={`ws-header-menu-item  ${item.key === selectItem ? "ws-header-menu-item-selected" : ""}`}
                     onClick={()=>selectKeyFun(item)}
                 >
                     <span> {item.title} </span>
@@ -58,79 +55,91 @@ const Workspace = (props) => {
         })
     }
 
+    useEffect(()=>{
+        findList()
+    },[])
+
     const selectKeyFun = (item)=>{
-        menuSelected(item.key)
-        props.history.push(item.router);
+        setSelectItem(item.key)
+
+        findList({},item.key)
     }
 
     const onSearch = (e) =>{
-        switch (selectedItem) {
+        let name = {name:e.target.value}
+        findList(name)
+    }
+
+    const findList = (name,selectIndex)=>{
+        let uId = {userId:userId}
+
+
+        switch (selectIndex?selectIndex:selectItem) {
             case "all":
-                // findwsList({name:e.target.value})
+                findWorkspaceList(name)
                 break;
             case "create":
-                // let param = {
-                //     userId:userId,
-                //     name:e.target.value
-                // }
-                // findwsList(param)
+                let param = {
+                    ...uId,
+                    ...name
+                }
+                findWorkspaceList(param)
                 break;
             case "join":
-                break;
-            case "recent":
+                let params= {
+                    ...uId,
+                    ...name
+                }
+                findWorkspaceJoinList(params)
                 break;
             case "follow":
+                findWorkspaceFollowList(uId)
+                break;
+            case "recent":
+                findWorkspaceRecentList(uId)
                 break;
         }
-
     }
+
 
     const rightContent = () =>{
         return(
-            <Space>
-                <Input
-                    placeholder={`搜索空间`}
-                    onPressEnter={onSearch}
-                />
-                <WorkspaceEdit
-                    name={"添加空间"}
-                    btn={"btn"}
-                    userId={userId}
-                    {...props}
-                />
-            </Space>
+            <WorkspaceEdit
+                name={"添加空间"}
+                btn={"btn"}
+                userId={userId}
+                findList={findList}
+                selectItem={selectItem}
+                {...props}
+            />
         )
     }
 
 
     return(
-        // <Fragment>
-        //     <div className="ws-layout">
-        //         <SideMenu
-        //             item={items}
-        //             selectedKey={"/workspacePage/create"}
-        //             {...props}
-        //         />
-        //
-        //         <div className='ws-content'>
-        //             <div className="ws-content-box">
-        //                 {renderRoutes(router)}
-        //             </div>
-        //         </div>
-        //     </div>
-        // </Fragment>
         <div className='ws-layout'>
             <BreadcrumbEx list={["主页","空间"]} />
             <div className={"ws-header-menu"}>
-                <div className={"ws-header-menu-left"}>{showMenu(items)}</div>
+                <div className={"ws-header-menu-left"}>
+                    {showMenu(items)}
+                    <Input
+                        placeholder={`搜索空间`}
+                        onPressEnter={onSearch}
+                        className={"ws-header-menu-input"}
+                    />
+                </div>
                 <>{rightContent()}</>
             </div>
 
             <div className='contant-box'>
-                {renderRoutes(router)}
+                <WorkspaceList
+                    {...props}
+                    findList={findList}
+                    selectItem={selectItem}
+                />
             </div>
         </div>
     )
 }
 
-export default inject("workspaceStore")(observer(Workspace));
+export default inject("workspaceStore","workspaceFollowStore","workspaceRecentStore")(observer(Workspace));

@@ -63,61 +63,131 @@ const SysManage = (props) => {
 
     // 无子级菜单处理
     const renderMenu = (data,deep)=> {
-        return (
-            <PrivilegeButton code={data.encoded}  key={data.key}>
-                <li
-                    key={data.key}
-                    className={` orga-aside-li ${data.key=== selectKey ? "orga-aside-select" : null}`}
-                    onClick={()=>select(data.key)}
-                    style={{paddingLeft:`${deep*20+5}px`}}
-                >
-                    <div className={'aside-li'} >
-                        {data.title}
-                    </div>
-                </li>
-            </PrivilegeButton>
-        )
+        if(data.encoded){
+            return (
+                <PrivilegeButton code={data.encoded}  key={data.key}>
+                    <li
+                        key={data.key}
+                        className={` orga-aside-li ${data.key=== selectKey ? "orga-aside-select" : null}`}
+                        onClick={()=>select(data.key)}
+                        style={{paddingLeft:`${deep*20+5}px`}}
+                    >
+                        <div className={'aside-li'} >
+                            <svg style={{width:18,height:18,margin:"0 5px 0 0"}} aria-hidden="true">
+                                <use xlinkHref= {`#icon-${data.icon}`} />
+                            </svg>
+
+                            {data.title}
+                        </div>
+                    </li>
+                </PrivilegeButton>
+            )
+        }else {
+           return <li
+                key={data.key}
+                className={` orga-aside-li ${data.key=== selectKey ? "orga-aside-select" : null}`}
+                onClick={()=>select(data.key)}
+                style={{paddingLeft:`${deep*20+5}px`}}
+            >
+                <div className={'aside-li'} >
+                    <svg style={{width:18,height:18,margin:"0 5px 0 0"}} aria-hidden="true">
+                        <use xlinkHref= {`#icon-${data.icon}`} />
+                    </svg>
+
+                    {data.title}
+                </div>
+            </li>
+        }
+
     }
 
     // 子级菜单处理
     const renderSubMenu = ({title,key,children,encoded,icon},deep)=> {
-        return (
-              <PrivilegeButton code={encoded} key={key}>
-                  <li key={key} title={title} >
-                      <div className="orga-aside-item aside-li"
-                           onClick={() => setOpenOrClose(key)}
-                           style={{paddingLeft:`${deep*20+5}px`}}
-                      >
-                          {/*<svg style={{width:18}} aria-hidden="true">*/}
-                          {/*    <use xlinkHref= {`#icon-${icon}`} />*/}
-                          {/*</svg>*/}
-                          <span key={key}>
-                              {title}
-                          </span>
-                          <div className="orga-aside-item-icon">
-                              {
-                                  children ?
-                                  (isExpandedTree(key)
-                                       ? <DownOutlined  style={{fontSize: "12px"}}/>
-                                       : <UpOutlined  style={{fontSize: "12px"}}/>
-                                  ): ""
-                              }
-                          </div>
-                      </div>
+        if(encoded){
+            return (
+                <PrivilegeButton code={encoded} key={key}>
+                    <li key={key} title={title} >
+                        <div className="orga-aside-item aside-li"
+                             onClick={() => setOpenOrClose(key)}
+                             style={{paddingLeft:`${deep*20+5}px`}}
+                        >
+                            <div className={"menu-name-icon"}>
+                                <svg style={{width:18,height:18,margin:"0 5px 0 0"}} aria-hidden="true">
+                                    <use xlinkHref= {`#icon-${icon}`} />
+                                </svg>
 
-                      <ul key={key} title={title} className={`orga-aside-ul ${isExpandedTree(key) ? null: 'orga-aside-hidden'}`}>
-                          {
-                              children && children.map(item =>{
-                                  let deep = 1;
-                                  return item.children && item.children.length
-                                      ? renderSubMenu(item,deep)
-                                      : renderMenu(item,deep)
-                                  })
-                          }
-                      </ul>
-                  </li>
-               </PrivilegeButton>
-        )
+
+                                <span key={key}>
+                                  {title}
+                              </span>
+                            </div>
+                            <div className="orga-aside-item-icon">
+                                {
+                                    children ?
+                                        (isExpandedTree(key)
+                                                ? <DownOutlined  style={{fontSize: "12px"}}/>
+                                                : <UpOutlined  style={{fontSize: "12px"}}/>
+                                        ): ""
+                                }
+                            </div>
+                        </div>
+
+                        <ul key={key} title={title} className={`orga-aside-ul ${isExpandedTree(key) ? null: 'orga-aside-hidden'}`}>
+                            {
+                                children && children.map(item =>{
+                                    let deep = 1;
+                                    return item.children && item.children.length
+                                        ? renderSubMenu(item,deep)
+                                        : renderMenu(item,deep)
+                                })
+                            }
+                        </ul>
+                    </li>
+                </PrivilegeButton>
+            )
+        }else {
+            return (
+                <li key={key} title={title} >
+                    <div className="orga-aside-item aside-li"
+                         onClick={() => setOpenOrClose(key)}
+                         style={{paddingLeft:`${deep*20+5}px`}}
+                    >
+                        <div className={"menu-name-icon"}>
+                            <svg style={{width:18,height:18,margin:"0 5px 0 0"}} aria-hidden="true">
+                                <use xlinkHref= {`#icon-${icon}`} />
+                            </svg>
+
+
+                            <span key={key}>
+                                  {title}
+                              </span>
+                        </div>
+                        <div className="orga-aside-item-icon">
+                            {
+                                children ?
+                                    (isExpandedTree(key)
+                                            ? <DownOutlined  style={{fontSize: "12px"}}/>
+                                            : <UpOutlined  style={{fontSize: "12px"}}/>
+                                    ): ""
+                            }
+                        </div>
+                    </div>
+
+                    <ul key={key} title={title} className={`orga-aside-ul ${isExpandedTree(key) ? null: 'orga-aside-hidden'}`}>
+                        {
+                            children && children.map(item =>{
+                                let deep = 1;
+                                return item.children && item.children.length
+                                    ? renderSubMenu(item,deep)
+                                    : renderMenu(item,deep)
+                            })
+                        }
+                    </ul>
+                </li>
+            )
+        }
+
+
     }
 
     const showUlView = (data)=>{

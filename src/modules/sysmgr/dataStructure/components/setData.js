@@ -38,7 +38,7 @@ const SetData = (props) => {
             <Modal
                 destroyOnClose={true}
                 title='数据设置'
-                visible={visible}
+                open={visible}
                 onCancel={onCancel}
                 footer={null}
                 width={870}

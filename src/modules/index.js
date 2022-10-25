@@ -3,9 +3,9 @@ import Home from './home/home';
 import {Search, SearchResult} from './integration/search';
 
 import {
-    WorkspaceRole, WorkspacePrivilege, Workspace,WorkspaceRecent,
-    WorkspaceCreate, WorkspaceJoin, WorkspaceInit, WorkspaceList,
-    DetailIndex,WorkspaceFollow
+    WorkspaceRole, WorkspacePrivilege, Workspace,
+     WorkspaceInit, WorkspaceList,
+    DetailIndex
 } from './workspace';
 
 import { Category } from "./category";
@@ -33,7 +33,7 @@ import LayoutQuickTest from "./quicktest/components/layoutQuickTest";
 import TabsQuickTest from "./quicktest/components/tabsQuickTest";
 import TestdetailQuickTest from "./quicktest/components/testdetailQuickTest";
 import WorkspaceDetailInitPage from "./workspaceDetail/workspaceDetailInitPage";
-import WorkspaceSetting from "./integration/workspaceSetting/workspaceSetting";
+import WorkspaceSettingMenu from "./integration/workspaceSetting/workspaceSettingMenu";
 import LoginOut from "./header/loginOut";
 import LoginContent from "./login/loginContent";
 import ElectronLoginContant from "./login/electronLoginContant";
@@ -45,9 +45,8 @@ export {
     Home,PageContent,HeaderContent,
     Search, SearchResult,
 
-    WorkspaceRole, WorkspacePrivilege,WorkspaceSetting,
-    Workspace,RecentBrowing,WorkspaceRecent,WorkspaceFollow,
-    WorkspaceCreate, WorkspaceJoin, WorkspaceInit,
+    WorkspaceRole, WorkspacePrivilege,WorkspaceSettingMenu,
+    Workspace,RecentBrowing, WorkspaceInit,
     WorkspaceList,
 
     WorkspaceDetailLayout,LayoutApiContent,TabsPage,

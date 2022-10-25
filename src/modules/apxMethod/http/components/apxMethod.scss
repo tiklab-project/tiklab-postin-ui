@@ -1,3 +1,25 @@
+
+.content-box-center{
+    //display: flex;
+    //justify-content: center;
+
+    .list-content-center{
+        width: 1240px;
+    }
+
+    .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
+        padding: 10px !important;
+    }
+
+}
+
+.edit-icon{
+    width: 20px;
+    height: 20px;
+    cursor:pointer;
+}
+
+
 .form-info{
     padding: 10px 25px;
     .ant-input[disabled] {
@@ -7,7 +29,7 @@
     }
 }
 
-.title{
+.header-title{
     font-weight: bold;
     border-left: 3px solid #1890ff;
     padding-left: 3px;
@@ -20,7 +42,7 @@
 
 
 .edit-api-name{
-    padding:10px;
+    //padding:10px;
     font-size:20px;
     cursor: auto
 }
@@ -76,7 +98,8 @@ $backgroud-color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0 0 25px;
+    padding: 0 0 0 5px;
+    height: 51px;
 }
 
 .apidetail-title-tool{
@@ -112,14 +135,14 @@ $backgroud-color: #fff;
 }
 
 .method{
-    padding: 0 0 0 25px;
+    padding: 0 0 0 5px;
     margin: 0 0 30px 0 ;
 
     .method-info{
 
 
         .method-info-item{
-            margin: 0 10px 10px 0;
+            margin: 0 10px 0 0;
         }
 
         .method-info-path{
@@ -131,6 +154,8 @@ $backgroud-color: #fff;
     .info-item{
         margin: 0 0 25px 0;
         display: flex;
+        align-items: center;
+        height: 41px;
     }
 
     .method-people-info{

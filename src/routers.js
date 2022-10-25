@@ -5,8 +5,8 @@ import PortalHeader from "./modules/header/portalContent"
 import {
     Home, SearchResult,
 
-    WorkspaceRole, WorkspacePrivilege, Workspace, WorkspaceCreate, WorkspaceJoin, WorkspaceInit,
-    WorkspaceList, WorkspaceRecent, WorkspaceDetailLayout,
+    WorkspaceRole, WorkspacePrivilege, Workspace,  WorkspaceInit,
+    WorkspaceDetailLayout,
     LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest,  WorkspaceDetailInitPage,
     Category, ApxMethod, ApxMethodDetail,
 
@@ -17,7 +17,7 @@ import {
     ProjectFeature, ProjectRole,
     SystemFeature, SystemRole, PluginManage,
     MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
-    LoginOut, ElectronLoginContant, WorkspaceSetting, WorkspaceFollow
+    LoginOut, ElectronLoginContant, WorkspaceSettingMenu,
 } from './modules';
 
 import {Redirect} from "react-router";
@@ -31,11 +31,11 @@ import TaskList from "./modules/sysmgr/todo/todo";
 import TodoTemp from "./modules/sysmgr/todo/todoTempList";
 import MyTodo from "./modules/sysmgr/todo/myTodo";
 import LogTemplate from "./modules/sysmgr/log/LogTemplate";
-import {Login} from "tiklab-eam-ui";
 import {Directory, OrgaList, UserList} from "tiklab-user-ui";
 import AccountMember from "./modules/sysmgr/accountMember/accountMember";
 import LoginContent from "./modules/login/loginContent";
 import {WidgetWork} from "tiklab-widget-ui";
+import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
 
 const routers =  [
     {
@@ -81,37 +81,6 @@ const routers =  [
                 path: "/workspacePage",
                 component: Workspace,
                 key:'workspacePage',
-                routes:[
-                    {
-                        path: "/workspacePage/all",
-                        key:'WorkspaceList',
-                        exact: true,
-                        component: WorkspaceList,
-                    },
-                    {
-                        path: "/workspacePage/recent",
-                        key:'WorkspaceList',
-                        exact: true,
-                        component: WorkspaceRecent,
-                    },
-                    {
-                        path: "/workspacePage/create",
-                        key:'WorkspaceList',
-                        exact: true,
-                        component: WorkspaceCreate,
-                    },
-                    {
-                        path: "/workspacePage/join",
-                        key:'WorkspaceList',
-                        exact: true,
-                        component: WorkspaceJoin,
-                    },{
-                        path: "/workspacePage/follow",
-                        key:'WorkspaceList',
-                        exact: true,
-                        component: WorkspaceFollow,
-                    },
-                ]
             },
             {
                 path:'/systemManagement',
@@ -201,42 +170,29 @@ const routers =  [
                         key:'myTodo',
                         exact: true,
                         component: MyTodo,
+                    }, {
+                        path: "/systemManagement/org",
+                        key:'org',
+                        exact: true,
+                        component: OrgaList,
+                    },
+                    {
+                        path: "/systemManagement/user",
+                        key:'user',
+                        exact: true,
+                        component: UserList ,
+                    },
+                    {
+                        path: "/systemManagement/authConfig",
+                        key:'authConfig',
+                        exact: true,
+                        render: () => <Directory isPortal={false}/>,
                     },
                     {
                         path: "/systemManagement",
                         key:'sysEnvMana',
                         exact: true,
                         render: () => <Redirect to={"/systemManagement/systemFeature"}/>,
-                    },
-                ]
-            },
-            {
-                path: "/accountMember",
-                key:'accountMember',
-                component: AccountMember,
-                routes: [
-                    {
-                        path: "/accountMember/org",
-                        key:'org',
-                        exact: true,
-                        component: OrgaList,
-                    },
-                    {
-                        path: "/accountMember/user",
-                        key:'user',
-                        exact: true,
-                        component: UserList ,
-                    },
-                    {
-                        path: "/accountMember/authConfig",
-                        key:'authConfig',
-                        exact: true,
-                        render: () => <Directory isPortal={false}/>,
-                    },{
-                        path: "/accountMember",
-                        key:'sysEnvMana',
-                        exact: true,
-                        render: () => <Redirect to={"/accountMember/org"}/>,
                     },
                 ]
             },
@@ -384,18 +340,38 @@ const routers =  [
                         key:'dataStucture',
                         exact: true,
                         component: DataStructure,
-                    },{
-                        path: "/workspace/role",
-                        key:'role',
-                        exact: true,
-                        component: WorkspaceRole,
                     },
                     {
-                        path: "/workspace/workspacePrivilege",
-                        key:'privilege',
-                        exact: true,
-                        component: WorkspacePrivilege,
+                        path: "/workspace/setting",
+                        key:'workspaceSetting',
+                        component: WorkspaceSettingMenu,
+                        routes: [
+                            {
+                                path: "/workspace/setting/detail",
+                                key:'role',
+                                exact: true,
+                                component: WorkspaceSetting,
+                            },
+                            {
+                                path: "/workspace/setting/role",
+                                key:'role',
+                                exact: true,
+                                component: WorkspaceRole,
+                            },
+                            {
+                                path: "/workspace/setting/privilege",
+                                key:'privilege',
+                                exact: true,
+                                component: WorkspacePrivilege,
+                            },{
+                                path:"/workspace/setting",
+                                key:'ridworkspaceSetting',
+                                exact: true,
+                                component: ()=><Redirect to='/workspace/setting/role'/>,
+                            },
+                        ]
                     },
+
                     {
                         path:"/workspace",
                         key:'ridapidetail',

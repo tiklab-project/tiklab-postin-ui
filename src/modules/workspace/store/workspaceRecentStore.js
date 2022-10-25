@@ -30,6 +30,19 @@ export class WorkspaceRecentStore {
 		}
 	}
 
+	@action
+	findWorkspaceRecentList = async (value) => {
+		this.params = {
+			...value,
+			orderParams:[{name:'updateTime', orderType:'desc'}],
+		}
+		const res = await findWorkspaceRecentList(this.params)
+
+		if(res.code === 0 ) {
+			this.recentList = res.data;
+			return res;
+		}
+	}
 
 	@action
 	findWorkspaceRecentPage = async (value) => {
@@ -45,19 +58,7 @@ export class WorkspaceRecentStore {
 		}
 	}
 
-	@action
-	findWorkspaceRecentList = async (userId) => {
-		this.params = {
-			userId:userId,
-			orderParams:[{name:'updateTime', orderType:'desc'}],
-		}
-		const res = await findWorkspaceRecentList(this.params)
-		if(res.code === 0 ) {
-			this.recentList = res.data;
-			this.length = res.data.length;
-			return res;
-		}
-	}
+
 
 
 }

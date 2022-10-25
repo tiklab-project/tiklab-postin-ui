@@ -55,7 +55,7 @@ const EnvironmentEdit = (props) => {
         <Modal
             destroyOnClose={true}
             title={props.name}
-            visible={visible}
+            open={visible}
             onCancel={onCancel}
             onFinish={onFinish}
             centered

@@ -5,18 +5,20 @@
  */
 
 import { observable,  action } from "mobx";
-import { 
+import {
 	deleteWorkspace,
-	createWorkspace, 
-    findWorkspace, 
-	updateWorkspace, 
+	createWorkspace,
+	findWorkspace,
+	updateWorkspace,
 	findWorkspacePage,
 	findWorkspaceList,
 	findWorkspaceJoinList,
 	findWorkspaceTotal,
 	findAllWorkspace,
-	findWorkspaceHomeTotal
+	findWorkspaceHomeTotal,
 } from '../api/workspaceApi';
+import {findWorkspaceRecentList} from "../api/workspaceRecentApi";
+import {findWorkspaceFollowList} from "../api/workspaceFollowApi";
 
 export class WorkspaceStore {
 	@observable workspaceList = [];
@@ -45,36 +47,85 @@ export class WorkspaceStore {
 	}
 
 	@action
-	findWorkspaceList = async (userId) => {
+	findWorkspaceList = async (value) => {
 		this.params = {
-			userId:userId,
 			orderParams:[{name:'workspaceName', orderType:'asc'}],
+			...value
 		}
 		const res = await findWorkspaceList(this.params)
 		if(res.code === 0 ) {
 			this.workspaceList = res.data;
-			this.length = res.data.length;
 			return res;
 		}
 	}
 
 
 	@action
-	findWorkspaceJoinList = async (userId) => {
-		this.params = {userId:userId}
-		const res = await findWorkspaceJoinList(this.params)
+	findWorkspaceJoinList = async (value) => {
+		const res = await findWorkspaceJoinList(value)
 		if(res.code === 0 ) {
 			this.workspaceList = res.data;
-			this.length = res.data.length;
 			return res;
 		}
 	}
+
+
+	@action
+	findWorkspaceRecentList = async (value) => {
+		this.params = {
+			...value,
+			orderParams:[{name:'updateTime', orderType:'desc'}],
+		}
+		const res = await findWorkspaceRecentList(this.params)
+
+		if(res.code === 0 ) {
+			let list = res.data;
+
+			let newList = [];
+			if(list&&list.length>0){
+				list.map(item=>{
+					newList.push(item.workspace)
+				})
+			}
+
+			this.workspaceList = newList
+
+			return res.data;
+		}
+	}
+
+	@action
+	findWorkspaceFollowList = async (value) => {
+		this.params = {
+			...value,
+			orderParams:[{name:'createTime', orderType:'desc'}],
+		}
+		const res = await findWorkspaceFollowList(this.params)
+		if(res.code === 0 ) {
+			let list = res.data;
+
+			let newList = [];
+			if(list&&list.length>0){
+				list.map(item=>{
+					newList.push(item.workspace)
+				})
+			}
+
+			this.workspaceList = newList
+
+			return res.data;
+		}
+	}
+
+
+
 
 	@action
 	findAllWorkspace = async (data) =>{
 		const res = await findAllWorkspace(data);
 
 		if(res.code === 0 ){
+
 			return res.data;
 		}
 	}
@@ -85,33 +136,19 @@ export class WorkspaceStore {
 	deleteWorkspace = async (id) => {
 		const param = new FormData();
 		param.append('id', id)
-		const res = await deleteWorkspace(param)
-		if(res.code === 0){
-			this.findWorkspacePage(this.pageParams)
-		}
 
+		await deleteWorkspace(param)
 	}
 
 	// 新建空间
     @action
-	createWorkspace = async (values) => {
-    	const res = await createWorkspace(values);
-		if(res.code === 0 ) {
-			// this.findWorkspacePage(this.params);
-			this.findWorkspacePage(this.pageParams)
-			return res.data
-		}
-	}
+	createWorkspace = async (values) => await createWorkspace(values)
 
 	//更新空间
 	@action
-	updateWorkspace = async (values) => {
-		values.id = this.workspaceId;
-		const res = await updateWorkspace(values);
-		if(res.code === 0 ) {
-			this.findWorkspacePage(this.pageParams);
-		}
-	}
+	updateWorkspace = async (values) => await updateWorkspace(values);
+
+
 	
 	//通过id查找空间
 	@action
@@ -123,6 +160,7 @@ export class WorkspaceStore {
 		const res = await findWorkspace(param);
 		if(res.code === 0){
 			this.workspaceInfo = res.data
+			this.workspaceName =res.data.workspaceName;
 			return res.data;
 		}
 	}

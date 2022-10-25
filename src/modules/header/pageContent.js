@@ -16,11 +16,12 @@ const PageContent =(props)=> {
      const user = getUser();
      useEffect(() => {
          if (user.userId) {
-             props.systemRoleStore.getSystemPermissions(user.userId)
+             props.systemRoleStore.getSystemPermissions(user.userId,"postin")
          }
      }, [user])
 
     const Logout = () => {
+
         props.history.push({
             pathname: '/logout',
             state:{

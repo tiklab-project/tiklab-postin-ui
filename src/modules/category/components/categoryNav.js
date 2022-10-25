@@ -5,6 +5,7 @@ import {Dropdown,Menu,Popconfirm} from "antd";
 import {ApxMethodEdit} from "../../apxMethod";
 import CategoryEdit from './categoryEdit';
 import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
+import {TextMethodType} from "../../common/methodType";
 
 //分类导航
 const CategoryNav = (props) => {
@@ -143,10 +144,11 @@ const CategoryNav = (props) => {
                     className={`methodli categoryNav-li tree-childspan  ${item.id === clickKey? 'action-li':''}`}
                     onClick={()=>onMethod(item)}
                 >
-                    <svg className="icon" aria-hidden="true">
-                        <use xlinkHref={`#icon-api`}/>
-                    </svg>
-                    {/*<MethodType type={item.requestType}/>*/}
+                    {/*<svg className="icon" aria-hidden="true">*/}
+                    {/*    <use xlinkHref={`#icon-api`}/>*/}
+                    {/*</svg>*/}
+                    <TextMethodType type={item.methodType}/>
+
                     {item.name}
                 </li>
             )
