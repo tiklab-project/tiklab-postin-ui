@@ -1,12 +1,12 @@
 
 import React, { useEffect, useState} from 'react';
 import './workspace.scss';
-import BreadcrumbEx from "../../common/breadcrumbEx";
 import {Input, Space} from "antd";
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 import WorkspaceEdit from "./workspaceEdit";
 import WorkspaceList from "./workspaceList";
+import DetailHeader from "../../common/detailHeader";
 
 //空间页
 const Workspace = (props) => {
@@ -73,7 +73,6 @@ const Workspace = (props) => {
     const findList = (name,selectIndex)=>{
         let uId = {userId:userId}
 
-
         switch (selectIndex?selectIndex:selectItem) {
             case "all":
                 findWorkspaceList(name)
@@ -102,33 +101,46 @@ const Workspace = (props) => {
     }
 
 
-    const rightContent = () =>{
-        return(
-            <WorkspaceEdit
-                name={"添加空间"}
-                btn={"btn"}
-                userId={userId}
-                findList={findList}
-                selectItem={selectItem}
-                {...props}
-            />
-        )
-    }
-
 
     return(
         <div className='ws-layout'>
-            <BreadcrumbEx list={["主页","空间"]} />
+            {/*<BreadcrumbEx list={["主页","空间"]} />*/}
+            <DetailHeader
+                left={
+                    <div style={{
+                        display:"flex",
+                        alignItems:"center",
+                        justifyContent:"space-between",
+                        width: 90
+                    }}>
+                        <svg style={{width:20,height:20}} aria-hidden="true" >
+                            <use xlinkHref= {`#icon-home`} />
+                        </svg>
+                        <span>空间首页</span>
+                    </div>
+                }
+                right={
+                    <WorkspaceEdit
+                        name={"+添加空间"}
+                        btn={"btn"}
+                        userId={userId}
+                        findList={findList}
+                        selectItem={selectItem}
+                        {...props}
+                    />
+                }
+            />
+
             <div className={"ws-header-menu"}>
                 <div className={"ws-header-menu-left"}>
                     {showMenu(items)}
-                    <Input
-                        placeholder={`搜索空间`}
-                        onPressEnter={onSearch}
-                        className={"ws-header-menu-input"}
-                    />
+
                 </div>
-                <>{rightContent()}</>
+                <Input
+                    placeholder={`搜索空间`}
+                    onPressEnter={onSearch}
+                    className={"ws-header-menu-input"}
+                />
             </div>
 
             <div className='contant-box'>

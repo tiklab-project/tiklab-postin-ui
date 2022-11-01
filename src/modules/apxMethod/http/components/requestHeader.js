@@ -31,7 +31,7 @@ const RequestHeader = (props) =>{
             title: '参数名称',
             dataIndex: 'headerName',
             width: '20%',
-            // className:"column-name",
+            className:"column-header",
             render: (text, record)=>(
                 <ExSelect
                     dictionary={headerParamDictionary}
@@ -46,6 +46,7 @@ const RequestHeader = (props) =>{
             dataIndex: 'required',
             width: '6%',
             align:"center",
+            className:"column-header",
             render:(text,record) =>  (
                 <Checkbox defaultChecked={record.required} onChange={(value) => toggleChecked(value, record)}/>
             )
@@ -53,22 +54,26 @@ const RequestHeader = (props) =>{
             title: '示例值',
             width: '20%',
             dataIndex: 'value',
+            className:"column-header",
             editable: true,
         }, {
             title: '说明',
             width: '20%',
             dataIndex: 'desc',
+            className:"column-header",
             editable: true,
         },{
             title: '操作',
             width: '10%',
             dataIndex: 'operation',
+            className:"column-header",
             fixed: 'right',
             render: (text, record) =>(operation(record,dataSource))
         },
         {
             title: '',
             width: '24%',
+            className:"column-header",
             dataIndex: 'none',
         }
     ]

@@ -11,10 +11,6 @@ import {methodDictionary} from "../../../common/dictionary/dictionary";
 import {TextMethodType} from "../../../common/methodType";
 
 const { Option } = Select;
-const layout = {
-    labelCol: {span: 5},
-    wrapperCol: {span: 19},
-};
 
 const ApxMethodEdit = (props) => {
     const {

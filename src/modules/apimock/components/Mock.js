@@ -108,17 +108,19 @@ const Mock = (props) => {
                         style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}
                     >
                         <Tooltip title="点击复制">
-                            <span>{mockUrl}</span>
+                            <span>调用地址：{mockUrl}</span>
                         </Tooltip>
                     </div>
-                    <MockEdit btn="btn"  name={"添加Mock"} {...props }>添加Mock</MockEdit>
+                    <MockEdit btn="btn"  name={"+添加MOCK"} {...props }/>
                 </div>
-                <Table
-                    columns={columns}
-                    dataSource={mockList}
-                    rowKey = {record => record.id}
-                    pagination={false}
-                />
+                <div className={"out-table-box"}>
+                    <Table
+                        columns={columns}
+                        dataSource={mockList}
+                        rowKey = {record => record.id}
+                        pagination={false}
+                    />
+                </div>
             </div>
         </div>
     )

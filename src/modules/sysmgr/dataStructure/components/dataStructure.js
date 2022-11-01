@@ -3,54 +3,53 @@
  * @date: 2021-07-29 09:54
  */
 import React, {useEffect,useState} from 'react'
-import {Breadcrumb, Col, Input, Popconfirm, Row, Space, Table} from "antd";
+import { Input, Popconfirm, Space, Table} from "antd";
 import DataStructureEdit from "./dataStructureEdit";
 import {inject, observer} from "mobx-react";
 import SetData from "./setData";
-import BreadcrumbEx from "../../../common/breadcrumbEx";
+import DetailHeader from "../../../common/detailHeader";
+
 
 const DataStructure = (props) => {
     const {dataStructureStore} = props;
-    const {findDataStructurePage,deleteDataStructure,dataStructureList,totalRecord} = dataStructureStore;
+    const {findDataStructureList,deleteDataStructure,dataStructureList} = dataStructureStore;
 
     const columns = [
         {
             title:` 编码`,
             dataIndex: "coding",
             key: "code",
-            align:"center",
         },
         {
             title:`名称`,
             dataIndex: "name",
             key: "name",
-            align:"center",
         },
         {
             title: `类型`,
             dataIndex: "dataType",
             key: "dataType",
-            align:"center",
         },
         {
             title: `创建人`,
             dataIndex: "createUser",
             key: "uesr",
-            align:"center",
         },
         {
             title: `创建时间`,
             dataIndex: "createTime",
             key: "time",
-            align:"center",
         },
         {
             title: `操作`,
             key: "action",
-            align:"center",
             render: (text, record) => (
                 <Space size="middle">
-                    <DataStructureEdit name={'编辑'} dataStructureId={record.id}/>
+                    <DataStructureEdit
+                        name={'编辑'}
+                        type={"edit"}
+                        dataStructureId={record.id}
+                    />
                     <Popconfirm
                         title="确定删除？"
                         onConfirm={() =>deleteDataStructure(record.id)}
@@ -64,79 +63,143 @@ const DataStructure = (props) => {
             ),
         },
     ]
+    
+    const [sortBy, setSortBy] = useState({name:"name",sort:"desc"});
 
-    const [pageSize] = useState(5);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [params, setParams] = useState({
-        pageParam: {
-            pageSize: pageSize,
-            currentPage: currentPage
-        }
-    })
 
     useEffect(()=>{
-        findDataStructurePage(params)
-    },[params])
-
-    //分页
-    const onTableChange = (pagination) => {
-        setCurrentPage(pagination.current)
-        const newParams = {
-            ...params,
-            pageParam: {
-                pageSize: pageSize,
-                currentPage: pagination.current
-            },
+        let params = {
+            orderParams:[{
+                name:sortBy.name,
+                orderType:sortBy.sort
+            }]
         }
-        setParams(newParams)
-    }
+        findDataStructureList(params)
+    },[])
+
 
     //搜索
     const onSearch = (e) => {
-        setCurrentPage(1)
-        let newParams = {
-            pageParam: {
-                pageSize: pageSize,
-                currentPage: 1
-            },
+        let params = {
+            name: e.target.value,
+            orderParams:[{
+                name:sortBy.name,
+                orderType:sortBy.sort
+            }]
         }
-        if (e.target.value) {
-            newParams = {
-                pageParam: {
-                    pageSize: pageSize,
-                    currentPage: 1
-                },
-                name:e.target.value,
-            }
-        }
-        setParams(newParams)
+        findDataStructureList(params)
     }
 
+
+    const sortItem =[
+        {
+            title:"名称",
+            key:"name"
+        },{
+            title:"创建时间",
+            key:"createTime"
+        }
+    ]
+
+    const setSortByDesc = (name,sort) =>{
+        setSortBy({name:name,sort:sort})
+        let params = {
+            orderParams:[{
+                name:name,
+                orderType:sort
+            }]
+        }
+        findDataStructureList(params)
+    }
+
+    const setSortByAsc = (name,sort) =>{
+        setSortBy({name:name,sort:sort})
+
+        let params = {
+            orderParams:[{
+                name:name,
+                orderType:sort
+            }]
+        }
+        findDataStructureList(params)
+    }
+
+    const showSortItem = (list) =>{
+        return list&&list.map((item=>{
+            return (
+                <div key={item.key} className={"sort-show-box-item"}>
+                    <div>{item.title}</div>
+                    <div className={"sort-show-box-item-sort"}>
+                        <svg
+                            aria-hidden="true"
+                            className={`${sortBy.name===item.key&&sortBy.sort==="desc"?"action-sort":null} sort-icon sort-icon-desc `}
+                            onClick={()=>setSortByDesc(item.key,"desc")}
+                        >
+                            <use xlinkHref= {`#icon-paixu-jiangxu`} />
+                        </svg>
+                        <svg
+                            aria-hidden="true"
+                            className={`${sortBy.name===item.key&&sortBy.sort==="asc"?"action-sort":null} sort-icon sort-icon-asc`}
+                            onClick={()=>setSortByAsc(item.key,"asc")}
+                        >
+                            <use xlinkHref= {`#icon-paixu-shengxu`} />
+                        </svg>
+                    </div>
+                </div>
+            )
+        }))
+    }
 
 
     return(
         <div className={"page-center"}>
-            <BreadcrumbEx list={[ "空间设置", "数据结构"]}/>
-            <div className='wslist-searchbtn'>
+            <DetailHeader
+                left={
+                    <div style={{
+                        display:"flex",
+                        alignItems:"center",
+                        justifyContent:"space-between",
+                        width: 90
+                    }}>
+                        <svg style={{width:20,height:20}} aria-hidden="true" >
+                            <use xlinkHref= {`#icon-changjing`} />
+                        </svg>
+                        <span>数据结构</span>
+                    </div>
+                }
+                right={ <DataStructureEdit type={"add"} name={'+添加数据结构'}  /> }
+            />
+
+
+            <div style={{"display":"flex","justifyContent":"space-between","alignItems":"center"}}>
                 <Input
                     placeholder={`搜索`}
                     onPressEnter={onSearch}
-                    className='search-input'
+                    style={{width:200,margin:"10px 0"}}
                 />
-                <DataStructureEdit name={'添加数据结构'}  />
+
+                <div className={"sort-box"}>
+                    <svg style={{width:20,height:20,"cursor":"pointer"}} aria-hidden="true"  >
+                        <use xlinkHref= {`#icon-icon-`} />
+                    </svg>
+                    <div  className={`sort-show-box`}>
+                        {
+                            showSortItem(sortItem)
+                        }
+                    </div>
+                </div>
             </div>
 
-            <Table
-                columns={columns}
-                dataSource={dataStructureList}
-                rowKey={record => record.id}
-                pagination={{
-                    current:currentPage,
-                    pageSize:pageSize,
-                    total:totalRecord,
-                }}
-                onChange = {(pagination) => onTableChange(pagination)}
-            />
+
+
+            <div className={"out-table-box"}>
+                <Table
+                    columns={columns}
+                    dataSource={dataStructureList}
+                    rowKey={record => record.id}
+                    pagination={false}
+                />
+            </div>
         </div>
 
     )

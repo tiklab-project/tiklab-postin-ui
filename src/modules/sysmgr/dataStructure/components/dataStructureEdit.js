@@ -20,23 +20,25 @@ const DataStructureEdit = (props) => {
     const [visible, setVisible] = React.useState(false);
 
     // 弹框展示
-    const showModal = () => {
-        setVisible(true);
-        if(props.name === "编辑"){
-            findDataStructure(dataStructureId).then((res)=>{
-                form.setFieldsValue({
-                    coding: res.coding,
-                    name:res.name,
-                    dataType:res.dataType
-                })
+    const showModal = async () => {
+
+        if(props.type === "edit"){
+            let res = await findDataStructure(dataStructureId)
+
+            form.setFieldsValue({
+                coding: res.coding,
+                name:res.name,
+                dataType:res.dataType
             })
         }
+
+        setVisible(true);
     };
 
     // 提交
     const onFinish = () => {
         form.validateFields().then((values)=>{
-            if(props.name === "添加数据结构" ){
+            if(props.type === "add" ){
                 createDataStructure(values);
             }else{
                 values.id=dataStructureId;
@@ -51,7 +53,8 @@ const DataStructureEdit = (props) => {
     return (
         <>
             {
-                props.name === "添加数据结构" ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+                props.type === "add"
+                    ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
                     : <a onClick={showModal}>{props.name}</a>
             }
 

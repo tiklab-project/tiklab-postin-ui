@@ -114,13 +114,13 @@ const CategoryNav = (props) => {
     }
 
     //设置有子集的li
-    const expendTreeLi = (item,icon) => {
+    const expendTreeLi = (item,icon,deep) => {
         return(
             <div className={'cate-li'}>
                 <span
                     className={`categoryNav-li tree-childspan  ${item.id === clickKey? 'action-li':''}`}
                     onClick={()=> onClick(item)}
-
+                    style={{paddingLeft: `${deep * 18}px`}}
                 >
                     {icon.preIcon}
                     <svg className="icon" aria-hidden="true">
@@ -144,9 +144,6 @@ const CategoryNav = (props) => {
                     className={`methodli categoryNav-li tree-childspan  ${item.id === clickKey? 'action-li':''}`}
                     onClick={()=>onMethod(item)}
                 >
-                    {/*<svg className="icon" aria-hidden="true">*/}
-                    {/*    <use xlinkHref={`#icon-api`}/>*/}
-                    {/*</svg>*/}
                     <TextMethodType type={item.methodType}/>
 
                     {item.name}
@@ -159,19 +156,18 @@ const CategoryNav = (props) => {
     const tree = (data = [],deep) => {
         return(
             data && data.map((item) => {
-                let deep = 1;
+                // let deep = 1;
                 if(item.children&&item.children.length>0 || item.categoryMethod&&item.categoryMethod.length>0 ){
                     return (
                     <li key={item.id} >
                         {
                             isExpandedTree(item.id)
-                            ?expendTreeLi(item,openIcon)
-                            :expendTreeLi(item,closeIcon)
+                            ?expendTreeLi(item,openIcon,deep)
+                            :expendTreeLi(item,closeIcon,deep)
                         }
                         <ul
                             className={!isExpandedTree(item.id) ? 'tree-hidden' : null}
                             key={item.id}
-                            style={{paddingLeft: `${deep * 10 + 5}px`}}
                         >
                             {
                                 tree(item.children,deep+1)
@@ -189,6 +185,7 @@ const CategoryNav = (props) => {
                             <span
                                 onClick={()=>onClick(item)}
                                 className={`categoryNav-li tree-span ${item.id === clickKey? 'action-li':''}`}
+                                style={{paddingLeft: `${deep * 25}px`}}
                             >
                                 <svg className="icon" aria-hidden="true">
                                     <use xlinkHref="#icon-folder-close"/>
@@ -212,7 +209,7 @@ const CategoryNav = (props) => {
         <>
             <ul className="categoryNav-ui">
                 {
-                    tree(categoryList)
+                    tree(categoryList,0)
                 }
             </ul>
         </>

@@ -7,7 +7,7 @@ import {toWorkspaceDetail} from "../workspace/components/workspaceFn";
 
 const LeftNav = (props) =>{
     const {workspaceStore,workspaceRecentStore} = props;
-    const {workspaceName,workspaceList,findWorkspaceList } = workspaceStore;
+    const {workspaceName,workspaceList,findWorkspaceList,settingMenuSelected } = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const menuData = [
 
@@ -99,7 +99,9 @@ const LeftNav = (props) =>{
             key:"api"
         }
 
-        clickAddRouter(data)
+        clickAddRouter(data);
+
+        settingMenuSelected("/workspace/setting/detail");
     }
 
     const showMenuItem = (data) =>{
@@ -165,13 +167,18 @@ const LeftNav = (props) =>{
                     >
                         <div className={"ws-icon-box"}>
 
-                            <span style={{"cursor":"pointer"}}>
+                            <span style={{"cursor":"pointer",margin:" 0 0 0 20px"}}>
                                 {showIcon(workspaceName)}
+
                             </span>
+                            <svg className="icon" aria-hidden="true"  style={{"cursor":"pointer"}}>
+                                <use xlinkHref= {`#icon-xiala`} />
+                            </svg>
+
                             <div className={"ws-hover-box"}>
                                 <div className={"ws-hover-box-title"}>
                                     <svg className="icon" aria-hidden="true" >
-                                        <use xlinkHref= {`#icon-qiehuan`} />
+                                        <use xlinkHref= {`#icon-xiala`} />
                                     </svg>
                                     切换空间
                                 </div>

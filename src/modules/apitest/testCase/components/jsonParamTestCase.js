@@ -62,14 +62,15 @@ const JsonParamTestCase = (props) => {
             title: '操作',
             fixed: 'right',
             align:'center',
+            width: '20%',
             dataIndex: 'operation',
             render: (text, record, index) =>(
                 <Space>
                     <Tooltip title="数据类型: object，添加子行"><a onClick={() => addChild(record.dataType,record.id)}> 子</a></Tooltip>
-                    <Tooltip title="添加数据"><a onClick={() =>onCreated(record, index)} >create </a></Tooltip>
-                    <Tooltip title="更新数据"><a onClick={() =>updateJsonParamTestCase(record)} > update </a></Tooltip>
-                    <Tooltip title="删除数据"><a onClick={() =>deleteJsonParamTestCase(record.id)} type="primary"> delete </a></Tooltip>
-                    <Tooltip title="新增一行"><a onClick={() =>handleAdd()} > + </a></Tooltip>
+                    <Tooltip title="添加数据"><a onClick={() =>onCreated(record, index)} >添加 </a></Tooltip>
+                    <Tooltip title="更新数据"><a onClick={() =>updateJsonParamTestCase(record)} > 编辑 </a></Tooltip>
+                    <Tooltip title="删除数据"><a onClick={() =>deleteJsonParamTestCase(record.id)} type="primary"> 删除 </a></Tooltip>
+                    <Tooltip title="新增一行"><a onClick={() =>handleAdd()} > 新行 </a></Tooltip>
                     
                     {/* <Button shape="circle">上</Button>
                     <Button shape="circle">下</Button> */}
@@ -78,7 +79,7 @@ const JsonParamTestCase = (props) => {
         },
         {
             title: '',
-            width: '30%',
+            width: '20%',
             dataIndex: 'none',
         }
     ]

@@ -9,8 +9,8 @@ const { Option } = Select;
 
 const MockDetail = (props) =>{
     const { mockStore, responseMockStore } = props;
-    const { findMock, deleteMock,updateMock,findMockPage } = mockStore;
-    const { findResponseMock, createResponseMock, updateResponseMock } = responseMockStore;
+    const { findMock, updateMock } = mockStore;
+    const { findResponseMock, updateResponseMock } = responseMockStore;
 
     const [form] = Form.useForm();
 
@@ -45,13 +45,6 @@ const MockDetail = (props) =>{
         props.history.push('/workspace/apis/detail/interface/mock')
     }
 
-    const deleteMockFn = () =>{
-        deleteMock(mockId).then(()=>{
-            findMockPage(apxMethodId)
-            props.history.push("/workspace/apis/detail/interface/mock")
-        })
-    }
-
 
     //编辑名字
     const editName = (value) => {
@@ -64,23 +57,13 @@ const MockDetail = (props) =>{
     };
 
 
-    //编辑详情
-    const editDesc = (value) => {
-        let param = {
-            http:{id:apxMethodId},
-            id:mockId,
-            desc:value
-        }
-        updateMock(param)
-    };
-
 
     return(
         <>
             <div className={"mock-header-box"}>
                 <div className={"testcase-header-right"}>
-                    <div className={"testcase-header-right-back"} onClick={backToList}>Mock列表</div>
-                    <div >/</div>
+                    <div className={"testcase-header-right-back"} onClick={backToList}>MOCK列表</div>
+                    <div style={{margin:" 0 5px"}}>/</div>
                     <EdiText
                         value={resData?.name}
                         tabIndex={2}
@@ -100,7 +83,6 @@ const MockDetail = (props) =>{
                         hideIcons
                     />
                 </div>
-                <Button danger onClick={deleteMockFn}>删除</Button>
             </div>
             <div className='header-title ex-title'>期望参数</div>
             <MockRequest {...props} />

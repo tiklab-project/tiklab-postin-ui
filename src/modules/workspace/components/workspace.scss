@@ -14,8 +14,8 @@ ul{
 //------------------------------------------
 //dragbox
 .changeBox{
-    width: 240px;
-    background: #fafafa;
+    width: 310px;
+    background: #ffffff;
     border-right: 1px solid #f0f0f0;
 }
 
@@ -320,7 +320,6 @@ ul{
 
 .detailmenu-fold{
     height: 100%;
-    background: #f9f9f9;
 }
 
 .ws-detail-menu{
@@ -334,7 +333,7 @@ ul{
     overflow: auto;
     overflow-x: hidden;
     height: 85%;
-    padding: 5px
+    padding: 5px 0;
 }
 
 

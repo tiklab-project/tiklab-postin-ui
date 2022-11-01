@@ -18,21 +18,21 @@ const ApxMethod = (props) =>  {
         {
             label: '接口',
             key: '/workspace/apis/detail/interface',
-            icon: <ApiOutlined />,
+            // icon: <ApiOutlined />,
         },
         {
             label: '测试',
             key: '/workspace/apis/detail/interface/test',
-            icon: <RetweetOutlined />,
+            // icon: <RetweetOutlined />,
         },
         {
             label: '测试用例',
             key: '/workspace/apis/detail/interface/testcase',
-            icon: <RetweetOutlined />,
+            // icon: <RetweetOutlined />,
         },{
             label: 'Mock',
             key: '/workspace/apis/detail/interface/mock',
-            icon: <SnippetsOutlined />,
+            // icon: <SnippetsOutlined />,
         }
     ];
 
@@ -43,21 +43,19 @@ const ApxMethod = (props) =>  {
 
 
     return(
-        <Fragment>
-            <div>
-                <Menu
-                    onClick={onClick}
-                    selectedKeys={[current]}
-                    mode="horizontal"
-                    items={items}
-                />
-                <div className="method-content">
-                    {
-                        renderRoutes(router)
-                    }
-                </div>
+        <div>
+            <Menu
+                onClick={onClick}
+                selectedKeys={[current]}
+                mode="horizontal"
+                items={items}
+            />
+            <div className="method-content">
+                {
+                    renderRoutes(router)
+                }
             </div>
-        </Fragment>
+        </div>
     )
 
 }

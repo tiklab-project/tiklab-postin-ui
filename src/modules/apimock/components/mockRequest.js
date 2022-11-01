@@ -37,9 +37,9 @@ const MockRequest = (props) => {
 
         switch(radioType) {
             case 'form':
-                return <MockFormParam />
+                return <div className={"tabPane-item-box"}><MockFormParam /></div>
             case 'json':
-                return <JsonParamMock />
+                return <div className={"tabPane-item-box"}><JsonParamMock /></div>
         } 
     }
      
@@ -47,10 +47,10 @@ const MockRequest = (props) => {
         <Fragment>
             <Tabs defaultActiveKey="1" >
                 <TabPane tab="请求头部" key="1">
-                    <MockRequestHeader />
+                    <div className={"tabPane-item-box"}><MockRequestHeader /></div>
                 </TabPane>
                 <TabPane tab="查询参数" key="2">
-                    <MockQueryParam />
+                    <div className={"tabPane-item-box"}><MockQueryParam /></div>
                 </TabPane>
                 <TabPane tab="请求体" key="3">
                     <div className='request-radio'>

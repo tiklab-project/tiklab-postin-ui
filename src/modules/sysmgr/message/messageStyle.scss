@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e3e3e3;
-    padding: 8px 0;
+    padding: 10px 0;
 
     .message-item-left{
         display: flex;
@@ -27,6 +27,7 @@
             .message-item-left-time{
                 font-size: 13px;
                 color: #aaaaaa;
+                margin: 0 0 0 20px;
             }
         }
     }

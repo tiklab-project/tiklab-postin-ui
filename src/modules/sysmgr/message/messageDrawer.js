@@ -1,37 +1,114 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Badge, Drawer} from "antd";
 import {BellOutlined} from "@ant-design/icons";
 import {Axios, getUser} from "tiklab-core-ui";
 import "./messageStyle.scss"
+
 const MessageDrawer = (props) =>{
+
+    const [initLoading, setInitLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [data, setData] = useState([]);
+    const [list, setList] = useState([]);
+
+    const [count, setCount] = useState(1);
+    const [totalPage, setTotalPage] = useState(1);
+    const [length, setLength] = useState();
+
     const [open, setOpen] = useState(false);
-    const [messageList, setMessageList] = useState();
 
+
+    useEffect(()=>{
+        let params = {
+            pageParam: {
+                pageSize: 10,
+                currentPage:1
+            }
+        }
+        findList(params)
+
+    },[])
+
+    //抽屉展示
     const showDrawer = () => {
-
-        findList()
-
+        let params = {
+            pageParam: {
+                pageSize: 10,
+                currentPage:1
+            }
+        }
+        findList(params).then(res=>{
+            setData(res);
+            setList(res);
+            setInitLoading(false);
+        })
 
         setOpen(true);
     };
 
+    //加载更多
+    const onLoadMore = () => {
+        setLoading(true);
+        setCount(count+1)
+        setList(
+            data.concat(  [...new Array(5)].map(() => ({  loading: true })) ),
+        );
 
-    const findList = async () =>{
-        const params = {
-            sendType: 'site',
-            receiver: getUser().userId,
-            application:"postin"
-        }
+        if(count<=totalPage){
+            let params = {
+                pageParam: {
+                    pageSize: 10,
+                    currentPage:count+1
+                }
+            }
 
-        let res = await Axios.post('/message/messageDispatchItem/findMessageDispatchItemList', params);
-        if (res.code === 0) {
-            let List = res.data;
-
-            setMessageList(List);
-            console.log(List)
+            findList(params).then(res=>{
+                const newData = data.concat(res);
+                setData(newData);
+                setList(newData);
+                setLoading(false);
+            })
         }
     }
 
+    //查询接口
+    const findList = async (params) =>{
+        const param = {
+            sendType: 'site',
+            receiver: getUser().userId,
+            application:"postin",
+            ...params
+        }
+
+        let res = await Axios.post('/message/messageDispatchItem/findMessageDispatchItemPage', param);
+        if (res.code === 0) {
+            let total= res.data.totalPage
+            setTotalPage(total)
+            setLength(res.data.totalRecord)
+            return res.data.dataList;
+        }
+    }
+
+
+
+    //是否展示 加载更多
+    const loadMore =()=>{
+       return  count<totalPage&&!initLoading && !loading ? (
+            <div
+                style={{
+                    textAlign: 'center',
+                    marginTop: 12,
+                    height: 32,
+                    lineHeight: '32px',
+                }}
+            >
+                <a onClick={onLoadMore}>加载更多...</a>
+            </div>
+        ) : null;
+    }
+
+
+    //list item 渲染
     const showListItem = (list) =>{
         if(!list) return null;
 
@@ -44,9 +121,12 @@ const MessageDrawer = (props) =>{
                         </svg>
 
                         <div className={"message-item-left-detail"}>
-                            <div>{item?.messageTemplate?.title}</div>
+                            <div style={{"display":"flex"}}>
+                                <div>{item?.messageTemplate?.title}</div>
+                                <div className={"message-item-left-time"}>{item?.receiveTime}</div>
+                            </div>
                             <div className={"message-item-left-content"}>{item?.messageTemplate?.content}</div>
-                            <div className={"message-item-left-time"}>{item?.receiveTime}</div>
+
                         </div>
                     </div>
                     <div className={"message-item-right"}>
@@ -56,16 +136,22 @@ const MessageDrawer = (props) =>{
                 </div>
             )
         })
-
-
     }
 
+
+
+
     //关闭抽屉
-    const onClose = () =>  setOpen(false)
+    const onClose = () => {
+        setOpen(false)
+
+        setTotalPage(1)
+        setCount(1)
+    }
 
     return (
         <>
-            <Badge count={0}>
+            <Badge count={length}>
                 <BellOutlined style={{fontSize: 21}} onClick={showDrawer}/>
             </Badge>
             <Drawer
@@ -76,7 +162,10 @@ const MessageDrawer = (props) =>{
                 mask={false}
             >
                 {
-                    showListItem(messageList)
+                    showListItem(list)
+                }
+                {
+                    loadMore()
                 }
             </Drawer>
         </>

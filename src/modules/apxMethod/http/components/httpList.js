@@ -149,25 +149,28 @@ const HttpList = (props) => {
                         style={{width:240}}
                     />
                     <ApxMethodEdit
-                        name="添加接口"
+                        name="+添加接口"
                         type="add"
                         isBtn={'btn'}
                         {...props}
                         // pagination={params}
                     />
                 </div>
-                <Table
-                    dataSource={apxMethodList}
-                    columns={columns}
-                    rowKey={record => record.id}
-                    pagination={false}
-                    // pagination={{
-                    //     current:currentPage,
-                    //     pageSize:pageSize,
-                    //     total:totalRecord,
-                    // }}
-                    // onChange = {(pagination) => onTableChange(pagination)}
-                />
+                <div className={"out-table-box"}>
+                    <Table
+                        dataSource={apxMethodList}
+                        columns={columns}
+                        rowKey={record => record.id}
+                        pagination={false}
+                        // pagination={{
+                        //     current:currentPage,
+                        //     pageSize:pageSize,
+                        //     total:totalRecord,
+                        // }}
+                        // onChange = {(pagination) => onTableChange(pagination)}
+                    />
+                </div>
+
             </div>
 
         </div>

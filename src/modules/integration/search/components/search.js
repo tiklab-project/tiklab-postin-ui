@@ -106,18 +106,18 @@ const Search = (props) => {
     return(
         <>
             <Input
-                placeholder="搜索: 空间、接口"
+                placeholder="搜索"
                 onChange={debounce(changeValue,500) }
                 onPressEnter={toSearchResult}
                 className='search-input'
-                style={{width:260,margin: "-10px"}}
+                style={{width:260,margin: "-10px","borderRadius":"5px"}}
                 onBlur={onBlur}
                 onFocus={onFocus}
             />
             <div className={`search-list ${ toggleSearch ==='show' ? 'search-show': 'search-hide'}`}>
                 <div className="same-result" >
                     <div className="search-title">空间 :</div>
-                    <div style={{"min-height": 50}}>
+                    <div style={{"minHeight": 50}}>
                         {
                             showWorkspaceItem(searchList)
                         }
@@ -126,7 +126,7 @@ const Search = (props) => {
                 </div>
                 <div className="same-result" >
                     <div className="search-title">接口 :</div>
-                    <div style={{"min-height": 50}}>
+                    <div style={{"minHeight": 50}}>
                         {
                             showApiItem(searchList)
                         }

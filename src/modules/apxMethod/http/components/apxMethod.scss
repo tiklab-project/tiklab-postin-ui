@@ -31,7 +31,6 @@
 
 .header-title{
     font-weight: bold;
-    border-left: 3px solid #1890ff;
     padding-left: 3px;
 }
 
@@ -92,6 +91,36 @@ $backgroud-color: #fff;
 }
 
 
+.out-table-box{
+    th{
+        background:  white !important;
+    }
+    .ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan]):before{
+        position: inherit;
+    }
+
+    .ant-table-thead>tr .ant-table-cell{
+        font-weight: 500;
+        font-size: 14px;
+    }
+}
+
+.tabPane-item-box{
+    th{
+        background:  white !important;
+    }
+
+    // 表头设置
+    .ant-table-thead>tr .ant-table-cell{
+        font-weight: 600;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    //border-top: 1px solid #f0f0f0;
+}
+
+
 // --------------------------------
 // ApxMethodDetail
 .apidetail-header-btn{
@@ -100,6 +129,11 @@ $backgroud-color: #fff;
     align-items: center;
     padding: 0 0 0 5px;
     height: 51px;
+
+
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+        border: none;
+    }
 }
 
 .apidetail-title-tool{
@@ -152,7 +186,7 @@ $backgroud-color: #fff;
     }
 
     .info-item{
-        margin: 0 0 25px 0;
+        margin: 0 0 10px 0;
         display: flex;
         align-items: center;
         height: 41px;
@@ -237,6 +271,7 @@ $backgroud-color: #fff;
 //     padding: 5px;
 //     font-size: 13px;
 // }
+
 
 
 // request

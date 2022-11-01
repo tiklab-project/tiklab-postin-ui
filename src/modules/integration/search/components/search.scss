@@ -1,7 +1,13 @@
+
+.header-right-search{
+    position: relative;
+}
+
 .search-list{
     width: 400px;
     min-height: 100px;
     position: absolute;
+    left: -85px;
     background-color: #fff;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
     margin: 5px 0 0 0;

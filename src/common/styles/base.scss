@@ -91,12 +91,6 @@ $blue-main: #0053ca;
     margin:0 5px  ;
 }
 
-// 表头设置
-.ant-table-thead>tr .ant-table-cell{
-    font-weight: 600;
-    padding: 5px;
-    font-size: 13px;
-}
 
 
 
@@ -112,11 +106,11 @@ $blue-main: #0053ca;
 table{
     //border-bottom: 1px solid #f0f0f0;
 }
-
-.search-input{
-    width: 200px!important;
-    border-radius: 5px;
-}
+//
+//.search-input{
+//    width: 200px!important;
+//    border-radius: 5px;
+//}
 
 
 
@@ -148,6 +142,17 @@ table .icon{
     margin: 0;
 }
 
+.ant-modal-header{
+    padding: 16px;
+    border: none;
+}
 
+.ant-modal-footer{
+    border: none;
+}
+
+.ant-modal-body{
+    padding: 10px 30px;
+}
 
 

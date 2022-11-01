@@ -7,12 +7,14 @@ import { observer, inject } from 'mobx-react';
 import { Request, Response } from '../../index';
 import {Button, Select, Space} from 'antd';
 import './apxMethod.scss'
-import MethodType from "../../../common/methodType";
+import MethodType, {TextMethodType} from "../../../common/methodType";
 import { RemoteUmdComponent } from 'tiklab-plugin-ui'
 import {useSelector} from  "tiklab-plugin-ui/es/_utils"
 import EdiText from "react-editext";
 import EdiTextToggle from "../../../common/ediTextToggle";
 import ApiStatusModal from "../../../sysmgr/apiStatus/components/apiStatusSelect";
+import IconCommon from "../../../common/iconCommon";
+import {methodDictionary} from "../../../common/dictionary/dictionary";
 
 const {Option} = Select;
 
@@ -144,29 +146,83 @@ const ApxMethodDetail = (props) => {
         updateApxMethod(param)
     };
 
+    const selectMethodType = (methodType) =>{
+        let param = {
+            id:httpId,
+            apix:{
+                id:httpId,
+                methodType:methodType
+            },
+            methodType:methodType
+        }
+        updateApxMethod(param)
+    }
+
+    //渲染 http 方法，如post，get
+    const showMethod = (data) =>{
+        return data&&data.map(item=>{
+            return(
+                <Option value={item} key={item}>
+                    <MethodType type={item} />
+                </Option>
+            )
+        })
+    }
 
     return(
         <Fragment>
             <div className="apidetail-header-btn">
-                <EdiTextToggle
-                    value={resData?.apix?.name}
-                    tabIndex={1}
-                    save={editName}
-                />
+                <Space>
+                    <div className={"info-item"}>
+                        <span className={"method-info-item "}>
+                            <ApiStatusModal selectStatus={selectStatus} status={status} {...props}/>
+                        </span>
+                    </div>
+
+                    <Select
+                        style={{width:70}}
+                        value={methodType}
+                        showArrow={false}
+                        onChange={(e)=>selectMethodType(e)}
+                    >
+                        {
+                            showMethod(methodDictionary)
+                        }
+                    </Select>
+                    {/*<span className={"method-info-item "}><MethodType type={methodType} /></span>*/}
+                    <EdiTextToggle
+                        value={resData?.apix?.name}
+                        tabIndex={1}
+                        save={editName}
+                    />
+                </Space>
+
                  <Space >
-                     <Button className="important-btn" onClick={handleTest}>测试</Button>
+                     <Button className="important-btn" onClick={handleTest} style={{display:"flex",alignItems:"center"}}>
+                         <IconCommon
+                            icon={"fasong-copy"}
+                            style={{width:20,height:20}}
+                         />
+                         测试
+                     </Button>
                      <RemoteUmdComponent
                          point='version'
                          pluginStore={pluginStore}
                          extraProps={{ history: props.history}}
                      />
-                     <Button danger onClick={()=>handleDeleteApxMethod(apxMethodId)}>删除</Button>
+                     <Button  onClick={()=>handleDeleteApxMethod(apxMethodId)}  style={{display:"flex",alignItems:"center"}}>
+                         <IconCommon
+                             icon={"shanchu"}
+                             style={{width:20,height:20}}
+                         />
+                         删除
+                     </Button>
                  </Space>
 
             </div>
             <div className={"method"}>
                 <div className={"method-info info-item"}>
-                    <span className={"method-info-item "}><MethodType type={methodType} /></span>
+
                     <EdiText
                         value={resData?.path}
                         tabIndex={2}
@@ -187,7 +243,29 @@ const ApxMethodDetail = (props) => {
                     />
 
                 </div>
-                <div className={"info-item"}>
+                <div className={"method-people-info"}>
+                     <span className={"people-item "}>执行者:
+                         {
+                             executorId
+                                 ?<Select
+                                     style={{width:85}}
+                                     value={executorId}
+                                     showArrow={false}
+                                     onChange={(e)=>selectExecutor(e)}
+                                 >
+                                     {showExecutor(userSelectList)}
+                                 </Select>
+                                 :<span>未设置</span>
+                         }
+
+                        </span>
+                    <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
+                    <span className={"people-item "}>创建人: {resData?.apix?.createUser?.name}</span>
+                    <span className={"people-item "}>更新人: {resData?.apix?.updataUser?.name}</span>
+                    <span className={"people-item "}>创建时间: {resData?.apix?.createTime}</span>
+                </div>
+
+                <div style={{margin:"15px 0 0","display":"flex"}}>
                     <span>描述:</span>
                     <EdiText
                         value={resData?.apix?.desc}
@@ -209,33 +287,7 @@ const ApxMethodDetail = (props) => {
                         hideIcons
                     />
                 </div>
-                <Space>
-                    <div className={"info-item"}>
-                        <span className={"method-info-item "}>状态 ：
-                            <ApiStatusModal selectStatus={selectStatus} status={status} {...props}/>
-                        </span>
-                    </div>
-                    <div className={"info-item"}>
-                        <span className={"people-item "}>执行者:
-                            <Select
-                                style={{width:100}}
-                                value={executorId}
-                                showArrow={false}
-                                onChange={(e)=>selectExecutor(e)}
-                            >
-                                {showExecutor(userSelectList)}
-                            </Select>
-                        </span>
-                    </div>
-                </Space>
 
-                <div className={"method-people-info"}>
-                    <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
-                    <span className={"people-item "}>创建人: {resData?.apix?.createUser?.name}</span>
-                    <span className={"people-item "}>更新者: {resData?.apix?.updataUser?.name}</span>
-                    <span className={"people-item "}>创建时间: {resData?.apix?.createTime}</span>
-                    <span className={"people-item "}>更新时间: {resData?.apix?.updateTime}</span>
-                </div>
             </div>
             <div className="header-title ex-title">输入参数</div>
             <Request  />

@@ -80,7 +80,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
-    "antd": "^4.15.2",
+    "antd": "^4.23.6",
     "axios": "^0.21.0",
     "codemirror": "^5.65.6",
     "echarts": "^5.4.0",
@@ -91,6 +91,7 @@
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
     "qs": "^6.9.4",
+    "rc-virtual-list": "^3.4.10",
     "react": "^17.0.1",
     "react-codemirror2": "^7.2.1",
     "react-color": "^2.19.3",

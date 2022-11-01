@@ -1,55 +1,37 @@
 import React, {useState} from "react";
 import {inject, observer} from "mobx-react";
+import {Menu} from "antd";
 
 const HeaderMenu = (props) =>{
 
-    const [clickIcon, setClickIcon] = useState(false);
-
-    const menuRouter = [
+    const items = [
         {
-            to:'/home',
-            title:'主页',
-            key: 'home'
+            label: '首页',
+            key: '/home',
         },
         {
-            to:'/workspacePage',
-            title:'空间',
-            key: 'Workspace'
+            label: '空间',
+            key: '/workspacePage',
         },
-        // {
-        //     to:'/workbench',
-        //     title:'工作台',
-        //     key: 'workbench'
-        // }
     ]
 
-    const changeCurrentLink = item => {
-        props.history.push(item)
-        setClickIcon(false)
-    }
+    const [current, setCurrent] = useState('/home');
 
-    const menuView = (data) => {
-        return data&&data.map(item => {
-            return(
-                <div
-                    key={item.key}
-                    onClick={ () => changeCurrentLink(item.to)}
-                    className={"header-link-item"}
-                >
-                    {item.title}
-                </div>
-            )
+    const onClick = (e) => {
+        console.log('click ', e);
+        props.history.push(e.key)
+        setCurrent(e.key);
+    };
 
-        })
-    }
 
 
     return(
-        <>
-            {
-                menuView(menuRouter)
-            }
-        </>
+        <Menu
+            onClick={onClick}
+            selectedKeys={[current]}
+            mode="horizontal"
+            items={items}
+        />
     )
 }
 export default inject("workspaceStore")(observer(HeaderMenu));

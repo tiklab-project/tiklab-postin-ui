@@ -41,8 +41,8 @@
 }
 
 .header-right-item{
-    margin: 0 10px;
-    height: 21px;
+    margin: 0 12px;
+    height: 22px;
 }
 
 .user-header-icon{
@@ -98,10 +98,36 @@
         }
 
         .user-hidden-item{
-            //border-bottom: 1px solid #e4e4e4;
+            border-top: 1px solid #e4e4e4;
             padding: 5px;
             display: flex;
             align-items: center;
+        }
+
+        .user-hidden-item-lan{
+            padding: 5px;
+            position: relative;
+            cursor: pointer;
+
+            .header-lan-box{
+                padding:10px;
+                width: 80px;
+                display: none;
+                position: absolute;
+                left: -80px;
+                top: 10px;
+
+                .header-lan-box-item{
+                    padding:5px;
+                }
+            }
+        }
+
+        .user-hidden-item-lan:hover  .header-lan-box{
+            display: block;
+            background: #fff;
+            border: 1px solid #e4e4e4;
+            box-shadow: 0 0 10px #e4e4e4ee;
         }
 
         .user-hidden-item-disable{
@@ -125,7 +151,7 @@
     .header-user-box{
         width: 230px;
         left: -200px;
-        padding: 10px;
+        padding: 0;
     }
 
     .setting-setting-box{
@@ -147,8 +173,9 @@
 
 .frame-header{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 47px;
     border-bottom: 1px solid #e4e4e4;
     //-webkit-app-region: drag;//electron无边框拖动
     //-webkit-app-region: no-drag;
@@ -174,16 +201,21 @@
         }
     }
 
-    .frame-header-right{
+    .frame-header-right-box{
         display: flex;
-        flex-direction: row;
-        justify-items: flex-end;
+        justify-content: space-between;
         align-items: center;
         height: 100%;
-        .frame-header-right-search-wrap{
-            position: relative;
-            width: 100%;
+        width: 550px;
+
+
+        .frame-header-right-detail{
+            display: flex;
+            margin:0 15px 0 0;
         }
+
+
+
         .frame-header-right-text{
             display: flex;
             flex-direction: row;
@@ -220,9 +252,7 @@
 
         }
     }
-    .frame-header-dropdown{
-        margin: 0 10px;
-    }
+
 }
 
 .frame-search-content{

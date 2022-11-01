@@ -13,6 +13,14 @@ export function findDataStructurePage(data){
     })
 }
 
+export function findDataStructureList(data){
+    return service.request({
+        url: "/dataStructure/findDataStructureList",
+        method: "post",
+        data
+    })
+}
+
 export function findDataStructure(data){
     return service.request({
         url: "/dataStructure/findDataStructure",

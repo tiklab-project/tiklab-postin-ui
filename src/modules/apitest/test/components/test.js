@@ -8,6 +8,7 @@ import { sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import {execute} from "../../common/dtAction";
 import TestResultCommon from "../../common/testResultCommon";
+import IconCommon from "../../../common/iconCommon";
 
 
 const { Option } = Select;
@@ -177,7 +178,13 @@ const ApxMethodTest = (props) => {
                     </div>
 
                     <Space>
-                        <Button className="important-btn" onClick={onFinish}> 发送 </Button>
+                        <Button className="important-btn" onClick={onFinish} style={{display:"flex",alignItems:"center"}}>
+                            <IconCommon
+                                icon={"fasong-copy"}
+                                style={{width:20,height:20}}
+                            />
+                            发送
+                        </Button>
                         <SaveTestCase  {...props}/>
                     </Space>
                 </Form>

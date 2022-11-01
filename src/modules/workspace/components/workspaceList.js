@@ -15,7 +15,7 @@ import emptyImg  from "../../../assets/img/empty.png"
 const WorkspaceList = (props) => {
     const { workspaceStore,workspaceRecentStore,workspaceFollowStore,findList,selectItem } = props;
 
-    const { workspaceList } = workspaceStore;
+    const { workspaceList,settingMenuSelected } = workspaceStore;
 
     const {workspaceRecent}=workspaceRecentStore;
     const {createWorkspaceFollow,deleteWorkspaceFollow} = workspaceFollowStore;
@@ -29,7 +29,7 @@ const WorkspaceList = (props) => {
             title:` ${t('wsName')}`,
             dataIndex: "workspaceName",
             key: "workspaceName",
-            width:"30%",
+            width:"70%",
             // align:"center",
             render: (text,record) =>(
                 <Space size={"large"}>
@@ -38,12 +38,12 @@ const WorkspaceList = (props) => {
                 </Space>
             )
         },
-        {
-            title: ` ${t('desc')}`,
-            dataIndex: "desc",
-            key: "desc",
-            width:"30%",
-        },
+        // {
+        //     title: ` ${t('desc')}`,
+        //     dataIndex: "desc",
+        //     key: "desc",
+        //     width:"30%",
+        // },
         {
             title: ` ${t('operation')}`,
             key: "action",
@@ -75,6 +75,8 @@ const WorkspaceList = (props) => {
 
     const toWorkspaceUser = (workspaceId)=>{
         toWorkspaceDetail(workspaceId,userId,workspaceRecent);
+
+        settingMenuSelected("/workspace/setting/role");
 
         props.history.push('/workspace/setting/role');
     }

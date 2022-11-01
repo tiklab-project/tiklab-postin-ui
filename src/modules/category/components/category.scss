@@ -30,16 +30,14 @@
 .categoryNav-li{
     cursor: pointer;
     line-height: 35px;
-    padding: 0 0 0 21px;
+    padding: 0 0 0 10px;
 }
 .categoryNav-li:hover{
     background-color: #EDF0F5;
-    border-radius: 5px;
 }
 
 .action-li{
     background-color: #ececec;
-    border-radius: 5px;
 }
 
 .ant-list-item{
@@ -50,7 +48,7 @@
     display: block;
     width:100%;
     height: 35px;
-    padding-left:35px ;
+    padding-left:25px ;
 }
 
 .tree-hidden{
@@ -68,7 +66,7 @@
 .methodli{
     width: 100%;
     height: 35px;
-    padding-left: 35px;
+    padding-left: 15px;
     line-height: 35px;
 }
 
@@ -113,6 +111,19 @@
     position: absolute;
     right: 28px;
     top: 0;
+}
+
+.ws-left-tree-drop{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d9d9d9;
+    padding: 3px;
+    border-radius: 3px;
+    margin: 0 0 0 5px;
+    cursor: pointer;
 }
 
 

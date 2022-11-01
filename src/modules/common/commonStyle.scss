@@ -92,3 +92,87 @@
 .CodeMirror-scroll{
     min-height: 150px;
 }
+
+
+
+.sort-box{
+    position:relative;
+    padding: 10px;
+
+    .sort-show-box{
+        position: absolute;
+        width: 160px;
+        left: -116px;
+        background: rgb(255 255 255);
+        padding: 10px;
+        z-index: 10;
+        border: 1px solid #f3f3f3;
+        box-shadow: 0 0 10px #e4e4e4cc;
+        border-radius: 5px;
+        display: none;
+
+        &-item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+
+            &-sort{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 55px;
+
+
+                .sort-icon{
+                    width:25px;
+                    height:25px;
+                    //display: none;
+                    padding: 5px;
+                }
+
+                .sort-icon:hover{
+                    background: #efefef;
+                    cursor: pointer;
+                    border-radius: 5px;
+                }
+
+                .sort-icon-asc:hover{
+
+                }
+
+                .sort-icon-desc{
+
+                }
+
+                .action-sort{
+                    cursor: pointer;
+                    background: #efefef;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+
+        //&-item:hover{
+        //    cursor: pointer;
+        //    background: #e2e2e2;
+        //    border-radius: 5px;
+        //}
+
+        //&-item:hover .sort-icon-asc{
+        //    display: block;
+        //}
+        //
+        //&-item:hover .sort-icon-desc{
+        //    display: block;
+        //}
+    }
+
+
+}
+.sort-box:hover .sort-show-box{
+    display: block;
+}
+
+

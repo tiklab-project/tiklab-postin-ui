@@ -80,15 +80,15 @@ const JsonParam = (props) => {
         {
             title: '操作',
             dataIndex: 'operation',
-            width: '10%',
+            width: '20%',
             fixed: 'right',
             render: (text, record, index) =>(
                 <Space>
                     <Tooltip title="数据类型: object，添加子行"><a onClick={() => addChild(record.dataType,record.id)}> 子</a></Tooltip>
-                    <Tooltip title="添加数据"><a onClick={() =>onCreated(record, index)} >create </a></Tooltip>
-                    <Tooltip title="更新数据"><a onClick={() =>updateJsonParam(record)} > update </a></Tooltip>
-                    <Tooltip title="删除数据"><a onClick={() =>deleteJsonParam(record.id)} type="primary"> delete </a></Tooltip>
-                    <Tooltip title="新增一行"><a onClick={() =>handleAdd()} > + </a></Tooltip>
+                    <Tooltip title="添加数据"><a onClick={() =>onCreated(record, index)} >添加 </a></Tooltip>
+                    <Tooltip title="更新数据"><a onClick={() =>updateJsonParam(record)} > 编辑 </a></Tooltip>
+                    <Tooltip title="删除数据"><a onClick={() =>deleteJsonParam(record.id)} type="primary"> 删除 </a></Tooltip>
+                    <Tooltip title="新增一行"><a onClick={() =>handleAdd()} > 新行 </a></Tooltip>
                     {/* <Button shape="circle">上</Button>
                     <Button shape="circle">下</Button> */}
                 </Space>
@@ -96,7 +96,7 @@ const JsonParam = (props) => {
         },
         {
             title: '',
-            width: '24%',
+            width: '14%',
             dataIndex: 'none',
         }
     ]

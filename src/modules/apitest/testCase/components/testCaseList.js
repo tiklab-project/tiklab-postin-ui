@@ -78,9 +78,12 @@ const TestCaseList = (props) => {
 
     const methodId =  localStorage.getItem('apxMethodId');
     const [selectTestList,setSelectTestList] = useState([]);
+    const [caseLength, setCaseLength] = useState();
 
     useEffect(()=>{
-        findTestCaseList(methodId);
+        findTestCaseList(methodId).then(list=>{
+            setCaseLength(list.length)
+        });
     },[methodId]);
 
     const setLocalStorage = (id) => {
@@ -142,17 +145,20 @@ const TestCaseList = (props) => {
         <div className={"content-box-center"}>
             <div className='list-content-center'>
                 <div className='testCase-header'>
-                    <TestCaseEdit  btn='btn' name="添加用例" {...props}/>
+                    <span>用例数：（{caseLength}）</span>
+                    <TestCaseEdit  btn='btn' name="+添加用例" {...props}/>
                 </div>
-                <Table
-                    columns={column}
-                    dataSource={testCaseList}
-                    rowKey = {record => record.id}
-                    // rowSelection ={{
-                    //     ...rowSelection,
-                    // }}
-                    pagination={false}
-                />
+                <div className={"out-table-box"}>
+                    <Table
+                        columns={column}
+                        dataSource={testCaseList}
+                        rowKey = {record => record.id}
+                        // rowSelection ={{
+                        //     ...rowSelection,
+                        // }}
+                        pagination={false}
+                    />
+                </div>
             </div>
         </div>
     )

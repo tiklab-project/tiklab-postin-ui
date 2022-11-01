@@ -27,11 +27,8 @@
     border-bottom: 1px solid #e4e4e4;
 
     .qt-left-heaer-clear{
-        padding: 0 10px;
-        width: 60px;
         margin: 0 0 0 10px;
         line-height: 32px;
-        color: red;
         cursor: pointer;
     }
 }
@@ -79,6 +76,7 @@
 .qt-left-empty{
     align-items: center;
     overflow: auto;
+    padding: 100px 0;
 }
 
 

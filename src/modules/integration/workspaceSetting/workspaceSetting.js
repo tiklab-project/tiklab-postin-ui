@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {Button, Collapse, Form, Input} from "antd";
 import EdiText from "react-editext";
 import {inject, observer} from "mobx-react";
+import WorkspaceEdit from "../../workspace/components/workspaceEdit";
+import DetailHeader from "../../common/detailHeader";
 
 const { Panel } = Collapse;
 const {TextArea} = Input;
@@ -37,17 +39,30 @@ const WorkspaceSetting = (props) =>{
     }
 
     const deleteFn = (workspaceId) =>{
-        deleteWorkspace(workspaceId)
-
-        props.history.push("/workspacePage")
+        deleteWorkspace(workspaceId).then(()=>{
+            props.history.push("/workspacePage")
+        })
     }
 
 
     return(
         <div className={"ws-setting-flex"}>
             <div className={"ws-setting-box"}>
-                <div className={"ws-setting-title"}>空间设置 </div>
-
+                <DetailHeader
+                    left={
+                        <div style={{
+                            display:"flex",
+                            alignItems:"center",
+                            justifyContent:"space-between",
+                            width: 90
+                        }}>
+                            <svg style={{width:20,height:20}} aria-hidden="true" >
+                                <use xlinkHref= {`#icon-setting`} />
+                            </svg>
+                            <span>空间设置</span>
+                        </div>
+                    }
+                />
                 <Collapse  >
                     <Panel header="编辑空间" key="1">
                         <div style={{width:800}}>

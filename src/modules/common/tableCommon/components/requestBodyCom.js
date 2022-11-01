@@ -47,10 +47,12 @@ const RequestBodyCom = (props) =>{
                     value={radioValue}
                     onChange = {(e)=>onChange(e.target.value)}
                 >
+
                     {showRadioItem(bodyTypeDictionary)}
+
                 </Radio.Group>
             </div>
-            <div>
+            <div className={"tabPane-item-box"}>
                 {
                     showItemComponent(radioValue)
                 }

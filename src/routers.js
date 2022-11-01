@@ -180,7 +180,12 @@ const routers =  [
                         path: "/systemManagement/user",
                         key:'user',
                         exact: true,
-                        component: UserList ,
+                        render:(props)=>{
+
+                            return(
+                                <UserList {...props} bgroup={'postin'}/>
+                            )
+                        }
                     },
                     {
                         path: "/systemManagement/authConfig",
@@ -192,7 +197,7 @@ const routers =  [
                         path: "/systemManagement",
                         key:'sysEnvMana',
                         exact: true,
-                        render: () => <Redirect to={"/systemManagement/systemFeature"}/>,
+                        render: () => <Redirect to={"/systemManagement/systemRole"}/>,
                     },
                 ]
             },
@@ -367,7 +372,7 @@ const routers =  [
                                 path:"/workspace/setting",
                                 key:'ridworkspaceSetting',
                                 exact: true,
-                                component: ()=><Redirect to='/workspace/setting/role'/>,
+                                component: ()=><Redirect to='/workspace/setting/detail'/>,
                             },
                         ]
                     },

@@ -6,40 +6,84 @@ $borderRadius:5px;
     overflow: auto;
     /*background-color:#f0f2f5;*/
     height: calc(100% - 50px);
-    display: flex;
-    justify-content: center;
+    background: #f6f8fa;
 
     .home-content-box{
         /*width: 800px;*/
-        margin: 20px 0 0 0;
-        width: 1200px;
+        margin: 0 auto;
+        width: 1220px;
+        padding: 10px 10px 0 10px ;
+
+        .ant-list-item-meta{
+            align-items: center;
+        }
 
         &-top{
             display: flex;
             justify-content: space-between;
 
 
-            .home-log-box{
+            .home-box-item{
                 border: 1px solid #e4e4e4;
-                width: 580px;
-                height: 400px;
+                width: 595px;
+                height: 425px;
                 border-radius: 5px;
+                background: #fff;
+                //box-shadow: 0 3px 6px rgb(140 149 159 / 15%);
+                overflow: hidden;
             }
 
-            .home-wait-box{
-                border: 1px solid #e4e4e4;
-                width: 580px;
-                height: 400px;
-                border-radius: 5px;
-            }
         }
 
-        .home-item-title{
+        .home-item-title-box{
             padding: 10px;
-            border-bottom: 1px solid #e4e4e4;
-            font-weight: 600;
+            margin: 0 0 5px;
+            //border-bottom: 1px solid #e4e4e4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .home-item-title{
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+            }
+
+            .home-item-title-icon{
+                width: 30px;
+                height: 30px;
+                margin: 0 10px 0 0;
+            }
+
+
+
         }
+
+        .home-box-item-dynamic{
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px solid #e4e4e4;
+            background: #fff;
+            //box-shadow: 0 3px 6px rgb(140 149 159 / 15%);
+
+        }
+
     }
+}
+
+.home-box-item-detail{
+    padding: 10px;
+    height: 358px;
+}
+
+.dynamic-item-box-icon{
+    width: 30px;
+    height: 30px;
+    //margin: 0 10px 0 0;
+}
+
+.demo-loadmore-list {
+    min-height: 350px;
 }
 
 
@@ -132,5 +176,15 @@ $borderRadius:5px;
 
             }
         }
+    }
+}
+
+.home-dynamic-item{
+    padding: 5px;
+    border-bottom: 1px solid #e4e4e4;
+
+    &-time{
+        font-size: 13px;
+        padding:0 5px ;
     }
 }

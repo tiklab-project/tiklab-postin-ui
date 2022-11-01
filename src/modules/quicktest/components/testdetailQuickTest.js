@@ -17,6 +17,7 @@ import {
 } from "../common/instanceDataProcess";
 import {getUser} from "tiklab-core-ui";
 import TestResultCommon from "../../apitest/common/testResultCommon";
+import IconCommon from "../../common/iconCommon";
 
 const { Option } = Select;
 
@@ -207,7 +208,13 @@ const TestdetailQuickTest = (props) =>{
                         </Form.Item>
                     </div>
                     <div className={"test-base-item"}>
-                        <Button className="important-btn" onClick={onFinish}> 发送 </Button>
+                        <Button className="important-btn" onClick={onFinish} style={{display:"flex",alignItems:"center"}}>
+                            <IconCommon
+                                icon={"fasong-copy"}
+                                style={{width:20,height:20}}
+                            />
+                            发送
+                        </Button>
                     </div>
                 </Form>
             </div>

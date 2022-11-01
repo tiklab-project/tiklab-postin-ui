@@ -14,7 +14,6 @@ const WorkspaceEdit = (props) => {
         findWorkspace,
         createWorkspace,
         updateWorkspace,
-        menuSelected
      } = workspaceStore;
 
     const [form] = Form.useForm();
@@ -52,7 +51,6 @@ const WorkspaceEdit = (props) => {
                 findList({},selectItem)
             });
             props.history.push("/workspacePage/create");
-            menuSelected("create")
         }
 
         setVisible(false);

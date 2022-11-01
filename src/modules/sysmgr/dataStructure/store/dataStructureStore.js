@@ -8,8 +8,9 @@ import {
     findDataStructure,
     createDataStructure,
     deleteDataStructure,
-    updateDataStructure
-}from'../api/dataStructureApi';
+    updateDataStructure,
+    findDataStructureList
+} from '../api/dataStructureApi';
 
 
 export class DataStructureStore {
@@ -18,68 +19,40 @@ export class DataStructureStore {
     @observable totalRecord ;
 
     @action
-    findDataStructurePage = (param) => {
-        const params = {
-            ...param,
-            orderParams: [{
-                name:'name',
-                orderType:'asc'
-            }],
-        }
+    findDataStructureList = async (params) => {
 
-        const that = this;
-        return new Promise(function(resolve, reject){
-            findDataStructurePage(params).then(res => {
-                if(res.code === 0) {
-                    that.dataStructureList = res.data.dataList;
-                    that.totalRecord = res.data.totalRecord;
-                    resolve(res);
-                }
-            })
-        })
+        let  res = await findDataStructureList(params)
+        if(res.code === 0) {
+            this.dataStructureList = res.data;
+
+            return  res.data
+        }
     }
 
     @action
-    findDataStructure = (id) => {
-        const that =this;
+    findDataStructure = async (id) => {
         const param = new FormData();
         param.append('id', id);
 
-        return new Promise(function(resolve, reject){
-            findDataStructure(param).then((res) => {
-                if(res.code === 0){
-                    that.dataStructureInfo = res.data;
-                    resolve(res.data)
-                }
-            })
-        })
+
+        let res = await findDataStructure(param)
+        if(res.code === 0){
+            this.dataStructureInfo = res.data;
+            return res.data;
+        }
     }
 
     @action
-    createDataStructure = (values) => {
-        createDataStructure(values).then((res) => {
-            if(res.code === 0){
-                this.findDataStructurePage()
-            }
-        })
-    }
+    createDataStructure = async (values) =>  await createDataStructure(values)
 
     @action
-    updateDataStructure = (values) => {
-        updateDataStructure(values).then((res) => {
-            if(res.code === 0){
-                this.findDataStructurePage();
-            }
-        })
-    }
+    updateDataStructure = async (values) =>  await updateDataStructure(values)
 
     @action
-    deleteDataStructure = (id) => {
+    deleteDataStructure = async (id) => {
         const param = new FormData();
         param.append('id', id)
-        deleteDataStructure(param).then((res) => {
-            this.findDataStructurePage();
-        })
+        await deleteDataStructure(param)
     }
 
 

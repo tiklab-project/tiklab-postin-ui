@@ -53,7 +53,7 @@ const RequestBodyTest = (props)=>{
                     showBodyType(bodyType)
                 }
             </div>
-            <div>
+            <div className={"tabPane-item-box"}>
                 {
                     showItemComponent(bodyType)
                 }

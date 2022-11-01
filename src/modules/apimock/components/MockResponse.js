@@ -76,7 +76,7 @@ const MockResponse = (props) => {
         <>
             <Tabs defaultActiveKey="1" >
                 <TabPane tab="返回头部" key="1">
-                    <MockResponseHeader />
+                    <div className={"tabPane-item-box"}><MockResponseHeader /></div>
                 </TabPane>
 
                 <TabPane tab="返回结果" key="2">

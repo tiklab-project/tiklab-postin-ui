@@ -8,7 +8,7 @@
         width: 80px;
         height: 100%;
         position:relative;
-        background: #f3f3f3;
+        background: #f9f9f9;
     }
 
     .ws-detail-right{
@@ -70,7 +70,7 @@
             cursor: pointer;
         }
         .ws-detail-left-nav-item-box:hover{
-            background-color: #fcfcfc;
+            background-color: #ececec;
         }
 
 
@@ -81,7 +81,7 @@
     }
 
     .selectlink{
-        background-color: #fcfcfc;
+        background-color: #e8e8e8;
     }
 
 
@@ -192,13 +192,15 @@
 
 .ws-icon-box{
     position: relative;
+    display: flex;
+    align-items: center;
 
     .ws-hover-box{
         display: none;
         width: 240px;
         position: absolute;
         top: -10px;
-        left: 56px;
+        left: 82px;
         padding: 10px;
         box-shadow: 0 0 12px 1px #ddd;
         background: #fff;

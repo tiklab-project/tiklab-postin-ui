@@ -27,12 +27,12 @@ const FormParamMock = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '25%',
+            width: '30%',
             editable: true,
         },
         {
             title: '参数值',
-            width: '50%',
+            width: '30%',
             dataIndex: 'value',
             editable: true,
         },
@@ -41,6 +41,11 @@ const FormParamMock = (props) =>{
             width: '10%',
             dataIndex: 'operation',
             render: (text, record) =>( operation(record,dataSource) )
+        },
+        {
+            title: '',
+            width: '30%',
+            dataIndex: 'none',
         }
     ]
 

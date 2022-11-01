@@ -29,7 +29,7 @@ export class WorkspaceStore {
 	@observable params;
 	@observable pageParams;
 	@observable length;
-	@observable selectedItem="all";
+	@observable settingItemSelected;
 
 	//获取带分页列表的数据/
 	@action
@@ -187,9 +187,10 @@ export class WorkspaceStore {
 		}
 	}
 
+	//空间设置中的导航的选中项
 	@action
-	menuSelected = (selected)=>{
-		this.selectedItem = selected;
+	settingMenuSelected = (selected)=>{
+		this.settingItemSelected = selected;
 	}
 
 

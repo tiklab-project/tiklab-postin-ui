@@ -16,12 +16,10 @@ const WorkspaceRecentHome = (props) =>{
             title:"空间名称",
             dataIndex:["workspace","workspaceName"],
             key: 'name',
-            width:"30%",
+            width:"70%",
             render: (text,record) =>(
                 <Space size={"large"}>
-                    <svg className={"workspace-icon"} aria-hidden="true">
-                        <use xlinkHref= {`#icon-xiangmu`} />
-                    </svg>
+                    {showIcon(text)}
                     <a onClick = {()=>toDetail(record.workspace.id)}>{text}</a>
                 </Space>
             )
@@ -43,6 +41,15 @@ const WorkspaceRecentHome = (props) =>{
         props.history.push('/workspace');
     }
 
+    const showIcon = (text)=>{
+        let t = text.substring(0,1).toUpperCase();
+
+        return <div className={"workspace-text-icon-box"}>
+            <span>{t}</span>
+        </div>
+    }
+
+
 
     return(
         <div className={"list-box-cell"}>
@@ -51,6 +58,7 @@ const WorkspaceRecentHome = (props) =>{
                 dataSource={recentList}
                 pagination={false}
                 rowKey={(record => record.id)}
+                showHeader={false}
             />
 
         </div>

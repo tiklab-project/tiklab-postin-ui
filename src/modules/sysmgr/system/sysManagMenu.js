@@ -14,7 +14,7 @@ const SysManage = (props) => {
     const pluginStore = useSelector(store => store.pluginStore)
     const routers = props.route.routes
 
-    const [selectKey,setSelectKey] = useState('/systemManagement/systemFeature')
+    const [selectKey,setSelectKey] = useState('/systemManagement/systemRole')
 
     const [menuRouter,setMenuRouter] = useState();
 

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
 import {quickTestTabProcess} from "../../common/apiTabListInfoProcess";
-import { Empty, Input} from "antd";
+import {Empty, Input, Tooltip} from "antd";
 import {TextMethodType} from "../../common/methodType";
 import {getUser} from "tiklab-core-ui";
 
@@ -69,7 +69,16 @@ const LeftNavListQuickTest =(props)=>{
     return(
         <>
             <div className={"qt-left-header"}>
-                <div className={"qt-left-heaer-clear"} onClick={deleteAllInstanceFn} >清空</div>
+                <Input
+                    placeholder={"搜索"}
+                />
+                <div className={"qt-left-heaer-clear"}>
+                    <Tooltip placement="right" title={"清空"}>
+                        <svg className="icon" aria-hidden="true" onClick={deleteAllInstanceFn}>
+                            <use xlinkHref="#icon-qingkong" />
+                        </svg>
+                    </Tooltip>
+                </div>
             </div>
             {
                 instanceList&&instanceList.length>0

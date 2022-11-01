@@ -10,14 +10,31 @@ const ApiStatusSelect = (props) =>{
 
 
     const [statusList, setStatusList] = useState([]);
+    const [customList, setCustomList] = useState([]);
+    let workspaceId = localStorage.getItem("workspaceId");
 
     useEffect(()=>{
-        findApiStatusList().then(res=>{
-            setStatusList(res)
-        });
+        findSystemList();
     },[])
 
+    useEffect(()=>{
+        findCustomList()
+    },[])
 
+    const findCustomList = () =>{
+        let param = {type:"custom",workspaceId:workspaceId}
+        findApiStatusList(param).then(res=>{
+            setCustomList(res)
+        });
+    }
+
+    const findSystemList = () =>{
+        findApiStatusList({type:"system"}).then(res=>{
+            setStatusList(res)
+        });
+    }
+
+    //渲染下拉框
     const showStatus = (data)=>{
         return data&&data.map(item=>{
             return (
@@ -29,12 +46,18 @@ const ApiStatusSelect = (props) =>{
         })
     }
 
+    const clickSelect = ()=>{
+        findSystemList();
+        findCustomList();
+    }
+
     return(
         <Select
-            style={{width:100}}
+            style={{width:80}}
             value={status}
             showArrow={false}
             onChange={(e)=>selectStatus(e)}
+            onFocus={clickSelect}
             dropdownRender={item=>(
                 <>
                     <div style={{"overflow":"auto"}}>{item}</div>
@@ -45,7 +68,7 @@ const ApiStatusSelect = (props) =>{
             )}
         >
             {
-                showStatus(statusList)
+                showStatus([...statusList,...customList])
             }
         </Select>
     )

@@ -40,8 +40,13 @@ const CategoryAside = (props) => {
                             placeholder="搜索"
                             onPressEnter={onSearch}
                         />
-                        <Dropdown overlay={menu}  className="ws-detail-dropdown" >
-                            <Button>+</Button>
+                        <Dropdown overlay={menu}  className="ws-left-tree-drop" >
+                            <div>
+                                <svg style={{width:22,height:22}} aria-hidden="true" >
+                                    <use xlinkHref= {`#icon-tianjia-`} />
+                                </svg>
+                            </div>
+
                         </Dropdown>
                     </div>
                     <div className='ws-detail-menu-ul-box'>
