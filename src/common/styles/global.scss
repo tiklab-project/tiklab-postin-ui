@@ -1,0 +1,66 @@
+:root{
+    // 色调
+    --tiklab-white: #fff;  // 主色调白
+    --tiklab-black: #000;  // 主色调黑
+    --tiklab-blue: #0063FF;  // 主色调蓝
+    --tiklab-gray-300: #E4E4E4;  // hover颜色
+    --tiklab-gray-400: #D9D9D9;  // 选中颜色
+    --tiklab-gray: #F9F9F9; // 主色调灰
+
+    // 外边距
+    --tiklab-margin: 0;
+    --tiklab-margin-10: 10px; //  页面内容边距
+
+    // 内边距
+    --tiklab-padding: 0;
+    --tiklab-padding-10: 10px; //  页面内容边距
+
+    // 标题
+    --tiklab-font-sm: 13px;  // 描述文字
+    --tiklab-font-base: 14px; // 正文
+    --tiklab-font-lg: 16px; // 标题
+
+    // 字重
+    --tiklab-font-weight-base: 400; // 正文
+    --tiklab-font-weight-bold: bold; // 标题字重
+
+    --line-height: 1;
+
+
+
+    --pi-base-color:var(--tiklab-blue);  //着重色
+    --pi-bg-color:var(--tiklab-white);   //背景色
+    --pi-hover-color:var(--tiklab-gray-300); //hover颜色
+    --pi-action-color:var(--tiklab-gray-400); //选中
+
+    --pi-first-lable:var(--tiklab-font-lg);  //一级字体大小
+    --pi-text-font-size:var(--tiklab-font-base);//正文字体大小
+    --pi-second-font-size:var(--tiklab-font-sm); //描述
+    --pi-page-padding:var(--tiklab-padding-10); //页面边距
+    --pi-font-weight-title:var(--tiklab-font-weight-bold); //加粗
+
+
+
+
+
+    --pi-greyf9-color: #f9f9f9; //悬浮颜色
+    --pi-border-color:#f0f0f0; //边框颜色
+    --pi-box-shadow: 0 3px 6px rgb(140 149 159 / 15%);  //阴影
+    --pi-border-radius:5px; //边框圆角
+
+
+    --pi-font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI, Roboto,Oxygen,
+    Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica,Arial,sans-serif; // 字体
+
+    //其他  接口请求方法的颜色，如 post为 red
+    --pi-error-color: red;
+    --pi-warning-color: #ffb400;
+    --pi-success-color:#0cbb52;
+    --pi-delete-color:#ff8181;
+    --pi-head-color:#439591;
+    --pi-put-color:#7e97bd;
+    --pi-option-color: #5a5cff;
+    --pi-patch-color: #b561ff;
+
+
+}

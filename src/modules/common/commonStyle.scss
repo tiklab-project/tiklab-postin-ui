@@ -9,68 +9,71 @@
 
 .requestType-post{
     color: white;
-    background: #ff2000;
+    background: var(--pi-error-color);
 }
 
 .requestType-post-text{
-    color: #ff1d00;
+    color: var(--pi-error-color);
 }
 
 .requestType-get{
     color: white;
-    background: #2bd583;
+    background: var(--pi-success-color);
 }
 .requestType-get-text{
-    color: #2bd583;
+    color: var(--pi-success-color);
 }
 
 .requestType-delete{
     color: white;
-    background: #ff8181;
+    background: var(--pi-delete-color);
 }
 .requestType-delete-text{
-    color: #ff8181;
+    color: var(--pi-delete-color);
 }
 
 .requestType-head{
     color: white;
-    background: #439591;
+    background: var(--pi-head-color);
 }
 .requestType-head-text{
-    color: #439591;
+    color: var(--pi-head-color);
 }
 
 .requestType-put{
     color: white;
-    background: #7e97bd;
+    background: var(--pi-put-color);
 }
 .requestType-put-text{
-    color: #7e97bd;
+    color: var(--pi-put-color);
 }
 
 .requestType-options{
     color: white;
-    background: #7e97bd;
+    background: var(--pi-option-color);
 }
 .requestType-options-text{
-    color: #7e97bd;
+    color: var(--pi-option-color);
 }
 
 .requestType-patch{
     color: white;
-    background: #7e97bd;
+    background: var(--pi-patch-color);
 }
 .requestType-patch-text{
-    color: #7e97bd;
+    color: var(--pi-patch-color);
 }
 
 
 .ws-side-menu{
-    border-right: 1px solid #e4e4e4;
-    background: #f9f9f9;
+    border-right: 1px solid var(--pi-greyf9-color);
+    background: #fdfdfd;
 }
 
-
+.ws-detail-title{
+    font-size: var(--tiklab-font-lg);
+    font-weight: var(--pi-font-weight-title);
+}
 
 .back-contant:hover{
     color: #48a8d9;
@@ -84,7 +87,7 @@
     justify-content: space-between;
     padding: 5px;
     align-items: center;
-    border-bottom: 1px solid #e4e4e4;
+    border-bottom: 1px solid var(--pi-border-color);
     height: 42px;
 }
 
@@ -106,8 +109,8 @@
         background: rgb(255 255 255);
         padding: 10px;
         z-index: 10;
-        border: 1px solid #f3f3f3;
-        box-shadow: 0 0 10px #e4e4e4cc;
+        border: 1px solid var(--pi-border-color);
+        box-shadow: var(--pi-box-shadow);
         border-radius: 5px;
         display: none;
 
@@ -116,23 +119,24 @@
             justify-content: space-between;
             align-items: center;
             padding: 5px;
+            cursor: pointer;
 
             &-sort{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                width: 55px;
+                width: 30px;
 
 
                 .sort-icon{
                     width:25px;
                     height:25px;
-                    //display: none;
+                    display: none;
                     padding: 5px;
                 }
 
                 .sort-icon:hover{
-                    background: #efefef;
+                    background: var(--pi-greyf9-color);
                     cursor: pointer;
                     border-radius: 5px;
                 }
@@ -147,8 +151,9 @@
 
                 .action-sort{
                     cursor: pointer;
-                    background: #efefef;
+                    background: var(--pi-greyf9-color);
                     border-radius: 5px;
+                    display: block;
                 }
             }
         }

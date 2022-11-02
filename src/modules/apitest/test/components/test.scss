@@ -10,7 +10,7 @@
         //cursor: pointer;
         padding: 8px;
         width: 400px;
-        border: 1px solid #dcdcdc;
+        border: 1px solid var(--pi-border-color);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -86,7 +86,7 @@
 
 .test-body-type-box{
     padding:10px 0;
-    background: #f9f9f9;
+    background: var(--pi-greyf9-color);
 
 
     .test-body-type-item{

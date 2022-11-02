@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Input } from 'antd';
 import { observer,inject } from 'mobx-react';
 import './search.scss'
+import {SearchOutlined} from "@ant-design/icons";
 
 const Search = (props) => {
     const { searchStore } = props;
@@ -106,6 +107,7 @@ const Search = (props) => {
     return(
         <>
             <Input
+                prefix={<SearchOutlined />}
                 placeholder="搜索"
                 onChange={debounce(changeValue,500) }
                 onPressEnter={toSearchResult}

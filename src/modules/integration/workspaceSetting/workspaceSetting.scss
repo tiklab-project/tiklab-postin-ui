@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 .ws-detail-left-nav-item-box:hover{
-    background-color: #fcfcfc;
+    background-color: var(--pi-greyf9-color);
 }
 
 .ws-detail-left-nav-item-detail{
@@ -31,7 +31,7 @@
     justify-content: center;
 }
 .selectlink{
-    background-color: #fcfcfc;
+    background-color: var(--pi-greyf9-color);
 }
 
 .ws-nav-setting{
@@ -41,7 +41,7 @@
 .ws-nav-setting:hover .nav-setting-box{
     display: block;
     z-index: 10;
-    background: #fff;
+    background: var(--pi-bg-color);
 }
 
 .show-nav-setting{
@@ -58,7 +58,7 @@
     top: -80px;
     left: 80px;
     padding: 10px;
-    box-shadow: 0 0 12px 1px #ddd;
+    box-shadow: var(--pi-box-shadow);
 }
 
 .nav-setting-menu{
@@ -76,7 +76,7 @@
         padding: 0 15px;
     }
     .nav-setting-item:hover{
-        background-color: #f3f3f3;
+        background-color: var(--pi-greyf9-color);
     }
 }
 

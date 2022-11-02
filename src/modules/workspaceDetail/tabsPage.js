@@ -100,7 +100,19 @@ const TabsPage = (props) =>{
                 onChange={onChange}
                 activeKey={activeKey?activeKey:String(apiTabListInfo.activeKey)}
                 onEdit={onEdit}
-                addIcon={<ApxMethodEdit name={"+"} type={"add"} {...props}/>}
+                addIcon={
+                    <ApxMethodEdit
+                        name={"添加"}
+                        icon={
+                            <svg className="edit-icon" aria-hidden="true">
+                                <use xlinkHref={`#icon-tianjia-`}/>
+                            </svg>
+                        }
+                        type={"add"}
+                        tab={true}
+                        {...props}
+                    />
+                }
                 onTabClick={changeTabPane}
 
                 tabBarExtraContent={<EnvSelect {...props}/>}

@@ -8,7 +8,7 @@
         width: 80px;
         height: 100%;
         position:relative;
-        background: #f9f9f9;
+        background: var(--pi-greyf9-color);
     }
 
     .ws-detail-right{
@@ -16,28 +16,6 @@
     }
 
 }
-
-
-
-//leftNav
-.ws-detail-left-nav-ws{
-    height: 64px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-
-    .ant-avatar{
-        width: 40px;
-        height: 40px;
-    }
-
-
-    .ant-avatar.ant-avatar-icon {
-        font-size: 22px;
-    }
-}
-
 
 
 
@@ -66,11 +44,11 @@
 
         .ws-detail-left-nav-item-box{
             padding: 6px 0;
-            border-radius: 5px;
+            border-radius: var(--pi-border-radius);
             cursor: pointer;
         }
         .ws-detail-left-nav-item-box:hover{
-            background-color: #ececec;
+            background-color: var(--pi-hover-color);
         }
 
 
@@ -81,18 +59,14 @@
     }
 
     .selectlink{
-        background-color: #e8e8e8;
+        background-color: var(--pi-action-color);
     }
 
 
 
 }
 
-//workspaceDetailPage
-.ws-detail-page{
-    width: 1240px;
-    margin: 0 auto;
-}
+
 
 //workspaceContant
 
@@ -101,13 +75,6 @@
     margin: 0 auto;
 }
 
-.api-footer{
-    border: 1px solid #e1e1e1;
-    padding: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
 //workspaceDetailInitPage
 .wd-content{
@@ -139,9 +106,9 @@
         .wd-total-box{
             display: flex;
             justify-content: space-between;
-            border: 1px solid #e4e4e4;
+            border: 1px solid var(--pi-border-color);
             padding: 20px;
-            border-radius: 5px;
+            border-radius: var(--pi-border-radius);
         }
 
         &-item{
@@ -172,8 +139,8 @@
         top: -80px;
         left: 80px;
         padding: 10px;
-        box-shadow: 0 0 12px 1px #ddd;
-        background: #fff;
+        box-shadow: var(--pi-box-shadow);
+        background: var(--pi-bg-color);
         z-index: 10;
     }
 
@@ -202,7 +169,7 @@
         top: -10px;
         left: 82px;
         padding: 10px;
-        box-shadow: 0 0 12px 1px #ddd;
+        box-shadow: var(--pi-box-shadow);
         background: #fff;
         z-index: 10;
         min-height:285px;
@@ -210,8 +177,8 @@
     }
 
     .ws-hover-item{
-        border-bottom: 1px solid #eeeeee;
-        border-radius: 5px;
+        border-bottom: 1px solid var(--pi-border-color);
+        border-radius: var(--pi-border-radius);
         padding: 5px;
         margin: 2px 0 0 0;
         display: flex;
@@ -224,7 +191,7 @@
     }
 
     .ws-hover-box-title{
-        border-bottom: 1px solid #d5d5d5;
+        border-bottom: 1px solid var(--pi-border-color);
         padding: 0 0 5px 5px;
         font-weight: 600;
     }

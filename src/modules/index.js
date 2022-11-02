@@ -3,8 +3,7 @@ import Home from './home/home';
 import {Search, SearchResult} from './integration/search';
 
 import {
-    WorkspaceRole, WorkspacePrivilege, Workspace,
-     WorkspaceInit, WorkspaceList,
+    WorkspaceRole, WorkspacePrivilege, Workspace,  WorkspaceList,
     DetailIndex
 } from './workspace';
 
@@ -46,7 +45,7 @@ export {
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,WorkspaceSettingMenu,
-    Workspace,RecentBrowing, WorkspaceInit,
+    Workspace,RecentBrowing,
     WorkspaceList,
 
     WorkspaceDetailLayout,LayoutApiContent,TabsPage,

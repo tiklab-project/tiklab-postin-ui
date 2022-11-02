@@ -11,12 +11,12 @@
 
 .allapi{
     padding: 10px 0 8px 26px;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid var(--pi-border-color);
     cursor: pointer;
 }
 
 .allapi:hover{
-    background: #e4e4e4;
+    background: var(--pi-border-color);
 }
 
 .categoryNav-ui{
@@ -33,11 +33,11 @@
     padding: 0 0 0 10px;
 }
 .categoryNav-li:hover{
-    background-color: #EDF0F5;
+    background-color: var(--pi-hover-color);
 }
 
 .action-li{
-    background-color: #ececec;
+    background-color: var(--pi-action-color);
 }
 
 .ant-list-item{
@@ -72,7 +72,7 @@
 
 .category-action{
     display: none;
-    width: 35px;
+    width: 42px;
     font-size: 24px;
 
     .category-action-more{
@@ -80,37 +80,40 @@
         display: flex;
         justify-content: space-around;
 
-        .category-action-more-box{
-            height: 30px;
-            line-height: 15px;
-            border-radius: 20px;
-            width: 30px;
-            padding: 0 0 0 7px;
-            margin-top: 3px;
-            cursor: pointer;
-        }
-
-        .category-action-more-box:hover{
-            background: #e4e4e4;
-        }
 
         .addApi{
             padding: 5px 0 0 7px;
         }
 
     }
+
+    .category-nav-item-icon{
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        margin: 4px 0 0;
+    }
 }
+
 
 
 .cate-li{
     position: relative;
 }
 
+.category-action-right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
 .cate-li:hover .category-action{
     display: block;
     position: absolute;
-    right: 28px;
+    right: 10px;
     top: 0;
+    height: 100%;
 }
 
 .ws-left-tree-drop{
@@ -119,9 +122,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #d9d9d9;
+    //border: 1px solid var(--pi-border-color);
     padding: 3px;
-    border-radius: 3px;
+    border-radius: var(--pi-border-radius);
     margin: 0 0 0 5px;
     cursor: pointer;
 }

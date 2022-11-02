@@ -5,7 +5,7 @@ import MockRequestHeader from './mockRequestHeader';
 import MockQueryParam from './mockQueryParam';
 import MockFormParam from './mockFormParamRequest';
 import JsonParamMock from './mockJsonParam';
-import './mockRequest.scss';
+
 
 const { TabPane } = Tabs;
 

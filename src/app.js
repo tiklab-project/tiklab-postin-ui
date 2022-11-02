@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { renderRoutes  } from "react-router-config";
 import "antd/dist/antd.css"
 import './common/styles/base.scss';
+import './common/styles/global.scss';
 import './common/language/i18n';
 import "./assets/iconfont/iconfont";
 import "./assets/iconfont/iconfont.css";

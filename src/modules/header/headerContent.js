@@ -8,6 +8,7 @@ import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";
 import logo from "../../assets/img/postin.png";
 import MessageDrawer from "../sysmgr/message/messageDrawer";
+import {RightOutlined} from "@ant-design/icons";
 
 
 const HeaderContent = props => {
@@ -71,7 +72,7 @@ const HeaderContent = props => {
     //语言包选项
     const lanMenu = (list) =>{
         return list&&list.map(item=>{
-            return <div className={"header-lan-box-item"} key={item} value={item} onClick={()=>onClickLan(item)}>{item}</div>
+            return <div className={"header-lan-box-item"} key={item} onClick={()=>onClickLan(item)}>{item}</div>
         })
     }
 
@@ -125,12 +126,16 @@ const HeaderContent = props => {
                                 </div>
 
                                 <div className={"user-hidden-item-lan"}>
-                                    <div style={{"display": "flex", "alignItems": "center"}}>
-                                        <svg className="user-header-icon" aria-hidden="true">
-                                            <use xlinkHref= {`#icon-yuyan`} />
-                                        </svg>
-                                        <span>语言</span>
+                                    <div  style={{"display": "flex", "alignItems": "center","justifyContent":"space-between"}}>
+                                        <div style={{"display": "flex", "alignItems": "center"}}>
+                                            <svg className="user-header-icon" aria-hidden="true">
+                                                <use xlinkHref= {`#icon-yuyan`} />
+                                            </svg>
+                                            <span>语言</span>
+                                        </div>
+                                        <RightOutlined />
                                     </div>
+
                                     <div className={"header-lan-box"}>
                                         {
                                             lanMenu(languageData)

@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import './homestyle.scss';
-import {inject, observer} from "mobx-react";
 import WorkspaceRecentHome from "../workspace/components/workspaceRecentHome";
-import {Empty, Space} from "antd";
+import {Empty} from "antd";
 import DynamicWidget from "./dynamicWidget";
 import emptyImg from "../../assets/img/empty.png"
 
 import {FullWorkTodo} from "tiklab-widget-ui"
+import {RightOutlined} from "@ant-design/icons";
 
 // 首页
 const Home =(props)=> {
@@ -44,7 +44,7 @@ const Home =(props)=> {
                                     </svg>
                                     <span>代办信息</span>
                                 </div>
-                                <a onClick={changeTodo}>更多</a>
+                                <RightOutlined onClick={changeTodo} />
                             </div>
                             <div  className={"home-box-item-detail"}>
                                 <Empty

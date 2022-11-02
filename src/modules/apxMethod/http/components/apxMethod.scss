@@ -14,11 +14,17 @@
 }
 
 .edit-icon{
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     cursor:pointer;
+    margin: 5px 0 0;
 }
 
+.edit-icon-nav{
+    width: 16px;
+    height: 16px;
+    cursor:pointer;
+}
 
 .form-info{
     padding: 10px 25px;
@@ -47,7 +53,7 @@
 }
 
 .ediText-edit{
-    background: #fff;
+    background: var(--pi-bg-color);
     border: none;
     padding: 0;
     cursor: pointer;
@@ -68,12 +74,11 @@
 
 
 // apxMethod
-$backgroud-color: #fff;
 .method-header{
     line-height: 47px;
-    background-color:$backgroud-color;
+    background-color:var(--pi-bg-color);
     height: 50px;
-    border-bottom:1px solid #d9d9d9 ;
+    border-bottom:1px solid var(--pi-border-color) ;
     padding: 0;
 }
 
@@ -82,12 +87,12 @@ $backgroud-color: #fff;
 }
 
 .method-content{
-    background-color:$backgroud-color;
+    background-color:var(--pi-bg-color);
     //padding:10px 0 0  0;
 }
 
 .method-menu{
-    background-color:$backgroud-color;
+    background-color:var(--pi-bg-color);
 }
 
 
@@ -107,7 +112,7 @@ $backgroud-color: #fff;
 
 .tabPane-item-box{
     th{
-        background:  white !important;
+        background:  var(--pi-bg-color) !important;
     }
 
     // 表头设置
@@ -221,13 +226,13 @@ $backgroud-color: #fff;
         height: 31.6px;
         padding: 5px 12px;
         cursor: pointer;
-        background-color: white;
+        background-color: var(--pi-bg-color);
     }
 
     .ant-select{
         height: 31.6px;
         cursor: pointer;
-        background-color: white;
+        background-color:var(--pi-bg-color);
     }
 
     .ant-select-arrow{
@@ -240,18 +245,18 @@ $backgroud-color: #fff;
 }
 
 .editable-row:hover .editable-cell-value-wrap {
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--pi-border-color);
     border-radius: 4px;
     padding: 4px 11px;
 }
 
 .editable-row:hover .ant-select {
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--pi-border-color);
     border-radius: 4px;
 }
 
 .editable-row:hover .editable-cell-value-wrap {
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--pi-border-color);
 }
 
 .editable-row:hover .ant-select-arrow{
@@ -259,7 +264,7 @@ $backgroud-color: #fff;
 }
 
 .editable-row:hover .ant-checkbox-inner{
-    border: 1px solid #d9d9d9;
+    border: 1px solid var(--pi-border-color);
 }
 
 // .ant-table-thead>tr>th{
@@ -289,7 +294,7 @@ $backgroud-color: #fff;
 
     &-header{
         display: flex;
-        background: #f3f3f3;
+        background: var(--pi-greyf9-color);
         align-items: center;
         padding: 5px;
     }

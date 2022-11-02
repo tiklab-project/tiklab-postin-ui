@@ -1,7 +1,7 @@
 .message-item{
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #e3e3e3;
+    border-bottom: 1px solid var(--pi-border-color);
     padding: 10px 0;
 
     .message-item-left{
@@ -39,7 +39,7 @@
 
 
         &-content{
-            background: #c5c5c5;
+            background: var(--pi-greyf9-color);
             border-radius: 10px;
             padding: 5px;
             color: #fff;

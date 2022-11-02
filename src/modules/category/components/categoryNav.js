@@ -73,7 +73,7 @@ const CategoryNav = (props) => {
     const menu = (id)=>(
         <Menu>
             <Menu.Item key={1}>
-                <ApxMethodEdit name="添加API"  type="add" categoryItemId={id} {...props}/>
+                <ApxMethodEdit name="添加API" icon={false} type="add" categoryItemId={id} {...props}/>
             </Menu.Item>
             <Menu.Item  key={2}>
                 <CategoryEdit name="添加子目录"  type="api"  categoryId={id}/>
@@ -104,9 +104,22 @@ const CategoryNav = (props) => {
     const categoryAct = (id) => {
         return (
             <div className={'category-action'}>
-                <div className={'category-action-more'}>
-                    <Dropdown overlay={()=>menu(id)}>
-                        <div className={'category-action-more-box'} >...</div>
+                <div  className={"category-action-right"}>
+                    <ApxMethodEdit
+                        name="添加"
+                        icon={
+                            <svg className="edit-icon-nav" aria-hidden="true">
+                                <use xlinkHref={`#icon-tianjia-`}/>
+                            </svg>
+                        }
+                        type="add"
+                        categoryItemId={id}
+                        {...props}
+                    />
+                    <Dropdown overlay={()=>menu(id)} className={'category-action-more'}>
+                        <svg className="category-nav-item-icon" aria-hidden="true">
+                            <use xlinkHref={`#icon-more`}/>
+                        </svg>
                     </Dropdown>
                 </div>
             </div>
@@ -185,7 +198,7 @@ const CategoryNav = (props) => {
                             <span
                                 onClick={()=>onClick(item)}
                                 className={`categoryNav-li tree-span ${item.id === clickKey? 'action-li':''}`}
-                                style={{paddingLeft: `${deep * 25}px`}}
+                                style={{paddingLeft: `${deep * 10+15}px`}}
                             >
                                 <svg className="icon" aria-hidden="true">
                                     <use xlinkHref="#icon-folder-close"/>

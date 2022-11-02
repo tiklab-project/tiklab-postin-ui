@@ -13,7 +13,7 @@
 
     &-refresh{
         cursor: pointer;
-        color: #00adff;
+        color: var(--pi-base-color);
     }
 }
 
@@ -21,8 +21,8 @@
     padding: 10px 20px;
     display: flex;
     align-items: center;
-    border: 1px solid #e4e4e4;
-    border-radius: 5px;
+    border: 1px solid var(--pi-border-color);
+    border-radius: var(--pi-border-radius);
     margin: 10px 0;
 
     &-icon{
@@ -63,14 +63,13 @@
 }
 
 .dynamic-drawer-item{
-    border-bottom: 1px solid #e4e4e4;
+    border-bottom: 1px solid var(--pi-border-color);
     padding: 5px 10px;
 
     .dynamic-drawer-detail{
         padding: 10px;
 
         &-left{
-            display: flex;
             display: flex;
             align-items: center;
         }

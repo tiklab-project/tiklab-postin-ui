@@ -4,6 +4,7 @@ import {quickTestTabProcess} from "../../common/apiTabListInfoProcess";
 import {Empty, Input, Tooltip} from "antd";
 import {TextMethodType} from "../../common/methodType";
 import {getUser} from "tiklab-core-ui";
+import {SearchOutlined} from "@ant-design/icons";
 
 const LeftNavListQuickTest =(props)=>{
     const {instanceStore,quickTestStore} = props;
@@ -70,6 +71,7 @@ const LeftNavListQuickTest =(props)=>{
         <>
             <div className={"qt-left-header"}>
                 <Input
+                    prefix={<SearchOutlined />}
                     placeholder={"搜索"}
                 />
                 <div className={"qt-left-heaer-clear"}>

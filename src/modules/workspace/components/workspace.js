@@ -7,6 +7,7 @@ import {inject, observer} from "mobx-react";
 import WorkspaceEdit from "./workspaceEdit";
 import WorkspaceList from "./workspaceList";
 import DetailHeader from "../../common/detailHeader";
+import {SearchOutlined} from "@ant-design/icons";
 
 //空间页
 const Workspace = (props) => {
@@ -137,6 +138,7 @@ const Workspace = (props) => {
 
                 </div>
                 <Input
+                    prefix={<SearchOutlined />}
                     placeholder={`搜索空间`}
                     onPressEnter={onSearch}
                     className={"ws-header-menu-input"}

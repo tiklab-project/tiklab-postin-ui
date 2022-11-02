@@ -5,7 +5,7 @@ import PortalHeader from "./modules/header/portalContent"
 import {
     Home, SearchResult,
 
-    WorkspaceRole, WorkspacePrivilege, Workspace,  WorkspaceInit,
+    WorkspaceRole, WorkspacePrivilege, Workspace,
     WorkspaceDetailLayout,
     LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest,  WorkspaceDetailInitPage,
     Category, ApxMethod, ApxMethodDetail,
@@ -70,12 +70,6 @@ const routers =  [
                 component: Home,
                 exact: true,
                 key:'Home',
-            },
-            {
-                path: "/workspaceinit",
-                component: WorkspaceInit,
-                exact: true,
-                key:'WorkspaceInitPage',
             },
             {
                 path: "/workspacePage",

@@ -8,6 +8,7 @@ import DataStructureEdit from "./dataStructureEdit";
 import {inject, observer} from "mobx-react";
 import SetData from "./setData";
 import DetailHeader from "../../../common/detailHeader";
+import {SearchOutlined} from "@ant-design/icons";
 
 
 const DataStructure = (props) => {
@@ -63,8 +64,10 @@ const DataStructure = (props) => {
             ),
         },
     ]
-    
-    const [sortBy, setSortBy] = useState({name:"name",sort:"desc"});
+
+
+    const [toggleSort, setToggleSort] = useState(true);
+    const [sortBy, setSortBy] = useState({name:"name",sort:"asc"});
 
 
     useEffect(()=>{
@@ -101,7 +104,9 @@ const DataStructure = (props) => {
         }
     ]
 
-    const setSortByDesc = (name,sort) =>{
+    const setSortByDesc = (name) =>{
+        let sort = "desc";
+
         setSortBy({name:name,sort:sort})
         let params = {
             orderParams:[{
@@ -112,7 +117,9 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     }
 
-    const setSortByAsc = (name,sort) =>{
+    const setSortByAsc = (name) =>{
+        let sort = "asc";
+
         setSortBy({name:name,sort:sort})
 
         let params = {
@@ -122,25 +129,42 @@ const DataStructure = (props) => {
             }]
         }
         findDataStructureList(params)
+    }
+
+    const clickSort = (key) =>{
+
+
+        setToggleSort(!toggleSort);
+
+        if(toggleSort){
+            setSortBy({name:key,sort:"desc"})
+            setSortByDesc(key)
+        }else {
+            setSortBy({name:key,sort:"asc"})
+            setSortByAsc(key)
+        }
+
+
+
     }
 
     const showSortItem = (list) =>{
         return list&&list.map((item=>{
             return (
-                <div key={item.key} className={"sort-show-box-item"}>
+                <div key={item.key} className={"sort-show-box-item"} onClick={()=>clickSort(item.key)}>
                     <div>{item.title}</div>
                     <div className={"sort-show-box-item-sort"}>
                         <svg
                             aria-hidden="true"
-                            className={`${sortBy.name===item.key&&sortBy.sort==="desc"?"action-sort":null} sort-icon sort-icon-desc `}
-                            onClick={()=>setSortByDesc(item.key,"desc")}
+                            className={`sort-icon sort-icon-desc ${sortBy.name===item.key&&sortBy.sort==="desc"?"action-sort":""}`}
+                            // onClick={()=>setSortByDesc(item.key)}
                         >
                             <use xlinkHref= {`#icon-paixu-jiangxu`} />
                         </svg>
                         <svg
                             aria-hidden="true"
-                            className={`${sortBy.name===item.key&&sortBy.sort==="asc"?"action-sort":null} sort-icon sort-icon-asc`}
-                            onClick={()=>setSortByAsc(item.key,"asc")}
+                            className={` sort-icon sort-icon-asc ${sortBy.name===item.key&&sortBy.sort==="asc"?"action-sort":""}`}
+                            // onClick={()=>setSortByAsc(item.key)}
                         >
                             <use xlinkHref= {`#icon-paixu-shengxu`} />
                         </svg>
@@ -173,6 +197,7 @@ const DataStructure = (props) => {
 
             <div style={{"display":"flex","justifyContent":"space-between","alignItems":"center"}}>
                 <Input
+                    prefix={<SearchOutlined />}
                     placeholder={`搜索`}
                     onPressEnter={onSearch}
                     style={{width:200,margin:"10px 0"}}

@@ -8,6 +8,7 @@ import { observer, inject } from "mobx-react";
 import {CategoryEdit,CategoryNav} from '../index'
 import { Input, Button, Dropdown, Menu} from 'antd';
 import Import from "../../integration/imexport/components/import";
+import {SearchOutlined} from "@ant-design/icons";
 
 const CategoryAside = (props) => {
     const { categoryStore } = props;
@@ -37,12 +38,13 @@ const CategoryAside = (props) => {
                 <div className='ws-detail-menu'>
                     <div className="ws-detail-menu-serchbtn">
                         <Input
+                            prefix={<SearchOutlined />}
                             placeholder="搜索"
                             onPressEnter={onSearch}
                         />
                         <Dropdown overlay={menu}  className="ws-left-tree-drop" >
                             <div>
-                                <svg style={{width:22,height:22}} aria-hidden="true" >
+                                <svg style={{width:18,height:18}} aria-hidden="true" >
                                     <use xlinkHref= {`#icon-tianjia-`} />
                                 </svg>
                             </div>

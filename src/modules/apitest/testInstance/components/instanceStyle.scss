@@ -1,7 +1,7 @@
 
 
 .history-list-item{
-    border-bottom: 1px solid #e4e4e4;
+    border-bottom: 1px solid var(--pi-border-color);
     padding: 10px 0;
     cursor: pointer;
     position: relative;
@@ -17,7 +17,7 @@
     }
 }
 .history-list-item:hover{
-    background: #f3f3f3;
+    background: var(--pi-greyf9-color);
 }
 
 .history-list-item-icon{

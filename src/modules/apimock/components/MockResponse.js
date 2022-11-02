@@ -2,7 +2,6 @@ import React, {Fragment, useState, useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
 import {Tabs, Radio, Form} from 'antd';
 import MockResponseHeader from './mockResponseHeader';
-import './mockResponse.scss'
 import CodeMirror from "../../common/codeMirror";
 const { TabPane } = Tabs;
 

@@ -12,10 +12,7 @@ const DetailHeader = (props) =>{
             }}
         >
             <div>
-                <span style={{
-                    "fontSize":"16px",
-                    "fontWeight":"600"
-                }}>
+                <span className={"ws-detail-title"}>
                     {props.left}
                 </span>
             </div>

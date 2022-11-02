@@ -136,23 +136,33 @@ const ApxMethodEdit = (props) => {
         setCascaderCategoryId(list[0])
     }
 
+    const showClickView = ()=>{
+        if(props.type==="edit"){
+           return <svg className="edit-icon" aria-hidden="true" onClick={showModal}>
+                    <use xlinkHref= {`#icon-bianji11`} />
+                </svg>
+        }
+
+        if(props.isBtn==="btn"){
+            return <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+        }
+
+        if(props.icon){
+            return <div onClick={showModal}> {props.icon}</div>
+        }
+
+        return <a onClick={showModal}> {props.name}</a>
+    }
 
     return(
         <Fragment>
             {
-                props.type === 'edit'
-                    ? <svg className="edit-icon" aria-hidden="true" onClick={showModal}>
-                        <use xlinkHref= {`#icon-bianji11`} />
-                    </svg>
-
-                    : props.isBtn ==="btn"
-                        ?<Button className="important-btn" onClick={showModal}>{props.name}</Button>
-                        :<a onClick={showModal}>{props.name}</a>
+                showClickView()
 
             }
             <Modal
                 destroyOnClose={true}
-                title={props.name === '+' ?"添加接口":props.name}
+                title={props.name}
                 open={visible}
                 onCancel={onCancel}
                 onOk={onFinish}
@@ -167,8 +177,7 @@ const ApxMethodEdit = (props) => {
                     layout={"vertical"}
                 >
                     {
-                        props.name==="+"
-                        && <Form.Item
+                        props.tab && <Form.Item
                             label="分组"
                             name="category"
                             rules={[{ required: true, message: 'Please input your category!' }]}
@@ -179,7 +188,6 @@ const ApxMethodEdit = (props) => {
                                 onChange={changeCategory}
                                 changeOnSelect
                                 expandTrigger={"hover"}
-                                placeholder="请选择分组"
                             />
                         </Form.Item>
                     }

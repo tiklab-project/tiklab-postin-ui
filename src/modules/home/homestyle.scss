@@ -1,7 +1,5 @@
 
 
-$borderRadius:5px;
-
 .home-content{
     overflow: auto;
     /*background-color:#f0f2f5;*/
@@ -24,11 +22,11 @@ $borderRadius:5px;
 
 
             .home-box-item{
-                border: 1px solid #e4e4e4;
+                border: 1px solid var(--pi-border-color);
                 width: 595px;
                 height: 425px;
-                border-radius: 5px;
-                background: #fff;
+                border-radius: var(--pi-border-radius);
+                background: var(--pi-bg-color);
                 //box-shadow: 0 3px 6px rgb(140 149 159 / 15%);
                 overflow: hidden;
             }
@@ -38,7 +36,6 @@ $borderRadius:5px;
         .home-item-title-box{
             padding: 10px;
             margin: 0 0 5px;
-            //border-bottom: 1px solid #e4e4e4;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -46,7 +43,7 @@ $borderRadius:5px;
             .home-item-title{
                 display: flex;
                 align-items: center;
-                font-weight: 600;
+                font-weight: var(--pi-font-weight-title);
             }
 
             .home-item-title-icon{
@@ -60,9 +57,9 @@ $borderRadius:5px;
         }
 
         .home-box-item-dynamic{
-            border-radius: 5px;
+            border-radius: var(--pi-border-radius);
             margin: 10px 0;
-            border: 1px solid #e4e4e4;
+            border: 1px solid var(--pi-border-color);
             background: #fff;
             //box-shadow: 0 3px 6px rgb(140 149 159 / 15%);
 
@@ -94,7 +91,7 @@ $borderRadius:5px;
 }
 
 .home-item-box{
-    border: 1px solid #e4e4e4;
+    border: 1px solid var(--pi-border-color);
     padding: 20px;
     height: 150px;
 }
@@ -107,9 +104,9 @@ $borderRadius:5px;
 
         .home-detail-left-menu{
             margin: 45px 0 40px;
-            border: 1px solid #e4e4e4;
+            border: 1px solid var(--pi-border-color);
             padding: 0 0 100px 0;
-            border-radius: $borderRadius;
+            border-radius: var(--pi-border-radius);
         }
 
         .home-detail-list-li{
@@ -123,9 +120,9 @@ $borderRadius:5px;
 
 
         .home-detail-left-help{
-            border: 1px solid #e4e4e4;
+            border: 1px solid var(--pi-border-color);
             padding: 0 0 100px 0;
-            border-radius: $borderRadius;
+            border-radius: var(--pi-border-radius);
         }
 
         .home-help-item{
@@ -144,24 +141,15 @@ $borderRadius:5px;
     &-top{
         display: flex;
         margin: 0 0 40px 0;
-        //border: 1px solid #e4e4e4;
 
         &-begin{
             height: 200px;
             width: 200px;
-            //border: 1px solid #e4e4e4;
 
 
             &-detail{
-                border-radius: $borderRadius;
+                border-radius: var(--pi-border-radius);
             }
-        }
-
-        .home-begin-start{
-            margin: 40px 0 0 0;
-            padding: 5px;
-            color: #0d8fff;
-            cursor: pointer;
         }
 
         &-workspace{
@@ -171,7 +159,7 @@ $borderRadius:5px;
                 display: flex;
                 width: 600px;
                 justify-content: space-around;
-                border-radius: $borderRadius;
+                border-radius: var(--pi-border-radius);
 
 
             }
@@ -181,7 +169,7 @@ $borderRadius:5px;
 
 .home-dynamic-item{
     padding: 5px;
-    border-bottom: 1px solid #e4e4e4;
+    border-bottom: 1px solid var(--pi-border-color);
 
     &-time{
         font-size: 13px;

@@ -93,7 +93,7 @@ const DynamicWidget = (props) =>{
                     lineHeight: '32px',
                 }}
             >
-                <a onClick={onLoadMore}>加载更多...</a>
+                <a onClick={onLoadMore}>加载更多</a>
             </div>
         ) : null;
 

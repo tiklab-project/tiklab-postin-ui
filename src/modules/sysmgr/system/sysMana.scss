@@ -3,7 +3,7 @@
 
 
     .site-layout-background {
-        background-color: #fff;
+        background-color: var(--pi-bg-color);
     }
     .search-add{
         display: flex;
@@ -17,8 +17,8 @@
 
     .tiklab-orga-aside {
         height: 100%;
-        border-right: 1px solid #e6f7ff;
-        background: #f9f9f9;
+        border-right: 1px solid var(--pi-border-color);
+        background: var(--pi-greyf9-color);
 
         ul,li {
             list-style: none;
@@ -44,7 +44,7 @@
         }
 
         .orga-aside-item:hover{
-            background-color:#EDF0F5;
+            background-color:var(--pi-hover-color);
         }
 
         .aside-item-li{
@@ -59,19 +59,19 @@
         }
 
         .orga-aside-li:hover{
-              background-color:#EDF0F5;
+              background-color:var(--pi-hover-color);
           }
 
         .orga-aside-select {
-            background-color: #e3e8f0;
-            border-right: 3px solid #1296db;
+            background-color: var(--pi-action-color);
+            border-left: 3px solid #1296db;
         }
     }
 }
 
 .sysmana-sider{
     width: 200px;
-    background-color: white;
+    background-color: var(--pi-bg-color);
     height: 100%;
 }
 
@@ -81,7 +81,7 @@
 
 .sysmana-content{
     height: 100%;
-    background-color: white;
+    background-color: var(--pi-bg-color);
     //padding: 0 10px;
 }
 

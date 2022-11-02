@@ -4,6 +4,7 @@ import { Input, Popconfirm, Space, Table} from 'antd';
 import '../../../category/components/category.scss';
 import ApxMethodEdit from './apxMethodEdit';
 import MethodType from "../../../common/methodType";
+import {SearchOutlined} from "@ant-design/icons";
 
 // 点击左侧导航栏目录，查看的所在目录中的接口
 const HttpList = (props) => {
@@ -31,14 +32,9 @@ const HttpList = (props) => {
             width: '20%',
         },
         {
-            title: '时间',
-            dataIndex: ['apix','createTime'],
-            width: '10%',
-        },
-        {
             title: '状态',
             dataIndex: ['apix','status','name'],
-            width: '8%',
+            width: '10%',
             render:(text) =>(
                 <span>{text}</span>
             )
@@ -143,6 +139,7 @@ const HttpList = (props) => {
             <div className='list-content-center'>
                 <div className={'category-search'}>
                     <Input
+                        prefix={<SearchOutlined />}
                         placeholder={'搜索接口'}
                         onPressEnter={onSearch}
                         className='search-input'

@@ -4,7 +4,7 @@
 
     .quicktest-left{
         width: 220px;
-        border-right: 1px solid #e4e4e4;
+        border-right: 1px solid var(--pi-border-color);
     }
 
     .quicktest-right{
@@ -23,8 +23,8 @@
 .qt-left-header{
     display: flex;
     padding: 10px;
-    background: #f9f9f9;
-    border-bottom: 1px solid #e4e4e4;
+    background: var(--pi-greyf9-color);
+    border-bottom: 1px solid var(--pi-border-color);
 
     .qt-left-heaer-clear{
         margin: 0 0 0 10px;
@@ -44,7 +44,7 @@
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;
-        border-bottom: 1px solid #e4e4e4;
+        border-bottom: 1px solid var(--pi-border-color);
         position: relative;
 
         .qt-left-list-icon{
@@ -68,7 +68,7 @@
     }
 
     .qt-left-list-li:hover{
-        background: #fafafa;
+        background: var(--pi-greyf9-color);
     }
 
 }
