@@ -21,7 +21,9 @@ const Home =(props)=> {
         <div className={"home-content"}>
             { !fullTodo ?
                 <div className={"home-content-box"}>
+
                     <div className={"home-content-box-top"}>
+
                         <div className={"home-box-item"}>
                             <div className={"home-item-title-box"}>
                                 <div className={"home-item-title"}>

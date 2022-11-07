@@ -16,7 +16,7 @@ import {
     SystemContent,  DataStructure, ApiStatus,
     ProjectFeature, ProjectRole,
     SystemFeature, SystemRole, PluginManage,
-    MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
+    MessageManagement, MessageSendType, MessageTemplate, MessageType,
     LoginOut, ElectronLoginContant, WorkspaceSettingMenu,
 } from './modules';
 
@@ -201,12 +201,6 @@ const routers =  [
                 key:'searchResult',
                 exact: true,
                 component: SearchResult,
-            },
-            {
-                path: "/MessageUser",
-                key:'MessageUser',
-                exact: true,
-                component: MessageUser,
             },
             {
                 path: "/workbench",

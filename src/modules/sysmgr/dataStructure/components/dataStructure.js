@@ -9,7 +9,7 @@ import {inject, observer} from "mobx-react";
 import SetData from "./setData";
 import DetailHeader from "../../../common/detailHeader";
 import {SearchOutlined} from "@ant-design/icons";
-
+import {Profile} from "tiklab-eam-ui";
 
 const DataStructure = (props) => {
     const {dataStructureStore} = props;
@@ -17,14 +17,12 @@ const DataStructure = (props) => {
 
     const columns = [
         {
-            title:` 编码`,
-            dataIndex: "coding",
-            key: "code",
-        },
-        {
             title:`名称`,
             dataIndex: "name",
             key: "name",
+            render:(text,record)=>(
+                <SetData name={text} dataType={record.dataType} dataStructureId={record.id}/>
+            )
         },
         {
             title: `类型`,
@@ -34,7 +32,10 @@ const DataStructure = (props) => {
         {
             title: `创建人`,
             dataIndex: "createUser",
-            key: "uesr",
+            key: "user",
+            render: (text, record) => (
+                <Profile userInfo={record.createUser}/>
+            )
         },
         {
             title: `创建时间`,
@@ -49,6 +50,7 @@ const DataStructure = (props) => {
                     <DataStructureEdit
                         name={'编辑'}
                         type={"edit"}
+                        icon={true}
                         dataStructureId={record.id}
                     />
                     <Popconfirm
@@ -57,16 +59,18 @@ const DataStructure = (props) => {
                         okText='确定'
                         cancelText='取消'
                     >
-                        <a href="#" style={{color:'red'}}>删除</a>
+                        <svg className="edit-icon" aria-hidden="true">
+                            <use xlinkHref= {`#icon-shanchu3`} />
+                        </svg>
                     </Popconfirm>
-                    <SetData dataType={record.dataType} dataStructureId={record.id}/>
+
                 </Space>
             ),
         },
     ]
 
 
-    const [toggleSort, setToggleSort] = useState(true);
+    const [toggleSort, setToggleSort] = useState(false);
     const [sortBy, setSortBy] = useState({name:"name",sort:"asc"});
 
 
@@ -133,7 +137,6 @@ const DataStructure = (props) => {
 
     const clickSort = (key) =>{
 
-
         setToggleSort(!toggleSort);
 
         if(toggleSort){
@@ -143,15 +146,18 @@ const DataStructure = (props) => {
             setSortBy({name:key,sort:"asc"})
             setSortByAsc(key)
         }
-
-
-
     }
+
+
 
     const showSortItem = (list) =>{
         return list&&list.map((item=>{
             return (
-                <div key={item.key} className={"sort-show-box-item"} onClick={()=>clickSort(item.key)}>
+                <div
+                    key={item.key}
+                    className={`sort-show-box-item ${item.key===sortBy.name?"sort-item-action":""}`}
+                    onClick={()=>clickSort(item.key)}
+                >
                     <div>{item.title}</div>
                     <div className={"sort-show-box-item-sort"}>
                         <svg

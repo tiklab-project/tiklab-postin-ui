@@ -34,7 +34,6 @@ const RawParamCommon = (props) => {
             raw:text,
             type:type
         }
-console.log(param)
         //本地获取值
         updateFn(param)
     }
@@ -42,28 +41,33 @@ console.log(param)
     //渲染raw中的类型
     const showSelectItem = (data)=>{
         return data&&data.map(item=>{
-            return  <Option value={item.value} key={item.value}>{item.name}</Option>
+            return  <Option value={item.value} key={item.value}>{item.value}</Option>
         })
     }
 
     return (
         <div className={"raw-box"}>
-            <Form form={form} initialValues={{"type":"text/plain"}}>
+            <Form form={form} initialValues={{"type":"application/json"}}>
 
-                {/*<div className='raw-box-header'>*/}
-                {/*    <Form.Item name='type'>*/}
-                {/*        <Select*/}
-                {/*            style={{ width: 180 ,color:"#0095ff"}}*/}
-                {/*            onChange={changeType}*/}
-                {/*            bordered={false}*/}
-                {/*            suffixIcon={null}*/}
-                {/*        >*/}
-                {/*            {*/}
-                {/*                showSelectItem(rawTypeDictionary)*/}
-                {/*            }*/}
-                {/*        </Select>*/}
-                {/*    </Form.Item>*/}
-                {/*</div>*/}
+                {
+                    props.use==="quick"
+                        ?<div className='raw-box-header'>
+                            <Form.Item name='type'>
+                                <Select
+                                    style={{ width: 180 ,color:"#0095ff"}}
+                                    onChange={changeType}
+                                    bordered={false}
+                                    suffixIcon={null}
+                                >
+                                    {
+                                        showSelectItem(rawTypeDictionary)
+                                    }
+                                </Select>
+                            </Form.Item>
+                        </div>
+                        :null
+                }
+
                 <Form.Item  name='raw'>
                     <CodeMirror
                         mediaType={typeValue}

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2517386 */
-  src: url('iconfont.woff2?t=1667375370711') format('woff2'),
-       url('iconfont.woff?t=1667375370711') format('woff'),
-       url('iconfont.ttf?t=1667375370711') format('truetype');
+  src: url('iconfont.woff2?t=1667631703429') format('woff2'),
+       url('iconfont.woff?t=1667631703429') format('woff'),
+       url('iconfont.ttf?t=1667631703429') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,34 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jiesuo:before {
+  content: "\e66b";
+}
+
+.icon-suoding:before {
+  content: "\e6e6";
+}
+
+.icon-arrow-down:before {
+  content: "\e606";
+}
+
+.icon-W-03:before {
+  content: "\e60c";
+}
+
+.icon-jinru:before {
+  content: "\e6af";
+}
+
+.icon-zhankai:before {
+  content: "\e6b5";
+}
+
+.icon-xinzeng:before {
+  content: "\e6c8";
 }
 
 .icon-gengduo:before {
@@ -105,10 +133,6 @@
   content: "\e656";
 }
 
-.icon-xiangmushengji:before {
-  content: "\e608";
-}
-
 .icon-xiaoxi1:before {
   content: "\e774";
 }
@@ -147,10 +171,6 @@
 
 .icon-geren:before {
   content: "\e657";
-}
-
-.icon-shenfenzheng:before {
-  content: "\e625";
 }
 
 .icon-jiqun-mianxing:before {

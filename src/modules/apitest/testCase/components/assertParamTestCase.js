@@ -63,7 +63,7 @@ const AssertParamTestCase = (props) =>{
         {
             title: '操作',
             width: '10%',
-            align:'center',
+            // align:'center',
             dataIndex: 'operation',
             render: (text, record,index) =>(operation(record))
         }

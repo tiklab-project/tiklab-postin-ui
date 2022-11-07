@@ -4,7 +4,7 @@
     //justify-content: center;
 
     .list-content-center{
-        width: 1240px;
+        width: 960px;
     }
 
     .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
@@ -36,12 +36,13 @@
 }
 
 .header-title{
-    font-weight: bold;
+    font-weight: var(--pi-font-weight-title);
+    font-size: var(--pi-font-size-13);
     padding-left: 3px;
 }
 
 .ex-title{
-    margin: 15px 0;
+    margin: 20px 0 0;
 
 }
 
@@ -118,7 +119,7 @@
     // 表头设置
     .ant-table-thead>tr .ant-table-cell{
         font-weight: 600;
-        padding: 8px;
+        padding: 7px;
         font-size: 13px;
     }
 
@@ -209,6 +210,7 @@
             vertical-align: middle;
             white-space: nowrap;
             text-indent: 0;
+            font-size: var(--pi-font-size-13);
         }
     }
 
@@ -319,3 +321,7 @@
     height: 80px;
 }
 
+
+.ws-param-title{
+    font-size: var(--pi-font-size-12);
+}

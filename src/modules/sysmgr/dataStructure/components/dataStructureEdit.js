@@ -12,12 +12,14 @@ const DataStructureEdit = (props) => {
     const {
         findDataStructure,
         createDataStructure,
-        updateDataStructure
+        updateDataStructure,
+        findDataStructureList
     } = dataStructureStore;
 
     const [form] = Form.useForm();
 
     const [visible, setVisible] = React.useState(false);
+    let workspaceId = localStorage.getItem("workspaceId")
 
     // 弹框展示
     const showModal = async () => {
@@ -38,11 +40,18 @@ const DataStructureEdit = (props) => {
     // 提交
     const onFinish = () => {
         form.validateFields().then((values)=>{
+
+
             if(props.type === "add" ){
-                createDataStructure(values);
+                values.workspace={id:workspaceId}
+                createDataStructure(values).then(()=>{
+                    findDataStructureList({workspaceId:workspaceId})
+                });
             }else{
                 values.id=dataStructureId;
-                updateDataStructure(values);
+                updateDataStructure(values).then(()=>{
+                    findDataStructureList({workspaceId:workspaceId})
+                });
             }
         })
         setVisible(false);
@@ -50,12 +59,16 @@ const DataStructureEdit = (props) => {
 
     const onCancel = () => { setVisible(false) };
 
+
+
     return (
         <>
             {
                 props.type === "add"
                     ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
-                    : <a onClick={showModal}>{props.name}</a>
+                    :  <svg className="edit-icon" aria-hidden="true" onClick={showModal}>
+                        <use xlinkHref= {`#icon-bianji11`} />
+                    </svg>
             }
 
             <Modal
@@ -73,13 +86,6 @@ const DataStructureEdit = (props) => {
                     preserve={false}
                     layout={"vertical"}
                 >
-                    <Form.Item
-                        label="编码"
-                        rules={[{ required: true, }]}
-                        name="coding"
-                    >
-                        <Input />
-                    </Form.Item>
                     <Form.Item
                         label="名称"
                         rules={[{ required: true }]}

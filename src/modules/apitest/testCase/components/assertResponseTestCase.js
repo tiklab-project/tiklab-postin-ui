@@ -12,7 +12,7 @@ const AssertResponseTestCase = (props) =>{
             title: '来源',
             dataIndex: 'source',
             width: '20%',
-            align:'center',
+            // align:'center',
             render:(text,record) =>  ( setSelectValue(record.source) ) 
         },
         {

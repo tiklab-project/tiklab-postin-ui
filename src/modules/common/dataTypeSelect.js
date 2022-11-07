@@ -24,7 +24,7 @@ const DataTypeSelect = (props) =>{
     return(
         <Select
             onChange={(e) => onSelect(e)}
-            style={{ width: 120 }}
+            style={{ width: "100%" }}
             defaultValue={defaultValue}
             bordered={false}
         >

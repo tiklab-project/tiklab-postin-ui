@@ -21,7 +21,7 @@ const DynamicWidget = (props) =>{
             pageParam: {
                 pageSize: 5,
                 currentPage:1
-            }
+            },
         }
 
         findList(params).then(res=>{

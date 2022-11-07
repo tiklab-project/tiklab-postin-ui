@@ -11,6 +11,7 @@ import  { useTranslation } from 'react-i18next'
 import {getUser} from "tiklab-core-ui";
 import {toWorkspaceDetail} from "./workspaceFn";
 import emptyImg  from "../../../assets/img/empty.png"
+import {Profile} from "tiklab-eam-ui";
 
 const WorkspaceList = (props) => {
     const { workspaceStore,workspaceRecentStore,workspaceFollowStore,findList,selectItem } = props;
@@ -29,7 +30,7 @@ const WorkspaceList = (props) => {
             title:` ${t('wsName')}`,
             dataIndex: "workspaceName",
             key: "workspaceName",
-            width:"70%",
+            width:"50%",
             // align:"center",
             render: (text,record) =>(
                 <Space size={"large"}>
@@ -38,16 +39,39 @@ const WorkspaceList = (props) => {
                 </Space>
             )
         },
-        // {
-        //     title: ` ${t('desc')}`,
-        //     dataIndex: "desc",
-        //     key: "desc",
-        //     width:"30%",
-        // },
+        {
+            title: `创建人`,
+            dataIndex: ["user","name"],
+            key: "user",
+            width:"20%",
+            render: (text, record) => (
+                <>
+                    <Profile userInfo={record.user}/>
+                    <span> </span>
+                </>
+
+            )
+        },{
+            title: `可见范围`,
+            dataIndex: "visibility",
+            key: "visibility",
+            width:"20%",
+            render: (text, record) => (
+                <>
+                    {
+                        text===0
+                            ? showVisibility("公共","suoding")
+                            :showVisibility("私密","jiesuo")
+                    }
+                </>
+
+            )
+        },
         {
             title: ` ${t('operation')}`,
             key: "action",
-            width:"20%",
+            width:"10%",
+            // align:"center",
             render: (text, record) => (
                 <Space size="large">
                     <Tooltip title="空间成员">
@@ -69,6 +93,16 @@ const WorkspaceList = (props) => {
 
         return <div className={"workspace-text-icon-box"}>
             <span>{t}</span>
+        </div>
+    }
+
+    //可见范围的展示
+    const showVisibility = (name,icon) =>{
+        return <div style={{"display":"flex","alignItems":"center"}}>
+            <svg style={{width:20,height:20}} aria-hidden="true">
+                <use xlinkHref= {`#icon-${icon}`} />
+            </svg>
+            <span>{name}</span>
         </div>
     }
 
@@ -119,7 +153,7 @@ const WorkspaceList = (props) => {
                 dataSource={workspaceList}
                 rowKey={record => record.id}
                 pagination={false}
-                showHeader={false}
+                // showHeader={false}
                 locale={{
                     emptyText: <Empty
                         imageStyle={{

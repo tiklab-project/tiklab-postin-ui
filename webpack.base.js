@@ -32,25 +32,26 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(sc|sa|c)ss$/,
-
+                test: /\.css$/,
+                use: ['style-loader', "css-loader"]
+            },{
+                test: /\.less$/,
                 use: [
-                    isDevelopment ? 'style-loader' : {
-                        loader: MiniCssExtractPlugin.loader,
+                    {loader: 'style-loader'},
+                    {loader: "css-loader"},
+                    {
+                        loader: "less-loader",
                         options: {
-                            publicPath: '../',
-                        },
-                    },
-
-                    {
-                        loader: "css-loader",
-                    },
-                    // {
-                    //     loader: "postcss-loader",
-                    // },
-                    {
-                        loader: "sass-loader",
+                            javascriptEnabled: true
+                        }
                     }
+                ]
+            },{
+                test: /\.scss$/,
+                use: [
+                    {loader: 'style-loader'},
+                    {loader: "css-loader"},
+                    {loader: "sass-loader"}
                 ]
             },
             {

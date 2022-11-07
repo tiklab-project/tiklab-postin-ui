@@ -2,19 +2,20 @@
  * @Description: 接口详情页
  */
 
-import React, { Fragment, useEffect, useState } from 'react';
-import { observer, inject } from 'mobx-react';
-import { Request, Response } from '../../index';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
+import {inject, observer} from 'mobx-react';
+import {Request, Response} from '../../index';
 import {Button, Select, Space} from 'antd';
 import './apxMethod.scss'
-import MethodType, {TextMethodType} from "../../../common/methodType";
-import { RemoteUmdComponent } from 'tiklab-plugin-ui'
-import {useSelector} from  "tiklab-plugin-ui/es/_utils"
+import MethodType from "../../../common/methodType";
+import {RemoteUmdComponent} from 'tiklab-plugin-ui'
+import {useSelector} from "tiklab-plugin-ui/es/_utils"
 import EdiText from "react-editext";
 import EdiTextToggle from "../../../common/ediTextToggle";
 import ApiStatusModal from "../../../sysmgr/apiStatus/components/apiStatusSelect";
 import IconCommon from "../../../common/iconCommon";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
+
 
 const {Option} = Select;
 
@@ -35,7 +36,6 @@ const ApxMethodDetail = (props) => {
     const [methodType,setMethodType] =useState("");
     const [status, setStatus] = useState("");
     const [executorId, setExecutorId] = useState("");
-
     const pluginStore = useSelector(store => store.pluginStore)
 
     useEffect(()=>{
@@ -55,6 +55,7 @@ const ApxMethodDetail = (props) => {
     useEffect(()=>{
         findApiStatusList();
     },[])
+
 
     // 点击测试按钮，跳到测试页
     const handleTest = () => {
@@ -168,6 +169,64 @@ const ApxMethodDetail = (props) => {
             )
         })
     }
+
+
+    const columns = [
+        {
+            title: '名称',
+            key: 'name',
+            dataIndex: ['apix','name'],
+            ellipsis: true,
+        },{
+            title: '请求类型',
+            key: 'methodType',
+            dataIndex: "methodType",
+            // ellipsis: true,
+            render:()=>{
+                return(
+                    <Select
+                        style={{width:70}}
+                        value={methodType}
+                        showArrow={false}
+                        onChange={(e)=>selectMethodType(e)}
+                    >
+                        {
+                            showMethod(methodDictionary)
+                        }
+                    </Select>
+                )
+            }
+        },{
+            title: '状态',
+            key: 'status',
+            dataIndex: ["apix","status","name"],
+            ellipsis: true,
+        },{
+            title: '执行者',
+            key: 'executor',
+            dataIndex: ["apix","executor","name"],
+            ellipsis: true,
+            render: (dom, entity, index, action) => {
+                return (
+                    <Select
+                        style={{width:85}}
+                        value={executorId}
+                        showArrow={false}
+                        onChange={(e)=>selectExecutor(e)}
+                    >
+                        {showExecutor(userSelectList)}
+                    </Select>
+                );
+            },
+        },
+        {
+            title: "接口",
+            key: 'path',
+            dataIndex: "path",
+            ellipsis: true,
+        },
+    ]
+
 
     return(
         <Fragment>
@@ -289,6 +348,7 @@ const ApxMethodDetail = (props) => {
                 </div>
 
             </div>
+
             <div className="header-title ex-title">输入参数</div>
             <Request  />
 

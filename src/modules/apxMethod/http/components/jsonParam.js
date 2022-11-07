@@ -30,33 +30,11 @@ const JsonParam = (props) => {
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '18%',
+            width: 240,
             editable: true,
-        },
-        {
-            title: '数据类型',
-            width: '8%',
-            dataIndex: 'dataType',
-            render: (text, record)=>(
-                <DataTypeSelect
-                    defaultValue={record.dataType}
-                    handleSave={handleSave}
-                    rowData={record}
-                />
-            )
-        },
-        {
-            title: '必须',
-            dataIndex: 'required',
-            width: '6%',
-            align:'center',
-            render:(text,record) =>  (
-                <Checkbox defaultChecked={record.required} onChange={(value) => toggleChecked(value, record)}/>
-            )
-        },
-        {
+        },{
             title: '示例值',
-            width: '18%',
+            width: 240,
             dataIndex: 'value',
             // align:'center',
             render: (text, record)=>(
@@ -70,8 +48,32 @@ const JsonParam = (props) => {
             )
 
         },{
+            title: '必须',
+            dataIndex: 'required',
+            width: 50,
+            align:'center',
+            render:(text,record) =>  (
+                <Checkbox
+                    defaultChecked={record.required}
+                    onChange={(value) => toggleChecked(value, record)}
+                />
+            )
+        },
+        {
+            title: '数据类型',
+            width: 120,
+            dataIndex: 'dataType',
+            render: (text, record)=>(
+                <DataTypeSelect
+                    defaultValue={record.dataType}
+                    handleSave={handleSave}
+                    rowData={record}
+                />
+            )
+        },
+
+        {
             title: '说明',
-            width: '20%',
             dataIndex: 'desc',
             // align:'center',
             editable: true,
@@ -80,7 +82,7 @@ const JsonParam = (props) => {
         {
             title: '操作',
             dataIndex: 'operation',
-            width: '20%',
+            width: 200,
             fixed: 'right',
             render: (text, record, index) =>(
                 <Space>
@@ -93,11 +95,6 @@ const JsonParam = (props) => {
                     <Button shape="circle">下</Button> */}
                 </Space>
             )
-        },
-        {
-            title: '',
-            width: '14%',
-            dataIndex: 'none',
         }
     ]
 

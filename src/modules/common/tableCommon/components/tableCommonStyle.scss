@@ -15,11 +15,11 @@
     overflow: auto;
 
     .ant-table-wrapper{
-        min-width: 960px;
+        min-width: 860px;
     }
 
     .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-        padding: 5px !important;
+        padding: 2px !important;
     }
 }
 

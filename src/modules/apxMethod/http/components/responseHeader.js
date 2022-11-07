@@ -21,14 +21,20 @@ const ResponseHeader = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'headerName',
-            width: '20%',
+            width: 240,
+            // align:'center',
+            editable: true,
+        },{
+            title: '示例值',
+            width: 240,
+            dataIndex: 'value',
             // align:'center',
             editable: true,
         },
         {
             title: '必须',
             dataIndex: 'required',
-            width: '6%',
+            width: 50,
             align:'center',
             render:(text,record) =>  (
                 <Checkbox
@@ -37,30 +43,19 @@ const ResponseHeader = (props) =>{
                 />
             )
         },{
-            title: '示例值',
-            width: '20%',
-            dataIndex: 'value',
-            // align:'center',
-            editable: true,
-        },{
             title: '说明',
-            width: '20%',
             dataIndex: 'desc',
             // align:'center',
             editable: true,
         },
         {
             title: '操作',
-            width: '10%',
+            width: 200,
             dataIndex: 'operation',
             fixed: 'right',
             render: (text, record,index) =>(operation(record,dataSource))
         },
-        {
-            title: '',
-            width: '24%',
-            dataIndex: 'none',
-        }
+        
     ]
 
 
@@ -143,11 +138,15 @@ const ResponseHeader = (props) =>{
     };
 
     return (
-        <ExTable
-            columns={columns}
-            dataSource={responseHeaderList}
-            handleSave={handleSave}
-        />
+        <>
+            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>响应头</span></div>
+            <ExTable
+                columns={columns}
+                dataSource={responseHeaderList}
+                handleSave={handleSave}
+            />
+        </>
+
     );
 }
 

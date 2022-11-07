@@ -54,7 +54,7 @@ const TestCaseList = (props) => {
             title: '操作',
             dataIndex: 'operation',
             key: 'operation',
-            align:'center',
+            // align:'center',
             width:"15%",
             render: (text, record )=>(
                 <Space  size="middle">

@@ -27,7 +27,7 @@ const RawParamTest = (props) => {
             dataSource={rawParamTestInfo}
             type={rawParamTestInfo?.type}
             updateFn={getRawInfo}
-            online={false}
+            use={"test"} //测试页 中使用，用于判断
         />
     )
 }

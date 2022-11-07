@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {Form, Input} from "antd";
 import Dynamic from "../integration/dynamic/components/dynamic";
+import DynamicWidget from "../home/dynamicWidget";
 
 const WorkspaceDetailInitPage = (props) =>{
     const {workspaceStore} = props;
@@ -71,9 +72,10 @@ const WorkspaceDetailInitPage = (props) =>{
                         name="workspaceName"
                     >
                         <Input
-                            onChange={debounce(changeWorkspace)}
+                            // onChange={debounce(changeWorkspace)}
                             className={"wd-header-name"}
                             autoComplete="off"
+
                         />
                     </Form.Item>
                     <Form.Item
@@ -124,10 +126,11 @@ const WorkspaceDetailInitPage = (props) =>{
                     {/*<div>更多</div>*/}
                 </div>
                 <div>
-                    <Dynamic
-                        workspaceId={workspaceId}
-                    />
+                    {/*<Dynamic*/}
+                    {/*    workspaceId={workspaceId}*/}
+                    {/*/>*/}
 
+                    <DynamicWidget />
                 </div>
             </div>
         </div>

@@ -156,10 +156,7 @@ const ApxMethodEdit = (props) => {
 
     return(
         <Fragment>
-            {
-                showClickView()
-
-            }
+            {showClickView()}
             <Modal
                 destroyOnClose={true}
                 title={props.name}

@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import {Radio} from "antd";
-import {bodyTypeDictionary, bodyTypeJsonDictionary as bodyTypeJson} from "../../dictionary/dictionary";
+import { bodyTypeJsonDictionary as bodyTypeJson} from "../../dictionary/dictionary";
 import RequestNoBody from "./requestNoBody";
 
 //请求体中的 类型 设置，不同类型展示不同组件
 const RequestBodyCom = (props) =>{
-    const {radioValue,updateFn,setRadioType} = props;
+    const {radioValue,updateFn,setRadioType,bodyTypeDictionary} = props;
 
     const onChange = (type) => {
         updateFn({bodyType: type})

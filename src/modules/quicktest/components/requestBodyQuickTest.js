@@ -18,6 +18,15 @@ const RequestBodyQuickTest  = (props) =>{
         bodyType
     } = requestBodyQuickTestStore;
 
+    let bodyTypeDictionary ={
+        none:"none",
+        formdata:"form-data",
+        formUrlencoded:"x-www-form-urlencoded",
+        raw:"raw",
+        // binary:"binary"
+    }
+
+
     return(
         <RequestBodyCom
             radioValue={bodyType}
@@ -25,9 +34,10 @@ const RequestBodyQuickTest  = (props) =>{
             setRadioType={getBodyType}
             form={<FormDataQuickTest bodyType={bodyType}/>}
             formUrlencoded={<FormUrlencodedQuickTest bodyType={bodyType}/>}
-            json={<JsonQuickTest bodyType={bodyType}/>}
+            // json={<JsonQuickTest bodyType={bodyType}/>}
             raw={<RawQuickTest bodyType={bodyType}/>}
             binary={null}
+            bodyTypeDictionary={bodyTypeDictionary}
         />
     )
 }

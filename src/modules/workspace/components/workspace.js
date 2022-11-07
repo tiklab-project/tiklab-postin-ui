@@ -17,25 +17,23 @@ const Workspace = (props) => {
 
 
     const userId = getUser().userId;
-    const [selectItem, setSelectItem] = useState("all");
+    const [selectItem, setSelectItem] = useState("recent");
 
     //空间筛选列表
     const items = [
         {
-            title: '创建',
-            key: `create`,
+            title: '所有空间',
+            key: `all`,
         },{
-            title: '参与',
-            key: `join`,
-        },{
-            title: `浏览`,
+            title: `我最近浏览的`,
             key: `recent`,
         },{
-            title: '收藏',
+            title: '我收藏的',
             key: `follow`,
-        },{
-            title: '所有',
-            key: `all`,
+        },
+        {
+            title: '我创建的',
+            key: `create`,
         }
     ];
 
@@ -67,7 +65,8 @@ const Workspace = (props) => {
     }
 
     const onSearch = (e) =>{
-        let name = {name:e.target.value}
+        let name = {workspaceName:e.target.value}
+
         findList(name)
     }
 
@@ -76,7 +75,11 @@ const Workspace = (props) => {
 
         switch (selectIndex?selectIndex:selectItem) {
             case "all":
-                findWorkspaceList(name)
+                let params= {
+                    ...uId,
+                    ...name
+                }
+                findWorkspaceJoinList(params)
                 break;
             case "create":
                 let param = {
@@ -84,13 +87,6 @@ const Workspace = (props) => {
                     ...name
                 }
                 findWorkspaceList(param)
-                break;
-            case "join":
-                let params= {
-                    ...uId,
-                    ...name
-                }
-                findWorkspaceJoinList(params)
                 break;
             case "follow":
                 findWorkspaceFollowList(uId)
@@ -112,12 +108,12 @@ const Workspace = (props) => {
                         display:"flex",
                         alignItems:"center",
                         justifyContent:"space-between",
-                        width: 90
+                        width: 55
                     }}>
                         <svg style={{width:20,height:20}} aria-hidden="true" >
                             <use xlinkHref= {`#icon-home`} />
                         </svg>
-                        <span>空间首页</span>
+                        <span>空间</span>
                     </div>
                 }
                 right={

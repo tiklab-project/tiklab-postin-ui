@@ -13,7 +13,7 @@ const QueryTableCommon = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '30%',
+            width: '20%',
             editable: true,
         },{
             title: '参数值',
@@ -31,7 +31,7 @@ const QueryTableCommon = (props) =>{
 
         },{
             title: '操作',
-            width: '10%',
+            width: '20%',
             fixed: 'right',
             dataIndex: 'operation',
             render: (text, record,index) =>(

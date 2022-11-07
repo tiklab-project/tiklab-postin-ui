@@ -120,11 +120,15 @@ const RequestHeaderTestCase = (props) =>{
     };
   
     return (
-        <ExTable
-            columns={columns}
-            dataSource={requestHeaderTestCaseList}
-            handleSave={handleSave}
-        />
+        <>
+            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>请求头参数</span></div>
+            <ExTable
+                columns={columns}
+                dataSource={requestHeaderTestCaseList}
+                handleSave={handleSave}
+            />
+        </>
+
     ); 
 }
 

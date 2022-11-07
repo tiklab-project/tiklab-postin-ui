@@ -26,15 +26,15 @@ const EnumParamDS = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '18%',
-            align:'center',
+            width: '20%',
+            // align:'center',
             editable: true,
         },
         {
             title: '数据类型',
             width: '10%',
             dataIndex: 'dataType',
-            align:'center',
+            // align:'center',
             render: (text, record)=>(
                 <ExSelect
                     dictionary={dataTypeDictionary}
@@ -49,7 +49,7 @@ const EnumParamDS = (props) =>{
             title: '必须',
             dataIndex: 'required',
             width: '10%',
-            align:'center',
+            // align:'center',
             render:(text,record) =>  (
                 <Checkbox
                     defaultChecked={record.required}
@@ -59,14 +59,15 @@ const EnumParamDS = (props) =>{
         },
         {
             title: '说明',
-            width: '18%',
+            width: '20%',
             dataIndex: 'description',
-            align:'center',
+            // align:'center',
             editable: true,
         },
         {
             title: '操作',
-            align:'center',
+            // align:'center',
+            width: '10%',
             dataIndex: 'operation',
             render: (text, record,index) =>(operation(record,dataSource))
         }

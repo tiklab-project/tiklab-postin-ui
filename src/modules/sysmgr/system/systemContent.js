@@ -45,24 +45,11 @@ const SystemContent = (props) =>{
             encoded: "MessageCenter",
         },
         {
-            title: "待办任务",
-            icon: 'zu',
-            key: '/systemManagement/todo',
-            encoded: "TODO",
-            children: [
-                {
-                    title: '我的待办',
-                    icon: 'modular',
-                    key: '/systemManagement/myTodo',
-                    encoded: "myTodo",
-                },
-                {
-                    title: '代办列表',
-                    icon: 'modular',
-                    key: '/systemManagement/taskList',
-                    encoded: "todoList",
-                },
-            ],
+            title: '代办任务',
+            icon: 'modular',
+            key: '/systemManagement/myTodo',
+            encoded: "myTodo",
+
         },
         {
             title: '插件',

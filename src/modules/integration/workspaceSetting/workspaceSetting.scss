@@ -5,6 +5,7 @@
 
 .workspace-setting-right{
     flex: 1;
+    overflow: auto;
 }
 
 
@@ -81,11 +82,13 @@
 }
 
 .ws-setting-flex{
-    display: flex;
-    justify-content: center;
+    //padding:0 var(--tiklab-padding-item);
 
     .ws-setting-box{
-        width: 1240px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--pi-page-padding);
+        min-width: 800px;
     }
 
     .ws-setting-title{
@@ -94,3 +97,62 @@
         font-size: 16px;
     }
 }
+
+
+.ws-setting-delete{
+    color: var(--pi-error-color);
+    margin: 5px 0 0;
+}
+
+.ws-delete-box{
+    height: 180px;
+
+
+    .ws-delete-tip{
+        padding: 5px;
+        background: #ffe7bb;
+        border-radius: 5px;
+    }
+
+    .ws-delete-text-bold{
+        font-weight: var(--pi-font-weight-title);
+    }
+
+    .ws-delete-input-title{
+        margin: 25px 5px 5px;
+    }
+
+    .ws-delete-modal-btn{
+        width: 380px;
+        margin: 10px 0;
+    }
+}
+
+.ws-setting-edit-visibility{
+    display: flex;
+
+    .ws-edit-visibility-item{
+        width: 255px;
+        height: 80px;
+        border:1px solid  #d9d9d9;
+        border-radius: var(--pi-border-radius);
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        cursor: pointer;
+        margin: 0 30px 0 0;
+
+        &-desc{
+            font-size: var(--pi-font-size-12);
+            color: #cecece;
+            display: flex;
+        }
+    }
+
+
+    .ws-edit-visibility-action{
+        border: 1px solid var(--pi-base-color);
+    }
+}
+

@@ -99,7 +99,7 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
 
 //表格头单元格
 .ant-table-thead>tr>th{
-    padding: 12px;
+    padding: 8px;
 }
 
 table{
@@ -123,6 +123,14 @@ table{
     font-weight: 600!important;
 }
 
+.ant-input-affix-wrapper>input.ant-input{
+    font-size: var(--pi-font-size-13);
+}
+
+.ant-input-affix-wrapper{
+    border-radius: var(--pi-border-radius);
+    border: var(--pi-input-border);
+}
 
 .table-delete{
     color: #ff0000;
@@ -135,6 +143,8 @@ table .icon{
 .important-btn{
     background: var(--pi-base-color)!important;
     color: #f0f0f0!important;
+    border-radius: var(--pi-border-radius);
+    font-size: var(--pi-font-size-13);
 }
 
 .ant-tabs-bottom>.ant-tabs-nav, .ant-tabs-bottom>div>.ant-tabs-nav, .ant-tabs-top>.ant-tabs-nav, .ant-tabs-top>div>.ant-tabs-nav{
@@ -154,4 +164,29 @@ table .icon{
     padding: 10px 30px;
 }
 
+.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    content: '';
+}
 
+.ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+    display: inline-block;
+    margin-right: 4px;
+    color: #ff4d4f;
+    font-size: 14px;
+    font-family: SimSun, sans-serif;
+    line-height: 1;
+    content: '*';
+}
+
+.ant-tooltip-inner{
+    font-size: var(--pi-font-size-12);
+}
+
+//表单
+.ant-form-item{
+    margin: 10px;
+}
+
+.ant-input{
+    border-radius: var(--pi-border-radius);
+}

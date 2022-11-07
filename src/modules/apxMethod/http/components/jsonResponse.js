@@ -32,13 +32,30 @@ const JsonResponse = (props) => {
         {
             title: '参数名称',
             dataIndex: 'propertyName',
-            width: '18%',
+            width: 240,
             // align:'center',
             editable: true,
+        },{
+            title: '示例值',
+            width: 240,
+            dataIndex: 'value',
+            editable: true,
+
+        },{
+            title: '必须',
+            dataIndex: 'required',
+            width: 50,
+            align:'center',
+            render:(text,record) =>  (
+                <Checkbox
+                    defaultChecked={record.required}
+                    onChange={(value) => toggleChecked(value, record)}
+                />
+            )
         },
         {
             title: '数据类型',
-            width: '8%',
+            width: 120,
             dataIndex: 'dataType',
             // align:'center',
             render: (text, record)=>(
@@ -49,33 +66,15 @@ const JsonResponse = (props) => {
                 />
             )
         },
-        {
-            title: '必须',
-            dataIndex: 'required',
-            width: '6%',
-            align:'center',
-            render:(text,record) =>  (
-                <Checkbox
-                    defaultChecked={record.required}
-                    onChange={(value) => toggleChecked(value, record)}
-                />
-            )
-        }, {
-            title: '示例值',
-            width: '20%',
-            dataIndex: 'value',
-            editable: true,
-
-        }, {
+         {
             title: '说明',
-            width: '20%',
             dataIndex: 'desc',
             editable: true,
         },
         {
             title: '操作',
             dataIndex: 'operation',
-            width: '20%',
+            width: 200,
             fixed: 'right',
             render: (text, record, index) =>(
                 <Space>
@@ -89,11 +88,6 @@ const JsonResponse = (props) => {
                 </Space>
             )
         },
-        {
-            title: '',
-            width: '14%',
-            dataIndex: 'none',
-        }
     ]
 
     const apxMethodId =  localStorage.getItem('apxMethodId');

@@ -11,6 +11,7 @@ import {
 export class ApxMethodStore {
 
     @observable apxMethodList = [];
+    @observable apiInfo={};
     @observable versionList = [];
     @observable apxMethodId = '';
     @observable categoryId= '';
@@ -67,6 +68,7 @@ export class ApxMethodStore {
         param.append('id', id);
         const res = await findMethod(param);
         if( res.code === 0 ){
+            this.apiInfo = res.data;
             return res.data;
         }
     }

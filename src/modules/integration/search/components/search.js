@@ -106,16 +106,18 @@ const Search = (props) => {
 
     return(
         <>
-            <Input
-                prefix={<SearchOutlined />}
-                placeholder="搜索"
-                onChange={debounce(changeValue,500) }
-                onPressEnter={toSearchResult}
-                className='search-input'
-                style={{width:260,margin: "-10px","borderRadius":"5px"}}
-                onBlur={onBlur}
-                onFocus={onFocus}
-            />
+            <div className={"header-search-input"}>
+                <Input
+                    prefix={<SearchOutlined />}
+                    placeholder="搜索"
+                    onChange={debounce(changeValue,500) }
+                    // onPressEnter={toSearchResult}
+                    onBlur={onBlur}
+                    onFocus={onFocus}
+                    className={`${toggleSearch==="show"?"search-action-width":"search-action-width-back"}`}
+                />
+            </div>
+
             <div className={`search-list ${ toggleSearch ==='show' ? 'search-show': 'search-hide'}`}>
                 <div className="same-result" >
                     <div className="search-title">空间 :</div>

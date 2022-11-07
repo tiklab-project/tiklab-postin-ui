@@ -20,12 +20,16 @@ const HeaderQuickTest = (props) =>{
     },[instanceId])
 
     return (
-        <HeaderTableCommon
-            dataList={headerQuickTestList}
-            saveList={saveList}
-            addNewList={addNewList}
-            deleteList={deleteList}
-        />
+        <>
+            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>请求头参数</span></div>
+            <HeaderTableCommon
+                dataList={headerQuickTestList}
+                saveList={saveList}
+                addNewList={addNewList}
+                deleteList={deleteList}
+            />
+        </>
+
     );
 }
 

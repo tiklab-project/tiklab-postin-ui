@@ -19,12 +19,16 @@ const QueryQuickTest = (props) =>{
     },[instanceId])
 
     return (
-        <QueryTableCommon
-            dataList={queryQuickTestList}
-            saveList={saveList}
-            addNewList={addNewList}
-            deleteList={deleteList}
-        />
+        <>
+            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>查询参数</span></div>
+            <QueryTableCommon
+                dataList={queryQuickTestList}
+                saveList={saveList}
+                addNewList={addNewList}
+                deleteList={deleteList}
+            />
+        </>
+
     );
 }
 

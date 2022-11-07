@@ -16,7 +16,7 @@ const FileTextSelect = (props) => {
 
     return(
         <Select
-            style={{width:120}}
+            style={{width:"100%"}}
             defaultValue={defaultValue}
             onChange={(e)=>selectChange(e)}
             bordered={false}

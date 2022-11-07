@@ -80,6 +80,7 @@
 }
 
 .sysmana-content{
+    overflow: auto;
     height: 100%;
     background-color: var(--pi-bg-color);
     //padding: 0 10px;
@@ -109,4 +110,12 @@
     width: 120px;
     height: 30px;
     align-items: center;
+}
+
+
+.dataStructure-modal-box{
+
+    .ant-modal-body{
+        min-height: 300px;
+    }
 }

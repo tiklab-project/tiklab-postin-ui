@@ -13,12 +13,16 @@ const QueryParam = (props) =>{
     } = queryParamTestStore;
   
     return (
-        <QueryTableCommon
-            dataList={queryParamTestList}
-            saveList={saveList}
-            addNewList={addNewList}
-            deleteList={deleteList}
-        />
+        <>
+            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>查询参数</span></div>
+            <QueryTableCommon
+                dataList={queryParamTestList}
+                saveList={saveList}
+                addNewList={addNewList}
+                deleteList={deleteList}
+            />
+        </>
+
     ); 
 }
 

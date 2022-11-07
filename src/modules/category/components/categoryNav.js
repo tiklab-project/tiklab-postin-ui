@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
 import { CaretRightOutlined, CaretDownOutlined } from '@ant-design/icons';
-import {Dropdown,Menu,Popconfirm} from "antd";
+import {Dropdown, Menu, Popconfirm, Tooltip} from "antd";
 import {ApxMethodEdit} from "../../apxMethod";
 import CategoryEdit from './categoryEdit';
 import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
@@ -105,17 +105,22 @@ const CategoryNav = (props) => {
         return (
             <div className={'category-action'}>
                 <div  className={"category-action-right"}>
-                    <ApxMethodEdit
-                        name="添加"
-                        icon={
-                            <svg className="edit-icon-nav" aria-hidden="true">
-                                <use xlinkHref={`#icon-tianjia-`}/>
-                            </svg>
-                        }
-                        type="add"
-                        categoryItemId={id}
-                        {...props}
-                    />
+
+                        <ApxMethodEdit
+                            name="添加"
+                            icon={
+                                <Tooltip title="新增接口"  placement="left">
+                                    <svg className="edit-icon-nav" aria-hidden="true">
+                                        <use xlinkHref={`#icon-tianjia-`}/>
+                                    </svg>
+                                </Tooltip>
+                            }
+                            type="add"
+                            categoryItemId={id}
+                            {...props}
+                        />
+
+
                     <Dropdown overlay={()=>menu(id)} className={'category-action-more'}>
                         <svg className="category-nav-item-icon" aria-hidden="true">
                             <use xlinkHref={`#icon-more`}/>
@@ -133,7 +138,7 @@ const CategoryNav = (props) => {
                 <span
                     className={`categoryNav-li tree-childspan  ${item.id === clickKey? 'action-li':''}`}
                     onClick={()=> onClick(item)}
-                    style={{paddingLeft: `${deep * 18}px`}}
+                    style={{paddingLeft: `${deep * 11+10}px`}}
                 >
                     {icon.preIcon}
                     <svg className="icon" aria-hidden="true">
@@ -198,7 +203,7 @@ const CategoryNav = (props) => {
                             <span
                                 onClick={()=>onClick(item)}
                                 className={`categoryNav-li tree-span ${item.id === clickKey? 'action-li':''}`}
-                                style={{paddingLeft: `${deep * 10+15}px`}}
+                                style={{paddingLeft: `${deep * 10+24}px`}}
                             >
                                 <svg className="icon" aria-hidden="true">
                                     <use xlinkHref="#icon-folder-close"/>

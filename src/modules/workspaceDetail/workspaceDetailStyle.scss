@@ -78,15 +78,16 @@
 
 //workspaceDetailInitPage
 .wd-content{
-    width: 1200px;
+    max-width: 800px;
+
 
     .wd-content-header{
         width: 600px;
-        padding: 10px;
+        padding: 10px 0;
 
         .wd-header-name{
-            height: 50px;
-            font-size: 28px;
+            height: 25px;
+            font-size: 22px;
             border: none;
         }
 
@@ -98,7 +99,7 @@
     .wd-title{
         padding: 10px;
         font-weight: 600;
-        margin: 35px 0  0 ;
+        margin: 10px 0  0 ;
     }
 
     .wd-total{
@@ -152,9 +153,10 @@
 }
 
 .page-center{
-    width: 1280px;
+    width: 960px;
     padding: 0 16px;
     margin: 0 auto;
+
 }
 
 .ws-icon-box{

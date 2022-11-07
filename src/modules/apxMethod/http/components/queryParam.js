@@ -33,23 +33,11 @@ const QueryParam = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '20%',
+            width: 240,
             editable: true,
-        },
-        {
-            title: '必须',
-            dataIndex: 'required',
-            width: '6%',
-            align:"center",
-            render:(text,record) =>  (
-                <Checkbox
-                    defaultChecked={record.required}
-                    onChange={(value) => toggleChecked(value, record)}
-                />
-            )
         },{
             title: '示例值',
-            width: '20%',
+            width: 240,
             dataIndex: 'value',
             render: (text, record)=>(
                 <ExSelect
@@ -62,8 +50,18 @@ const QueryParam = (props) =>{
             )
 
         },{
+            title: '必须',
+            dataIndex: 'required',
+            width: 50,
+            align:"center",
+            render:(text,record) =>  (
+                <Checkbox
+                    defaultChecked={record.required}
+                    onChange={(value) => toggleChecked(value, record)}
+                />
+            )
+        },{
             title: '说明',
-            width: '20%',
             dataIndex: 'desc',
             editable: true,
 
@@ -71,15 +69,11 @@ const QueryParam = (props) =>{
         {
             title: '操作',
             dataIndex: 'operation',
-            width: '10%',
+            width: 200,
             fixed: 'right',
             render: (text, record) =>(operation(record,dataSource))
         },
-        {
-            title: '',
-            width: '24%',
-            dataIndex: 'none',
-        }
+
     ]
 
     // 必须项的checked
@@ -140,7 +134,7 @@ const QueryParam = (props) =>{
     // 添加
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
-            return
+            return null;
         }else {
             // 创建新行的时候自带一个id，所以删了，后台会自行创建id
             delete values.id;
@@ -162,11 +156,15 @@ const QueryParam = (props) =>{
     };
 
     return (
-        <ExTable
-            columns={columns}
-            dataSource={queryParamList}
-            handleSave={handleSave}
-        />
+        <>
+            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>查询参数</span></div>
+            <ExTable
+                columns={columns}
+                dataSource={queryParamList}
+                handleSave={handleSave}
+            />
+        </>
+
     );
 }
 

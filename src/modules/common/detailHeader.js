@@ -8,7 +8,7 @@ const DetailHeader = (props) =>{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "10px"
+                padding: "10px 0 10px 10px"
             }}
         >
             <div>

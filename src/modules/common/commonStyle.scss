@@ -71,7 +71,7 @@
 }
 
 .ws-detail-title{
-    font-size: var(--tiklab-font-lg);
+    font-size: var(--pi-font-size-16);
     font-weight: var(--pi-font-weight-title);
 }
 
@@ -104,8 +104,8 @@
 
     .sort-show-box{
         position: absolute;
-        width: 160px;
-        left: -116px;
+        width: 236px;
+        left: -200px;
         background: rgb(255 255 255);
         padding: 10px;
         z-index: 10;
@@ -125,45 +125,46 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                width: 30px;
+                width: 50px;
 
 
                 .sort-icon{
                     width:25px;
                     height:25px;
-                    display: none;
+                    //display: none;
                     padding: 5px;
                 }
 
-                .sort-icon:hover{
-                    background: var(--pi-greyf9-color);
-                    cursor: pointer;
-                    border-radius: 5px;
-                }
+                //.sort-icon:hover{
+                //    background: var(--pi-action-color);
+                //    cursor: pointer;
+                //    border-radius: 5px;
+                //}
 
                 .sort-icon-asc:hover{
 
                 }
 
-                .sort-icon-desc{
 
-                }
 
                 .action-sort{
                     cursor: pointer;
-                    background: var(--pi-greyf9-color);
-                    border-radius: 5px;
+                    background: var(--pi-bg-color);
+                    border-radius: var(--pi-border-radius);
                     display: block;
                 }
             }
         }
 
+        .sort-item-action{
+            border-radius: var(--pi-border-radius);
+            background: var(--pi-action-color);
+        }
 
-        //&-item:hover{
-        //    cursor: pointer;
-        //    background: #e2e2e2;
-        //    border-radius: 5px;
-        //}
+        &-item:hover{
+            cursor: pointer;
+            background: var(--pi-hover-color)
+        }
 
         //&-item:hover .sort-icon-asc{
         //    display: block;

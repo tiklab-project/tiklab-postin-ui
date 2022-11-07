@@ -28,7 +28,7 @@ const JsonTableCommon = (props) => {
                 />
             )
         },{
-            title: '值',
+            title: '参数值',
             width: '30%',
             dataIndex: 'value',
             render: (text, record)=>(
@@ -48,8 +48,8 @@ const JsonTableCommon = (props) => {
             render: (text, record) =>(
                 <Space>
                     <Tooltip title="数据类型: object，添加子行"><a onClick={() => addChild(record.dataType,record.id)}> 子</a></Tooltip>
-                    <Tooltip title="删除数据"><a onClick={() =>deleteList(record.id)} type="primary"> delete </a></Tooltip>
-                    <Tooltip title="新增一行"><a onClick={() =>handleAdd()} > + </a></Tooltip>
+                    <Tooltip title="删除数据"><a onClick={() =>deleteList(record.id)} type="primary"> 删除 </a></Tooltip>
+                    <Tooltip title="新增一行"><a onClick={() =>handleAdd()} > 新行 </a></Tooltip>
                 </Space>
             )
         },

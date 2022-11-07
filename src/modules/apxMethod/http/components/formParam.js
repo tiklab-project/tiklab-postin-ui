@@ -22,11 +22,11 @@ const FormParam = (props) =>{
         dataLength
     } = formParamStore;
 
-    const [dataSource,setDataSoure] =useState([])
+    const [dataSource,setDataSource] =useState([])
     const apxMethodId = localStorage.getItem('apxMethodId');
 
     useEffect( ()=>{
-        findFormParamList(apxMethodId).then(res => setDataSoure(res));
+        findFormParamList(apxMethodId).then(res => setDataSource(res));
     },[dataLength])
 
     //表头
@@ -34,11 +34,27 @@ const FormParam = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '20%',
+            width: 240,
             editable: true,
         },{
+            title: '示例值',
+            width: 240,
+            dataIndex: 'value',
+            editable: true,
+        },{
+            title: '必须',
+            dataIndex: 'required',
+            width: 50,
+            align:"center",
+            render:(text,record) =>  (
+                <Checkbox
+                    defaultChecked={record.required}
+                    onChange={(value) => toggleChecked(value, record)}
+                />
+            )
+        },{
             title: '数据类型',
-            width: '8%',
+            width: 120,
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <FileTextSelect
@@ -48,38 +64,16 @@ const FormParam = (props) =>{
                 />
             )
         },{
-            title: '必须',
-            dataIndex: 'required',
-            width: '6%',
-            align:"center",
-            render:(text,record) =>  (
-                <Checkbox
-                    defaultChecked={record.required}
-                    onChange={(value) => toggleChecked(value, record)}
-                />
-            )
-        },{
-            title: '示例值',
-            width: '20%',
-            dataIndex: 'value',
-            editable: true,
-        },{
             title: '说明',
-            width: '20%',
             dataIndex: 'desc',
             editable: true,
 
         },{
             title: '操作',
-            width: '10%',
+            width: 200,
             dataIndex: 'operation',
             fixed: 'right',
             render: (text, record) =>(operation(record,dataSource))
-        },
-        {
-            title: '',
-            width: '20%',
-            dataIndex: 'none',
         }
     ]
 
@@ -144,7 +138,7 @@ const FormParam = (props) =>{
 
     //更新
     const upData = (value) => {
-        updateFormParam(value).then(res=>setDataSoure(res));
+        updateFormParam(value).then(res=>setDataSource(res));
     }
 
     // 添加

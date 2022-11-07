@@ -38,6 +38,11 @@
     height: 22px;
 }
 
+.header-right-item:hover{
+    background: #e3e3e3;
+    border-radius: var(--pi-border-radius);
+}
+
 .user-header-icon{
     width: 21px;
     height: 21px;
@@ -201,8 +206,11 @@
         }
 
         .ant-menu-title-content{
-            font-size: var(--pi-first-lable);
-            font-weight: var(--pi-font-weight-title);
+            font-size: var(--pi-font-size-14);
+        }
+
+        .ant-menu-horizontal{
+            border-bottom: none;
         }
 
     }
@@ -212,7 +220,7 @@
         justify-content: space-between;
         align-items: center;
         height: 100%;
-        width: 550px;
+        //width: 470px;
 
 
         .frame-header-right-detail{

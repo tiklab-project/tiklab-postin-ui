@@ -127,11 +127,15 @@ const QueryParamTestCase = (props) =>{
 
   
     return (
-        <ExTable
-            columns={columns}
-            dataSource={queryParamTestCaseList}
-            handleSave={handleSave}
-        />
+        <>
+            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>查询参数</span></div>
+            <ExTable
+                columns={columns}
+                dataSource={queryParamTestCaseList}
+                handleSave={handleSave}
+            />
+        </>
+
     ); 
 }
 

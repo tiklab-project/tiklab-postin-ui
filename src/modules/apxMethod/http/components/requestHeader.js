@@ -30,7 +30,7 @@ const RequestHeader = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'headerName',
-            width: '20%',
+            width: 240,
             className:"column-header",
             render: (text, record)=>(
                 <ExSelect
@@ -42,39 +42,36 @@ const RequestHeader = (props) =>{
                 />
             )
         },{
-            title: '必须',
-            dataIndex: 'required',
-            width: '6%',
-            align:"center",
-            className:"column-header",
-            render:(text,record) =>  (
-                <Checkbox defaultChecked={record.required} onChange={(value) => toggleChecked(value, record)}/>
-            )
-        },{
             title: '示例值',
-            width: '20%',
+            width: 240,
             dataIndex: 'value',
             className:"column-header",
             editable: true,
-        }, {
+        },{
+            title: '必须',
+            dataIndex: 'required',
+            width: 50,
+            align:"center",
+            className:"column-header",
+            render:(text,record) =>  (
+                <Checkbox
+                    defaultChecked={record.required}
+                    onChange={(value) => toggleChecked(value, record)}
+                />
+            )
+        },{
             title: '说明',
-            width: '20%',
+            // width: '20%',
             dataIndex: 'desc',
             className:"column-header",
             editable: true,
         },{
             title: '操作',
-            width: '10%',
+            width: 200,
             dataIndex: 'operation',
             className:"column-header",
             fixed: 'right',
             render: (text, record) =>(operation(record,dataSource))
-        },
-        {
-            title: '',
-            width: '24%',
-            className:"column-header",
-            dataIndex: 'none',
         }
     ]
 
@@ -156,11 +153,15 @@ const RequestHeader = (props) =>{
     };
 
     return (
-        <ExTable
-            columns={columns}
-            dataSource={requestHeaderList}
-            handleSave={handleSave}
-        />
+        <>
+            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>请求头参数</span></div>
+            <ExTable
+                columns={columns}
+                dataSource={requestHeaderList}
+                handleSave={handleSave}
+            />
+        </>
+
     );
 }
 

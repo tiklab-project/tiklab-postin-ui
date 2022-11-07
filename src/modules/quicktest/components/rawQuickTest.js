@@ -28,7 +28,7 @@ const RawQuickTest = (props) => {
             dataSource={rawQuickTestInfo}
             type={rawQuickTestInfo?.type}
             updateFn={getRawInfo}
-            online={false}
+            use={"quick"}
         />
     )
 }

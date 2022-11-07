@@ -4,6 +4,7 @@ import EdiText from "react-editext";
 import {inject, observer} from "mobx-react";
 import WorkspaceEdit from "../../workspace/components/workspaceEdit";
 import DetailHeader from "../../common/detailHeader";
+import DeleteWorkspaceModal from "./deleteWorkspaceModal";
 
 const { Panel } = Collapse;
 const {TextArea} = Input;
@@ -20,9 +21,13 @@ const WorkspaceSetting = (props) =>{
 
     let workspaceId = localStorage.getItem("workspaceId");
     const [form] = Form.useForm();
+    const [workspaceName, setWorkspaceName] = useState();
+    const [visibility, setVisibility] = useState(1);
 
     useEffect(()=>{
         findWorkspace(workspaceId).then(res=>{
+            setWorkspaceName(res.workspaceName)
+            setVisibility(res.visibility)
             form.setFieldsValue({
                 workspaceName: res.workspaceName,
                 desc:res.desc
@@ -31,17 +36,13 @@ const WorkspaceSetting = (props) =>{
     },[workspaceId])
 
     const onFinish = (values) =>{
+        values.visibility=visibility;
         let param = {
             id:workspaceId,
             ...values,
         }
-        updateWorkspace(param);
-    }
 
-    const deleteFn = (workspaceId) =>{
-        deleteWorkspace(workspaceId).then(()=>{
-            props.history.push("/workspacePage")
-        })
+        updateWorkspace(param);
     }
 
 
@@ -63,22 +64,51 @@ const WorkspaceSetting = (props) =>{
                         </div>
                     }
                 />
-                <Collapse  >
+                <Collapse  defaultActiveKey={['1']} >
                     <Panel header="编辑空间" key="1">
-                        <div style={{width:800}}>
+                        <div>
                             <Form
                                 className='ws-edit-modal-form'
                                 form={form}
                                 preserve={false}
                                 layout={"vertical"}
                                 onFinish={onFinish}
+                                labelCol={{ span: 4 }}
+                                wrapperCol={{ span: 20 }}
                             >
                                 <Form.Item
                                     label="应用名称"
                                     rules={[{ required: true, message: '添加目录名称!' }]}
                                     name="workspaceName"
                                 >
-                                    <Input />
+                                    <Input style={{height:40}}/>
+                                </Form.Item>
+                                <Form.Item
+                                    label="可见范围"
+                                    name="visibility"
+                                >
+                                    <div className={"ws-setting-edit-visibility"}>
+                                        <div className={`ws-edit-visibility-item ${visibility===0?"ws-edit-visibility-action":null}`} onClick={()=>setVisibility(0)}>
+                                            <div style={{"display":"flex","alignItems":"center"}}>
+                                                <svg style={{width:20,height:20}} aria-hidden="true">
+                                                    <use xlinkHref= {`#icon-suoding`} />
+                                                </svg>
+                                                <span>公共</span>
+                                            </div>
+                                            <div className={"ws-edit-visibility-item-desc"}>公共项目，全部成员可见</div>
+                                        </div>
+
+                                        <div className={`ws-edit-visibility-item  ${visibility===1?"ws-edit-visibility-action":null}`}  onClick={()=>setVisibility(1)}>
+                                            <div style={{"display":"flex","alignItems":"center"}} >
+                                                <svg style={{width:20,height:20}} aria-hidden="true">
+                                                    <use xlinkHref= {`#icon-jiesuo`} />
+                                                </svg>
+                                                <span>私密</span>
+                                            </div>
+                                            <div className={"ws-edit-visibility-item-desc"}>私密项目，只有项目成员可见</div>
+                                        </div>
+
+                                    </div>
                                 </Form.Item>
                                 <Form.Item
                                     label="描述"
@@ -87,7 +117,7 @@ const WorkspaceSetting = (props) =>{
                                     <TextArea rows={4} />
                                 </Form.Item>
                                 <Form.Item {...formItemLayout}>
-                                    <Button type="primary" htmlType="submit">  保存 </Button>
+                                    <Button type="primary" htmlType="submit" style={{ width: 100,height: 36}}>  保存 </Button>
                                 </Form.Item>
                             </Form>
 
@@ -96,8 +126,19 @@ const WorkspaceSetting = (props) =>{
 
                     </Panel>
                     <Panel header="删除空间" key="2">
-                        <div style={{color:"#ff6767","margin":"0 0 10px 0"}}>删除存储库后，将无法找回</div>
-                        <Button type="primary" danger onClick={()=>deleteFn(workspaceId)}>删除空间</Button>
+                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                            <div>
+                                <div  style={{fontWeight:"bold"}}>删除此空间</div>
+                                <div className={"ws-setting-delete"}>删除存储库后，将无法返回。请确定</div>
+                            </div>
+
+                            <DeleteWorkspaceModal
+                                workspaceStore={workspaceStore}
+                                workspaceName={workspaceName}
+                                {...props}
+                            />
+                        </div>
+
                     </Panel>
                 </Collapse>
             </div>

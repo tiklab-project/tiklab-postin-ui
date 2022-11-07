@@ -35,7 +35,7 @@ export class WorkspaceStore {
 	@action
 	findWorkspacePage = async (value) => {
 		this.pageParams = {
-			orderParams:[{name:'workspaceName', orderType:'asc'}],
+			orderParams:[{name:'workspaceName', orderType:'desc'}],
 			...value
 		}
 		const res = await findWorkspacePage(this.pageParams)
@@ -49,13 +49,13 @@ export class WorkspaceStore {
 	@action
 	findWorkspaceList = async (value) => {
 		this.params = {
-			orderParams:[{name:'workspaceName', orderType:'asc'}],
+			orderParams:[{name:'workspaceName', orderType:'desc'}],
 			...value
 		}
 		const res = await findWorkspaceList(this.params)
 		if(res.code === 0 ) {
 			this.workspaceList = res.data;
-			return res;
+			return  res.data;
 		}
 	}
 
@@ -65,7 +65,7 @@ export class WorkspaceStore {
 		const res = await findWorkspaceJoinList(value)
 		if(res.code === 0 ) {
 			this.workspaceList = res.data;
-			return res;
+			return  res.data;
 		}
 	}
 

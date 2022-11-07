@@ -18,7 +18,7 @@ import { Mock,MockDetail } from "./apimock"
 import {
     SystemContent, SysManage,DataStructure, ApiStatus,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole, MessageManagement,
-    MessageSendType, MessageTemplate, MessageType, MessageUser,
+    MessageSendType, MessageTemplate, MessageType,
 } from './sysmgr/index'
 
 import PageContent from "./header/pageContent";
@@ -61,7 +61,7 @@ export {
     SystemContent,SysManage,
     DataStructure,ApiStatus,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole,
-    MessageManagement, MessageSendType, MessageTemplate, MessageType, MessageUser,
+    MessageManagement, MessageSendType, MessageTemplate, MessageType,
     PluginManage,
     LoginOut,LoginContent,
     ElectronLoginContant,

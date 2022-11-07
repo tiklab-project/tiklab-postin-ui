@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "658044",
+      "name": "解锁",
+      "font_class": "jiesuo",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "679775",
+      "name": "锁定",
+      "font_class": "suoding",
+      "unicode": "e6e6",
+      "unicode_decimal": 59110
+    },
+    {
+      "icon_id": "32333077",
+      "name": "箭头-下",
+      "font_class": "arrow-down",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "32334532",
+      "name": "箭头-右",
+      "font_class": "W-03",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "32474136",
+      "name": "进入",
+      "font_class": "jinru",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "32474465",
+      "name": "展开",
+      "font_class": "zhankai",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "32474593",
+      "name": "新增",
+      "font_class": "xinzeng",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
+    },
+    {
       "icon_id": "159969",
       "name": "more",
       "font_class": "gengduo",
@@ -167,13 +216,6 @@
       "unicode_decimal": 58966
     },
     {
-      "icon_id": "22391273",
-      "name": "项目升级",
-      "font_class": "xiangmushengji",
-      "unicode": "e608",
-      "unicode_decimal": 58888
-    },
-    {
       "icon_id": "31170187",
       "name": "消息",
       "font_class": "xiaoxi1",
@@ -242,13 +284,6 @@
       "font_class": "geren",
       "unicode": "e657",
       "unicode_decimal": 58967
-    },
-    {
-      "icon_id": "2674477",
-      "name": "身份证",
-      "font_class": "shenfenzheng",
-      "unicode": "e625",
-      "unicode_decimal": 58917
     },
     {
       "icon_id": "9743338",

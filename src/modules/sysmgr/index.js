@@ -15,7 +15,6 @@ import MessageManagement from './message/messageManagement';
 import MessageSendType from './message/messageSendType';
 import MessageTemplate from './message/messageTemplate';
 import MessageType from './message/messageType';
-import MessageUser from './message/messageUser';
 
 
 export {
@@ -35,5 +34,4 @@ export {
     MessageSendType,
     MessageTemplate,
     MessageType,
-    MessageUser,
 }

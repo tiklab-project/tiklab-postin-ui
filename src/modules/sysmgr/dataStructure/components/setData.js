@@ -21,27 +21,25 @@ const SetData = (props) => {
     const changeType = (data) => {
         switch(data) {
             case 'enum':
-                return <EnumParamDS dataStructureId={props.dataStructureId} />
+                return <div className={"tabPane-item-box"}><EnumParamDS dataStructureId={props.dataStructureId} /></div>
             case 'json':
-                return <JsonParamDS dataStructureId={props.dataStructureId} />
+                return <div className={"tabPane-item-box"}><JsonParamDS dataStructureId={props.dataStructureId} /></div>
             default:
-                return <EnumParamDS dataStructureId={props.dataStructureId} />
+                return <div className={"tabPane-item-box"}><EnumParamDS dataStructureId={props.dataStructureId} /></div>
         }
     }
 
     return(
         <>
-            {
-                <a onClick={showModal}>数据设置</a>
-            }
-
+            <a onClick={showModal}>{props.name}</a>
             <Modal
                 destroyOnClose={true}
                 title='数据设置'
                 open={visible}
                 onCancel={onCancel}
                 footer={null}
-                width={870}
+                width={1080}
+                className={"dataStructure-modal-box"}
                 centered
             >
                 {

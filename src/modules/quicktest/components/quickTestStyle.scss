@@ -21,13 +21,14 @@
 
 
 .qt-left-header{
-    display: flex;
     padding: 10px;
-    background: var(--pi-greyf9-color);
-    border-bottom: 1px solid var(--pi-border-color);
+    border-bottom:1px solid var(--pi-border-color) ;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
 
     .qt-left-heaer-clear{
-        margin: 0 0 0 10px;
+        margin: 0 0 0 5px;
         line-height: 32px;
         cursor: pointer;
     }

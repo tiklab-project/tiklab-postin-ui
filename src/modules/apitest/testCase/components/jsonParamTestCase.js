@@ -61,7 +61,7 @@ const JsonParamTestCase = (props) => {
         {
             title: '操作',
             fixed: 'right',
-            align:'center',
+            // align:'center',
             width: '20%',
             dataIndex: 'operation',
             render: (text, record, index) =>(
