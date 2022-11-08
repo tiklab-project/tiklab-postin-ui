@@ -23,6 +23,12 @@
     --tiklab-font-15: 15px; // 2级标题
     --tiklab-font-16: 16px; // 标题
 
+    // 图标大小
+    --tiklab-icon-size-16: 16px;
+    --tiklab-icon-size-20: 20px;
+    --tiklab-icon-size-22: 22px;
+    --tiklab-icon-size-32: 32px;
+
     // 字重
     --tiklab-font-weight-bold: bold; // 标题字重
 
@@ -44,15 +50,19 @@
     --pi-font-weight-light:400;
 
 
+    --pi-icon-s:var(--tiklab-icon-size-16);
+    --pi-icon-m:var(--tiklab-icon-size-20);
+    --pi-icon-l:var(--tiklab-icon-size-22);
+    --pi-icon-x:var(--tiklab-icon-size-32);
 
 
 
     --pi-greyf9-color: #f9f9f9; //悬浮颜色
     --pi-border-color:#f0f0f0; //边框颜色
     --pi-box-shadow: 0 3px 6px rgb(140 149 159 / 15%);  //阴影
-    --pi-border-radius:5px; //边框圆角
-
-    --pi-input-border:2px solid hsla(0,0%,86.7%,.8666666667);
+    --pi-border-radius:4px; //边框圆角
+    //--pi-input-border:2px solid hsla(0,0%,86.7%,.8666666667);
+    --pi-input-border:1px solid var(--tiklab-gray-200);
 
     --pi-font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI, Roboto,Oxygen,
     Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica,Arial,sans-serif; // 字体

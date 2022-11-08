@@ -116,7 +116,7 @@ const MessageDrawer = (props) =>{
             return(
                 <div key={item.id} className={"message-item"}>
                     <div className={"message-item-left"}>
-                        <svg className=" message-item-icon" aria-hidden="true">
+                        <svg className="icon-m message-item-icon" aria-hidden="true">
                             <use xlinkHref= {`#icon-xiaoxi`} />
                         </svg>
 

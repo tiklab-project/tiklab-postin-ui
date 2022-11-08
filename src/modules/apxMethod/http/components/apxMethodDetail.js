@@ -171,62 +171,6 @@ const ApxMethodDetail = (props) => {
     }
 
 
-    const columns = [
-        {
-            title: '名称',
-            key: 'name',
-            dataIndex: ['apix','name'],
-            ellipsis: true,
-        },{
-            title: '请求类型',
-            key: 'methodType',
-            dataIndex: "methodType",
-            // ellipsis: true,
-            render:()=>{
-                return(
-                    <Select
-                        style={{width:70}}
-                        value={methodType}
-                        showArrow={false}
-                        onChange={(e)=>selectMethodType(e)}
-                    >
-                        {
-                            showMethod(methodDictionary)
-                        }
-                    </Select>
-                )
-            }
-        },{
-            title: '状态',
-            key: 'status',
-            dataIndex: ["apix","status","name"],
-            ellipsis: true,
-        },{
-            title: '执行者',
-            key: 'executor',
-            dataIndex: ["apix","executor","name"],
-            ellipsis: true,
-            render: (dom, entity, index, action) => {
-                return (
-                    <Select
-                        style={{width:85}}
-                        value={executorId}
-                        showArrow={false}
-                        onChange={(e)=>selectExecutor(e)}
-                    >
-                        {showExecutor(userSelectList)}
-                    </Select>
-                );
-            },
-        },
-        {
-            title: "接口",
-            key: 'path',
-            dataIndex: "path",
-            ellipsis: true,
-        },
-    ]
-
 
     return(
         <Fragment>
@@ -260,7 +204,7 @@ const ApxMethodDetail = (props) => {
                      <Button className="important-btn" onClick={handleTest} style={{display:"flex",alignItems:"center"}}>
                          <IconCommon
                             icon={"fasong-copy"}
-                            style={{width:20,height:20}}
+                            className={"icon-s"}
                          />
                          测试
                      </Button>
@@ -272,7 +216,7 @@ const ApxMethodDetail = (props) => {
                      <Button  onClick={()=>handleDeleteApxMethod(apxMethodId)}  style={{display:"flex",alignItems:"center"}}>
                          <IconCommon
                              icon={"shanchu"}
-                             style={{width:20,height:20}}
+                             className={"icon-s"}
                          />
                          删除
                      </Button>

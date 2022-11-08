@@ -4,25 +4,17 @@
     //justify-content: center;
 
     .list-content-center{
-        width: 960px;
-    }
-
-    .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-        padding: 10px !important;
+        width: 860px;
     }
 
 }
 
 .edit-icon{
-    width: 16px;
-    height: 16px;
     cursor:pointer;
     margin: 5px 0 0;
 }
 
 .edit-icon-nav{
-    width: 16px;
-    height: 16px;
     cursor:pointer;
 }
 
@@ -90,6 +82,11 @@
 .method-content{
     background-color:var(--pi-bg-color);
     //padding:10px 0 0  0;
+
+    .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
+        content: none;
+    }
+
 }
 
 .method-menu{
@@ -109,6 +106,12 @@
         font-weight: 500;
         font-size: 14px;
     }
+
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+        padding: 8px;
+    }
+
+
 }
 
 .tabPane-item-box{
@@ -118,7 +121,7 @@
 
     // 表头设置
     .ant-table-thead>tr .ant-table-cell{
-        font-weight: 600;
+        font-weight: var(--pi-font-weight-light);
         padding: 7px;
         font-size: 13px;
     }

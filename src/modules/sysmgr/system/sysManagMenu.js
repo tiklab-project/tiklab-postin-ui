@@ -73,7 +73,7 @@ const SysManage = (props) => {
                         style={{paddingLeft:`${deep*20+5}px`}}
                     >
                         <div className={'aside-li'} >
-                            <svg style={{width:18,height:18,margin:"0 5px 0 0"}} aria-hidden="true">
+                            <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
                                 <use xlinkHref= {`#icon-${data.icon}`} />
                             </svg>
 
@@ -90,7 +90,7 @@ const SysManage = (props) => {
                 style={{paddingLeft:`${deep*20+5}px`}}
             >
                 <div className={'aside-li'} >
-                    <svg style={{width:18,height:18,margin:"0 5px 0 0"}} aria-hidden="true">
+                    <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
                         <use xlinkHref= {`#icon-${data.icon}`} />
                     </svg>
 
@@ -112,7 +112,7 @@ const SysManage = (props) => {
                              style={{paddingLeft:`${deep*20+5}px`}}
                         >
                             <div className={"menu-name-icon"}>
-                                <svg style={{width:18,height:18,margin:"0 5px 0 0"}} aria-hidden="true">
+                                <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
                                     <use xlinkHref= {`#icon-${icon}`} />
                                 </svg>
 
@@ -153,7 +153,7 @@ const SysManage = (props) => {
                          style={{paddingLeft:`${deep*20+5}px`}}
                     >
                         <div className={"menu-name-icon"}>
-                            <svg style={{width:18,height:18,margin:"0 5px 0 0"}} aria-hidden="true">
+                            <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
                                 <use xlinkHref= {`#icon-${icon}`} />
                             </svg>
 

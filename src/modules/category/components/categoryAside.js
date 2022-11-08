@@ -44,7 +44,7 @@ const CategoryAside = (props) => {
                         />
                         <Dropdown overlay={menu}  className="ws-left-tree-drop" >
                             <div>
-                                <svg style={{width:18,height:18}} aria-hidden="true" >
+                                <svg className={"icon-s"} aria-hidden="true" >
                                     <use xlinkHref= {`#icon-tianjia-`} />
                                 </svg>
                             </div>

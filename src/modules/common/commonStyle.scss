@@ -102,10 +102,16 @@
     position:relative;
     padding: 10px;
 
+    .sort-box-title{
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
     .sort-show-box{
         position: absolute;
         width: 236px;
-        left: -200px;
+        left: -175px;
         background: rgb(255 255 255);
         padding: 10px;
         z-index: 10;
@@ -174,11 +180,29 @@
         //    display: block;
         //}
     }
-
-
 }
 .sort-box:hover .sort-show-box{
     display: block;
 }
 
 
+.flex-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.structure-header-box{
+    width: 310px;
+
+    .structure-box-select{
+        width: 100px;
+
+        .ant-select-selector{
+            border-radius: var(--pi-border-radius)!important;
+            border: none!important;
+            background-color: #f4f5f7!important;
+        }
+    }
+}

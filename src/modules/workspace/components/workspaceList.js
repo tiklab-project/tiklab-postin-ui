@@ -45,10 +45,10 @@ const WorkspaceList = (props) => {
             key: "user",
             width:"20%",
             render: (text, record) => (
-                <>
+                <div className={"ws-user-item"}>
                     <Profile userInfo={record.user}/>
-                    <span> </span>
-                </>
+                    <span>{record.user.nickname} </span>
+                </div>
 
             )
         },{
@@ -73,17 +73,17 @@ const WorkspaceList = (props) => {
             width:"10%",
             // align:"center",
             render: (text, record) => (
-                <Space size="large">
+                <div style={{display:"flex","justifyContent":"space-between",width:60}}>
                     <Tooltip title="空间成员">
-                        <svg style={{width:20,height:20,"cursor":"pointer"}} aria-hidden="true" onClick={()=>toWorkspaceUser(record.id)}>
+                        <svg style={{width:16,height:16,"cursor":"pointer"}} aria-hidden="true" onClick={()=>toWorkspaceUser(record.id)}>
                             <use xlinkHref= {`#icon-chengyuan`} />
                         </svg>
 
                     </Tooltip>
-                    <svg style={{width:20,height:20,"cursor":"pointer"}} aria-hidden="true" onClick={()=>follow(record)}>
+                    <svg style={{width:16,height:16,"cursor":"pointer"}} aria-hidden="true" onClick={()=>follow(record)}>
                         <use xlinkHref= {`#icon-${  record.isFollow===0 ? "shoucang":"shoucang1" }`}  />
                     </svg>
-                </Space>
+                </div>
             ),
         },
     ]
@@ -99,7 +99,7 @@ const WorkspaceList = (props) => {
     //可见范围的展示
     const showVisibility = (name,icon) =>{
         return <div style={{"display":"flex","alignItems":"center"}}>
-            <svg style={{width:20,height:20}} aria-hidden="true">
+            <svg style={{width:16,height:16}} aria-hidden="true">
                 <use xlinkHref= {`#icon-${icon}`} />
             </svg>
             <span>{name}</span>

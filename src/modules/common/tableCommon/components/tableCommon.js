@@ -88,7 +88,7 @@ const EditableCell = ({
 
 
 const ExTable = (props) => {
-    const {dataSource,columns,handleSave} = props;
+    const {dataSource,columns,handleSave,rowSelection} = props;
 
     // 覆盖默认的 table 元素
     const components = {
@@ -126,6 +126,7 @@ const ExTable = (props) => {
             }}
             dataSource={dataSource}
             columns={column}
+            rowSelection={rowSelection}
         />
     )
 }

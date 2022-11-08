@@ -60,7 +60,7 @@ const Mock = (props) => {
                         okText='确定'
                         cancelText='取消'
                     >
-                        <svg className="edit-icon" aria-hidden="true">
+                        <svg className="icon-s edit-icon" aria-hidden="true">
                             <use xlinkHref= {`#icon-shanchu3`} />
                         </svg>
                     </Popconfirm>

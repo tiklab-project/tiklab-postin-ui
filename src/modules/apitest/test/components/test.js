@@ -179,10 +179,7 @@ const ApxMethodTest = (props) => {
 
                     <Space>
                         <Button className="important-btn" onClick={onFinish} style={{display:"flex",alignItems:"center"}}>
-                            <IconCommon
-                                icon={"fasong-copy"}
-                                style={{width:20,height:20}}
-                            />
+                            <IconCommon icon={"fasong-copy"} className={"icon-s"}/>
                             发送
                         </Button>
                         <SaveTestCase  {...props}/>

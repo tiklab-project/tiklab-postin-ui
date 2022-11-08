@@ -49,7 +49,7 @@ const FormUrlencodedTableCommon = (props) =>{
         }
     ]
 
-
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [count, setCount] = useState(1);
 
     const handleAdd = () => {
@@ -72,11 +72,25 @@ const FormUrlencodedTableCommon = (props) =>{
     };
 
 
+    const onSelectChange = (newSelectedRowKeys,list) => {
+        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+        console.log('list: ', list);
+        setSelectedRowKeys(newSelectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
+
+
+
     return (
         <ExTable
             columns={columns}
             dataSource={dataList}
             handleSave={handleSave}
+            rowSelection={rowSelection}
         />
     );
 }

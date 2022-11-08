@@ -27,7 +27,7 @@ const Home =(props)=> {
                         <div className={"home-box-item"}>
                             <div className={"home-item-title-box"}>
                                 <div className={"home-item-title"}>
-                                    <svg className=" home-item-title-icon" aria-hidden="true">
+                                    <svg className="icon-m home-item-title-icon" aria-hidden="true">
                                         <use xlinkHref= {`#icon-zuijinfangwen-`} />
                                     </svg>
                                     <span>最近访问</span>
@@ -41,7 +41,7 @@ const Home =(props)=> {
                         <div className={"home-box-item"}>
                             <div className={"home-item-title-box"}>
                                 <div className={"home-item-title"}>
-                                    <svg className="home-item-title-icon" aria-hidden="true">
+                                    <svg className="icon-m home-item-title-icon" aria-hidden="true">
                                         <use xlinkHref= {`#icon-daibanshixiang`} />
                                     </svg>
                                     <span>代办信息</span>
@@ -64,7 +64,7 @@ const Home =(props)=> {
                     <div className={"home-box-item-dynamic"}>
                         <div className={"home-item-title-box"}>
                             <div className={"home-item-title"}>
-                                <svg className="home-item-title-icon" aria-hidden="true">
+                                <svg className="icon-m home-item-title-icon" aria-hidden="true">
                                     <use xlinkHref= {`#icon-rizhijilu`} />
                                 </svg>
                                 <apan>动态信息</apan>

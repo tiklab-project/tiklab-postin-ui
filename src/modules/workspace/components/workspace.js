@@ -101,7 +101,6 @@ const Workspace = (props) => {
 
     return(
         <div className='ws-layout'>
-            {/*<BreadcrumbEx list={["主页","空间"]} />*/}
             <DetailHeader
                 left={
                     <div style={{
@@ -110,7 +109,7 @@ const Workspace = (props) => {
                         justifyContent:"space-between",
                         width: 55
                     }}>
-                        <svg style={{width:20,height:20}} aria-hidden="true" >
+                        <svg className={"icon-m"} aria-hidden="true" >
                             <use xlinkHref= {`#icon-home`} />
                         </svg>
                         <span>空间</span>

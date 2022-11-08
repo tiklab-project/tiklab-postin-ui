@@ -67,7 +67,7 @@ const TestCaseList = (props) => {
                         cancelText='取消'
                         placement="topRight"
                     >
-                        <svg className="edit-icon" aria-hidden="true">
+                        <svg className="icon-s edit-icon" aria-hidden="true">
                             <use xlinkHref= {`#icon-shanchu3`} />
                         </svg>
                     </Popconfirm>

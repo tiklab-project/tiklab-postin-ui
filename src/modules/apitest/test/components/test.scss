@@ -49,6 +49,9 @@
     .test-url{
         display: flex;
         width: 100%;
+
+
+
     }
 
     .test-base-item{
@@ -62,6 +65,7 @@
     }
 
     .ant-input{
+        border-radius: 0;
         height: 40px;
     }
 }
@@ -90,7 +94,7 @@
 
 
     .test-body-type-item{
-        width:200px;
+        width:260px;
         margin:0 auto;
         text-align: center;
     }

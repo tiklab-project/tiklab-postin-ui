@@ -60,6 +60,7 @@ const JsonTableCommon = (props) => {
         }
     ]
 
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [count,setCount] = useState(1)
     // 添加下一行
     const handleAdd = () => {
@@ -120,14 +121,16 @@ const JsonTableCommon = (props) => {
         saveList(result)
     };
 
+    const onSelectChange = (newSelectedRowKeys,selectedRows) => {
+        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+        console.log('list: ', selectedRows);
+        setSelectedRowKeys(newSelectedRowKeys);
+    };
+
     //表格前的checkbox根据“必须”项，当必选时，设置disabled
     const rowSelection = {
-        getCheckboxProps: (record) => ({
-            disabled: record.required === 1,
-        }),
-        onChange: (selectedRowKeys, selectedRows) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-        },
+        selectedRowKeys,
+        onChange:onSelectChange
     };
 
     return (
@@ -135,6 +138,7 @@ const JsonTableCommon = (props) => {
             columns={columns}
             dataSource={dataList}
             handleSave={handleSave}
+            rowSelection={rowSelection}
         />
     );
 }

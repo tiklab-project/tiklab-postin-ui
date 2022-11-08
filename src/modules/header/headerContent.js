@@ -31,28 +31,28 @@ const HeaderContent = props => {
         {
             label: '文档',
             key: 'doc' ,
-            icon:<svg className=" user-header-icon-hover" aria-hidden="true" >
+            icon:<svg className="icon-s user-header-icon-hover" aria-hidden="true" >
                     <use xlinkHref= {`#icon-icon_bangzhuwendang`} />
                 </svg>
         },
         {
             label: '社区支持',
             key: 'help',
-            icon:<svg className=" user-header-icon-hover" aria-hidden="true" >
+            icon:<svg className="icon-s user-header-icon-hover" aria-hidden="true" >
                     <use xlinkHref= {`#icon-shequ`} />
                 </svg>
         },
         {
             label: '在线工单',
             key: 'order' ,
-            icon:<svg className=" user-header-icon-hover" aria-hidden="true" >
+            icon:<svg className="icon-s user-header-icon-hover" aria-hidden="true" >
                     <use xlinkHref= {`#icon-gongdan`} />
                 </svg>
         },
         {
             label: '在线客服',
             key: 'service' ,
-            icon:<svg className=" user-header-icon-hover" aria-hidden="true" >
+            icon:<svg className="icon-s user-header-icon-hover" aria-hidden="true" >
                      <use xlinkHref= {`#icon-kefu`} />
                 </svg>
         },
@@ -95,7 +95,7 @@ const HeaderContent = props => {
                 </div>
                 <div className={"frame-header-right-detail"}>
                     <div className={"header-right-item"} >
-                        <svg className=" user-header-icon-hover" aria-hidden="true"  onClick={toSystem}>
+                        <svg className="icon-l user-header-icon-hover" aria-hidden="true"  onClick={toSystem}>
                             <use xlinkHref= {`#icon-setting`} />
                         </svg>
                     </div>
@@ -103,7 +103,7 @@ const HeaderContent = props => {
                         <MessageDrawer />
                     </div>
                     <Dropdown overlay={helpMenu} className={"header-right-item"}  placement="bottomRight" >
-                        <svg className=" user-header-icon-hover" aria-hidden="true" >
+                        <svg className="icon-l user-header-icon-hover" aria-hidden="true" >
                             <use xlinkHref= {`#icon-bangzhu`} />
                         </svg>
                     </Dropdown>
@@ -128,7 +128,7 @@ const HeaderContent = props => {
                                 <div className={"user-hidden-item-lan"}>
                                     <div  style={{"display": "flex", "alignItems": "center","justifyContent":"space-between"}}>
                                         <div style={{"display": "flex", "alignItems": "center"}}>
-                                            <svg className="user-header-icon" aria-hidden="true">
+                                            <svg className="icon-s user-header-icon" aria-hidden="true">
                                                 <use xlinkHref= {`#icon-yuyan`} />
                                             </svg>
                                             <span>语言</span>
@@ -144,7 +144,7 @@ const HeaderContent = props => {
                                 </div>
 
                                 <div className={"user-hidden-item"} onClick={logout}>
-                                    <svg className="user-header-icon" aria-hidden="true">
+                                    <svg className="icon-s user-header-icon" aria-hidden="true">
                                         <use xlinkHref= {`#icon-tuichu`} />
                                     </svg>
                                     <span>退出登录</span>

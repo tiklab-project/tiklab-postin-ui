@@ -14,7 +14,7 @@ ul{
 //------------------------------------------
 //dragbox
 .changeBox{
-    width: 310px;
+    width: 240px;
     background: var(--pi-bg-color);
     border-right: 1px solid var(--pi-border-color);
 }
@@ -49,7 +49,7 @@ ul{
     }
 
     .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-        padding: 6px ;
+        padding: 8px ;
     }
 
     .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before{
@@ -57,6 +57,15 @@ ul{
     }
 }
 
+.ws-user-item{
+    display: flex;
+    align-items: center;
+
+    .ant-avatar{
+        width: var(--pi-icon-m)!important;
+        height: var(--pi-icon-m)!important;
+    }
+}
 
 // --------------------------------------------
 // --workspace--
@@ -74,10 +83,10 @@ ul{
 
 .ws-header-menu{
     display: flex;
-    height: 50px;
+    height: 45px;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid  var(--pi-border-color);
+    //border-bottom: 1px solid  var(--pi-border-color);
 
     .ws-header-menu-left{
         display: flex;
@@ -89,7 +98,7 @@ ul{
     }
 
     .ws-header-menu-item{
-        padding: 13px;
+        padding: 10px;
         margin: 0 15px 0 0;
         cursor: pointer;
         border-bottom: 3px solid #ffffff00;

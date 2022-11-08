@@ -105,12 +105,11 @@ const CategoryNav = (props) => {
         return (
             <div className={'category-action'}>
                 <div  className={"category-action-right"}>
-
                         <ApxMethodEdit
                             name="添加"
                             icon={
                                 <Tooltip title="新增接口"  placement="left">
-                                    <svg className="edit-icon-nav" aria-hidden="true">
+                                    <svg className="icon-s edit-icon-nav" aria-hidden="true">
                                         <use xlinkHref={`#icon-tianjia-`}/>
                                     </svg>
                                 </Tooltip>
@@ -119,10 +118,8 @@ const CategoryNav = (props) => {
                             categoryItemId={id}
                             {...props}
                         />
-
-
                     <Dropdown overlay={()=>menu(id)} className={'category-action-more'}>
-                        <svg className="category-nav-item-icon" aria-hidden="true">
+                        <svg className="icon-s category-nav-item-icon" aria-hidden="true">
                             <use xlinkHref={`#icon-more`}/>
                         </svg>
                     </Dropdown>

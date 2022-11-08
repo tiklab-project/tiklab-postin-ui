@@ -104,7 +104,7 @@ const TabsPage = (props) =>{
                     <ApxMethodEdit
                         name={"添加"}
                         icon={
-                            <svg className="edit-icon" aria-hidden="true">
+                            <svg className="icon-s edit-icon" aria-hidden="true">
                                 <use xlinkHref={`#icon-tianjia-`}/>
                             </svg>
                         }

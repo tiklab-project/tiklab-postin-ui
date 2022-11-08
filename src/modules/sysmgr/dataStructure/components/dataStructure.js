@@ -3,7 +3,7 @@
  * @date: 2021-07-29 09:54
  */
 import React, {useEffect,useState} from 'react'
-import { Input, Popconfirm, Space, Table} from "antd";
+import {Input, Popconfirm, Select, Space, Table} from "antd";
 import DataStructureEdit from "./dataStructureEdit";
 import {inject, observer} from "mobx-react";
 import SetData from "./setData";
@@ -24,17 +24,20 @@ const DataStructure = (props) => {
                 <SetData name={text} dataType={record.dataType} dataStructureId={record.id}/>
             )
         },
-        {
-            title: `类型`,
-            dataIndex: "dataType",
-            key: "dataType",
-        },
+        // {
+        //     title: `类型`,
+        //     dataIndex: "dataType",
+        //     key: "dataType",
+        // },
         {
             title: `创建人`,
             dataIndex: "createUser",
             key: "user",
             render: (text, record) => (
-                <Profile userInfo={record.createUser}/>
+                <div className={"ws-user-item"}>
+                    <Profile userInfo={record.createUser}/>
+                    <span>{record.createUser.nickname} </span>
+                </div>
             )
         },
         {
@@ -59,7 +62,7 @@ const DataStructure = (props) => {
                         okText='确定'
                         cancelText='取消'
                     >
-                        <svg className="edit-icon" aria-hidden="true">
+                        <svg className="icon-s edit-icon" aria-hidden="true">
                             <use xlinkHref= {`#icon-shanchu3`} />
                         </svg>
                     </Popconfirm>
@@ -180,6 +183,18 @@ const DataStructure = (props) => {
         }))
     }
 
+    //筛选
+    const clickSelect=(type)=>{
+        let params = {
+            dataType:type,
+            orderParams:[{
+                name:sortBy.name,
+                orderType:sortBy.sort
+            }]
+        }
+        findDataStructureList(params)
+    }
+
 
     return(
         <div className={"page-center"}>
@@ -201,18 +216,42 @@ const DataStructure = (props) => {
             />
 
 
-            <div style={{"display":"flex","justifyContent":"space-between","alignItems":"center"}}>
-                <Input
-                    prefix={<SearchOutlined />}
-                    placeholder={`搜索`}
-                    onPressEnter={onSearch}
-                    style={{width:200,margin:"10px 0"}}
-                />
+            <div className={"flex-box"}>
+                <div className={"flex-box structure-header-box"}>
+                    <Select
+                        defaultValue={null}
+                        className={"structure-box-select"}
+                        onChange={clickSelect}
+                        options={[
+                            {
+                                value: null,
+                                label: '所有',
+                            },{
+                                value: 'enum',
+                                label: 'enum',
+                            },{
+                                value: 'json',
+                                label: 'json',
+                            },
+                        ]}
+                    />
+                    <Input
+                        prefix={<SearchOutlined />}
+                        placeholder={`搜索`}
+                        onPressEnter={onSearch}
+                        style={{width:200,margin:"10px 0"}}
+                    />
+                </div>
+
 
                 <div className={"sort-box"}>
-                    <svg style={{width:20,height:20,"cursor":"pointer"}} aria-hidden="true"  >
-                        <use xlinkHref= {`#icon-icon-`} />
-                    </svg>
+                    <div className={'sort-box-title'}>
+                        <svg className={"icon-s"} aria-hidden="true"  >
+                            <use xlinkHref= {`#icon-icon-`} />
+                        </svg>
+                        <span>排序</span>
+                    </div>
+
                     <div  className={`sort-show-box`}>
                         {
                             showSortItem(sortItem)
@@ -220,8 +259,6 @@ const DataStructure = (props) => {
                     </div>
                 </div>
             </div>
-
-
 
             <div className={"out-table-box"}>
                 <Table

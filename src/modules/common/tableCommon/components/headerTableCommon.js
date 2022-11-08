@@ -45,7 +45,7 @@ const {dataList, saveList, addNewList, deleteList} = props;
         }
     ]
 
-
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [count, setCount] = useState(1);
 
     const handleAdd = () => {
@@ -65,12 +65,23 @@ const {dataList, saveList, addNewList, deleteList} = props;
         saveList(newData)
     };
 
+    const onSelectChange = (newSelectedRowKeys,list) => {
+        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+        console.log('list: ', list);
+        setSelectedRowKeys(newSelectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
 
     return (
         <ExTable
             columns={columns}
             dataSource={dataList}
             handleSave={handleSave}
+            rowSelection={rowSelection}
         />
     );
     

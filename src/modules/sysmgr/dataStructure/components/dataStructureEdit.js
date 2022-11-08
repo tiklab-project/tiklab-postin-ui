@@ -66,7 +66,7 @@ const DataStructureEdit = (props) => {
             {
                 props.type === "add"
                     ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
-                    :  <svg className="edit-icon" aria-hidden="true" onClick={showModal}>
+                    :  <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
                         <use xlinkHref= {`#icon-bianji11`} />
                     </svg>
             }

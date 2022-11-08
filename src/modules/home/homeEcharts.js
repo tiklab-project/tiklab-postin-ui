@@ -58,7 +58,7 @@ const HomeEcharts = (props) =>{
 
 
     return(
-        <div style={{width: "960px", height: "400px"}}  ref={echartsRef}>
+        <div style={{width: "860px", height: "400px"}}  ref={echartsRef}>
 
         </div>
     )

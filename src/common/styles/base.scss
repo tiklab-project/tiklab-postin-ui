@@ -81,16 +81,6 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
     color:  var(--pi-base-color);
 }
 
-.icon {
-    width: 18px;
-    height: 18px;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-    margin:0 5px  ;
-}
-
-
 
 
 .ant-table-tbody .ant-table-cell{
@@ -152,7 +142,7 @@ table .icon{
 }
 
 .ant-modal-header{
-    padding: 16px;
+    padding: 20px 22px 10px;
     border: none;
 }
 
@@ -161,7 +151,7 @@ table .icon{
 }
 
 .ant-modal-body{
-    padding: 10px 30px;
+    padding: 10px 20px;
 }
 
 .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
@@ -189,4 +179,52 @@ table .icon{
 
 .ant-input{
     border-radius: var(--pi-border-radius);
+}
+
+//icon
+
+
+.icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+    margin:0 5px  ;
+}
+
+
+.icon-s {
+    width: var(--pi-icon-s);
+    height: var(--pi-icon-s);
+    //vertical-align: -0.15em;
+    //fill: currentColor;
+    //overflow: hidden;
+    //margin:0 5px  ;
+}
+
+.icon-m {
+    width: var(--pi-icon-m);
+    height: var(--pi-icon-m);
+    //vertical-align: -0.15em;
+    //fill: currentColor;
+    //overflow: hidden;
+    //margin:0 5px  ;
+}
+
+.icon-l {
+    width: var(--pi-icon-l);
+    height: var(--pi-icon-l);
+    //vertical-align: -0.15em;
+    //fill: currentColor;
+    //overflow: hidden;
+    //margin:0 5px  ;
+}
+.icon-x {
+    width: var(--pi-icon-x);
+    height: var(--pi-icon-x);
+    //vertical-align: -0.15em;
+    //fill: currentColor;
+    //overflow: hidden;
+    //margin:0 5px  ;
 }
