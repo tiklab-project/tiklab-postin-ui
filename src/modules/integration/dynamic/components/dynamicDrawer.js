@@ -89,7 +89,7 @@ const DynamicDrawer = (props)=>{
                 title="动态详情"
                 placement="right"
                 onClose={onClose}
-                open={visible}
+                visible={visible}
                 width={420}
             >
                 <div>

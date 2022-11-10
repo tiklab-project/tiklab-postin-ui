@@ -49,7 +49,7 @@ const RightContent = (props) => {
     return(
         <div className='wscontant'>
             <div
-                style={{width:` ${leftBoxWidth&&leftBoxWidth>240?leftBoxWidth:"240"}px`}}
+                style={{width:` ${leftBoxWidth&&leftBoxWidth>280?leftBoxWidth:"280"}px`}}
                 className={'changeBox'}
             >
                 {props.left}

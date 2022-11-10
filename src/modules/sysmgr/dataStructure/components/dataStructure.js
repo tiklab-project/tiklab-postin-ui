@@ -75,10 +75,11 @@ const DataStructure = (props) => {
 
     const [toggleSort, setToggleSort] = useState(false);
     const [sortBy, setSortBy] = useState({name:"name",sort:"asc"});
-
+    let workspaceId= localStorage.getItem("workspaceId")
 
     useEffect(()=>{
         let params = {
+            workspaceId:workspaceId,
             orderParams:[{
                 name:sortBy.name,
                 orderType:sortBy.sort
@@ -92,6 +93,7 @@ const DataStructure = (props) => {
     const onSearch = (e) => {
         let params = {
             name: e.target.value,
+            workspaceId:workspaceId,
             orderParams:[{
                 name:sortBy.name,
                 orderType:sortBy.sort
@@ -101,21 +103,12 @@ const DataStructure = (props) => {
     }
 
 
-    const sortItem =[
-        {
-            title:"名称",
-            key:"name"
-        },{
-            title:"创建时间",
-            key:"createTime"
-        }
-    ]
-
     const setSortByDesc = (name) =>{
         let sort = "desc";
 
         setSortBy({name:name,sort:sort})
         let params = {
+            workspaceId:workspaceId,
             orderParams:[{
                 name:name,
                 orderType:sort
@@ -130,6 +123,7 @@ const DataStructure = (props) => {
         setSortBy({name:name,sort:sort})
 
         let params = {
+            workspaceId:workspaceId,
             orderParams:[{
                 name:name,
                 orderType:sort
@@ -151,6 +145,15 @@ const DataStructure = (props) => {
         }
     }
 
+    const sortItem =[
+        {
+            title:"名称",
+            key:"name"
+        },{
+            title:"创建时间",
+            key:"createTime"
+        }
+    ]
 
 
     const showSortItem = (list) =>{
@@ -187,6 +190,7 @@ const DataStructure = (props) => {
     const clickSelect=(type)=>{
         let params = {
             dataType:type,
+            workspaceId:workspaceId,
             orderParams:[{
                 name:sortBy.name,
                 orderType:sortBy.sort

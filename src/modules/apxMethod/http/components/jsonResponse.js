@@ -32,12 +32,12 @@ const JsonResponse = (props) => {
         {
             title: '参数名称',
             dataIndex: 'propertyName',
-            width: 240,
+            width:  "20%",
             // align:'center',
             editable: true,
         },{
             title: '示例值',
-            width: 240,
+            width:  "20%",
             dataIndex: 'value',
             editable: true,
 
@@ -74,7 +74,7 @@ const JsonResponse = (props) => {
         {
             title: '操作',
             dataIndex: 'operation',
-            width: 200,
+            width:  "20%",
             fixed: 'right',
             render: (text, record, index) =>(
                 <Space>

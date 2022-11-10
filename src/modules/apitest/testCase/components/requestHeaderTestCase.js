@@ -63,7 +63,9 @@ const RequestHeaderTestCase = (props) =>{
     // colums 里的操作
     const operation = (record,data) => {
         if(record.id === 'RequestHeaderTestCaseInitRow'){
-            return <a onClick={() =>onCreated(record)} >添加</a>
+            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
+                        <use xlinkHref= {`#icon-tianjia-`} />
+                    </svg>
         }else{
             return <Space key={record.id}>
                 {
@@ -75,7 +77,9 @@ const RequestHeaderTestCase = (props) =>{
                     okText='确定'
                     cancelText='取消'
                 >
-                    <a href="#">删除</a>
+                    <svg className="icon-s table-edit-icon" aria-hidden="true">
+                        <use xlinkHref= {`#icon-shanchu3`} />
+                    </svg>
                 </Popconfirm>
             </Space>
         }

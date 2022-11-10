@@ -7,10 +7,18 @@ import React, { useState, useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import { toJS } from 'mobx';
 import {Tooltip,  Space, Checkbox} from 'antd';
-import {mockValueDictionary} from '../../../common/dictionary/dictionary';
+import {MOCK_SOURCE, mockValueDictionary} from '../../../common/dictionary/dictionary';
 import ExSelect from "../../../common/exSelect";
 import {ExTable} from '../../../common/editTable';
 import DataTypeSelect from "../../../common/dataTypeSelect";
+require('json-schema-editor-visual/dist/main.css')
+// const schemaEditor = require("json-schema-editor-visual");
+// import SchemaEditor from "json-schema-editor-visual"
+
+import json5 from 'json5';
+
+// const SchemaEditor = schemaEditor({ lang: 'zh_CN', mock: MOCK_SOURCE })
+
 
 const JsonParam = (props) => {
     const { jsonParamStore, radioValue} = props;
@@ -30,11 +38,11 @@ const JsonParam = (props) => {
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: 240,
+            width:  "20%",
             editable: true,
         },{
             title: '示例值',
-            width: 240,
+            width: 200,
             dataIndex: 'value',
             // align:'center',
             render: (text, record)=>(
@@ -198,8 +206,18 @@ const JsonParam = (props) => {
     //         return <span style={{marginRight:8 }}></span>
     //     }
     // }
+    const [jsonData, setJsonData] = useState('');
+
+
 
     return (
+        // <SchemaEditor
+        //     // mock={true}
+        //     data={jsonData}
+        //     onChange={(data) => {
+        //         // setJsonData(data);
+        //     }}
+        // />
         <ExTable
             columns={columns}
             dataSource={jsonParamList}

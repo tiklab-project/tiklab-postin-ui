@@ -8,7 +8,7 @@ import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";
 import logo from "../../assets/img/postin.png";
 import MessageDrawer from "../sysmgr/message/messageDrawer";
-import {RightOutlined} from "@ant-design/icons";
+import {QuestionCircleOutlined, RightOutlined, SettingOutlined} from "@ant-design/icons";
 
 
 const HeaderContent = props => {
@@ -58,9 +58,22 @@ const HeaderContent = props => {
         },
     ]
 
+    const showMenuItem =(data)=>{
+        return data&&data.map(item=>{
+            return(
+                <Menu.Item  key={item.key} icon={item.icon}>{item.label}</Menu.Item>
+            )
+        })
+    }
+
+
     //帮助与支持
     const helpMenu = (
-        <Menu style={{padding:10,width:180}} items={helpItem}/>
+        <Menu style={{padding:10,width:180}} >
+            {
+                showMenuItem(helpItem)
+            }
+        </Menu>
     );
 
 
@@ -84,9 +97,9 @@ const HeaderContent = props => {
                 <div className={'frame-header-logo'}>
                     {logo && <img src={logo} alt='logo' />}
                 </div>
-                <div className={"header-menu-box"}>
-                    <HeaderMenu {...props}/>
-                </div>
+                {/*<div className={"header-menu-box"}>*/}
+                <HeaderMenu {...props}/>
+                {/*</div>*/}
             </Space>
 
             <div className={'frame-header-right-box'}>
@@ -95,17 +108,21 @@ const HeaderContent = props => {
                 </div>
                 <div className={"frame-header-right-detail"}>
                     <div className={"header-right-item"} >
-                        <svg className="icon-l user-header-icon-hover" aria-hidden="true"  onClick={toSystem}>
-                            <use xlinkHref= {`#icon-setting`} />
-                        </svg>
+                        {/*<svg className="icon-l user-header-icon-hover" aria-hidden="true"  onClick={toSystem}>*/}
+                        {/*    <use xlinkHref= {`#icon-setting`} />*/}
+                        {/*</svg>*/}
+                        <SettingOutlined className={"header-icon-item"} onClick={toSystem}/>
                     </div>
                     <div className={"header-right-item"}>
                         <MessageDrawer />
                     </div>
-                    <Dropdown overlay={helpMenu} className={"header-right-item"}  placement="bottomRight" >
-                        <svg className="icon-l user-header-icon-hover" aria-hidden="true" >
-                            <use xlinkHref= {`#icon-bangzhu`} />
-                        </svg>
+                    <Dropdown overlay={helpMenu}  placement="bottomRight" >
+                        {/*<svg className="icon-l user-header-icon-hover" aria-hidden="true" >*/}
+                        {/*    <use xlinkHref= {`#icon-bangzhu`} />*/}
+                        {/*</svg>*/}
+                        <div className={"header-right-item"} >
+                            <QuestionCircleOutlined  className={"header-icon-item"} />
+                        </div>
                     </Dropdown>
                     <div className={"header-right-item"}>
                         <div className={"toggle-hover"}>

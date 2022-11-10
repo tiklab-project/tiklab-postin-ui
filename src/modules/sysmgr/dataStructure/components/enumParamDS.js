@@ -92,7 +92,9 @@ const EnumParamDS = (props) =>{
     const operation = (record,data) => {
         console.log(record)
         if(record.id === 'EnumParamDSInitRow'){
-            return <a onClick={() =>onCreated(record)} >添加</a>
+            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
+                        <use xlinkHref= {`#icon-tianjia-`} />
+                    </svg>
         }else{
             return data.map((item) => {
                 return (
@@ -102,7 +104,9 @@ const EnumParamDS = (props) =>{
                             item.paramName === record.paramName &&item.dataType === record.dataType &&
                             item.required === record.required && item.description === record.description
                                 ?''
-                                :<a onClick={() =>upData(record)}>更新</a>
+                                :<svg className="icon-s table-edit-icon" aria-hidden="true" onClick={() => upData(record)}>
+                                <use xlinkHref= {`#icon-btn_confirm`} />
+                            </svg>
                         }
                         <Popconfirm
                             title="确定删除？"
@@ -110,7 +114,9 @@ const EnumParamDS = (props) =>{
                             okText='确定'
                             cancelText='取消'
                         >
-                            <a href="#">删除</a>
+                            <svg className="icon-s table-edit-icon" aria-hidden="true">
+                        <use xlinkHref= {`#icon-shanchu3`} />
+                    </svg>
                         </Popconfirm>
                     </Space>
                     :''

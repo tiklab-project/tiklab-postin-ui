@@ -57,6 +57,7 @@ const WorkspaceDetailInitPage = (props) =>{
     }
 
     return(
+        <div className={"wd-content-margin"}>
         <div className={"wd-content"}>
             <div className={"wd-content-header"}>
                 <Form
@@ -126,13 +127,10 @@ const WorkspaceDetailInitPage = (props) =>{
                     {/*<div>更多</div>*/}
                 </div>
                 <div>
-                    {/*<Dynamic*/}
-                    {/*    workspaceId={workspaceId}*/}
-                    {/*/>*/}
-
-                    <DynamicWidget />
+                    <DynamicWidget screen={{"contentKey": "workspaceId","content":workspaceId}}/>
                 </div>
             </div>
+        </div>
         </div>
     )
 }

@@ -141,18 +141,6 @@
                     padding: 5px;
                 }
 
-                //.sort-icon:hover{
-                //    background: var(--pi-action-color);
-                //    cursor: pointer;
-                //    border-radius: 5px;
-                //}
-
-                .sort-icon-asc:hover{
-
-                }
-
-
-
                 .action-sort{
                     cursor: pointer;
                     background: var(--pi-bg-color);
@@ -172,13 +160,6 @@
             background: var(--pi-hover-color)
         }
 
-        //&-item:hover .sort-icon-asc{
-        //    display: block;
-        //}
-        //
-        //&-item:hover .sort-icon-desc{
-        //    display: block;
-        //}
     }
 }
 .sort-box:hover .sort-show-box{

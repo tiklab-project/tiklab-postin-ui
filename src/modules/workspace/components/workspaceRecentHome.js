@@ -32,7 +32,7 @@ const WorkspaceRecentHome = (props) =>{
     ]
 
     useEffect(()=>{
-        findWorkspaceRecentList(userId)
+        findWorkspaceRecentList({userId:userId})
     },[userId])
 
     // 去往详情页

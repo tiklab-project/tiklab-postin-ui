@@ -10,10 +10,10 @@ import {
     LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest,  WorkspaceDetailInitPage,
     Category, ApxMethod, ApxMethodDetail,
 
-    Test, TestCase,
+    TestCase,
     Mock, MockDetail,
 
-    SystemContent,  DataStructure, ApiStatus,
+    SystemContent,  DataStructure,
     ProjectFeature, ProjectRole,
     SystemFeature, SystemRole, PluginManage,
     MessageManagement, MessageSendType, MessageTemplate, MessageType,
@@ -32,10 +32,10 @@ import TodoTemp from "./modules/sysmgr/todo/todoTempList";
 import MyTodo from "./modules/sysmgr/todo/myTodo";
 import LogTemplate from "./modules/sysmgr/log/LogTemplate";
 import {Directory, OrgaList, UserList} from "tiklab-user-ui";
-import AccountMember from "./modules/sysmgr/accountMember/accountMember";
 import LoginContent from "./modules/login/loginContent";
 import {WidgetWork} from "tiklab-widget-ui";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
+import {Version} from "tiklab-licence-ui";
 
 const routers =  [
     {
@@ -178,6 +178,15 @@ const routers =  [
 
                             return(
                                 <UserList {...props} bgroup={'postin'}/>
+                            )
+                        }
+                    },{
+                        path: "/systemManagement/version",
+                        key:'version',
+                        exact: true,
+                        render:(props)=>{
+                            return(
+                                <Version {...props} bgroup={'postin'}/>
                             )
                         }
                     },

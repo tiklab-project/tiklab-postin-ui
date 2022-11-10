@@ -80,7 +80,6 @@ const SaveTestcase = (props) => {
         setVisible(false);
     };
 
-    const onFinishFailed = (errorInfo) => {console.log('Failed:', errorInfo)};
 
     const onCancel = () => {setVisible(false)};
 
@@ -89,8 +88,8 @@ const SaveTestcase = (props) => {
         <Button className="important-btn" onClick={showModal}>保存用例</Button>
         <Modal
             destroyOnClose={true}
-            title='保存用例'
-            open={visible}
+            title='+保存用例'
+            visible={visible}
             onCancel={onCancel}
             onOk={onFinish}
             okText="提交"
@@ -100,8 +99,7 @@ const SaveTestcase = (props) => {
                 preserve={false}
                 className='testCase-edit-form'
                 form={form}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
+                layout={"vertical"}
             >
                 <Form.Item
                     label="用例名称"

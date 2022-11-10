@@ -15,7 +15,7 @@ ul{
 //dragbox
 .changeBox{
     width: 240px;
-    background: var(--pi-bg-color);
+    background: #f7f7f7;
     border-right: 1px solid var(--pi-border-color);
 }
 
@@ -382,7 +382,7 @@ ul{
 .wscontant-contant{
     flex:1;
     overflow: auto;
-    padding:0 var(--pi-page-padding);
+    background: var(--tiklab-white);
 }
 
 .wsAside{

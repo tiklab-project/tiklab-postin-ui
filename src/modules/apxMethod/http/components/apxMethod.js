@@ -42,18 +42,30 @@ const ApxMethod = (props) =>  {
     };
 
 
+    const showMenuItem =(data)=>{
+        return data&&data.map(item=>{
+            return(
+                <Menu.Item onClick={()=>onClick(item)} key={item.key}>{item.label}</Menu.Item>
+            )
+        })
+    }
+
+
     return(
-        <div>
+        <div className={"api-content-box"}>
             <Menu
-                onClick={onClick}
                 selectedKeys={[current]}
                 mode="horizontal"
-                items={items}
-            />
-            <div className="method-content">
-                {
-                    renderRoutes(router)
-                }
+            >
+                {showMenuItem(items)}
+            </Menu>
+            <div className={"method-content-margin"}>
+                <div className="method-content">
+                    {
+                        renderRoutes(router)
+                    }
+                </div>
+
             </div>
         </div>
     )

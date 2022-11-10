@@ -40,7 +40,8 @@ const EnvSelect = (props) =>{
 
     return(
         <Select
-            style={{width:200}}
+            bordered={false}
+            className={"ws-select-box"}
             onSelect={(value)=> onSelectChange(value)}
             // defaultValue={selectEnv}
             dropdownRender={item=>(

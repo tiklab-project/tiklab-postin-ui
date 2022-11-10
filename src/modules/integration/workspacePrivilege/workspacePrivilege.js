@@ -7,6 +7,7 @@ const WorkspacePrivilege = props => {
             <DomainRoleList
                 {...props} 
                 domainId = {workspaceId}
+                bgroup={"postin"}
             />
     )
 }

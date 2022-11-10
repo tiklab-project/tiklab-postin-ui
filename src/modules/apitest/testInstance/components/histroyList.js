@@ -76,7 +76,7 @@ const HistroyList = (props) =>{
                 title="历史记录"
                 placement="right"
                 onClose={onClose}
-                open={visible}
+                visible={visible}
             >
 
                 {

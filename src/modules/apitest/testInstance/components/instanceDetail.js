@@ -83,7 +83,7 @@ const InstanceDetail = (props) => {
             <Modal
                 title='查看测试详情'
                 destroyOnClose={true}
-                open={visible}
+                visible={visible}
                 onCancel={handleCancel}
                 width={800}
                 footer={null}

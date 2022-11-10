@@ -8,7 +8,7 @@
         width: 80px;
         height: 100%;
         position:relative;
-        background: var(--pi-greyf9-color);
+        background: #ededed;
     }
 
     .ws-detail-right{
@@ -48,7 +48,7 @@
             cursor: pointer;
         }
         .ws-detail-left-nav-item-box:hover{
-            background-color: var(--pi-hover-color);
+            background-color: white;
         }
 
 
@@ -59,7 +59,7 @@
     }
 
     .selectlink{
-        background-color: var(--pi-action-color);
+        background-color: white;
     }
 
 
@@ -73,12 +73,21 @@
 .wscontant-box{
     //width: 1240px;
     margin: 0 auto;
+    min-width: 860px;
 }
 
 
 //workspaceDetailInitPage
+
+.wd-content-margin{
+    //margin: 10px auto;
+    max-width: 1240px;
+}
 .wd-content{
-    max-width: 800px;
+    margin: 10px;
+    min-width: 800px;
+    background: white;
+    padding: 10px;
 
 
     .wd-content-header{
@@ -201,4 +210,12 @@
 
 .ws-detail-left-nav-item-workspace:hover .ws-hover-box{
     display: block;
+}
+
+
+.ws-select-box{
+    width: 200px;
+    height: 32px;
+    border-radius: var(--pi-border-radius);
+    border: var(--pi-input-border);
 }

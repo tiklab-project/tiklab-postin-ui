@@ -3,6 +3,7 @@ import { Tooltip, Space } from 'antd';
 import {dataTypeDictionary, mockValueDictionary} from "../../dictionary/dictionary";
 import ExSelect from "../../../common/exSelect";
 import {ExTable} from "../../editTable";
+import {uuid} from "../../../../common/utils/createId";
 
 // 请求参数的可编辑表格组件
 const JsonTableCommon = (props) => {
@@ -61,24 +62,19 @@ const JsonTableCommon = (props) => {
     ]
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const [count,setCount] = useState(1)
+
     // 添加下一行
     const handleAdd = () => {
-        const newData = [{
-            id: count
-        }];
-        setCount(count+1);
+        const newData = [ {id: uuid()}];
+
         addNewList(newData)
     };
-
-    const [childId,setChildId] = useState(1)
 
     // 点击子按钮，添加子行
     const addChild = (dataType, parentid) => {
         if(dataType === 'object'){
-            // 调用store,显示子行
-            setChildId(childId+1)
-            setJsonChild(parentid,childId)
+
+            setJsonChild(parentid,uuid())
         }
     }
 

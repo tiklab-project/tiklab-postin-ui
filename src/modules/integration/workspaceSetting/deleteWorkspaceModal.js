@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Button, Form, Input, Modal} from "antd";
+import {PrivilegeProjectButton} from "tiklab-privilege-ui";
 
 const DeleteWorkspaceModal = (props) =>{
     const {workspaceStore,workspaceName} = props;
@@ -31,11 +32,13 @@ const DeleteWorkspaceModal = (props) =>{
 
     return(
         <>
-            <Button type="primary" danger onClick={showModal}>删除空间</Button>
+            <PrivilegeProjectButton code={"workspaceDelete"} domainId={workspaceId}>
+                <Button type="primary" danger onClick={showModal}>删除空间</Button>
+            </PrivilegeProjectButton>
             <Modal
                 destroyOnClose={true}
                 title="你确定删除空间吗？"
-                open={visible}
+                visible={visible}
                 onCancel={onCancel}
                 footer={false}
                 width={440}

@@ -195,38 +195,40 @@ const TestdetailQuickTest = (props) =>{
     );
 
     return(
-        <div className={"quicktest-contant-box"}>
-            <div className={"test-base"}>
-                <Form
-                    form = {form}
-                    className="test-header"
-                    initialValues={{ methodType: "get" }}
-                >
-                    <div className={"test-url"}>
-                        <Form.Item className='formItem' name="path" >
-                            <Input  addonBefore={prefixSelector}/>
-                        </Form.Item>
-                    </div>
-                    <div className={"test-base-item"}>
-                        <Button className="important-btn" onClick={onFinish} style={{display:"flex",alignItems:"center"}}>
-                            <IconCommon
-                                icon={"fasong-copy"}
-                                style={{width:20,height:20}}
-                            />
-                            发送
-                        </Button>
-                    </div>
-                </Form>
+        <div className={"quicktest-box-margin"}>
+            <div className={"quicktest-contant-box"}>
+                <div className={"test-base"}>
+                    <Form
+                        form = {form}
+                        className="test-header"
+                        initialValues={{ methodType: "get" }}
+                    >
+                        <div className={"test-url"}>
+                            <Form.Item className='formItem' name="path" >
+                                <Input  addonBefore={prefixSelector}/>
+                            </Form.Item>
+                        </div>
+                        <div className={"test-base-item"}>
+                            <Button className="important-btn" onClick={onFinish} style={{display:"flex",alignItems:"center"}}>
+                                <IconCommon
+                                    icon={"fasong-copy"}
+                                    style={{width:20,height:20}}
+                                />
+                                发送
+                            </Button>
+                        </div>
+                    </Form>
+                </div>
+
+                <div className='header-title ex-title'>请求</div>
+                <RequestTabQuickTest instanceId={instanceId}/>
+
+                <div className='header-title ex-title'> 响应</div>
+                <TestResultCommon
+                    testResponse={testResponse}
+                    showResponse={showResponse}
+                />
             </div>
-
-            <div className='header-title ex-title'>请求</div>
-            <RequestTabQuickTest instanceId={instanceId}/>
-
-            <div className='header-title ex-title'> 响应</div>
-            <TestResultCommon
-                testResponse={testResponse}
-                showResponse={showResponse}
-            />
         </div>
     )
 }

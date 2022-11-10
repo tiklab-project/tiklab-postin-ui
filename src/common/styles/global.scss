@@ -3,7 +3,7 @@
     // 色调
     --tiklab-white: #fff;  // 主色调白
     --tiklab-black: #000;  // 主色调黑
-    --tiklab-blue: #0063FF;  // 主色调蓝
+    --tiklab-blue: #385fb8;  // 主色调蓝
     --tiklab-gray-200: #ececec;  // border 的边线
     --tiklab-gray-300: #EDF0F5;  // hover颜色
     --tiklab-gray-400: #e3e8f0;  // 左侧导航 选中颜色
@@ -39,6 +39,8 @@
     --pi-bg-color:var(--tiklab-white);   //背景色
     --pi-hover-color:var(--tiklab-gray-300); //hover颜色
     --pi-action-color:var(--tiklab-gray-400); //选中
+
+    --pi-background-color:#f6f8fa;
 
     --pi-font-size-16:var(--tiklab-font-16);
     --pi-font-size-14:var(--tiklab-font-14);

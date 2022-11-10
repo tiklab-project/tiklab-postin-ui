@@ -57,7 +57,9 @@ const MockResponseHeader = (props) => {
     // 表格里的操作
     const operation = (record,data) => {
         if(record.id === 'mockResponseHeaderInitRow'){
-            return <a onClick={() =>onCreated(record)} >添加</a>
+            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
+                        <use xlinkHref= {`#icon-tianjia-`} />
+                    </svg>
         }else{
             return <Space key={record.id}>
                 {
@@ -69,7 +71,9 @@ const MockResponseHeader = (props) => {
                     okText='确定'
                     cancelText='取消'
                 >
-                    <a href="#">删除</a>
+                    <svg className="icon-s table-edit-icon" aria-hidden="true">
+                        <use xlinkHref= {`#icon-shanchu3`} />
+                    </svg>
                 </Popconfirm>
             </Space>
         }

@@ -143,9 +143,9 @@ const TestCaseList = (props) => {
 
     return(
         <div className={"content-box-center"}>
-            <div className='list-content-center'>
+            <div >
                 <div className='testCase-header'>
-                    <span>用例数：（{caseLength}）</span>
+                    <span style={{lineHeight:"35px",fontSize:13}}>用例数:({caseLength})</span>
                     <TestCaseEdit  btn='btn' name="+添加用例" {...props}/>
                 </div>
                 <div className={"out-table-box"}>

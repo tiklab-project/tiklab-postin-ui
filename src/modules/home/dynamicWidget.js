@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {Button, List, Skeleton} from "antd";
+import { List, Skeleton} from "antd";
 import Avatar from "antd/es/avatar/avatar";
 
 import {findLogList} from "./commonApi";
 
-const height = 365;
 
 const DynamicWidget = (props) =>{
+    const {screen} = props;
 
     const [initLoading, setInitLoading] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -16,8 +16,11 @@ const DynamicWidget = (props) =>{
     const [count, setCount] = useState(1);
     const [totalPage, setTotalPage] = useState();
 
+
+
     useEffect(() => {
         let params = {
+            ...screen,
             pageParam: {
                 pageSize: 5,
                 currentPage:1
@@ -42,6 +45,7 @@ const DynamicWidget = (props) =>{
 
         if(count<=totalPage){
             let params = {
+                ...screen,
                 pageParam: {
                     pageSize: 5,
                     currentPage:count+1

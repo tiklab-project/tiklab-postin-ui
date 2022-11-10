@@ -152,14 +152,15 @@ const MessageDrawer = (props) =>{
     return (
         <>
             <Badge count={length}>
-                <BellOutlined style={{fontSize: 21}} onClick={showDrawer}/>
+                <BellOutlined className={"header-icon-item"} style={{fontSize: 21}} onClick={showDrawer}/>
             </Badge>
             <Drawer
                 title="消息"
                 placement="right"
                 onClose={onClose}
-                open={open}
+                visible={open}
                 mask={false}
+                width={360}
             >
                 {
                     showListItem(list)

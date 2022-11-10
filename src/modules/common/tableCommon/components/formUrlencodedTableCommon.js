@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {ExTable} from "../../editTable";
 import DataTypeSelect from "../../../common/dataTypeSelect";
 import {Space, Tooltip} from "antd";
+import {uuid} from "../../../../common/utils/createId";
 
 const FormUrlencodedTableCommon = (props) =>{
     const {dataList, saveList, addNewList, deleteList, bodyType, getFormUrlencodedList } = props;
@@ -50,12 +51,10 @@ const FormUrlencodedTableCommon = (props) =>{
     ]
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const [count, setCount] = useState(1);
 
     const handleAdd = () => {
-        setCount(count + 1)
-        const newData = {id: count};
-        const  dataSource = [...dataList, newData]
+        let newData = {id: uuid()};
+        let dataSource = [...dataList, newData]
 
         addNewList(dataSource)
     };

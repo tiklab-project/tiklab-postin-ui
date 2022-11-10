@@ -36,12 +36,24 @@
 .header-right-item{
     margin: 0 12px;
     height: 22px;
+
+
+    .header-icon-item{
+        font-size: 22px;
+        color: white;
+        cursor: pointer;
+    }
 }
+
 
 .header-right-item:hover{
     background: #e3e3e3;
     border-radius: var(--pi-border-radius);
 }
+.header-right-item:hover .header-icon-item{
+    color: #385fb8;
+}
+
 
 .user-header-icon{
     margin: 5px;
@@ -175,6 +187,7 @@
 
 
 .frame-header{
+    background: var(--pi-base-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -199,16 +212,32 @@
         width: 120px;
         justify-content: space-around;
 
+        .header-menu-item{
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .header-menu-item-action{
+            background: #0badff;
+        }
+
         div{
             cursor: pointer;
         }
 
+
+
+
         .ant-menu-title-content{
             font-size: var(--pi-font-size-14);
+            color: white;
         }
 
         .ant-menu-horizontal{
             border-bottom: none;
+            background: var(--pi-base-color);
+
         }
 
     }

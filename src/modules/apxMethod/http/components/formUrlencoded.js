@@ -30,11 +30,11 @@ const FormUrlencoded = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: 240,
+            width: "20%",
             editable: true,
         },{
             title: '示例值',
-            width: 240,
+            width:  "20%",
             dataIndex: 'value',
             render: (text, record)=>(
                 <ExSelect
@@ -75,7 +75,7 @@ const FormUrlencoded = (props) =>{
         },{
             title: '操作',
             dataIndex: 'operation',
-            width: 200,
+            width:  "20%",
             fixed: 'right',
             render: (text, record,index) =>(operation(record,dataSource))
         },
@@ -100,7 +100,9 @@ const FormUrlencoded = (props) =>{
     // 表格里的操作
     const operation = (record,data) => {
         if(record.id === 'FormUrlencodedInitRow'){
-            return <a onClick={() =>onCreated(record)} >添加</a>
+            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
+                        <use xlinkHref= {`#icon-tianjia-`} />
+                    </svg>
         }else{
             return data&&data.map((item) => {
                 return (
@@ -111,7 +113,9 @@ const FormUrlencoded = (props) =>{
                                 item.dataType === record.dataType && item.required === record.required &&
                                 item.desc === record.desc && item.value === record.value
                                     ?null
-                                    :<a onClick={() =>upData(record)}>更新</a>
+                                    :<svg className="icon-s table-edit-icon" aria-hidden="true" onClick={() => upData(record)}>
+                                <use xlinkHref= {`#icon-btn_confirm`} />
+                            </svg>
                             }
                             <Popconfirm
                                 title="确定删除？"
@@ -119,7 +123,9 @@ const FormUrlencoded = (props) =>{
                                 okText='确定'
                                 cancelText='取消'
                             >
-                                <a href="#">删除</a>
+                                <svg className="icon-s table-edit-icon" aria-hidden="true">
+                        <use xlinkHref= {`#icon-shanchu3`} />
+                    </svg>
                             </Popconfirm>
                         </Space>
                         :null

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {inject, observer} from "mobx-react";
-import {Menu} from "antd";
 
 const HeaderMenu = (props) =>{
 
@@ -24,14 +23,25 @@ const HeaderMenu = (props) =>{
     };
 
 
+    const showMenuItem = (data) =>{
+        return data&&data.map(item=>{
+            return (
+                <div
+                    key={item.key}
+                    className={`header-menu-item ${current===item.key?"header-menu-item-action":""}`}
+                    onClick={()=>onClick(item)}
+                >
+                    <span>{item.label}</span>
+                </div>
+            )
+        })
+    }
 
     return(
-        <Menu
-            onClick={onClick}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={items}
-        />
+        <div className={"header-menu-box"}>
+            {showMenuItem(items)}
+        </div>
+
     )
 }
 export default inject("workspaceStore")(observer(HeaderMenu));

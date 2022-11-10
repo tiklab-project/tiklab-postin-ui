@@ -69,6 +69,10 @@ const SystemContent = (props) =>{
                     encoded: "log",
                 },
             ],
+        },{
+            title: '版本与许可证',
+            icon: 'modular',
+            key: '/systemManagement/version'
         },
     ]
 
@@ -116,7 +120,6 @@ const SystemContent = (props) =>{
                 },
             ],
         }
-       ,
     ]
 
 

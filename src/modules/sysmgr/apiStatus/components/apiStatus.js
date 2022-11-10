@@ -71,7 +71,9 @@ const ApiStatus = (props) => {
                     okText='确定'
                     cancelText='取消'
                 >
-                    <a href="#">删除</a>
+                    <svg className="icon-s table-edit-icon" aria-hidden="true">
+                        <use xlinkHref= {`#icon-shanchu3`} />
+                    </svg>
                 </Popconfirm>
             </Space>
         }

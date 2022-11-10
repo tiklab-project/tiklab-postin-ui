@@ -5,6 +5,7 @@ import ExSelect from "../../../common/exSelect";
 import {ExTable} from "../../editTable";
 import {UploadOutlined} from "@ant-design/icons";
 import FileTextSelect from "../../../common/fileTextSelect";
+import {uuid} from "../../../../common/utils/createId";
 
 // 请求参数的可编辑表格
 const FormDataTableCommon = (props) =>{
@@ -92,12 +93,11 @@ const FormDataTableCommon = (props) =>{
     }
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const [count, setCount] = useState(1);
+
 
     const handleAdd = () => {
-        setCount(count + 1)
-        const newData = {id: count};
-        const  dataSource = [...dataList, newData]
+        let newData = {id: uuid()};
+        let dataSource = [...dataList, newData]
 
         addNewList(dataSource)
     };

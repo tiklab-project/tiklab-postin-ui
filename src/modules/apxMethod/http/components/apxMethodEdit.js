@@ -83,7 +83,7 @@ const ApxMethodEdit = (props) => {
             createApxMethod(values).then((id)=>{
                 findApxMethodListByApix(categoryId);
                 findCategoryList(workspaceId);
-                if(props.name==="+"){
+                if(props.tab){
                     let tablist = apiTabListInfo.tabList;
                     let length = apiTabListInfo.tabList.length;
                     tablist.push({
@@ -160,7 +160,7 @@ const ApxMethodEdit = (props) => {
             <Modal
                 destroyOnClose={true}
                 title={props.name}
-                open={visible}
+                visible={visible}
                 onCancel={onCancel}
                 onOk={onFinish}
                 okText="提交"

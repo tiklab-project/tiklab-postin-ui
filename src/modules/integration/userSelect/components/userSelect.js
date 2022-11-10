@@ -119,7 +119,7 @@ const UserSelect =(props) =>{
             <Modal
                 destroyOnClose={true}
                 title='执行者选择'
-                open={visible}
+                visible={visible}
                 onCancel={onCancel}
                 onOk={onFinish}
                 okText="提交"

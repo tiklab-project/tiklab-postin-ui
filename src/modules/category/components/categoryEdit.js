@@ -56,7 +56,7 @@ const CategoryEdit =(props)=>{
             <a onClick={showModal}>{props.name}</a>
             <Modal
                 title="添加目录"
-                open={visible}
+                visible={visible}
                 onCancel={hideModal}
                 destroyOnClose={true}
                 onOk={onFinish}

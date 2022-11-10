@@ -5,7 +5,7 @@ export const findLogList = async (value)=>{
     const params = {
         // sendType: 'site',
         ...value,
-        receiver:getUser().userId,
+        userId:getUser().userId,
         bgroup:"postin"
     }
     let res = await Axios.post('/oplog/findlogpage', params)

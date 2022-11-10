@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10939125",
+      "name": "确认保存",
+      "font_class": "btn_confirm",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "9826653",
+      "name": "成员管理",
+      "font_class": "chengyuanguanli",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "23904855",
+      "name": "成员管理",
+      "font_class": "chengyuanguanli1",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
       "icon_id": "658044",
       "name": "解锁",
       "font_class": "jiesuo",

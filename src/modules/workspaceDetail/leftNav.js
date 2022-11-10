@@ -4,9 +4,10 @@ import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
 import {Space} from "antd";
 import {toWorkspaceDetail} from "../workspace/components/workspaceFn";
+import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 
 const LeftNav = (props) =>{
-    const {workspaceStore,workspaceRecentStore} = props;
+    const {workspaceStore,workspaceRecentStore,systemRoleStore} = props;
     const {workspaceName,workspaceList,findWorkspaceList,settingMenuSelected } = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const menuData = [
@@ -43,6 +44,8 @@ const LeftNav = (props) =>{
 
     useEffect(()=>{
         findWorkspaceList({userId:getUser().userId})
+
+        systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId,"postin")
     },[])
 
     const clickAddRouter = (data) =>{
@@ -212,4 +215,4 @@ const LeftNav = (props) =>{
     )
 }
 
-export default inject("workspaceStore","workspaceRecentStore")(observer(LeftNav));
+export default inject("workspaceStore","workspaceRecentStore",SYSTEM_ROLE_STORE)(observer(LeftNav));

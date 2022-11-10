@@ -100,7 +100,7 @@ const Mock = (props) => {
 
     return (
         <div className={"content-box-center"}>
-            <div className='list-content-center'>
+            <div >
                 <div className='mock-header'>
                     <div
                         id={"link"}

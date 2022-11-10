@@ -4,20 +4,29 @@ import {renderRoutes} from "react-router-config";
 import ApxMethodEdit from "../apxMethod/http/components/apxMethodEdit";
 import {inject, observer} from "mobx-react";
 import EnvSelect from "../sysmgr/environment/components/envSelect";
+import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
+import {getUser} from "tiklab-core-ui";
+
+
 const { TabPane } = Tabs;
 
+
 const TabsPage = (props) =>{
-    const {apxMethodStore} = props;
+    const {apxMethodStore, systemRoleStore} = props;
     const { isAddTab } = apxMethodStore;
     const router = props.route.routes;
     const [activeKey,setActiveKey] = useState("0");
     const [actRemove,setActRemove] = useState(false)
 
     const apiTabListInfo = JSON.parse(sessionStorage.getItem("apiTabListInfo"))
+    let workspaceId = localStorage.getItem("workspaceId");
 
     useEffect(()=>{
         // localStorage.setItem("")
         console.log('12121212')
+
+        systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId,"postin")
+
     },[isAddTab,activeKey,actRemove])
 
     const onChange = (activeKey) => {
@@ -127,4 +136,4 @@ const TabsPage = (props) =>{
     );
 }
 
-export default inject("apxMethodStore")(observer(TabsPage));
+export default inject("apxMethodStore", SYSTEM_ROLE_STORE)(observer(TabsPage));

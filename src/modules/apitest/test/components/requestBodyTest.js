@@ -19,9 +19,9 @@ const RequestBodyTest = (props)=>{
             if(item===type){
 
                 if(type==="raw"){
-                    return <div className={"test-body-type-item"} key={item}>type : {mediaType}</div>
+                    return <div className={"test-body-type-item"} key={item}>{mediaType}</div>
                 }else {
-                    return  <div className={"test-body-type-item"} key={item}>type : {mediaTypeDictionary[item]}</div>
+                    return  <div className={"test-body-type-item"} key={item}>{mediaTypeDictionary[item]}</div>
                 }
             }
         })

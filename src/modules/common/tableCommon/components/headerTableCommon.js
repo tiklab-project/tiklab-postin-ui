@@ -3,6 +3,7 @@ import ExSelect from "../../exSelect";
 import {headerParamDictionary} from "../../dictionary/dictionary";
 import {Button, Space, Tooltip} from "antd";
 import {ExTable} from "./tableCommon";
+import {uuid} from "../../../../common/utils/createId";
 
 const HeaderTableCommon = (props) =>{
 const {dataList, saveList, addNewList, deleteList} = props;
@@ -46,12 +47,10 @@ const {dataList, saveList, addNewList, deleteList} = props;
     ]
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const [count, setCount] = useState(1);
 
     const handleAdd = () => {
-        setCount(count + 1)
-        const newData = {id: count};
-        const  dataSource = [...dataList, newData]
+        let newData = {id: uuid()};
+        let dataSource = [...dataList, newData]
 
         addNewList(dataSource)
     };
@@ -69,6 +68,8 @@ const {dataList, saveList, addNewList, deleteList} = props;
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
         console.log('list: ', list);
         setSelectedRowKeys(newSelectedRowKeys);
+
+
     };
 
     const rowSelection = {

@@ -30,7 +30,7 @@ const RequestHeader = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'headerName',
-            width: 240,
+            width:  "20%",
             className:"column-header",
             render: (text, record)=>(
                 <ExSelect
@@ -43,7 +43,7 @@ const RequestHeader = (props) =>{
             )
         },{
             title: '示例值',
-            width: 240,
+            width:  "20%",
             dataIndex: 'value',
             className:"column-header",
             editable: true,
@@ -67,7 +67,7 @@ const RequestHeader = (props) =>{
             editable: true,
         },{
             title: '操作',
-            width: 200,
+            width:  "20%",
             dataIndex: 'operation',
             className:"column-header",
             fixed: 'right',
@@ -90,7 +90,9 @@ const RequestHeader = (props) =>{
     // 表格里的操作
     const operation = (record,data) => {
         if(record.id === 'RequestHeaderInitRow'){
-            return <a onClick={() =>onCreated(record)} >添加</a>
+            return  <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
+                        <use xlinkHref= {`#icon-tianjia-`} />
+                    </svg>
         }else{
             return <Space key={record.id}>
                 {
@@ -101,8 +103,10 @@ const RequestHeader = (props) =>{
                     onConfirm={() => deleteRequestHeader(record.id)}
                     okText='确定'
                     cancelText='取消'
-                    >
-                    <a href="#">删除</a>
+                >
+                    <svg className="icon-s table-edit-icon" aria-hidden="true">
+                        <use xlinkHref= {`#icon-shanchu3`} />
+                    </svg>
                 </Popconfirm>
             </Space>
         }
@@ -120,7 +124,9 @@ const RequestHeader = (props) =>{
                         && item.desc === record.desc
                         && item.value === record.value
                             ? null
-                            : <a onClick={() => upData(record)}>更新</a>
+                            : <svg className="icon-s table-edit-icon" aria-hidden="true" onClick={() => upData(record)}>
+                                <use xlinkHref= {`#icon-btn_confirm`} />
+                            </svg>
                     }
                     </>
                 :null

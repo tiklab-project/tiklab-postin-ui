@@ -61,7 +61,7 @@ const ApiStatusEdit = (props) => {
             <Modal
                 destroyOnClose={true}
                 title={props.name}
-                open={visible}
+                visible={visible}
                 onCancel={onCancel}
                 onOk={onFinish}
                 okText="提交"
