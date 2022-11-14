@@ -18,10 +18,10 @@ export const toWorkspaceDetail = (workspaceId,userId,workspaceRecent) => {
     //最近空间
     let params = {
         workspace: {id:workspaceId},
-        userId:userId
+        user: {id:userId}
     }
-
     workspaceRecent(params)
+
 
     globalTabListInit(workspaceId)
 

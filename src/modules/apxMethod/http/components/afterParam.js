@@ -57,16 +57,18 @@ const AfterScript = (props) => {
 
 
     return (
-        <Form form={form} >
-
-            <Form.Item name='afterScript' >
-                <CodeMirror
-                    mediaType={"application/javascript"}
-                    blurFn={blurFn}
-                    ediTextRef={ediTextRef}
-                />
-            </Form.Item>
-        </Form>
+        <div className={"api-script-box"}>
+            <div className={"api-script-pre-header"}> </div>
+            <Form form={form} >
+                <Form.Item name='afterScript' >
+                    <CodeMirror
+                        mediaType={"application/javascript"}
+                        blurFn={blurFn}
+                        ediTextRef={ediTextRef}
+                    />
+                </Form.Item>
+            </Form>
+        </div>
     )
 }
 

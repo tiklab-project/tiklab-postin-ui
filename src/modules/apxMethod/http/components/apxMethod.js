@@ -59,8 +59,8 @@ const ApxMethod = (props) =>  {
             >
                 {showMenuItem(items)}
             </Menu>
-            <div className={"method-content-margin"}>
-                <div className="method-content">
+            <div className={"content-margin"}>
+                <div className="content-margin-box">
                     {
                         renderRoutes(router)
                     }

@@ -68,31 +68,10 @@
 
 // apxMethod
 .api-content-box{
-    //max-width: 1440px;
-    .ant-menu-horizontal{
-        background: #f7f7f7;
-        //border-bottom: 2px solid #dedede;
-    }
-
-    //.ant-tabs-tab{
-    //    background: var(--pi-background-color)!important;
-    //}
-
-    //.ant-tabs-nav-wrap{
-    //    background: var(--pi-background-color)!important;
-    //}
+    height: 100%;
 
     .ant-tabs-nav-add{
         background: var(--pi-background-color);
-    }
-
-
-}
-
-.wscontant-box{
-
-    .ant-tabs-nav{
-        background: #f7f7f7;
     }
 
 }
@@ -115,32 +94,25 @@
     border-bottom:0
 }
 
-.method-content-margin{
-    max-width: 1440px;
-    //margin: 10px auto;
-    //padding: 10px;
 
-    //background-color:var(--pi-bg-color);
-}
+.content-margin{
+    height: calc(100% - 48px);
+    overflow: auto;
 
-.method-content{
-    background-color:var(--pi-bg-color);
-    margin: 0 10px 10px;
-    padding: 10px;
-    border-radius:var(--pi-border-radius);
-    //border:1px solid #efefef;
-    min-height: 700px;
-    //min-width: 860px;
+    .content-margin-box{
+        background-color:var(--pi-bg-color);
+        margin: 0 10px 10px;
+        //padding: 10px;
+        border-radius:var(--pi-border-radius);
+        //border:1px solid #efefef;
+        //min-height: 700px;
+        max-width: 1440px;
+    }
+
 
     .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
         content: none;
     }
-
-
-    .ant-tabs-nav{
-        background: white;
-    }
-
 
 }
 
@@ -182,6 +154,18 @@
     }
 
     //border-top: 1px solid #f0f0f0;
+}
+
+.api-script-box{
+
+    .ant-form-item{
+        margin: 0;
+    }
+
+    .api-script-pre-header{
+        height: 30px;
+        background: #f7f7f7;
+    }
 }
 
 
@@ -382,9 +366,5 @@
 
 .ws-param-title{
     font-size: var(--pi-font-size-12);
-}
-
-.ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap, .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-wrap{
-    //background: white;
 }
 

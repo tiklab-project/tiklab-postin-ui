@@ -17,13 +17,10 @@ import { Mock,MockDetail } from "./apimock"
 
 import {
     SystemContent, SysManage,DataStructure, ApiStatus,
-    ProjectFeature, ProjectRole, SystemFeature, SystemRole, MessageManagement,
-    MessageSendType, MessageTemplate, MessageType,
 } from './sysmgr/index'
 
 import PageContent from "./header/pageContent";
 import HeaderContent from './header/headerContent'
-import PluginManage from "./sysmgr/pluginManage/pluginManage";
 import RecentBrowing from "./workspace/components/recentBrowing";
 import WorkspaceDetailLayout from "./workspaceDetail/workspaceDetailLayout";
 import LayoutApiContent from "./apxMethod/http/components/layoutApiContent"
@@ -60,9 +57,6 @@ export {
 
     SystemContent,SysManage,
     DataStructure,ApiStatus,
-    ProjectFeature, ProjectRole, SystemFeature, SystemRole,
-    MessageManagement, MessageSendType, MessageTemplate, MessageType,
-    PluginManage,
     LoginOut,LoginContent,
     ElectronLoginContant,
 

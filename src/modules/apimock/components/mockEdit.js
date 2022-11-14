@@ -69,7 +69,7 @@ const MockEdit = (props) => {
         }
         <Modal
             destroyOnClose={true}
-            title={props.name}
+            title={props.type==="edit"?"编辑":"添加"}
             visible={visible}
             onCancel={onCancel}
             onOk={onFinish}

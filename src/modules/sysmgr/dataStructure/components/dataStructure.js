@@ -20,15 +20,15 @@ const DataStructure = (props) => {
             title:`名称`,
             dataIndex: "name",
             key: "name",
-            render:(text,record)=>(
-                <SetData name={text} dataType={record.dataType} dataStructureId={record.id}/>
-            )
+            // render:(text,record)=>(
+            //
+            // )
         },
-        // {
-        //     title: `类型`,
-        //     dataIndex: "dataType",
-        //     key: "dataType",
-        // },
+        {
+            title: `类型`,
+            dataIndex: "dataType",
+            key: "dataType",
+        },
         {
             title: `创建人`,
             dataIndex: "createUser",
@@ -66,7 +66,7 @@ const DataStructure = (props) => {
                             <use xlinkHref= {`#icon-shanchu3`} />
                         </svg>
                     </Popconfirm>
-
+                    <SetData dataType={record.dataType} dataStructureId={record.id}/>
                 </Space>
             ),
         },
@@ -223,7 +223,8 @@ const DataStructure = (props) => {
             <div className={"flex-box"}>
                 <div className={"flex-box structure-header-box"}>
                     <Select
-                        defaultValue={null}
+                        // defaultValue={null}
+                        placeholder={"数据类型"}
                         className={"structure-box-select"}
                         onChange={clickSelect}
                         options={[
@@ -241,7 +242,7 @@ const DataStructure = (props) => {
                     />
                     <Input
                         prefix={<SearchOutlined />}
-                        placeholder={`搜索`}
+                        placeholder={`搜索名称`}
                         onPressEnter={onSearch}
                         style={{width:200,margin:"10px 0"}}
                     />

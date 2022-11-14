@@ -17,22 +17,24 @@
 .ws-detail-left-nav-item{
     padding: 6px;
 
-}
-.ws-detail-left-nav-item-box{
-    padding: 6px 0;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.ws-detail-left-nav-item-box:hover{
-    background-color: var(--pi-greyf9-color);
-}
+    .ws-detail-left-nav-item-box{
+        padding: 6px 0;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .ws-detail-left-nav-item-box:hover{
+        background-color: var(--pi-bg-grey-200);
+    }
 
-.ws-detail-left-nav-item-detail{
-    display: flex;
-    justify-content: center;
-}
-.selectlink{
-    background-color: var(--pi-greyf9-color);
+    .ws-detail-left-nav-item-detail{
+        display: flex;
+        justify-content: center;
+    }
+    .selectlink{
+        background-color: var(--pi-greyf9-color);
+    }
+
+
 }
 
 .ws-nav-setting{

@@ -112,16 +112,16 @@ const LeftNav = (props) =>{
             return(
                 <li
                     key={item.key}
-                    className={`ws-detail-left-nav-item `}
+                    className={`ws-left-nav-item `}
                     onClick={()=>clickAddRouter(item)}
                 >
-                    <div className={`ws-detail-left-nav-item-box ${leftMenuSelect===item.key?"selectlink":null}`}>
-                        <div className={"ws-detail-left-nav-item-detail"}>
+                    <div className={`ws-left-nav-item-box ${leftMenuSelect===item.key?"selectlink":null}`}>
+                        <div className={"ws-left-nav-item-detail"}>
                             <svg className="icon" aria-hidden="true">
                                 <use xlinkHref= {`#icon-${item.icon}`} />
                             </svg>
                         </div>
-                        <div  className={"ws-detail-left-nav-item-detail"}>
+                        <div  className={"ws-left-nav-item-detail"}>
                             {item.name}
                         </div>
                     </div>
@@ -133,7 +133,7 @@ const LeftNav = (props) =>{
     const showIcon = (text)=>{
         let t = text.substring(0,1).toUpperCase();
 
-        return <div className={"workspace-text-icon-box"}>
+        return <div className={"workspace-detail-text-icon-box"}>
             <span>{t}</span>
         </div>
     }
@@ -172,17 +172,13 @@ const LeftNav = (props) =>{
 
                             <span style={{"cursor":"pointer",margin:" 0 0 0 20px"}}>
                                 {showIcon(workspaceName)}
-
                             </span>
-                            <svg className="icon" aria-hidden="true"  style={{"cursor":"pointer"}}>
+                            <svg className="ws-icon-box-toggle-icon" aria-hidden="true"  style={{"cursor":"pointer"}}>
                                 <use xlinkHref= {`#icon-xiala`} />
                             </svg>
 
                             <div className={"ws-hover-box"}>
                                 <div className={"ws-hover-box-title"}>
-                                    <svg className="icon" aria-hidden="true" >
-                                        <use xlinkHref= {`#icon-xiala`} />
-                                    </svg>
                                     切换空间
                                 </div>
                                 {

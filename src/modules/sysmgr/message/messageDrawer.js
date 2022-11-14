@@ -25,7 +25,10 @@ const MessageDrawer = (props) =>{
                 currentPage:1
             }
         }
-        findList(params)
+        findList(params).then(res=>{
+            setTotalPage(res.totalPage)
+            setLength(res.totalRecord)
+        })
 
     },[])
 
@@ -38,8 +41,8 @@ const MessageDrawer = (props) =>{
             }
         }
         findList(params).then(res=>{
-            setData(res);
-            setList(res);
+            setData(res.dataList);
+            setList(res.dataList);
             setInitLoading(false);
         })
 
@@ -63,7 +66,7 @@ const MessageDrawer = (props) =>{
             }
 
             findList(params).then(res=>{
-                const newData = data.concat(res);
+                const newData = data.concat(res.dataList);
                 setData(newData);
                 setList(newData);
                 setLoading(false);
@@ -82,13 +85,10 @@ const MessageDrawer = (props) =>{
 
         let res = await Axios.post('/message/messageDispatchItem/findMessageDispatchItemPage', param);
         if (res.code === 0) {
-            let total= res.data.totalPage
-            setTotalPage(total)
-            setLength(res.data.totalRecord)
-            return res.data.dataList;
+
+            return res.data;
         }
     }
-
 
 
     //是否展示 加载更多
@@ -115,30 +115,27 @@ const MessageDrawer = (props) =>{
         return list.map(item=>{
             return(
                 <div key={item.id} className={"message-item"}>
-                    <div className={"message-item-left"}>
-                        <svg className="icon-m message-item-icon" aria-hidden="true">
-                            <use xlinkHref= {`#icon-xiaoxi`} />
-                        </svg>
-
+                    <div className={"message-item-left"} onClick={()=>readFn(item)}>
                         <div className={"message-item-left-detail"}>
-                            <div style={{"display":"flex"}}>
-                                <div>{item?.messageTemplate?.title}</div>
+                            <div className={"message-item-left-detail-margin"}>
+                                <div className={"message-item-left-detail-title"}>{item?.messageTemplate?.title}</div>
                                 <div className={"message-item-left-time"}>{item?.receiveTime}</div>
                             </div>
-                            <div className={"message-item-left-content"}>{item?.messageTemplate?.content}</div>
-
+                            <div  dangerouslySetInnerHTML={{ __html: item.messageTemplate.content }}/>
                         </div>
                     </div>
                     <div className={"message-item-right"}>
-                        <div className={"message-item-right-content"}>已读</div>
+                        {
+                            item.status===0
+                                ? <div className={`message-item-right-content message-item-right-unread`}>未读</div>
+                                :  <div className={`message-item-right-content message-item-right-read`}>已读</div>
+                        }
                     </div>
 
                 </div>
             )
         })
     }
-
-
 
 
     //关闭抽屉
@@ -149,8 +146,83 @@ const MessageDrawer = (props) =>{
         setCount(1)
     }
 
+    //消息筛选项
+    const items=[
+        {
+            title: '所有',
+            key: "all",
+            value:null
+        },
+        {
+            title: '未读',
+            key: 0,
+            value:0
+        },
+        {
+            title: `已读`,
+            key: 1,
+            value:1
+        },
+    ]
+    const [selectItem, setSelectItem] = useState("all");
+    //渲染筛选项
+    const showMenu = (data) =>{
+        return data&&data.map(item=>{
+            return(
+                <div
+                    key={item.key}
+                    className={`msg-header-menu-item  ${item.key === selectItem ? "msg-header-menu-item-selected" : ""}`}
+                    onClick={()=>selectFun(item)}
+                >
+                    <span> {item.title} </span>
+
+                </div>
+            )
+        })
+    }
+
+    const selectFun = (item) =>{
+        let params = {
+            status:item.value,
+            pageParam: {
+                pageSize: 10,
+                currentPage:1
+            }
+        }
+        findList(params).then(res=>{
+            setData(res.dataList);
+            setList(res.dataList);
+            setInitLoading(false);
+        })
+
+        setSelectItem(item.key)
+    }
+
+
+
+    //点击以后未读改为已读
+    const readFn = async (item)=>{
+        const updateParams = {
+            id:item.id,
+            message:{  id: item.message.id  },
+            messageTemplate:{  id: item.messageTemplate.id },
+            status:1
+        }
+        const res =  await Axios.post('/message/messageDispatchItem/updateMessageDispatchItem', updateParams);
+        if(res.code===0){
+            let params = {
+                pageParam: {
+                    pageSize: 10,
+                    currentPage:1
+                }
+            }
+            findList(params)
+        }
+    }
+
+
     return (
-        <>
+        <div className={"header-msg-box"}>
             <Badge count={length}>
                 <BellOutlined className={"header-icon-item"} style={{fontSize: 21}} onClick={showDrawer}/>
             </Badge>
@@ -160,8 +232,16 @@ const MessageDrawer = (props) =>{
                 onClose={onClose}
                 visible={open}
                 mask={false}
-                width={360}
+                width={320}
+                maskStyle={{background:"transparent"}}
+                contentWrapperStyle={{top:48,height:"calc(100% - 48px)"}}
             >
+                <div className={"msg-select-box"}>
+                    {
+                        showMenu(items)
+                    }
+                </div>
+
                 {
                     showListItem(list)
                 }
@@ -169,7 +249,7 @@ const MessageDrawer = (props) =>{
                     loadMore()
                 }
             </Drawer>
-        </>
+        </div>
     );
 }
 

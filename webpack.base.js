@@ -62,7 +62,7 @@ module.exports = {
                     options: {
                         outputPath: 'images/',
                         name: '[name].[ext]', // 图片输出的路径
-                        limit: 8*1024,
+                        limit: 0,
                     }
                 }
             },

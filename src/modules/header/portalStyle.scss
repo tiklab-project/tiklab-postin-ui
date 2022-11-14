@@ -211,15 +211,20 @@
         display: flex;
         width: 120px;
         justify-content: space-around;
+        align-items: center;
+        height: 48px;
+
 
         .header-menu-item{
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
+            color: #b4e1ff;
+            padding: 11px 6px;
+            //border-radius: 4px;
+            border-bottom: 3px solid var(--pi-base-color);
         }
 
         .header-menu-item-action{
-            background: #0badff;
+            border-bottom: 3px solid #e4f4ff;
+            color: #e4f4ff;
         }
 
         div{

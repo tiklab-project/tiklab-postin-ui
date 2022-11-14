@@ -16,7 +16,7 @@ const WorkspaceRecentHome = (props) =>{
             title:"空间名称",
             dataIndex:["workspace","workspaceName"],
             key: 'name',
-            width:"70%",
+            width:"85%",
             render: (text,record) =>(
                 <Space size={"large"}>
                     {showIcon(text)}

@@ -195,8 +195,8 @@ const TestdetailQuickTest = (props) =>{
     );
 
     return(
-        <div className={"quicktest-box-margin"}>
-            <div className={"quicktest-contant-box"}>
+        <div style={{height: "100%","overflow":"auto"}} className={"content-margin"}>
+            <div className={"content-margin-box"}>
                 <div className={"test-base"}>
                     <Form
                         form = {form}

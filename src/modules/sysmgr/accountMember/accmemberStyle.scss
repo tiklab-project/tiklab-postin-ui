@@ -1,6 +1,6 @@
 .account-member{
     display: flex;
-    height: calc(100% - 50px);
+    height: var(--pi-calc-content);
 
     .account-member-left{
         //height: 100%;

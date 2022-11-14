@@ -44,9 +44,11 @@ const Response = (props) =>{
     return(
         <Fragment>
             <Tabs defaultActiveKey="1" >
-
-                <TabPane tab="返回结果" key="1">
-                <div className='request-radio'>
+                <TabPane tab="返回头部" key="1">
+                    <div className={"tabPane-item-box"}><ResponseHeader /></div>
+                </TabPane>
+                <TabPane tab="返回结果" key="2">
+                    <div className='request-radio'>
                         <Radio.Group 
                             name="radiogroup" 
                             onChange={(e)=>onChange(e.target.value)}
@@ -62,9 +64,7 @@ const Response = (props) =>{
                         } 
                     </div>  
                 </TabPane>
-                <TabPane tab="返回头部" key="2">
-                    <div className={"tabPane-item-box"}><ResponseHeader /></div>
-                </TabPane>
+
             </Tabs>
         </Fragment>
     )

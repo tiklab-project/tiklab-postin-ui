@@ -12,6 +12,8 @@ import { initFetch} from 'tiklab-plugin-ui/es/_utils';
 import resources from "./common/language/resource";
 import {getUser} from "tiklab-core-ui";
 
+import "./assets/index"
+import {Spin} from "antd";
 
 const App = (props) => {
      const {allStore,routers} = props;
@@ -42,7 +44,14 @@ const App = (props) => {
 
 
      if (!viable) {
-         return <div>加载中</div>
+         return <div style={{
+             "height":"100%",
+             "display":"flex",
+             "justifyContent":"center",
+             "alignItems":"center"
+         }}>
+             <Spin size="large"/>
+         </div>
      }
 
      return(

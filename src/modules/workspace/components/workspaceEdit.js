@@ -50,7 +50,7 @@ const WorkspaceEdit = (props) => {
         }
         <Modal
             destroyOnClose={true}
-            title={props.name}
+            title={"添加"}
             visible={visible}
             onCancel={onCancel}
             onOk={onFinish}

@@ -8,6 +8,7 @@ import { sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import EdiText from "react-editext";
 import TestResultCommon from "../../common/testResultCommon";
+import IconCommon from "../../../common/iconCommon";
 
 const {Option} = Select;
 
@@ -182,6 +183,12 @@ const TestCaseDetail = (props) => {
         <>
             <div className='testCase-baseInfo'>
                 <div className={"testcase-header-right"}>
+                    <IconCommon
+                        icon={"31fanhui1"}
+                        style={{margin:"0 0 0 5px"}}
+                        className={"icon-s testcase-header-right-back"}
+                        onClick={backToList}
+                    />
                     <div className={"testcase-header-right-back"} onClick={backToList}>用例列表</div>
                     <div >/</div>
                     <EdiText

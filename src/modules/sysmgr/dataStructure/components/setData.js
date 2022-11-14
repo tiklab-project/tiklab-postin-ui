@@ -5,7 +5,8 @@
 import React from 'react';
 import EnumParamDS from './enumParamDS';
 import JsonParamDS from "./jsonParamDS";
-import { Modal} from "antd";
+import {Modal, Tooltip} from "antd";
+import IconCommon from "../../../common/iconCommon";
 
 const SetData = (props) => {
     const {dataType} = props
@@ -31,7 +32,14 @@ const SetData = (props) => {
 
     return(
         <>
-            <a onClick={showModal}>{props.name}</a>
+            <Tooltip placement="right" title="设置模型">
+                <IconCommon
+                    icon={"ico-"}
+                    style={{"cursor": "pointer"}}
+                    className={"icon-s"}
+                    onClick={showModal}
+                />
+            </Tooltip>
             <Modal
                 destroyOnClose={true}
                 title='数据设置'

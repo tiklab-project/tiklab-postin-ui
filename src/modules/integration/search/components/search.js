@@ -109,7 +109,7 @@ const Search = (props) => {
             <div className={"header-search-input"}>
                 <Input
                     prefix={<SearchOutlined />}
-                    placeholder="搜索"
+                    placeholder="搜索空间、接口"
                     onChange={debounce(changeValue,500) }
                     // onPressEnter={toSearchResult}
                     onBlur={onBlur}

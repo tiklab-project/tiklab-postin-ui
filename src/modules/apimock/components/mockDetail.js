@@ -4,6 +4,7 @@ import { Form, Button, Input, Select} from 'antd';
 import { MockRequest, MockResponse } from '../index';
 import { observer, inject } from 'mobx-react';
 import EdiText from "react-editext";
+import IconCommon from "../../common/iconCommon";
 
 const { Option } = Select;
 
@@ -62,7 +63,14 @@ const MockDetail = (props) =>{
         <>
             <div className={"mock-header-box"}>
                 <div className={"testcase-header-right"}>
-                    <div className={"testcase-header-right-back"} onClick={backToList}>MOCK列表</div>
+
+                    <IconCommon
+                        icon={"31fanhui1"}
+                        style={{margin:"0 0 0 5px"}}
+                        className={"icon-s testcase-header-right-back"}
+                        onClick={backToList}
+                    />
+                    <div > MOCK列表 </div>
                     <div style={{margin:" 0 5px"}}>/</div>
                     <EdiText
                         value={resData?.name}

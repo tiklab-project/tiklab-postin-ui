@@ -14,28 +14,26 @@ import {
     Mock, MockDetail,
 
     SystemContent,  DataStructure,
-    ProjectFeature, ProjectRole,
-    SystemFeature, SystemRole, PluginManage,
-    MessageManagement, MessageSendType, MessageTemplate, MessageType,
+
     LoginOut, ElectronLoginContant, WorkspaceSettingMenu,
 } from './modules';
 
 import {Redirect} from "react-router";
 import {AuthResult} from "tiklab-eam-ui";
-import PluginDetailPage from "./modules/sysmgr/pluginManage/pluginDetail";
 import TestBoxQuickTest from "./modules/quicktest/components/testBoxQuickTest";
 import TestCaseBox from "./modules/apitest/testCase/components/testCaseBox";
 import TestBox from "./modules/apitest/test/components/testBox";
-import LogList from "./modules/sysmgr/log/Log";
-import TaskList from "./modules/sysmgr/todo/todo";
-import TodoTemp from "./modules/sysmgr/todo/todoTempList";
-import MyTodo from "./modules/sysmgr/todo/myTodo";
-import LogTemplate from "./modules/sysmgr/log/LogTemplate";
 import {Directory, OrgaList, UserList} from "tiklab-user-ui";
 import LoginContent from "./modules/login/loginContent";
 import {WidgetWork} from "tiklab-widget-ui";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
 import {Version} from "tiklab-licence-ui";
+import {MessageManagement, MessageSendType, MessageTemplate, MessageType} from "tiklab-message-ui";
+import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
+import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
+import {LogList, LogTemplateList} from "tiklab-oplog-ui";
+import {PluginDetail, PluginList} from "tiklab-plugin-ui";
+import DynamicDetail from "./modules/home/dynamicDetail";
 
 const routers =  [
     {
@@ -72,6 +70,12 @@ const routers =  [
                 key:'Home',
             },
             {
+                path: "/dynamic",
+                component: DynamicDetail,
+                exact: true,
+                key:'DynamicDetail',
+            },
+            {
                 path: "/workspacePage",
                 component: Workspace,
                 key:'workspacePage',
@@ -81,120 +85,132 @@ const routers =  [
                 key:'systemManagement',
                 component:SystemContent,
                 routes:[
+                    //成员与部门
                     {
-                        path: "/systemManagement/privilege",
-                        key:'ProjectFeature',
+                        path: "/systemManagement/org",
+                        key:'org',
                         exact: true,
-                        component: ProjectFeature,
-                    },
-                    {
-                        path: "/systemManagement/role",
-                        key:'ProjectRole',
+                        render:(props)=> <OrgaList {...props} bgroup={'postin'}/>
+                    },{
+                        path: "/systemManagement/user",
+                        key:'user',
                         exact: true,
-                        component: ProjectRole,
-                    },
-                    {
-                        path: "/systemManagement/systemFeature",
-                        key:'SystemFeature',
+                        render:(props)=>{
+                            return <UserList {...props} bgroup={'postin'}/>
+                        }
+                    },{
+                        path: "/systemManagement/authConfig",
+                        key:'authConfig',
                         exact: true,
-                        component: SystemFeature,
+                        render: () => <Directory isPortal={false}/>,
                     },
+                    //权限
                     {
                         path: "/systemManagement/systemRole",
                         key:'SystemRole',
-                        exact: true,
-                        component: SystemRole,
+                        render: () => <SystemRoleList group={'system'} bgroup={"postin"}/>,
                     },
+                    //消息
                     {
                         path: "/systemManagement/messageManagement",
                         key:'MessageManagement',
                         exact: true,
-                        component: MessageManagement,
+                        render:()=> <MessageManagement bgroup={"postin"}/>
+
                     },
                     {
                         path: "/systemManagement/messageSendType",
                         key:'MessageSendType',
                         exact: true,
-                        component: MessageSendType,
+                        render:()=> <MessageSendType bgroup={"postin"}/>
+
                     },
+                    //代办
                     {
-                        path: "/systemManagement/messageTemplate",
-                        key:'MessageTemplate',
+                        path: "/systemManagement/myTodo",
+                        key:'myTodo',
                         exact: true,
-                        component: MessageTemplate,
+                        render:(props)=> <MyTodoTask {...props} bgroup={"postin"}/>
                     },
-                    {
-                        path: "/systemManagement/messageType",
-                        key:'MessageType',
-                        exact: true,
-                        component: MessageType,
-                    },
+                    //插件
                     {
                         path: "/systemManagement/plugin",
                         key:'plugin',
-                        component: PluginManage,
+                        render:(props)=> <PluginList {...props}  detailRouter={"/systemManagement/plugindetail"}/>,
                     },
                     {
                         path: "/systemManagement/plugindetail",
                         key:'plugindetail',
                         exact: true,
-                        component: PluginDetailPage,
-                    },{
+                        render:()=> <PluginDetail  pluginsRoute={"/systemManagement/plugin"}/>,
+                    },
+                    //日志
+                    {
                         path: "/systemManagement/log",
                         key:'log',
                         exact: true,
-                        component: LogList,
-                    },{
+                        render:(props)=>  <LogList {...props} bgroup={"postin"}/>,
+                    },
+                    //版本
+                    {
+                        path: "/systemManagement/version",
+                        key:'version',
+                        exact: true,
+                        render:(props)=> <Version {...props} bgroup={'postin'}/>
+
+                    },
+                    {
+                        path: "/systemManagement/baseSystemRole",
+                        exact: true,
+                        render: () => <SystemRoleList isBase={true} group={'system'} bgroup={"postin"}/>,
+                    },
+                    {
+                        path: "/systemManagement/systemFeature",
+                        key:'SystemFeature',
+                        exact: true,
+                        render: () => <SystemFeatureList bgroup={"postin"}/>,
+                    },
+                    {
+                        path: "/systemManagement/privilege",
+                        key:'ProjectFeature',
+                        exact: true,
+                        render: (props) => <ProjectFeatureList {...props} bgroup={"postin"}/>,
+                    },
+                    {
+                        path: "/systemManagement/role",
+                        key:'ProjectRole',
+                        exact: true,
+                        render: (props) => <ProjectRoleList isBase={true} {...props} bgroup={"postin"}/>,
+                    },
+                    {
+                        path: "/systemManagement/messageTemplate",
+                        key:'MessageTemplate',
+                        exact: true,
+                        render:()=> <MessageTemplate bgroup={"postin"}/>
+
+                    },
+                    {
+                        path: "/systemManagement/messageType",
+                        key:'MessageType',
+                        exact: true,
+                        render:()=> <MessageType bgroup={"postin"}/>
+
+                    },
+                    {
                         path: "/systemManagement/logTemplate",
                         key:'logTemplate',
                         exact: true,
-                        component: LogTemplate,
+                        render:(props)=>  <LogTemplateList {...props} bgroup={"postin"}/>,
                     },{
                         path: "/systemManagement/taskList",
                         key:'todo',
                         exact: true,
-                        component: TaskList,
+                        render:(props)=> <TaskList {...props} bgroup={"postin"}/>,
                     },{
                         path: "/systemManagement/todoTemp",
                         key:'todoTemp',
                         exact: true,
-                        component: TodoTemp,
-                    },{
-                        path: "/systemManagement/myTodo",
-                        key:'myTodo',
-                        exact: true,
-                        component: MyTodo,
-                    }, {
-                        path: "/systemManagement/org",
-                        key:'org',
-                        exact: true,
-                        component: OrgaList,
-                    },
-                    {
-                        path: "/systemManagement/user",
-                        key:'user',
-                        exact: true,
-                        render:(props)=>{
-
-                            return(
-                                <UserList {...props} bgroup={'postin'}/>
-                            )
-                        }
-                    },{
-                        path: "/systemManagement/version",
-                        key:'version',
-                        exact: true,
-                        render:(props)=>{
-                            return(
-                                <Version {...props} bgroup={'postin'}/>
-                            )
-                        }
-                    },
-                    {
-                        path: "/systemManagement/authConfig",
-                        key:'authConfig',
-                        exact: true,
-                        render: () => <Directory isPortal={false}/>,
+                        render:(props)=> <TodoTempList {...props} bgroup={"postin"}/>,
                     },
                     {
                         path: "/systemManagement",

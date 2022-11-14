@@ -15,7 +15,7 @@ ul{
 //dragbox
 .changeBox{
     width: 240px;
-    background: #f7f7f7;
+    //background: #f7f7f7;
     border-right: 1px solid var(--pi-border-color);
 }
 
@@ -74,7 +74,7 @@ ul{
     width: 1080px;
     padding: 0 16px;
     margin: 0 auto;
-    height: calc(100% - 50px);
+    height: var(--pi-calc-content);
 }
 
 .ws-side{
@@ -155,9 +155,9 @@ ul{
 .ws-menu-ul {
     padding: 0;
     .ws-menu-li {
-        padding: 0 40px;
+        padding: 0 20px;
         height: 40px;
-        width: 240px;
+        width: 220px;
         line-height: 40px;
         display: block;
         cursor: pointer;
@@ -371,18 +371,9 @@ ul{
     display: none;
 }
 
-.wscontant{
-    display: flex;
-    height: 100%;
-}
-
-
-
 
 .wscontant-contant{
     flex:1;
-    overflow: auto;
-    background: var(--tiklab-white);
 }
 
 .wsAside{

@@ -107,7 +107,7 @@ const TabsQuickTest = (props) =>{
     }
 
     return (
-        <div>
+        <div style={{height:"100%"}}>
             <Tabs
                 type="editable-card"
                 onChange={onChange}

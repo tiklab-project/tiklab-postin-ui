@@ -9,7 +9,7 @@ const RightContent = (props) => {
     const route = props.route.routes;
 
     const [leftBoxWidth, setLeftBoxWidth] = useState();
-    const [rightBoxWidth, setRightBoxWidth] = useState();
+    const [rightBoxWidth,  ] = useState();
     const boxRef = useRef()
 
     const changeBox = () =>{

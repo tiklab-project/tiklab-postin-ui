@@ -67,7 +67,7 @@
 
 .ws-side-menu{
     border-right: 1px solid var(--pi-greyf9-color);
-    background: #fdfdfd;
+    background: var(--pi-bg-grey-100);
 }
 
 .ws-detail-title{
@@ -143,7 +143,7 @@
 
                 .action-sort{
                     cursor: pointer;
-                    background: var(--pi-bg-color);
+                    background: var(--pi-action-color);
                     border-radius: var(--pi-border-radius);
                     display: block;
                 }
@@ -152,12 +152,12 @@
 
         .sort-item-action{
             border-radius: var(--pi-border-radius);
-            background: var(--pi-action-color);
+            //background: var(--pi-action-color);
         }
 
         &-item:hover{
             cursor: pointer;
-            background: var(--pi-hover-color)
+            background: var(--pi-bg-grey-100)
         }
 
     }

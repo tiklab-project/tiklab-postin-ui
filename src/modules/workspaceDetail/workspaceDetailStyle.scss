@@ -1,6 +1,6 @@
 //workspaceDetailLayout
 .ws-detail-contant{
-    height: calc(100% - 50px);
+    height: var(--pi-calc-content);
     display: flex;
 
 
@@ -13,6 +13,13 @@
 
     .ws-detail-right{
         width: calc(100% - 80px);
+
+
+        .wscontant{
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
     }
 
 }
@@ -39,28 +46,31 @@
         height: 32px;
     }
 
-    .ws-detail-left-nav-item{
-        padding: 6px;
+    .ws-left-nav-item{
+        margin: 0 0 10px;
 
-        .ws-detail-left-nav-item-box{
+        .ws-left-nav-item-box{
             padding: 6px 0;
-            border-radius: var(--pi-border-radius);
             cursor: pointer;
+            border-left: 3px solid var(--pi-bg-grey-200);
         }
-        .ws-detail-left-nav-item-box:hover{
-            background-color: white;
+        .ws-left-nav-item-box:hover{
+            background-color: var(--pi-hover-color);
         }
 
 
-        .ws-detail-left-nav-item-detail{
+        .ws-left-nav-item-detail{
             display: flex;
             justify-content: center;
         }
+
+        .selectlink{
+            background-color: var(--pi-action-color);
+            border-left: 3px solid var(--pi-base-color);
+        }
     }
 
-    .selectlink{
-        background-color: white;
-    }
+
 
 
 
@@ -71,9 +81,18 @@
 //workspaceContant
 
 .wscontant-box{
-    //width: 1240px;
+    height: 100%;
     margin: 0 auto;
     min-width: 860px;
+
+    .ant-tabs {
+        height: 100%;
+
+        .ant-tabs-content{
+            height: 100%;
+        }
+    }
+
 }
 
 
@@ -178,7 +197,7 @@
         width: 240px;
         position: absolute;
         top: -10px;
-        left: 82px;
+        left: 72px;
         padding: 10px;
         box-shadow: var(--pi-box-shadow);
         background: #fff;
@@ -206,6 +225,11 @@
         padding: 0 0 5px 5px;
         font-weight: 600;
     }
+
+    .ws-icon-box-toggle-icon{
+        width: var(--pi-icon-s);
+        height: var(--pi-icon-s);
+    }
 }
 
 .ws-detail-left-nav-item-workspace:hover .ws-hover-box{
@@ -218,4 +242,14 @@
     height: 32px;
     border-radius: var(--pi-border-radius);
     border: var(--pi-input-border);
+}
+
+.workspace-detail-text-icon-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: #bfe6ff;
+    width: var(--pi-icon-x);
+    height: var(--pi-icon-x);
 }

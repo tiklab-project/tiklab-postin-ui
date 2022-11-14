@@ -19,7 +19,7 @@ const Mock = (props) => {
                 <Switch
                     checkedChildren="启用"
                     unCheckedChildren="停用"
-                    checked={text===1?true:false}
+                    checked={text === 1}
                     onChange={(e)=>changeEnable(e,record)}
                 />
             )

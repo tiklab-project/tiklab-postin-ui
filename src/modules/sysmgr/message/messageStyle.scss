@@ -1,8 +1,25 @@
+
+.ant-drawer-header{
+    padding: 18px 14px 5px 14px !important;
+    border: none!important;
+
+
+}
+
+.ant-drawer-body{
+    padding: 10px!important;
+}
+
+
+
 .message-item{
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--pi-border-color);
-    padding: 10px 0;
+    justify-content: space-between;
+    //border-bottom: 1px solid var(--pi-border-color);
+    padding: 10px;
+    margin: 2px 0;
+    border-radius: var(--pi-border-radius);
 
     .message-item-left{
         display: flex;
@@ -17,6 +34,17 @@
         &-detail{
             width: 240px;
 
+            &-margin{
+                display: flex;
+                margin: 0 0 5px 0;
+            }
+
+            &-title{
+                font-size: var(--pi-font-size-13);
+                font-weight: var(--pi-font-weight-title);
+
+            }
+
             .message-item-left-content{
                 font-size: 13px;
                 color: #9b9b9b;
@@ -30,6 +58,7 @@
         }
     }
 
+
     .message-item-right{
         display: flex;
         align-items: center;
@@ -37,14 +66,54 @@
 
 
         &-content{
-            background: var(--pi-action-color);
-            border-radius: 10px;
-            padding: 5px;
+            border-radius: 6px;
+            padding: 3px;
             color: #fff;
             font-size: 12px;
         }
+
+        &-read{
+            background: #c9c9c9;
+        }
+
+        &-unread{
+            background: #009cff;
+        }
+
+    }
+}
+
+.message-item:hover{
+    cursor: pointer;
+    background: var(--pi-hover-color);
+}
+
+
+
+.msg-select-box{
+    display: flex;
+    border-bottom: 1px solid var(--pi-border-color);
+
+    .msg-header-menu-item{
+        padding: 5px;
+        margin: 0 15px 0 0;
+        cursor: pointer;
+        border-bottom: 3px solid #ffffff00;
+
+        span{
+            font-size: var(--pi-font-size-14);
+            //font-weight: var(--pi-font-weight-title);
+        }
     }
 
+    .msg-header-menu-item:hover{
+        border-bottom:3px solid  var(--pi-base-color);
+        color:  var(--pi-base-color);
+    }
 
+    .msg-header-menu-item-selected{
+        color:  var(--pi-base-color);
+        border-bottom:3px solid  var(--pi-base-color);
+    }
 
 }

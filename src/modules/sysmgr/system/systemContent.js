@@ -39,18 +39,30 @@ const SystemContent = (props) =>{
             encoded: "systemPrivilege",
         },
         {
-            title: "消息通知",
+            title: "消息",
             icon: 'xiaoxi',
-            key: '/systemManagement/messageSendType',
-            encoded: "MessageCenter",
+            key: '/systemManagement',
+            children: [
+                {
+                    title: "发送方式",
+                    icon: 'rizhijilu',
+                    key: '/systemManagement/messageSendType',
+                    encoded: "messageSendType",
+                }, {
+                    title: "消息管理",
+                    icon: 'rizhijilu',
+                    key: '/systemManagement/messageManagement',
+                    encoded: "messageManagement",
+                },
+            ],
         },
-        {
-            title: '代办任务',
-            icon: 'modular',
-            key: '/systemManagement/myTodo',
-            encoded: "myTodo",
-
-        },
+        // {
+        //     title: '代办任务',
+        //     icon: 'modular',
+        //     key: '/systemManagement/myTodo',
+        //     encoded: "myTodo",
+        //
+        // },
         {
             title: '插件',
             icon: 'modular',
@@ -86,6 +98,10 @@ const SystemContent = (props) =>{
                     title: '系统功能管理',
                     icon: 'modular',
                     key: '/systemManagement/systemFeature',
+                },{
+                    title: '系统权限',
+                    icon: 'modular',
+                    key: '/systemManagement/baseSystemRole',
                 },{
                     title: '项目功能管理',
                     icon: 'modular',
