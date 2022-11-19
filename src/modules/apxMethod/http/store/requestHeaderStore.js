@@ -26,7 +26,7 @@ export  class RequestHeaderStore {
             httpId: id,
             orderParams:[{ name:'headerName', orderType:'asc'}],
         }
-        const newRow =[ { id: 'RequestHeaderInitRow'}];
+        const newRow =[ { id: 'InitNewRowId'}];
 
         const res = await findRequestHeaderList(params);
         if( res.code===0 ){

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {Form, Input} from "antd";
-import Dynamic from "../integration/dynamic/components/dynamic";
 import DynamicWidget from "../home/dynamicWidget";
 
 const WorkspaceDetailInitPage = (props) =>{
@@ -127,7 +126,7 @@ const WorkspaceDetailInitPage = (props) =>{
                     {/*<div>更多</div>*/}
                 </div>
                 <div>
-                    <DynamicWidget screen={{"contentKey": "workspaceId","content":workspaceId}}/>
+                    <DynamicWidget screen={{"workspaceId": workspaceId}}/>
                 </div>
             </div>
         </div>

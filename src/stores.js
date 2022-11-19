@@ -11,7 +11,6 @@ import {
     WORKSPACE_FOLLOW_STORE,WorkspaceFollowStore
 } from './modules/workspace';
 
-import {DYNAMIC_STORE,DynamicStore} from "./modules/integration/dynamic/store/dynamicStore";
 
 import {CATEGORY_STORE, CategoryStore} from "./modules/category";
 
@@ -118,7 +117,6 @@ function createStores() {
         [WORKSPACE_RECENT_STORE]: new WorkspaceRecentStore(),
         [WORKSPACE_FOLLOW_STORE]: new WorkspaceFollowStore(),
 
-        [DYNAMIC_STORE]:new DynamicStore(),
 
         // 目录
         [CATEGORY_STORE]: new CategoryStore(),

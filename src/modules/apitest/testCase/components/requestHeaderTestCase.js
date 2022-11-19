@@ -29,7 +29,7 @@ const RequestHeaderTestCase = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'headerName',
-            width: '20%',
+            width: '40%',
             render: (text, record)=>(
                 <ExSelect
                     dictionary={headerParamDictionary}
@@ -37,35 +37,49 @@ const RequestHeaderTestCase = (props) =>{
                     handleSave={handleSave}
                     rowData={record}
                     dataIndex={'headerName'}
+                    setNewRowAction={setNewRowAction}
                 />
             )
         },
         {
             title: '参数值',
-            width: '20%',
+            width: '40%',
             dataIndex: 'value',
             editable: true,
         },
         {
             title: '操作',
-            width: '15%',
+            width: '150',
             fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(operation(record,dataSource))
-        },
-        {
-            title: '',
-            width: '25%',
-            dataIndex: 'none',
         }
     ]
 
+    //取消
+    const onCancel = () =>{
+        let data = {
+            id:"InitNewRowId",
+            "headerName":null,
+            "value":null
+        }
+        handleSave(data)
+
+        //隐藏
+        setNewRowAction(false)
+    }
+
+    const [newRowAction, setNewRowAction] = useState(false);
+
     // colums 里的操作
     const operation = (record,data) => {
-        if(record.id === 'RequestHeaderTestCaseInitRow'){
-            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
-                        <use xlinkHref= {`#icon-tianjia-`} />
-                    </svg>
+        if(record.id === 'InitNewRowId'){
+            return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
+                <Space>
+                    <a onClick={() =>onCreated(record)}> 保存</a>
+                    <a onClick={()=>onCancel()}> 取消</a>
+                </Space>
+            </div>
         }else{
             return <Space key={record.id}>
                 {
@@ -121,8 +135,22 @@ const RequestHeaderTestCase = (props) =>{
         const index = newData.findIndex((item) =>  row.id === item.id);
         newData.splice(index, 1, { ...newData[index], ...row });
         setList(newData)
+
+        //如果是新行 操作 显示操作按钮
+        if(row.id==="InitNewRowId"){
+            newRowKeyDown()
+        }
     };
-  
+
+
+    //当新行按键按下的时候显示后面的操作按钮
+    const newRowKeyDown = () => {
+        document.addEventListener('keydown', (e) =>{
+            setNewRowAction(true)
+        });
+    };
+
+
     return (
         <>
             <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>请求头参数</span></div>

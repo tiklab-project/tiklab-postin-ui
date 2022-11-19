@@ -20,6 +20,7 @@ const MessageDrawer = (props) =>{
 
     useEffect(()=>{
         let params = {
+            status:0,
             pageParam: {
                 pageSize: 10,
                 currentPage:1
@@ -35,6 +36,7 @@ const MessageDrawer = (props) =>{
     //抽屉展示
     const showDrawer = () => {
         let params = {
+            status:0,
             pageParam: {
                 pageSize: 10,
                 currentPage:1
@@ -102,10 +104,11 @@ const MessageDrawer = (props) =>{
                     lineHeight: '32px',
                 }}
             >
-                <a onClick={onLoadMore}>加载更多...</a>
+                <a onClick={onLoadMore}>加载更多</a>
             </div>
         ) : null;
     }
+
 
 
     //list item 渲染
@@ -149,11 +152,6 @@ const MessageDrawer = (props) =>{
     //消息筛选项
     const items=[
         {
-            title: '所有',
-            key: "all",
-            value:null
-        },
-        {
             title: '未读',
             key: 0,
             value:0
@@ -164,7 +162,7 @@ const MessageDrawer = (props) =>{
             value:1
         },
     ]
-    const [selectItem, setSelectItem] = useState("all");
+    const [selectItem, setSelectItem] = useState(0);
     //渲染筛选项
     const showMenu = (data) =>{
         return data&&data.map(item=>{
@@ -175,7 +173,6 @@ const MessageDrawer = (props) =>{
                     onClick={()=>selectFun(item)}
                 >
                     <span> {item.title} </span>
-
                 </div>
             )
         })
@@ -211,12 +208,15 @@ const MessageDrawer = (props) =>{
         const res =  await Axios.post('/message/messageDispatchItem/updateMessageDispatchItem', updateParams);
         if(res.code===0){
             let params = {
+                status:0,
                 pageParam: {
                     pageSize: 10,
                     currentPage:1
                 }
             }
-            findList(params)
+            findList(params).then(res=>{
+                setList(res.dataList);
+            })
         }
     }
 

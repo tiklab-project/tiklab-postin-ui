@@ -19,6 +19,7 @@ const appSecret = JSON.stringify('tiklab');
 const version = JSON.stringify('1.0.0');
 const client = JSON.stringify('1.0.0');
 
+const IS_DEV = false;
 // const acc_url = JSON.stringify('http://portal.dev.doublekit.net');
 
 module.exports = {
@@ -31,5 +32,5 @@ module.exports = {
     appSecret,
     version,
     client,
-    // acc_url
+    IS_DEV
 }

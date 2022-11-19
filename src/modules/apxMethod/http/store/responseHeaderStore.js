@@ -27,7 +27,7 @@ export class ResponseHeaderStore {
             orderParams:[{ name:'headerName',  orderType:'asc'  }],
         }
 
-        const newRow =[ { id: 'ResponseHeaderInitRow'}]
+        const newRow =[ { id: 'InitNewRowId'}]
 
         const res = await findResponseHeaderList(params);
         if( res.code === 0){

@@ -11,8 +11,7 @@ const AssertTableCommon = (props)=>{
         {
             title: '来源',
             dataIndex: 'source',
-            width: '10%',
-            // align:'center',
+            width: '20%',
             render:(text,record) =>  (
                 <Select
                     defaultValue={()=>setSelectValue(record.source)}
@@ -29,34 +28,32 @@ const AssertTableCommon = (props)=>{
         {
             title: '属性名称',
             dataIndex: 'propertyName',
-            width: '20%',
-            // align:'center',
+            width: '25%',
             editable: true,
         },
         {
             title: '比较符',
-            width: '5%',
+            width: '10%',
             dataIndex: 'comparator',
-            // align:'center',
-            // editable: true,
+
             render:()=>(<span>=</span>)
         },
         {
             title: '参数值',
-            width: '20%',
+            width: '25%',
             dataIndex: 'value',
             // align:'center',
             editable: true,
         },
         {
             title: '操作',
-            width: '10%',
+            width: '150',
             fixed: 'right',
             dataIndex: 'operation',
             render:(text,record,index)=>(
                 <Space>
-                    <Tooltip title="删除数据"><Button onClick={()=> deleteList(record.id)}> 删除 </Button></Tooltip>
-                    <Tooltip title="添加数据"><Button onClick={handleAdd}> 添加 </Button></Tooltip>
+                    <Tooltip title="删除数据"><a onClick={()=> deleteList(record.id)}> 删除 </a></Tooltip>
+                    <Tooltip title="添加数据"><a onClick={handleAdd}> 添加 </a></Tooltip>
                 </Space>
             )
 
@@ -72,7 +69,7 @@ const AssertTableCommon = (props)=>{
 
     // 表格select选择事件
     const onSelect = (value, row) => {
-        let setValue = ''
+        let setValue
         if(value === '状态码'){
             setValue = 1
         }else if(value === '响应头'){

@@ -27,7 +27,7 @@ export class FormUrlencodedStore {
             httpId: id,
             orderParams:[{name:'paramName', orderType:'asc'}],
         }
-        const newRow =[ { id: 'FormUrlencodedInitRow'}];
+        const newRow =[ { id: 'InitNewRowId'}];
         const res = await findFormUrlencodedList(params);
         if(res.code === 0) {
             this.dataLength = res.data.length

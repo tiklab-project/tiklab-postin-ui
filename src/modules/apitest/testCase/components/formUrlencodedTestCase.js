@@ -26,7 +26,8 @@ const FormUrlencodedTestCase = (props) =>{
     } = formUrlencodedTestCaseStore;
 
     const [dataSource,setDataSoure] =useState([])
-    const testCaseId =  localStorage.getItem('testCaseId') ;
+    const testCaseId =  localStorage.getItem('testCaseId');
+
     useEffect( ()=>{
         findFormUrlencodedTestCaseList(testCaseId).then(res => setDataSoure(res));
     },[dataLength])
@@ -36,22 +37,23 @@ const FormUrlencodedTestCase = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '20%',
+            width: '30%',
             editable: true,
         },{
             title: '数据类型',
-            width: '15%',
+            width: '20%',
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <DataTypeSelect
                     defaultValue={record.dataType}
                     handleSave={handleSave}
                     rowData={record}
+                    setNewRowAction={setNewRowAction}
                 />
             )
         },{
             title: '参数值',
-            width: '20%',
+            width: '30%',
             dataIndex: 'value',
             render: (text, record)=>(
                 <ExSelect
@@ -60,30 +62,45 @@ const FormUrlencodedTestCase = (props) =>{
                     handleSave={handleSave}
                     rowData={record}
                     dataIndex={'value'}
+                    setNewRowAction={setNewRowAction}
                 />
             )
         },
 
         {
             title: '操作',
-            width: '15%',
+            width: '150',
             fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(operation(record,dataSource))
-        },
-        {
-            title: '',
-            width: '30%',
-            dataIndex: 'none',
         }
     ]
 
+    //取消
+    const onCancel = () =>{
+        let data = {
+            id:"InitNewRowId",
+            "paramName":null,
+            "dataType":null,
+            "value":null
+        }
+        handleSave(data)
+
+        //隐藏
+        setNewRowAction(false)
+    }
+
+    const [newRowAction, setNewRowAction] = useState(false);
+
     // 表格里的操作
     const operation = (record,data) => {
-        if(record.id === 'FormUrlencodedTestCaseInitRow'){
-            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
-                        <use xlinkHref= {`#icon-tianjia-`} />
-                    </svg>
+        if(record.id === 'InitNewRowId'){
+            return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
+                <Space>
+                    <a onClick={() =>onCreated(record)}> 保存</a>
+                    <a onClick={()=>onCancel()}> 取消</a>
+                </Space>
+            </div>
         }else{
             return <Space key={record.id}>
                 {
@@ -130,7 +147,7 @@ const FormUrlencodedTestCase = (props) =>{
     // 添加
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
-            return
+            return null
         }else {
             delete values.id;
             createFormUrlencodedTestCase(values)
@@ -139,10 +156,23 @@ const FormUrlencodedTestCase = (props) =>{
 
     // 保存数据
     const handleSave = (row) => {
-        const newData = [...formUrlencodedTestCaseList];
+        const newData = formUrlencodedTestCaseList;
         const index = newData.findIndex((item) => row.id === item.id);
         newData.splice(index, 1, { ...newData[index], ...row });
         setList(newData)
+
+        //如果是新行 操作 显示操作按钮
+        if(row.id==="InitNewRowId"){
+            newRowKeyDown()
+        }
+    };
+
+
+    //当新行按键按下的时候显示后面的操作按钮
+    const newRowKeyDown = () => {
+        document.addEventListener('keydown', (e) =>{
+            setNewRowAction(true)
+        });
     };
 
     return (

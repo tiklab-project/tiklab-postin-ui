@@ -26,7 +26,7 @@ export class FormParamTestCaseStore {
             return;
         }
 
-        const newRow =[ { id: 'FormParamTestCaseInitRow'}];
+        const newRow =[ { id: 'InitNewRowId'}];
 
         this.formParamTestCaseDataSource = data;
         this.formParamTestCaseList=[...data,...newRow];

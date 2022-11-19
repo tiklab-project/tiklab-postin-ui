@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { observer, inject } from "mobx-react";
-import {  Space, Checkbox, Popconfirm } from 'antd';
-import { headerParamDictionary } from '../../../common/dictionary/dictionary';
+import React, {useEffect, useState} from 'react';
+import {inject, observer} from "mobx-react";
+import {Checkbox, Popconfirm, Space} from 'antd';
+import {headerParamDictionary} from '../../../common/dictionary/dictionary';
 import ExSelect from "../../../common/exSelect";
 import {ExTable} from '../../../common/editTable';
 
@@ -31,7 +31,6 @@ const RequestHeader = (props) =>{
             title: '参数名称',
             dataIndex: 'headerName',
             width:  "20%",
-            className:"column-header",
             render: (text, record)=>(
                 <ExSelect
                     dictionary={headerParamDictionary}
@@ -39,20 +38,19 @@ const RequestHeader = (props) =>{
                     handleSave={handleSave}
                     rowData={record}
                     dataIndex={'headerName'}
+                    setNewRowAction={setNewRowAction}
                 />
             )
         },{
             title: '示例值',
             width:  "20%",
             dataIndex: 'value',
-            className:"column-header",
             editable: true,
         },{
             title: '必须',
             dataIndex: 'required',
             width: 50,
             align:"center",
-            className:"column-header",
             render:(text,record) =>  (
                 <Checkbox
                     defaultChecked={record.required}
@@ -63,13 +61,11 @@ const RequestHeader = (props) =>{
             title: '说明',
             // width: '20%',
             dataIndex: 'desc',
-            className:"column-header",
             editable: true,
         },{
             title: '操作',
             width:  "20%",
             dataIndex: 'operation',
-            className:"column-header",
             fixed: 'right',
             render: (text, record) =>(operation(record,dataSource))
         }
@@ -87,12 +83,34 @@ const RequestHeader = (props) =>{
         handleSave(data)
     }
 
+    //取消
+    const onCancel = () =>{
+        let data = {
+            id:"InitNewRowId",
+            "headerName":null,
+            "value":null,
+            "required":1,
+            "desc":null
+        }
+        handleSave(data)
+
+        //新行隐藏后面操作按钮
+        setNewRowAction(false)
+    }
+
+    const [newRowAction, setNewRowAction] = useState(false);
+
+
     // 表格里的操作
     const operation = (record,data) => {
-        if(record.id === 'RequestHeaderInitRow'){
-            return  <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
-                        <use xlinkHref= {`#icon-tianjia-`} />
-                    </svg>
+        if(record.id === 'InitNewRowId'){
+            return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
+                <Space>
+                    <a onClick={() =>onCreated(record)}> 保存</a>
+                    <a onClick={()=>onCancel()}> 取消</a>
+                </Space>
+            </div>
+
         }else{
             return <Space key={record.id}>
                 {
@@ -143,6 +161,8 @@ const RequestHeader = (props) =>{
             delete values.id;
             createRequestHeader(values)
         }
+
+        setNewRowAction(false)
     }
 
     //更新
@@ -156,7 +176,20 @@ const RequestHeader = (props) =>{
         const index = newData.findIndex((item) => row.id === item.id);
         newData.splice(index, 1, { ...newData[index], ...row });
         setList(newData)
+
+        //如果是新行 操作 显示操作按钮
+        if(row.id==="InitNewRowId"){
+            newRowKeyDown()
+        }
     };
+
+    //当新行按键按下的时候显示后面的操作按钮
+    const newRowKeyDown = () => {
+        document.addEventListener('keydown', (e) =>{
+            setNewRowAction(true)
+        });
+    };
+
 
     return (
         <>

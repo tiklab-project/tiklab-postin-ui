@@ -28,7 +28,7 @@ export class QueryParamStore {
             orderParams:[{ name:'paramName',  orderType:'asc' }],
         }
 
-        const newRow =[ { id: 'QueryParamInitRow'}]
+        const newRow =[ { id: 'InitNewRowId'}]
         const res = await  findQueryParamList(params)
 
         if( res.code === 0) {

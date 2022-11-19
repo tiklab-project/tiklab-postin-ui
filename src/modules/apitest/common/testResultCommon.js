@@ -111,7 +111,7 @@ const TestResultCommon = (props) =>  {
                         <div  className={"test-response-before-img-box"}>
                             <img  className={"test-response-before-img"} src={sendImg} alt={"sendImg"}/>
                         </div>
-                        <span>  点击 测试 按钮发送请求  </span>
+                        <span>  点击 发送 按钮发送请求  </span>
                     </div>
                 </div>
             </div>

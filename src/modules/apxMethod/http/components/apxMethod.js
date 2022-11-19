@@ -21,11 +21,6 @@ const ApxMethod = (props) =>  {
             // icon: <ApiOutlined />,
         },
         {
-            label: '测试',
-            key: '/workspace/apis/detail/interface/test',
-            // icon: <RetweetOutlined />,
-        },
-        {
             label: '测试用例',
             key: '/workspace/apis/detail/interface/testcase',
             // icon: <RetweetOutlined />,

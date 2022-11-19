@@ -14,23 +14,12 @@ import {
 export class JsonParamDSStore {
 
     @observable jsonParamDSList = [];
-    @observable jsonParamDSDataSource = [];
     @observable jsonParamDSInfo = [];
-    @observable dataStructureId = '';
-    @observable jsonParamDSId= '';
 
     @action
-    addList = (values) => {
-        this.jsonParamDSList = [...this.jsonParamDSList,...values]
-    }
-    @action
-    setList = (values) => {
-        this.jsonParamDSList = [...values]
-    }
-
-    @action
-    findJsonParamDSListTree = (id) => {
+    findJsonParamDSListTree =async (id) => {
         this.dataStructureId = id;
+
         const params = {
             dataStructureId: id,
             orderParams:[{
@@ -38,113 +27,41 @@ export class JsonParamDSStore {
                 orderType:'asc'
             }],
         }
-        const that = this;
-        return new Promise(function(resolve, reject){
-            findJsonParamDSListTree(params).then(res => {
-                if(res.code === 0) {
-                    that.jsonParamDSDataSource = res.data;
-                    if( res.data.length === 0){
-                        that.jsonParamDSList=[{id: '1'}]
-                    }else {
-                        that.jsonParamDSList = res.data;
-                    }
-                    resolve(res.data);
-                }
-            }).catch(error => {
-                reject(error)
-            })
-        })
-    }
 
-    @action
-    findJsonParamDS = (id) => {
-        this.jsonParamDSId = id;
-        const that =this;
-        const param = new FormData();
-        param.append('id', id);
-        return new Promise(function(resolve, reject){
-            findJsonParamDS(param).then((res) => {
-                if( res.code === 0){
-                    that.jsonParamDSInfo = res.data;
-                    resolve(res)
-                }
-            }).catch(error => {
-                reject(error)
-            })
-        })
-    }
+        let res =await findJsonParamDSListTree(params)
+        if(res.code === 0) {
+            this.jsonParamDSList = res.data;
 
-
-    @action
-    createJsonParamDS = (values) => {
-        values.dataStructureId = {
-            id:this.dataStructureId
+            return res.data;
         }
-        createJsonParamDS(values).then((res) => {
-            if( res.code === 0){
-                this.findJsonParamDSListTree(this.dataStructureId);
-            }
-        }).catch(error => {
-            console.log(error)
-        })
+
+
     }
 
     @action
-    updateJsonParamDS = (values) => {
-        updateJsonParamDS(values).then((res) => {
-            if( res.code === 0){
-                this.findJsonParamDSListTree(this.dataStructureId);
-            }
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
-    @action
-    deleteJsonParamDS = (id) => {
+    findJsonParamDS = async (id) => {
         const param = new FormData();
         param.append('id', id);
 
-        deleteJsonParamDS(param).then((res) => {
-            if( res.code === 0){
-                this.findJsonParamDSListTree(this.dataStructureId);
-            }
-        }).catch(error => {
-            console.log(error)
-        })
+        let res = await findJsonParamDS(param)
+        if(res.code ===0){
+            return res.data
+        }
     }
 
-    @action
-    setJsonParamDSListChild = (parentId) => {
-        debugger
-        const pid = ({
-            id: parentId
-        })
-        const newChild = {
-            id:'c1',
-            parent: pid
-        }
-        const loop = (data,newChild)=>{
-            let newdata = data.map((item) => {
-                if(item.id && item.id === parentId) {
-                    if(item.children === null){
-                        item.children = [newChild]
-                    }else {
-                        item.children.push({
-                            ...newChild,
-                        })
-                    }
-                }else if(item.children && item.children.length > 0){
-                    loop(item.children, newChild)
-                }
-                return item
-            })
-            return newdata;
-        }
-        const data = toJS(this.jsonParamDSList);
-        let result = loop(data,newChild);
-        this.jsonParamDSList = result;
 
+    @action
+    createJsonParamDS = async (values) =>  await createJsonParamDS(values)
+
+    @action
+    updateJsonParamDS = async (values) => await updateJsonParamDS(values)
+
+    @action
+    deleteJsonParamDS = async (id) => {
+        const param = new FormData();
+        param.append('id', id);
+
+        await deleteJsonParamDS(param)
     }
 
 }

@@ -46,6 +46,7 @@ const QueryParam = (props) =>{
                     handleSave={handleSave}
                     rowData={record}
                     dataIndex={'value'}
+                    setNewRowAction={setNewRowAction}
                 />
             )
 
@@ -89,12 +90,33 @@ const QueryParam = (props) =>{
         handleSave(data)
     }
 
+    //取消
+    const onCancel = () =>{
+        let data = {
+            id:"InitNewRowId",
+            "paramName":null,
+            "value":null,
+            "required":1,
+            "desc":null
+        }
+        handleSave(data)
+
+        //隐藏
+        setNewRowAction(false)
+    }
+
+    const [newRowAction, setNewRowAction] = useState(false);
+
+
     // 表格里的操作
     const operation = (record,data) => {
-        if(record.id === 'QueryParamInitRow'){
-            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
-                    <use xlinkHref= {`#icon-tianjia-`} />
-                </svg>
+        if(record.id === 'InitNewRowId'){
+            return  <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
+                <Space>
+                    <a onClick={() =>onCreated(record)}> 保存</a>
+                    <a onClick={()=>onCancel()}> 取消</a>
+                </Space>
+            </div>
         }else{
             return <Space key={record.id}>
                 {
@@ -146,6 +168,8 @@ const QueryParam = (props) =>{
             delete values.id;
             createQueryParam(values)
         }
+
+        setNewRowAction(false)
     }
 
     //更新
@@ -159,7 +183,21 @@ const QueryParam = (props) =>{
         const index = newData.findIndex((item) => row.id === item.id);
         newData.splice(index, 1, { ...newData[index], ...row });
         setList(newData)
+
+        //如果是新行 操作 显示操作按钮
+        if(row.id==="InitNewRowId"){
+            newRowKeyDown()
+        }
     };
+
+
+    //当新行按键按下的时候显示后面的操作按钮
+    const newRowKeyDown = () => {
+        document.addEventListener('keydown', (e) =>{
+            setNewRowAction(true)
+        });
+    };
+
 
     return (
         <>

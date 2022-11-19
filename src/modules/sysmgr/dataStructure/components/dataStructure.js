@@ -6,7 +6,7 @@ import React, {useEffect,useState} from 'react'
 import {Input, Popconfirm, Select, Space, Table} from "antd";
 import DataStructureEdit from "./dataStructureEdit";
 import {inject, observer} from "mobx-react";
-import SetData from "./setData";
+import "./structureStyle.scss"
 import DetailHeader from "../../../common/detailHeader";
 import {SearchOutlined} from "@ant-design/icons";
 import {Profile} from "tiklab-eam-ui";
@@ -20,9 +20,7 @@ const DataStructure = (props) => {
             title:`名称`,
             dataIndex: "name",
             key: "name",
-            // render:(text,record)=>(
-            //
-            // )
+            render:(text,record)=> <a onClick = {()=>toModeDetail(record.id)}>{text}</a>
         },
         {
             title: `类型`,
@@ -66,7 +64,6 @@ const DataStructure = (props) => {
                             <use xlinkHref= {`#icon-shanchu3`} />
                         </svg>
                     </Popconfirm>
-                    <SetData dataType={record.dataType} dataStructureId={record.id}/>
                 </Space>
             ),
         },
@@ -102,7 +99,15 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     }
 
+    //去往模型详情页
+    const toModeDetail = (id) =>{
+        localStorage.setItem("dataStructureId",id);
 
+        props.history.push("/workspace/structure-detail")
+    }
+
+
+    //降序
     const setSortByDesc = (name) =>{
         let sort = "desc";
 
@@ -117,6 +122,7 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     }
 
+    //升序
     const setSortByAsc = (name) =>{
         let sort = "asc";
 
@@ -132,6 +138,7 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     }
 
+    //排序切换
     const clickSort = (key) =>{
 
         setToggleSort(!toggleSort);
@@ -145,6 +152,8 @@ const DataStructure = (props) => {
         }
     }
 
+
+    //筛选项
     const sortItem =[
         {
             title:"名称",
@@ -156,6 +165,7 @@ const DataStructure = (props) => {
     ]
 
 
+    //渲染筛选项
     const showSortItem = (list) =>{
         return list&&list.map((item=>{
             return (

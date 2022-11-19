@@ -231,9 +231,6 @@
             cursor: pointer;
         }
 
-
-
-
         .ant-menu-title-content{
             font-size: var(--pi-font-size-14);
             color: white;
@@ -245,6 +242,17 @@
 
         }
 
+    }
+
+
+    .pi-header-right{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .pi-header-right-item{
+            margin: 0 15px;
+        }
     }
 
     .frame-header-right-box{

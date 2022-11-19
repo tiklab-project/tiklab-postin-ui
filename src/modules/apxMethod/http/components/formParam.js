@@ -9,6 +9,7 @@ import { observer, inject } from "mobx-react";
 import {Space, Checkbox, Popconfirm} from 'antd';
 import {ExTable}from '../../../common/editTable';
 import FileTextSelect from "../../../common/fileTextSelect";
+import IconCommon from "../../../common/iconCommon";
 
 const FormParam = (props) =>{
     const { formParamStore } = props;
@@ -58,7 +59,7 @@ const FormParam = (props) =>{
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <FileTextSelect
-                    defaultValue={record.dataType}
+                    defaultValue={text}
                     handleSave={handleSave}
                     rowData={record}
                 />
@@ -105,21 +106,44 @@ const FormParam = (props) =>{
     //     console.log(newData)
     // }
 
+    //取消
+    const onCancel = () =>{
+        let data = {
+            id:"InitNewRowId",
+            "paramName":null,
+            "value":null,
+            "required":1,
+            "dataType":null,
+            "desc":null
+        }
+        handleSave(data)
+
+        //隐藏
+        setNewRowAction(false)
+    }
+
+    const [newRowAction, setNewRowAction] = useState(false);
+
     // 表格里的操作
     const operation = (record,data) => {
-        if(record.id === 'FormParamInitRow'){
-            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
-                        <use xlinkHref= {`#icon-tianjia-`} />
-                    </svg>
+        if(record.id === 'InitNewRowId'){
+            return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
+                <Space>
+                    <a onClick={() =>onCreated(record)}> 保存</a>
+                    <a onClick={()=>onCancel()}> 取消</a>
+                </Space>
+            </div>
         }else{
             return data&&data.map((item) => {
                 return (
                     item.id === record.id
                     ?<Space key={item.id}>
                         {
-                            item.paramName === record.paramName &&
-                            item.dataType === record.dataType && item.required === record.required &&
-                            item.desc === record.desc && item.value === record.value
+                            item.paramName === record.paramName
+                            && item.dataType === record.dataType
+                            && item.required === record.required
+                            && item.desc === record.desc
+                            && item.value === record.value
                                 ?null
                                 :<svg className="icon-s table-edit-icon" aria-hidden="true" onClick={() => upData(record)}>
                                 <use xlinkHref= {`#icon-btn_confirm`} />
@@ -131,9 +155,10 @@ const FormParam = (props) =>{
                             okText='确定'
                             cancelText='取消'
                         >
-                            <svg className="icon-s table-edit-icon" aria-hidden="true">
-                                <use xlinkHref= {`#icon-shanchu3`} />
-                            </svg>
+                            <IconCommon
+                                icon={"shanchu3"}
+                                className="icon-s table-edit-icon"
+                            />
                         </Popconfirm>
                     </Space>
                     :null
@@ -150,11 +175,13 @@ const FormParam = (props) =>{
     // 添加
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
-            return
+            return null
         }else {
             delete values.id;
             createFormParam(values)
         }
+
+        setNewRowAction(false)
     }
 
     // 保存数据
@@ -163,6 +190,18 @@ const FormParam = (props) =>{
         const index = newData.findIndex((item) => row.id === item.id);
         newData.splice(index, 1, { ...newData[index], ...row });
         setList(newData)
+
+        //如果是新行 操作 显示操作按钮
+        if(row.id==="InitNewRowId"){
+            newRowKeyDown()
+        }
+    };
+
+    //当新行按键按下的时候显示后面的操作按钮
+    const newRowKeyDown = () => {
+        document.addEventListener('keydown', (e) =>{
+            setNewRowAction(true)
+        });
     };
 
     return (

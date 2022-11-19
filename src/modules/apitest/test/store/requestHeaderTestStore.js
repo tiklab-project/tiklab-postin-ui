@@ -5,10 +5,15 @@ const tableCommonStore = new TableCommonStore();
 
 export  class RequestHeaderTestStore {
     @observable requestHeaderTestList = [];
+    @observable newHeaderRow=[{id: 'InitNewRowId'}];
 
     @action
     getRequestHeaderTestList= (data) => {
-       this.requestHeaderTestList= tableCommonStore.getList(data)
+        if(data){
+            this.requestHeaderTestList= [...data,...this.newHeaderRow]
+        }else {
+            this.requestHeaderTestList = this.newHeaderRow;
+        }
     }
 
     @action
@@ -18,7 +23,7 @@ export  class RequestHeaderTestStore {
 
     @action
     saveList = (list) => {
-        this.requestHeaderTestList = [...list]
+        this.requestHeaderTestList = [...list];
     }
 
     @action

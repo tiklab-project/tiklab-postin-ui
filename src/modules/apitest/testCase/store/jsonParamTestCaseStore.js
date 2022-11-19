@@ -30,7 +30,7 @@ export class JsonParamTestCaseStore {
     @action
     processJsonParamList = (data)=>{
         this.jsonParamTestCaseList = data;
-        const newRow =[ { id: 'FormParamTestCaseInitRow'}];
+        const newRow =[ { id: 'InitNewRowId'}];
         if(data.length===0){
             this.formParamTestCaseList=newRow;
         }else {

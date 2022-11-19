@@ -119,3 +119,14 @@
         min-height: 300px;
     }
 }
+
+.version-function-box{
+
+    .ant-table-cell{
+        padding: 10px;
+    }
+
+    .ant-table-thead > tr > th{
+        font-weight: var(--pi-font-weight-title);
+    }
+}

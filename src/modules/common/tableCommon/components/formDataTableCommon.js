@@ -15,12 +15,12 @@ const FormDataTableCommon = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '20%',
+            width: '30%',
             editable: true,
         },
         {
             title: '数据类型',
-            width: '10%',
+            width: '20%',
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <FileTextSelect
@@ -62,7 +62,7 @@ const FormDataTableCommon = (props) =>{
         },
         {
             title: '操作',
-            width: '15%',
+            width: '150',
             fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(
@@ -72,11 +72,6 @@ const FormDataTableCommon = (props) =>{
                 </Space>
             )
         },
-        {
-            title: '',
-            width: '30%',
-            dataIndex: 'none',
-        }
     ]
 
     const beforeUpload = ({fileList}) =>  false;

@@ -27,7 +27,7 @@ export class FormUrlencodedTestCaseStore {
             return;
         }
 
-        const newRow =[ { id: 'FormUrlencodedTestCaseInitRow'}];
+        const newRow =[ { id: 'InitNewRowId'}];
 
         this.formUrlencodedTestCaseDataSource = data;
         this.formUrlencodedTestCaseList=[...data,...newRow];
@@ -44,7 +44,7 @@ export class FormUrlencodedTestCaseStore {
         const res = await findFormUrlencodedTestCaseList(params);
         if(res.code === 0) {
             this.dataLength = res.data.length
-            this.processList(res.data)
+            this.processFormUrlencodedList(res.data)
             return  res.data;
         }  
     }

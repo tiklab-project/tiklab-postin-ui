@@ -5,12 +5,13 @@
  */
 
 import React, { Fragment, useState } from 'react';
-import { observer, inject } from 'mobx-react';
+import {observer, inject} from 'mobx-react';
 import {Modal, Form, Input, Button, Select, Cascader} from 'antd';
 import {methodDictionary} from "../../../common/dictionary/dictionary";
 import {TextMethodType} from "../../../common/methodType";
 
-const { Option } = Select;
+const {Option} = Select;
+const {TextArea} = Input;
 
 const ApxMethodEdit = (props) => {
     const {
@@ -106,6 +107,7 @@ const ApxMethodEdit = (props) => {
         }else{
             values.id=httpId;
             values.apix={
+                workspaceId:workspaceId,
                 id:httpId,
                 name:values.name
             }
@@ -218,7 +220,7 @@ const ApxMethodEdit = (props) => {
                         label="描述"
                         name="desc"
                     >
-                        <Input />
+                        <TextArea  rows={4}  placeholder="描述"/>
                     </Form.Item>
                 </Form>
             </Modal>

@@ -57,7 +57,7 @@ const RequestHeaderMock = (props) =>{
 
     // 表格里的操作
     const operation = (record,data) => {
-        if(record.id === 'mockRequestHeaderInitRow'){
+        if(record.id === 'InitNewRowId'){
             return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
                         <use xlinkHref= {`#icon-tianjia-`} />
                     </svg>

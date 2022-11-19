@@ -99,10 +99,12 @@
 //workspaceDetailInitPage
 
 .wd-content-margin{
-    //margin: 10px auto;
-    max-width: 1240px;
+    overflow: auto;
+    height: 100%;
+
 }
 .wd-content{
+    max-width: 1240px;
     margin: 10px;
     min-width: 800px;
     background: white;
@@ -181,7 +183,7 @@
 }
 
 .page-center{
-    width: 860px;
+    width: 1180px;
     padding: 0 16px;
     margin: 0 auto;
 

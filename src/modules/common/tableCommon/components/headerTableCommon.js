@@ -12,7 +12,7 @@ const {dataList, saveList, addNewList, deleteList} = props;
         {
             title: '参数名称',
             dataIndex: 'headerName',
-            width: '20%',
+            width: '40%',
             render: (text, record)=>(
                 <ExSelect
                     dictionary={headerParamDictionary}
@@ -24,12 +24,12 @@ const {dataList, saveList, addNewList, deleteList} = props;
             )
         },{
             title: '参数值',
-            width: '30%',
+            width: '40%',
             dataIndex: 'value',
             editable: true,
         },{
             title: '操作',
-            width: '20%',
+            width: '150',
             fixed: 'right',
             dataIndex: 'operation',
             render: (text, record,index) =>(
@@ -38,11 +38,6 @@ const {dataList, saveList, addNewList, deleteList} = props;
                     <a onClick={handleAdd}> 新行 </a>
                 </Space>
             )
-        },
-        {
-            title: '',
-            width: '30%',
-            dataIndex: 'none',
         }
     ]
 
@@ -53,7 +48,10 @@ const {dataList, saveList, addNewList, deleteList} = props;
         let dataSource = [...dataList, newData]
 
         addNewList(dataSource)
+
+
     };
+
 
     // 保存数据
     const handleSave = (row) => {
@@ -68,8 +66,6 @@ const {dataList, saveList, addNewList, deleteList} = props;
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
         console.log('list: ', list);
         setSelectedRowKeys(newSelectedRowKeys);
-
-
     };
 
     const rowSelection = {

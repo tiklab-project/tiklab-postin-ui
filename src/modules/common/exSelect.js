@@ -9,13 +9,13 @@ const {Option}=Select;
 
 const ExSelect = (props) => {
 
-    const {dictionary,defaultValue,handleSave,rowData,dataIndex} = props;
+    const {dictionary,defaultValue,handleSave,rowData,dataIndex,setNewRowAction} = props;
 
     const [record,setRecord] = useState([]);
 
     useEffect(()=>{
         setRecord(defaultValue)
-    },[])
+    },[defaultValue])
 
     //选值
     const onChangeSelect = (value) => {
@@ -24,6 +24,9 @@ const ExSelect = (props) => {
         data[dataIndex]=value;
         let newData = {...data};
         handleSave(newData);
+
+        //可编辑表格里的下拉框，选中后面操作会显示
+        setNewRowAction&&setNewRowAction(true)
     }
 
     //搜索

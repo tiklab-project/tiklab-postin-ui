@@ -153,7 +153,14 @@
         font-size: 13px;
     }
 
-    //border-top: 1px solid #f0f0f0;
+
+    .newRow-action-hidden{
+        display: none;
+    }
+    .newRow-action-show{
+        display: block;
+    }
+
 }
 
 .api-script-box{
@@ -367,4 +374,5 @@
 .ws-param-title{
     font-size: var(--pi-font-size-12);
 }
+
 

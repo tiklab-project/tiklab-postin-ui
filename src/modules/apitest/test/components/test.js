@@ -147,8 +147,23 @@ const ApxMethodTest = (props) => {
         }
     }
 
+    const backToList = () => {
+        props.history.push('/workspace/apis/detail/interface/detail')
+    }
+
+
     return(
         <Fragment>
+            <div className={"test-box-header"}>
+                <IconCommon
+                    icon={"31fanhui1"}
+                    style={{margin:"0 10px 0 0","cursor":"pointer"}}
+                    className={"icon-s testcase-header-right-back"}
+                    onClick={backToList}
+                />
+                <span>测试详情</span>
+            </div>
+
             <div className={"test-base"}>
                 <Form
                     onFinish={onFinish}

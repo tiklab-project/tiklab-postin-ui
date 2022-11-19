@@ -92,15 +92,15 @@ const HeaderContent = props => {
 
     return(
         <div className="frame-header">
-            <Space size={"large"}>
-                <WorkAppConfig isSSO={false}/>
+            <div className={"pi-header-right"}>
+                <div className={"pi-header-right-item"}><WorkAppConfig isAntIcon={false} isSSO={false}/></div>
                 <div className={'frame-header-logo'}>
                     {logo && <img src={logo} alt='logo' />}
                 </div>
                 {/*<div className={"header-menu-box"}>*/}
                 <HeaderMenu {...props}/>
                 {/*</div>*/}
-            </Space>
+            </div>
 
             <div className={'frame-header-right-box'}>
                 <div className={"header-right-search"}>

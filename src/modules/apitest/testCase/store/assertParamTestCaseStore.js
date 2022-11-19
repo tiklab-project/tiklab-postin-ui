@@ -12,6 +12,7 @@ export class AssertParamTestCaseStore {
     @observable assertParamTestCaseInfo = [];
     @observable assertParamTestCaseDataSource = [];
     @observable testCaseId = '';
+    @observable dataLength;
    
     @action 
     setList = (values) => {
@@ -26,14 +27,15 @@ export class AssertParamTestCaseStore {
             orderParams:[{name:'propertyName',orderType:'asc'}],
         }
 
-        const newRow =[ { id: 'AssertParamTestCaseInitRow'}]
+        const newRow =[ { id: 'InitNewRowId'}]
 
         const res = await findAssertParamTestCaseList(params);
         if(res.code === 0){
+            this.dataLength = res.data.length;
             this.assertParamTestCaseDataSource = res.data;
             this.assertParamTestCaseList = [...res.data,...newRow]
 
-            return this.assertParamTestCaseList;
+            return  res.data;
         }
     }
 
@@ -55,7 +57,7 @@ export class AssertParamTestCaseStore {
 
         const res = await createAssertParamTestCase(values)
         if( res.code === 0){
-            this.findAssertParamTestCaseList(this.testCaseId);
+            return this.findAssertParamTestCaseList(this.testCaseId);
         }
     }
 
@@ -63,7 +65,7 @@ export class AssertParamTestCaseStore {
 	updateAssertParamTestCase = async (values) => {
 		const res = await updateAssertParamTestCase(values)
         if( res.code === 0){
-            this.findAssertParamTestCaseList(this.testCaseId);
+            return this.findAssertParamTestCaseList(this.testCaseId);
         }
     }
 

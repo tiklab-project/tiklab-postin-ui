@@ -17,7 +17,6 @@ const HeaderMenu = (props) =>{
     const [current, setCurrent] = useState('/home');
 
     const onClick = (e) => {
-        console.log('click ', e);
         props.history.push(e.key)
         setCurrent(e.key);
     };

@@ -128,6 +128,10 @@ const SystemContent = (props) =>{
                     title: '日志模板',
                     icon: 'modular',
                     key: '/systemManagement/logTemplate',
+                },{
+                    title: '日志类型',
+                    icon: 'modular',
+                    key: '/systemManagement/logType',
                 },
                 {
                     title: '代办模板',
@@ -145,18 +149,24 @@ const SystemContent = (props) =>{
 
     //判断是否为本地登录，如果authType===true 为本地登录，需要添加账号与成员
     let menu = ()=>{
+
+        let authType =authConfig.authType
+
         try{
-            if(IS_DEV&&authConfig.authType===true){
+            console.log("aaa")
+            if(IS_DEV&&authType){   //本地
                 return [...accountMember,...settingMenu,...devMenu]
-            }else if(!IS_DEV&&authConfig.authType===true){
+            }else if(IS_DEV&&!authType){  //统一  本地
+                return [...settingMenu,...devMenu]
+            }else if(!IS_DEV&&authType){  //线上
                 return [...accountMember,...settingMenu]
-            }else if(!IS_DEV&&authConfig.authType===false){
-                return [...accountMember,...settingMenu]
+            }else if(!IS_DEV&&!authType){  //统一  线上
+                return settingMenu
             }
         }catch {
-            if(authConfig.authType===true){
+            if(authType){
                 return [...accountMember,...settingMenu]
-            }else{
+            }else if(!IS_DEV&&!authType){  //统一
                 return settingMenu
             }
         }

@@ -27,7 +27,7 @@ export class FormParamStore {
             httpId: id,
             orderParams:[{name:'paramName', orderType:'asc'}],
         }
-        const newRow =[ { id: 'FormParamInitRow'}];
+        const newRow =[ { id: 'InitNewRowId'}];
         const res = await findFormParamList(params);
         if(res.code === 0) {
             this.dataLength = res.data.length

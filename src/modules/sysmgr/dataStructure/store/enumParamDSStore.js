@@ -15,24 +15,9 @@ import {
 export class EnumParamDSStore {
 
     @observable enumParamDSList = [];
-    @observable enumParamDSInfo = [];
-    @observable enumParamDSDataSource = [];
-    @observable dataStructureId = '';
-    @observable enumParamDSId= '';
-    @observable dataLength = '';
 
     @action
-    addList = (values) => {
-        this.enumParamDSList = [...this.enumParamDSList,...values]
-    }
-    @action
-    setList = (values) => {
-        this.enumParamDSList = [...values]
-    }
-
-    @action
-    findEnumParamDSList = (id) => {
-        this.dataStructureId = id;
+    findEnumParamDSList = async (id) => {
         const params = {
             dataStructureId: id,
             orderParams:[{
@@ -40,84 +25,40 @@ export class EnumParamDSStore {
                 orderType:'asc'
             }],
         }
-        const that = this;
-        const newRow =[ { id: 'EnumParamDSInitRow'}]
-        return new Promise(function(resolve, reject){
-            findEnumParamListDS(params).then(res => {
-                if(res.code === 0) {
-                    that.dataLength = res.data.length
-                    that.enumParamDSDataSource = res.data;
-                    if( res.data.length === 0 ){
-                        that.enumParamDSList= newRow;
-                    }else {
-                        that.enumParamDSList = [...that.enumParamDSDataSource,...newRow];
-                    }
-                    resolve(res.data);
-                }
-            }).catch(error => {
-                reject(error)
-            })
-        })
-    }
 
-    @action
-    findEnumParamDS = (id) => {
-        this.enumParamDSId = id;
-        const that =this;
-        const param = new FormData();
-        param.append('id', id);
-        return new Promise(function(resolve, reject){
-            findEnumParamDS(param).then((res) => {
-                if( res.code === 0){
-                    that.enumParamDSInfo = res.data;
-                    resolve(res)
-                }
-            }).catch(error => {
-                reject(error)
-            })
-        })
-    }
+        let res = await findEnumParamListDS(params)
+        if(res.code === 0) {
+            this.enumParamDSList = res.data;
 
-
-    @action
-    createEnumParamDS = (values) => {
-        values.dataStructure = {
-            id: this.dataStructureId
+            return  res.data;
         }
-        return createEnumParamDS(values).then((res) => {
-            if( res.code === 0){
-                return  this.findEnumParamDSList(this.dataStructureId);
-            }
-        }).catch(error => {
-            console.log(error)
-        })
     }
 
     @action
-    updateEnumParamDS = (values) => {
-        return updateEnumParamDS(values).then((res) => {
-            if( res.code === 0){
-                return this.findEnumParamDSList(this.dataStructureId);
-            }
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
-    @action
-    deleteEnumParamDS = (id) => {
+    findEnumParamDS = async (id) => {
         const param = new FormData();
         param.append('id', id);
 
-        deleteEnumParamDS(param).then((res) => {
-            if( res.code === 0){
-                this.findEnumParamDSList(this.dataStructureId);
-            }
-        }).catch(error => {
-            console.log(error)
-        })
+        let res = await findEnumParamDS(param)
+        if( res.code === 0){
+            return  res.data;
+        }
     }
 
+
+    @action
+    createEnumParamDS = async (values) => await createEnumParamDS(values)
+
+    @action
+    updateEnumParamDS = async (values) => await updateEnumParamDS(values)
+
+    @action
+    deleteEnumParamDS = async (id) => {
+        const param = new FormData();
+        param.append('id', id);
+
+        return await deleteEnumParamDS(param)
+    }
 }
 
 export const ENUMPARAMDS_STORE = 'enumParamDSStore';

@@ -27,7 +27,7 @@ export class MockRequestHeaderStore {
             mockId: id,
             orderParams:[{name:'headerName',orderType:'asc' }],
         }
-        const newRow =[{ id: 'mockRequestHeaderInitRow'}];
+        const newRow =[{ id: 'InitNewRowId'}];
         const res = await findRequestHeaderMockList(params);
         if( res.code === 0){
             this.mockDataSourceList=res.data;

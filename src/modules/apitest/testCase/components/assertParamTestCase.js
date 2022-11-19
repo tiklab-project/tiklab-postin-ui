@@ -1,26 +1,31 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
-import { observer, inject } from "mobx-react";
-import { toJS} from 'mobx'
-import { Table, Input, Button, Form, Space, Tooltip, Select } from 'antd';
+import React, {useEffect, useState} from 'react';
+import {observer, inject} from "mobx-react";
+import {Space, Select, Popconfirm} from 'antd';
 import {ExTable} from "../../../common/editTable";
+import IconCommon from "../../../common/iconCommon";
 
 const { Option } = Select;
 
-// 共享父组件的值
-const EditableContext = React.createContext();
-
 // 请求参数的可编辑表格
 const AssertParamTestCase = (props) =>{
-    const { assertParamTestCaseStore, radioValue } = props;
+    const { assertParamTestCaseStore } = props;
     const {
         findAssertParamTestCaseList,
         deleteAssertParamTestCase,
         createAssertParamTestCase,
         updateAssertParamTestCase,
-        assertParamTestCaseDataSource,
         setList,
         assertParamTestCaseList,
+        dataLength
     } = assertParamTestCaseStore;
+
+    const [dataSource,setDataSource] = useState([]);
+    const testCaseId =  localStorage.getItem('testCaseId') ;
+
+    useEffect( ()=>{
+        findAssertParamTestCaseList(testCaseId).then(res=>setDataSource(res));
+    },[dataLength])
+
 
     let columns= [
         {
@@ -29,14 +34,15 @@ const AssertParamTestCase = (props) =>{
             width: '20%',
             render:(text,record) =>  (
                 <Select
-                    defaultValue={setSelectValue(record.source)}
+                    defaultValue={record.source}
+                    allowClear
                     bordered={false}
-                    style={{'width':200}}
+                    style={{'width':"100%"}}
                     onSelect= {(e) => onSelect(e,record)}
                 >
-                    <Option value="状态码">状态码</Option>
-                    <Option value="响应头">响应头</Option>
-                    <Option value="响应体">响应体</Option>
+                    <Option value={1}>状态码</Option>
+                    <Option value={2}>响应头</Option>
+                    <Option value={3}>响应体</Option>
                 </Select>
             )
         },
@@ -62,84 +68,110 @@ const AssertParamTestCase = (props) =>{
         },
         {
             title: '操作',
-            width: '10%',
+            width: '150',
             // align:'center',
             dataIndex: 'operation',
-            render: (text, record,index) =>(operation(record))
-        }
+            render: (text, record) =>(operation(record,dataSource))
+        },
     ]
-
-      // colums 里的操作
-      const operation = (record) => {
-        if(record.id === 'AssertParamTestCaseInitRow'){
-            return <Tooltip title="添加数据"><Button onClick={() =>onCreated(record)} >添加</Button></Tooltip>
-        }else{
-            const data = toJS(assertParamTestCaseDataSource)
-            return data.map((item) => {
-                if(item.id === record.id){
-                    const isValue = item.source === record.source && item.propertyName === record.propertyName && item.comparator === record.comparator && item.value === record.value;
-                    if(isValue){
-                        return (
-                            <Space key={item.id}>
-                                <Tooltip title="更新数据"><Button disabled onClick={() =>updateAssertParamTestCase(record)} > 更新</Button></Tooltip>
-                                <Tooltip title="删除数据"><Button onClick={() =>deleteAssertParamTestCase(record.id)}> 删除 </Button></Tooltip>
-                            </Space>
-                        )
-                    }else{
-                        return (
-                            <Space key={item.id}>
-                                <Tooltip title="更新数据"><Button onClick={() =>updateAssertParamTestCase(record)} > 更新</Button></Tooltip>
-                                <Tooltip title="删除数据"><Button onClick={() =>deleteAssertParamTestCase(record.id)}> 删除 </Button></Tooltip>
-                            </Space>
-                        )
-                    }
-                }
-            })
-        }
-    }
-
-
-    const id =  localStorage.getItem('testCaseId') ;
-    useEffect( ()=>{
-        findAssertParamTestCaseList(id)
-    },[radioValue])
-
 
     // 表格select选择事件
     const onSelect = (value, row) => {
-        let setValue;
-        if(value === '状态码'){
-            setValue = 1
-        }else if(value === '响应头'){
-            setValue = 2
-        }else if(value === '响应体'){
-            setValue = 3
-        }
         const data = {
             ...row,
-            source: setValue
+            source: value
+        }
+        handleSave(data);
+
+        setNewRowAction(true)
+    }
+
+    //取消
+    const onCancel = () =>{
+        let data = {
+            "id":"InitNewRowId",
+            "source":null,
+            "propertyName":null,
+            "comparator":null,
+            "value":null
         }
         handleSave(data)
+
+        //隐藏
+        setNewRowAction(false)
     }
 
-    const setSelectValue = (value) => {
-        switch(value){
-            case 1:
-                return '状态码';
-            case 2:
-                return '响应头';
-            case 3:
-                return '响应体';
+    const [newRowAction, setNewRowAction] = useState(false);
+
+    // colums 里的操作
+    const operation = (record,data) => {
+        if(record.id === 'InitNewRowId'){
+            return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
+                <Space>
+                    <a onClick={() =>onCreated(record)}> 保存</a>
+                    <a onClick={()=>onCancel()}> 取消</a>
+                </Space>
+            </div>
+        }else{
+            return <Space key={record.id}>
+                {
+                    updateView(record,data)
+                }
+                <Popconfirm
+                    title="确定删除？"
+                    onConfirm={() => deleteAssertParamTestCase(record.id)}
+                    okText='确定'
+                    cancelText='取消'
+                >
+                    <IconCommon
+                        icon={"shanchu3"}
+                        className="icon-s table-edit-icon"
+                    />
+                </Popconfirm>
+            </Space>
         }
     }
 
+    //本地编辑的值和返回的值比较，不想同的会显示更新按钮
+    const updateView = (record,data)=>{
+        return data&&data.map((item) => {
+            return (
+                item.id === record.id
+                    ?<>
+                        {
+                            item.source === record.source
+                            && item.propertyName === record.propertyName
+                            && item.comparator === record.comparator
+                            && item.value === record.value
+                                ? null
+                                : <IconCommon
+                                    icon={"btn_confirm"}
+                                    className="icon-s table-edit-icon"
+                                    onClick={() => upData(record)}
+                                />
+                        }
+                    </>
+                    :null
+            )
+        })
+    }
+
+    //更新
+    const upData = (value) => {
+        updateAssertParamTestCase(value).then(res => setDataSource(res))
+    }
 
     // 添加
-    const onCreated = (data) => {
-        const values = data;
-        // 创建新行的时候自带一个id，所以删了，后台会自行创建id
-        delete values.id;
-        createAssertParamTestCase(values);
+    const onCreated = (values) => {
+        if(Object.keys(values).length === 1){
+            return null
+        }else {
+            // 创建新行的时候自带一个id，所以删了，后台会自行创建id
+            delete values.id;
+            createAssertParamTestCase(values)
+        }
+
+        setNewRowAction(false)
     }
 
     // 保存数据
@@ -148,6 +180,18 @@ const AssertParamTestCase = (props) =>{
         const index = newData.findIndex((item) => row.id === item.id);
         newData.splice(index, 1, { ...newData[index], ...row });
         setList(newData)
+
+        //如果是新行 操作 显示操作按钮
+        if(row.id==="InitNewRowId"){
+            newRowKeyDown()
+        }
+    };
+
+    //当新行按键按下的时候显示后面的操作按钮
+    const newRowKeyDown = () => {
+        document.addEventListener('keydown', (e) =>{
+            setNewRowAction(true)
+        });
     };
 
     return (

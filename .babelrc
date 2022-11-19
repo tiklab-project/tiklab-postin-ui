@@ -30,8 +30,6 @@
             "style": true
         },"tiklab-eam-ui"],
 
-
-
         ["import", {
             "libraryName": "tiklab-privilege-ui",
             "libraryDirectory": "es",

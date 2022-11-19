@@ -27,7 +27,7 @@ export class RequestHeaderTestCaseStore {
             return;
         }
 
-        const newRow =[ { id: 'RequestHeaderTestCaseInitRow'}];
+        const newRow =[ { id: 'InitNewRowId'}];
 
         this.headerCaseDataSource = data;
         this.requestHeaderTestCaseList=[...data,...newRow];

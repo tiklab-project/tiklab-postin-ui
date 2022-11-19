@@ -66,11 +66,11 @@ const MockDetail = (props) =>{
 
                     <IconCommon
                         icon={"31fanhui1"}
-                        style={{margin:"0 0 0 5px"}}
+                        style={{margin:"0 10px 0 0"}}
                         className={"icon-s testcase-header-right-back"}
                         onClick={backToList}
                     />
-                    <div > MOCK列表 </div>
+                    <div > MOCK详情 </div>
                     <div style={{margin:" 0 5px"}}>/</div>
                     <EdiText
                         value={resData?.name}

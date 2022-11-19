@@ -23,6 +23,7 @@ import {findWorkspaceFollowList} from "../api/workspaceFollowApi";
 export class WorkspaceStore {
 	@observable workspaceList = [];
 	@observable workspaceInfo;
+	@observable workspaceIdList=[];
 	@observable workspaceId ='';
 	@observable workspaceName = '';
 	@observable	totalRecord = "";
@@ -65,6 +66,13 @@ export class WorkspaceStore {
 		const res = await findWorkspaceJoinList(value)
 		if(res.code === 0 ) {
 			this.workspaceList = res.data;
+
+			let idList = []
+			 res.data.map(item=>{
+				 idList.push( item.id)
+			})
+			this.workspaceIdList = idList;
+
 			return  res.data;
 		}
 	}

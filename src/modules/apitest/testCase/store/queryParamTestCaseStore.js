@@ -26,7 +26,7 @@ export class QueryParamTestCaseStore {
             return;
         }
 
-        const newRow =[ { id: 'QueryParamTestCaseInitRow'}];
+        const newRow =[ { id: 'InitNewRowId'}];
 
         this.queryParamTestCaseDataSource = data;
         this.queryParamTestCaseList=[...data,...newRow];

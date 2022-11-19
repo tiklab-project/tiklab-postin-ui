@@ -1,0 +1,43 @@
+
+.structure-content{
+    overflow: auto;
+    height: 100%;
+    padding: 10px;
+
+    &-box{
+        height: 100%;
+        margin: 0 auto;
+        width: 1180px;
+        background: white;
+        border-radius: var(--pi-border-radius);
+
+        &-main{
+            padding: 0 15px;
+
+            &-detail{
+                margin: 0 0 25px;
+
+                div{
+                    line-height: 35px;
+                }
+            }
+        }
+    }
+}
+
+.structure-item-list{
+
+    &-header{
+        display: flex;
+        justify-content: end;
+    }
+
+    .ant-table-thead > tr > th{
+        background: white;
+    }
+
+    .ant-table-tbody > tr > td{
+        padding: 8px;
+    }
+
+}

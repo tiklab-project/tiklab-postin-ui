@@ -5,6 +5,7 @@ import { mockValueDictionary } from '../../../common/dictionary/dictionary';
 import ExSelect from "../../../common/exSelect";
 import FileTextSelect from "../../../common/fileTextSelect";
 import {ExTable} from "../../../common/editTable";
+import IconCommon from "../../../common/iconCommon";
 
 
 // 请求参数的可编辑表格
@@ -31,24 +32,25 @@ const FormParamTestCase = (props) =>{
         {
             title: '参数名称',
             dataIndex: 'paramName',
-            width: '20%',
+            width: '30%',
             editable: true,
         },
         {
             title: '数据类型',
-            width: '15%',
+            width: '20%',
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <FileTextSelect
                     defaultValue={record.dataType}
                     handleSave={handleSave}
                     rowData={record}
+                    setNewRowAction={setNewRowAction}
                 />
             )
         },
         {
             title: '参数值',
-            width: '20%',
+            width: '30%',
             dataIndex: 'value',
             render: (text, record)=>(
                 <ExSelect
@@ -57,29 +59,45 @@ const FormParamTestCase = (props) =>{
                     handleSave={handleSave}
                     rowData={record}
                     dataIndex={'value'}
+                    setNewRowAction={setNewRowAction}
                 />
             )
         },
         {
             title: '操作',
-            width: '15%',
+            width: '150',
             fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(operation(record,dataSource))
         },
-        {
-            title: '',
-            width: '30%',
-            dataIndex: 'none',
-        }
     ]
+
+    //取消
+    const onCancel = () =>{
+        let data = {
+            id:"InitNewRowId",
+            "paramName":null,
+            "dataType":null,
+            "value":null
+        }
+        handleSave(data)
+
+        //隐藏
+        setNewRowAction(false)
+    }
+
+    const [newRowAction, setNewRowAction] = useState(false);
+
 
     // colums 里的操作
     const operation = (record,data) => {
-        if(record.id === 'FormParamTestCaseInitRow'){
-            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
-                        <use xlinkHref= {`#icon-tianjia-`} />
-                    </svg>
+        if(record.id === 'InitNewRowId'){
+            return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
+                <Space>
+                    <a onClick={() =>onCreated(record)}> 保存</a>
+                    <a onClick={()=>onCancel()}> 取消</a>
+                </Space>
+            </div>
         }else{
             return <Space key={record.id}>
                 {
@@ -91,9 +109,10 @@ const FormParamTestCase = (props) =>{
                     okText='确定'
                     cancelText='取消'
                 >
-                    <svg className="icon-s table-edit-icon" aria-hidden="true">
-                        <use xlinkHref= {`#icon-shanchu3`} />
-                    </svg>
+                    <IconCommon
+                        icon={"shanchu3"}
+                        className="icon-s table-edit-icon"
+                    />
                 </Popconfirm>
             </Space>
         }
@@ -110,7 +129,11 @@ const FormParamTestCase = (props) =>{
                             && item.dataType === record.dataType
                             && item.value === record.value
                                 ? null
-                                : <a onClick={() => upData(record)}>更新</a>
+                                : <IconCommon
+                                    icon={"btn_confirm"}
+                                    className="icon-s table-edit-icon"
+                                    onClick={() => upData(record)}
+                                />
                         }
                     </>
                     :null
@@ -124,11 +147,14 @@ const FormParamTestCase = (props) =>{
     }
 
     // 添加
-    const onCreated = (data) => {
-        const values = data;
-        // 创建新行的时候自带一个id，所以删了，后台会自行创建id
-        delete values.id;
-        createFormParamTestCase(values);
+    const onCreated = (values) => {
+        if(Object.keys(values).length === 1){
+            return null
+        }else {
+            // 创建新行的时候自带一个id，所以删了，后台会自行创建id
+            delete values.id;
+            createFormParamTestCase(values)
+        }
     }
 
     // 保存数据
@@ -137,6 +163,19 @@ const FormParamTestCase = (props) =>{
         const index = newData.findIndex((item) =>  row.id === item.id);
         newData.splice(index, 1, { ...newData[index], ...row });
         setList(newData)
+
+        //如果是新行 操作 显示操作按钮
+        if(row.id==="InitNewRowId"){
+            newRowKeyDown()
+        }
+    };
+
+
+    //当新行按键按下的时候显示后面的操作按钮
+    const newRowKeyDown = () => {
+        document.addEventListener('keydown', (e) =>{
+            setNewRowAction(true)
+        });
     };
 
     return (

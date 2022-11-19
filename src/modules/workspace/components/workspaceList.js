@@ -40,7 +40,7 @@ const WorkspaceList = (props) => {
             )
         },
         {
-            title: `创建人`,
+            title: `负责人`,
             dataIndex: ["user","name"],
             key: "user",
             width:"20%",
@@ -133,7 +133,7 @@ const WorkspaceList = (props) => {
             })
         }else {
             let param = {
-                userId:userId,
+                user: {id:userId},
                 workspace: {id:record.id}
             }
             createWorkspaceFollow(param).then(()=>{

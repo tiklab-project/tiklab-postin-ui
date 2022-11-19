@@ -1,23 +1,26 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './homestyle.scss';
 import WorkspaceRecentHome from "../workspace/components/workspaceRecentHome";
-import {Empty} from "antd";
+
 import DynamicWidget from "./dynamicWidget";
-import emptyImg from "../../assets/img/empty.png"
 
 import {RightOutlined} from "@ant-design/icons";
+import {inject, observer} from "mobx-react";
+import {getUser} from "tiklab-core-ui";
 
 // 首页
 const Home =(props)=> {
-
-
-    const changeTodo =() =>{
-        props.history.push("/dynamic")
-    }
+    const {workspaceStore} = props;
+    const {findWorkspaceJoinList} = workspaceStore;
 
     const changeDynamic =() =>{
         props.history.push("/dynamic")
     }
+
+    useEffect(()=>{
+        findWorkspaceJoinList({userId: getUser().userId})
+    },[])
+
 
 
     return(
@@ -63,12 +66,12 @@ const Home =(props)=> {
                             <svg className="icon-m home-item-title-icon" aria-hidden="true">
                                 <use xlinkHref= {`#icon-rizhijilu`} />
                             </svg>
-                            <apan>动态信息</apan>
+                            <span>动态信息</span>
                         </div>
                         <RightOutlined onClick={changeDynamic} />
                     </div>
                     <div style={{"padding":" 0 20px"}}>
-                        <DynamicWidget/>
+                        <DynamicWidget />
                     </div>
                 </div>
             </div>
@@ -76,4 +79,4 @@ const Home =(props)=> {
     )
 }
 
-export default Home;
+export default inject("workspaceStore")(observer(Home));

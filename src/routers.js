@@ -27,13 +27,14 @@ import {Directory, OrgaList, UserList} from "tiklab-user-ui";
 import LoginContent from "./modules/login/loginContent";
 import {WidgetWork} from "tiklab-widget-ui";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
-import {Version} from "tiklab-licence-ui";
 import {MessageManagement, MessageSendType, MessageTemplate, MessageType} from "tiklab-message-ui";
 import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
 import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
-import {LogList, LogTemplateList} from "tiklab-oplog-ui";
+import {LogList, LogTemplateList, LogTypeList} from "tiklab-oplog-ui";
 import {PluginDetail, PluginList} from "tiklab-plugin-ui";
 import DynamicDetail from "./modules/home/dynamicDetail";
+import Version from "./modules/sysmgr/version/version";
+import StructureDetail from "./modules/sysmgr/dataStructure/components/StructureDetail";
 
 const routers =  [
     {
@@ -156,7 +157,7 @@ const routers =  [
                         path: "/systemManagement/version",
                         key:'version',
                         exact: true,
-                        render:(props)=> <Version {...props} bgroup={'postin'}/>
+                        component:Version
 
                     },
                     {
@@ -201,6 +202,11 @@ const routers =  [
                         key:'logTemplate',
                         exact: true,
                         render:(props)=>  <LogTemplateList {...props} bgroup={"postin"}/>,
+                    },{
+                        path: "/systemManagement/logType",
+                        key:'logTemplate',
+                        exact: true,
+                        render:()=>  <LogTypeList bgroup={"postin"}/>,
                     },{
                         path: "/systemManagement/taskList",
                         key:'todo',
@@ -358,6 +364,11 @@ const routers =  [
                         key:'dataStucture',
                         exact: true,
                         component: DataStructure,
+                    },{
+                        path: "/workspace/structure-detail",
+                        key:'structure-detail',
+                        exact: true,
+                        component: StructureDetail,
                     },
                     {
                         path: "/workspace/setting",

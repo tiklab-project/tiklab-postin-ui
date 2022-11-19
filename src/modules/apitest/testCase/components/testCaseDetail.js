@@ -185,11 +185,11 @@ const TestCaseDetail = (props) => {
                 <div className={"testcase-header-right"}>
                     <IconCommon
                         icon={"31fanhui1"}
-                        style={{margin:"0 0 0 5px"}}
+                        style={{margin:"0 10px 0 0"}}
                         className={"icon-s testcase-header-right-back"}
                         onClick={backToList}
                     />
-                    <div className={"testcase-header-right-back"} onClick={backToList}>用例列表</div>
+                    <div className={"testcase-header-right-back"} onClick={backToList}>接口用例</div>
                     <div >/</div>
                     <EdiText
                         value={caseName}

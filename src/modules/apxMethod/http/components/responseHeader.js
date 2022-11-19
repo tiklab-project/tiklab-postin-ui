@@ -74,12 +74,32 @@ const ResponseHeader = (props) =>{
         handleSave(data)
     }
 
+    //取消
+    const onCancel = () =>{
+        let data = {
+            id:"InitNewRowId",
+            "headerName":null,
+            "value":null,
+            "required":1,
+            "desc":null
+        }
+        handleSave(data);
+
+        //隐藏
+        setNewRowAction(false)
+    }
+
+    const [newRowAction, setNewRowAction] = useState(false);
+
     // 表格里的操作
     const operation = (record,data) => {
-        if(record.id === 'ResponseHeaderInitRow'){
-            return <svg className={"icon-s table-edit-icon"} aria-hidden="true" onClick={() =>onCreated(record)} >
-                        <use xlinkHref= {`#icon-tianjia-`} />
-                    </svg>
+        if(record.id === 'InitNewRowId'){
+            return  <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
+                <Space>
+                    <a onClick={() =>onCreated(record)}> 保存</a>
+                    <a onClick={()=>onCancel()}> 取消</a>
+                </Space>
+            </div>
         }else{
             return data&&data.map((item) => {
                 return (
@@ -102,8 +122,8 @@ const ResponseHeader = (props) =>{
                             cancelText='取消'
                         >
                             <svg className="icon-s table-edit-icon" aria-hidden="true">
-                        <use xlinkHref= {`#icon-shanchu3`} />
-                    </svg>
+                                <use xlinkHref= {`#icon-shanchu3`} />
+                            </svg>
                         </Popconfirm>
                     </Space>
                     :null
@@ -129,6 +149,8 @@ const ResponseHeader = (props) =>{
             delete values.id;
             createResponseHeader(values)
         }
+
+        setNewRowAction(false)
     }
 
     const upData = (value) => {
@@ -141,6 +163,19 @@ const ResponseHeader = (props) =>{
         const index = newData.findIndex((item) =>row.id === item.id);
         newData.splice(index, 1, { ...newData[index], ...row });
         setList(newData)
+
+
+        //如果是新行 操作 显示操作按钮
+        if(row.id==="InitNewRowId"){
+            newRowKeyDown()
+        }
+    };
+
+    //当新行按键按下的时候显示后面的操作按钮
+    const newRowKeyDown = () => {
+        document.addEventListener('keydown', (e) =>{
+            setNewRowAction(true)
+        });
     };
 
     return (

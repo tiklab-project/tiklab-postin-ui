@@ -5,7 +5,9 @@ import {dataTypeDictionary} from "./dictionary/dictionary";
 const {Option} = Select;
 
 const DataTypeSelect = (props) =>{
-    const {defaultValue,handleSave,rowData} = props;
+    const {defaultValue,handleSave,rowData,setNewRowAction} = props;
+
+
 
     //选择
     const onSelect = (value) => {
@@ -14,6 +16,8 @@ const DataTypeSelect = (props) =>{
             dataType: value
         }
         handleSave(data)
+
+        setNewRowAction&&setNewRowAction(true)
     }
 
     //list渲染
@@ -27,6 +31,7 @@ const DataTypeSelect = (props) =>{
             style={{ width: "100%" }}
             defaultValue={defaultValue}
             bordered={false}
+            allowClear
         >
             {renderItem(dataTypeDictionary)}
         </Select>
