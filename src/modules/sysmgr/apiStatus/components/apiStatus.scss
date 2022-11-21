@@ -2,9 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
-    border-bottom: 1px solid var(--pi-border-color);
+    height: 40px;
+    border: 1px dashed #eee;
     cursor: pointer;
+    margin: -1px 0 0;
 }
 
 .api-status-add-box:hover{

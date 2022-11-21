@@ -31,68 +31,13 @@ const WorkspaceDetailInitPage = (props) =>{
     },[workspaceId])
 
 
-    const changeWorkspace = async (e) =>{
-        let value = await form.validateFields();
-        let values = {
-            ...workspaceData,
-            ...value,
 
-        }
-        updateWorkspace(values)
-    }
-
-    //头部搜索，防抖
-    const debounce = (fn)=> {
-        let timer;
-        return function (e) {
-            e.persist();//不加这个取不到e.target.value 的值
-            if(timer){
-                clearTimeout(timer);
-            }
-            timer = setTimeout(() => {
-                fn.apply(this, arguments)
-            }, 500)
-        }
-    }
 
     return(
-        <div className={"wd-content-margin"}>
-        <div className={"wd-content"}>
-            <div className={"wd-content-header"}>
-                <Form
-                    className='ws-edit-modal-form'
-                    initialValues={{ remember: true }}
-                    form={form}
-                    // onFinish={onFinish}
-                    preserve={false}
-                >
-                    <Form.Item
-                        // label="应用名称"
-                        rules={[{ required: true, message: '空间名' }]}
-                        name="workspaceName"
-                    >
-                        <Input
-                            // onChange={debounce(changeWorkspace)}
-                            className={"wd-header-name"}
-                            autoComplete="off"
-
-                        />
-                    </Form.Item>
-                    <Form.Item
-                        // label="描述"
-                        name="desc"
-                    >
-                        <Input
-                            className={"wd-header-desc"}
-                            placeholder="用于描述空间的基本详情"
-                            onChange={debounce(changeWorkspace)}
-                            autoComplete="off"
-                        />
-                        {/*<svg className="icon" aria-hidden="true">*/}
-                        {/*    <use xlinkHref= {`#icon-bianji`} />*/}
-                        {/*</svg>*/}
-                    </Form.Item>
-                </Form>
+        <div className={"content-margin"}>
+        <div className={"content-margin-box ws-init-content"}>
+            <div className={"content-margin-box-header"}>
+                <div className={"wd-header-name"}>{workspaceData?.workspaceName}</div>
             </div>
             <div className={"wd-total"}>
                 <div className={"wd-title"}> 概要</div>
@@ -122,10 +67,10 @@ const WorkspaceDetailInitPage = (props) =>{
             </div>
             <div >
                 <div>
-                    <div className={"wd-title"}>活动详情</div>
+                    <div className={"wd-title"}>动态详情</div>
                     {/*<div>更多</div>*/}
                 </div>
-                <div>
+                <div className={"white-bg-box"}>
                     <DynamicWidget screen={{"workspaceId": workspaceId}}/>
                 </div>
             </div>

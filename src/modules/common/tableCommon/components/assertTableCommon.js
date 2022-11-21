@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Button, Select, Space, Tooltip} from "antd";
 import {ExTable} from "../../editTable";
+import {toJS} from "mobx";
+import {uuid} from "../../../../common/utils/createId";
+import IconCommon from "../../iconCommon";
 
 const {Option} = Select;
 
@@ -14,14 +17,15 @@ const AssertTableCommon = (props)=>{
             width: '20%',
             render:(text,record) =>  (
                 <Select
-                    defaultValue={()=>setSelectValue(record.source)}
+                    defaultValue={record.source}
+                    allowClear
                     bordered={false}
-                    style={{'width':200}}
+                    style={{'width':"100%"}}
                     onSelect= {(e) => onSelect(e,record)}
                 >
-                    <Option value="状态码">状态码</Option>
-                    <Option value="响应头">响应头</Option>
-                    <Option value="响应体">响应体</Option>
+                    <Option value={1}>状态码</Option>
+                    <Option value={2}>响应头</Option>
+                    <Option value={3}>响应体</Option>
                 </Select>
             )
         },
@@ -35,7 +39,6 @@ const AssertTableCommon = (props)=>{
             title: '比较符',
             width: '10%',
             dataIndex: 'comparator',
-
             render:()=>(<span>=</span>)
         },
         {
@@ -50,66 +53,45 @@ const AssertTableCommon = (props)=>{
             width: '150',
             fixed: 'right',
             dataIndex: 'operation',
-            render:(text,record,index)=>(
-                <Space>
-                    <Tooltip title="删除数据"><a onClick={()=> deleteList(record.id)}> 删除 </a></Tooltip>
-                    <Tooltip title="添加数据"><a onClick={handleAdd}> 添加 </a></Tooltip>
-                </Space>
+            render: (text, record) =>(
+                <>
+                    {
+                        Object.keys(record).length===1
+                            ?null
+                            :<IconCommon
+                                icon={"shanchu3"}
+                                className="icon-s table-edit-icon"
+                                onClick={()=>deleteList(record.id)}
+                            />
+                    }
+                </>
             )
 
-        },
-        {
-            title: '',
-            width: '25%',
-            dataIndex: 'none',
         }
     ]
 
 
-
     // 表格select选择事件
     const onSelect = (value, row) => {
-        let setValue
-        if(value === '状态码'){
-            setValue = 1
-        }else if(value === '响应头'){
-            setValue = 2
-        }else if(value === '响应体'){
-            setValue = 3
-        }
         const data = {
             ...row,
-            source: setValue
+            source: value
         }
-        handleSave(data)
+        handleSave(data);
     }
-
-    const setSelectValue = (value) => {
-        switch(value){
-            case 1:
-                return '状态码';
-            case 2:
-                return '响应头';
-            case 3:
-                return '响应体';
-        }
-    }
-
-    const [count, setCount] = useState(1)
-
-    const handleAdd = () => {
-        setCount(count + 1)
-        const newData = {id: count};
-        const  dataSource = [...dataList, newData]
-
-        addNewList(dataSource)
-    };
 
     // 保存数据
-    const handleSave = (row) => {
-        const newData = dataList;
-        const index = newData.findIndex((item) =>row.id === item.id);
+    const handleSave =  (row) => {
+        let newData = toJS(dataList);
+        //获取当前行对应的下标
+        let index = newData.findIndex((item) => row.id === item.id);
+        //替换上一次录入的数据
         newData.splice(index, 1, { ...newData[index], ...row });
+
+        //如果是最后一行，添加新行
+        if(index===newData.length-1){
+            newData.push({id:uuid()})
+        }
 
         saveList(newData)
     };

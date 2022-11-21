@@ -11,7 +11,12 @@ const LeftNav = (props) =>{
     const {workspaceName,workspaceList,findWorkspaceList,settingMenuSelected } = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const menuData = [
-
+        {
+            "icon":"home",
+            "name":"概况",
+            "key":"overview",
+            "router":"/workspace/overview"
+        },
         {
             "icon":"jiekou",
             "name":"API",
@@ -48,6 +53,7 @@ const LeftNav = (props) =>{
         systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId,"postin")
     },[])
 
+    //点击左侧导航事件
     const clickAddRouter = (data) =>{
 
         addApiTabInfo(data.router);
@@ -77,6 +83,7 @@ const LeftNav = (props) =>{
         }
     }
 
+    //点击快捷测试初始化的tap
     const addQuickTestTabInfo = (router) =>{
         if(router==="/workspace/quickTest"){
             const apiTabInfo = {
@@ -96,17 +103,7 @@ const LeftNav = (props) =>{
         }
     }
 
-    const clickWorkspaceIcon = () =>{
-        let data = {
-            router:"/workspace/apis",
-            key:"api"
-        }
-
-        clickAddRouter(data);
-
-        settingMenuSelected("/workspace/setting/detail");
-    }
-
+    //左侧导航
     const showMenuItem = (data) =>{
         return data&&data.map(item=>{
             return(
@@ -130,6 +127,7 @@ const LeftNav = (props) =>{
         })
     }
 
+    //展示左侧导航 空间icon
     const showIcon = (text)=>{
         let t = text.substring(0,1).toUpperCase();
 
@@ -138,6 +136,7 @@ const LeftNav = (props) =>{
         </div>
     }
 
+    //展示切换的空间
     const showWorkspaceList = (list) =>{
         return list&&list.map(item=>{
             return (
@@ -151,8 +150,7 @@ const LeftNav = (props) =>{
         })
     }
 
-
-
+    //切换空间
     const toggleWorkspace = (workspaceId)=>{
         toWorkspaceDetail(workspaceId,getUser().userId,workspaceRecent)
 
@@ -163,11 +161,7 @@ const LeftNav = (props) =>{
         <>
             <ul className={"ws-detail-left-nav"}>
                 <div>
-                    <li
-                        className={`ws-detail-left-nav-item-workspace `}
-                        onClick={clickWorkspaceIcon}
-
-                    >
+                    <li className={`ws-detail-left-nav-item-workspace `} >
                         <div className={"ws-icon-box"}>
 
                             <span style={{"cursor":"pointer",margin:" 0 0 0 20px"}}>

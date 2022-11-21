@@ -26,10 +26,7 @@ export  class RequestHeaderTestStore {
         this.requestHeaderTestList = [...list];
     }
 
-    @action
-    addNewList = (list) => {
-        this.requestHeaderTestList = [...list];
-    }
+
 
 }
 

@@ -135,8 +135,8 @@ const HttpList = (props) => {
     }
 
     return(
-        <div className={"content-box-center"}>
-            <div className='list-content-center'>
+        <div className={"content-margin"}>
+            <div className='content-margin-box list-content-center'>
                 <div className={'category-search'}>
                     <Input
                         prefix={<SearchOutlined />}

@@ -27,8 +27,8 @@ const EnvSelect = (props) =>{
     }
 
     const showOption = (data)=>{
-        return data&&data.map(item=>{
 
+        return data&&data.map(item=>{
             return (
                 <Option key={item.id} value={item.url}>
                     <Tooltip placement="leftTop" title={item.url}> {item.name} </Tooltip>
@@ -42,6 +42,7 @@ const EnvSelect = (props) =>{
         <Select
             bordered={false}
             className={"ws-select-box"}
+            placeholder={"未设置环境"}
             onSelect={(value)=> onSelectChange(value)}
             // defaultValue={selectEnv}
             dropdownRender={item=>(
@@ -53,6 +54,7 @@ const EnvSelect = (props) =>{
                 </>
             )}
         >
+            <Option value={null}>无</Option>
             {
                 showOption(envSourceList)
             }

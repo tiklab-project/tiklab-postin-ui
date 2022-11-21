@@ -25,7 +25,7 @@ export const toWorkspaceDetail = (workspaceId,userId,workspaceRecent) => {
 
     globalTabListInit(workspaceId)
 
-    localStorage.setItem("LEFT_MENU_SELECT","api");
+    localStorage.setItem("LEFT_MENU_SELECT","overview");
 
     localStorage.setItem('workspaceId',workspaceId);
 }

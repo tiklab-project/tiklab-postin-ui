@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from "react";
-import { List, Skeleton} from "antd";
+import {Empty, List, Skeleton} from "antd";
 import Avatar from "antd/es/avatar/avatar";
 
 import {findLogList} from "./commonApi";
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
+import emptyImg from "../../assets/img/empty.png";
 
 
 const DynamicWidget = (props) =>{
@@ -66,6 +67,13 @@ const DynamicWidget = (props) =>{
             loading={initLoading}
             itemLayout="horizontal"
             dataSource={list}
+            locale={{
+                emptyText: <Empty
+                    imageStyle={{ height: 120 }}
+                    description={<span>暂无动态</span>}
+                    image={emptyImg}
+                />,
+            }}
             renderItem={(item) => (
                 <List.Item >
                     <Skeleton avatar title={false} loading={item.loading} active>

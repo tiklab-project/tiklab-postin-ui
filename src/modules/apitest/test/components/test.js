@@ -97,8 +97,7 @@ const ApxMethodTest = (props) => {
 
     // 点击测试
     const onFinish =async ()=> {
-
-        let values =await form.getFieldsValue()
+        let values =await form.validateFields()
 
         const allSendData = {
             "method":values.methodType,
@@ -140,8 +139,18 @@ const ApxMethodTest = (props) => {
             )
         }else {
             return (
-                <Form.Item name="host" className='formItem'>
-                    <Input />
+                <Form.Item
+                    name="host"
+                    className='formItem'
+                    rules={[
+                        {
+                            required: true,
+                            pattern: new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/),
+                            message: '请输入http开头的完整URL'
+                        },
+                    ]}
+                >
+                    <Input placeholder={"请输入HTTP开头的完整URL"}  />
                 </Form.Item>
             )
         }
@@ -192,7 +201,7 @@ const ApxMethodTest = (props) => {
                         </Form.Item>
                     </div>
 
-                    <Space>
+                    <Space style={{height:40}}>
                         <Button className="important-btn" onClick={onFinish} style={{display:"flex",alignItems:"center"}}>
                             <IconCommon icon={"fasong-copy"} className={"icon-s"}/>
                             发送
@@ -203,13 +212,17 @@ const ApxMethodTest = (props) => {
             </div>
 
             <div className='header-title ex-title'>请求</div>
-            <TestRequest {...props}/>
+            <div className={"white-bg-box"}>
+                <TestRequest {...props}/>
+            </div>
 
             <div className='header-title ex-title'>响应</div>
-            <TestResultCommon
-                testResponse={testResponse}
-                showResponse={showResponse}
-            />
+            <div className={"white-bg-box"}>
+                <TestResultCommon
+                    testResponse={testResponse}
+                    showResponse={showResponse}
+                />
+            </div>
         </Fragment>
     )
 }

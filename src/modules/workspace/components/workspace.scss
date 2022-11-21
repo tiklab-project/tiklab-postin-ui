@@ -17,12 +17,14 @@ ul{
     width: 240px;
     //background: #f7f7f7;
     border-right: 1px solid var(--pi-border-color);
+    min-width: 220px;
 }
 
 
 .middleBox{
     width:4px;
     //border-right: 1px solid #e4e4e4;
+    background-color: var(--pi-bg-grey-100);
 }
 
 .middleBox:hover{

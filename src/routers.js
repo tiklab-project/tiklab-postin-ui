@@ -245,6 +245,12 @@ const routers =  [
                 key:'DetailIndex',
                 routes:[
                     {
+                        path: "/workspace/overview",
+                        exact: true,
+                        key:'Category',
+                        component: WorkspaceDetailInitPage,
+                    },
+                    {
                         path: "/workspace/apis",
                         key:'apis',
                         component: LayoutApiContent,
@@ -254,12 +260,6 @@ const routers =  [
                                 key:'TabsPage',
                                 component: TabsPage,
                                 routes:[
-                                    {
-                                        path: "/workspace/apis/detail/apiInitPage",
-                                        exact: true,
-                                        key:'Category',
-                                        component: WorkspaceDetailInitPage,
-                                    },
                                     {
                                         path: "/workspace/apis/detail/category",
                                         exact: true,
@@ -400,12 +400,11 @@ const routers =  [
                             },
                         ]
                     },
-
                     {
                         path:"/workspace",
                         key:'ridapidetail',
                         exact: true,
-                        component: ()=><Redirect to='/workspace/apis'/>,
+                        component: ()=><Redirect to='/workspace/overview'/>,
                     },
                 ]
             },

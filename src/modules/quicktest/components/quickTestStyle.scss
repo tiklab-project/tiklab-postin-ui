@@ -87,3 +87,16 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.white-bg-box{
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: var(--pi-border-radius);
+}
+
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-ink-bar{
+    visibility: inherit!important;
+    background: #ededed;
+}

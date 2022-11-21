@@ -1,14 +1,8 @@
-/**
- * @description：
- * @date: 2021-07-29 17:17
- */
 import React, {useEffect, useState} from 'react';
 import EnumParamDS from './enumStructure';
 import JsonParamDS from "./jsonStructure";
 import {inject, observer} from "mobx-react";
-import WorkspaceEdit from "../../../workspace/components/workspaceEdit";
 import DetailHeader from "../../../common/detailHeader";
-import DataStructureEdit from "./dataStructureEdit";
 import IconCommon from "../../../common/iconCommon";
 
 

@@ -105,6 +105,7 @@ const TabsPage = (props) =>{
     return (
         <>
             <Tabs
+                style={{"backgroundColor":"var(--pi-bg-grey-100)"}}
                 type="editable-card"
                 onChange={onChange}
                 activeKey={activeKey?activeKey:String(apiTabListInfo.activeKey)}

@@ -15,7 +15,7 @@
     position: relative;
     margin: 10px 0 0 0;
     height: 300px;
-    border: 1px solid #eaeaea
+    //border: 1px solid #eaeaea
 }
 .test-response-before-alert{
     // width: 200px;
@@ -26,6 +26,10 @@
     margin-left: -70px;
     margin-top: -10px;
 
+}
+
+.test-response-after{
+    height: 300px;
 }
 
 .test-response-error{

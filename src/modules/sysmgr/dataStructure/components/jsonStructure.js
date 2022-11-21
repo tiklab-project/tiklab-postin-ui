@@ -1,7 +1,3 @@
-/**
- * @description：
- * @date: 2021-07-29 17:53
- */
 
 import React, {  useEffect } from 'react';
 import { observer, inject } from "mobx-react";
@@ -21,7 +17,7 @@ const JsonStructure = (props) => {
     //表头
     const columns = [
         {
-            title: '参数名称',
+            title: '属性名',
             dataIndex: 'paramName',
             width: '20%',
             editable: true,

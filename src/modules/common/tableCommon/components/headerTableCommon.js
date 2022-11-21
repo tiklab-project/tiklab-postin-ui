@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import ExSelect from "../../exSelect";
 import {headerParamDictionary} from "../../dictionary/dictionary";
-import {Button, Space, Tooltip} from "antd";
-import {ExTable} from "./tableCommon";
 import {uuid} from "../../../../common/utils/createId";
+import {ExTable} from "../../editTable";
+import IconCommon from "../../iconCommon";
+import {toJS} from "mobx";
 
 const HeaderTableCommon = (props) =>{
 const {dataList, saveList, addNewList, deleteList} = props;
@@ -32,36 +33,39 @@ const {dataList, saveList, addNewList, deleteList} = props;
             width: '150',
             fixed: 'right',
             dataIndex: 'operation',
-            render: (text, record,index) =>(
-                <Space>
-                    <a onClick={()=>deleteList(record.id)}> 删除 </a>
-                    <a onClick={handleAdd}> 新行 </a>
-                </Space>
+            render: (text, record) =>(
+                <>
+                    {
+                        Object.keys(record).length===1
+                            ?null
+                            :<IconCommon
+                                icon={"shanchu3"}
+                                className="icon-s table-edit-icon"
+                                onClick={()=>deleteList(record.id)}
+                            />
+                    }
+                </>
             )
         }
     ]
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-    const handleAdd = () => {
-        let newData = {id: uuid()};
-        let dataSource = [...dataList, newData]
-
-        addNewList(dataSource)
-
-
-    };
-
-
     // 保存数据
-    const handleSave = (row) => {
-        let newData = dataList;
+    const handleSave =  (row) => {
+        let newData = toJS(dataList);
+        //获取当前行对应的下标
         let index = newData.findIndex((item) => row.id === item.id);
+        //替换上一次录入的数据
         newData.splice(index, 1, { ...newData[index], ...row });
+
+        //如果是最后一行，添加新行
+        if(index===newData.length-1){
+            newData.push({id:uuid()})
+        }
 
         saveList(newData)
     };
-
     const onSelectChange = (newSelectedRowKeys,list) => {
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
         console.log('list: ', list);

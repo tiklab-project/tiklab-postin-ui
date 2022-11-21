@@ -27,7 +27,7 @@ export class MockQueryParamStore {
             mockId: id,
             orderParams:[{name:'paramName',orderType:'asc'}],
         }
-        const newRow =[{ id: 'mockQueryParamInitRow'}];
+        const newRow =[{ id: 'InitNewRowId'}];
         const res = await findQueryParamMockList(params);
         if(res.code === 0){
             this.mockDataSourceList = res.data;

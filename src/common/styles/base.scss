@@ -22,7 +22,7 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
 
 /*控制整个滚动条*/
 ::-webkit-scrollbar {
-    background-color: white;
+    //background-color: white;
     width: 10px;
     height: 10px;
 }
@@ -140,6 +140,22 @@ table .icon{
 .ant-tabs-bottom>.ant-tabs-nav, .ant-tabs-bottom>div>.ant-tabs-nav, .ant-tabs-top>.ant-tabs-nav, .ant-tabs-top>div>.ant-tabs-nav{
     margin: 0;
 }
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu{
+    margin: 0 20px 0 0;
+    width: 60px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+}
+
+.ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
+    border-bottom: 1px solid #ddd;
+}
+
+//.ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
+//    padding: 0;
+//}
 
 .ant-modal-header{
     padding: 20px 30px 0;

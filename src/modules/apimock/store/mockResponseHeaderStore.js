@@ -24,7 +24,7 @@ export class MockResponseHeaderStore {
             mockId: id,
             orderParams:[{name:'headerName',orderType:'asc' }],
         }
-        const newRow =[{ id: 'mockResponseHeaderInitRow'}];
+        const newRow =[{ id: 'InitNewRowId'}];
         const res = await findResponseHeaderMockList(params);
         if( res.code === 0){
             this.dataLength = res.data.length

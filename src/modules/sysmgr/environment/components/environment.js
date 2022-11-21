@@ -6,7 +6,7 @@
 import React, {useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
 import {Table, Space, Popconfirm, Drawer, Modal} from 'antd';
-import {ExTable} from "../../../common/tableCommon/components/tableCommon";
+import {ExTable} from "../../../common/editTable";
 
 //
 const EvnMana = (props) => {

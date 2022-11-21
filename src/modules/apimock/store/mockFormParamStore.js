@@ -25,7 +25,7 @@ export class MockFormParamStore {
             mockId: id,
             orderParams:[{name:'paramName', orderType:'asc'}],
         }
-        const newRow =[{ id: 'mockFormParamInitRow'}];
+        const newRow =[{ id: 'InitNewRowId'}];
         const res = await findFormParamMockList(params);
         if(res.code === 0) {
             this.mockDataSourceList = res.data;

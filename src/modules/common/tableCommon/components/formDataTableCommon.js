@@ -6,10 +6,12 @@ import {ExTable} from "../../editTable";
 import {UploadOutlined} from "@ant-design/icons";
 import FileTextSelect from "../../../common/fileTextSelect";
 import {uuid} from "../../../../common/utils/createId";
+import IconCommon from "../../iconCommon";
+import {toJS} from "mobx";
 
 // 请求参数的可编辑表格
 const FormDataTableCommon = (props) =>{
-    const {dataList, saveList, addNewList, deleteList} = props;
+    const {dataList, saveList, deleteList} = props;
 
     let columns= [
         {
@@ -66,10 +68,17 @@ const FormDataTableCommon = (props) =>{
             fixed: 'right',
             dataIndex: 'operation',
             render: (text, record) =>(
-                <Space>
-                    <a onClick={()=>deleteList(record.id)}> 删除 </a>
-                    <a onClick={handleAdd}> 新行 </a>
-                </Space>
+                <>
+                    {
+                        Object.keys(record).length===1
+                            ?null
+                            :<IconCommon
+                                icon={"shanchu3"}
+                                className="icon-s table-edit-icon"
+                                onClick={()=>deleteList(record.id)}
+                            />
+                    }
+                </>
             )
         },
     ]
@@ -90,18 +99,18 @@ const FormDataTableCommon = (props) =>{
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
 
-    const handleAdd = () => {
-        let newData = {id: uuid()};
-        let dataSource = [...dataList, newData]
-
-        addNewList(dataSource)
-    };
-
     // 保存数据
-    const handleSave = (row) => {
-        const newData = dataList;
-        const index = newData.findIndex((item) => row.id === item.id);
+    const handleSave =  (row) => {
+        let newData = toJS(dataList);
+        //获取当前行对应的下标
+        let index = newData.findIndex((item) => row.id === item.id);
+        //替换上一次录入的数据
         newData.splice(index, 1, { ...newData[index], ...row });
+
+        //如果是最后一行，添加新行
+        if(index===newData.length-1){
+            newData.push({id:uuid()})
+        }
 
         saveList(newData)
     };

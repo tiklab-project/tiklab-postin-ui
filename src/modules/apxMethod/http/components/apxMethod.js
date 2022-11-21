@@ -48,14 +48,25 @@ const ApxMethod = (props) =>  {
 
     return(
         <div className={"api-content-box"}>
-            <Menu
-                selectedKeys={[current]}
-                mode="horizontal"
-            >
-                {showMenuItem(items)}
-            </Menu>
-            <div className={"content-margin"}>
+            <div style={{ margin: "20px 20px 5px 10px" }}>
+                <div style={{
+                    maxWidth: "1440px",
+                    "minWidth":"800px",
+                    "margin":"0 auto",
+                    // boxShadow: "rgb(0 0 0 / 76%) 0px 5px 5px -8px"
+                }}>
+                    <Menu
+                        selectedKeys={[current]}
+                        mode="horizontal"
+                    >
+                        {showMenuItem(items)}
+                    </Menu>
+                </div>
+            </div>
+
+            <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
                 <div className="content-margin-box">
+
                     {
                         renderRoutes(router)
                     }

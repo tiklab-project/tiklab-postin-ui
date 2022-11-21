@@ -93,28 +93,33 @@ const MockDetail = (props) =>{
                 </div>
             </div>
             <div className='header-title ex-title'>期望参数</div>
-            <MockRequest {...props} />
+            <div className={"white-bg-box"}>
+                <MockRequest {...props} />
+            </div>
+
             <div className='header-title  ex-title'>返回结果</div>
-            <Form
-                form={form}
-            >
-                <Form.Item
-                    label="Http code"
-                    name="httpCode"
+            <div className={"white-bg-box"}>
+                <Form
+                    form={form}
                 >
-                    <Select
-                        style={{ 'width': 200 }}
-                        onChange={(value)=>onChange(value)}
+                    <Form.Item
+                        label="Http code"
+                        name="httpCode"
                     >
-                        <Option value="100">100</Option>
-                        <Option value="200">200</Option>
-                        <Option value="300">300</Option>
-                        <Option value="400">400</Option>
-                        <Option value="500">500</Option>
-                    </Select>
-                </Form.Item>
-            </Form>
-            <MockResponse  {...props}/>
+                        <Select
+                            style={{ 'width': 200 }}
+                            onChange={(value)=>onChange(value)}
+                        >
+                            <Option value="100">100</Option>
+                            <Option value="200">200</Option>
+                            <Option value="300">300</Option>
+                            <Option value="400">400</Option>
+                            <Option value="500">500</Option>
+                        </Select>
+                    </Form.Item>
+                </Form>
+                <MockResponse  {...props}/>
+            </div>
         </>
     )
 

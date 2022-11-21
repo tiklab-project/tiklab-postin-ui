@@ -1,12 +1,8 @@
-/**
- * @description：
- * @date: 2021-07-29 17:52
- */
+
 import React, { useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import {Space,  Popconfirm, Table, Empty} from 'antd';
 import emptyImg from "../../../../assets/img/empty.png";
-import JsonStructureEdit from "./jsonStructureEdit";
 import EnumStructureEdit from "./enumStructureEdit";
 
 const EnumStructure = (props) =>{
@@ -20,7 +16,7 @@ const EnumStructure = (props) =>{
     //表头
     let columns= [
         {
-            title: '参数名称',
+            title: '属性名',
             dataIndex: 'paramName',
             width: '20%',
             editable: true,
@@ -83,30 +79,29 @@ const EnumStructure = (props) =>{
 
     return (
         <div className={"structure-item-list"}>
-        <div className={"structure-item-list-header"}>
-            <EnumStructureEdit
-                type={"add"}
-                btn={"btn"}
-                name={"添加"}
-                enumParamDSStore={enumParamDSStore}
-                dataStructureId={dataStructureId}
+            <div className={"structure-item-list-header"}>
+                <EnumStructureEdit
+                    type={"add"}
+                    btn={"btn"}
+                    name={"添加"}
+                    enumParamDSStore={enumParamDSStore}
+                    dataStructureId={dataStructureId}
+                />
+            </div>
+
+            <Table
+                columns={columns}
+                dataSource={enumParamDSList}
+                rowKey={record => record.id}
+                pagination={false}
+                locale={{
+                    emptyText: <Empty
+                        imageStyle={{ height: 120 }}
+                        description={<span>暂无模型</span>}
+                        image={emptyImg}
+                    />,
+                }}
             />
-        </div>
-
-        <Table
-            columns={columns}
-            dataSource={enumParamDSList}
-            rowKey={record => record.id}
-            pagination={false}
-            locale={{
-                emptyText: <Empty
-                    imageStyle={{ height: 120 }}
-                    description={<span>暂无模型</span>}
-                    image={emptyImg}
-                />,
-            }}
-        />
-
         </div>
     );
 }

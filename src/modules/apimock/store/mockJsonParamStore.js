@@ -27,7 +27,7 @@ export class MockJsonParamStore {
             mockId: id,
             orderParams:[{name:'exp', orderType:'asc'}],
         }
-        const newRow =[{ id: 'mockJsonParamInitRow'}];
+        const newRow =[{ id: 'InitNewRowId'}];
         const res = await findJsonParamMockList(params);
         if(res.code === 0) {
             this.mockDataSourceList = res.data;

@@ -174,79 +174,80 @@ const ApxMethodDetail = (props) => {
 
     return(
         <Fragment>
-            <div className="apidetail-header-btn">
-                <Space>
-                    <div className={"info-item"}>
+            <div className={"white-bg-box"}>
+                <div className="apidetail-header-btn">
+                    <Space>
+                        <div className={"info-item"}>
                         <span className={"method-info-item "}>
                             <ApiStatusModal selectStatus={selectStatus} status={status} {...props}/>
                         </span>
-                    </div>
+                        </div>
 
-                    <Select
-                        style={{width:70}}
-                        value={methodType}
-                        showArrow={false}
-                        onChange={(e)=>selectMethodType(e)}
-                    >
-                        {
-                            showMethod(methodDictionary)
-                        }
-                    </Select>
-                    {/*<span className={"method-info-item "}><MethodType type={methodType} /></span>*/}
-                    <EdiTextToggle
-                        value={resData?.apix?.name}
-                        tabIndex={1}
-                        save={editName}
-                    />
-                </Space>
+                        <Select
+                            style={{width:70}}
+                            value={methodType}
+                            showArrow={false}
+                            onChange={(e)=>selectMethodType(e)}
+                        >
+                            {
+                                showMethod(methodDictionary)
+                            }
+                        </Select>
+                        {/*<span className={"method-info-item "}><MethodType type={methodType} /></span>*/}
+                        <EdiTextToggle
+                            value={resData?.apix?.name}
+                            tabIndex={1}
+                            save={editName}
+                        />
+                    </Space>
 
-                 <Space >
-                     <Button className="important-btn" onClick={handleTest} style={{display:"flex",alignItems:"center"}}>
-                         <IconCommon
-                            icon={"fasong-copy"}
-                            className={"icon-s"}
-                         />
-                         测试
-                     </Button>
-                     <RemoteUmdComponent
-                         point='version'
-                         pluginStore={pluginStore}
-                         extraProps={{ history: props.history}}
-                     />
-                     <Button  onClick={()=>handleDeleteApxMethod(apxMethodId)}  style={{display:"flex",alignItems:"center"}}>
-                         <IconCommon
-                             icon={"shanchu"}
-                             className={"icon-s"}
-                         />
-                         删除
-                     </Button>
-                 </Space>
-
-            </div>
-            <div className={"method"}>
-                <div className={"method-info info-item"}>
-
-                    <EdiText
-                        value={resData?.path}
-                        tabIndex={2}
-                        onSave={editPath}
-                        startEditingOnFocus
-                        submitOnUnfocus
-                        showButtonsOnHover
-                        viewProps={{ className: 'edit-api-title' }}
-                        editButtonClassName="ediText-edit"
-                        saveButtonClassName="ediText-save"
-                        cancelButtonClassName="ediText-cancel"
-                        editButtonContent={
-                            <svg className="icon" aria-hidden="true">
-                                <use xlinkHref= {`#icon-bianji1`} />
-                            </svg>
-                        }
-                        hideIcons
-                    />
+                    <Space >
+                        <Button className="important-btn" onClick={handleTest} style={{display:"flex",alignItems:"center"}}>
+                            <IconCommon
+                                icon={"fasong-copy"}
+                                className={"icon-s"}
+                            />
+                            测试
+                        </Button>
+                        <RemoteUmdComponent
+                            point='version'
+                            pluginStore={pluginStore}
+                            extraProps={{ history: props.history}}
+                        />
+                        <Button  onClick={()=>handleDeleteApxMethod(apxMethodId)}  style={{display:"flex",alignItems:"center"}}>
+                            <IconCommon
+                                icon={"shanchu"}
+                                className={"icon-s"}
+                            />
+                            删除
+                        </Button>
+                    </Space>
 
                 </div>
-                <div className={"method-people-info"}>
+                <div className={"method"}>
+                    <div className={"method-info info-item"}>
+
+                        <EdiText
+                            value={resData?.path}
+                            tabIndex={2}
+                            onSave={editPath}
+                            startEditingOnFocus
+                            submitOnUnfocus
+                            showButtonsOnHover
+                            viewProps={{ className: 'edit-api-title' }}
+                            editButtonClassName="ediText-edit"
+                            saveButtonClassName="ediText-save"
+                            cancelButtonClassName="ediText-cancel"
+                            editButtonContent={
+                                <svg className="icon" aria-hidden="true">
+                                    <use xlinkHref= {`#icon-bianji1`} />
+                                </svg>
+                            }
+                            hideIcons
+                        />
+
+                    </div>
+                    <div className={"method-people-info"}>
                      <span className={"people-item "}>执行者:
                          {
                              executorId
@@ -262,42 +263,50 @@ const ApxMethodDetail = (props) => {
                          }
 
                         </span>
-                    <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
-                    <span className={"people-item "}>创建人: {resData?.apix?.createUser?.name}</span>
-                    <span className={"people-item "}>更新人: {resData?.apix?.updataUser?.name}</span>
-                    <span className={"people-item "}>创建时间: {resData?.apix?.createTime}</span>
-                </div>
+                        <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
+                        <span className={"people-item "}>创建人: {resData?.apix?.createUser?.name}</span>
+                        <span className={"people-item "}>更新人: {resData?.apix?.updataUser?.name}</span>
+                        <span className={"people-item "}>创建时间: {resData?.apix?.createTime}</span>
+                    </div>
 
-                <div style={{margin:"15px 0 0","display":"flex"}}>
-                    <span>描述:</span>
-                    <EdiText
-                        value={resData?.apix?.desc}
-                        tabIndex={3}
-                        onSave={editDesc}
-                        type={"textarea"}
-                        startEditingOnFocus
-                        submitOnUnfocus
-                        showButtonsOnHover
-                        viewProps={{ className: 'edit-api-title' }}
-                        editButtonClassName="ediText-edit"
-                        saveButtonClassName="ediText-save"
-                        cancelButtonClassName="ediText-cancel"
-                        editButtonContent={
-                            <svg className="icon" aria-hidden="true">
-                                <use xlinkHref= {`#icon-bianji1`} />
-                            </svg>
-                        }
-                        hideIcons
-                    />
-                </div>
+                    <div style={{margin:"15px 0 0","display":"flex"}}>
+                        <span>描述:</span>
+                        <EdiText
+                            value={resData?.apix?.desc}
+                            tabIndex={3}
+                            onSave={editDesc}
+                            type={"textarea"}
+                            startEditingOnFocus
+                            submitOnUnfocus
+                            showButtonsOnHover
+                            viewProps={{ className: 'edit-api-title' }}
+                            editButtonClassName="ediText-edit"
+                            saveButtonClassName="ediText-save"
+                            cancelButtonClassName="ediText-cancel"
+                            editButtonContent={
+                                <svg className="icon" aria-hidden="true">
+                                    <use xlinkHref= {`#icon-bianji1`} />
+                                </svg>
+                            }
+                            hideIcons
+                        />
+                    </div>
 
+                </div>
             </div>
 
+
             <div className="header-title ex-title">输入参数</div>
-            <Request  />
+            <div className={"white-bg-box"}>
+                <Request  />
+            </div>
+
 
             <div className="header-title ex-title">输出结果</div>
-            <Response  />
+            <div className={"white-bg-box"}>
+                <Response  />
+            </div>
+
 
         </Fragment>
     )

@@ -55,9 +55,7 @@ const MockJsonResponse = (props) => {
                     </Form.Item>
                 </div>
             </div>
-            <Form.Item
-                name='result'
-            >
+            <Form.Item  name='result' >
                 <TextArea autoSize={{ minRows: 4, maxRows: 10}}   onFocus={()=>setFocus(true)}/>
             </Form.Item>
             

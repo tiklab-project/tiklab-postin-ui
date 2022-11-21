@@ -114,6 +114,7 @@ const TabsQuickTest = (props) =>{
                 activeKey={activeKey?activeKey:String(quickTestTabListInfo.activeKey)}//字符串才生效
                 onEdit={onEdit}
                 onTabClick={changeTabPane}
+                style={{"backgroundColor":"var(--pi-bg-grey-100)"}}
             >
                 {
                     showTabPaneView(quickTestTabListInfo)

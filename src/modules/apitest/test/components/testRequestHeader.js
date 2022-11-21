@@ -3,9 +3,9 @@ import { observer, inject } from "mobx-react";
 import ExSelect from "../../../common/exSelect";
 import {headerParamDictionary} from "../../../common/dictionary/dictionary";
 import {uuid} from "../../../../common/utils/createId";
-import {ExTable} from "../../../common/tableCommon/components/tableCommon";
 import IconCommon from "../../../common/iconCommon";
 import {toJS} from "mobx";
+import {ExTable} from "../../../common/editTable";
 
 // 请求参数的可编辑表格
 const RequestHeader = (props) =>{
@@ -13,7 +13,6 @@ const RequestHeader = (props) =>{
 
     const {
         saveList,
-        addNewList,
         deleteList,
         requestHeaderTestList,
     } = requestHeaderTestStore;
@@ -46,7 +45,7 @@ const RequestHeader = (props) =>{
             render: (text, record) =>(
                 <>
                     {
-                        record.id==="InitNewRowId"
+                        Object.keys(record).length===1
                             ?null
                             :<IconCommon
                                 icon={"shanchu3"}
@@ -62,47 +61,23 @@ const RequestHeader = (props) =>{
     ]
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-    const [newRowAction, setNewRowAction] = useState(false);
-    const [hasInitNewRowId, setHasInitNewRowId] = useState(false);
-
 
 
     // 保存数据
-    const handleSave = (row) => {
-        let newData = toJS(requestHeaderTestList);
+    const handleSave =  (row) => {
+        let newData = requestHeaderTestList;
+        //获取当前行对应的下标
         let index = newData.findIndex((item) => row.id === item.id);
-
-        if(row.id==="InitNewRowId"){
-            row.id=uuid()
-            setHasInitNewRowId(true)
-        }
-
+        //替换上一次录入的数据
         newData.splice(index, 1, { ...newData[index], ...row });
 
+        //如果是最后一行，添加新行
+        if(index===newData.length-1){
+            newData.push({id:uuid()})
+        }
+
         saveList(newData)
-
-       if(hasInitNewRowId){
-           newRowKeyDown()
-           setHasInitNewRowId(false)
-       }
-
     };
-
-
-    //当新行按键按下的时候显示后面的操作按钮
-    const newRowKeyDown = () => {
-        document.addEventListener('keydown', (e) =>{
-            handleAdd()
-        });
-    };
-
-    const handleAdd = () => {
-        let newData = {id: "InitNewRowId"};
-        let dataSource = [...requestHeaderTestList, newData]
-
-        addNewList(dataSource)
-    };
-
 
 
 

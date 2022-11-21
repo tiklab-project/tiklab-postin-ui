@@ -204,8 +204,18 @@ const TestdetailQuickTest = (props) =>{
                         initialValues={{ methodType: "get" }}
                     >
                         <div className={"test-url"}>
-                            <Form.Item className='formItem' name="path" >
-                                <Input  addonBefore={prefixSelector}/>
+                            <Form.Item
+                                className='formItem'
+                                name="path"
+                                rules={[
+                                    {
+                                        required: true,
+                                        pattern: new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/),
+                                        message: '请输入http开头的完整URL'
+                                    },
+                                ]}
+                            >
+                                <Input placeholder={"请输入http开头的完整URL"} addonBefore={prefixSelector}/>
                             </Form.Item>
                         </div>
                         <div className={"test-base-item"}>
@@ -221,13 +231,19 @@ const TestdetailQuickTest = (props) =>{
                 </div>
 
                 <div className='header-title ex-title'>请求</div>
-                <RequestTabQuickTest instanceId={instanceId}/>
+                <div className={"white-bg-box"}>
+                    <RequestTabQuickTest instanceId={instanceId}/>
+                </div>
+
 
                 <div className='header-title ex-title'> 响应</div>
-                <TestResultCommon
-                    testResponse={testResponse}
-                    showResponse={showResponse}
-                />
+                <div className={"white-bg-box"}>
+                    <TestResultCommon
+                        testResponse={testResponse}
+                        showResponse={showResponse}
+                    />
+                </div>
+
             </div>
         </div>
     )

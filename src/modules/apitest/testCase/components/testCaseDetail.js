@@ -162,8 +162,15 @@ const TestCaseDetail = (props) => {
                 <Form.Item
                     className='formItem'
                     name="host"
+                    rules={[
+                        {
+                            required: true,
+                            pattern: new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/),
+                            message: '请输入http开头的完整URL'
+                        },
+                    ]}
                 >
-                    <Input />
+                    <Input  placeholder={"请输入http开头的完整URL"} />
                 </Form.Item>
             )
         }
@@ -247,13 +254,19 @@ const TestCaseDetail = (props) => {
 
                 </Form>
             </div>
+
             <div className='header-title ex-title'>请求</div>
-            <TestCaseRequest />
+            <div className={"white-bg-box"}>
+                <TestCaseRequest />
+            </div>
+
             <div className='header-title ex-title'> 响应</div>
-            <TestResultCommon
-                testResponse={testResponse}
-                showResponse={showResponse}
-            />
+            <div className={"white-bg-box"}>
+                <TestResultCommon
+                    testResponse={testResponse}
+                    showResponse={showResponse}
+                />
+            </div>
         </>
     )
 }
