@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import IconCommon from "../common/iconCommon";
 import {List, Select, Skeleton} from "antd";
 import {findLogList} from "./commonApi";
-import PaginationCommon from "../common/page/page";
+import PaginationCommon from "../common/pagination/page";
 import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
 

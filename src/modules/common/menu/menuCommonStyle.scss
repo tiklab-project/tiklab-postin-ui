@@ -1,0 +1,26 @@
+
+.menu-common-box{
+    display: flex;
+    align-items: center;
+    height: 40px;
+
+    .menu-item{
+        width: 65px;
+        text-align: center;
+        padding: 8px 0;
+        margin: 0 12px 0 0;
+        border-bottom: 3px solid rgba(250, 250, 250, 0);
+        cursor: pointer;
+    }
+
+    .menu-item-selected{
+        border-bottom: 3px solid var(--pi-base-color);
+        transition: 0.5s;
+    }
+
+
+    .menu-item:hover{
+        background: var(--pi-hover-color);
+        transition: 0.5s;
+    }
+}

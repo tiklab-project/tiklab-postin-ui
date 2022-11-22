@@ -176,17 +176,81 @@
 
 // --------------------------------
 // ApxMethodDetail
+.api-base-info-header{
+    display: flex;
+    align-items: center;
+    height: 32px;
+
+    &-name{
+
+
+        input{
+            height: 32px;
+        }
+    }
+}
+
+.ediText-btn{
+    background: rgba(250, 250, 250, 0);
+    border: none;
+    cursor: pointer;
+}
+
+
+.pi-edit-item-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+}
+
 .apidetail-header-btn{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 0 0 5px;
     height: 51px;
+    margin: 0 0 15px 0;
 
 
-    .ant-select:not(.ant-select-customize-input) .ant-select-selector{
-        border: none;
+    .api-base-info-url{
+        display: flex;
+        align-items: center;
+
+        .api-base-edit-url-box{
+
+            input{
+                width: 400px;
+            }
+        }
+
+        .api-base-edit-url{
+            border: 1px solid #ddd;
+            height: 40px;
+            line-height: 40px;
+            width: 400px;
+            padding: 0 8px;
+            cursor: auto;
+        }
+
+        .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+            height: 40px;
+            border-right:none;
+
+            .ant-select-selection-item{
+                span{
+                    line-height: 40px;
+                }
+            }
+        }
+
+
     }
+
+    //.ant-select:not(.ant-select-customize-input) .ant-select-selector{
+    //    height: 40px;
+    //    line-height: 40px;
+    //}
 }
 
 .apidetail-title-tool{
@@ -223,7 +287,7 @@
 
 .method{
     padding: 0 0 0 5px;
-    margin: 0 0 30px 0 ;
+    margin: 0 0 10px 0 ;
 
     .method-info{
 
@@ -263,6 +327,28 @@
 
     .ant-select:not(.ant-select-customize-input) .ant-select-selector{
         border: none;
+    }
+
+    .api-base-info-desc{
+        margin: 15px 0 0 ;
+        display: flex;
+
+        &-text{
+            margin: 0 10px;
+            color: #9b9b9b;
+            font-size: var(--pi-font-size-13);
+            cursor: text;
+            width: 512px;
+        }
+
+        &-show{
+            display: block;
+        }
+
+        &-hide{
+            display: none;
+        }
+
     }
 
 }

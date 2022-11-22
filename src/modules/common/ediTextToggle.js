@@ -13,16 +13,26 @@ const EdiTextToggle = (props)=>{
             startEditingOnFocus
             submitOnUnfocus
             showButtonsOnHover
-            viewProps={{ className: 'edit-api-name' }}
+            viewProps={{ className: 'edit-api-title' }}
             editButtonClassName="ediText-edit"
-            saveButtonClassName="ediText-save"
-            cancelButtonClassName="ediText-cancel"
+            saveButtonClassName="ediText-btn"
+            cancelButtonClassName="ediText-btn"
             editButtonContent={
                 <svg className="icon" aria-hidden="true">
                     <use xlinkHref= {`#icon-bianji1`} />
                 </svg>
             }
-            hideIcons
+            saveButtonContent={
+                <svg className="icon" aria-hidden="true">
+                    <use xlinkHref= {`#icon-btn_confirm`} />
+                </svg>
+            }
+            cancelButtonContent={
+                <svg className="icon" aria-hidden="true">
+                    <use xlinkHref= {`#icon-shanchu2`} />
+                </svg>
+            }
+            // hideIcons
         />
     )
 }

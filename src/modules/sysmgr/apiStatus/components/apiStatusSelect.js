@@ -53,7 +53,7 @@ const ApiStatusSelect = (props) =>{
 
     return(
         <Select
-            style={{width:80}}
+            style={{width:80,height:40}}
             value={status}
             showArrow={false}
             onChange={(e)=>selectStatus(e)}

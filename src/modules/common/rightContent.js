@@ -9,11 +9,12 @@ const RightContent = (props) => {
     const route = props.route.routes;
 
     const [leftBoxWidth, setLeftBoxWidth] = useState();
-    const [rightBoxWidth,  ] = useState();
+
     const boxRef = useRef()
 
     const changeBox = () =>{
         const middleBox = boxRef.current;
+
         middleBox.onmousedown=(e)=>{
             let mouseDownX = e.offsetX;
             let middleBoxLeft = middleBox.offsetLeft;
@@ -26,10 +27,18 @@ const RightContent = (props) => {
                     let mouseMoveX = e.clientX;
 
                     // console.log(mouseDownX,mouseMoveX)
-
+                    //鼠标移动的地方减去鼠标一开始点击的地方 再减去 最左侧导航 80
                     let width= mouseMoveX-mouseDownX-80;
 
-                    setLeftBoxWidth(width)
+                    if(width>=400){
+                        setLeftBoxWidth(400)
+                    }else if(width<=280) {
+                        setLeftBoxWidth(280)
+                    }else {
+                        setLeftBoxWidth(width)
+                    }
+
+
 
                     return false;
                 }
@@ -49,16 +58,22 @@ const RightContent = (props) => {
     return(
         <div className='wscontant'>
             <div
-                style={{width:` ${leftBoxWidth&&leftBoxWidth>280?leftBoxWidth:"280"}px`}}
-                className={'changeBox'}
+                style={{  width:` ${leftBoxWidth?leftBoxWidth:280}px`  }}
+                className={"left-tree-box"}
             >
-                {props.left}
+                <div  className={'left-tree-content'} >
+                    {props.left}
+                </div>
+                <div
+                    ref={boxRef}
+                    onMouseMove={changeBox}
+                    className={"middleBox"}
+                    style={{  left:` ${leftBoxWidth?leftBoxWidth-10:270}px`  }}
+                >
+                    <div className={"middleBox-show"}> </div>
+                </div>
             </div>
-            <div
-                ref={boxRef}
-                onMouseMove={changeBox}
-                className={"middleBox"}
-            > </div>
+
             <div className='wscontant-contant'>
                 <div className={"wscontant-box"}>
                     {renderRoutes(route)}
