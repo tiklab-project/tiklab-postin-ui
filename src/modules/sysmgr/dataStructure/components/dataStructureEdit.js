@@ -5,6 +5,7 @@
 import React from 'react';
 import { observer, inject } from "mobx-react";
 import {Form, Modal, Button, Input, Select} from 'antd';
+import IconBtn from "../../../common/iconBtn/IconBtn";
 const {Option} = Select;
 // 添加与编辑空间
 const DataStructureEdit = (props) => {
@@ -65,7 +66,12 @@ const DataStructureEdit = (props) => {
         <>
             {
                 props.type === "add"
-                    ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+                    ? <IconBtn
+                        className="important-btn"
+                        icon={"xinzeng-copy"}
+                        onClick={showModal}
+                        name={"添加模型"}
+                    />
                     :  <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
                         <use xlinkHref= {`#icon-bianji11`} />
                     </svg>

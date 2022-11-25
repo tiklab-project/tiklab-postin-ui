@@ -1,4 +1,9 @@
 
+export const protocol =[
+    "http",
+    // "https"
+]
+
 export const requestTabDictionary = {
     "header":"请求头",
     "query":"查询参数",

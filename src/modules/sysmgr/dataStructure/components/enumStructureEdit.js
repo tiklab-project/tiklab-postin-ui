@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Form, Input, Modal, Radio, Select, Tooltip} from "antd";
 import {dataTypeDictionary} from "../../../common/dictionary/dictionary";
+import IconBtn from "../../../common/iconBtn/IconBtn";
 const {TextArea} = Input
 const {Option} = Select;
 
@@ -57,7 +58,12 @@ const EnumStructureEdit = (props) =>{
     //渲染按钮的样式
     const showView = () =>{
         if(props.btn==="btn"&&props.type==="add"){
-           return <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+           return <IconBtn
+                   className="important-btn"
+                   icon={"xinzeng-copy"}
+                   onClick={showModal}
+                   name={"添加"}
+                />
         }
 
         if(props.type==="edit"){

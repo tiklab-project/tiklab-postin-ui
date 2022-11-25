@@ -1,7 +1,7 @@
 
-import React, { useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
-import { Form } from 'antd';
+import {Button, Form} from 'antd';
 import CodeMirror from "../../../common/codeMirror";
 
 const AfterScriptCase = (props) => {
@@ -30,7 +30,7 @@ const AfterScriptCase = (props) => {
         })
     },[testCaseId])
 
-    const blurFn = () =>{
+    const save = () =>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
 
@@ -51,7 +51,16 @@ const AfterScriptCase = (props) => {
                 })
             })
         }
+
+        setShowBtn(false)
     }
+
+    const [showBtn, setShowBtn] = useState(false);
+
+    const focusFn = () =>{
+        setShowBtn(true)
+    }
+
 
     return (
         <div className={"api-script-box"}>
@@ -60,11 +69,15 @@ const AfterScriptCase = (props) => {
                 <Form.Item name='afterScript' >
                     <CodeMirror
                         mediaType={"application/javascript"}
-                        blurFn={blurFn}
                         ediTextRef={ediTextRef}
+                        focusFn={focusFn}
                     />
                 </Form.Item>
             </Form>
+            <div className={`action-btn-box ${showBtn?"pi-show":"pi-hide"}`}>
+                <Button onClick={()=>setShowBtn(false)} style={{marginRight:"10px"}}> 取消</Button>
+                <Button onClick={save} className={"important-btn"}> 保存</Button>
+            </div>
         </div>
     )
 }

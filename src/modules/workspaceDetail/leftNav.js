@@ -8,7 +8,7 @@ import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 
 const LeftNav = (props) =>{
     const {workspaceStore,workspaceRecentStore,systemRoleStore} = props;
-    const {workspaceName,workspaceList,findWorkspaceList,settingMenuSelected } = workspaceStore;
+    const {workspaceIcon,workspaceList,findWorkspaceList,settingMenuSelected } = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const menuData = [
         {
@@ -127,22 +127,13 @@ const LeftNav = (props) =>{
         })
     }
 
-    //展示左侧导航 空间icon
-    const showIcon = (text)=>{
-        let t = text.substring(0,1).toUpperCase();
-
-        return <div className={"workspace-detail-text-icon-box"}>
-            <span>{t}</span>
-        </div>
-    }
-
     //展示切换的空间
     const showWorkspaceList = (list) =>{
         return list&&list.map(item=>{
             return (
                 <div className={"ws-hover-item"} key={item.id} onClick={()=>toggleWorkspace(item.id)}>
                     <Space>
-                        {showIcon(item.workspaceName)}
+                        <img src={item.iconUrl} alt={"icon"} className={"workspace-icon"}/>
                         {item.workspaceName}
                     </Space>
                 </div>
@@ -164,8 +155,8 @@ const LeftNav = (props) =>{
                     <li className={`ws-detail-left-nav-item-workspace `} >
                         <div className={"ws-icon-box"}>
 
-                            <span style={{"cursor":"pointer",margin:" 0 0 0 20px"}}>
-                                {showIcon(workspaceName)}
+                            <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
+                                 <img src={workspaceIcon} alt={"icon"} className={"workspace-icon"}/>
                             </span>
                             <svg className="ws-icon-box-toggle-icon" aria-hidden="true"  style={{"cursor":"pointer"}}>
                                 <use xlinkHref= {`#icon-xiala`} />

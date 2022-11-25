@@ -34,7 +34,7 @@ const WorkspaceList = (props) => {
             // align:"center",
             render: (text,record) =>(
                 <Space size={"large"}>
-                    {showIcon(text)}
+                    <img src={record.iconUrl} alt={"icon"} className={"workspace-icon"}/>
                     <a onClick = {()=>setLocalStorage(record.id)}>{text}</a>
                 </Space>
             )

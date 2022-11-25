@@ -4,10 +4,10 @@
  * @LastEditTime: 2021-05-08 17:42:56
  */
 
-import React, { useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import { AFTERPARAM_STORE } from '../store/apiRequestStore';
-import { Form } from 'antd';
+import {Button, Form} from 'antd';
 import CodeMirror from "../../../common/codeMirror";
 
 
@@ -32,7 +32,7 @@ const AfterScript = (props) => {
         })
     },[apxMethodId])
 
-    const blurFn = () =>{
+    const save = () =>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
 
@@ -53,20 +53,33 @@ const AfterScript = (props) => {
                 })
             })
         }
+
+        setShowBtn(false)
     }
 
+    const [showBtn, setShowBtn] = useState(false);
+
+    const focusFn = () =>{
+        setShowBtn(true)
+    }
 
     return (
         <div className={"api-script-box"}>
             <div className={"api-script-pre-header"}> </div>
             <Form form={form} >
-                <Form.Item name='afterScript' >
-                    <CodeMirror
-                        mediaType={"application/javascript"}
-                        blurFn={blurFn}
-                        ediTextRef={ediTextRef}
-                    />
-                </Form.Item>
+                <div style={{border:"1px solid #f0f0f0"}}>
+                    <Form.Item name='afterScript'>
+                        <CodeMirror
+                            mediaType={"application/javascript"}
+                            ediTextRef={ediTextRef}
+                            focusFn={focusFn}
+                        />
+                    </Form.Item>
+                </div>
+                <div className={`action-btn-box ${showBtn?"pi-show":"pi-hide"}`}>
+                    <Button onClick={()=>setShowBtn(false)} style={{marginRight:"10px"}}> 取消</Button>
+                    <Button onClick={save} className={"important-btn"}> 保存</Button>
+                </div>
             </Form>
         </div>
     )

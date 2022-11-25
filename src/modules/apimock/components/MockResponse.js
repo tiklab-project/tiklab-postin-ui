@@ -1,6 +1,6 @@
 import React, {Fragment, useState, useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
-import {Tabs, Radio, Form} from 'antd';
+import {Tabs, Radio, Form, Button} from 'antd';
 import MockResponseHeader from './mockResponseHeader';
 import CodeMirror from "../../common/codeMirror";
 const { TabPane } = Tabs;
@@ -48,7 +48,7 @@ const MockResponse = (props) => {
         updateResponseMock( {bodyType : bodyType})
     };
 
-    const blurFn = () =>{
+    const save = () =>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
 
@@ -69,8 +69,16 @@ const MockResponse = (props) => {
                 })
             })
         }
+
+        setShowBtn(false)
     }
-   
+
+    const [showBtn, setShowBtn] = useState(false);
+
+    const focusFn = () =>setShowBtn(true)
+
+
+
     return(
         <>
             <Tabs defaultActiveKey="1" >
@@ -89,17 +97,23 @@ const MockResponse = (props) => {
                             <Radio.Button value={'text/pain'}>raw</Radio.Button>
                         </Radio.Group>
                     </div>
-                    <Form form={form}>
-                        <Form.Item name='result'>
-                            <CodeMirror
-                                mediaType={radioValue}
-                                blurFn={blurFn}
-                                ediTextRef={ediTextRef}
-                            />
-                        </Form.Item>
-
-                    </Form>
-
+                    <div className={"raw-box"}>
+                        <Form form={form}>
+                            <div style={{border:"1px solid #f0f0f0"}}>
+                                <Form.Item name='result'>
+                                    <CodeMirror
+                                        mediaType={radioValue}
+                                        ediTextRef={ediTextRef}
+                                        focusFn={focusFn}
+                                    />
+                                </Form.Item>
+                            </div>
+                        </Form>
+                        <div className={`action-btn-box ${showBtn?"pi-show":"pi-hide"}`}>
+                            <Button onClick={()=>setShowBtn(false)} style={{marginRight:"10px"}}> 取消</Button>
+                            <Button onClick={save} className={"important-btn"}> 保存</Button>
+                        </div>
+                    </div>
                 </TabPane>
             </Tabs>
         </>

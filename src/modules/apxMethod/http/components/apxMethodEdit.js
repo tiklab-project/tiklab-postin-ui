@@ -9,6 +9,7 @@ import {observer, inject} from 'mobx-react';
 import {Modal, Form, Input, Button, Select, Cascader} from 'antd';
 import {methodDictionary} from "../../../common/dictionary/dictionary";
 import {TextMethodType} from "../../../common/methodType";
+import IconBtn from "../../../common/iconBtn/IconBtn";
 
 const {Option} = Select;
 const {TextArea} = Input;
@@ -146,7 +147,12 @@ const ApxMethodEdit = (props) => {
         }
 
         if(props.isBtn==="btn"){
-            return <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+            return <IconBtn
+                className="important-btn"
+                icon={"xinzeng-copy"}
+                onClick={showModal}
+                name={"添加接口"}
+            />
         }
 
         if(props.icon){

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { observer, inject } from "mobx-react";
 import { Form, Modal, Button, Input } from 'antd';
+import IconBtn from "../../common/iconBtn/IconBtn";
 
 const layout = {
     labelCol: {span: 4},
@@ -62,7 +63,12 @@ const MockEdit = (props) => {
         <>
         {
             props.btn === 'btn'
-                ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+                ? <IconBtn
+                    className="important-btn"
+                    icon={"xinzeng-copy"}
+                    onClick={showModal}
+                    name={"添加MOCK"}
+                />
                 : <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
                     <use xlinkHref= {`#icon-bianji11`} />
                 </svg>

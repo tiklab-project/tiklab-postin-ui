@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {Button} from "antd";
-import qs from "qs";
 const HTTP = require('http')
 import {Input} from "antd";
 const {TextArea} = Input

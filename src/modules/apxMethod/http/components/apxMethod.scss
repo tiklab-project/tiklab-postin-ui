@@ -204,53 +204,117 @@
     width: 200px;
 }
 
-.apidetail-header-btn{
+.api-detail-base-box{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 0 0 5px;
-    height: 51px;
+    height: 32px;
     margin: 0 0 15px 0;
 
 
-    .api-base-info-url{
+    &-name{
+        input{
+            height: 32px;
+        }
+    }
+
+    .api-base-info-box{
         display: flex;
         align-items: center;
 
-        .api-base-edit-url-box{
-
-            input{
-                width: 400px;
-            }
+        .api-base-info-protocol{
+            margin-right: 10px;
+            background: #0078d4;
+            padding: 2px;
+            border-radius: 4px;
+            color: white;
+            height: 25px;
         }
-
-        .api-base-edit-url{
-            border: 1px solid #ddd;
-            height: 40px;
-            line-height: 40px;
-            width: 400px;
-            padding: 0 8px;
-            cursor: auto;
-        }
-
-        .ant-select:not(.ant-select-customize-input) .ant-select-selector{
-            height: 40px;
-            border-right:none;
-
-            .ant-select-selection-item{
-                span{
-                    line-height: 40px;
-                }
-            }
-        }
-
-
     }
 
-    //.ant-select:not(.ant-select-customize-input) .ant-select-selector{
-    //    height: 40px;
-    //    line-height: 40px;
+    .requestType{
+        font-size: 14px;
+    }
+
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+        height: 32px;
+        border: none;
+        padding: 0;
+        border-radius:var(--pi-border-radius);
+
+        span{
+            line-height: 32px;
+        }
+
+        .ant-select-selection-item{
+            span{
+                line-height: 32px;
+            }
+
+        }
+    }
+
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector:hover{
+        background: var(--pi-hover-color);
+    }
+
+    //.api-base-edit-text{
+    //    //border: 1px solid #f0f0f0;
+    //    height: 32px;
+    //    line-height: 32px;
+    //    width: 400px;
+    //    padding: 0 8px;
+    //    cursor: text;
     //}
+
+    .api-base-info-box-name{
+        input{
+            width: 480px;
+            border: none;
+        }
+        input:hover{
+            background: var(--pi-hover-color);
+        }
+
+        .ant-form-item{
+            margin: 0;
+        }
+    }
+
+    .api-base-info-box-name:hover{
+        background: var(--pi-hover-color);
+        border-radius: var(--pi-border-radius);
+    }
+
+    .api-base-edit-url-box{
+
+        input{
+            width: 480px;
+            border: none;
+        }
+        input:hover{
+            background: var(--pi-hover-color);
+        }
+
+        .ant-form-item{
+            margin: 0;
+        }
+    }
+
+    .api-base-edit-url-box:hover{
+        background: var(--pi-hover-color);
+        border-radius: var(--pi-border-radius);
+    }
+
+    //.api-base-edit-text-url{
+    //    width: 400px;
+    //}
+
+    .api-base-info-two{
+        display: flex;
+        align-items: center;
+    }
 }
 
 .apidetail-title-tool{
@@ -313,7 +377,7 @@
         display: flex;
 
         .people-item{
-            margin: 0 80px 0 0;
+            margin: 0 70px 0 0;
             color: #999;
             max-width: 28%;
             overflow: hidden;
@@ -322,6 +386,12 @@
             white-space: nowrap;
             text-indent: 0;
             font-size: var(--pi-font-size-13);
+            line-height: 32px;
+
+            .ant-select-selection-placeholder{
+                color: black;
+                font-size: 13pxw;
+            }
         }
     }
 
@@ -331,19 +401,25 @@
 
     .api-base-info-desc{
         margin: 15px 0 0 ;
-        display: flex;
 
         &-text{
-            margin: 0 10px;
             color: #9b9b9b;
             font-size: var(--pi-font-size-13);
             cursor: text;
-            width: 512px;
+            width: 700px;
+            //height: 32px;
+            //line-height: 32px;
         }
 
-        &-show{
-            display: block;
+        &-text-show{
+            height: 32px;
+            line-height: 32px;
         }
+
+        &-text-show:hover{
+            background: var(--pi-hover-color);
+        }
+
 
         &-hide{
             display: none;
@@ -457,6 +533,12 @@
 
 .ws-param-title{
     font-size: var(--pi-font-size-12);
+}
+
+
+.action-btn-box{
+    display: flex;
+    margin: 10px 0;
 }
 
 

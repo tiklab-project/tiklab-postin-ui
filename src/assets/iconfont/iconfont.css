@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2517386 */
-  src: url('iconfont.woff2?t=1668432765813') format('woff2'),
-       url('iconfont.woff?t=1668432765813') format('woff'),
-       url('iconfont.ttf?t=1668432765813') format('truetype');
+  src: url('iconfont.woff2?t=1669355237802') format('woff2'),
+       url('iconfont.woff?t=1669355237802') format('woff'),
+       url('iconfont.ttf?t=1669355237802') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jiantou-shang2:before {
+  content: "\e63d";
+}
+
+.icon-icon-1:before {
+  content: "\e65b";
 }
 
 .icon-ico-:before {
@@ -49,16 +57,16 @@
   content: "\e60c";
 }
 
-.icon-jinru:before {
-  content: "\e6af";
-}
-
 .icon-zhankai:before {
   content: "\e6b5";
 }
 
 .icon-xinzeng:before {
   content: "\e6c8";
+}
+
+.icon-xinzeng-copy:before {
+  content: "\ec3a";
 }
 
 .icon-gengduo:before {
@@ -199,14 +207,6 @@
 
 .icon-changjing:before {
   content: "\e673";
-}
-
-.icon-jia:before {
-  content: "\e604";
-}
-
-.icon-tianjia:before {
-  content: "\e635";
 }
 
 .icon-tianjia-:before {

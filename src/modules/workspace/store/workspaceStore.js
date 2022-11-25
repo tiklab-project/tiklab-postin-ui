@@ -17,7 +17,7 @@ import {
 	findAllWorkspace,
 	findWorkspaceHomeTotal,
 } from '../api/workspaceApi';
-import {findWorkspaceRecentList} from "../api/workspaceRecentApi";
+import {findWorkspaceRecentList, workspaceRecent} from "../api/workspaceRecentApi";
 import {findWorkspaceFollowList} from "../api/workspaceFollowApi";
 
 export class WorkspaceStore {
@@ -26,6 +26,7 @@ export class WorkspaceStore {
 	@observable workspaceIdList=[];
 	@observable workspaceId ='';
 	@observable workspaceName = '';
+	@observable workspaceIcon
 	@observable	totalRecord = "";
 	@observable params;
 	@observable pageParams;
@@ -87,20 +88,24 @@ export class WorkspaceStore {
 		const res = await findWorkspaceRecentList(this.params)
 
 		if(res.code === 0 ) {
-			let list = res.data;
-
-			let newList = [];
-			if(list&&list.length>0){
-				list.map(item=>{
-					newList.push(item.workspace)
-				})
-			}
-
-			this.workspaceList = newList
+			this.workspaceList = res.data;
 
 			return res.data;
 		}
 	}
+	//设置最近访问
+	@action
+	workspaceRecent = async (values) => {
+		let params = {
+			orderParams:[{name:'updateTime', orderType:'desc'}],
+			...values
+		}
+		const res = await workspaceRecent(params);
+		if(res.code === 0 ) {
+			return res.data;
+		}
+	}
+
 
 	@action
 	findWorkspaceFollowList = async (value) => {
@@ -169,6 +174,7 @@ export class WorkspaceStore {
 		if(res.code === 0){
 			this.workspaceInfo = res.data
 			this.workspaceName =res.data.workspaceName;
+			this.workspaceIcon = res.data.iconUrl
 			return res.data;
 		}
 	}

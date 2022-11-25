@@ -9,6 +9,7 @@ import {Form, Modal, Button, Input, Radio, Row, Col, Select} from 'antd';
 import IconCommon from "../../common/iconCommon";
 import {Axios, getUser} from "tiklab-core-ui";
 import {Profile} from "tiklab-eam-ui";
+import IconBtn from "../../common/iconBtn/IconBtn";
 
 const {TextArea} = Input
 const {Option} = Select;
@@ -44,7 +45,7 @@ const WorkspaceEdit = (props) => {
 
         let res = await Axios.post('/user/user/findUserList',param);
         if(res.code===0){
-            console.log(res)
+
             setMemberList(res.data)
         }
 
@@ -58,12 +59,29 @@ const WorkspaceEdit = (props) => {
         let values = await form.validateFields();
         values.visibility=visibility
         values.memberList = memberSelectList;
+        values.iconUrl=iconRandom();
+
         createWorkspace(values).then(()=>  findList({},selectItem) );
 
         props.history.push("/workspacePage");
 
         setVisible(false);
     };
+
+    //随机获取一张图片
+    const iconRandom = () =>{
+        let arr = [
+            "/images/pi1.png",
+            "/images/pi2.png",
+            "/images/pi3.png",
+            "/images/pi4.png",
+            "/images/pi5.png",
+        ]
+
+        let index = Math.floor(Math.random()*arr.length)
+
+        return arr[index]
+    }
 
 
     //成员下拉框选项
@@ -89,7 +107,12 @@ const WorkspaceEdit = (props) => {
         <>
         {
             props.btn === 'btn'
-                ? <Button className="important-btn" onClick={showModal}>{props.name}</Button>
+                ? <IconBtn
+                    className="important-btn"
+                    icon={"xinzeng-copy"}
+                    onClick={showModal}
+                    name={"添加空间"}
+                />
                 : <a style={{'cursor':'pointer'}} onClick={showModal}>{props.name}</a>
         }
         <Modal

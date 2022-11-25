@@ -1,7 +1,7 @@
 
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
-import { Form} from 'antd';
+import {Button, Form} from 'antd';
 import CodeMirror from "../../../common/codeMirror";
 
 
@@ -36,7 +36,7 @@ const RawResponse = (props) => {
     },[apxMethodId])
 
 
-    const blurFn = () =>{
+    const save = () =>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
 
@@ -60,20 +60,36 @@ const RawResponse = (props) => {
                 })
             })
         }
+
+        setShowBtn(false)
+    }
+
+    const [showBtn, setShowBtn] = useState(false);
+
+    const focusFn = () =>{
+        setShowBtn(true)
     }
 
 
     return (
-        <Form form={form}>
-            <Form.Item name='raw'>
-                <CodeMirror
-                    mediaType={"application/json"}
-                    blurFn={blurFn}
-                    ediTextRef={ediTextRef}
-                />
-            </Form.Item>
-            
-        </Form>
+        <div className={"raw-box"}>
+            <Form form={form}>
+                <div style={{border:"1px solid #f0f0f0"}}>
+                    <Form.Item  name='raw'>
+                        <CodeMirror
+                            mediaType={"application/json"}
+                            ediTextRef={ediTextRef}
+                            focusFn={focusFn}
+                        />
+                    </Form.Item>
+                </div>
+                <div className={`action-btn-box ${showBtn?"pi-show":"pi-hide"}`}>
+                    <Button onClick={()=>setShowBtn(false)} style={{marginRight:"10px"}}> 取消</Button>
+                    <Button onClick={save} className={"important-btn"}> 保存</Button>
+                </div>
+
+            </Form>
+        </div>
     )
 }
 

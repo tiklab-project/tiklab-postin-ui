@@ -9,6 +9,7 @@ import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import {execute} from "../../common/dtAction";
 import TestResultCommon from "../../common/testResultCommon";
 import IconCommon from "../../../common/iconCommon";
+import IconBtn from "../../../common/iconBtn/IconBtn";
 
 
 const { Option } = Select;
@@ -202,10 +203,12 @@ const ApxMethodTest = (props) => {
                     </div>
 
                     <Space style={{height:40}}>
-                        <Button className="important-btn" onClick={onFinish} style={{display:"flex",alignItems:"center"}}>
-                            <IconCommon icon={"fasong-copy"} className={"icon-s"}/>
-                            发送
-                        </Button>
+                        <IconBtn
+                            className="important-btn"
+                            icon={"fasong-copy"}
+                            onClick={onFinish}
+                            name={"发送"}
+                        />
                         <SaveTestCase  {...props}/>
                     </Space>
                 </Form>

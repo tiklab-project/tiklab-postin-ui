@@ -30,33 +30,33 @@ export class WorkspaceRecentStore {
 		}
 	}
 
-	@action
-	findWorkspaceRecentList = async (value) => {
-		this.params = {
-			...value,
-			orderParams:[{name:'updateTime', orderType:'desc'}],
-		}
-		const res = await findWorkspaceRecentList(this.params)
-
-		if(res.code === 0 ) {
-			this.recentList = res.data;
-			return res;
-		}
-	}
-
-	@action
-	findWorkspaceRecentPage = async (value) => {
-		this.pageParams = {
-			orderParams:[{name:'updateTime', orderType:'desc'}],
-			...value
-		}
-		const res = await findWorkspaceRecentPage(this.pageParams)
-		if(res.code === 0 ) {
-			this.recentList = res.data.dataList;
-			this.totalRecord = res.data.totalRecord;
-			return res;
-		}
-	}
+	// @action
+	// findWorkspaceRecentList = async (value) => {
+	// 	this.params = {
+	// 		...value,
+	// 		orderParams:[{name:'updateTime', orderType:'desc'}],
+	// 	}
+	// 	const res = await findWorkspaceRecentList(this.params)
+	//
+	// 	if(res.code === 0 ) {
+	// 		this.recentList = res.data;
+	// 		return res.data;
+	// 	}
+	// }
+	//
+	// @action
+	// findWorkspaceRecentPage = async (value) => {
+	// 	this.pageParams = {
+	// 		orderParams:[{name:'updateTime', orderType:'desc'}],
+	// 		...value
+	// 	}
+	// 	const res = await findWorkspaceRecentPage(this.pageParams)
+	// 	if(res.code === 0 ) {
+	// 		this.recentList = res.data.dataList;
+	// 		this.totalRecord = res.data.totalRecord;
+	// 		return res;
+	// 	}
+	// }
 
 
 

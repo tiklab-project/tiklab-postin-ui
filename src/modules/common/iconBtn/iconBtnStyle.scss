@@ -1,0 +1,21 @@
+.pi-icon-btn-box{
+
+    .pi-icon-btn{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        //width: 55px;
+    }
+
+    .pi-icon-btn-grey{
+        background: #eaeaea;
+        border: 1px solid #ffffff00;
+        border-radius: var(--pi-border-radius);
+    }
+
+    .pi-icon-btn-grey:hover{
+        border: 1px solid #ffffff00;
+        background: var(--pi-hover-color);
+        color: black;
+    }
+}

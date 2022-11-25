@@ -52,11 +52,11 @@ const RawParam = (props) => {
     const changeType = (type)=>{
         typeRef.current=type
         setTypeValue(typeRef.current)
-        blurFn()
+        save()
     }
 
     //失去焦点，获取更改raw中类型执行
-    const blurFn = ()=>{
+    const save = ()=>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
         //获取raw中type类型
@@ -79,6 +79,14 @@ const RawParam = (props) => {
                 })
             })
         }
+
+        setShowBtn(false)
+    }
+
+    const [showBtn, setShowBtn] = useState(false);
+
+    const focusFn = () =>{
+        setShowBtn(true)
     }
 
     return (
@@ -99,13 +107,20 @@ const RawParam = (props) => {
                     </Form.Item>
                 </div>
 
-                <Form.Item  name='raw'>
-                    <CodeMirror
-                        mediaType={typeValue}
-                        blurFn={blurFn}
-                        ediTextRef={ediTextRef}
-                    />
-                </Form.Item>
+                <div style={{border:"1px solid #f0f0f0"}}>
+                    <Form.Item  name='raw'>
+                        <CodeMirror
+                            mediaType={typeValue}
+                            ediTextRef={ediTextRef}
+                            focusFn={focusFn}
+                        />
+                    </Form.Item>
+                </div>
+                <div className={`action-btn-box ${showBtn?"pi-show":"pi-hide"}`}>
+                    <Button onClick={()=>setShowBtn(false)} style={{marginRight:"10px"}}> 取消</Button>
+                    <Button onClick={save} className={"important-btn"}> 保存</Button>
+                </div>
+
             </Form>
 
         </div>

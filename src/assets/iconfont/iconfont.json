@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "29116997",
+      "name": "箭头-上",
+      "font_class": "jiantou-shang2",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "12687054",
+      "name": "回车",
+      "font_class": "icon-1",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
       "icon_id": "6429662",
       "name": "数据模型",
       "font_class": "ico-",
@@ -69,13 +83,6 @@
       "unicode_decimal": 58892
     },
     {
-      "icon_id": "32474136",
-      "name": "进入",
-      "font_class": "jinru",
-      "unicode": "e6af",
-      "unicode_decimal": 59055
-    },
-    {
       "icon_id": "32474465",
       "name": "展开",
       "font_class": "zhankai",
@@ -88,6 +95,13 @@
       "font_class": "xinzeng",
       "unicode": "e6c8",
       "unicode_decimal": 59080
+    },
+    {
+      "icon_id": "33050892",
+      "name": "新增-copy",
+      "font_class": "xinzeng-copy",
+      "unicode": "ec3a",
+      "unicode_decimal": 60474
     },
     {
       "icon_id": "159969",
@@ -333,20 +347,6 @@
       "font_class": "changjing",
       "unicode": "e673",
       "unicode_decimal": 58995
-    },
-    {
-      "icon_id": "1302",
-      "name": "加",
-      "font_class": "jia",
-      "unicode": "e604",
-      "unicode_decimal": 58884
-    },
-    {
-      "icon_id": "1125606",
-      "name": "添加",
-      "font_class": "tianjia",
-      "unicode": "e635",
-      "unicode_decimal": 58933
     },
     {
       "icon_id": "4657681",

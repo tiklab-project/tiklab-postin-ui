@@ -3,12 +3,13 @@ import {Divider, Select} from "antd";
 import {inject, observer} from "mobx-react";
 import {Option} from "antd/es/mentions";
 import ApiStatusModal from "./apiStatusModal";
+import {CaretDownOutlined} from "@ant-design/icons";
 
 const ApiStatusSelect = (props) =>{
     const {apxMethodStatusStore,selectStatus,status} = props;
     const {findApiStatusList} = apxMethodStatusStore;
 
-
+    const [showValidateStatus, setShowValidateStatus ] = useState()
     const [statusList, setStatusList] = useState([]);
     const [customList, setCustomList] = useState([]);
     let workspaceId = localStorage.getItem("workspaceId");
@@ -53,9 +54,8 @@ const ApiStatusSelect = (props) =>{
 
     return(
         <Select
-            style={{width:80,height:40}}
+            style={{width:80,height:32}}
             value={status}
-            showArrow={false}
             onChange={(e)=>selectStatus(e)}
             onFocus={clickSelect}
             dropdownRender={item=>(
@@ -66,6 +66,10 @@ const ApiStatusSelect = (props) =>{
                     <ApiStatusModal />
                 </>
             )}
+            showArrow={showValidateStatus === "apiStatus"}
+            suffixIcon={showValidateStatus === "apiStatus"?<CaretDownOutlined />:null}
+            onMouseEnter={()=>{setShowValidateStatus("apiStatus")}}
+            onMouseLeave={()=>{setShowValidateStatus("")}}
         >
             {
                 showStatus([...statusList,...customList])

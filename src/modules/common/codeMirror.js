@@ -32,7 +32,7 @@ import 'codemirror/mode/xml/xml';
 // import 'codemirror/addon/display/fullscreen.js';
 
 const CodeMirror = (props) => {
-    const { value,mediaType,blurFn,ediTextRef} = props;
+    const { value,mediaType,blurFn,focusFn,ediTextRef} = props;
 
 
     console.log(mediaType)
@@ -40,6 +40,11 @@ const CodeMirror = (props) => {
     const onBlur = ()=>{
         if(!blurFn) return
         blurFn()
+    }
+
+    const onFocus = ()=>{
+        if(!focusFn) return
+        focusFn()
     }
 
     return (
@@ -51,7 +56,7 @@ const CodeMirror = (props) => {
                     mode:mediaType,
                     theme: 'idea',
                     lineWiseCopyCut: true,
-                    autofocus: true, //自动获取焦点
+                    autofocus: false, //自动获取焦点
                     styleActiveLine: true, //光标代码高亮
                     lineNumbers: true, //显示行号
                     smartIndent: true, //自动缩进
@@ -74,6 +79,7 @@ const CodeMirror = (props) => {
                 onBeforeChange={(editor, data, value) => {}}
 
                 onBlur={onBlur}
+                onFocus={onFocus}
             />
         </div>
 
