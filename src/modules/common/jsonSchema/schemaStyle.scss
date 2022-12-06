@@ -1,0 +1,55 @@
+.pi-schema-root{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+
+    .schema-item{
+
+
+        .ant-select{
+
+            .ant-select-selector{
+                border:1px solid #f0f0f0;
+            }
+        }
+
+
+        .ant-input{
+            border:1px solid #f0f0f0;
+        }
+    }
+
+    .schema-item-action{
+        width: 100px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .schema-item-pre{
+        display: flex;
+    }
+
+    .pi-schema-prefix-icon{
+        margin: 5px 5px 0 0;
+        cursor: pointer;
+    }
+
+    //.schema-item{
+    //    width:200px
+    //}
+
+    .schema-item-flex-1{
+       flex: 1;
+    }
+
+    .schema-item-select{
+        width: 150px;
+    }
+
+
+
+
+
+}
+

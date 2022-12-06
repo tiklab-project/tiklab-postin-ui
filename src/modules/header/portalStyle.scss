@@ -187,6 +187,7 @@
 
 
 .frame-header{
+    padding: 0 10px;
     background: var(--pi-base-color);
     display: flex;
     justify-content: space-between;
@@ -251,7 +252,7 @@
         justify-content: space-between;
 
         .pi-header-right-item{
-            margin: 0 15px;
+            margin: 0 15px 0 0;
         }
     }
 

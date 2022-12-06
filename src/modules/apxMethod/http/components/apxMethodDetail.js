@@ -16,6 +16,7 @@ import {methodDictionary, protocol} from "../../../common/dictionary/dictionary"
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import {messageFn} from "../../../common/messageCommon/messageCommon";
 import {CaretDownOutlined} from "@ant-design/icons";
+import ShareModal from "../../../share/components/shareModal";
 
 const {Option} = Select;
 const {TextArea} = Input
@@ -283,6 +284,12 @@ const ApxMethodDetail = (props) => {
                     </div>
 
                     <Space >
+                        <ShareModal
+                            btn={true}
+                            targetName={name}
+                            targetId={apxMethodId}
+                            targetType={"api"}
+                        />
                         <IconBtn
                             className="important-btn"
                             icon={"fasong-copy"}

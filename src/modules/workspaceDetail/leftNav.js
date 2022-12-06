@@ -8,7 +8,7 @@ import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 
 const LeftNav = (props) =>{
     const {workspaceStore,workspaceRecentStore,systemRoleStore} = props;
-    const {workspaceIcon,workspaceList,findWorkspaceList,settingMenuSelected } = workspaceStore;
+    const {workspaceIcon,workspaceList,findWorkspaceList,settingMenuSelected,findWorkspace } = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const menuData = [
         {
@@ -48,6 +48,7 @@ const LeftNav = (props) =>{
     const leftMenuSelect = localStorage.getItem("LEFT_MENU_SELECT")
 
     useEffect(()=>{
+        findWorkspace(workspaceId)
         findWorkspaceList({userId:getUser().userId})
 
         systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId,"postin")

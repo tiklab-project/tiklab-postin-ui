@@ -25,6 +25,7 @@ const RequestBodyTestCase = (props)=>{
     },[bodyTypeCase])
 
 
+    //展示请求体类型
     const showBodyType = (type) =>{
         let bodyKeyArr = Object.keys(mediaTypeDictionary)
 

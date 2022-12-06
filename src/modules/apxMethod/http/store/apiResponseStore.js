@@ -6,40 +6,25 @@ import {
 } from '../api/apiResponseApi';
 
 export class ApiResponseStore {
-    @observable bodyType = '';
-    @observable httpId = '';
-    @observable apiResponseId = '';
+    @observable bodyType;
 
     @action
     findApiResponse = async (id) => {
-        this.httpId = id;
-        this.apiResponseId = id;
-
         const param = new FormData();
         param.append('id', id);
 
         const res = await findApiResponse(param);
         if( res.code === 0){
-            this.bodyType = res.data.bodyType;
+
             return res.data;
         }
     }
 
     @action
-    createApiResponse = async (values) => {
-        values.httpId = this.httpId
-        values.id =  this.apiResponseId;
-
-        await createApiResponse(values);
-    }
+    createApiResponse = async (values) => await createApiResponse(values)
 
     @action
-	updateApiResponse = async (values) => {
-        values.httpId = this.httpId
-        values.id= this.apiResponseId;
-
-		await updateApiResponse(values)
-    }
+	updateApiResponse = async (values) => await updateApiResponse(values)
     
 }
 

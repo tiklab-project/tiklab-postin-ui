@@ -2,16 +2,16 @@ import React from "react";
 import {message} from "antd";
 import "./messageCommon.scss"
 
-export const messageFn = (type) =>{
+export const messageFn = (type,content) =>{
 
     let successOptions = {
-        content:"保存成功",
+        content:content||"保存成功",
         className:"pi-message-success",
         duration: 1,
     }
 
     let errorOptions = {
-        content:"保存失败",
+        content:content||"保存失败",
         className:"pi-message-error",
         duration: 1,
     }

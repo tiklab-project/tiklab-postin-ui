@@ -20,7 +20,7 @@ const RawParam = (props) => {
     //获取当前的raw的数据
     const rawDataRef = useRef(null);
     //获取当前raw中的类型
-    const typeRef =  useRef("text/plain")
+    const typeRef =  useRef("application/json")
     //用于传入codemirror中的类型，直接通过typeRef.current无法传入
     const [typeValue, setTypeValue] = useState(typeRef.current);
 

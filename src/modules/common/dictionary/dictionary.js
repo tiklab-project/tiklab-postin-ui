@@ -37,7 +37,7 @@ export const mediaTypeDictionary={
     none:"none",
     formdata:"multipart/form-data",
     formUrlencoded:"application/x-www-form-urlencode",
-    json:"application/json",
+    // json:"application/json",
     raw:"raw",
     // binary:"binary"
 }
@@ -64,14 +64,14 @@ export const bodyTypeJsonDictionary = {
 
 export const rawTypeDictionary = [
     {
-        "name":"Text(text/plain)",
-        "value":"text/plain",
-        "key":"text"
-    },
-    {
         "name":"Json(application/json)",
         "value":"application/json",
         "key":"json"
+    },
+    {
+        "name":"Text(text/plain)",
+        "value":"text/plain",
+        "key":"text"
     },
     {
         "name":"Javascript(application/javascript)",

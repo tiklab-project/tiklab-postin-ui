@@ -4,6 +4,8 @@ import ResponseHeader from "./responseHeader";
 import JsonResponse  from "./jsonResponse";
 import RawResponse from './rawResponse';
 import { Tabs, Radio } from 'antd';
+import ResponseResult from "./responseResult";
+import Schema from "../../../common/jsonSchema/schema";
 const { TabPane } = Tabs;
 
 // 输出参数 返回头部与返回结果的切换
@@ -21,7 +23,8 @@ const Response = (props) =>{
 
     useEffect(()=> {
         findApiResponse(apxMethodId).then((res)=>{
-            setRadioType(res.bodyType)
+            // setRadioType(res.bodyType)
+
         })
     },[bodyType])
     
@@ -48,21 +51,9 @@ const Response = (props) =>{
                     <div className={"tabPane-item-box"}><ResponseHeader /></div>
                 </TabPane>
                 <TabPane tab="返回结果" key="2">
-                    <div className='request-radio'>
-                        <Radio.Group 
-                            name="radiogroup" 
-                            onChange={(e)=>onChange(e.target.value)}
-                            value={radioType}
-                        >
-                            <Radio value={'json'}>json </Radio>
-                            <Radio value={'raw'}>raw</Radio>
-                        </Radio.Group>
+                    <div className={"api-result-box"}>
+                        <ResponseResult />
                     </div>
-                    <div>
-                        {
-                            changeFormat(radioType)
-                        } 
-                    </div>  
                 </TabPane>
 
             </Tabs>

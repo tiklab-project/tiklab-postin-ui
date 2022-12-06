@@ -11,7 +11,7 @@ import {MOCK_SOURCE, mockValueDictionary} from '../../../common/dictionary/dicti
 import ExSelect from "../../../common/exSelect";
 import {ExTable} from '../../../common/editTable';
 import DataTypeSelect from "../../../common/dataTypeSelect";
-require('json-schema-editor-visual/dist/main.css')
+// require('json-schema-editor-visual/dist/main.css')
 // const schemaEditor = require("json-schema-editor-visual");
 // import SchemaEditor from "json-schema-editor-visual"
 

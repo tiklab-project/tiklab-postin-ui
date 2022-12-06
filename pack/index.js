@@ -14,7 +14,6 @@ import {
     ElectronLoginContant,
     LayoutQuickTest,TabsQuickTest,
     Test, TestdetailQuickTest,TestCaseDetail,
-    WorkspaceWidget,
 } from "./components/modules/index"
 
 
@@ -28,5 +27,5 @@ export {
     LoginOut,LoginContent,
     ElectronLoginContant,
 
-    WorkspaceWidget,
+
 }

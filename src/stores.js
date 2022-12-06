@@ -1,9 +1,9 @@
 import {EAM_STORE, EamStore} from 'tiklab-eam-ui/es/store'
 import { SEARCHSTORE, SearchStore } from './modules/integration/search'
 
-import {WIDGET_STORE,WidgetStore} from "./modules";
-
 import {USERSELECT_STORE, UserSelectStore} from './modules/integration/userSelect/store/userSelectStore'
+
+import {JSON_SCHEMA_STORE,JsonSchemaStore} from "./modules/common/jsonSchema/jsonSchemaStore";
 
 import {
     WORKSPACE_STORE, WorkspaceStore,
@@ -104,13 +104,14 @@ import {
     QUICKTEST_STORE, QuickTestStore
 } from "./modules/quicktest/index"
 
+import {SHARE_STORE,ShareStore} from "./modules/share/store/shareStore";
+
+
 function createStores() {
     return {
         [EAM_STORE]: new EamStore(),
         // search
         [SEARCHSTORE]: new SearchStore(),
-
-        [WIDGET_STORE]: new WidgetStore(),
 
         // workspace
         [WORKSPACE_STORE]: new WorkspaceStore(),
@@ -206,6 +207,11 @@ function createStores() {
         [AFTERSCRIPT_QUICKTEST_STORE]: new AfterScriptQuickTestStore(),
         [ASSERT_QUICKTEST_STORE]: new AssertQuickTestStore(),
         [QUICKTEST_STORE]: new QuickTestStore(),
+
+        [JSON_SCHEMA_STORE]: new JsonSchemaStore(),
+        [SHARE_STORE]: new ShareStore()
+
+
 
     };
 }

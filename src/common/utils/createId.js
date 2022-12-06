@@ -6,13 +6,15 @@ export let createID=() => {
 }
 
 //生成Id
-export let uuid=() =>{
+export let uuid=(times) =>{
+    let frequency = times||18;
+
     let s = [];
     // 随机的id值从以下字符串中产生
     let uuidData = "0123456789abcdefghijklmnopqrstuvwxyz";
     let uuidDataLength = uuidData.length;
     //此处循环了18次，可以修改循环次数，循环次数决定生成id长度
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < frequency; i++) {
         // 从uuidData中随机截取一个字符
         s[i] = uuidData.substr(Math.floor(Math.random() * uuidDataLength), 1);
     }

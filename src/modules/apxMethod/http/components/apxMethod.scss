@@ -321,6 +321,22 @@
     display: flex;
 }
 
+//.api-result-box{
+//
+//    .json-schema-react-editor .ace_editor{
+//        height: 400px;
+//    }
+//
+//    .json-schema-react-editor .object-style{
+//        display: none;
+//    }
+//
+//    .json-schema-react-editor .ant-col-8{
+//        flex:1;
+//        max-width:100%
+//    }
+//}
+
 /* 可编辑框初始宽度 */
 .editable-cell-value-wrap {
     width: 100%;
@@ -390,7 +406,7 @@
 
             .ant-select-selection-placeholder{
                 color: black;
-                font-size: 13pxw;
+                font-size: 13px;
             }
         }
     }

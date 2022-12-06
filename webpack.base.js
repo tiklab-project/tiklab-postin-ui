@@ -8,6 +8,8 @@ const path = require('path');
 const DIST_PATH = path.resolve(__dirname, 'dist');
 const envData = require(`./env/env-${process.env.API_ENV}`);
 
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 
@@ -94,6 +96,7 @@ module.exports = {
         ]
     },
 
+
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
@@ -119,6 +122,10 @@ module.exports = {
 
         new webpack.DefinePlugin( envData),
 
+        new MonacoWebpackPlugin({
+            languages: ["json", "xml","javascript", "html"],
+            features: ["coreCommands", "find", "format", "folding", 'smartSelect', 'snippets', 'suggest', 'hover']
+        })
         // new CheckVersion(),
 
     ]

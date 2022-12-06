@@ -9,6 +9,7 @@ import {CategoryEdit,CategoryNav} from '../index'
 import { Input, Button, Dropdown, Menu} from 'antd';
 import Import from "../../integration/imexport/components/import";
 import {SearchOutlined} from "@ant-design/icons";
+import IconCommon from "../../common/iconCommon";
 
 const CategoryAside = (props) => {
     const { categoryStore } = props;
@@ -44,11 +45,11 @@ const CategoryAside = (props) => {
                         />
                         <Dropdown overlay={menu}  className="ws-left-tree-drop" >
                             <div>
-                                <svg className={"icon-s"} aria-hidden="true" >
-                                    <use xlinkHref= {`#icon-tianjia-`} />
-                                </svg>
+                                <IconCommon
+                                    className={"icon-s"}
+                                    icon={"tianjia-"}
+                                />
                             </div>
-
                         </Dropdown>
                     </div>
                     <div className='ws-detail-menu-ul-box'>

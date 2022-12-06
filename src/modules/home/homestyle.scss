@@ -137,6 +137,10 @@
 
 .demo-loadmore-list {
     min-height: 350px;
+
+    .ant-list-items .ant-list-item{
+        border: none;
+    }
 }
 
 

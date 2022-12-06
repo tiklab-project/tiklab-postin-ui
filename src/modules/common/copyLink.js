@@ -1,15 +1,5 @@
-import {message} from "antd";
 
-const messageFun = (text) =>{
-    message.success({
-        content: text,
-        className: 'custom-class',
-        style: {
-            marginTop: '5vh',
-        },
-    });
-}
-
+import {messageFn} from "./messageCommon/messageCommon";
 
 const copyMockUrl = (id) =>{
     const link = document.getElementById(id)
@@ -26,9 +16,9 @@ const copyMockUrl = (id) =>{
     }
     const successful =document.execCommand("Copy"); // 执行浏览器复制命令
     if(successful){
-        messageFun('复制成功');
+        messageFn("success","复制成功")
     }else {
-        messageFun('复制失败');
+        messageFn("error","复制失败")
     }
 }
 

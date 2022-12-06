@@ -34,9 +34,6 @@ import LoginOut from "./header/loginOut";
 import LoginContent from "./login/loginContent";
 import ElectronLoginContant from "./login/electronLoginContant";
 
-import WorkspaceWidget from "./workspaceWidget/components/workspaceWidget";
-import {WIDGET_STORE,WidgetStore} from "./workspaceWidget/store/widgetStore";
-
 export {
     Home,PageContent,HeaderContent,
     Search, SearchResult,
@@ -60,7 +57,6 @@ export {
     LoginOut,LoginContent,
     ElectronLoginContant,
 
-    WorkspaceWidget,
-    WIDGET_STORE,WidgetStore,
+
 }
 

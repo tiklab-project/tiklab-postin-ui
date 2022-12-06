@@ -35,8 +35,22 @@ import {PluginDetail, PluginList} from "tiklab-plugin-ui";
 import DynamicDetail from "./modules/home/dynamicDetail";
 import Version from "./modules/sysmgr/version/version";
 import StructureDetail from "./modules/sysmgr/dataStructure/components/StructureDetail";
+import Share from "./modules/share/components/share";
+import ShareMain from "./modules/share/components/shareMain";
 
 const routers =  [
+    {
+        path: "/share",
+        component: Share,
+        key:'Share',
+        routes: [
+            {
+                path: "/share/:id",
+                component: ShareMain,
+                key:'Share',
+            },
+        ]
+    },
     {
         path: "/login",
         component: LoginContent,
@@ -415,7 +429,8 @@ const routers =  [
                 render: () => <Redirect to={"/home"}/>,
             },
         ]
-    }
+    },
+
   ];
 
 export default routers

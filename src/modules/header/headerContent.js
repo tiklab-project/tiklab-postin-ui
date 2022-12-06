@@ -170,7 +170,6 @@ const HeaderContent = props => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     )

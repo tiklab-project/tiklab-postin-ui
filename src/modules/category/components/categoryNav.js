@@ -6,6 +6,7 @@ import {ApxMethodEdit} from "../../apxMethod";
 import CategoryEdit from './categoryEdit';
 import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
 import {TextMethodType} from "../../common/methodType";
+import ShareModal from "../../share/components/shareModal";
 
 //分类导航
 const CategoryNav = (props) => {
@@ -88,6 +89,13 @@ const CategoryNav = (props) => {
                 <a>删除</a>
                 </Popconfirm>
             </Menu.Item>
+            <Menu.Item  key={5}>
+                <ShareModal
+                    targetName={"名称"}
+                    targetId={id}
+                    targetType={"category"}
+                />
+            </Menu.Item>
         </Menu>
     );
 
@@ -102,19 +110,19 @@ const CategoryNav = (props) => {
         return (
             <div className={'category-action'}>
                 <div  className={"category-action-right"}>
-                        <ApxMethodEdit
-                            name="添加"
-                            icon={
-                                <Tooltip title="新增接口"  placement="left">
-                                    <svg className="icon-s edit-icon-nav" aria-hidden="true">
-                                        <use xlinkHref={`#icon-tianjia-`}/>
-                                    </svg>
-                                </Tooltip>
-                            }
-                            type="add"
-                            categoryItemId={id}
-                            {...props}
-                        />
+                    <ApxMethodEdit
+                        name="添加"
+                        icon={
+                            <Tooltip title="新增接口"  placement="left">
+                                <svg className="icon-s edit-icon-nav" aria-hidden="true">
+                                    <use xlinkHref={`#icon-tianjia-`}/>
+                                </svg>
+                            </Tooltip>
+                        }
+                        type="add"
+                        categoryItemId={id}
+                        {...props}
+                    />
                     <Dropdown overlay={()=>menu(id)} className={'category-action-more'}>
                         <svg className="icon-s category-nav-item-icon" aria-hidden="true">
                             <use xlinkHref={`#icon-more`}/>
@@ -169,7 +177,7 @@ const CategoryNav = (props) => {
         return(
             data && data.map((item) => {
                 // let deep = 1;
-                if(item.children&&item.children.length>0 || item.categoryMethod&&item.categoryMethod.length>0 ){
+                if(item.children&&item.children.length>0 || item.nodeList&&item.nodeList.length>0 ){
                     return (
                     <li key={item.id} >
                         {
@@ -185,7 +193,7 @@ const CategoryNav = (props) => {
                                 tree(item.children,deep+1)
                             }
                             {
-                                methodView(item.categoryMethod)
+                                methodView(item.nodeList)
                             }
                         </ul>
                     </li>
