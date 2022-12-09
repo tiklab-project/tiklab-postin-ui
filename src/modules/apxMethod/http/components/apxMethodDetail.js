@@ -247,68 +247,7 @@ const ApxMethodDetail = (props) => {
     return(
         <Fragment>
             <div className={"white-bg-box"} style={{marginTop:0}}>
-                <div className="api-detail-base-box">
-                    <div className={"api-base-info-box"}>
-                        <div className={"api-base-info-protocol"}> HTTP</div>
-                        <Select
-                            style={{width:75,height:32}}
-                            value={methodType}
-                            onChange={(e)=>selectMethodType(e)}
-                            showArrow={showValidateStatus === "methodType"}
-                            suffixIcon={showValidateStatus === "methodType"?<CaretDownOutlined />:null}
-                            onMouseEnter={()=>{setShowValidateStatus("methodType")}}
-                            onMouseLeave={()=>{setShowValidateStatus("")}}
-                        >
-                            {
-                                showMethod(methodDictionary)
-                            }
-                        </Select>
 
-                        <div className={"api-base-info-box-name"}>
-                            <Input
-                                defaultValue={name}
-                                onPressEnter={editName}
-                                onBlur={editName}
-                                onFocus={()=>setShowValidateStatus("editName")}
-                                value={name}
-                                onChange={(e)=>setName(e.target.value)}
-                                suffix={
-                                    showValidateStatus === "editName"
-                                        ? <IconCommon
-                                            icon={"icon-1"}
-                                            className="icon-s "
-                                        />
-                                        :null
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <Space >
-                        <DocDrawer
-                            apxMethodId={apxMethodId}
-
-                        />
-                        <IconBtn
-                            className="important-btn"
-                            icon={"fasong-copy"}
-                            onClick={handleTest}
-                            name={"测试"}
-                        />
-                        <RemoteUmdComponent
-                            point='version'
-                            pluginStore={pluginStore}
-                            extraProps={{ history: props.history}}
-                        />
-                        <IconBtn
-                            className="pi-icon-btn-grey"
-                            icon={"shanchu"}
-                            onClick={()=>handleDeleteApxMethod(apxMethodId)}
-                            name={"删除"}
-                        />
-                    </Space>
-
-                </div>
                 <div className={"api-detail-base-box"}>
                     <div className={"api-base-info-two"}>
                         <ApiStatusModal
@@ -336,6 +275,30 @@ const ApxMethodDetail = (props) => {
                             />
                         </div>
                     </div>
+                    <Space >
+                        <DocDrawer
+                            apxMethodId={apxMethodId}
+
+                        />
+                        <IconBtn
+                            className="important-btn"
+                            icon={"fasong-copy"}
+                            onClick={handleTest}
+                            name={"测试"}
+                        />
+                        <RemoteUmdComponent
+                            point='version'
+                            pluginStore={pluginStore}
+                            extraProps={{ history: props.history}}
+                        />
+                        <IconBtn
+                            className="pi-icon-btn-grey"
+                            icon={"shanchu"}
+                            onClick={()=>handleDeleteApxMethod(apxMethodId)}
+                            name={"删除"}
+                        />
+                    </Space>
+
                 </div>
                 <div className={"method"}>
                     <div  style={{display:"flex","justifyContent":"space-between","alignItems":"center"}}>

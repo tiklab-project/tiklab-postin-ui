@@ -204,32 +204,48 @@
     width: 200px;
 }
 
+
+.api-base-info-box{
+    display: flex;
+    align-items: center;
+
+    .api-base-info-protocol{
+        margin-right: 10px;
+        background: #0078d4;
+        padding: 2px;
+        border-radius: 4px;
+        color: white;
+        height: 25px;
+    }
+}
+
+.api-base-info-box-name{
+    input{
+        width: 480px;
+        border: none;
+    }
+    input:hover{
+        background: var(--pi-hover-color);
+    }
+
+    .ant-form-item{
+        margin: 0;
+    }
+}
+
+
 .api-detail-base-box{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 0 0 5px;
     height: 32px;
-    margin: 0 0 15px 0;
+    margin: 0 0 5px 0;
 
 
     &-name{
         input{
             height: 32px;
-        }
-    }
-
-    .api-base-info-box{
-        display: flex;
-        align-items: center;
-
-        .api-base-info-protocol{
-            margin-right: 10px;
-            background: #0078d4;
-            padding: 2px;
-            border-radius: 4px;
-            color: white;
-            height: 25px;
         }
     }
 
@@ -268,19 +284,7 @@
     //    cursor: text;
     //}
 
-    .api-base-info-box-name{
-        input{
-            width: 480px;
-            border: none;
-        }
-        input:hover{
-            background: var(--pi-hover-color);
-        }
 
-        .ant-form-item{
-            margin: 0;
-        }
-    }
 
     .api-base-info-box-name:hover{
         background: var(--pi-hover-color);
