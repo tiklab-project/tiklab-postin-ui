@@ -1,10 +1,10 @@
 import React from "react";
-import {bodyTypeJsonDictionary as bodyTypeJson} from "../../common/dictionary/dictionary";
-import TableFormShare from "../../common/apiDoc/tableFormShare";
-import TableFormUrlShare from "../../common/apiDoc/tableFormUrlShare";
-import RawShare from "../../common/apiDoc/rawShare";
+import {bodyTypeJsonDictionary as bodyTypeJson} from "../dictionary/dictionary";
+import TableFormDoc from "./tableFormDoc";
+import TableFormUrlDoc from "./tableFormUrlDoc";
+import RawDoc from "./rawDoc";
 
-const RequestBodyShare = (props) =>{
+const RequestBodyDoc = (props) =>{
 
     //渲染对应类型的组件
     const showItemComponent = (data)=>{
@@ -12,11 +12,11 @@ const RequestBodyShare = (props) =>{
             case bodyTypeJson.none:
                 return null
             case bodyTypeJson.formdata:
-                return <TableFormShare dataSource={data?.formList}/>
+                return <TableFormDoc dataSource={data?.formList}/>
             case bodyTypeJson.formUrlencoded:
-                return <TableFormUrlShare dataSource={data?.urlencodeList} />
+                return <TableFormUrlDoc dataSource={data?.urlencodeList} />
             case bodyTypeJson.raw:
-                return <RawShare dataSource={data?.rawParam} />
+                return <RawDoc dataSource={data?.rawParam} />
         }
     }
 
@@ -29,4 +29,4 @@ const RequestBodyShare = (props) =>{
     )
 }
 
-export default RequestBodyShare;
+export default RequestBodyDoc;

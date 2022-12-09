@@ -1,7 +1,7 @@
 import React from "react";
 import { Table} from "antd";
 
-const TableFormUrlShare = (props) =>{
+const TableFormUrlDoc = (props) =>{
     const {dataSource} = props;
 
     const columns=[
@@ -54,4 +54,4 @@ const TableFormUrlShare = (props) =>{
     )
 }
 
-export default TableFormUrlShare;
+export default TableFormUrlDoc;

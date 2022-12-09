@@ -16,7 +16,8 @@ import {methodDictionary, protocol} from "../../../common/dictionary/dictionary"
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import {messageFn} from "../../../common/messageCommon/messageCommon";
 import {CaretDownOutlined} from "@ant-design/icons";
-import ShareModal from "../../../share/components/shareModal";
+import DocDrawer from "./apiDocDrawer";
+import ResponseHeader from "./responseHeader";
 
 const {Option} = Select;
 const {TextArea} = Input
@@ -284,11 +285,9 @@ const ApxMethodDetail = (props) => {
                     </div>
 
                     <Space >
-                        <ShareModal
-                            btn={true}
-                            targetName={name}
-                            targetId={apxMethodId}
-                            targetType={"api"}
+                        <DocDrawer
+                            apxMethodId={apxMethodId}
+
                         />
                         <IconBtn
                             className="important-btn"
@@ -420,6 +419,17 @@ const ApxMethodDetail = (props) => {
 
             <div className="header-title ex-title">输出结果</div>
             <div className={"white-bg-box"}>
+                <div className={"tabPane-item-box"}>
+                    <div style={{margin:"10px 0"}}>
+                        <span  className={"ws-param-title"}>返回头</span>
+                    </div>
+                    <ResponseHeader />
+                </div>
+            </div>
+            <div className={"white-bg-box"}>
+                <div style={{margin:"10px 0"}}>
+                    <span  className={"ws-param-title"}>返回结果</span>
+                </div>
                 <Response  />
             </div>
 

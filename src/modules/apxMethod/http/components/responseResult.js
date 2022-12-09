@@ -1,11 +1,13 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Button, Radio} from "antd"
-
+import React, {useEffect, useState} from "react";
+import {Button, Form, Input, Radio, Select, Space} from "antd"
 import {inject, observer} from "mobx-react";
-import MonacoEditor from "../../../common/monacoEditor/monacoEditor";
 import Schema from "../../../common/jsonSchema/schema";
+import ReactMonacoEditor from "../../../common/monacoEditor/reactMonacoEditor";
 
-function checkIsJsonSchema(json) {
+const {Option} = Select;
+const httpCodes = [200,201,403,404,410,422,500,502,503,504]
+
+const checkIsJsonSchema=(json)=> {
     try {
         json = JSON.parse(json);
         if (json.properties && typeof json.properties === 'object' && !json.type) {
@@ -29,79 +31,141 @@ function checkIsJsonSchema(json) {
 }
 
 const ResponseResult = (props) =>{
-    const {apiResponseStore,jsonSchemaStore} = props;
+    const {apiResponseStore,jsonSchemaStore,resultId,httpId} = props;
     const {findApiResponse,updateApiResponse} = apiResponseStore;
-    const {schemaData} = jsonSchemaStore
+    const {setSchemaData,schemaData} = jsonSchemaStore
 
-
-    const [editorValue, setEditorValue] = useState();
+    const [form] = Form.useForm();
+    const [rawText, setRawText] = useState();
     const [dataValue, setDataValue] = useState();
+    const [type, setType] = useState();
 
-    const [type, setType] = useState("json");
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
 
     useEffect(async ()=>{
-        let data =  await findApiResponse(apxMethodId);
-        if(data.jsonText){
-            // let json = JSON.parse(data.jsonText)
-            setDataValue(data.jsonText)
-            setEditorValue(data.jsonText)
+        let res =  await findApiResponse(resultId)
+        form.setFieldsValue({
+            name:res.name,
+            httpCode:res.httpCode,
+            dataType:res.dataType
+        })
+
+        if(res.dataType==="json"){
+            setSchemaData(JSON.parse(res.jsonText))
+        }else {
+            setRawText(res.rawText)
         }
-    },[apxMethodId])
+        setType(res.dataType);
+
+        setDataValue(res)
+    },[resultId])
 
 
-    const changeToFormat = async () =>{
+    const onChange = async ()=>{
+        let value = await form.getFieldsValue();
+        value.id=resultId;
+        value.httpId=httpId;
 
-        let params = {
-            httpId:apxMethodId,
-            id:apxMethodId,
-            jsonText:editorValue
+        await updateApiResponse(value)
 
+        setType(value.dataType)
+    }
+
+
+    //raw
+    const rawChange = (value)=>{
+        setRawText(value)
+    }
+
+    const saveRawText = async () =>{
+        const param = {
+            id: dataValue?.id,
+            httpId:dataValue?.httpId,
+            rawText:rawText
         }
-        let res = await updateApiResponse(params)
-        if(res.code===0){
-            let data =  await findApiResponse(apxMethodId);
-            if(data.jsonText){
-                // let json = JSON.parse(data.jsonText)
-                setDataValue(data.jsonText)
-            }
+
+        await updateApiResponse(param)
+
+        let res = await findApiResponse(resultId)
+        setDataValue(res)
+    }
+
+    const cancelRawText = () =>{
+        setRawText(dataValue?.rawText)
+    }
+
+    const showSaveView = () =>{
+        if(dataValue?.dataType==="raw"&&dataValue?.rawText!==rawText){
+            return <Space>
+                <Button  onClick={cancelRawText}>取消</Button>
+                <Button className={"important-btn"} onClick={saveRawText}>保存</Button>
+            </Space>
+
+
         }
     }
 
     return(
-        <div>
-            <div style={{display:"flex","justifyContent":"space-between"}}>
-                <Radio.Group defaultValue={type} onChange={(e) =>setType(e.target.value) }>
-                    <Radio.Button value="json">json</Radio.Button>
-                    <Radio.Button value="raw">raw</Radio.Button>
-                </Radio.Group>
+        <div className={"res-result"}>
+            <div className={"res-result-top-box"}>
+                <Form form={form}   layout={"inline"}  style={{margin:" 0 0 20px 0"}}>
+                    <Form.Item
+                        label="HTTP 状态码"
+                        name="httpCode"
+                    >
+                        <Select
+                            showSearch
+                            style={{width:120}}
+                            onChange={onChange}
+                        >
+                            {
+                                httpCodes.map(item=>{
+                                    return <Option value={item} key={item}>{item}</Option>
+                                })
+                            }
+                        </Select>
+                    </Form.Item>
+                    <Form.Item
+                        label="名称 "
+                        name="name"
+                    >
+                        <Input style={{width:120}}  onBlur={(e)=>onChange(e.target.value)}/>
+                    </Form.Item>
+                    <Form.Item
+                        label="数据类型"
+                        name="dataType"
+                    >
+                        <Select
+                            style={{width:120}}
+                            onChange={onChange}
+                        >
+                            <Option value={"json"}>json</Option>
+                            <Option value={"raw"}>raw</Option>
+                        </Select>
+                    </Form.Item>
+                </Form>
                 {
-                    editorValue!==dataValue
-                        ? <Button className={"important-btn"} onClick={changeToFormat}>保存</Button>
-                        : <span />
+                    showSaveView()
                 }
 
             </div>
 
-            {/*<Button onClick={changeToFormat}>格式</Button>*/}
             {
                 type==="json"
-                    ?
-                     <Schema/>
-                    :
-                    <div>
-                        <MonacoEditor
-                            value={JSON.stringify(schemaData)}
-                            setEditorValue={setEditorValue}
-                        />
-                    </div>
-
+                    ?<Schema
+                        resultId={resultId}
+                        httpId={httpId}
+                    />
+                    :<ReactMonacoEditor
+                        editorChange={rawChange}
+                        value={rawText}
+                        language={"text"}
+                        height={"300px"}
+                        width={"100%"}
+                    />
             }
 
-
         </div>
-
     )
 }
 

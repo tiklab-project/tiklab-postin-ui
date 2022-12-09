@@ -1,7 +1,7 @@
 import React from "react";
 import { Table} from "antd";
 
-const TableFormShare = (props) =>{
+const TableFormDoc = (props) =>{
     const {dataSource} = props;
 
     const columns=[
@@ -55,4 +55,4 @@ const TableFormShare = (props) =>{
     )
 }
 
-export default TableFormShare;
+export default TableFormDoc;

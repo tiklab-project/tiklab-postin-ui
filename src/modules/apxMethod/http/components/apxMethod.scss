@@ -22,11 +22,11 @@
 .header-title{
     font-weight: var(--pi-font-weight-title);
     font-size: var(--pi-font-size-13);
-    padding-left: 3px;
+    //padding-left: 3px;
 }
 
 .ex-title{
-    margin: 10px 0 0;
+    margin: 25px 0 0;
 
 }
 
@@ -94,7 +94,7 @@
 .content-margin{
     height: 100%;
     overflow: auto;
-    background-color: var(--pi-bg-grey-100);
+    background-color: #fff;
     padding: 10px;
 
     .content-margin-box{
@@ -366,7 +366,7 @@
 }
 
 .method{
-    padding: 0 0 0 5px;
+    //padding: 0 0 0 5px;
     margin: 0 0 10px 0 ;
 
     .method-info{
@@ -558,3 +558,34 @@
 }
 
 
+.res-result{
+    padding: 10px 0;
+    min-height: 200px;
+
+    &-top-box{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-top{
+        display: flex;
+        gap: 20px;
+    }
+}
+
+.api-result-box{
+    .ant-tabs .ant-tabs-nav{
+        //border-bottom: 1px solid #e4e4e4;
+    }
+
+    .ant-tabs .ant-tabs-tab{
+        border: 0!important;
+        padding: 8px!important;
+        background: #fff!important;
+    }
+    .ant-tabs-card > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-ink-bar{
+        background: var(--pi-base-color);
+    }
+
+}

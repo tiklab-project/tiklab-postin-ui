@@ -4,7 +4,8 @@ import {
     CreateCategory,
     DeleteCategory,
     UpdateCategory,
-    FindCategoryListTree
+    FindCategoryListTree,
+    findCategoryAddSon
 } from '../api/categoryApi';
 
 export class CategoryStore{
@@ -45,6 +46,20 @@ export class CategoryStore{
             return res.data;
         }
     }
+
+    @action
+    findCategoryAddSon = async (id) => {
+        const param = new FormData();
+        param.append('id', id);
+
+        let res = await findCategoryAddSon(param)
+
+        if(res.code === 0){
+            return res.data
+        }
+    }
+
+
 
     @action
     createCategory = async (values) => {

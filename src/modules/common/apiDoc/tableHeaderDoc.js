@@ -1,8 +1,8 @@
 import React from "react";
 import { Table} from "antd";
 
-const TableHeaderShare = (props) =>{
-    const {dataSource} = props;
+const TableHeaderDoc = (props) =>{
+    const {dataSource,isResponse} = props;
 
     const columns=[
         {
@@ -33,7 +33,7 @@ const TableHeaderShare = (props) =>{
             {
                 dataSource&&dataSource.length>0
                     ?<div className={"share-request-item"}>
-                        <div>Header参数</div>
+                        <div>{isResponse?"响应头":"Header参数"}</div>
                         <div className={"share-right-table"}>
                             <Table
                                 bordered
@@ -51,4 +51,4 @@ const TableHeaderShare = (props) =>{
     )
 }
 
-export default TableHeaderShare;
+export default TableHeaderDoc;

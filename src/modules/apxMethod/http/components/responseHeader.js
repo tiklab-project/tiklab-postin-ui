@@ -180,7 +180,6 @@ const ResponseHeader = (props) =>{
 
     return (
         <>
-            <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>响应头</span></div>
             <ExTable
                 columns={columns}
                 dataSource={responseHeaderList}

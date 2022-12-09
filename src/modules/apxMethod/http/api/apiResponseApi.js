@@ -31,3 +31,11 @@ export function findApiResponse(data){
     })
 }
 
+export function findApiResponseList(data){
+    return service.request({
+        url: "/apiResponse/findApiResponseList",
+        method: "post",
+        data
+    })
+}
+

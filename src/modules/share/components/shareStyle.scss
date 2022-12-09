@@ -46,6 +46,12 @@
     }
 }
 
+.share-box-api-title{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
 .share-box{
     display: flex;
     height:calc(100% - 48px);
@@ -65,10 +71,6 @@
         overflow: auto;
         position: relative;
 
-        .share-box-api-title{
-            font-size: 16px;
-            font-weight: bold;
-        }
 
         &-content{
             margin: 0 auto;
@@ -125,27 +127,30 @@
         }
 
 
-        .share-anchor{
-            width: 125px;
-
-
-            &-box{
-                position: sticky;
-                top: 100px;
-            }
-
-            &-item{
-                padding: 10px;
-                cursor: pointer;
-            }
-            &-item:hover{
-                color: var(--pi-base-color);
-            }
-        }
 
     }
 
 }
+
+.share-anchor{
+    width: 125px;
+    position: fixed;
+    right: -35px;
+    top: 160px;
+
+    &-box{
+        top: 100px;
+    }
+
+    &-item{
+        padding: 10px;
+        cursor: pointer;
+    }
+    &-item:hover{
+        color: var(--pi-base-color);
+    }
+}
+
 
 .share-verify-box{
     height: 100%;

@@ -1,61 +1,49 @@
 import React, { Fragment, useState } from 'react';
 import { observer, inject } from "mobx-react";
-import {Modal,Form,Input} from 'antd';
+import {Modal, Form, Input, Select, Radio} from 'antd';
 
-const layout = {
-    labelCol: {span: 4},
-    wrapperCol: {span: 20},
-};
+const {Option} = Select
 
-// 目录的编辑与添加
-const CategoryEdit =(props)=>{
-    const { categoryStore,type } = props;
-    const {findCategory, createCategory, updateCategory, categoryId} = categoryStore;
+const httpCodes = [200,201,403,404,410,422,500,502,503,504]
+
+// 添加
+const ResponseTabEdit =(props)=>{
+    const { apiResponseStore,setActiveKey ,apxMethodId} = props;
+    const {findApiResponseList, createApiResponse } = apiResponseStore;
 
     const [visible, setVisible] = useState(false);
 
     const [form] = Form.useForm();
 
-    const workspaceId = localStorage.getItem('workspaceId');
-
     // 弹框展示
-    const showModal = () => {
-        setVisible(true);
-        if(props.name === "编辑"){
-            findCategory(props.categoryId?props.categoryId:categoryId).then((res)=>{
-                form.setFieldsValue({
-                    name: res.name,
-                })
-            })
-        }
-    };
-
+    const showModal = () => setVisible(true)
 
     // 收起弹框
-    const hideModal = () => {setVisible(false)};
+    const hideModal = () => setVisible(false)
 
     // 弹框提交
-    const onFinish = () => {
-        form.validateFields().then(values => {
-            if(props.name === '编辑'){
-                updateCategory(values);
-            }else{
-                values.type = type
-                values.workspace = {id:workspaceId}
-                values.parentCategory = {
-                    id:values.parentCategory?values.parentCategory:props.categoryId,
-                }
-                createCategory(values);
-            }
-            setVisible(false)
-        })
+    const onFinish = async () => {
+
+        let values = await form.validateFields()
+        values.httpId =  apxMethodId
+
+        if(values.dataType==="json"){
+           let jsonSchema =  {"type": "object","properties": {} }
+            values.jsonText=JSON.stringify(jsonSchema)
+        }
+
+        let res = await createApiResponse(values)
+        setActiveKey(res.data)
+        await findApiResponseList({httpId:apxMethodId})
+
+        setVisible(false)
     };
 
     return(
-        <Fragment>
-            <a onClick={showModal}>{props.name}</a>
+        <>
+            <a onClick={showModal}>添加</a>
             <Modal
-                title="添加目录"
+                title="添加"
                 visible={visible}
                 onCancel={hideModal}
                 destroyOnClose={true}
@@ -64,23 +52,42 @@ const CategoryEdit =(props)=>{
                 cancelText="取消"
                 centered
             >
-                <Form
-                    form={form}
-                    preserve={false}
-                    layout={"vertical"}
-                >
+                <Form form={form}   layout={"vertical"} >
                     <Form.Item
-                        label="目录名称"
-                        name="name"
-                        rules={[{ required: true, message: '添加目录名称!' }]}
+                        label="HTTP 状态码"
+                        name="httpCode"
+                        rules={[{ required: true, message: '添加HTTP 状态码!' }]}
                     >
-                        <Input />
+                        <Select showSearch>
+                            {
+                                httpCodes.map(item=>{
+                                    return <Option value={item} key={item}>{item}</Option>
+                                })
+                            }
+                        </Select>
+                    </Form.Item>
+                    <Form.Item
+                        label="名称 "
+                        name="name"
+                        rules={[{ required: true, message: '添加名称!' }]}
+                    >
+                        <Input  />
+                    </Form.Item>
+                    <Form.Item
+                        label="数据类型"
+                        name="dataType"
+                        rules={[{ required: true, message: '添加数据类型!' }]}
+                    >
+                        <Radio.Group >
+                            <Radio value={"json"}>json</Radio>
+                            <Radio value={"raw"}>raw</Radio>
+                        </Radio.Group>
                     </Form.Item>
                 </Form>
             </Modal>
-        </Fragment>
+        </>
     )
 
 }
 
-export default inject('categoryStore')(observer(CategoryEdit));
+export default inject('apiResponseStore')(observer(ResponseTabEdit));

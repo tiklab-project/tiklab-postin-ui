@@ -8,8 +8,8 @@ import {messageFn} from "../messageCommon/messageCommon";
 const {Option} = Select
 
 const ToggleSchema = (props) =>{
-    const {data,deep,preKey,parent,root,jsonSchemaStore} = props
-
+    const {data,deep,preKey,parent,root,jsonSchemaStore,apiResponseStore,httpId,resultId} = props
+    const {updateApiResponse} =apiResponseStore
     const {setSchemaData,schemaData} = jsonSchemaStore;
 
     const [toggleShow, setToggleShow] = useState(false);
@@ -28,20 +28,15 @@ const ToggleSchema = (props) =>{
             let properties = data.properties;
 
             const keys = Object.keys(properties);
-            console.log("res-keys----",keys)
             keys.forEach(key=>{
                 let d = { ...properties[key] }
 
                 if(deep===inlineDeep&&key===preKey){
                     result[newKey] =  d
-
-                    console.log("res-in----",result,newKey)
                 }else {
                     result[key] = d
-                    console.log("res-key---",key)
                 }
 
-                console.log("res-----",result)
 
                 if (properties[key].properties) {
                     loop(
@@ -66,6 +61,12 @@ const ToggleSchema = (props) =>{
         console.log(toJS(newResult))
 
         setSchemaData(newResult)
+        const param = {
+            id: resultId,
+            httpId:httpId,
+            jsonText:JSON.stringify(newResult)
+        }
+        updateApiResponse(param)
     }
 
     const changeCheckbox = (e) =>{
@@ -114,6 +115,7 @@ const ToggleSchema = (props) =>{
         console.log(result)
     }
 
+    //改变类型
     const changeType = (type)=>{
 
         let loop = (inlineDeep,data, result={} ) =>{
@@ -166,10 +168,16 @@ const ToggleSchema = (props) =>{
         console.log(toJS(newResult))
 
         setSchemaData(newResult)
-
+        const param = {
+            id: resultId,
+            httpId:httpId,
+            jsonText:JSON.stringify(newResult)
+        }
+        updateApiResponse(param)
 
     }
 
+    //改变参数值
     const changeValue = (value) => {
 
         let loop = (inlineDeep,data, result={} ) =>{
@@ -214,6 +222,13 @@ const ToggleSchema = (props) =>{
         console.log(toJS(newResult))
 
         setSchemaData(newResult)
+
+        const param = {
+            id: resultId,
+            httpId:httpId,
+            jsonText:JSON.stringify(newResult)
+        }
+        updateApiResponse(param)
 
     };
 
@@ -310,8 +325,13 @@ const ToggleSchema = (props) =>{
             properties:result
         }
         setSchemaData(newResult)
-        console.log(toJS(newResult))
 
+        const param = {
+            id: resultId,
+            httpId:httpId,
+            jsonText:JSON.stringify(newResult)
+        }
+        updateApiResponse(param)
     }
 
     //删除
@@ -349,10 +369,13 @@ const ToggleSchema = (props) =>{
             ...schemaData,
             properties:result
         }
-
-        console.log(toJS(newResult))
-
         setSchemaData(newResult)
+        const param = {
+            id: resultId,
+            httpId:httpId,
+            jsonText:JSON.stringify(newResult)
+        }
+        updateApiResponse(param)
     }
 
     //CheckBox
@@ -430,6 +453,9 @@ const ToggleSchema = (props) =>{
                     parent={data}
                     preKey={preKey}
                     jsonSchemaStore={jsonSchemaStore}
+                    apiResponseStore={apiResponseStore}
+                    httpId={httpId}
+                    resultId={resultId}
                 />
             })
         }

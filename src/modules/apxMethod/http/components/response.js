@@ -1,63 +1,81 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
-import ResponseHeader from "./responseHeader";
-import JsonResponse  from "./jsonResponse";
-import RawResponse from './rawResponse';
-import { Tabs, Radio } from 'antd';
+import {Tabs} from 'antd';
 import ResponseResult from "./responseResult";
-import Schema from "../../../common/jsonSchema/schema";
+import ResponseTabEdit from "./responseTabEdit";
 const { TabPane } = Tabs;
 
 // 输出参数 返回头部与返回结果的切换
 const Response = (props) =>{
     const { apiResponseStore } = props;
-    const { 
-        findApiResponse,
-        updateApiResponse,
-        bodyType
+    const {
+        findApiResponseList,
+        apiResponseList,
+        deleteApiResponse
     } = apiResponseStore;
 
-    const [ radioType, setRadioType ] = useState()
 
     const apxMethodId = localStorage.getItem('apxMethodId');
+    const [activeKey, setActiveKey] = useState();
 
-    useEffect(()=> {
-        findApiResponse(apxMethodId).then((res)=>{
-            // setRadioType(res.bodyType)
+    useEffect( ()=> {
+        findList()
+    },[])
 
-        })
-    },[bodyType])
+    const findList = async() =>{
+        let res = await findApiResponseList({httpId:apxMethodId})
+        setActiveKey(res[0].id)
+    }
     
-    // radio切换，更新为当前radio的值
+    //
     const onChange = e => {
-        setRadioType(e);
-        updateApiResponse({bodyType : e});
+        setActiveKey(e)
     };
 
-    //根据radio值，渲染相应的请求体
-    const changeFormat = (radioType) => {
-        switch(radioType) {
-            case 'json':
-                return <div className={"tabPane-item-box"}><JsonResponse /></div>
-            case 'raw':
-                return <RawResponse />
+
+    const remove = async (targetKey) => {
+        await deleteApiResponse(targetKey);
+
+        await findList()
+    };
+
+    const onEdit = (targetKey, action) => {
+        if (action === 'remove') {
+            remove(targetKey);
         }
+    };
+
+    const showTabPane = (list) =>{
+        return list && list.map(item=>{
+            return <TabPane tab={item.name+"("+item.httpCode+")"} key={item.id}>
+                <ResponseResult httpId={apxMethodId} resultId={item.id} />
+            </TabPane>
+        })
+
     }
 
-    return(
-        <Fragment>
-            <Tabs defaultActiveKey="1" >
-                <TabPane tab="返回头部" key="1">
-                    <div className={"tabPane-item-box"}><ResponseHeader /></div>
-                </TabPane>
-                <TabPane tab="返回结果" key="2">
-                    <div className={"api-result-box"}>
-                        <ResponseResult />
-                    </div>
-                </TabPane>
 
+    return(
+        <div className={'api-result-box'}>
+            <Tabs
+                hideAdd
+                onChange={onChange}
+                activeKey={activeKey}
+                onEdit={onEdit}
+                type="editable-card"
+                tabBarExtraContent={
+                    <ResponseTabEdit
+                        apxMethodId={apxMethodId}
+                        setActiveKey={setActiveKey}
+                    />
+                }
+
+            >
+                {
+                    showTabPane(apiResponseList)
+                }
             </Tabs>
-        </Fragment>
+        </div>
     )
     
 }

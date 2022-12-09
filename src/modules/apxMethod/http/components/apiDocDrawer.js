@@ -2,10 +2,10 @@ import React, {useState} from "react";
 import {Button, Drawer} from "antd";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import {inject, observer} from "mobx-react";
-import ApiDocContent from "../../../share/components/apiDocContent";
+import DocContent from "../../../common/apiDoc/docContent";
 import ShareModal from "../../../share/components/shareModal";
 
-const DocDrawer = (props) =>{
+const ApiDocDrawer = (props) =>{
     const {apxMethodStore,apxMethodId} = props;
     const { findApxMethod } = apxMethodStore;
     const [open, setOpen] = useState(false);
@@ -34,7 +34,7 @@ const DocDrawer = (props) =>{
                 title="文档预览"
                 placement="right"
                 onClose={onClose}
-                width={800}
+                width={980}
                 visible={open}
                 extra={
                     <ShareModal
@@ -46,7 +46,7 @@ const DocDrawer = (props) =>{
                 }
             >
 
-                <ApiDocContent apiDoc={apiData}/>
+                <DocContent apiDoc={apiData}/>
 
             </Drawer>
         </>
@@ -54,4 +54,4 @@ const DocDrawer = (props) =>{
 
 }
 
-export default inject("apxMethodStore")(observer(DocDrawer));
+export default inject("apxMethodStore")(observer(ApiDocDrawer));

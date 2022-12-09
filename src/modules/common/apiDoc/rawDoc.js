@@ -1,7 +1,7 @@
 import React from "react";
 import {UnControlled as ReactCodeMirror} from "react-codemirror2";
 
-const RawShare = (props) =>{
+const RawDoc = (props) =>{
     const {dataSource} = props;
 
 
@@ -62,4 +62,4 @@ const RawShare = (props) =>{
         </>
     )
 }
-export default RawShare;
+export default RawDoc;

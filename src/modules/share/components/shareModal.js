@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button,Input, Modal, Select} from "antd";
+import {Button, Input, Modal, Select, Tag} from "antd";
 import IconCommon from "../../common/iconCommon";
 import {uuid} from "../../../common/utils/createId";
 import {inject, observer} from "mobx-react";
@@ -147,7 +147,8 @@ const ShareModal  = (props) =>{
                 <div className={"share-modal"}>
                     <div className={"share-modal-item share-modal-top"}>
                         <div>{props.targetName}</div>
-                        <div className={"share-modal-top-type"}>{showTargetName(targetType)}</div>
+                        <Tag  color="#55acee"> {showTargetName(targetType)}</Tag>
+
                     </div>
                     <div className={"share-modal-item"}>
                         <Select
@@ -167,8 +168,6 @@ const ShareModal  = (props) =>{
                                 />
                                 :<span />
                         }
-
-
                     </div>
                     <div className={"share-modal-item"}>
                         <div className={"share-modal-link"} id={"share-link"}>

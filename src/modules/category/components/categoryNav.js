@@ -6,7 +6,6 @@ import {ApxMethodEdit} from "../../apxMethod";
 import CategoryEdit from './categoryEdit';
 import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
 import {TextMethodType} from "../../common/methodType";
-import ShareModal from "../../share/components/shareModal";
 
 //分类导航
 const CategoryNav = (props) => {
@@ -88,13 +87,6 @@ const CategoryNav = (props) => {
                 >
                 <a>删除</a>
                 </Popconfirm>
-            </Menu.Item>
-            <Menu.Item  key={5}>
-                <ShareModal
-                    targetName={"名称"}
-                    targetId={id}
-                    targetType={"category"}
-                />
             </Menu.Item>
         </Menu>
     );

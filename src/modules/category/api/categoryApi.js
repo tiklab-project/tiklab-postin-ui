@@ -40,6 +40,15 @@ export function FindCategory(data){
     })
 }
 
+export function findCategoryAddSon(data){
+    return service.request({
+        url: "/category/findCategoryAddSon",
+        method: "post",
+        data
+    })
+}
+
+
 export function FindCategoryListTree(data){
     return service.request({
         url: "/category/likeFindCategoryListTree",

@@ -3,7 +3,7 @@ import {Checkbox, Table} from "antd";
 import ExSelect from "../exSelect";
 import {mockValueDictionary} from "../dictionary/dictionary";
 
-const TableQueryShare = (props) =>{
+const TableQueryDoc = (props) =>{
     const {dataSource} = props;
 
     const columns=[
@@ -53,4 +53,4 @@ const TableQueryShare = (props) =>{
     )
 }
 
-export default TableQueryShare;
+export default TableQueryDoc;

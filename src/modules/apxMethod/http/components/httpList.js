@@ -5,6 +5,7 @@ import '../../../category/components/category.scss';
 import ApxMethodEdit from './apxMethodEdit';
 import MethodType from "../../../common/methodType";
 import {SearchOutlined} from "@ant-design/icons";
+import CategoryDocDrawer from "../../../category/components/categoryDocDrawer";
 
 // 点击左侧导航栏目录，查看的所在目录中的接口
 const HttpList = (props) => {
@@ -121,19 +122,6 @@ const HttpList = (props) => {
         setParams(newParams)
     }
 
-    //分页
-    const onTableChange = (pagination) => {
-        setCurrentPage(pagination.current)
-        const newParams = {
-            ...params,
-            pageParam: {
-                pageSize: pageSize,
-                currentPage: pagination.current
-            },
-        }
-        setParams(newParams)
-    }
-
     return(
         <div className={"content-margin"}>
             <div className='content-margin-box list-content-center'>
@@ -145,13 +133,19 @@ const HttpList = (props) => {
                         className='search-input'
                         style={{width:240}}
                     />
-                    <ApxMethodEdit
-                        name="+添加接口"
-                        type="add"
-                        isBtn={'btn'}
-                        {...props}
-                        // pagination={params}
-                    />
+                    <Space>
+                        <CategoryDocDrawer
+                            categoryId={categoryId}
+                        />
+                        <ApxMethodEdit
+                            name="+添加接口"
+                            type="add"
+                            isBtn={'btn'}
+                            {...props}
+                            // pagination={params}
+                        />
+                    </Space>
+
                 </div>
                 <div className={"out-table-box"}>
                     <Table
@@ -159,12 +153,6 @@ const HttpList = (props) => {
                         columns={columns}
                         rowKey={record => record.id}
                         pagination={false}
-                        // pagination={{
-                        //     current:currentPage,
-                        //     pageSize:pageSize,
-                        //     total:totalRecord,
-                        // }}
-                        // onChange = {(pagination) => onTableChange(pagination)}
                     />
                 </div>
 

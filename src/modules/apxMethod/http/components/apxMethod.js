@@ -31,10 +31,6 @@ const ApxMethod = (props) =>  {
         }
     ];
 
-    //路由跳转
-    const onClick = (e) => {
-        props.history.push(e.key)
-    };
 
     return(
         <div className={"api-content-box"}>
