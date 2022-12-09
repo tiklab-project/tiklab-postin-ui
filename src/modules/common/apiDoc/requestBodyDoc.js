@@ -1,8 +1,8 @@
 import React from "react";
 import {bodyTypeJsonDictionary as bodyTypeJson} from "../../common/dictionary/dictionary";
-import TableFormShare from "./tableFormShare";
-import TableFormUrlShare from "./tableFormUrlShare";
-import RawShare from "./rawShare";
+import TableFormShare from "../../common/apiDoc/tableFormShare";
+import TableFormUrlShare from "../../common/apiDoc/tableFormUrlShare";
+import RawShare from "../../common/apiDoc/rawShare";
 
 const RequestBodyShare = (props) =>{
 

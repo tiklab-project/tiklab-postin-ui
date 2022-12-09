@@ -1,7 +1,7 @@
 import React from "react";
 import {Checkbox, Table} from "antd";
-import ExSelect from "../../common/exSelect";
-import {mockValueDictionary} from "../../common/dictionary/dictionary";
+import ExSelect from "../exSelect";
+import {mockValueDictionary} from "../dictionary/dictionary";
 
 const TableQueryShare = (props) =>{
     const {dataSource} = props;
