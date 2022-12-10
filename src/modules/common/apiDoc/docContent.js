@@ -6,7 +6,7 @@ import RequestBodyDoc from "./requestBodyDoc";
 import ResponseResultDoc from "./responseResultDoc";
 
 const DocContent = (props) =>{
-    const {apiDoc} = props;
+    const {apiDoc,style} = props;
 
     const showContentType =(data)=>{
         switch (data?.request?.bodyType) {
@@ -63,7 +63,7 @@ const DocContent = (props) =>{
 
 
     return(
-        <div style={{display:"flex",gap:10,flex:1,width:960,  height: "100%",overflow: "auto"}}>
+        <div style={style}>
             <div className={"share-box-right-detail-content"} style={{width:" 860px"}}>
                 <div className={"share-box-right-content-item"}>
                     <div className={"share-box-api-title"}>{apiDoc?.apix?.name}</div>

@@ -2,38 +2,14 @@ import React, {useEffect, useState} from 'react';
 import { CaretRightOutlined, CaretDownOutlined } from '@ant-design/icons';
 import {TextMethodType} from "../../common/methodType";
 import {inject, observer} from "mobx-react";
+import {Axios} from "tiklab-core-ui";
 
 //目录导航
 const ShareTree = (props) => {
-    const {shareStore,setApiDoc} = props;
-    const {findShareTree } = shareStore;
+    const {setApiDoc,treeList,categoryId} = props;
 
-    const [treeList, setTreeList] = useState();
-
-    const [expandedTree, setExpandedTree] = useState([]);
+    const [expandedTree, setExpandedTree] = useState([categoryId]);
     const [clickKey, setClickKey] = useState();
-
-    const getUrlId = ()=>{
-        let url = window.location.href
-        let index = url.indexOf("share/")
-        return  url.substr(index+6);
-    }
-
-    useEffect(()=>{
-        let id = getUrlId();
-
-        let param =  new FormData()
-        param.append("id",id)
-
-        findShareTree(param).then(res=>{
-            setTreeList(res)
-
-            setClickKey(res[0].nodeList[0].id)
-            setApiDoc(res[0].nodeList[0])
-            setExpandedTree([res[0].id])
-        })
-    },[])
-
 
     //目录
     const onClick = (item) =>{
@@ -42,9 +18,13 @@ const ShareTree = (props) => {
     }
 
     //接口
-    const onMethod = (item) => {
+    const onMethod = async (item) => {
         setClickKey(item.id);
-        setApiDoc(item)
+
+        let param = new FormData()
+        param.append("id",item.id)
+        let res = await Axios.post(`/share/findHttpApi`,param)
+        setApiDoc(res.data)
     }
 
     //展开

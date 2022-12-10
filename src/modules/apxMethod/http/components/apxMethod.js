@@ -6,7 +6,7 @@
 
 import React, {Fragment, useEffect, useState,} from 'react';
 import { renderRoutes } from "react-router-config";
-import {Input, Layout, Menu, Select} from 'antd';
+import {Input, Layout, Menu, Select, Space} from 'antd';
 import {ApiOutlined, CaretDownOutlined, RetweetOutlined, SnippetsOutlined} from '@ant-design/icons';
 import MenuCommon from "../../../common/menu/menuCommon";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
@@ -14,11 +14,15 @@ import IconCommon from "../../../common/iconCommon";
 import {inject, observer} from "mobx-react";
 import {messageFn} from "../../../common/messageCommon/messageCommon";
 import MethodType from "../../../common/methodType";
+import DocDrawer from "./apiDocDrawer";
+import IconBtn from "../../../common/iconBtn/IconBtn";
+import ApiStatusModal from "../../../sysmgr/apiStatus/components/apiStatusSelect";
 const {Option} = Select;
 
 const ApxMethod = (props) =>  {
-    const {apxMethodStore} = props;
-    const {findApxMethod,updateApxMethod} =apxMethodStore;
+    const {apxMethodStore,categoryStore} = props;
+    const {findCategoryList} = categoryStore;
+    const {findApxMethod,updateApxMethod,deleteApxMethod,findApxMethodListByApix} =apxMethodStore;
     const router = props.route.routes;
 
     const items = [
@@ -38,6 +42,8 @@ const ApxMethod = (props) =>  {
         }
     ];
 
+    const workspaceId = localStorage.getItem('workspaceId');
+    const categoryId = localStorage.getItem('categoryId');
     const apxMethodId = localStorage.getItem('apxMethodId');
 
     const [showValidateStatus, setShowValidateStatus ] = useState()
@@ -45,13 +51,17 @@ const ApxMethod = (props) =>  {
     const [methodType,setMethodType] =useState();
     const [resData, setResData] = useState({});
     const [name, setName] = useState();
+    const [path, setPath] = useState();
+    const [status, setStatus] = useState();
 
     useEffect(async ()=>{
         let res = await findApxMethod(apxMethodId)
         setHttpId(res.id)
         setResData(res)
         setName(res.apix?.name)
+        setPath(res.path)
         setMethodType(res.methodType);
+        setStatus(res.apix.status?.id);
     },[apxMethodId]);
 
 
@@ -81,6 +91,52 @@ const ApxMethod = (props) =>  {
         setShowValidateStatus(null)
     };
 
+    //编辑路径
+    const editPath = () => {
+        if(path!==resData.path){
+            let param = {
+                id:httpId,
+                path:path,
+                apix:{
+                    id:httpId,
+                }
+            }
+
+            updateApxMethod(param).then(res=>{
+                if(res.code===0){
+                    findApxMethod(apxMethodId).then(res=>setResData(res))
+
+                    messageFn("success")
+                }else {
+                    messageFn("error")
+                }
+            })
+        }
+
+        setShowValidateStatus(null)
+    };
+
+
+    //设置状态
+    const selectStatus = (statusId) =>{
+        let param = {
+            id:httpId,
+            apix:{
+                id:httpId,
+                status:{id:statusId}
+            }
+        }
+
+        updateApxMethod(param).then((res)=>{
+            setStatus(statusId)
+
+            if(res.code===0){
+                messageFn("success")
+            }else {
+                messageFn("error")
+            }
+        });
+    }
 
     //请求类型
     const selectMethodType = (methodType) =>{
@@ -115,6 +171,17 @@ const ApxMethod = (props) =>  {
             )
         })
     }
+
+    // 删除接口
+    const handleDeleteApxMethod = (apxMethodId) => {
+        deleteApxMethod(apxMethodId).then(()=>{
+            findCategoryList(workspaceId);
+            findApxMethodListByApix(categoryId);
+        })
+
+        props.history.push({pathname:'/workspace/apis/detail/category'})
+    }
+
 
 
     return(
@@ -159,7 +226,49 @@ const ApxMethod = (props) =>  {
                                 />
                             </div>
                         </div>
+                        <Space >
+                            <DocDrawer
+                                apxMethodId={apxMethodId}
+                            />
+                            <IconBtn
+                                className="pi-icon-btn-grey"
+                                icon={"shanchu"}
+                                onClick={()=>handleDeleteApxMethod(apxMethodId)}
+                                name={"删除"}
+                            />
+                        </Space>
                     </div>
+
+                    <div className="api-detail-base-box">
+                        <div className={"api-base-info-two"}>
+                            <ApiStatusModal
+                                selectStatus={selectStatus}
+                                status={status}
+                                {...props}
+                            />
+
+                            <div className={'api-base-edit-url-box'}>
+                                <Input
+                                    defaultValue={path}
+                                    onPressEnter={editPath}
+                                    onBlur={editPath}
+                                    onFocus={()=>setShowValidateStatus("editPath")}
+                                    value={path}
+                                    onChange={(e)=>setPath(e.target.value)}
+                                    suffix={
+                                        showValidateStatus === "editPath"
+                                            ? <IconCommon
+                                                icon={"icon-1"}
+                                                className="icon-s "
+                                            />
+                                            :null
+                                    }
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div style={{"borderBottom":"1px solid #dddddd",margin:"0 0 20px 0"}}>
                         <div style={{
                             // maxWidth: "1440px",
@@ -186,4 +295,4 @@ const ApxMethod = (props) =>  {
 
 }
 
-export default inject("apxMethodStore")(observer(ApxMethod));
+export default inject("apxMethodStore","categoryStore")(observer(ApxMethod));

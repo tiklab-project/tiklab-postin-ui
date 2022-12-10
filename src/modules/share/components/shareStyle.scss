@@ -67,10 +67,10 @@
 
     &-right{
         flex:1;
-        padding:10px;
+        padding: 10px 0 10px 10px;
         overflow: auto;
         position: relative;
-
+        display: flex;
 
         &-content{
             margin: 0 auto;

@@ -1,20 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Axios} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
-import {Anchor} from "antd";
 import ShareVerify from "./shareVerify";
 import ApiDoc from "./apiDoc";
 
-const { Link } = Anchor;
+
 
 const ShareMain = (props) =>{
-    const {shareStore} = props;
 
-    const {findShareTree } = shareStore;
-
-    const [apiDoc, setApiDoc] = useState();
-    const [treeList, setTreeList] = useState();
-    const [getApiId, setGetApiId] = useState();
+    const [targetId, setTargetId] = useState();
     const [verify, setVerify] = useState(-1);
     const [backVerify, setBackVerify] = useState(false);
 
@@ -26,7 +20,7 @@ const ShareMain = (props) =>{
 
     useEffect(async ()=>{
         let id = getUrlId()
-        setGetApiId(id)
+        setTargetId(id)
 
         let res = await Axios.get(`/share/${id}`)
 
@@ -37,19 +31,6 @@ const ShareMain = (props) =>{
         }
     },[])
 
-    useEffect(()=>{
-        let id = getUrlId();
-
-        let param =  new FormData()
-        param.append("id",id)
-
-        findShareTree(param).then(res=>{
-            setTreeList(res)
-            // setApiDoc(res[0].nodeList[0])
-        })
-    },[])
-
-
 
     return(
         <>
@@ -57,9 +38,9 @@ const ShareMain = (props) =>{
                 verify===1&& !backVerify
                     ?<ShareVerify
                         setBackVerify={setBackVerify}
-                        urlId={getApiId}
+                        urlId={targetId}
                     />
-                    :<ApiDoc />
+                    :<ApiDoc  targetId={targetId}/>
             }
 
         </>
@@ -68,5 +49,5 @@ const ShareMain = (props) =>{
     )
 }
 
-export default inject("shareStore")(observer(ShareMain));
+export default ShareMain;
 

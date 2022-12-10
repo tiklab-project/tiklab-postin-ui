@@ -46,7 +46,16 @@ const ApiDocDrawer = (props) =>{
                 }
             >
 
-                <DocContent apiDoc={apiData}/>
+                <DocContent
+                    style={{
+                        display:"flex",
+                        gap:10,
+                        width:950,
+                        height: "100%",
+                        margin:"0 auto"
+                    }}
+                    apiDoc={apiData}
+                />
 
             </Drawer>
         </>

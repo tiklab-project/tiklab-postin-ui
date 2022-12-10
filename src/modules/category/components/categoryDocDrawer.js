@@ -64,7 +64,17 @@ const CategoryDocDrawer = (props) =>{
                     </div>
                     {
                         apiDoc
-                            ?<DocContent  apiDoc={apiDoc}/>
+                            ?<DocContent
+                                style={{
+                                    display:"flex",
+                                    gap:10,
+                                    width:960,
+                                    height: "100%",
+                                    margin:"0 auto",
+                                    overflow:"auto"
+                                }}
+                                apiDoc={apiDoc}
+                            />
                             :<div style={{
                                 width:100,
                                 "display": "flex",

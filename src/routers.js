@@ -27,7 +27,7 @@ import {Directory, OrgaList, UserList} from "tiklab-user-ui";
 import LoginContent from "./modules/login/loginContent";
 import {WidgetWork} from "tiklab-widget-ui";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
-import {MessageManagement, MessageSendType, MessageTemplate, MessageType} from "tiklab-message-ui";
+import {MessageManagement, MessageNotice, MessageSendType, MessageTemplate, MessageType} from "tiklab-message-ui";
 import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
 import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
 import {LogList, LogTemplateList, LogTypeList} from "tiklab-oplog-ui";
@@ -127,18 +127,17 @@ const routers =  [
                     },
                     //消息
                     {
-                        path: "/systemManagement/messageManagement",
-                        key:'MessageManagement',
-                        exact: true,
-                        render:()=> <MessageManagement bgroup={"postin"}/>
-
-                    },
-                    {
                         path: "/systemManagement/messageSendType",
                         key:'MessageSendType',
                         exact: true,
-                        render:()=> <MessageSendType bgroup={"postin"}/>
+                        render:()=> <MessageSendType bgroup={"postin"} />
 
+                    },
+                    {
+                        path: "/systemManagement/message-notice",
+                        key:'MessageType',
+                        exact: true,
+                        render:()=> <MessageNotice bgroup={"postin"}/>
                     },
                     //代办
                     {
@@ -202,13 +201,18 @@ const routers =  [
                         key:'MessageTemplate',
                         exact: true,
                         render:()=> <MessageTemplate bgroup={"postin"}/>
-
                     },
+                    // {
+                    //     path: "/systemManagement/messageManagement",
+                    //     key:'MessageManagement',
+                    //     exact: true,
+                    //     render:()=> <MessageManagement bgroup={"postin"}/>
+                    // },
                     {
                         path: "/systemManagement/messageType",
                         key:'MessageType',
                         exact: true,
-                        render:()=> <MessageType bgroup={"postin"}/>
+                        render:()=> <MessageType bgroup={"postin"} />
 
                     },
                     {

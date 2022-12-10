@@ -32,7 +32,7 @@ const checkIsJsonSchema=(json)=> {
 
 const ResponseResult = (props) =>{
     const {apiResponseStore,jsonSchemaStore,resultId,httpId} = props;
-    const {findApiResponse,updateApiResponse} = apiResponseStore;
+    const {findApiResponse,updateApiResponse,findApiResponseList} = apiResponseStore;
     const {setSchemaData,schemaData} = jsonSchemaStore
 
     const [form] = Form.useForm();
@@ -67,7 +67,7 @@ const ResponseResult = (props) =>{
         value.httpId=httpId;
 
         await updateApiResponse(value)
-
+        await findApiResponseList({httpId:httpId})
         setType(value.dataType)
     }
 
