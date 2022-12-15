@@ -14,7 +14,7 @@ const SystemContent = (props) =>{
                     title: '部门',
                     key: '/systemManagement/org',
                     icon: 'modular',
-                    encoded: "org",
+                    encoded: "orga",
                 },{
                     title: '用户',
                     key: '/systemManagement/user',
@@ -25,7 +25,7 @@ const SystemContent = (props) =>{
                     title: '用户目录',
                     key: '/systemManagement/authConfig',
                     icon: 'modular',
-                    encoded: "authConfig",
+                    encoded: "user_dir",
                 },
             ]
         }
@@ -47,12 +47,12 @@ const SystemContent = (props) =>{
                     title: "消息类型",
                     icon: 'rizhijilu',
                     key: '/systemManagement/messageSendType',
-                    encoded: "messageSendType",
+                    encoded: "MSG_SendType",
                 },{
                     title: "消息通知",
                     icon: 'rizhijilu',
                     key: '/systemManagement/message-notice',
-                    // encoded: "notice",
+                    encoded: "MSG_Notice",
                 },
             ],
         },
@@ -116,11 +116,11 @@ const SystemContent = (props) =>{
                 //     icon: 'modular',
                 //     key: '/systemManagement/messageManagement',
                 // },
-                {
-                    title: '消息模板管理',
-                    icon: 'modular',
-                    key: '/systemManagement/messageTemplate',
-                },
+                // {
+                //     title: '消息模板管理',
+                //     icon: 'modular',
+                //     key: '/systemManagement/messageTemplate',
+                // },
                 {
                     title: '消息类型管理',
                     icon: 'modular',

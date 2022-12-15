@@ -53,28 +53,33 @@
 
 
 .share-box{
-    display: flex;
+    display:flex;
+    gap:10px;
+    max-width:1280px;
+    margin:0 auto;
+
     height:calc(100% - 48px);
 
     &-left{
         width: 240px;
-        height: 100%;
         border-right:1px solid var(--pi-border-color);
         background: var(--pi-bg-grey-100);
-
-
+        height: 100%;
+        z-index: 10;
+        position: fixed;
     }
 
     &-right{
         flex:1;
-        padding: 10px 0 10px 10px;
-        overflow: auto;
+        padding: 10px 150px 10px 248px;
         position: relative;
         display: flex;
+        width: 100%;
 
         &-content{
             margin: 0 auto;
             max-width: 1240px;
+
             display: flex;
 
             .share-box-right-detail-content{
@@ -86,7 +91,7 @@
 
                 &-detail{
                     display: flex;
-                    gap: 20px;
+                    gap: 16px;
                     align-items: center;
                     margin: 10px 0;
                 }
@@ -133,13 +138,15 @@
 }
 
 .share-anchor{
-    width: 125px;
+    width: 100px;
+    height: 100%;
     position: fixed;
-    right: -35px;
-    top: 160px;
+    margin: 0 0 0 870px ;
+    top: 57px;
 
     &-box{
-        top: 100px;
+        margin: 100px 0;
+        border-left: 4px  solid #f1f1f1;
     }
 
     &-item{

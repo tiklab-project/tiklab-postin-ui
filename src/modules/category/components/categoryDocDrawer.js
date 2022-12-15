@@ -40,7 +40,7 @@ const CategoryDocDrawer = (props) =>{
                 title="文档预览"
                 placement="right"
                 onClose={onClose}
-                width={1200}
+                width={1230}
                 visible={open}
                 extra={
                     <ShareModal
@@ -51,7 +51,7 @@ const CategoryDocDrawer = (props) =>{
                     />
                 }
             >
-                <div style={{"display":"flex","gap":"10px",height:"100%"}}>
+                <div style={{"display":"flex","gap":"5px",height:"100%"}}>
                     <div
                         className={"share-box-left"}
                         style={{background:"#fff",border:"1px solid var(--pi-border-color)"}}
@@ -68,10 +68,9 @@ const CategoryDocDrawer = (props) =>{
                                 style={{
                                     display:"flex",
                                     gap:10,
-                                    width:960,
+                                    width:975,
+                                    padding: "0 0 0 248px",
                                     height: "100%",
-                                    margin:"0 auto",
-                                    overflow:"auto"
                                 }}
                                 apiDoc={apiDoc}
                             />

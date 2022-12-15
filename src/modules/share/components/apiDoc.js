@@ -14,9 +14,15 @@ const ApiDoc = (props) =>{
     const [treeList, setTreeList] = useState();
     const [initOpenCategory, setInitOpenCategory] = useState();
 
+    const getUrlId = ()=>{
+        let url = window.location.href
+        let index = url.indexOf("share/")
+        return  url.substr(index+6);
+    }
+
     useEffect(()=>{
         let param =  new FormData()
-        param.append("id",targetId)
+        param.append("id",getUrlId())
 
         findShareTree(param).then(res=>{
             setTreeList(res)
@@ -26,7 +32,7 @@ const ApiDoc = (props) =>{
     },[])
 
     return(
-        <>
+        <div style={{height: "calc(100% - 48px)",overflow: "auto"}}>
             <div className={"share-box"}>
                 <div className={"share-box-left"}>
                     <ShareTree
@@ -35,16 +41,16 @@ const ApiDoc = (props) =>{
                         categoryId={initOpenCategory}
                     />
                 </div>
-                <div className={"share-box-right"}  id={"share-right-content"} >
+                <div className={"share-box-right"}  >
                     {
                         apiDoc
                             ?<DocContent
                                 style={{
-                                    display:"flex",
-                                    gap:10,
-                                    width:960,
-                                    height: "100%",
-                                    margin:"0 auto"
+                                    // display:"flex",
+                                    // gap:10,
+                                    width:"100%",
+                                    // height: "100%",
+                                    // margin:"0 auto"
                                 }}
                                 apiDoc={apiDoc}
                             />
@@ -61,11 +67,9 @@ const ApiDoc = (props) =>{
                                 </div>
                             </div>
                     }
-
-
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

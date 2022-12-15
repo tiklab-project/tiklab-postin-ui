@@ -39,7 +39,7 @@ const App = (props) => {
      //获取系统权限
      const userInfo = getUser();
      if(userInfo && userInfo.userId) {
-         allStore.systemRoleStore.getSystemPermissions(userInfo.userId,"postin");
+         allStore.systemRoleStore.getSystemPermissions(userInfo.userId);
      }
 
 

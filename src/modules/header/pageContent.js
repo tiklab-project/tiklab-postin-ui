@@ -15,7 +15,7 @@ const PageContent =(props)=> {
      const user = getUser();
      useEffect(() => {
          if (user.userId) {
-             props.systemRoleStore.getSystemPermissions(user.userId,"postin")
+             props.systemRoleStore.getSystemPermissions(user.userId)
          }
      }, [user])
 
@@ -31,7 +31,7 @@ const PageContent =(props)=> {
 
 
     return(
-        <div style={{height:"100%"}}>
+        <div style={{height:"100%",overflow:"hidden"}}>
             <HeaderContent
                 logout={Logout}
                 {...props}

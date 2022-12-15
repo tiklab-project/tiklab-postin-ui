@@ -51,7 +51,7 @@ const LeftNav = (props) =>{
         findWorkspace(workspaceId)
         findWorkspaceList({userId:getUser().userId})
 
-        systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId,"postin")
+        systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId)
     },[])
 
     //点击左侧导航事件

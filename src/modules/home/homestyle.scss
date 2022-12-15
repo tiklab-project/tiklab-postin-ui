@@ -92,6 +92,8 @@
                     font-size: var(--pi-font-size-16);
                     font-weight: bold;
                     width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
 

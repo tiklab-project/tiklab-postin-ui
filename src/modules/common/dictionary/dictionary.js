@@ -1,8 +1,13 @@
 
-export const protocol =[
-    "http",
-    // "https"
-]
+export const dir = {
+    protocolType:{
+        http:"http",
+        https:"https",
+        ws:"ws"
+    },
+
+
+}
 
 export const requestTabDictionary = {
     "header":"请求头",

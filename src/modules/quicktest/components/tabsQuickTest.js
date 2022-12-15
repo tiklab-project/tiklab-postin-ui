@@ -107,21 +107,18 @@ const TabsQuickTest = (props) =>{
     }
 
     return (
-        <div style={{height:"100%"}}>
-            <Tabs
-                type="editable-card"
-                onChange={onChange}
-                activeKey={activeKey?activeKey:String(quickTestTabListInfo.activeKey)}//字符串才生效
-                onEdit={onEdit}
-                onTabClick={changeTabPane}
-                style={{"backgroundColor":"var(--pi-bg-grey-100)"}}
-            >
-                {
-                    showTabPaneView(quickTestTabListInfo)
-                }
-            </Tabs>
-        </div>
-
+        <Tabs
+            type="editable-card"
+            onChange={onChange}
+            activeKey={activeKey?activeKey:String(quickTestTabListInfo.activeKey)}//字符串才生效
+            onEdit={onEdit}
+            onTabClick={changeTabPane}
+            style={{"backgroundColor":"var(--pi-bg-grey-100)"}}
+        >
+            {
+                showTabPaneView(quickTestTabListInfo)
+            }
+        </Tabs>
     );
 }
 

@@ -235,12 +235,15 @@ const MessageDrawer = (props) =>{
                 width={320}
                 maskStyle={{background:"transparent"}}
                 contentWrapperStyle={{top:48,height:"calc(100% - 48px)"}}
+                extra={
+                    <div className={"msg-select-box"}>
+                        {
+                            showMenu(items)
+                        }
+                    </div>
+                }
             >
-                <div className={"msg-select-box"}>
-                    {
-                        showMenu(items)
-                    }
-                </div>
+
 
                 {
                     showListItem(list)

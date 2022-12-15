@@ -72,16 +72,19 @@ const ResponseResult = (props) =>{
     }
 
 
-    //raw
+    //raw里面的数据改变，获取值
     const rawChange = (value)=>{
         setRawText(value)
     }
 
+    //保存raw参数，防止切换类型后jsonText里面还有值
     const saveRawText = async () =>{
         const param = {
             id: dataValue?.id,
             httpId:dataValue?.httpId,
-            rawText:rawText
+            rawText:rawText,
+
+            jsonText:"nullstring"
         }
 
         await updateApiResponse(param)
@@ -90,28 +93,29 @@ const ResponseResult = (props) =>{
         setDataValue(res)
     }
 
+    //raw 取消输入
     const cancelRawText = () =>{
         setRawText(dataValue?.rawText)
     }
 
+    //当旧的数据和新的输入不一样时，显示 取消 保存 按钮
     const showSaveView = () =>{
         if(dataValue?.dataType==="raw"&&dataValue?.rawText!==rawText){
             return <Space>
                 <Button  onClick={cancelRawText}>取消</Button>
                 <Button className={"important-btn"} onClick={saveRawText}>保存</Button>
             </Space>
-
-
         }
     }
 
     return(
-        <div className={"res-result"}>
-            <div className={"res-result-top-box"}>
-                <Form form={form}   layout={"inline"}  style={{margin:" 0 0 20px 0"}}>
+        <div className={"api-res-result"}>
+            <div className={"api-res-result-top-box"}>
+                <Form form={form}   layout={"inline"}  style={{margin:" 0 0 10px 0"}}>
                     <Form.Item
-                        label="HTTP 状态码"
+                        // label="HTTP 状态码"
                         name="httpCode"
+
                     >
                         <Select
                             showSearch
@@ -126,13 +130,13 @@ const ResponseResult = (props) =>{
                         </Select>
                     </Form.Item>
                     <Form.Item
-                        label="名称 "
+                        // label="名称 "
                         name="name"
                     >
                         <Input style={{width:120}}  onBlur={(e)=>onChange(e.target.value)}/>
                     </Form.Item>
                     <Form.Item
-                        label="数据类型"
+                        // label="数据类型"
                         name="dataType"
                     >
                         <Select
@@ -149,21 +153,23 @@ const ResponseResult = (props) =>{
                 }
 
             </div>
+            <div style={{margin:" 0 0 0 10px"}}>
+                {
+                    type==="json"
+                        ?<Schema
+                            resultId={resultId}
+                            httpId={httpId}
+                        />
+                        :<ReactMonacoEditor
+                            editorChange={rawChange}
+                            value={rawText}
+                            language={"text"}
+                            height={"300px"}
+                            width={"100%"}
+                        />
+                }
+            </div>
 
-            {
-                type==="json"
-                    ?<Schema
-                        resultId={resultId}
-                        httpId={httpId}
-                    />
-                    :<ReactMonacoEditor
-                        editorChange={rawChange}
-                        value={rawText}
-                        language={"text"}
-                        height={"300px"}
-                        width={"100%"}
-                    />
-            }
 
         </div>
     )

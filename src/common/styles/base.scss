@@ -158,11 +158,11 @@ table .icon{
 }
 
 
-.ant-tabs-card > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-ink-bar{
-    visibility: inherit!important;
-    background: #ddd;
-    height: 2px;
-}
+//.ant-tabs-card > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-ink-bar{
+//    visibility: inherit!important;
+//    background: #ddd;
+//    height: 2px;
+//}
 
 
 //.ant-select-single:not(.ant-select-customize-input) .ant-select-selector{
@@ -170,16 +170,22 @@ table .icon{
 //}
 
 .ant-modal-header{
-    padding: 20px 30px 0;
+    padding: 20px 23px 0;
     border: none;
 }
 
 .ant-modal-footer{
     border: none;
+
+
 }
 
 .ant-modal-body{
     padding: 5px 20px;
+
+    .ant-form-item{
+        margin-bottom: 10px;
+    }
 }
 
 .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
@@ -201,9 +207,9 @@ table .icon{
 }
 
 //表单
-.ant-form-item{
-    margin: 10px;
-}
+//.ant-form-item{
+//    margin: 10px;
+//}
 
 .ant-input{
     border-radius: var(--pi-border-radius);

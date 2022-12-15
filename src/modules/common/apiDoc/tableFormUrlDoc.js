@@ -1,5 +1,5 @@
 import React from "react";
-import { Table} from "antd";
+import {Space, Table, Tag} from "antd";
 
 const TableFormUrlDoc = (props) =>{
     const {dataSource} = props;
@@ -35,7 +35,7 @@ const TableFormUrlDoc = (props) =>{
             {
                 dataSource&&dataSource.length>0
                     ?<div className={"share-request-item"}>
-                        <div>Body参数</div>
+                        <Space><div>Body参数</div><Tag>x-www-form-urlencoded</Tag></Space>
                         <div className={"share-right-table"}>
                             <Table
                                 bordered

@@ -25,7 +25,7 @@ const TabsPage = (props) =>{
         // localStorage.setItem("")
         console.log('12121212')
 
-        systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId,"postin")
+        systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId)
 
     },[isAddTab,activeKey,actRemove])
 

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Axios} from "tiklab-core-ui";
-import {inject, observer} from "mobx-react";
 import ShareVerify from "./shareVerify";
 import ApiDoc from "./apiDoc";
 

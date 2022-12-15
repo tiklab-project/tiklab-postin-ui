@@ -212,10 +212,10 @@
     .api-base-info-protocol{
         margin-right: 10px;
         background: #0078d4;
-        padding: 2px;
-        border-radius: 4px;
+        padding: 0 5px;
+        border-radius: 2px;
         color: white;
-        height: 25px;
+        height: 22px;
     }
 }
 
@@ -275,17 +275,6 @@
         background: var(--pi-hover-color);
     }
 
-    //.api-base-edit-text{
-    //    //border: 1px solid #f0f0f0;
-    //    height: 32px;
-    //    line-height: 32px;
-    //    width: 400px;
-    //    padding: 0 8px;
-    //    cursor: text;
-    //}
-
-
-
     .api-base-info-box-name:hover{
         background: var(--pi-hover-color);
         border-radius: var(--pi-border-radius);
@@ -311,10 +300,6 @@
         border-radius: var(--pi-border-radius);
     }
 
-    //.api-base-edit-text-url{
-    //    width: 400px;
-    //}
-
     .api-base-info-two{
         display: flex;
         align-items: center;
@@ -324,22 +309,6 @@
 .apidetail-title-tool{
     display: flex;
 }
-
-//.api-result-box{
-//
-//    .json-schema-react-editor .ace_editor{
-//        height: 400px;
-//    }
-//
-//    .json-schema-react-editor .object-style{
-//        display: none;
-//    }
-//
-//    .json-schema-react-editor .ant-col-8{
-//        flex:1;
-//        max-width:100%
-//    }
-//}
 
 /* 可编辑框初始宽度 */
 .editable-cell-value-wrap {
@@ -562,34 +531,46 @@
 }
 
 
-.res-result{
+.api-res-result{
     padding: 10px 0;
     min-height: 200px;
+    border: 1px solid #f0f0f0;
 
     &-top-box{
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin: 0 0 0 10px;
+
+        .ant-form-item-control-input .ant-select .ant-select-selector{
+            border: 1px solid #f0f0f0;
+        }
+
+        .ant-input{
+            border: 1px solid #f0f0f0;
+        }
+
     }
 
     &-top{
         display: flex;
         gap: 20px;
     }
+
+
 }
 
 .api-result-box{
-    .ant-tabs .ant-tabs-nav{
-        //border-bottom: 1px solid #e4e4e4;
-    }
 
-    .ant-tabs .ant-tabs-tab{
-        border: 0!important;
-        padding: 8px!important;
-        background: #fff!important;
-    }
-    .ant-tabs-card > .ant-tabs-nav .ant-tabs-ink-bar, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-ink-bar{
-        background: var(--pi-base-color);
+    .ant-tabs {
+        .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-ink-bar{
+            height: 0;
+        }
+
+        .ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab{
+            padding: 6px 10px;
+            border-bottom: 0;
+        }
     }
 
 }

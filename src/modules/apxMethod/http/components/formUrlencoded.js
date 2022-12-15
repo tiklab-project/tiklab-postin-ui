@@ -151,9 +151,6 @@ const FormUrlencoded = (props) =>{
                                 okText='确定'
                                 cancelText='取消'
                             >
-                                <svg className="icon-s table-edit-icon" aria-hidden="true">
-                                    <use xlinkHref= {`#icon-shanchu3`} />
-                                </svg>
                                 <IconCommon
                                     icon={"shanchu3"}
                                     className="icon-s table-edit-icon"

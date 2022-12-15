@@ -1,15 +1,11 @@
 
 .ant-drawer-header{
     padding: 18px 14px 5px 14px !important;
-    border: none!important;
-
-
 }
 
 .ant-drawer-body{
-    padding: 10px!important;
+    padding: 5px!important;
 }
-
 
 
 .message-item{
@@ -92,7 +88,7 @@
 
 .msg-select-box{
     display: flex;
-    border-bottom: 1px solid var(--pi-border-color);
+    //border-bottom: 1px solid var(--pi-border-color);
 
     .msg-header-menu-item{
         padding: 5px;

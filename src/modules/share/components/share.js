@@ -10,14 +10,23 @@ const Share = (props) =>{
     return(
         <>
             <div className="frame-header">
-                <div className={"pi-header-right"}>
-                    <div className={'frame-header-logo'}>
-                        {logo && <img src={logo} alt='logo' />}
+                <div style={{
+                    margin: "0 auto",
+                    width: "1280px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                }} >
+                    <div className={"pi-header-right"}>
+                        <div className={'frame-header-logo'}>
+                            {logo && <img src={logo} alt='logo' />}
+                        </div>
+                    </div>
+                    <div style={{color:"white"}}>
+                        帮助
                     </div>
                 </div>
-                <div style={{color:"white"}}>
-                    帮助
-                </div>
+
             </div>
             {
                 renderRoutes(router)

@@ -130,7 +130,7 @@ const routers =  [
                         path: "/systemManagement/messageSendType",
                         key:'MessageSendType',
                         exact: true,
-                        render:()=> <MessageSendType bgroup={"postin"} />
+                        render:()=> <MessageSendType bgroup={"postin"} isBase={true}/>
 
                     },
                     {

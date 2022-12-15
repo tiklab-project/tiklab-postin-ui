@@ -1,5 +1,6 @@
 import React from "react";
 import {UnControlled as ReactCodeMirror} from "react-codemirror2";
+import {Space, Tag} from "antd";
 
 const RawDoc = (props) =>{
     const {dataSource} = props;
@@ -26,7 +27,7 @@ const RawDoc = (props) =>{
             {
                 dataSource&&dataSource.raw
                     ? <div className={"share-request-item"}>
-                        <div>Body参数</div>
+                        <Space><div>Body参数</div><Tag>{dataSource.type}</Tag></Space>
                         <div className={"share-right-table"}>
                                 <ReactCodeMirror
                                     value={precessData(dataSource.raw)}

@@ -14,7 +14,7 @@ const RequestBodyDoc = (props) =>{
             case bodyTypeJson.formdata:
                 return <TableFormDoc dataSource={data?.formList}/>
             case bodyTypeJson.formUrlencoded:
-                return <TableFormUrlDoc dataSource={data?.urlencodeList} />
+                return <TableFormUrlDoc dataSource={data?.urlencodedList} />
             case bodyTypeJson.raw:
                 return <RawDoc dataSource={data?.rawParam} />
         }

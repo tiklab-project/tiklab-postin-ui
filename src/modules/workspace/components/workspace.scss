@@ -244,6 +244,10 @@ ul{
         border-radius: var(--pi-border-radius);
         padding: 10px;
 
+        .ant-form{
+            margin: 10px;
+        }
+
         .ws-edit-box-header{
             display: flex;
             justify-content: space-between;
