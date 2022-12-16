@@ -25,9 +25,8 @@ import TestCaseBox from "./modules/apitest/testCase/components/testCaseBox";
 import TestBox from "./modules/apitest/test/components/testBox";
 import {Directory, OrgaList, UserList} from "tiklab-user-ui";
 import LoginContent from "./modules/login/loginContent";
-import {WidgetWork} from "tiklab-widget-ui";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
-import {MessageManagement, MessageNotice, MessageSendType, MessageTemplate, MessageType} from "tiklab-message-ui";
+import {MessageManagement, MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
 import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
 import {LogList, LogTemplateList, LogTypeList} from "tiklab-oplog-ui";
@@ -37,6 +36,7 @@ import Version from "./modules/sysmgr/version/version";
 import StructureDetail from "./modules/sysmgr/dataStructure/components/StructureDetail";
 import Share from "./modules/share/components/share";
 import ShareMain from "./modules/share/components/shareMain";
+import Test from "./modules/header/test";
 
 const routers =  [
     {
@@ -90,6 +90,11 @@ const routers =  [
                 exact: true,
                 key:'DynamicDetail',
             },
+            // {
+            //     path: "/test",
+            //     component: Test,
+            //     key:'test',
+            // },
             {
                 path: "/workspacePage",
                 component: Workspace,
@@ -250,12 +255,6 @@ const routers =  [
                 key:'searchResult',
                 exact: true,
                 component: SearchResult,
-            },
-            {
-                path: "/workbench",
-                key:'user',
-                exact: true,
-                render: () => <WidgetWork bgroup={"postin"}/>,
             },
             {
                 component: WorkspaceDetailLayout,

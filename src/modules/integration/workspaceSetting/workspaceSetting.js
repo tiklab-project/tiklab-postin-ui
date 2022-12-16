@@ -21,11 +21,14 @@ const WorkspaceSetting = (props) =>{
 
     let workspaceId = localStorage.getItem("workspaceId");
     const [form] = Form.useForm();
+
+    const [workspaceDetail, setWorkspaceDetail] = useState();
     const [workspaceName, setWorkspaceName] = useState();
     const [visibility, setVisibility] = useState(1);
 
     useEffect(()=>{
         findWorkspace(workspaceId).then(res=>{
+            setWorkspaceDetail(res)
             setWorkspaceName(res.workspaceName)
             setVisibility(res.visibility)
             form.setFieldsValue({
@@ -39,6 +42,7 @@ const WorkspaceSetting = (props) =>{
         values.visibility=visibility;
         let param = {
             id:workspaceId,
+            iconUrl:workspaceDetail?.iconUrl,
             ...values,
         }
 

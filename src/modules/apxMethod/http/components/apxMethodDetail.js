@@ -93,7 +93,7 @@ const ApxMethodDetail = (props) => {
         let param = {
             id:httpId,
             apix:{
-                id:httpId,
+                ...resData?.apix,
                 executor:{id:executor}
             }
         }
@@ -114,7 +114,7 @@ const ApxMethodDetail = (props) => {
         let param = {
             id:httpId,
             apix:{
-                id:httpId,
+                ...resData?.apix,
                 status:{id:statusId}
             }
         }
@@ -135,7 +135,7 @@ const ApxMethodDetail = (props) => {
 
         if(name!==resData.apix?.name) {
             let param = {
-                id:httpId,
+                ...resData?.apix,
                 apix:{
                     id:httpId,
                     name:name,
@@ -162,7 +162,7 @@ const ApxMethodDetail = (props) => {
                 id:httpId,
                 path:path,
                 apix:{
-                    id:httpId,
+                    ...resData?.apix,
                 }
             }
 
@@ -185,7 +185,7 @@ const ApxMethodDetail = (props) => {
         let param = {
             id:httpId,
             apix:{
-                id:httpId,
+                ...resData?.apix,
                 methodType:methodType
             },
             methodType:methodType
@@ -225,7 +225,7 @@ const ApxMethodDetail = (props) => {
         let param = {
             id:httpId,
             apix:{
-                id:httpId,
+                ...resData?.apix,
                 desc:descValue
             }
         }

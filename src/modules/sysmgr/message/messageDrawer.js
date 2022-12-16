@@ -81,11 +81,11 @@ const MessageDrawer = (props) =>{
         const param = {
             sendType: 'site',
             receiver: getUser().userId,
-            application:"postin",
+            bgroup:"postin",
             ...params
         }
 
-        let res = await Axios.post('/message/messageDispatchItem/findMessageDispatchItemPage', param);
+        let res = await Axios.post('/message/messageItem/findMessageItemPage', param);
         if (res.code === 0) {
 
             return res.data;
@@ -124,7 +124,7 @@ const MessageDrawer = (props) =>{
                                 <div className={"message-item-left-detail-title"}>{item?.messageTemplate?.title}</div>
                                 <div className={"message-item-left-time"}>{item?.receiveTime}</div>
                             </div>
-                            <div  dangerouslySetInnerHTML={{ __html: item.messageTemplate.content }}/>
+                            <div  dangerouslySetInnerHTML={{ __html: item.content }}/>
                         </div>
                     </div>
                     <div className={"message-item-right"}>
@@ -205,7 +205,7 @@ const MessageDrawer = (props) =>{
             messageTemplate:{  id: item.messageTemplate.id },
             status:1
         }
-        const res =  await Axios.post('/message/messageDispatchItem/updateMessageDispatchItem', updateParams);
+        const res =  await Axios.post('/message/messageItem/updateMessageItem', updateParams);
         if(res.code===0){
             let params = {
                 status:0,

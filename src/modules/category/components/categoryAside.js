@@ -25,7 +25,7 @@ const CategoryAside = (props) => {
     const menu = (
         <Menu>
             <Menu.Item>
-                <CategoryEdit name="添加目录"  type="api" />
+                <CategoryEdit name="添加目录"  type="add" />
             </Menu.Item>
             <Menu.Item>
                 {/*<Import workspaceId={workspaceId}/>*/}

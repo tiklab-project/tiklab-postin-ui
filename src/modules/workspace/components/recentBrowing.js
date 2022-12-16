@@ -103,12 +103,14 @@ const RecentBrowing = (props)=>{
 
     return(
         <div>
-            <Button onClick={test}>test</Button>
-            <TextArea value={resData} autoSize={true}/>
-            <div>{headers}</div>
-            <div>{rawHeaders}</div>
+            {/*<Button onClick={test}>test</Button>*/}
+            {/*<TextArea value={resData} autoSize={true}/>*/}
+            {/*<div>{headers}</div>*/}
+            {/*<div>{rawHeaders}</div>*/}
 
-            <TextArea value={reqHeader} autoSize={true}/>
+            {/*<TextArea value={reqHeader} autoSize={true}/>*/}
+
+
         </div>
     )
 }

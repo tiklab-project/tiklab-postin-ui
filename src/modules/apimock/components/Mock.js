@@ -102,13 +102,15 @@ const Mock = (props) => {
         <div className={"content-box-center"}>
             <div >
                 <div className='mock-header'>
-                    <div
-                        id={"link"}
-                        onClick={()=>copyMockUrl("link")}
-                        style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}
-                    >
+                    <div style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}>
+                        MOCK地址：
                         <Tooltip title="点击复制">
-                            <span>调用地址：{mockUrl}</span>
+                            <span
+                                id={"link"}
+                                onClick={()=>copyMockUrl("link")}
+                            >
+                                {mockUrl}
+                            </span>
                         </Tooltip>
                     </div>
                     <MockEdit btn="btn"  name={"+添加MOCK"} {...props }/>

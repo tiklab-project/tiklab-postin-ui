@@ -22,26 +22,26 @@ const processInfo = (info) =>{
 export const saveTestcaseProcess = (data) =>{
 
     const dataInfo = {
-        "requestHeaderCaseList":processList(data.headerList),
-        "queryParamCaseList":processList(data.queryList),
+        "headerList":processList(data.headerList),
+        "queryList":processList(data.queryList),
         "request":{
             "bodyType":data.bodyType,
-            "preScriptCase":processInfo(data.preInfo),
-            "afterScriptCase":processInfo(data.afterInfo),
+            "preScript":processInfo(data.preInfo),
+            "afterScript":processInfo(data.afterInfo),
         },
 
-        "assertCaseList":processList(data.assertList)
+        "assertList":processList(data.assertList)
     }
 
     switch (data.bodyType) {
         case "formdata":
-            dataInfo.formParamCaseList=processList(data.formDataList)
+            dataInfo.formList=processList(data.formDataList)
             break;
         case "formUrlencoded":
-            dataInfo.formUrlencodedCaseList = processList(data.formUrlencodedList)
+            dataInfo.urlencodedList = processList(data.formUrlencodedList)
             break;
         case "json":
-            dataInfo.jsonParamCaseList = processList(data.jsonList)
+            dataInfo.jsonList = processList(data.jsonList)
             break;
         case "raw":
             dataInfo.rawParamCase = processInfo(data.rawInfo);

@@ -16,7 +16,7 @@ const TestBox =(props)=>{
 
         switch (proxy?proxy:proxyItem) {
             case "local":
-                response=  localProxySendTest("http://localhost:3009/local-proxy",data)
+                response=  localProxySendTest("http://127.0.0.1:3009/local-proxy",data)
                 break;
             case "cloud":
                 response=  localProxySendTest("http://172.11.1.15:3009/cloud-proxy",data)

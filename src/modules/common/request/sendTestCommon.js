@@ -118,6 +118,7 @@ console.log(res.data)
 
 //获取相应的请求体数据
 const bodySwitch = (data,headers) =>{
+    debugger
     switch (data.bodyType) {
         case bodyTypeJson.none:
             return null;

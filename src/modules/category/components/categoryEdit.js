@@ -2,11 +2,6 @@ import React, { Fragment, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Modal,Form,Input} from 'antd';
 
-const layout = {
-    labelCol: {span: 4},
-    wrapperCol: {span: 20},
-};
-
 // 目录的编辑与添加
 const CategoryEdit =(props)=>{
     const { categoryStore,type } = props;
@@ -19,13 +14,12 @@ const CategoryEdit =(props)=>{
     const workspaceId = localStorage.getItem('workspaceId');
 
     // 弹框展示
-    const showModal = () => {
+    const showModal = async () => {
         setVisible(true);
-        if(props.name === "编辑"){
-            findCategory(props.categoryId?props.categoryId:categoryId).then((res)=>{
-                form.setFieldsValue({
-                    name: res.name,
-                })
+        if(type === "edit"){
+            let res = await findCategory(props.categoryId?props.categoryId:categoryId)
+            form.setFieldsValue({
+                name: res.name,
             })
         }
     };
@@ -35,27 +29,28 @@ const CategoryEdit =(props)=>{
     const hideModal = () => {setVisible(false)};
 
     // 弹框提交
-    const onFinish = () => {
-        form.validateFields().then(values => {
-            if(props.name === '编辑'){
-                updateCategory(values);
-            }else{
-                values.type = type
-                values.workspace = {id:workspaceId}
-                values.parentCategory = {
-                    id:values.parentCategory?values.parentCategory:props.categoryId,
-                }
-                createCategory(values);
+    const onFinish = async () => {
+        let values = await form.validateFields();
+        values.workspace = {id:workspaceId}
+
+        if(type === 'edit'){
+            updateCategory(values);
+        }else{
+            values.parentCategory = {
+                id:values.parentCategory?values.parentCategory:props.categoryId,
             }
-            setVisible(false)
-        })
+
+            createCategory(values);
+        }
+
+        setVisible(false)
     };
 
     return(
         <Fragment>
             <a onClick={showModal}>{props.name}</a>
             <Modal
-                title="添加目录"
+                title={type==="edit"?"编辑":"添加"}
                 visible={visible}
                 onCancel={hideModal}
                 destroyOnClose={true}

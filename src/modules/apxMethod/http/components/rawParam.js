@@ -91,7 +91,7 @@ const RawParam = (props) => {
 
     return (
         <div className={"raw-box"}>
-            <Form form={form} initialValues={{"type":"text/plain"}}>
+            <Form form={form} initialValues={{"type":"application/json"}}>
                 <div className='raw-box-header'>
                     <Form.Item name='type'>
                         <Select

@@ -73,10 +73,10 @@ const CategoryNav = (props) => {
     const menu = (id)=>(
         <Menu>
             <Menu.Item  key={2}>
-                <CategoryEdit name="添加目录"  type="api"  categoryId={id}/>
+                <CategoryEdit name="添加目录"   type="add"  categoryId={id}/>
             </Menu.Item>
             <Menu.Item  key={3}>
-                <CategoryEdit  name="编辑"  type="api"  categoryId={id}/>
+                <CategoryEdit  name="编辑"  type="edit"  categoryId={id}/>
             </Menu.Item>
             <Menu.Item  key={4}>
                 <Popconfirm

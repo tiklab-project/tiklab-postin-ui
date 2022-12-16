@@ -56,7 +56,7 @@ module.exports = merge(baseWebpackConfig, {
         disableHostCheck: true,
         proxy:{
             "/local-proxy":{
-                target:"http://localhost:3009"
+                target:"http://127.0.0.1:3009"
             },
             "/cloud-proxy":{
                 target:"http://172.11.1.15:3009"

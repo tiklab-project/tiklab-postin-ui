@@ -61,7 +61,8 @@ export class InstanceStore {
         if(res.code === 0){
             let requestInstance = res.data.requestInstance;
 
-            if(!res.data.errorMessage){
+
+            if(res.data.errorMessage===null){
                 let responseInstance = res.data.responseInstance;
                 this.responseBodyData = JSON.parse(responseInstance.body);
                 this.responseHeaderData = responseInstance.headers;

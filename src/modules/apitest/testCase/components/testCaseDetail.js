@@ -33,7 +33,7 @@ const TestCaseDetail = (props) => {
 
     const {deleteTestCase,updateTestCase , findTestCase, getResponseInfo, getRequestInfo, getResponseError } = testCaseStore;
     const {testEnvUrl} = environmentStore;
-    const { requestHeaderTestCaseDataSource,processHeaderCaseList } = requestHeaderTestCaseStore;
+    const { headerCaseDataSource,processHeaderCaseList } = requestHeaderTestCaseStore;
     const { queryParamTestCaseDataSource, processQueryCaseList } = queryParamTestCaseStore;
     const { bodyTypeCase, getBodyType,getMediaType} = requestCaseStore;
     const { formParamTestCaseDataSource,processFormList } = formParamTestCaseStore;
@@ -111,7 +111,7 @@ const TestCaseDetail = (props) => {
             "method":values.methodType,
             "baseUrl":values.host?values.host:testEnvUrl,
             "path":values.path,
-            "headerList":requestHeaderTestCaseDataSource,
+            "headerList":headerCaseDataSource,
             "queryList":queryParamTestCaseDataSource,
             "bodyType":bodyTypeCase,
             "formDataList":formParamTestCaseDataSource,

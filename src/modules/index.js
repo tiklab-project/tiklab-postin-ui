@@ -21,7 +21,6 @@ import {
 
 import PageContent from "./header/pageContent";
 import HeaderContent from './header/headerContent'
-import RecentBrowing from "./workspace/components/recentBrowing";
 import WorkspaceDetailLayout from "./workspaceDetail/workspaceDetailLayout";
 import LayoutApiContent from "./apxMethod/http/components/layoutApiContent"
 import TabsPage from "./workspaceDetail/tabsPage";
@@ -39,7 +38,7 @@ export {
     Search, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege,WorkspaceSettingMenu,
-    Workspace,RecentBrowing,
+    Workspace,
     WorkspaceList,
 
     WorkspaceDetailLayout,LayoutApiContent,TabsPage,

@@ -22,14 +22,14 @@ const InstanceDetail = (props) => {
     const [testTime, setTestTime] = useState();
 
     //展示测试结果详情
-    const showModal = () => {
-        findInstance(instanceId).then((res)=>{
-            setAllData(res)
-            setStatusCode(res.statusCode);
-            setResult(res.result)
-            setRequestInstance(res.requestInstance);
-            setTestTime(res.createTime)
-        })
+    const showModal = async () => {
+        let res = await findInstance(instanceId);
+
+        setAllData(res)
+        setStatusCode(res.statusCode);
+        setResult(res.result)
+        setRequestInstance(res.requestInstance);
+        setTestTime(res.createTime)
 
         setVisible(true);
     }

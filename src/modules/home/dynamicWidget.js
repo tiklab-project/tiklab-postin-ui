@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Empty, List, Skeleton} from "antd";
-import Avatar from "antd/es/avatar/avatar";
 
 import {findLogList} from "./commonApi";
 import {getUser} from "tiklab-core-ui";
@@ -78,7 +77,7 @@ const DynamicWidget = (props) =>{
                 <List.Item >
                     <Skeleton avatar title={false} loading={item.loading} active>
                         <List.Item.Meta
-                            description={<div  dangerouslySetInnerHTML={{__html: item.opLogTemplate?.content}} />}
+                            description={<div  dangerouslySetInnerHTML={{__html: item.data}} />}
                         />
                         <div>{item.timestamp}</div>
                     </Skeleton>

@@ -32,6 +32,7 @@ export const testFunctionCommon ={
                 param.append(item.paramName, Mock.mock(item.value));
             }
         })
+        console.log(param)
         return param
     },
 

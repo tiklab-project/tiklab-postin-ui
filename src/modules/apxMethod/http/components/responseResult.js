@@ -61,6 +61,7 @@ const ResponseResult = (props) =>{
     },[resultId])
 
 
+    //值改变，更新
     const onChange = async ()=>{
         let value = await form.getFieldsValue();
         value.id=resultId;
@@ -98,9 +99,11 @@ const ResponseResult = (props) =>{
         setRawText(dataValue?.rawText)
     }
 
-    //当旧的数据和新的输入不一样时，显示 取消 保存 按钮
+    //当旧的数据和新的输入不一样时，显示：取消、保存  按钮
     const showSaveView = () =>{
-        if(dataValue?.dataType==="raw"&&dataValue?.rawText!==rawText){
+        let isTrue = dataValue?.rawText!==rawText
+
+        if(dataValue?.dataType==="raw"&&isTrue){
             return <Space>
                 <Button  onClick={cancelRawText}>取消</Button>
                 <Button className={"important-btn"} onClick={saveRawText}>保存</Button>

@@ -59,7 +59,6 @@ const SaveTestcase = (props) => {
                 assertList:assertParamTestList
             }
 
-
             //处理后的数据
             let processedData = saveTestcaseProcess(needProcessData)
 
