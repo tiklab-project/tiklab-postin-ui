@@ -148,7 +148,7 @@ const TestCaseList = (props) => {
                     <span style={{lineHeight:"35px",fontSize:13}}>用例数:({caseLength})</span>
                     <TestCaseEdit  btn='btn' name="+添加用例" {...props}/>
                 </div>
-                <div className={"out-table-box"}>
+                <div className={"pi-list-box"}>
                     <Table
                         columns={column}
                         dataSource={testCaseList}

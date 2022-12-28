@@ -6,6 +6,7 @@ import React from 'react';
 import { observer, inject } from "mobx-react";
 import {Form, Modal, Button, Input, Select} from 'antd';
 import IconBtn from "../../../common/iconBtn/IconBtn";
+import IconCommon from "../../../common/iconCommon";
 const {Option} = Select;
 // 添加与编辑空间
 const DataStructureEdit = (props) => {
@@ -39,27 +40,25 @@ const DataStructureEdit = (props) => {
     };
 
     // 提交
-    const onFinish = () => {
-        form.validateFields().then((values)=>{
+    const onFinish = async () => {
+        let values = await form.validateFields()
 
+        if(props.type === "add" ){
+            values.workspace={id:workspaceId}
+            createDataStructure(values).then(()=>{
+                findDataStructureList({workspaceId:workspaceId})
+            });
+        }else{
+            values.id=dataStructureId;
+            updateDataStructure(values).then(()=>{
+                findDataStructureList({workspaceId:workspaceId})
+            });
+        }
 
-            if(props.type === "add" ){
-                values.workspace={id:workspaceId}
-                createDataStructure(values).then(()=>{
-                    findDataStructureList({workspaceId:workspaceId})
-                });
-            }else{
-                values.id=dataStructureId;
-                updateDataStructure(values).then(()=>{
-                    findDataStructureList({workspaceId:workspaceId})
-                });
-            }
-        })
         setVisible(false);
     };
 
     const onCancel = () => { setVisible(false) };
-
 
 
     return (
@@ -68,13 +67,14 @@ const DataStructureEdit = (props) => {
                 props.type === "add"
                     ? <IconBtn
                         className="important-btn"
-                        icon={"xinzeng-copy"}
                         onClick={showModal}
                         name={"添加模型"}
                     />
-                    :  <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
-                        <use xlinkHref= {`#icon-bianji11`} />
-                    </svg>
+                    :  <IconCommon
+                        icon={"bianji11"}
+                        className={"icon-s edit-icon"}
+                        onClick={showModal}
+                    />
             }
 
             <Modal

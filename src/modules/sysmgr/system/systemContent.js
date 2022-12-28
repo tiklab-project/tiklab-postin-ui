@@ -3,10 +3,9 @@ import SysManage from "./sysManagMenu";
 
 const SystemContent = (props) =>{
 
-    //账号与成员
-    let accountMember = [
+    const settingMenu = [
         {
-            title: "成员与部门",
+            title: "用户与部门",
             icon: 'team',
             key: 'accountMember',
             children: [
@@ -26,12 +25,14 @@ const SystemContent = (props) =>{
                     key: '/systemManagement/authConfig',
                     icon: 'modular',
                     encoded: "user_dir",
+                },{
+                    title: '用户组',
+                    key: '/systemManagement/userGroup',
+                    icon: 'modular',
+                    // encoded: "userGroup",
                 },
             ]
-        }
-    ]
-
-    const settingMenu = [
+        },
         {
             title: '权限',
             icon: 'modular',
@@ -44,25 +45,18 @@ const SystemContent = (props) =>{
             key: '/systemManagement',
             children: [
                 {
-                    title: "消息类型",
+                    title: "消息通知方案",
                     icon: 'rizhijilu',
                     key: '/systemManagement/messageSendType',
                     encoded: "MSG_SendType",
                 },{
-                    title: "消息通知",
+                    title: "消息发送方式",
                     icon: 'rizhijilu',
                     key: '/systemManagement/message-notice',
                     encoded: "MSG_Notice",
                 },
             ],
         },
-        // {
-        //     title: '代办任务',
-        //     icon: 'modular',
-        //     key: '/systemManagement/myTodo',
-        //     encoded: "myTodo",
-        //
-        // },
         {
             title: '插件',
             icon: 'modular',
@@ -111,16 +105,11 @@ const SystemContent = (props) =>{
                     icon: 'modular',
                     key: '/systemManagement/role',
                 },
-                // {
-                //     title: '消息管理',
-                //     icon: 'modular',
-                //     key: '/systemManagement/messageManagement',
-                // },
-                // {
-                //     title: '消息模板管理',
-                //     icon: 'modular',
-                //     key: '/systemManagement/messageTemplate',
-                // },
+                {
+                    title: '消息通知方案',
+                    icon: 'modular',
+                    key: '/systemManagement/messageSendTypeBase',
+                },
                 {
                     title: '消息类型管理',
                     icon: 'modular',
@@ -143,33 +132,16 @@ const SystemContent = (props) =>{
         }
     ]
 
-
-
-    let authConfig = JSON.parse(localStorage.getItem("authConfig"))
-
-
-    //判断是否为本地登录，如果authType===true 为本地登录，需要添加账号与成员
+    //判断是否为开发环境
     let menu = ()=>{
-
-        let authType =authConfig.authType
-
         try{
-            console.log("aaa")
-            if(IS_DEV&&authType){   //本地
-                return [...accountMember,...settingMenu,...devMenu]
-            }else if(IS_DEV&&!authType){  //统一  本地
+            if(IS_DEV){
                 return [...settingMenu,...devMenu]
-            }else if(!IS_DEV&&authType){  //线上
-                return [...accountMember,...settingMenu]
-            }else if(!IS_DEV&&!authType){  //统一  线上
-                return settingMenu
+            }else {
+                return [...settingMenu]
             }
         }catch {
-            if(authType){
-                return [...accountMember,...settingMenu]
-            }else if(!IS_DEV&&!authType){  //统一
-                return settingMenu
-            }
+            return [...settingMenu]
         }
     }
 

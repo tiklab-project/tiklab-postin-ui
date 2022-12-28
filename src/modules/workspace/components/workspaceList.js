@@ -33,7 +33,7 @@ const WorkspaceList = (props) => {
             width:"50%",
             // align:"center",
             render: (text,record) =>(
-                <Space size={"large"}>
+                <Space>
                     <img src={record.iconUrl} alt={"icon"} className={"workspace-icon"}/>
                     <a onClick = {()=>setLocalStorage(record.id)}>{text}</a>
                 </Space>
@@ -46,8 +46,10 @@ const WorkspaceList = (props) => {
             width:"20%",
             render: (text, record) => (
                 <div className={"ws-user-item"}>
-                    <Profile userInfo={record.user}/>
-                    <span>{record.user.nickname} </span>
+                    <Space>
+                        <Profile userInfo={record.user}/>
+                        <span>{record.user.nickname} </span>
+                    </Space>
                 </div>
 
             )
@@ -88,17 +90,9 @@ const WorkspaceList = (props) => {
         },
     ]
 
-    const showIcon = (text)=>{
-        let t = text.substring(0,1).toUpperCase();
-
-        return <div className={"workspace-text-icon-box"}>
-            <span>{t}</span>
-        </div>
-    }
-
     //可见范围的展示
     const showVisibility = (name,icon) =>{
-        return <div style={{"display":"flex","alignItems":"center"}}>
+        return <div style={{"display":"flex","alignItems":"center","gap":"6px"}}>
             <svg style={{width:16,height:16}} aria-hidden="true">
                 <use xlinkHref= {`#icon-${icon}`} />
             </svg>
@@ -146,7 +140,7 @@ const WorkspaceList = (props) => {
 
 
     return(
-        <div className={"list-box-cell"}>
+        <div className={"pi-list-box"}>
             <Table
                 className="tablelist"
                 columns={columns}

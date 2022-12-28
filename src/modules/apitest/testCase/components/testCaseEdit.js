@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { observer, inject } from 'mobx-react';
 import { Form, Modal, Button, Input } from 'antd';
 import IconBtn from "../../../common/iconBtn/IconBtn";
+import IconCommon from "../../../common/iconCommon";
 
 const TestCaseEdit = (props) => {
     const { testCaseStore, testcaseId } = props;
@@ -29,13 +30,9 @@ const TestCaseEdit = (props) => {
         values.http ={id:apxMethodId}
         if(props.type === 'edit') {
             values.id = testcaseId;
-            updateTestCase(values).then((res)=> {
-                findList()
-            })
+            updateTestCase(values).then(()=>findList())
         }else{
-            createTestCase(values).then(res=>{
-                findList()
-            })
+            createTestCase(values).then(()=>findList())
         }
 
         setVisible(false);
@@ -53,13 +50,14 @@ const TestCaseEdit = (props) => {
             props.btn === 'btn'
                 ? <IconBtn
                     className="important-btn"
-                    icon={"xinzeng-copy"}
                     onClick={showModal}
                     name={"添加用例"}
                 />
-                :  <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
-                    <use xlinkHref= {`#icon-bianji11`} />
-                </svg>
+                : <IconCommon
+                    icon={"bianji11"}
+                    className={"icon-s edit-icon"}
+                    onClick={showModal}
+                />
         }
         <Modal
             destroyOnClose={true}
@@ -79,10 +77,7 @@ const TestCaseEdit = (props) => {
                 <Form.Item
                     label="用例名称"
                     name="name"
-                    rules={[{
-                        required: true,
-                        message: '添加用例名称!'
-                    }]}
+                    rules={[{ required: true, message: '添加用例名称!'}]}
                 >
                     <Input />
                 </Form.Item>

@@ -18,7 +18,7 @@ const HttpList = (props) => {
         {
             title: '名称',
             dataIndex: ["apix",'name'],
-            width: '15%',
+            width: '25%',
             render: (text,record) => (
                 <Space size={"middle"}>
                     <MethodType type={record.methodType}/>
@@ -30,12 +30,12 @@ const HttpList = (props) => {
         {
             title: '地址',
             dataIndex: 'path',
-            width: '20%',
+            width: '35%',
         },
         {
             title: '状态',
             dataIndex: ['apix','status','name'],
-            width: '10%',
+            width: '15%',
             render:(text) =>(
                 <span>{text}</span>
             )
@@ -43,12 +43,12 @@ const HttpList = (props) => {
         {
             title: '执行人',
             dataIndex: ['apix','executor','name'],
-            width: '10%',
+            width: '15%',
         },
         {
             title: '操作',
             dataIndex: 'operation',
-            width: '10%',
+            width: 100,
             render: (text, record) =>(
                 <Space  size="middle">
                     <ApxMethodEdit
@@ -147,7 +147,7 @@ const HttpList = (props) => {
                     </Space>
 
                 </div>
-                <div className={"out-table-box"}>
+                <div className={"pi-list-box"}>
                     <Table
                         dataSource={apxMethodList}
                         columns={columns}

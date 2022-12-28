@@ -54,12 +54,11 @@ const TestdetailQuickTest = (props) =>{
     const [ form ] = Form.useForm();
 
     const userId = getUser().userId;
+
     const [showResponse,setShowResponse] = useState(false);
     const [testResponse, setTestResponse] = useState();
     const instanceId = localStorage.getItem("instanceId")
-    let proxyItem = localStorage.getItem("PROXY_ITEM")
-        ?localStorage.getItem("PROXY_ITEM")
-        :"default";
+    const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(()=>{
         if(instanceId!=="-1"){
@@ -154,8 +153,10 @@ const TestdetailQuickTest = (props) =>{
         if(response&&!response.error){
             getResponseInfo(response,assertQuickTestList).then(res=>{
                 res.httpCase = {"id":"quickTestInstanceId"}
+                res.workspaceId=workspaceId
                 createInstance(res).then(()=>{
                     let params={
+                        "workspaceId":workspaceId,
                         "httpCaseId":"quickTestInstanceId",
                         "userId":userId,
                     }
@@ -166,8 +167,10 @@ const TestdetailQuickTest = (props) =>{
         }else {
             getResponseError(response).then((res)=>{
                 res.httpCase = {"id":"quickTestInstanceId"}
+                res.workspaceId=workspaceId
                 createInstance(res).then(()=>{
                     let params={
+                        "workspaceId":workspaceId,
                         "httpCaseId":"quickTestInstanceId",
                         "userId":userId,
                     }

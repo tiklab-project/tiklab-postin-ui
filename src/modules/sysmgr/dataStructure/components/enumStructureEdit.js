@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Form, Input, Modal, Radio, Select, Tooltip} from "antd";
 import {dataTypeDictionary} from "../../../common/dictionary/dictionary";
 import IconBtn from "../../../common/iconBtn/IconBtn";
+import IconCommon from "../../../common/iconCommon";
 const {TextArea} = Input
 const {Option} = Select;
 
@@ -60,16 +61,19 @@ const EnumStructureEdit = (props) =>{
         if(props.btn==="btn"&&props.type==="add"){
            return <IconBtn
                    className="important-btn"
-                   icon={"xinzeng-copy"}
                    onClick={showModal}
                    name={"添加"}
                 />
         }
 
         if(props.type==="edit"){
-           return <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
-                <use xlinkHref= {`#icon-bianji11`} />
-            </svg>
+           return (
+               <IconCommon
+                   icon={"bianji11"}
+                   className={"icon-s edit-icon"}
+                   onClick={showModal}
+               />
+           )
         }
     }
 

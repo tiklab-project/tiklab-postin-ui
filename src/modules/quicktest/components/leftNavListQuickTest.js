@@ -12,6 +12,7 @@ const LeftNavListQuickTest =(props)=>{
     const {setResponseShow} = quickTestStore;
 
     const userId = getUser().userId;
+    const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(()=>{
         findList()
@@ -19,6 +20,7 @@ const LeftNavListQuickTest =(props)=>{
 
     let findList = ()=>{
         let params={
+            "workspaceId":workspaceId,
             "httpCaseId":"quickTestInstanceId",
             "userId":userId,
         }
@@ -69,7 +71,7 @@ const LeftNavListQuickTest =(props)=>{
 
     return(
         <>
-            <div className={"qt-left-header"}>
+            <div className={"qt-left-header"}  style={{minWidth: "280px"}}>
                 <Input
                     prefix={<SearchOutlined />}
                     placeholder={"搜索"}

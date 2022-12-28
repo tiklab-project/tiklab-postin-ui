@@ -58,18 +58,21 @@ const Workspace = (props) => {
         findList()
     },[])
 
+    //点击筛选项查找
     const selectKeyFun = (item)=>{
         setSelectItem(item.key)
 
         findList({},item.key)
     }
 
+    //搜索空间
     const onSearch = (e) =>{
         let name = {workspaceName:e.target.value}
 
         findList(name)
     }
 
+    //根据不同的筛选项查找
     const findList = (name,selectIndex)=>{
         let uId = {userId:userId}
 
@@ -100,52 +103,54 @@ const Workspace = (props) => {
 
 
     return(
-        <div className='ws-layout'>
-            <DetailHeader
-                left={
-                    <div style={{
-                        display:"flex",
-                        alignItems:"center",
-                        justifyContent:"space-between",
-                        width: 55
-                    }}>
-                        <svg className={"icon-m"} aria-hidden="true" >
-                            <use xlinkHref= {`#icon-home`} />
-                        </svg>
-                        <span>空间</span>
+        <div style={{"height":"100%",overflow:"auto"}}>
+            <div className='ws-layout'>
+                <DetailHeader
+                    left={
+                        <div style={{
+                            display:"flex",
+                            alignItems:"center",
+                            justifyContent:"space-between",
+                            width: 55
+                        }}>
+                            <svg className={"icon-m"} aria-hidden="true" >
+                                <use xlinkHref= {`#icon-home`} />
+                            </svg>
+                            <span>空间</span>
+                        </div>
+                    }
+                    right={
+                        <WorkspaceEdit
+                            name={"添加空间"}
+                            btn={"btn"}
+                            userId={userId}
+                            findList={findList}
+                            selectItem={selectItem}
+                            {...props}
+                        />
+                    }
+                />
+
+                <div className={"ws-header-menu"}>
+                    <div className={"ws-header-menu-left"}>
+                        {showMenu(items)}
+
                     </div>
-                }
-                right={
-                    <WorkspaceEdit
-                        name={"+添加空间"}
-                        btn={"btn"}
-                        userId={userId}
+                    <Input
+                        prefix={<SearchOutlined />}
+                        placeholder={`搜索空间`}
+                        onPressEnter={onSearch}
+                        className={"ws-header-menu-input"}
+                    />
+                </div>
+
+                <div className='contant-box'>
+                    <WorkspaceList
+                        {...props}
                         findList={findList}
                         selectItem={selectItem}
-                        {...props}
                     />
-                }
-            />
-
-            <div className={"ws-header-menu"}>
-                <div className={"ws-header-menu-left"}>
-                    {showMenu(items)}
-
                 </div>
-                <Input
-                    prefix={<SearchOutlined />}
-                    placeholder={`搜索空间`}
-                    onPressEnter={onSearch}
-                    className={"ws-header-menu-input"}
-                />
-            </div>
-
-            <div className='contant-box'>
-                <WorkspaceList
-                    {...props}
-                    findList={findList}
-                    selectItem={selectItem}
-                />
             </div>
         </div>
     )

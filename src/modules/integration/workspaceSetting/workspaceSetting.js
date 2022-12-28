@@ -64,7 +64,7 @@ const WorkspaceSetting = (props) =>{
                             <svg style={{width:20,height:20}} aria-hidden="true" >
                                 <use xlinkHref= {`#icon-setting`} />
                             </svg>
-                            <span>空间设置</span>
+                            <span>空间信息</span>
                         </div>
                     }
                 />

@@ -1,12 +1,8 @@
 import React, {useState} from 'react';
 import { observer, inject } from "mobx-react";
-import { Form, Modal, Button, Input } from 'antd';
+import { Form, Modal, Input } from 'antd';
 import IconBtn from "../../common/iconBtn/IconBtn";
-
-const layout = {
-    labelCol: {span: 4},
-    wrapperCol: {span: 20,},
-};
+import IconCommon from "../../common/iconCommon";
 
 const MockEdit = (props) => {
     const { mockStore, } = props;
@@ -65,13 +61,14 @@ const MockEdit = (props) => {
             props.btn === 'btn'
                 ? <IconBtn
                     className="important-btn"
-                    icon={"xinzeng-copy"}
                     onClick={showModal}
                     name={"添加MOCK"}
                 />
-                : <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
-                    <use xlinkHref= {`#icon-bianji11`} />
-                </svg>
+                : <IconCommon
+                    icon={"bianji11"}
+                    className={"icon-s edit-icon"}
+                    onClick={showModal}
+                />
         }
         <Modal
             destroyOnClose={true}
@@ -91,10 +88,7 @@ const MockEdit = (props) => {
                 <Form.Item
                     label="mock名称"
                     name="name"
-                    rules={[{
-                            required: true,
-                            message: '添加Mock名称!'
-                        }]}
+                    rules={[{  required: true,  message: '添加Mock名称!' }]}
                 >
                     <Input />
                 </Form.Item>

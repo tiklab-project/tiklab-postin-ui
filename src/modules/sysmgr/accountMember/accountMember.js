@@ -2,7 +2,7 @@ import React from "react";
 import {renderRoutes} from "react-router-config";
 import "./accmemberStyle.scss"
 import {ApiOutlined} from "@ant-design/icons";
-import SideMenu from "../../common/sideMenu";
+import SideMenu from "../../integration/workspaceSetting/sideMenu";
 
 
 

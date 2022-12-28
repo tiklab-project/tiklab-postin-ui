@@ -4,6 +4,7 @@ import { Table, Space, Tooltip, Popconfirm,Switch} from 'antd';
 import MockEdit from './mockEdit';
 import './mock.scss';
 import copyMockUrl from "../../common/copyLink";
+import {Profile} from "tiklab-eam-ui";
 
 // 接口的Mock
 const Mock = (props) => {
@@ -11,19 +12,6 @@ const Mock = (props) => {
     const { findMockPage, deleteMock,updateMock, mockList } = mockStore
     const columns = [
         {
-            title: '启用',
-            dataIndex: 'enable',
-            key: 'enable',
-            width:'5%',
-            render:(text,record )=>(
-                <Switch
-                    checkedChildren="启用"
-                    unCheckedChildren="停用"
-                    checked={text === 1}
-                    onChange={(e)=>changeEnable(e,record)}
-                />
-            )
-        },{
             title: 'Mock名称',
             dataIndex: 'name',
             key: 'name',
@@ -33,22 +21,44 @@ const Mock = (props) => {
             )
         },
         {
+            title: '启用',
+            dataIndex: 'enable',
+            key: 'enable',
+            width:'10%',
+            render:(text,record )=>(
+                <Switch
+                    checkedChildren="启用"
+                    unCheckedChildren="停用"
+                    checked={text === 1}
+                    onChange={(e)=>changeEnable(e,record)}
+                />
+            )
+        },
+        {
             title: '创建人',
             dataIndex: ['createUser','name'],
             key: 'createUser',
-            width:'10%',
+            width:'20%',
+            render: (text, record) => (
+                <div className={"ws-user-item"}>
+                    <Space>
+                        <Profile userInfo={record.createUser}/>
+                        <span>{record.createUser?.nickname} </span>
+                    </Space>
+                </div>
+            )
         },
         {
             title: '创建时间',
             dataIndex: 'createTime',
             key: 'createTime',
-            width:'15%',
+            width:'20%',
         },
         {
             title: '操作',
             dataIndex: 'operation',
             key: 'operation',
-            width:'15%',
+            width:'10%',
             render: (text, record )=>(
                 <Space  size="middle">
 
@@ -115,7 +125,7 @@ const Mock = (props) => {
                     </div>
                     <MockEdit btn="btn"  name={"+添加MOCK"} {...props }/>
                 </div>
-                <div className={"out-table-box"}>
+                <div className={"pi-list-box"}>
                     <Table
                         columns={columns}
                         dataSource={mockList}

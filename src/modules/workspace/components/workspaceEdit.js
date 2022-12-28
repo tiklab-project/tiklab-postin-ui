@@ -109,7 +109,6 @@ const WorkspaceEdit = (props) => {
             props.btn === 'btn'
                 ? <IconBtn
                     className="important-btn"
-                    icon={"xinzeng-copy"}
                     onClick={showModal}
                     name={"添加空间"}
                 />

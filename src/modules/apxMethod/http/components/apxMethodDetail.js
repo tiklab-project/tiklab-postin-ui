@@ -1,11 +1,11 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../../index';
-import {Button, Form, Input, Select, Space,Tabs} from 'antd';
+import {Button, Form, Input, Popconfirm, Select, Space, Tabs} from 'antd';
 import './apxMethod.scss'
 import MethodType from "../../../common/methodType";
 import {RemoteUmdComponent} from 'tiklab-plugin-ui'
-import {useSelector} from "tiklab-plugin-ui/es/_utils"
+import {useHasPointPlugin, useSelector} from "tiklab-plugin-ui/es/_utils"
 import ApiStatusModal from "../../../sysmgr/apiStatus/components/apiStatusSelect";
 import IconCommon from "../../../common/iconCommon";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
@@ -15,6 +15,7 @@ import {CaretDownOutlined} from "@ant-design/icons";
 import ResponseHeader from "./responseHeader";
 import ApiDocDrawer from "./apiDocDrawer"
 import ProtocolType from "../../../common/protocolType";
+import {getVersionInfo} from "tiklab-core-ui";
 
 const {Option} = Select;
 const {TextArea} = Input
@@ -84,7 +85,6 @@ const ApxMethodDetail = (props) => {
             return <Option key={item.user.id} value={item.user.id}>{item.user.nickname}</Option>
         })
     }
-
 
     //设置执行者
     const selectExecutor = (executor) =>{
@@ -180,7 +180,7 @@ const ApxMethodDetail = (props) => {
         setShowValidateStatus(null)
     };
 
-    //请求类型
+    //编辑请求类型
     const selectMethodType = (methodType) =>{
         let param = {
             id:httpId,
@@ -221,7 +221,6 @@ const ApxMethodDetail = (props) => {
 
     //编辑详情
     const onDescSave = () =>{
-
         let param = {
             id:httpId,
             apix:{
@@ -229,7 +228,6 @@ const ApxMethodDetail = (props) => {
                 desc:descValue
             }
         }
-
 
         updateApxMethod(param).then((res)=>{
             if(res.code===0){
@@ -240,6 +238,46 @@ const ApxMethodDetail = (props) => {
         })
 
         setShowDesc(false)
+    }
+
+
+    //判断是否有版本插件，返回的是true或false
+    const hasVersionPlugin = useHasPointPlugin('version');
+
+    let version = getVersionInfo()
+    //{
+    //     "release": 1:ce, 2:ee,3:saas
+    //     "expired": true //过期 true，没过期false
+    // }
+    //展示插件
+    const showPluginView = () =>{
+        //如果版本不为ce，没有过期，并且有插件就显示
+        if(version.release!==1&&version.expired===false&&hasVersionPlugin){
+            return <RemoteUmdComponent
+                    point='version'
+                    pluginStore={pluginStore}
+                    extraProps={{ history: props.history}}
+                />
+        }else {
+            return <Popconfirm
+                    title="想要升级增强功能？"
+                    onConfirm={upgrade}
+                    okText='确定'
+                    cancelText='取消'
+                    placement="bottomRight"
+                >
+                    <IconBtn
+                        className="pi-icon-btn-grey"
+                        name={"版本"}
+                    />
+                </Popconfirm>
+        }
+
+    }
+
+    //想要升级跳转到插件市场
+    const upgrade=()=>{
+        props.history.push("/systemManagement/plugin")
     }
 
     return(
@@ -289,21 +327,21 @@ const ApxMethodDetail = (props) => {
 
                         <IconBtn
                             className="important-btn"
-                            icon={"fasong-copy"}
+                            // icon={"fasong-copy"}
                             onClick={handleTest}
                             name={"测试"}
                         />
-                        <RemoteUmdComponent
-                            point='version'
-                            pluginStore={pluginStore}
-                            extraProps={{ history: props.history}}
-                        />
-                        <IconBtn
-                            className="pi-icon-btn-grey"
-                            icon={"shanchu"}
-                            onClick={()=>handleDeleteApxMethod(apxMethodId)}
-                            name={"删除"}
-                        />
+                        {
+                            showPluginView()
+                        }
+
+
+                        {/*<IconBtn*/}
+                        {/*    className="pi-icon-btn-grey"*/}
+                        {/*    icon={"shanchu"}*/}
+                        {/*    onClick={()=>handleDeleteApxMethod(apxMethodId)}*/}
+                        {/*    name={"删除"}*/}
+                        {/*/>*/}
                     </Space>
 
                 </div>

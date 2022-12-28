@@ -37,7 +37,7 @@ const CategoryAside = (props) => {
         <div className='wsAside'>
             <div className={` detailmenu-fold  `}>
                 <div className='ws-detail-menu'>
-                    <div className="ws-detail-menu-serchbtn">
+                    <div className="ws-detail-menu-serchbtn" style={{minWidth: "280px"}}>
                         <Input
                             prefix={<SearchOutlined />}
                             placeholder="搜索"

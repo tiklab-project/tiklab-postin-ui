@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Form, Input, Modal, Radio, Select, Tooltip} from "antd";
 import {dataTypeDictionary} from "../../../common/dictionary/dictionary";
 import IconBtn from "../../../common/iconBtn/IconBtn";
+import IconCommon from "../../../common/iconCommon";
 const {TextArea} = Input
 const {Option} = Select;
 
@@ -69,16 +70,22 @@ const JsonStructureEdit = (props) =>{
 
         if(props.icon&&props.type==="add"){
             return  <Tooltip title={"添加子项"}>
-                <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
-                    <use xlinkHref= {`#icon-tianjia-`} />
-                </svg>
+                <IconCommon
+                    icon={"tianjia-"}
+                    className={"icon-s edit-icon"}
+                    onClick={showModal}
+                />
             </Tooltip>
         }
 
         if(props.type==="edit"){
-           return <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
-                <use xlinkHref= {`#icon-bianji11`} />
-            </svg>
+           return (
+                <IconCommon
+                    icon={"bianji11"}
+                    className={"icon-s edit-icon"}
+                    onClick={showModal}
+                />
+           )
         }
     }
 

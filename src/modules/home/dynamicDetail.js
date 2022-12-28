@@ -4,12 +4,15 @@ import {List, Select, Skeleton} from "antd";
 import {findLogList} from "./commonApi";
 import PaginationCommon from "../common/pagination/page";
 import {inject, observer} from "mobx-react";
-import {getUser} from "tiklab-core-ui";
+import {Axios, getUser} from "tiklab-core-ui";
+
+const {Option} = Select;
 
 const DynamicDetail = (props) =>{
     const {workspaceStore} = props;
     const {findWorkspaceJoinList,} = workspaceStore;
 
+    const [actionList, setActionList] = useState([]);
     const [totalPage, setTotalPage] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const [dataList, setDataList] = useState();
@@ -39,9 +42,16 @@ const DynamicDetail = (props) =>{
         }
 
         findList(param).then(res => {
-            console.log(res)
             setDataList(res)
         })
+    },[])
+
+    //查询操作筛选下拉框
+    useEffect( async () =>{
+        let res = await Axios.post("/oplog/type/findlogtypepage",{"bgroup":"postin"})
+        if(res.code===0&&res.data.dataList){
+            setActionList(res.data.dataList)
+        }
     },[])
 
 
@@ -49,6 +59,7 @@ const DynamicDetail = (props) =>{
         let res =  await findLogList(params);
         setTotalPage(res.totalPage)
         setCurrentPage(res.currentPage)
+
         return res.dataList
     };
 
@@ -57,12 +68,15 @@ const DynamicDetail = (props) =>{
     //返回首页
     const backToHome = () => props.history.push("/home")
 
+    const [typeSelect, setTypeSelect] = useState();
+    const [actionSelect, setActionSelect] = useState();
 
     //类型筛选
-    const typeSelect =(type) =>{
+    const typeSelectFn =(type) =>{
         let  param = {
             content:{workspaceId:workspaceIdList},
             module:type,
+            actionType:actionSelect,
             pageParam: {
                 pageSize: 10,
                 currentPage:1
@@ -72,13 +86,16 @@ const DynamicDetail = (props) =>{
         findList(param).then(res => {
             setDataList(res)
         })
+
+        setTypeSelect(type);
     }
 
     //操作筛选
-    const actionSelect = (action) =>{
+    const actionSelectFn = (action) =>{
         let  param = {
             content:{workspaceId:workspaceIdList},
             actionType:action,
+            module:typeSelect,
             pageParam: {
                 pageSize: 10,
                 currentPage:1
@@ -88,6 +105,8 @@ const DynamicDetail = (props) =>{
         findList(param).then(res => {
             setDataList(res)
         })
+
+        setActionSelect(action)
     }
 
     //分页改变
@@ -122,7 +141,7 @@ const DynamicDetail = (props) =>{
                         // defaultValue={null}
                         placeholder={"类型"}
                         className={"dynamic-select-box-item"}
-                        onChange={typeSelect}
+                        onChange={typeSelectFn}
                         options={[
                             {
                                 value: null,
@@ -143,23 +162,15 @@ const DynamicDetail = (props) =>{
                         // defaultValue={null}
                         placeholder={"操作"}
                         className={"dynamic-select-box-item"}
-                        onChange={actionSelect}
-                        options={[
-                            {
-                                value: null,
-                                label: '所有',
-                            },{
-                                value: '新增',
-                                label: '新增',
-                            },{
-                                value: '删除',
-                                label: '删除',
-                            },{
-                                value: '更新',
-                                label: '更新',
-                            },
-                        ]}
-                    />
+                        onChange={actionSelectFn}
+                    >
+                        <Option key={"default"} value={null} >所有</Option>
+                        {
+                            actionList.map(item=>{
+                                return <Option key={item.id} value={item.id}>{item.name}</Option>
+                            })
+                        }
+                    </Select>
                 </div>
                 <div className={"dynamic-detail-box-list"}>
                     <List
@@ -169,7 +180,7 @@ const DynamicDetail = (props) =>{
                         renderItem={(item) => (
                             <List.Item >
                                 <List.Item.Meta
-                                    description={<div  dangerouslySetInnerHTML={{__html: item.opLogTemplate?.content}} />}
+                                    description={<div  dangerouslySetInnerHTML={{__html: item.data}} />}
                                 />
                                 <div>{item.timestamp}</div>
                             </List.Item>

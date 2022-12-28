@@ -10,6 +10,7 @@ import "./structureStyle.scss"
 import DetailHeader from "../../../common/detailHeader";
 import {SearchOutlined} from "@ant-design/icons";
 import {Profile} from "tiklab-eam-ui";
+import IconCommon from "../../../common/iconCommon";
 
 const DataStructure = (props) => {
     const {dataStructureStore} = props;
@@ -56,13 +57,14 @@ const DataStructure = (props) => {
                     />
                     <Popconfirm
                         title="确定删除？"
-                        onConfirm={() =>deleteDataStructure(record.id)}
+                        onConfirm={() =>deleteFn(record.id)}
                         okText='确定'
                         cancelText='取消'
                     >
-                        <svg className="icon-s edit-icon" aria-hidden="true">
-                            <use xlinkHref= {`#icon-shanchu3`} />
-                        </svg>
+                        <IconCommon
+                            icon={"shanchu3"}
+                            className={"icon-s edit-icon"}
+                        />
                     </Popconfirm>
                 </Space>
             ),
@@ -85,6 +87,12 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     },[])
 
+    //删除
+    const deleteFn=(id)=>{
+        deleteDataStructure(id).then(()=> {
+            findDataStructureList({workspaceId: workspaceId})
+        })
+    }
 
     //搜索
     const onSearch = (e) => {

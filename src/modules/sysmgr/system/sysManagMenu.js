@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
 import { DownOutlined,UpOutlined} from '@ant-design/icons';
@@ -19,6 +19,8 @@ const SysManage = (props) => {
     const [menuRouter,setMenuRouter] = useState();
 
     useEffect(() => {
+        //设置左侧导航哪个选中
+        setSelectKey(window.location.hash.substr(1))
 
         let data = pluginStore.filter(item=>item.point==="settingMenu").filter(item => item.menuTitle);
 
@@ -62,7 +64,7 @@ const SysManage = (props) => {
     }
 
     // 无子级菜单处理
-    const renderMenu = (data,deep)=> {
+    const renderMenu = (data,deep,isFirst)=> {
         if(data.encoded){
             return (
                 <PrivilegeButton code={data.encoded}  key={data.key}>
@@ -70,12 +72,17 @@ const SysManage = (props) => {
                         key={data.key}
                         className={` orga-aside-li ${data.key=== selectKey ? "orga-aside-select" : null}`}
                         onClick={()=>select(data.key)}
-                        style={{paddingLeft:`${deep*20+5}px`}}
+                        style={{paddingLeft:`${deep*20}px`}}
                     >
                         <div className={'aside-li'} >
-                            <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
-                                <use xlinkHref= {`#icon-${data.icon}`} />
-                            </svg>
+                            {
+                                isFirst
+                                    ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
+                                        <use xlinkHref= {`#icon-${data.icon}`} />
+                                    </svg>
+                                    :null
+                            }
+
 
                             {data.title}
                         </div>
@@ -87,12 +94,16 @@ const SysManage = (props) => {
                 key={data.key}
                 className={` orga-aside-li ${data.key=== selectKey ? "orga-aside-select" : null}`}
                 onClick={()=>select(data.key)}
-                style={{paddingLeft:`${deep*20+5}px`}}
+                style={{paddingLeft:`${deep*20}px`}}
             >
                 <div className={'aside-li'} >
-                    <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
-                        <use xlinkHref= {`#icon-${data.icon}`} />
-                    </svg>
+                    {
+                        isFirst
+                            ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
+                                <use xlinkHref= {`#icon-${data.icon}`} />
+                            </svg>
+                            :null
+                    }
 
                     {data.title}
                 </div>
@@ -109,17 +120,13 @@ const SysManage = (props) => {
                     <li key={key} title={title} >
                         <div className="orga-aside-item aside-li"
                              onClick={() => setOpenOrClose(key)}
-                             style={{paddingLeft:`${deep*20+5}px`}}
+                             style={{paddingLeft:`${deep*20}px`}}
                         >
                             <div className={"menu-name-icon"}>
                                 <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
                                     <use xlinkHref= {`#icon-${icon}`} />
                                 </svg>
-
-
-                                <span key={key}>
-                                  {title}
-                              </span>
+                                <span key={key}> {title}</span>
                             </div>
                             <div className="orga-aside-item-icon">
                                 {
@@ -138,7 +145,7 @@ const SysManage = (props) => {
                                     let deep = 1;
                                     return item.children && item.children.length
                                         ? renderSubMenu(item,deep)
-                                        : renderMenu(item,deep)
+                                        : renderMenu(item,deep,false)
                                 })
                             }
                         </ul>
@@ -150,17 +157,13 @@ const SysManage = (props) => {
                 <li key={key} title={title} >
                     <div className="orga-aside-item aside-li"
                          onClick={() => setOpenOrClose(key)}
-                         style={{paddingLeft:`${deep*20+5}px`}}
+                         style={{paddingLeft:`${deep*20}px`}}
                     >
                         <div className={"menu-name-icon"}>
                             <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
                                 <use xlinkHref= {`#icon-${icon}`} />
                             </svg>
-
-
-                            <span key={key}>
-                                  {title}
-                              </span>
+                            <span key={key}>{title}</span>
                         </div>
                         <div className="orga-aside-item-icon">
                             {
@@ -179,7 +182,7 @@ const SysManage = (props) => {
                                 let deep = 1;
                                 return item.children && item.children.length
                                     ? renderSubMenu(item,deep)
-                                    : renderMenu(item,deep)
+                                    : renderMenu(item,deep,false)
                             })
                         }
                     </ul>
@@ -191,12 +194,18 @@ const SysManage = (props) => {
     }
 
     const showUlView = (data)=>{
+
         return data && data.map(firstItem => {
             return firstItem.children && firstItem.children.length > 0
                 ? renderSubMenu(firstItem)
-                : renderMenu(firstItem)
+                : renderMenu(firstItem,null,true)
         })
     }
+
+
+    // let authConfig = JSON.parse(localStorage.getItem("authConfig"))
+    // let isEas =authConfig?.authType
+    // let toEasLink = authConfig?.authUrl+"/#"+"/setting/orga"
 
 
     return (

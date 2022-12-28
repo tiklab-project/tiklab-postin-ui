@@ -5,6 +5,7 @@ import { MockRequest, MockResponse } from '../index';
 import { observer, inject } from 'mobx-react';
 import EdiText from "react-editext";
 import IconCommon from "../../common/iconCommon";
+import {dir} from "../../common/dictionary/dictionary";
 
 const { Option } = Select;
 
@@ -70,8 +71,8 @@ const MockDetail = (props) =>{
                         className={"icon-s testcase-header-right-back"}
                         onClick={backToList}
                     />
-                    <div > MOCK详情 </div>
-                    <div style={{margin:" 0 5px"}}>/</div>
+                    {/*<div > MOCK详情 </div>*/}
+                    {/*<div style={{margin:" 0 5px"}}>/</div>*/}
                     <EdiText
                         value={resData?.name}
                         tabIndex={2}
@@ -99,22 +100,21 @@ const MockDetail = (props) =>{
 
             <div className='header-title  ex-title'>返回结果</div>
             <div className={"white-bg-box"}>
-                <Form
-                    form={form}
-                >
+                <Form form={form}>
                     <Form.Item
                         label="Http code"
                         name="httpCode"
                     >
                         <Select
+                            showSearch
                             style={{ 'width': 200 }}
                             onChange={(value)=>onChange(value)}
                         >
-                            <Option value="100">100</Option>
-                            <Option value="200">200</Option>
-                            <Option value="300">300</Option>
-                            <Option value="400">400</Option>
-                            <Option value="500">500</Option>
+                            {
+                                dir.httpCode.map(item=>{
+                                    return <Option value={item} key={item}>{item}</Option>
+                                })
+                            }
                         </Select>
                     </Form.Item>
                 </Form>

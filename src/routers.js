@@ -23,7 +23,7 @@ import {AuthResult} from "tiklab-eam-ui";
 import TestBoxQuickTest from "./modules/quicktest/components/testBoxQuickTest";
 import TestCaseBox from "./modules/apitest/testCase/components/testCaseBox";
 import TestBox from "./modules/apitest/test/components/testBox";
-import {Directory, OrgaList, UserList} from "tiklab-user-ui";
+import {Directory, OrgaList, UserGroup, UserList} from "tiklab-user-ui";
 import LoginContent from "./modules/login/loginContent";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
 import {MessageManagement, MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
@@ -36,7 +36,7 @@ import Version from "./modules/sysmgr/version/version";
 import StructureDetail from "./modules/sysmgr/dataStructure/components/StructureDetail";
 import Share from "./modules/share/components/share";
 import ShareMain from "./modules/share/components/shareMain";
-import Test from "./modules/header/test";
+
 
 const routers =  [
     {
@@ -123,6 +123,11 @@ const routers =  [
                         key:'authConfig',
                         exact: true,
                         render: () => <Directory isPortal={false}/>,
+                    },{
+                        path: "/systemManagement/userGroup",
+                        key:'authConfig',
+                        exact: true,
+                        render: () => <UserGroup />,
                     },
                     //权限
                     {
@@ -135,14 +140,14 @@ const routers =  [
                         path: "/systemManagement/messageSendType",
                         key:'MessageSendType',
                         exact: true,
-                        render:()=> <MessageSendType bgroup={"postin"} isBase={true}/>
+                        render:()=> <MessageNotice bgroup={"postin"}/>
 
                     },
                     {
                         path: "/systemManagement/message-notice",
                         key:'MessageType',
                         exact: true,
-                        render:()=> <MessageNotice bgroup={"postin"}/>
+                        render:()=> <MessageSendType bgroup={"postin"} />
                     },
                     //代办
                     {
@@ -202,10 +207,10 @@ const routers =  [
                         render: (props) => <ProjectRoleList isBase={true} {...props} bgroup={"postin"}/>,
                     },
                     {
-                        path: "/systemManagement/messageTemplate",
-                        key:'MessageTemplate',
+                        path: "/systemManagement/messageSendTypeBase",
+                        key:'messageSendTypeBase',
                         exact: true,
-                        render:()=> <MessageTemplate bgroup={"postin"}/>
+                        render:()=> <MessageSendType bgroup={"postin"} isBase={true}/>
                     },
                     // {
                     //     path: "/systemManagement/messageManagement",

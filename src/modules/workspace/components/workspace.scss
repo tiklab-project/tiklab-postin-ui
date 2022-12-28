@@ -52,10 +52,23 @@ ul{
 }
 
 
-.list-box-cell{
+.pi-list-box{
+    border-bottom: 1px solid var(--pi-border-color);
+
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+        padding: 8px;
+    }
 
     .ant-table-thead > tr > th{
         background:var(--pi-bg-color);
+    }
+
+    .ant-table-tbody > tr > td{
+        border-bottom: 0;
+    }
+
+    .tablelist  .ant-spin-nested-loading .ant-spin-container .ant-table-container .ant-table-tbody{
+        border-bottom: 1px solid #f0f0f0;
     }
 
     .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{

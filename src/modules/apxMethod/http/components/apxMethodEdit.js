@@ -10,6 +10,7 @@ import {Modal, Form, Input, Button, Select, Cascader} from 'antd';
 import {methodDictionary} from "../../../common/dictionary/dictionary";
 import {TextMethodType} from "../../../common/methodType";
 import IconBtn from "../../../common/iconBtn/IconBtn";
+import IconCommon from "../../../common/iconCommon";
 
 const {Option} = Select;
 const {TextArea} = Input;
@@ -124,12 +125,8 @@ const ApxMethodEdit = (props) => {
 
     //渲染 http 方法，如post，get
     const showMethod = (data) =>{
-        return data&&data.map(item=>{
-            return(
-                <Option value={item} key={item}>
-                    <TextMethodType type={item}/>
-                </Option>
-            )
+        return data&&data.map((item,index)=>{
+            return <Option value={item} key={index}> <TextMethodType type={item}/></Option>
         })
     }
 
@@ -139,17 +136,21 @@ const ApxMethodEdit = (props) => {
         setCascaderCategoryId(list[0])
     }
 
+    //不同地方，展示不同按钮的效果
     const showClickView = ()=>{
         if(props.type==="edit"){
-           return <svg className="icon-s edit-icon" aria-hidden="true" onClick={showModal}>
-                    <use xlinkHref= {`#icon-bianji11`} />
-                </svg>
+           return (
+               <IconCommon
+                   icon={"bianji11"}
+                   className={"icon-s edit-icon"}
+                   onClick={showModal}
+               />
+           )
         }
 
         if(props.isBtn==="btn"){
             return <IconBtn
                 className="important-btn"
-                icon={"xinzeng-copy"}
                 onClick={showModal}
                 name={"添加接口"}
             />

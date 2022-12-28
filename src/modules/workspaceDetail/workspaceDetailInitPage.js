@@ -1,80 +1,74 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import {Form, Input} from "antd";
 import DynamicWidget from "../home/dynamicWidget";
 
 const WorkspaceDetailInitPage = (props) =>{
     const {workspaceStore} = props;
-    const {findWorkspace,updateWorkspace,findWorkspaceTotal} = workspaceStore;
+    const {findWorkspaceTotal} = workspaceStore;
 
     const workspaceId =  localStorage.getItem("workspaceId");
-
-    const [workspaceData, setWorkspaceData] = useState();
     const [total, setTotal] = useState();
 
-    const [form] = Form.useForm();
+    useEffect(async ()=>{
+        let res = await findWorkspaceTotal(workspaceId)
 
-    useEffect(()=>{
-        findWorkspace(workspaceId).then(res=>{
-            setWorkspaceData(res)
-            form.setFieldsValue({
-                workspaceName: res.workspaceName,
-                desc:res.desc
-            })
-        })
+        setTotal(res)
     },[workspaceId])
 
-    useEffect(()=>{
-        findWorkspaceTotal(workspaceId).then(res=>{
-            setTotal(res)
+    //概要项
+    const items = [
+        {
+            title:"API总数",
+            value:total?.apiTotal,
+        },
+        {
+            title:"分组数",
+            value:total?.categoryTotal,
+        },
+        {
+            title:"用例数",
+            value:total?.caseTotal,
+        },
+        {
+            title:"数据模型数",
+            value:total?.modelTotal,
+        },
+        {
+            title:"成员",
+            value:total?.memberTotal,
+        }
+    ]
+
+    //展示概要
+    const showDetailView = (data) =>{
+        return data.map((item,index)=>{
+            return(
+                <div className={"wd-total-item"} key={index}>
+                    <div className={"wd-total-item-title"}>{item.value}</div>
+                    <div className={"wd-total-item-name"}>{item.title}</div>
+                </div>
+            )
         })
-    },[workspaceId])
-
-
-
+    }
 
     return(
-        <div className={"content-margin"}>
-        <div className={"content-margin-box ws-init-content"}>
-            <div className={"content-margin-box-header"}>
-                <div className={"wd-header-name"}>{workspaceData?.workspaceName}</div>
-            </div>
-            <div className={"wd-total"}>
-                <div className={"wd-title"}> 概要</div>
-                <div className={"wd-total-box"}>
-                    <div className={"wd-total-item"}>
-                        <div className={"wd-total-item-title"}>{total?.apiTotal}</div>
-                        <div className={"wd-total-item-name"}>API总数</div>
-                    </div>
-                    <div className={"wd-total-item"}>
-                        <div className={"wd-total-item-title"}>{total?.categoryTotal}</div>
-                        <div className={"wd-total-item-name"}>分组数</div>
-                    </div>
-                    <div className={"wd-total-item"}>
-                        <div className={"wd-total-item-title"}>{total?.caseTotal}</div>
-                        <div className={"wd-total-item-name"}>用例数</div>
-                    </div>
-                    <div className={"wd-total-item"}>
-                        <div className={"wd-total-item-title"}>{total?.modelTotal}</div>
-                        <div className={"wd-total-item-name"}>数据模型数</div>
-                    </div>
-                    <div className={"wd-total-item"}>
-                        <div className={"wd-total-item-title"}>{total?.memberTotal}</div>
-                        <div className={"wd-total-item-name"}>成员</div>
+        <div className={"content-margin"} style={{ background:"var(--pi-bg-grey-100)"}}>
+            <div className={" ws-init-content"}>
+                <div className={"wd-total"}>
+                    <div className={"wd-title"}> 概要</div>
+                    <div className={"wd-total-box"}>
+                        {
+                            showDetailView(items)
+                        }
                     </div>
                 </div>
-
-            </div>
-            <div >
-                <div>
-                    <div className={"wd-title"}>动态详情</div>
-                    {/*<div>更多</div>*/}
-                </div>
-                <div className={"white-bg-box"}>
-                    <DynamicWidget screen={{"workspaceId": workspaceId}}/>
+                <div className={"wd-dynamic-box"}>
+                    <div className={"wd-title"} >动态详情</div>
+                    <div style={{margin: "0 10px"}}>
+                        <DynamicWidget screen={{"workspaceId": workspaceId}}/>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     )
 }

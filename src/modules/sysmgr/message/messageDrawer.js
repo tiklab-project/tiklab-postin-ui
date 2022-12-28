@@ -202,7 +202,6 @@ const MessageDrawer = (props) =>{
         const updateParams = {
             id:item.id,
             message:{  id: item.message.id  },
-            messageTemplate:{  id: item.messageTemplate.id },
             status:1
         }
         const res =  await Axios.post('/message/messageItem/updateMessageItem', updateParams);

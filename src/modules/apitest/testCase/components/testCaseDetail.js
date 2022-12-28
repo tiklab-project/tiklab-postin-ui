@@ -196,8 +196,6 @@ const TestCaseDetail = (props) => {
                         className={"icon-s testcase-header-right-back"}
                         onClick={backToList}
                     />
-                    <div className={"testcase-header-right-back"} onClick={backToList}>接口用例</div>
-                    <div >/</div>
                     <EdiText
                         value={caseName}
                         tabIndex={2}

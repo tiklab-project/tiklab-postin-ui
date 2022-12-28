@@ -5,7 +5,7 @@ export const dir = {
         https:"https",
         ws:"ws"
     },
-
+    httpCode:[200,201,403,404,410,422,500,502,503,504]
 
 }
 

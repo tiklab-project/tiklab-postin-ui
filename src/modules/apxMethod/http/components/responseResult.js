@@ -3,9 +3,10 @@ import {Button, Form, Input, Radio, Select, Space} from "antd"
 import {inject, observer} from "mobx-react";
 import Schema from "../../../common/jsonSchema/schema";
 import ReactMonacoEditor from "../../../common/monacoEditor/reactMonacoEditor";
+import {dir} from "../../../common/dictionary/dictionary";
 
 const {Option} = Select;
-const httpCodes = [200,201,403,404,410,422,500,502,503,504]
+// const httpCodes = [200,201,403,404,410,422,500,502,503,504]
 
 const checkIsJsonSchema=(json)=> {
     try {
@@ -118,7 +119,6 @@ const ResponseResult = (props) =>{
                     <Form.Item
                         // label="HTTP 状态码"
                         name="httpCode"
-
                     >
                         <Select
                             showSearch
@@ -126,7 +126,7 @@ const ResponseResult = (props) =>{
                             onChange={onChange}
                         >
                             {
-                                httpCodes.map(item=>{
+                                dir.httpCode.map(item=>{
                                     return <Option value={item} key={item}>{item}</Option>
                                 })
                             }
@@ -136,7 +136,10 @@ const ResponseResult = (props) =>{
                         // label="名称 "
                         name="name"
                     >
-                        <Input style={{width:120}}  onBlur={(e)=>onChange(e.target.value)}/>
+                        <Input
+                            style={{width:120}}
+                            onBlur={(e)=>onChange(e.target.value)}
+                        />
                     </Form.Item>
                     <Form.Item
                         // label="数据类型"
