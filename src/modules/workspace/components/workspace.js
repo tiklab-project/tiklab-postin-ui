@@ -8,26 +8,29 @@ import WorkspaceEdit from "./workspaceEdit";
 import WorkspaceList from "./workspaceList";
 import DetailHeader from "../../common/detailHeader";
 import {SearchOutlined} from "@ant-design/icons";
+import WorkspaceRecentHome from "./workspaceRecentHome";
 
 //空间页
 const Workspace = (props) => {
     const {workspaceStore} = props;
 
-    const {findWorkspaceList,findWorkspaceJoinList,findWorkspaceFollowList,findWorkspaceRecentList} = workspaceStore;
+    const {findWorkspaceList,findWorkspaceJoinList,findWorkspaceFollowList} = workspaceStore;
 
 
     const userId = getUser().userId;
-    const [selectItem, setSelectItem] = useState("recent");
+    const [selectItem, setSelectItem] = useState("all");
 
     //空间筛选列表
     const items = [
         {
             title: '所有空间',
             key: `all`,
-        },{
-            title: `我最近浏览的`,
-            key: `recent`,
-        },{
+        },
+        // {
+        //     title: `我最近浏览的`,
+        //     key: `recent`,
+        // },
+        {
             title: '我收藏的',
             key: `follow`,
         },
@@ -94,9 +97,9 @@ const Workspace = (props) => {
             case "follow":
                 findWorkspaceFollowList(uId)
                 break;
-            case "recent":
-                findWorkspaceRecentList(uId)
-                break;
+            // case "recent":
+            //     findWorkspaceRecentList(uId)
+            //     break;
         }
     }
 
@@ -130,6 +133,11 @@ const Workspace = (props) => {
                         />
                     }
                 />
+
+                <div className={"home-box-item-detail"}>
+                    <div style={{margin:"10px 0 "}}>最近访问</div>
+                    <WorkspaceRecentHome {...props}/>
+                </div>
 
                 <div className={"ws-header-menu"}>
                     <div className={"ws-header-menu-left"}>

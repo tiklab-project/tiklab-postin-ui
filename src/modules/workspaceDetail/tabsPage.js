@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {Tabs} from "antd";
 import {renderRoutes} from "react-router-config";
-import ApxMethodEdit from "../apxMethod/http/components/apxMethodEdit";
 import {inject, observer} from "mobx-react";
 import EnvSelect from "../sysmgr/environment/components/envSelect";
 import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 import {getUser} from "tiklab-core-ui";
+import {uuid} from "../../common/utils/createId";
 
 
 const { TabPane } = Tabs;
@@ -44,6 +44,14 @@ const TabsPage = (props) =>{
     const add = ()=>{
         console.log("add---------")
 
+        let newTab={
+            name:"初始页",
+            id:uuid(5),
+            type:"initPage"
+        }
+
+
+
     }
 
     const remove = ()=>{
@@ -75,14 +83,22 @@ const TabsPage = (props) =>{
         let newTabInfo = {...apiTabListInfo,activeKey:activeKey}
         sessionStorage.setItem("apiTabListInfo",JSON.stringify(newTabInfo))
 
-        let addRouter = props.history.push
-        if(item.type==="api"){
-            localStorage.setItem("apxMethodId",item.id)
-            addRouter("/workspace/apis/detail/interface")
-        }else {
-            localStorage.setItem("categoryId",item.id)
-            addRouter("/workspace/apis/detail/category")
+        let addRouter = props.history.push;
+
+        switch (item.type) {
+            case "api":
+                localStorage.setItem("apxMethodId",item.id)
+                addRouter("/workspace/apis/detail/interface")
+                break;
+            case "list":
+                localStorage.setItem("categoryId",item.id)
+                addRouter("/workspace/apis/detail/category")
+                break;
+            case "initPage":
+                addRouter("/workspace/apis/detail/apiInitPage")
+                break;
         }
+
     }
 
     //展示TabPane
@@ -110,19 +126,19 @@ const TabsPage = (props) =>{
                 onChange={onChange}
                 activeKey={activeKey?activeKey:String(apiTabListInfo.activeKey)}
                 onEdit={onEdit}
-                addIcon={
-                    <ApxMethodEdit
-                        name={"添加"}
-                        icon={
-                            <svg className="icon-s edit-icon" aria-hidden="true">
-                                <use xlinkHref={`#icon-tianjia-`}/>
-                            </svg>
-                        }
-                        type={"add"}
-                        tab={true}
-                        {...props}
-                    />
-                }
+                // addIcon={
+                //     <ApxMethodEdit
+                //         name={"添加"}
+                //         icon={
+                //             <svg className="icon-s edit-icon" aria-hidden="true">
+                //                 <use xlinkHref={`#icon-tianjia-`}/>
+                //             </svg>
+                //         }
+                //         type={"add"}
+                //         tab={true}
+                //         {...props}
+                //     />
+                // }
                 onTabClick={changeTabPane}
 
                 tabBarExtraContent={<EnvSelect {...props}/>}

@@ -37,7 +37,7 @@ const SystemContent = (props) =>{
             title: '权限',
             icon: 'modular',
             key: '/systemManagement/systemRole',
-            encoded: "systemPrivilege",
+            // encoded: "systemPrivilege",
         },
         {
             title: "消息",

@@ -30,7 +30,7 @@ const RequestHeaderMock = (props) =>{
 
     let columns= [
         {
-            title: '标签',
+            title: '属性名称',
             dataIndex: 'headerName',
             width: '40%',
             render: (text, record)=>(
@@ -45,14 +45,14 @@ const RequestHeaderMock = (props) =>{
             )
         },
         {
-            title: '值',
+            title: '属性值',
             width: '40%',
             dataIndex: 'value',
             editable: true,
         },
         {
             title: '操作',
-            width: '150',
+            width: '100',
             dataIndex: 'operation',
             render: (text, record) =>( operation(record,dataSource) )
         }

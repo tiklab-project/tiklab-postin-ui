@@ -93,8 +93,8 @@ const MockResponse = (props) => {
                             onChange={(e)=>onChange( e.target.value)}  
                             defaultValue={radioValue}
                         >
-                            <Radio.Button value={'application/json'}>json </Radio.Button>
-                            <Radio.Button value={'text/pain'}>raw</Radio.Button>
+                            <Radio value={'application/json'}>json </Radio>
+                            <Radio value={'text/pain'}>raw</Radio>
                         </Radio.Group>
                     </div>
                     <div className={"raw-box"}>

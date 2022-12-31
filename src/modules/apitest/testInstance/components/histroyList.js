@@ -6,8 +6,9 @@ import {DownOutlined} from "@ant-design/icons";
 import {getUser} from "tiklab-core-ui";
 import {TextMethodType} from "../../../common/methodType";
 import "./instanceStyle.scss"
+import IconCommon from "../../../common/iconCommon";
 
-const HistroyList = (props) =>{
+const HistoryList = (props) =>{
     const {instanceStore,testcaseId} = props;
     const {findInstanceList,instanceList,deleteInstance} = instanceStore;
 
@@ -65,13 +66,23 @@ const HistroyList = (props) =>{
     }
 
 
+    const showHistoryView = ()=>{
+        if(props.icon){
+            return <IconCommon
+                    icon={"lishi"}
+                    className={"icon-s "}
+                    style={{margin:"5px 0 0 0",cursor:"pointer"}}
+                    onClick={showDrawer}
+                />
+        }else {
+            return <a onClick={showDrawer}>历史记录</a>
+        }
+    }
 
 
     return(
         <div className={"case-history-box"}>
-            <a onClick={showDrawer}>
-                历史记录
-            </a>
+            {showHistoryView()}
             <Drawer
                 title="历史记录"
                 placement="right"
@@ -88,4 +99,4 @@ const HistroyList = (props) =>{
 
 }
 
-export default inject("instanceStore")(observer(HistroyList));
+export default inject("instanceStore")(observer(HistoryList));

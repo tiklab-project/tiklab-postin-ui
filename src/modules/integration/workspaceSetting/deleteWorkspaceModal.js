@@ -32,9 +32,9 @@ const DeleteWorkspaceModal = (props) =>{
 
     return(
         <>
-            {/*<PrivilegeProjectButton code={"workspaceDelete"} domainId={workspaceId}>*/}
+            <PrivilegeProjectButton code={"workspaceDelete"} domainId={workspaceId}>
                 <Button type="primary" danger onClick={showModal}>删除空间</Button>
-            {/*</PrivilegeProjectButton>*/}
+            </PrivilegeProjectButton>
             <Modal
                 destroyOnClose={true}
                 title="你确定删除空间吗？"

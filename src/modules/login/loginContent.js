@@ -5,9 +5,6 @@
  */
 import React from 'react';
 import { Login } from 'tiklab-eam-ui';
-import logo from "../../assets/img/log.png"
-
-
 // 登录
 const LoginContent = (props)=> {
 
@@ -16,6 +13,7 @@ const LoginContent = (props)=> {
             {...props}
             title={"Postin"}
             // logoIcon={logo}
+            // vaildUserAuthRouter={"/no-auth"}
         />
     )
 

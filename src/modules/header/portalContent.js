@@ -20,7 +20,7 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(verifyUserHoc(Page,"postin"));
+export default connect(mapStateToProps)(verifyUserHoc(Page));
 
 
 

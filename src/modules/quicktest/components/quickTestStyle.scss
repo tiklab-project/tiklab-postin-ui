@@ -58,8 +58,8 @@
 
 
         .qt-left-list-li-status{
-            margin: 0 10px;
-
+            margin: 0 10px 0 5px;
+            font-size: 13px;
         }
     }
 
@@ -68,7 +68,7 @@
     }
 
     .qt-left-list-li:hover{
-        background: var(--pi-greyf9-color);
+        background: var(--pi-hover-color);
     }
 
 }

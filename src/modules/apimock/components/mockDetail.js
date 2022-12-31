@@ -99,11 +99,18 @@ const MockDetail = (props) =>{
             </div>
 
             <div className='header-title  ex-title'>返回结果</div>
-            <div className={"white-bg-box"}>
+            <div className={"white-bg-box mock-resp-code"}>
                 <Form form={form}>
                     <Form.Item
                         label="Http code"
                         name="httpCode"
+                        // rules={[
+                        //     {
+                        //         required: true,
+                        //         pattern: new RegExp(/^\d{3}$/),
+                        //         message: '输入正确http code'
+                        //     },
+                        // ]}
                     >
                         <Select
                             showSearch

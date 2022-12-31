@@ -126,9 +126,20 @@ const TestdetailQuickTest = (props) =>{
     const onFinish = async ()=> {
         let values =await form.getFieldsValue();
 
+        //如果没有输入协议开头，默认给一个http
+        let url;
+        let protocol = values.path.substr(0,4);
+
+        if(protocol==="http"){
+            url=values.path
+        }else {
+            url="http://"+values.path
+        }
+
+
         const allSendData = {
             "method":values.methodType,
-            "path":values.path,
+            "path":url,
             "headerList":headerQuickTestList,
             "queryList":queryQuickTestList,
             "bodyType":bodyType,
@@ -210,15 +221,15 @@ const TestdetailQuickTest = (props) =>{
                             <Form.Item
                                 className='formItem'
                                 name="path"
-                                rules={[
-                                    {
-                                        required: true,
-                                        pattern: new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/),
-                                        message: '请输入http开头的完整URL'
-                                    },
-                                ]}
+                                // rules={[
+                                //     {
+                                //         required: true,
+                                //         pattern: new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/),
+                                //         message: '请输入http开头的完整URL'
+                                //     },
+                                // ]}
                             >
-                                <Input placeholder={"请输入http开头的完整URL"} addonBefore={prefixSelector}/>
+                                <Input placeholder={"请输入请求地址"} addonBefore={prefixSelector}/>
                             </Form.Item>
                         </div>
                         <div className={"test-base-item"}>

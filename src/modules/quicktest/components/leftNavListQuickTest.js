@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
 import {quickTestTabProcess} from "../../common/apiTabListInfoProcess";
-import {Empty, Input, Tooltip} from "antd";
+import {Empty, Input, Space, Tooltip} from "antd";
 import {TextMethodType} from "../../common/methodType";
 import {getUser} from "tiklab-core-ui";
 import {SearchOutlined} from "@ant-design/icons";
@@ -40,6 +40,27 @@ const LeftNavListQuickTest =(props)=>{
         props.history.push("/workspace/quickTest/detail/api")
     }
 
+
+    const showTime = (time) =>{
+        if(!time) return
+
+        if(JSON.stringify(time).length>3){
+            return<span > {time/1000} ms</span>
+        }else {
+            return <span >{time} ms</span>
+        }
+    }
+
+    const showSize = (size) =>{
+        if(!size) return
+
+        if(JSON.stringify(size).length>3){
+            return<span >{size/1000} kb</span>
+        }else {
+            return <span >{size} b</span>
+        }
+    }
+
     const showListView = (data) =>{
         return data&&data.map(item=>{
             return(
@@ -49,11 +70,15 @@ const LeftNavListQuickTest =(props)=>{
                 >
                     <div className={"qt-left-list-box"} onClick={()=>onClick(item)}>
                         <div>
-                            <TextMethodType type={item.requestInstance?.methodType} />
-                            <span className={"qt-left-list-li-status"} >{item.statusCode}</span>
-                            <span>{item.time}ms</span>
+                            <TextMethodType type={item.requestInstance?.methodType} /><span>{item.requestInstance?.url}</span>
                         </div>
-                        {item.requestInstance?.url}
+
+                        <Space>
+                            <span className={"qt-left-list-li-status"} >{item.statusCode}</span>
+                            <span style={{fontSize:13}}>{showTime(item.time)}</span>
+                            <span style={{fontSize:13,margin:"0 0 0 10px"}}>{showSize(item.size)}</span>
+                        </Space>
+
                     </div>
                     <svg className="qt-left-list-icon" aria-hidden="true" onClick={()=> deleteInstance(item.id).then(()=> findList())}>
                         <use xlinkHref= {`#icon-shanchu1`} />

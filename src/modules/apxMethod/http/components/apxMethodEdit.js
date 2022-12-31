@@ -160,6 +160,19 @@ const ApxMethodEdit = (props) => {
             return <div onClick={showModal}> {props.icon}</div>
         }
 
+        if(props.tab){
+            return <div  className={"init-tab-item"} onClick={showModal}>
+                <div className={"init-tab-item-icon"}>
+                    <IconCommon
+                        icon={`APIwangguan`}
+                        style={{margin:"0 10px 0 0"}}
+                        className={"icon-x"}
+                    />
+                </div>
+                <div className={"init-tab-item-title"}>新建接口</div>
+            </div>
+        }
+
         return <a onClick={showModal}> {props.name}</a>
     }
 

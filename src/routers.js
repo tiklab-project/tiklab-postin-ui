@@ -19,7 +19,7 @@ import {
 } from './modules';
 
 import {Redirect} from "react-router";
-import {AuthResult} from "tiklab-eam-ui";
+import {AuthResult, NoProductAuthUser} from "tiklab-eam-ui";
 import TestBoxQuickTest from "./modules/quicktest/components/testBoxQuickTest";
 import TestCaseBox from "./modules/apitest/testCase/components/testCaseBox";
 import TestBox from "./modules/apitest/test/components/testBox";
@@ -36,6 +36,7 @@ import Version from "./modules/sysmgr/version/version";
 import StructureDetail from "./modules/sysmgr/dataStructure/components/StructureDetail";
 import Share from "./modules/share/components/share";
 import ShareMain from "./modules/share/components/shareMain";
+import TabApiInitPage from "./modules/workspaceDetail/tabApiInitPage";
 
 
 const routers =  [
@@ -63,6 +64,11 @@ const routers =  [
         exact: true,
         key:'logout',
     },
+    // {
+    //     path:"/no-auth",
+    //     exact: true,
+    //     component:NoProductAuthUser
+    // },
     {
         path:"/account",
         component:ElectronLoginContant,
@@ -282,6 +288,11 @@ const routers =  [
                                 key:'TabsPage',
                                 component: TabsPage,
                                 routes:[
+                                    {
+                                        path: "/workspace/apis/detail/apiInitPage",
+                                        exact: true,
+                                        component: TabApiInitPage,
+                                    },
                                     {
                                         path: "/workspace/apis/detail/category",
                                         exact: true,

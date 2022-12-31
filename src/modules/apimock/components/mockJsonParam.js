@@ -39,7 +39,7 @@ const JsonParamMock = (props) =>{
         },
         {
             title: '操作',
-            width: '150',
+            width: '100',
             dataIndex: 'operation',
             render: (text, record) =>( operation(record,dataSource))
         }

@@ -22,7 +22,7 @@ const Home =(props)=> {
         props.history.push("/dynamic")
     }
 
-    //去往动态详情页
+    //去往空间页
     const toWorkspace =() =>{
         props.history.push("/workspacePage")
     }

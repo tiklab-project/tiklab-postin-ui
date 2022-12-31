@@ -73,7 +73,7 @@ export  class QuickTestStore {
             'statusCode': this.status,
             'result': allAssertResult,
             "time": this.time,
-            "size": "",
+            "size": this.size,
             'requestInstance': {
                 "url": this.baseInfo,
                 "methodType": this.methodType,

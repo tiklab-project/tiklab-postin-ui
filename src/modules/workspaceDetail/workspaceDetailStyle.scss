@@ -304,3 +304,39 @@
     height: var(--pi-icon-x);
 }
 
+.ws-tab-init-box{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    height: 100%;
+    justify-content: center;
+    background: #fff;
+
+    .init-tab-item{
+        width: 160px;
+        height: 180px;
+        border: 1px solid var(--pi-border-color);
+        padding: 10px;
+        background: var(--pi-bg-grey-100);
+        cursor: pointer;
+
+        &-icon{
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &-title{
+            padding: 4px;
+            text-align: center;
+            font-size: 18px;
+            border-top: 1px solid #dbdbdb;
+        }
+
+        &-disabled{
+            cursor: no-drop;
+        }
+    }
+}
+

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 0 10px 5px;
 }
 
 .mock-search{
@@ -22,7 +22,7 @@
 .mock-header-box{
     display: flex;
     justify-content: space-between;
-    padding: 5px;
+    //padding: 5px;
 }
 
 .mock-baseInfo{
@@ -33,6 +33,13 @@
 
 .mock-request{
     margin: 20px 0 0 0;
+}
+
+.mock-resp-code{
+
+    .ant-form-item{
+        margin-bottom: 0;
+    }
 }
 
 .mock-response{

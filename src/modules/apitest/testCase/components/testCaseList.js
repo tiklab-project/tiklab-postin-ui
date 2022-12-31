@@ -7,6 +7,7 @@ import {sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import {toJS} from "mobx";
 import TestcaseTableInstance from "../../testInstance/components/testcaseTableInstance";
 import axios from "axios";
+import HistoryList from "../../testInstance/components/histroyList";
 
 const TestCaseList = (props) => {
     const { testCaseStore,instanceStore , environmentStore} = props;
@@ -38,18 +39,20 @@ const TestCaseList = (props) => {
             key: 'method',
             width:"30%",
         },
-        // {
-        //     title: '测试结果',
-        //     dataIndex:"result",
-        //     // align:'center',
-        //     key: 'result',
-        //     width:"20%",
-        //     render: (text, record )=>(
-        //         <>
-        //             <TestcaseTableInstance testcaseId={record.id}/>
-        //         </>
-        //     )
-        // },
+        {
+            title: '最近测试',
+            dataIndex:"result",
+            // align:'center',
+            key: 'result',
+            width:"20%",
+            render: (text, record )=>(
+                <>
+                    {
+                        showRecentTest(text)
+                    }
+                </>
+            )
+        },
         {
             title: '操作',
             dataIndex: 'operation',
@@ -71,6 +74,7 @@ const TestCaseList = (props) => {
                             <use xlinkHref= {`#icon-shanchu3`} />
                         </svg>
                     </Popconfirm>
+                    <HistoryList icon={true} testcaseId={record.id}/>
                 </Space>
             )
         },
@@ -85,6 +89,19 @@ const TestCaseList = (props) => {
             setCaseLength(list.length)
         });
     },[methodId]);
+
+    const showRecentTest = (text) =>{
+        switch (text) {
+            case 1:
+                return "成功"
+            case 0:
+                return "失败"
+            case -1:
+                return "未测试"
+            default:
+                return "未测试"
+        }
+    }
 
     const setLocalStorage = (id) => {
         localStorage.setItem('testCaseId',id)
