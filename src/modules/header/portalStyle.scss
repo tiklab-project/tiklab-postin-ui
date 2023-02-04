@@ -1,37 +1,4 @@
 //headerMenu
-.showWorkspace{
-    display: block;
-}
-
-.hideWorkspace{
-    display: none;
-}
-.header-workspace-item{
-    position: relative;
-
-    .header-workspaceBox{
-        background: var(--pi-bg-color);
-        position: absolute;
-        top: 28px;
-        left: -88px;
-        z-index: 100;
-        width: 260px;
-        box-shadow: var(--pi-box-shadow);
-        height: 180px;
-
-        .header-workspace-list-item{
-            padding: 6px;
-            border-bottom: 1px solid var(--pi-border-color);
-            cursor: pointer;
-            margin: 5px ;
-        }
-
-        .header-workspace-list-item:hover{
-            background: #f3f3f3;
-            border-radius: var(--pi-border-radius);
-        }
-    }
-}
 
 .header-right-item{
     margin: 0 12px;

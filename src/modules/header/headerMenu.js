@@ -11,11 +11,7 @@ const HeaderMenu = (props) =>{
         {
             label: '空间',
             key: '/workspacePage',
-        },
-        // {
-        //     label: 'test',
-        //     key: '/test',
-        // },
+        }
     ]
 
     const [current, setCurrent] = useState('/home');

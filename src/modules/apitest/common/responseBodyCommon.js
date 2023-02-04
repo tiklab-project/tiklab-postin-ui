@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import CodeMirror from "../../common/codeMirror";
 import "./testResponseStyle.scss"
 import ReactMonacoEditor from "../../common/monacoEditor/reactMonacoEditor";
 
@@ -10,7 +9,7 @@ const ResponseBodyCommon = (props) => {
     const [language, setLanguage] = useState();
 
     const processData =(data)=>{
-debugger
+
         //空值
         if(!data) return
 

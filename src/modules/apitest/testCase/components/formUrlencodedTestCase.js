@@ -25,11 +25,11 @@ const FormUrlencodedTestCase = (props) =>{
         dataLength
     } = formUrlencodedTestCaseStore;
 
-    const [dataSource,setDataSoure] =useState([])
+    const [dataSource,setDataSource] =useState([])
     const testCaseId =  localStorage.getItem('testCaseId');
 
     useEffect( ()=>{
-        findFormUrlencodedTestCaseList(testCaseId).then(res => setDataSoure(res));
+        findFormUrlencodedTestCaseList(testCaseId).then(res => setDataSource(res));
     },[dataLength])
 
     //表头
@@ -141,7 +141,7 @@ const FormUrlencodedTestCase = (props) =>{
 
     //更新
     const upData = (value) => {
-        updateFormUrlencodedTestCase(value).then(res=>setDataSoure(res));
+        updateFormUrlencodedTestCase(value).then(res=>setDataSource(res));
     }
 
     // 添加
@@ -152,6 +152,8 @@ const FormUrlencodedTestCase = (props) =>{
             delete values.id;
             createFormUrlencodedTestCase(values)
         }
+
+        setNewRowAction(false)
     }
 
     // 保存数据

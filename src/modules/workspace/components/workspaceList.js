@@ -135,7 +135,6 @@ const WorkspaceList = (props) => {
             })
         }
 
-
     }
 
 

@@ -15,13 +15,14 @@ const CategoryEdit =(props)=>{
 
     // 弹框展示
     const showModal = async () => {
-        setVisible(true);
         if(type === "edit"){
             let res = await findCategory(props.categoryId?props.categoryId:categoryId)
             form.setFieldsValue({
                 name: res.name,
             })
         }
+
+        setVisible(true);
     };
 
 

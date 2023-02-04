@@ -334,14 +334,6 @@ const ApxMethodDetail = (props) => {
                         {
                             showPluginView()
                         }
-
-
-                        {/*<IconBtn*/}
-                        {/*    className="pi-icon-btn-grey"*/}
-                        {/*    icon={"shanchu"}*/}
-                        {/*    onClick={()=>handleDeleteApxMethod(apxMethodId)}*/}
-                        {/*    name={"删除"}*/}
-                        {/*/>*/}
                     </Space>
 
                 </div>

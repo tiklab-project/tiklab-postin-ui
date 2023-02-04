@@ -132,6 +132,8 @@ const QueryParamTestCase = (props) =>{
             delete values.id;
             createQueryParamTestCase(values);
         }
+
+        setNewRowAction(false)
     }
 
     // 保存数据

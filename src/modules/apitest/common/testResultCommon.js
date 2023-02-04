@@ -31,14 +31,13 @@ const TestResultCommon = (props) =>  {
                     </div>
                 </div>
             )
-        }else {
-            return (
-                <>
-                    {showResponseBox(response)}
-                </>
-            )
         }
 
+        return (
+            <>
+                {showResponseBox(response)}
+            </>
+        )
     }
 
     const showResponseBox = (response)=>{

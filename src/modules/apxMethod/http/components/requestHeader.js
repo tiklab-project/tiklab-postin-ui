@@ -142,9 +142,11 @@ const RequestHeader = (props) =>{
                         && item.desc === record.desc
                         && item.value === record.value
                             ? null
-                            : <svg className="icon-s table-edit-icon" aria-hidden="true" onClick={() => upData(record)}>
-                                <use xlinkHref= {`#icon-btn_confirm`} />
-                            </svg>
+                            : <IconCommon
+                                icon={"btn_confirm"}
+                                className={"icon-s table-edit-icon"}
+                                onClick={()=>upData(record)}
+                            />
                     }
                     </>
                 :null

@@ -111,7 +111,7 @@ export class WorkspaceStore {
 	findWorkspaceFollowList = async (value) => {
 		this.params = {
 			...value,
-			orderParams:[{name:'createTime', orderType:'desc'}],
+			orderParams:[{name:'updateTime', orderType:'desc'}],
 		}
 		const res = await findWorkspaceFollowList(this.params)
 		if(res.code === 0 ) {

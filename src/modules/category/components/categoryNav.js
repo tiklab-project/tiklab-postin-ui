@@ -91,7 +91,7 @@ const CategoryNav = (props) => {
         </Menu>
     );
 
-    //删除分组，变成所有api
+    //删除分组
     const delCategory = (id)=>{
 
         deleteCategory(id)

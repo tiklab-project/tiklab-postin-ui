@@ -56,6 +56,8 @@ const RequestHeaderTestCase = (props) =>{
         }
     ]
 
+
+    const [newRowAction, setNewRowAction] = useState(false);
     //取消
     const onCancel = () =>{
         let data = {
@@ -68,8 +70,6 @@ const RequestHeaderTestCase = (props) =>{
         //隐藏
         setNewRowAction(false)
     }
-
-    const [newRowAction, setNewRowAction] = useState(false);
 
     // colums 里的操作
     const operation = (record,data) => {

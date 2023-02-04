@@ -155,6 +155,8 @@ const FormParamTestCase = (props) =>{
             delete values.id;
             createFormParamTestCase(values)
         }
+
+        setNewRowAction(false)
     }
 
     // 保存数据

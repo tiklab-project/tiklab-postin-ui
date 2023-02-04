@@ -11,7 +11,6 @@ import { PluginProvider} from 'tiklab-plugin-ui';
 import { initFetch} from 'tiklab-plugin-ui/es/_utils';
 import resources from "./common/language/resource";
 import {getUser} from "tiklab-core-ui";
-
 import "./assets/index"
 import {Spin} from "antd";
 

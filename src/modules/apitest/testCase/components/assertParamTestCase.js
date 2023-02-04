@@ -57,7 +57,6 @@ const AssertParamTestCase = (props) =>{
             width: '10%',
             dataIndex: 'comparator',
             editable: true,
-
         },
         {
             title: '参数值',
