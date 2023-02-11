@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './homestyle.scss';
-import WorkspaceRecentHome from "../workspace/components/workspaceRecentHome";
+import WorkspaceRecentHome from "../../workspace/components/workspaceRecentHome";
 
 import DynamicWidget from "./dynamicWidget";
 

@@ -88,14 +88,14 @@ const TabsPage = (props) =>{
         switch (item.type) {
             case "api":
                 localStorage.setItem("apxMethodId",item.id)
-                addRouter("/workspace/apis/detail/interface")
+                addRouter("/workspace/apis")
                 break;
             case "list":
                 localStorage.setItem("categoryId",item.id)
-                addRouter("/workspace/apis/detail/category")
+                addRouter("/workspace/apis/category")
                 break;
             case "initPage":
-                addRouter("/workspace/apis/detail/apiInitPage")
+                addRouter("/workspace/apis/apiInitPage")
                 break;
         }
 

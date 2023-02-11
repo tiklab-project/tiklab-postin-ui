@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../../index';
-import {Button, Form, Input, Popconfirm, Select, Space, Tabs} from 'antd';
+import {Breadcrumb, Button, Form, Input, Popconfirm, Select, Space, Tabs} from 'antd';
 import './apxMethod.scss'
 import MethodType from "../../../common/methodType";
 import {RemoteUmdComponent} from 'tiklab-plugin-ui'
@@ -13,9 +13,10 @@ import IconBtn from "../../../common/iconBtn/IconBtn";
 import {messageFn} from "../../../common/messageCommon/messageCommon";
 import {CaretDownOutlined} from "@ant-design/icons";
 import ResponseHeader from "./responseHeader";
-import ApiDocDrawer from "./apiDocDrawer"
+import ApiDocDrawer from "./apiDocument"
 import ProtocolType from "../../../common/protocolType";
 import {getVersionInfo} from "tiklab-core-ui";
+import EnvSelect from "../../../sysmgr/environment/components/envSelect";
 
 const {Option} = Select;
 const {TextArea} = Input
@@ -65,9 +66,9 @@ const ApxMethodDetail = (props) => {
 
 
     // 点击测试按钮，跳到测试页
-    const handleTest = () => {
-        props.history.push('/workspace/apis/detail/interface/test')
-    }
+    // const handleTest = () => {
+    //     props.history.push('/workspace/apis/test')
+    // }
 
     // 删除接口
     const handleDeleteApxMethod = (apxMethodId) => {
@@ -76,7 +77,7 @@ const ApxMethodDetail = (props) => {
             findApxMethodListByApix(categoryId);
         })
 
-        props.history.push({pathname:'/workspace/apis/detail/category'})
+        props.history.push({pathname:'/workspace/apis/category'})
     }
 
     //渲染执行者下拉框
@@ -280,183 +281,198 @@ const ApxMethodDetail = (props) => {
         props.history.push("/systemManagement/plugin")
     }
 
+
+    const goToListPage = () =>{
+        props.history.push("/workspace/apis/category")
+    }
+
+    const goToDocPage = () =>{
+        props.history.push("/workspace/apis/document")
+    }
+
     return(
-        <Fragment>
-            <div className={"white-bg-box"} style={{marginTop:0}}>
-                <div className="api-detail-base-box">
-                    <div className={"api-base-info-box"}>
-                        <div style={{margin:"0 10px 0 0"}}>
-                            <ProtocolType type={resData?.apix?.protocolType}/>
-                        </div>
-                        <Select
-                            style={{width:75,height:32}}
-                            value={methodType}
-                            onChange={(e)=>selectMethodType(e)}
-                            showArrow={showValidateStatus === "methodType"}
-                            suffixIcon={showValidateStatus === "methodType"?<CaretDownOutlined />:null}
-                            onMouseEnter={()=>{setShowValidateStatus("methodType")}}
-                            onMouseLeave={()=>{setShowValidateStatus("")}}
-                        >
-                            {
-                                showMethod(methodDictionary)
-                            }
-                        </Select>
-
-                        <div className={"api-base-info-box-name"}>
-                            <Input
-                                defaultValue={name}
-                                onPressEnter={editName}
-                                onBlur={editName}
-                                onFocus={()=>setShowValidateStatus("editName")}
-                                value={name}
-                                onChange={(e)=>setName(e.target.value)}
-                                suffix={
-                                    showValidateStatus === "editName"
-                                        ? <IconCommon
-                                            icon={"icon-1"}
-                                            className="icon-s "
-                                        />
-                                        :null
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <Space >
-                        <ApiDocDrawer  apxMethodId={apxMethodId} />
-
-                        <IconBtn
-                            className="important-btn"
-                            // icon={"fasong-copy"}
-                            onClick={handleTest}
-                            name={"测试"}
-                        />
-                        {
-                            showPluginView()
-                        }
-                    </Space>
-
+        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+            <div className="content-margin-box">
+                <div className={"pi-box-between"}>
+                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
+                        <Breadcrumb.Item onClick={goToListPage} className={"first-item"}>接口列表</Breadcrumb.Item>
+                        <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
+                        <Breadcrumb.Item>接口编辑</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <EnvSelect {...props}/>
                 </div>
-                <div className={"api-detail-base-box"}>
-                    <div className={"api-base-info-two"}>
-                        <ApiStatusModal
-                            selectStatus={selectStatus}
-                            status={status}
-                            {...props}
-                        />
-
-                        <div className={'api-base-edit-url-box'}>
-                            <Input
-                                defaultValue={path}
-                                onPressEnter={editPath}
-                                onBlur={editPath}
-                                onFocus={()=>setShowValidateStatus("editPath")}
-                                value={path}
-                                onChange={(e)=>setPath(e.target.value)}
-                                suffix={
-                                    showValidateStatus === "editPath"
-                                        ? <IconCommon
-                                            icon={"icon-1"}
-                                            className="icon-s "
-                                        />
-                                        :null
-                                }
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className={"method"}>
-                    <div  style={{display:"flex","justifyContent":"space-between","alignItems":"center"}}>
-                        <div className={"method-people-info"}>
-                            <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
-                            <span className={"people-item api-detail-base-box"}>
-                                负责人: <Select
-                                        style={{width:75,height:32}}
-                                        value={executorId?executorId:null}
-                                        onChange={(e)=>selectExecutor(e)}
-                                        placeholder={"未设置"}
-                                        showArrow={showValidateStatus === "executor"}
-                                        suffixIcon={showValidateStatus === "executor"?<CaretDownOutlined />:null}
-                                        onMouseEnter={()=>{setShowValidateStatus("executor")}}
-                                        onMouseLeave={()=>{setShowValidateStatus("")}}
-                                    >
-                                            {showExecutor(userSelectList)}
-                                    </Select>
-                            </span>
-                            <span className={"people-item "}>更新人: {resData?.apix?.updateUser?.name}</span>
-                            <span className={"people-item "}>更新时间: {resData?.apix?.updateTime}</span>
-                            <div
-                                className={"people-item"}
-                                style={{display:"flex","alignItems":"center"}}
-                                onClick={()=>{setShowMore(!showMore)}}
+                <div className={"white-bg-box"} style={{marginTop:0}}>
+                    <div className="api-detail-base-box">
+                        <div className={"api-base-info-box"}>
+                            <div style={{margin:"0 10px 0 0"}}>
+                                <ProtocolType type={resData?.apix?.protocolType}/>
+                            </div>
+                            <Select
+                                style={{width:75,height:32}}
+                                value={methodType}
+                                onChange={(e)=>selectMethodType(e)}
+                                showArrow={showValidateStatus === "methodType"}
+                                suffixIcon={showValidateStatus === "methodType"?<CaretDownOutlined />:null}
+                                onMouseEnter={()=>{setShowValidateStatus("methodType")}}
+                                onMouseLeave={()=>{setShowValidateStatus("")}}
                             >
-                                更多:
-                                {showMore ?
-                                    <IconCommon
-                                        icon={"zhankai"}
-                                        style={{margin: "0 0 0 5px", "cursor": "pointer"}}
-                                        className={"icon-s "}
-                                        // onClick={backToList}
-                                    />
-                                    :<IconCommon
-                                        icon={"jiantou-shang2"}
-                                        style={{margin: "0 0 0 5px", "cursor": "pointer"}}
-                                        className={"icon-s "}
-                                        // onClick={backToList}
-                                    />
+                                {
+                                    showMethod(methodDictionary)
                                 }
+                            </Select>
+
+                            <div className={"api-base-info-box-name"}>
+                                <Input
+                                    defaultValue={name}
+                                    onPressEnter={editName}
+                                    onBlur={editName}
+                                    onFocus={()=>setShowValidateStatus("editName")}
+                                    value={name}
+                                    onChange={(e)=>setName(e.target.value)}
+                                    suffix={
+                                        showValidateStatus === "editName"
+                                            ? <IconCommon
+                                                icon={"icon-1"}
+                                                className="icon-s "
+                                            />
+                                            :null
+                                    }
+                                />
                             </div>
                         </div>
 
+                        <Space >
+                            <IconBtn
+                                icon={"fanhui2"}
+                                className="pi-icon-btn-grey"
+                                name={"退出编辑"}
+                                onClick={goToDocPage}
+                            />
+
+                        </Space>
+
                     </div>
+                    <div className={"api-detail-base-box"}>
+                        <div className={"api-base-info-two"}>
+                            <ApiStatusModal
+                                selectStatus={selectStatus}
+                                status={status}
+                                {...props}
+                            />
+
+                            <div className={'api-base-edit-url-box'}>
+                                <Input
+                                    defaultValue={path}
+                                    onPressEnter={editPath}
+                                    onBlur={editPath}
+                                    onFocus={()=>setShowValidateStatus("editPath")}
+                                    value={path}
+                                    onChange={(e)=>setPath(e.target.value)}
+                                    suffix={
+                                        showValidateStatus === "editPath"
+                                            ? <IconCommon
+                                                icon={"icon-1"}
+                                                className="icon-s "
+                                            />
+                                            :null
+                                    }
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className={"method"}>
+                        <div  style={{display:"flex","justifyContent":"space-between","alignItems":"center"}}>
+                            <div className={"method-people-info"}>
+                                <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
+                                <span className={"people-item api-detail-base-box"}>
+                                    负责人: <Select
+                                            style={{width:75,height:32}}
+                                            value={executorId?executorId:null}
+                                            onChange={(e)=>selectExecutor(e)}
+                                            placeholder={"未设置"}
+                                            showArrow={showValidateStatus === "executor"}
+                                            suffixIcon={showValidateStatus === "executor"?<CaretDownOutlined />:null}
+                                            onMouseEnter={()=>{setShowValidateStatus("executor")}}
+                                            onMouseLeave={()=>{setShowValidateStatus("")}}
+                                        >
+                                                {showExecutor(userSelectList)}
+                                        </Select>
+                                </span>
+                                <span className={"people-item "}>更新人: {resData?.apix?.updateUser?.name}</span>
+                                <span className={"people-item "}>更新时间: {resData?.apix?.updateTime}</span>
+                                <div
+                                    className={"people-item"}
+                                    style={{display:"flex","alignItems":"center"}}
+                                    onClick={()=>{setShowMore(!showMore)}}
+                                >
+                                    更多:
+                                    {showMore ?
+                                        <IconCommon
+                                            icon={"zhankai"}
+                                            style={{margin: "0 0 0 5px", "cursor": "pointer"}}
+                                            className={"icon-s "}
+                                            // onClick={backToList}
+                                        />
+                                        :<IconCommon
+                                            icon={"jiantou-shang2"}
+                                            style={{margin: "0 0 0 5px", "cursor": "pointer"}}
+                                            className={"icon-s "}
+                                            // onClick={backToList}
+                                        />
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
 
 
-                    <div className={`api-base-info-desc ${showMore?"pi-show":"pi-hide"}`}>
-                        <div style={{margin:"0 0 10px 0 "}}>描述:</div>
-                        {
-                            showDesc
-                                ?
-                                <div className={`api-base-info-desc-text `}>
-                                    <TextArea
-                                        defaultValue={descValue}
-                                        value={descValue}
-                                        autoSize={{ minRows: 4, maxRows: 10 }}
-                                        onBlur={(e)=>setDescValue(e.target.value)}
-                                        onChange={(e)=>setDescValue(e.target.value)}
-                                    />
-                                    <div style={{ padding:" 5px 0"}}>
-                                        <Button onClick={()=>setShowDesc(false)} style={{marginRight:"10px"}}>取消</Button>
-                                        <Button className={"important-btn"} onClick={onDescSave}>保存</Button>
+                        <div className={`api-base-info-desc ${showMore?"pi-show":"pi-hide"}`}>
+                            <div style={{margin:"0 0 10px 0 "}}>描述:</div>
+                            {
+                                showDesc
+                                    ?
+                                    <div className={`api-base-info-desc-text `}>
+                                        <TextArea
+                                            defaultValue={descValue}
+                                            value={descValue}
+                                            autoSize={{ minRows: 4, maxRows: 10 }}
+                                            onBlur={(e)=>setDescValue(e.target.value)}
+                                            onChange={(e)=>setDescValue(e.target.value)}
+                                        />
+                                        <div style={{ padding:" 5px 0"}}>
+                                            <Button onClick={()=>setShowDesc(false)} style={{marginRight:"10px"}}>取消</Button>
+                                            <Button className={"important-btn"} onClick={onDescSave}>保存</Button>
+                                        </div>
+
                                     </div>
 
-                                </div>
+                                    :<div className={`api-base-info-desc-text api-base-info-desc-text-show`} onClick={()=>setShowDesc(true)}>
+                                        {descValue?descValue:"暂无描述"}
+                                    </div>
+                            }
+                        </div>
 
-                                :<div className={`api-base-info-desc-text api-base-info-desc-text-show`} onClick={()=>setShowDesc(true)}>
-                                    {descValue?descValue:"暂无描述"}
-                                </div>
-                        }
                     </div>
-
                 </div>
+
+                <div className="header-title ex-title">输入参数</div>
+                <div className={"white-bg-box"}>
+                    <Request  />
+                </div>
+
+                <div className="header-title ex-title">输出结果</div>
+                <Tabs defaultActiveKey={"resResult"}>
+                    <TabPane tab="返回头" key="resHeader">
+                        <div className={"tabPane-item-box"} style={{margin:"10px 0 0 0"}}><ResponseHeader /></div>
+                    </TabPane>
+                    <TabPane tab="返回结果" key="resResult">
+                        <div style={{margin:"10px 0 0 0"}} ><Response  /></div>
+                    </TabPane>
+
+                </Tabs>
+
             </div>
-
-            <div className="header-title ex-title">输入参数</div>
-            <div className={"white-bg-box"}>
-                <Request  />
-            </div>
-
-            <div className="header-title ex-title">输出结果</div>
-            <Tabs defaultActiveKey={"resResult"}>
-                <TabPane tab="返回头" key="resHeader">
-                    <div className={"tabPane-item-box"} style={{margin:"10px 0 0 0"}}><ResponseHeader /></div>
-                </TabPane>
-                <TabPane tab="返回结果" key="resResult">
-                    <div style={{margin:"10px 0 0 0"}} ><Response  /></div>
-                </TabPane>
-
-            </Tabs>
-
-        </Fragment>
+        </div>
     )
 }
 

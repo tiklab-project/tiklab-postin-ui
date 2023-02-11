@@ -179,8 +179,6 @@ const LeftNav = (props) =>{
                     }
                 </div>
                 <div>
-                    <ProxySelect />
-
                     <div className={`ws-detail-left-nav-item`} onClick={()=>clickAddRouter(setting)}>
                         <div className={`ws-detail-left-nav-item-box  ws-detail-left-nav-item-setting`}>
                             <div className={"ws-detail-left-nav-item-detail"}>

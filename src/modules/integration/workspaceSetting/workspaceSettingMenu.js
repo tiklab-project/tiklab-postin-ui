@@ -34,8 +34,21 @@ const WorkspaceSettingMenu = (props) =>{
             title: '权限',
             key: '/workspace/setting/privilege',
             // icon: 'icon-modular',
-        }
+        },{
+            title: '代理',
+            key: '/workspace/setting/proxy',
+            // icon: 'icon-setting',
+        },
     ]
+
+    const proxyItem = [
+        {
+            title: '代理',
+            key: '/workspace/setting/proxy',
+            // icon: 'icon-setting',
+        },
+    ]
+
 
     /**
      *左侧导航循环渲染

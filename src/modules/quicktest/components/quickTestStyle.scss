@@ -1,6 +1,26 @@
-.quicktest-contant{
-    display: flex;
-    height: 100%;
+
+.qk-test-box{
+
+    .ant-tabs-tab .ant-tabs-tab-active .ant-tabs-tab-btn {
+        color:  var(--pi-base-color);
+    }
+
+
+    .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu{
+        margin: 0 20px 0 0;
+        width: 60px;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
+        border-bottom: 1px solid #ddd;
+    }
+
+    .ant-tabs > .ant-tabs-nav .ant-tabs-nav-add, .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-add{
+        border-bottom: 1px solid #ddd!important;
+    }
 
     .quicktest-left{
         width: 220px;
@@ -12,6 +32,13 @@
         flex-grow: 2;
         overflow: auto;
     }
+}
+
+.quicktest-contant{
+    display: flex;
+    height: 100%;
+
+
 
 }
 

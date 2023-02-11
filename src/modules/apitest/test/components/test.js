@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
-import {Form, Input, Select, Button, Divider, Space, Tooltip} from 'antd';
+import {Breadcrumb, Form, Input, Select, Space, Tooltip} from 'antd';
 import { TestRequest } from '../index';
 import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
@@ -8,8 +8,8 @@ import { sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
 import {execute} from "../../common/dtAction";
 import TestResultCommon from "../../common/testResultCommon";
-import IconCommon from "../../../common/iconCommon";
 import IconBtn from "../../../common/iconBtn/IconBtn";
+import EnvSelect from "../../../sysmgr/environment/components/envSelect";
 
 
 const { Option } = Select;
@@ -157,76 +157,86 @@ const ApxMethodTest = (props) => {
         }
     }
 
-    const backToList = () => {
-        props.history.push('/workspace/apis/detail/interface/detail')
+    const goToListPage = () =>{
+        props.history.push("/workspace/apis/category")
     }
 
+    const goToDocPage = () =>{
+        props.history.push("/workspace/apis/document")
+    }
 
     return(
-        <Fragment>
-            <div className={"test-box-header"}>
-                <IconCommon
-                    icon={"31fanhui1"}
-                    style={{margin:"0 10px 0 0","cursor":"pointer"}}
-                    className={"icon-s testcase-header-right-back"}
-                    onClick={backToList}
-                />
-                <span>测试详情</span>
-            </div>
+        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+            <div className="content-margin-box">
+                <div className={"pi-box-between"}>
+                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
+                        <Breadcrumb.Item onClick={goToListPage} className={"first-item"}>接口列表</Breadcrumb.Item>
+                        <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
+                        <Breadcrumb.Item>接口测试</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <EnvSelect {...props}/>
+                </div>
 
-            <div className={"test-base"}>
-                <Form
-                    onFinish={onFinish}
-                    form = {form}
-                    className="test-header"
-                >
-                    <div className={"test-url"}>
-                        <Form.Item name="methodType" noStyle>
-                            <Select style={{width: 100,height:40}} disabled={true} showArrow={false}>
-                                {
-                                    Object.keys(methodJsonDictionary).map(item=>{
-                                        return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
-                                    })
-                                }
-                            </Select>
-                        </Form.Item>
-                        {
-                            showHost()
-                        }
-                        <Form.Item
-                            className='formItem'
-                            name="path"
-                            rules={[{required: true,message: '接口的路径'}]}
-                        >
-                            <Input disabled/>
-                        </Form.Item>
-                    </div>
 
-                    <Space style={{height:40}}>
-                        <IconBtn
-                            className="important-btn"
-                            icon={"fasong-copy"}
-                            onClick={onFinish}
-                            name={"发送"}
-                        />
-                        <SaveTestCase  {...props}/>
-                    </Space>
-                </Form>
-            </div>
+                <div className={"test-base"}>
+                    <Form
+                        onFinish={onFinish}
+                        form = {form}
+                        className="test-header"
+                    >
+                        <div className={"test-url"}>
+                            <Form.Item name="methodType" noStyle>
+                                <Select style={{width: 100,height:40}} disabled={true} showArrow={false}>
+                                    {
+                                        Object.keys(methodJsonDictionary).map(item=>{
+                                            return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
+                                        })
+                                    }
+                                </Select>
+                            </Form.Item>
+                            {
+                                showHost()
+                            }
+                            <Form.Item
+                                className='formItem'
+                                name="path"
+                                rules={[{required: true,message: '接口的路径'}]}
+                            >
+                                <Input disabled/>
+                            </Form.Item>
+                        </div>
 
-            <div className='header-title ex-title'>请求</div>
-            <div className={"white-bg-box"}>
-                <TestRequest {...props}/>
-            </div>
+                        <Space style={{height:40}}>
+                            <IconBtn
+                                className="important-btn"
+                                icon={"fasong-copy"}
+                                onClick={onFinish}
+                                name={"发送"}
+                            />
+                            <IconBtn
+                                className="pi-icon-btn-grey"
+                                name={"退出测试"}
+                                onClick={goToDocPage}
+                            />
+                            {/*<SaveTestCase  {...props}/>*/}
+                        </Space>
+                    </Form>
+                </div>
 
-            <div className='header-title ex-title'>响应</div>
-            <div className={"white-bg-box"}>
-                <TestResultCommon
-                    testResponse={testResponse}
-                    showResponse={showResponse}
-                />
+                <div className='header-title ex-title'>请求</div>
+                <div className={"white-bg-box"}>
+                    <TestRequest {...props}/>
+                </div>
+
+                <div className='header-title ex-title'>响应</div>
+                <div className={"white-bg-box"}>
+                    <TestResultCommon
+                        testResponse={testResponse}
+                        showResponse={showResponse}
+                    />
+                </div>
             </div>
-        </Fragment>
+        </div>
     )
 }
 

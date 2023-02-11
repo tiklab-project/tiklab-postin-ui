@@ -102,7 +102,7 @@ const SearchResult = (props) => {
     const toMethod = (id,workspaceId) => {
         localStorage.setItem('workspaceId',workspaceId)
         localStorage.setItem('apxMethodId',id)
-        props.history.push('/workspace/apis/detail/interface')
+        props.history.push('/workspace/apis')
     }
 
     const childItem = (item,dataItem)=>{

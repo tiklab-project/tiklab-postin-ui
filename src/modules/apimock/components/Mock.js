@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Table, Space, Tooltip, Popconfirm,Switch} from 'antd';
+import {Table, Space, Tooltip, Popconfirm, Switch, Breadcrumb} from 'antd';
 import MockEdit from './mockEdit';
 import './mock.scss';
 import copyMockUrl from "../../common/copyLink";
 import {Profile} from "tiklab-eam-ui";
+import EnvSelect from "../../sysmgr/environment/components/envSelect";
 
 // 接口的Mock
 const Mock = (props) => {
@@ -97,7 +98,7 @@ const Mock = (props) => {
 
     const setLocalStorage = (mockId,id) => {
         localStorage.setItem(mockId,id)
-        props.history.push('/workspace/apis/detail/interface/mockdetail')
+        props.history.push('/workspace/apis/mock-detail')
     }
 
     let mockUrl ;
@@ -108,9 +109,26 @@ const Mock = (props) => {
         mockUrl = `${base_url}/mockx/`+workspaceId;
     }
 
+    const goToListPage = () =>{
+        props.history.push("/workspace/apis/category")
+    }
+
+    const goToDocPage = () =>{
+        props.history.push("/workspace/apis/document")
+    }
+
     return (
-        <div className={"content-box-center"}>
-            <div >
+        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+            <div className="content-margin-box">
+                <div className={"pi-box-between"}>
+                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
+                        <Breadcrumb.Item onClick={goToListPage} className={"first-item"}>接口列表</Breadcrumb.Item>
+                        <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
+                        <Breadcrumb.Item>MOCK</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <EnvSelect {...props}/>
+                </div>
+
                 <div className='mock-header'>
                     <div style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}>
                         MOCK地址：

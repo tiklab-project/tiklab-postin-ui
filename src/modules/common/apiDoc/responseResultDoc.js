@@ -14,23 +14,25 @@ const ResponseResultDoc = (props) =>{
             return <TabPane tab={item.name+"("+item.httpCode+")"} key={item.id}>
                     <div>
                         <Tag>{item.dataType}</Tag>
-                        {
-                            item.dataType==="json"
-                                ?<ReactMonacoEditor
-                                    value={JSON.stringify(JSON.parse(item.jsonText),null,4)}
-                                    language={"json"}
-                                    readOnly={true}
-                                    height={"200px"}
-                                    width={"100%"}
-                                />
-                                :<ReactMonacoEditor
-                                    value={item.rawText}
-                                    language={"text"}
-                                    readOnly={true}
-                                    height={"200px"}
-                                    width={"100%"}
-                                />
-                        }
+                        <div style={{border:"1px solid var(--pi-border-color)"}}>
+                            {
+                                item.dataType==="json"
+                                    ?<ReactMonacoEditor
+                                        value={JSON.stringify(JSON.parse(item.jsonText),null,4)}
+                                        language={"json"}
+                                        readOnly={true}
+                                        height={"200px"}
+                                        width={"100%"}
+                                    />
+                                    :<ReactMonacoEditor
+                                        value={item.rawText}
+                                        language={"text"}
+                                        readOnly={true}
+                                        height={"200px"}
+                                        width={"100%"}
+                                    />
+                            }
+                        </div>
                     </div>
             </TabPane>
         })

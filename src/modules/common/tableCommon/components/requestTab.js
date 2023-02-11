@@ -48,7 +48,7 @@ const RequestTab = (props) =>{
     }
 
     return(
-        <Tabs  className="tabs"  >
+        <Tabs className="tabs" size={"small"}>
             {
                 showTabPane(requestTabDictionary)
             }

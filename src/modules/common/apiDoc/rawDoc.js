@@ -28,7 +28,7 @@ const RawDoc = (props) =>{
                 dataSource&&dataSource.raw
                     ? <div className={"share-request-item"}>
                         <Space><div>Body参数</div><Tag>{dataSource.type}</Tag></Space>
-                        <div className={"share-right-table"}>
+                        <div className={"share-right-table"} style={{border:"1px solid var(--pi-border-color)"}}>
                                 <ReactCodeMirror
                                     value={precessData(dataSource.raw)}
                                     options={{

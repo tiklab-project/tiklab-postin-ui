@@ -4,7 +4,7 @@ import {Empty, List, Skeleton} from "antd";
 import {findLogList} from "./commonApi";
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
-import emptyImg from "../../assets/img/empty.png";
+import emptyImg from "../../../assets/img/empty.png";
 
 
 const DynamicWidget = (props) =>{

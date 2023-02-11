@@ -1,13 +1,13 @@
 
 import React from 'react'
-import PortalHeader from "./modules/header/portalContent"
+import PortalHeader from "./modules/integration/header/portalContent"
 
 import {
     Home, SearchResult,
 
     WorkspaceRole, WorkspacePrivilege, Workspace,
     WorkspaceDetailLayout,
-    LayoutApiContent, TabsPage, LayoutQuickTest, TabsQuickTest,  WorkspaceDetailInitPage,
+    LayoutApiContent, LayoutQuickTest, TabsQuickTest,  WorkspaceDetailInitPage,
     Category, ApxMethod, ApxMethodDetail,
 
     TestCase,
@@ -19,24 +19,27 @@ import {
 } from './modules';
 
 import {Redirect} from "react-router";
-import {AuthResult, NoProductAuthUser} from "tiklab-eam-ui";
+import {AuthResult} from "tiklab-eam-ui";
 import TestBoxQuickTest from "./modules/quicktest/components/testBoxQuickTest";
 import TestCaseBox from "./modules/apitest/testCase/components/testCaseBox";
 import TestBox from "./modules/apitest/test/components/testBox";
 import {Directory, OrgaList, UserGroup, UserList} from "tiklab-user-ui";
-import LoginContent from "./modules/login/loginContent";
+import LoginContent from "./modules/integration/login/loginContent";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
 import {MessageManagement, MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
 import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
 import {LogList, LogTemplateList, LogTypeList} from "tiklab-oplog-ui";
 import {PluginDetail, PluginList} from "tiklab-plugin-ui";
-import DynamicDetail from "./modules/home/dynamicDetail";
+import DynamicDetail from "./modules/integration/home/dynamicDetail";
 import Version from "./modules/sysmgr/version/version";
 import StructureDetail from "./modules/sysmgr/dataStructure/components/StructureDetail";
 import Share from "./modules/share/components/share";
 import ShareMain from "./modules/share/components/shareMain";
 import TabApiInitPage from "./modules/workspaceDetail/tabApiInitPage";
+import ApiDocument from "./modules/apxMethod/http/components/apiDocument";
+import ProxyPage from "./modules/integration/workspaceSetting/proxyPage";
+import ApiInitPage from "./modules/workspaceDetail/apiInitPage";
 
 
 const routers =  [
@@ -284,81 +287,46 @@ const routers =  [
                         component: LayoutApiContent,
                         routes:[
                             {
-                                path: "/workspace/apis/detail",
-                                key:'TabsPage',
-                                component: TabsPage,
-                                routes:[
-                                    {
-                                        path: "/workspace/apis/detail/apiInitPage",
-                                        exact: true,
-                                        component: TabApiInitPage,
-                                    },
-                                    {
-                                        path: "/workspace/apis/detail/category",
-                                        exact: true,
-                                        key:'Category',
-                                        component: Category,
-                                    },{
-                                        path:"/workspace/apis/detail/interface",
-                                        component: ApxMethod,
-                                        key:'ApxMethod',
-                                        routes:[
-                                            {
-                                                path:"/workspace/apis/detail/interface/detail",
-                                                exact: true,
-                                                key:'ApxMethodDetail',
-                                                component: ApxMethodDetail,
-                                            },
-                                            {
-                                                path:"/workspace/apis/detail/interface/test",
-                                                exact: true,
-                                                key:'test',
-                                                component: TestBox,
-                                            },{
-                                                path:"/workspace/apis/detail/interface/testcase",
-                                                exact: true,
-                                                key:'testcase',
-                                                component: TestCase,
-                                            },
-                                            {
-                                                path:"/workspace/apis/detail/interface/testcasedetail",
-                                                exact: true,
-                                                key:'testCaseDetail',
-                                                component: TestCaseBox,
-                                            },
-                                            {
-                                                path:'/workspace/apis/detail/interface/mock',
-                                                key:'mock',
-                                                exact: true,
-                                                component: Mock
-                                            },
-                                            {
-                                                path:'/workspace/apis/detail/interface/mockdetail',
-                                                exact: true,
-                                                key:'mockDetail',
-                                                component:MockDetail
-                                            },
-                                            {
-                                                path:"/workspace/apis/detail/interface",
-                                                exact: true,
-                                                key:'ridinterfacedetail',
-                                                component: ()=><Redirect to='/workspace/apis/detail/interface/detail'/>,
-                                            },
-                                        ]
-                                    },
-                                    {
-                                        path:"/workspace/apis/detail",
-                                        exact: true,
-                                        key:'ridapidetail',
-                                        component: ()=><Redirect to='/workspace/apis/detail/apiInitPage'/>,
-                                    },
-                                ]
+                                path:"/workspace/apis/init",
+                                exact: true,
+                                component: ApiInitPage,
+                            },
+                            {
+                                path: "/workspace/apis/category",
+                                exact: true,
+                                key:'Category',
+                                component: Category,
+                            },
+                            {
+                                path:"/workspace/apis/document",
+                                exact: true,
+                                component: ApiDocument,
+                            },
+                            {
+                                path:"/workspace/apis/edit",
+                                exact: true,
+                                component: ApxMethodDetail,
+                            },
+                            {
+                                path:"/workspace/apis/test",
+                                exact: true,
+                                component: TestBox,
+                            },
+                            {
+                                path:'/workspace/apis/mock',
+                                exact: true,
+                                component: Mock
+                            },
+                            {
+                                path:'/workspace/apis/mock-detail',
+                                exact: true,
+                                component:MockDetail
                             },
                             {
                                 path:"/workspace/apis",
                                 exact: true,
                                 key:'ridapisdetail',
-                                component: ()=><Redirect to='/workspace/apis/detail'/>,
+                                component: ()=><Redirect to='/workspace/apis/init'/>,
                             },
                         ]
                     },
@@ -425,6 +393,10 @@ const routers =  [
                                 key:'privilege',
                                 exact: true,
                                 component: WorkspacePrivilege,
+                            },{
+                                path: "/workspace/setting/proxy",
+                                exact: true,
+                                component: ProxyPage,
                             },{
                                 path:"/workspace/setting",
                                 key:'ridworkspaceSetting',

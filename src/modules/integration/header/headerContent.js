@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {Divider, Dropdown, Menu, Space} from "antd";
-import {Search} from "../index";
+import {Search} from "../../index";
 import {Profile, WorkAppConfig} from "tiklab-eam-ui"
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 import HeaderMenu from "./headerMenu";
-import logo from "../../assets/img/postinlog.png";
-import MessageDrawer from "../sysmgr/message/messageDrawer";
+import logo from "../../../assets/img/postinlog.png";
+import MessageDrawer from "../../sysmgr/message/messageDrawer";
 import {QuestionCircleOutlined, RightOutlined, SettingOutlined} from "@ant-design/icons";
 
 

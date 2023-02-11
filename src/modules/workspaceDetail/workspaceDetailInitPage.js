@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import DynamicWidget from "../home/dynamicWidget";
+import DynamicWidget from "../integration/home/dynamicWidget";
 
 const WorkspaceDetailInitPage = (props) =>{
     const {workspaceStore} = props;

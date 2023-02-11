@@ -7,6 +7,8 @@
 import React from 'react';
 import { renderRoutes } from "react-router-config";
 import MenuCommon from "../../../common/menu/menuCommon";
+import {Breadcrumb} from "antd";
+import EnvSelect from "../../../sysmgr/environment/components/envSelect";
 
 
 const ApxMethod = (props) =>  {
@@ -14,46 +16,28 @@ const ApxMethod = (props) =>  {
 
     const items = [
         {
-            title: '接口',
-            key: '/workspace/apis/detail/interface',
+            title: '接口文档',
+            key: '/workspace/apis',
             // icon: <ApiOutlined />,
         },
         {
-            title: '测试用例',
-            key: '/workspace/apis/detail/interface/testcase',
+            title: '接口调试',
+            key: '/workspace/apis/test',
             // icon: <RetweetOutlined />,
         },{
             title: 'Mock',
-            key: '/workspace/apis/detail/interface/mock',
+            key: '/workspace/apis/mock',
             // icon: <SnippetsOutlined />,
         }
     ];
 
+
     return(
-        <div className={"api-content-box"}>
-            <div style={{"borderBottom":"1px solid #dddddd",background:"#fff"}}>
-                <div style={{
-                    // maxWidth: "1440px",
-                    "minWidth":"800px",
-                    "margin":"0 auto",
-                    // boxShadow: "rgb(0 0 0 / 76%) 0px 5px 5px -8px"
-                }}>
-                    <MenuCommon
-                        items={items}
-                        selectedKey={"/workspace/apis/detail/interface"}
-                        {...props}
-                    />
-                </div>
-            </div>
-
-            <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
-                <div className="content-margin-box">
-
-                    {
-                        renderRoutes(router)
-                    }
-                </div>
-
+        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+            <div className="content-margin-box">
+                {
+                    renderRoutes(router)
+                }
             </div>
         </div>
     )

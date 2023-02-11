@@ -58,7 +58,7 @@ const HttpList = (props) => {
                     />
                     <Popconfirm
                         title="确定删除？"
-                        onConfirm={() =>deletMethod(record.id)}
+                        onConfirm={() =>deleteMethod(record.id)}
                         okText='确定'
                         cancelText='取消'
                     >
@@ -87,7 +87,8 @@ const HttpList = (props) => {
     //保存接口id，并跳往接口页面
     const setLocalStorage = (record) => {
         localStorage.setItem("apxMethodId",record.id)
-        props.history.push('/workspace/apis/detail/interface')
+
+        props.history.push('/workspace/apis/document')
     }
 
     useEffect(()=>{
@@ -95,7 +96,7 @@ const HttpList = (props) => {
     },[categoryId,params])
 
     //删除
-    const deletMethod = (id) =>{
+    const deleteMethod = (id) =>{
         deleteApxMethod(id).then(()=> {
             findApxMethodListByApix(categoryId);
             findCategoryList(workspaceId);

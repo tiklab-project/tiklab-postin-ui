@@ -228,3 +228,19 @@ table .icon{
 .pi-hide{
     display: none;
 }
+
+.pi-box-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+//面包屑
+.breadcrumb-box{
+    //padding: 10px 6px 0;
+
+    .first-item:hover{
+        cursor: pointer;
+        color: #48a8d9;
+    }
+}

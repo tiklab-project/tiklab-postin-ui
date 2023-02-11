@@ -93,13 +93,13 @@ const TestCaseDetail = (props) => {
 
     // 返回列表
     const backToList = () => {
-        props.history.push('/workspace/apis/detail/interface/testcase')
+        props.history.push('/workspace/apis/testcase')
     }
 
     // 删除用例
     const handleDeleteTestCase = () => {
         deleteTestCase(testCaseId);
-        props.history.push('/workspace/apis/detail/interface/testcase')
+        props.history.push('/workspace/apis/testcase')
     }
 
     // 测试

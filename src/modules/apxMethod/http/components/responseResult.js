@@ -117,41 +117,13 @@ const ResponseResult = (props) =>{
             <div className={"api-res-result-top-box"}>
                 <Form form={form}   layout={"inline"}  style={{margin:" 0 0 10px 0"}}>
                     <Form.Item
-                        // label="HTTP 状态码"
-                        name="httpCode"
-                    >
-                        <Select
-                            showSearch
-                            style={{width:120}}
-                            onChange={onChange}
-                        >
-                            {
-                                dir.httpCode.map(item=>{
-                                    return <Option value={item} key={item}>{item}</Option>
-                                })
-                            }
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        // label="名称 "
-                        name="name"
-                    >
-                        <Input
-                            style={{width:120}}
-                            onBlur={(e)=>onChange(e.target.value)}
-                        />
-                    </Form.Item>
-                    <Form.Item
-                        // label="数据类型"
+                        label="数据类型"
                         name="dataType"
                     >
-                        <Select
-                            style={{width:120}}
-                            onChange={onChange}
-                        >
-                            <Option value={"json"}>json</Option>
-                            <Option value={"raw"}>raw</Option>
-                        </Select>
+                        <Radio.Group onChange={onChange}>
+                            <Radio value={"json"}>json</Radio>
+                            <Radio value={"raw"}>raw</Radio>
+                        </Radio.Group>
                     </Form.Item>
                 </Form>
                 {

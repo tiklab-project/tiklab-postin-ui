@@ -1,11 +1,13 @@
 
 import React, { useEffect, useState } from 'react';
-import { Form, Button, Input, Select} from 'antd';
+import {Form, Button, Input, Select, Breadcrumb} from 'antd';
 import { MockRequest, MockResponse } from '../index';
 import { observer, inject } from 'mobx-react';
 import EdiText from "react-editext";
 import IconCommon from "../../common/iconCommon";
 import {dir} from "../../common/dictionary/dictionary";
+import EnvSelect from "../../sysmgr/environment/components/envSelect";
+import IconBtn from "../../common/iconBtn/IconBtn";
 
 const { Option } = Select;
 
@@ -44,7 +46,7 @@ const MockDetail = (props) =>{
     }
 
     const backToList = () => {
-        props.history.push('/workspace/apis/detail/interface/mock')
+        props.history.push('/workspace/apis/mock')
     }
 
 
@@ -58,21 +60,33 @@ const MockDetail = (props) =>{
         updateMock(param)
     };
 
+    const goToListPage = () =>{
+        props.history.push("/workspace/apis/category")
+    }
+
+    const goToDocPage = () =>{
+        props.history.push("/workspace/apis/document")
+    }
+
+    const goToMockPage = () =>{
+        props.history.push("/workspace/apis/mock")
+    }
 
 
     return(
-        <>
-            <div className={"mock-header-box"}>
-                <div className={"testcase-header-right"}>
+        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+            <div className="content-margin-box">
+                <div className={"pi-box-between"}>
+                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
+                        <Breadcrumb.Item onClick={goToListPage} className={"first-item"}>接口列表</Breadcrumb.Item>
+                        <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
+                        <Breadcrumb.Item onClick={goToMockPage} className={"first-item"}>MOCK</Breadcrumb.Item>
+                        <Breadcrumb.Item>MOCK详情</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <EnvSelect {...props}/>
+                </div>
 
-                    <IconCommon
-                        icon={"31fanhui1"}
-                        style={{margin:"0 10px 0 0"}}
-                        className={"icon-s testcase-header-right-back"}
-                        onClick={backToList}
-                    />
-                    {/*<div > MOCK详情 </div>*/}
-                    {/*<div style={{margin:" 0 5px"}}>/</div>*/}
+                <div className={"mock-header-box"}>
                     <EdiText
                         value={resData?.name}
                         tabIndex={2}
@@ -91,15 +105,20 @@ const MockDetail = (props) =>{
                         }
                         hideIcons
                     />
-                </div>
-            </div>
-            <div className='header-title ex-title'>期望参数</div>
-            <div className={"white-bg-box"}>
-                <MockRequest {...props} />
-            </div>
 
-            <div className='header-title  ex-title'>返回结果</div>
-            <div className={"white-bg-box mock-resp-code"}>
+                    <IconBtn
+                        className="pi-icon-btn-grey"
+                        name={"退出"}
+                        onClick={goToMockPage}
+                    />
+                </div>
+                <div className='header-title ex-title'>期望参数</div>
+                <div className={"white-bg-box"}>
+                    <MockRequest {...props} />
+                </div>
+
+                <div className='header-title  ex-title'>返回结果</div>
+                <div className={"white-bg-box mock-resp-code"}>
                 <Form form={form}>
                     <Form.Item
                         label="Http code"
@@ -127,7 +146,8 @@ const MockDetail = (props) =>{
                 </Form>
                 <MockResponse  {...props}/>
             </div>
-        </>
+            </div>
+        </div>
     )
 
 

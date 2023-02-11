@@ -45,7 +45,7 @@ const Search = (props) => {
     const toMethod = (apxMethodId,workspaceId) => {
         localStorage.setItem('workspaceId',workspaceId);
         localStorage.setItem('apxMethodId',apxMethodId);
-        props.history.push('/workspace/apis/detail/interface');
+        props.history.push('/workspace/apis');
         setToggleSearch('hide');
     }
 

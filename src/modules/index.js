@@ -1,5 +1,5 @@
 
-import Home from './home/home';
+import Home from './integration/home/home';
 import {Search, SearchResult} from './integration/search';
 
 import {
@@ -19,8 +19,8 @@ import {
     SystemContent, SysManage,DataStructure, ApiStatus,
 } from './sysmgr/index'
 
-import PageContent from "./header/pageContent";
-import HeaderContent from './header/headerContent'
+import PageContent from "./integration/header/pageContent";
+import HeaderContent from './integration/header/headerContent'
 import WorkspaceDetailLayout from "./workspaceDetail/workspaceDetailLayout";
 import LayoutApiContent from "./apxMethod/http/components/layoutApiContent"
 import TabsPage from "./workspaceDetail/tabsPage";
@@ -29,9 +29,9 @@ import TabsQuickTest from "./quicktest/components/tabsQuickTest";
 import TestdetailQuickTest from "./quicktest/components/testdetailQuickTest";
 import WorkspaceDetailInitPage from "./workspaceDetail/workspaceDetailInitPage";
 import WorkspaceSettingMenu from "./integration/workspaceSetting/workspaceSettingMenu";
-import LoginOut from "./header/loginOut";
-import LoginContent from "./login/loginContent";
-import ElectronLoginContant from "./login/electronLoginContant";
+import LoginOut from "./integration/header/loginOut";
+import LoginContent from "./integration/login/loginContent";
+import ElectronLoginContant from "./integration/login/electronLoginContant";
 
 export {
     Home,PageContent,HeaderContent,
