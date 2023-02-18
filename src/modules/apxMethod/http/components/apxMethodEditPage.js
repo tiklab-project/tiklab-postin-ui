@@ -10,10 +10,8 @@ import ApiStatusModal from "../../../sysmgr/apiStatus/components/apiStatusSelect
 import IconCommon from "../../../common/iconCommon";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
 import IconBtn from "../../../common/iconBtn/IconBtn";
-import {messageFn} from "../../../common/messageCommon/messageCommon";
 import {CaretDownOutlined} from "@ant-design/icons";
 import ResponseHeader from "./responseHeader";
-import ApiDocDrawer from "./apiDocument"
 import ProtocolType from "../../../common/protocolType";
 import {getVersionInfo} from "tiklab-core-ui";
 import EnvSelect from "../../../sysmgr/environment/components/envSelect";
@@ -22,7 +20,7 @@ const {Option} = Select;
 const {TextArea} = Input
 const {TabPane} = Tabs;
 
-const ApxMethodDetail = (props) => {
+const ApxMethodEditPage = (props) => {
     const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore ,pluginsStore} = props;
     const {findCategoryList} = categoryStore;
     const { findApxMethod,deleteApxMethod,findApxMethodListByApix,updateApxMethod} = apxMethodStore;
@@ -101,12 +99,6 @@ const ApxMethodDetail = (props) => {
 
         updateApxMethod(param).then((res)=>{
             setExecutorId(executor)
-
-            if(res.code===0){
-                messageFn("success")
-            }else {
-                messageFn("error")
-            }
         });
     }
 
@@ -122,12 +114,6 @@ const ApxMethodDetail = (props) => {
 
         updateApxMethod(param).then((res)=>{
             setStatus(statusId)
-
-            if(res.code===0){
-                messageFn("success")
-            }else {
-                messageFn("error")
-            }
         });
     }
 
@@ -146,10 +132,6 @@ const ApxMethodDetail = (props) => {
             let res = await updateApxMethod(param)
             if(res.code===0){
                 findApxMethod(apxMethodId).then(res=>setResData(res))
-
-                messageFn("success")
-            }else {
-                messageFn("error")
             }
         }
 
@@ -170,10 +152,6 @@ const ApxMethodDetail = (props) => {
             updateApxMethod(param).then(res=>{
                 if(res.code===0){
                     findApxMethod(apxMethodId).then(res=>setResData(res))
-
-                    messageFn("success")
-                }else {
-                    messageFn("error")
                 }
             })
         }
@@ -195,12 +173,6 @@ const ApxMethodDetail = (props) => {
 
         updateApxMethod(param).then(res=>{
             setMethodType(methodType)
-
-            if(res.code===0){
-                messageFn("success")
-            }else {
-                messageFn("error")
-            }
         })
     }
 
@@ -230,13 +202,7 @@ const ApxMethodDetail = (props) => {
             }
         }
 
-        updateApxMethod(param).then((res)=>{
-            if(res.code===0){
-                messageFn("success")
-            }else {
-                messageFn("error")
-            }
-        })
+        updateApxMethod(param)
 
         setShowDesc(false)
     }
@@ -291,7 +257,7 @@ const ApxMethodDetail = (props) => {
     }
 
     return(
-        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+        <div className={"content-margin"} style={{height:"100%"}}>
             <div className="content-margin-box">
                 <div className={"pi-box-between"}>
                     <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
@@ -314,7 +280,7 @@ const ApxMethodDetail = (props) => {
                                 showArrow={showValidateStatus === "methodType"}
                                 suffixIcon={showValidateStatus === "methodType"?<CaretDownOutlined />:null}
                                 onMouseEnter={()=>{setShowValidateStatus("methodType")}}
-                                onMouseLeave={()=>{setShowValidateStatus("")}}
+                                onMouseLeave={()=>{setShowValidateStatus(null)}}
                             >
                                 {
                                     showMethod(methodDictionary)
@@ -331,10 +297,7 @@ const ApxMethodDetail = (props) => {
                                     onChange={(e)=>setName(e.target.value)}
                                     suffix={
                                         showValidateStatus === "editName"
-                                            ? <IconCommon
-                                                icon={"icon-1"}
-                                                className="icon-s "
-                                            />
+                                            ? <span></span>
                                             :null
                                     }
                                 />
@@ -370,10 +333,7 @@ const ApxMethodDetail = (props) => {
                                     onChange={(e)=>setPath(e.target.value)}
                                     suffix={
                                         showValidateStatus === "editPath"
-                                            ? <IconCommon
-                                                icon={"icon-1"}
-                                                className="icon-s "
-                                            />
+                                            ? <span></span>
                                             :null
                                     }
                                 />
@@ -481,4 +441,4 @@ export default inject(
     'categoryStore',
     "userSelectStore",
     "apxMethodStatusStore"
-)(observer(ApxMethodDetail));
+)(observer(ApxMethodEditPage));

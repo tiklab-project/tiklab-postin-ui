@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import ApxMethodTest from "./test";
+import ApiTestPage from "./apiTestPage";
 import {localProxySendTest, sendTest} from "../../../common/request/sendTestCommon";
 import {inject, observer} from "mobx-react";
 
@@ -31,7 +31,7 @@ const TestBox =(props)=>{
     }
 
     return(
-        <ApxMethodTest {...props}   getRes={getRes}/>
+        <ApiTestPage {...props}   getRes={getRes}/>
     )
 }
 

@@ -18,15 +18,16 @@ const LeftNav = (props) =>{
             "router":"/workspace/overview"
         },
         {
-            "icon":"jiekou",
-            "name":"API",
-            "key":"api",
-            "router":"/workspace/apis"
-        },{
             "icon":"kuaijieyingyon",
-            "name":"快捷测试",
+            "name":"接口调试",
             "key":"quickTest",
             "router":"/workspace/quickTest"
+        },
+        {
+            "icon":"jiekou",
+            "name":"接口",
+            "key":"api",
+            "router":"/workspace/apis"
         },
         {
             "icon":"jiekou",

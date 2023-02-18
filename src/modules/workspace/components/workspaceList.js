@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { observer, inject } from "mobx-react";
-import {Table, Space, Empty, Tooltip} from 'antd';
+import {Table, Space, Empty, Tooltip, Button} from 'antd';
 import  { useTranslation } from 'react-i18next'
 import {getUser} from "tiklab-core-ui";
 import {toWorkspaceDetail} from "./workspaceFn";
@@ -16,7 +16,7 @@ import {Profile} from "tiklab-eam-ui";
 const WorkspaceList = (props) => {
     const { workspaceStore,workspaceRecentStore,workspaceFollowStore,findList,selectItem } = props;
 
-    const { workspaceList,settingMenuSelected } = workspaceStore;
+    const { workspaceList,deleteWorkspace,settingMenuSelected } = workspaceStore;
 
     const {workspaceRecent}=workspaceRecentStore;
     const {createWorkspaceFollow,deleteWorkspaceFollow} = workspaceFollowStore;
@@ -76,6 +76,7 @@ const WorkspaceList = (props) => {
             // align:"center",
             render: (text, record) => (
                 <div style={{display:"flex","justifyContent":"space-between",width:60}}>
+
                     <Tooltip title="空间成员">
                         <svg style={{width:16,height:16,"cursor":"pointer"}} aria-hidden="true" onClick={()=>toWorkspaceUser(record.id)}>
                             <use xlinkHref= {`#icon-chengyuan`} />

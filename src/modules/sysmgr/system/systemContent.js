@@ -45,12 +45,12 @@ const SystemContent = (props) =>{
             key: '/systemManagement',
             children: [
                 {
-                    title: "消息通知方案",
+                    title: "消息发送方式",
                     icon: 'rizhijilu',
                     key: '/systemManagement/messageSendType',
                     encoded: "MSG_SendType",
                 },{
-                    title: "消息发送方式",
+                    title: "消息通知方案",
                     icon: 'rizhijilu',
                     key: '/systemManagement/message-notice',
                     encoded: "MSG_Notice",
@@ -104,11 +104,15 @@ const SystemContent = (props) =>{
                     title: '项目权限',
                     icon: 'modular',
                     key: '/systemManagement/role',
+                },{
+                    title: "消息发送方式",
+                    icon: 'rizhijilu',
+                    key: '/systemManagement/messageSendTypeBase',
                 },
                 {
-                    title: '消息通知方案',
-                    icon: 'modular',
-                    key: '/systemManagement/messageSendTypeBase',
+                    title: "消息通知方案",
+                    icon: 'rizhijilu',
+                    key: '/systemManagement/message-notice-base',
                 },
                 {
                     title: '消息类型管理',

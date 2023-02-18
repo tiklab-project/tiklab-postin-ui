@@ -4,6 +4,7 @@ import {Checkbox, Popconfirm, Space} from 'antd';
 import {headerParamDictionary} from '../../../common/dictionary/dictionary';
 import ExSelect from "../../../common/exSelect";
 import {ExTable} from '../../../common/editTable';
+import IconCommon from "../../../common/iconCommon";
 
 // 请求头的可编辑表格
 const RequestHeader = (props) =>{

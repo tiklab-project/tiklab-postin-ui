@@ -10,7 +10,7 @@ import IconBtn from "../../../common/iconBtn/IconBtn";
 import {Breadcrumb, Space} from "antd";
 import EnvSelect from "../../../sysmgr/environment/components/envSelect";
 
-const ApiDocument = (props) =>{
+const ApiDocumentPage = (props) =>{
     const {apxMethodStore} = props;
     const { findApxMethod } = apxMethodStore;
     const [apiDoc, setApiDoc] = useState();
@@ -21,7 +21,7 @@ const ApiDocument = (props) =>{
     useEffect(async ()=>{
         let res = await findApxMethod(apxMethodId);
         setApiDoc(res)
-    },[])
+    },[apxMethodId])
 
 
 
@@ -43,7 +43,7 @@ const ApiDocument = (props) =>{
 
 
     return (
-        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+        <div className={"content-margin"} style={{height:"100%"}}>
             <div className="content-margin-box">
                 <div className={"pi-box-between"}>
                     <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
@@ -77,7 +77,6 @@ const ApiDocument = (props) =>{
                                 onClick={toMockPage}
                             />
                         </Space>
-
                     </div>
 
                     <div className={"share-box-right-content-item-detail"}>
@@ -150,4 +149,4 @@ const ApiDocument = (props) =>{
 
 }
 
-export default inject("apxMethodStore")(observer(ApiDocument));
+export default inject("apxMethodStore")(observer(ApiDocumentPage));

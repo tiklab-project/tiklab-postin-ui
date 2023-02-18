@@ -8,9 +8,8 @@ import {
     WorkspaceRole, WorkspacePrivilege, Workspace,
     WorkspaceDetailLayout,
     LayoutApiContent, LayoutQuickTest, TabsQuickTest,  WorkspaceDetailInitPage,
-    Category, ApxMethod, ApxMethodDetail,
+    Category, ApxMethodDetail,
 
-    TestCase,
     Mock, MockDetail,
 
     SystemContent,  DataStructure,
@@ -21,23 +20,21 @@ import {
 import {Redirect} from "react-router";
 import {AuthResult} from "tiklab-eam-ui";
 import TestBoxQuickTest from "./modules/quicktest/components/testBoxQuickTest";
-import TestCaseBox from "./modules/apitest/testCase/components/testCaseBox";
 import TestBox from "./modules/apitest/test/components/testBox";
 import {Directory, OrgaList, UserGroup, UserList} from "tiklab-user-ui";
 import LoginContent from "./modules/integration/login/loginContent";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
-import {MessageManagement, MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
+import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
-import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
-import {LogList, LogTemplateList, LogTypeList} from "tiklab-oplog-ui";
+// import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
+import { LogTemplateList, LogTypeList, MyLogList} from "tiklab-oplog-ui";
 import {PluginDetail, PluginList} from "tiklab-plugin-ui";
 import DynamicDetail from "./modules/integration/home/dynamicDetail";
 import Version from "./modules/sysmgr/version/version";
 import StructureDetail from "./modules/sysmgr/dataStructure/components/StructureDetail";
 import Share from "./modules/share/components/share";
 import ShareMain from "./modules/share/components/shareMain";
-import TabApiInitPage from "./modules/workspaceDetail/tabApiInitPage";
-import ApiDocument from "./modules/apxMethod/http/components/apiDocument";
+import ApiDocument from "./modules/apxMethod/http/components/apiDocumentPage";
 import ProxyPage from "./modules/integration/workspaceSetting/proxyPage";
 import ApiInitPage from "./modules/workspaceDetail/apiInitPage";
 
@@ -149,22 +146,21 @@ const routers =  [
                         path: "/systemManagement/messageSendType",
                         key:'MessageSendType',
                         exact: true,
-                        render:()=> <MessageNotice bgroup={"postin"}/>
-
+                        render:()=> <MessageSendType bgroup={"postin"} />
                     },
                     {
                         path: "/systemManagement/message-notice",
                         key:'MessageType',
                         exact: true,
-                        render:()=> <MessageSendType bgroup={"postin"} />
+                        render:()=> <MessageNotice bgroup={"postin"}/>
                     },
-                    //代办
-                    {
-                        path: "/systemManagement/myTodo",
-                        key:'myTodo',
-                        exact: true,
-                        render:(props)=> <MyTodoTask {...props} bgroup={"postin"}/>
-                    },
+                    // //代办
+                    // {
+                    //     path: "/systemManagement/myTodo",
+                    //     key:'myTodo',
+                    //     exact: true,
+                    //     render:(props)=> <MyTodoTask {...props} bgroup={"postin"}/>
+                    // },
                     //插件
                     {
                         path: "/systemManagement/plugin",
@@ -182,7 +178,7 @@ const routers =  [
                         path: "/systemManagement/log",
                         key:'log',
                         exact: true,
-                        render:(props)=>  <LogList {...props} bgroup={"postin"}/>,
+                        render:(props)=>  <MyLogList {...props} bgroup={"postin"}/>,
                     },
                     //版本
                     {
@@ -221,17 +217,17 @@ const routers =  [
                         exact: true,
                         render:()=> <MessageSendType bgroup={"postin"} isBase={true}/>
                     },
-                    // {
-                    //     path: "/systemManagement/messageManagement",
-                    //     key:'MessageManagement',
-                    //     exact: true,
-                    //     render:()=> <MessageManagement bgroup={"postin"}/>
-                    // },
+                    {
+                        path: "/systemManagement/message-notice-base",
+                        key:'MessageType',
+                        exact: true,
+                        render:()=> <MessageNotice bgroup={"postin"} isBase={true}/>
+                    },
                     {
                         path: "/systemManagement/messageType",
                         key:'MessageType',
                         exact: true,
-                        render:()=> <MessageType bgroup={"postin"} />
+                        render:()=> <MessageType bgroup={"postin"}  isBase={true}/>
 
                     },
                     {
@@ -244,17 +240,18 @@ const routers =  [
                         key:'logTemplate',
                         exact: true,
                         render:()=>  <LogTypeList bgroup={"postin"}/>,
-                    },{
-                        path: "/systemManagement/taskList",
-                        key:'todo',
-                        exact: true,
-                        render:(props)=> <TaskList {...props} bgroup={"postin"}/>,
-                    },{
-                        path: "/systemManagement/todoTemp",
-                        key:'todoTemp',
-                        exact: true,
-                        render:(props)=> <TodoTempList {...props} bgroup={"postin"}/>,
                     },
+                    // {
+                    //     path: "/systemManagement/taskList",
+                    //     key:'todo',
+                    //     exact: true,
+                    //     render:(props)=> <TaskList {...props} bgroup={"postin"}/>,
+                    // },{
+                    //     path: "/systemManagement/todoTemp",
+                    //     key:'todoTemp',
+                    //     exact: true,
+                    //     render:(props)=> <TodoTempList {...props} bgroup={"postin"}/>,
+                    // },
                     {
                         path: "/systemManagement",
                         key:'sysEnvMana',

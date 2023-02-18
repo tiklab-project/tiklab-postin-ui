@@ -28,6 +28,7 @@ export const methodDictionary = [
     "options",
     "patch"
 ]
+
 export const methodJsonDictionary = {
     "get":"GET",
     "post":"POST",

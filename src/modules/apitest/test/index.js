@@ -1,4 +1,4 @@
-import Test from './components/test';
+import Test from './components/apiTestPage';
 import TestRequest from './components/testRequest';
 import { TEST_STORE, TestStore }  from './store/testStore';
 import { ASSERTPARAM_TEST_STORE, AssertParamTestStore } from './store/assertParamTestStore';

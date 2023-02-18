@@ -27,11 +27,15 @@ const App = (props) => {
          languageStore:[]
      });
 
+
      useEffect(() => {
-         initFetch('post', routers, resources,i18n).then(res => {
-             setPluginData(res)
-             setViable(true)
-         })
+         if(!props.type){
+             initFetch('post', routers, resources,i18n).then(res => {
+                 setPluginData(res)
+             })
+         }
+         setViable(true)
+
      }, []);
 
 

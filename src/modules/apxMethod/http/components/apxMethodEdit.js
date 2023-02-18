@@ -104,7 +104,7 @@ const ApxMethodEdit = (props) => {
                 }
 
                 localStorage.setItem('apxMethodId',id);
-                props.history.push('/workspace/apis');
+                props.history.push("/workspace/apis/edit");
             })
         }else{
             values.id=httpId;

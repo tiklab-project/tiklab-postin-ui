@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Breadcrumb, Form, Input, Select, Space, Tooltip} from 'antd';
 import { TestRequest } from '../index';
-import SaveTestCase from './saveTestcaseTest'
 import './test.scss';
 import { sendTestDataProcess} from "../../../common/request/sendTestCommon";
 import { methodJsonDictionary} from "../../../common/dictionary/dictionary";
-import {execute} from "../../common/dtAction";
+import {pi} from "../../common/dtAction";
 import TestResultCommon from "../../common/testResultCommon";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import EnvSelect from "../../../sysmgr/environment/components/envSelect";
@@ -15,7 +14,10 @@ import EnvSelect from "../../../sysmgr/environment/components/envSelect";
 const { Option } = Select;
 
 // 接口测试组件
-const ApxMethodTest = (props) => {
+const ApiTestPage = (props) => {
+
+    const pi = {...pi}
+
     const {
         getRes,
         apxMethodStore,
@@ -89,8 +91,9 @@ const ApxMethodTest = (props) => {
                     break;
             }
 
-            // getPreInfo(res.request.preScript);
-            // getAfterInfo(res.request.afterScript);
+
+            getPreInfo(res.request.preScript);
+            getAfterInfo(res.request.afterScript);
         })
     },[methodId])
 
@@ -98,7 +101,13 @@ const ApxMethodTest = (props) => {
 
     // 点击测试
     const onFinish =async ()=> {
-        let values =await form.validateFields()
+        let values =await form.validateFields();
+
+        if(preParamTestInfo.scriptex){
+            eval(preParamTestInfo.scriptex)
+
+        }
+
 
         const allSendData = {
             "method":values.methodType,
@@ -116,6 +125,11 @@ const ApxMethodTest = (props) => {
 
         //处理后的数据
         const processData = sendTestDataProcess(allSendData,preParamTestInfo)
+
+
+        if(afterParamTestInfo.scriptex){
+            eval(afterParamTestInfo.scriptex)
+        }
 
         //发送测试，返回结果
         let response =await getRes(processData)
@@ -218,7 +232,6 @@ const ApxMethodTest = (props) => {
                                 name={"退出测试"}
                                 onClick={goToDocPage}
                             />
-                            {/*<SaveTestCase  {...props}/>*/}
                         </Space>
                     </Form>
                 </div>
@@ -257,6 +270,6 @@ export default inject(
     'testCaseStore',
     "environmentStore",
     "apxMethodStore"
- )(observer(ApxMethodTest));
+ )(observer(ApiTestPage));
 
 

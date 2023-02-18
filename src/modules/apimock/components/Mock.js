@@ -30,7 +30,6 @@ const Mock = (props) => {
                 <Switch
                     checkedChildren="启用"
                     unCheckedChildren="停用"
-                    checked={text === 1}
                     onChange={(e)=>changeEnable(e,record)}
                 />
             )
@@ -93,7 +92,7 @@ const Mock = (props) => {
         }else {
             record.enable=0;
         }
-        updateMock(record)
+        updateMock(record).then(()=>findMockPage(apxMethodId))
     }
 
     const setLocalStorage = (mockId,id) => {
@@ -104,7 +103,7 @@ const Mock = (props) => {
     let mockUrl ;
 
     if(base_url==="/"){
-        mockUrl = `${window.location.host}/mockx/`+workspaceId;
+        mockUrl = `${window.location.origin}/mockx/`+workspaceId;
     }else {
         mockUrl = `${base_url}/mockx/`+workspaceId;
     }
