@@ -53,7 +53,13 @@ const TestResultCommon = (props) =>  {
         let requestBody =  res?.config?.data;
 
         let headers = res.headers;
-        let mediaType = headers["content-type"].split(";")[0]
+        let mediaType;
+        if(headers&&Object.keys(headers).length>0){
+            mediaType  = headers["content-type"]
+        }else {
+            mediaType="text/plain"
+        }
+
 
         let body = JSON.stringify(res.data);
 
@@ -61,15 +67,19 @@ const TestResultCommon = (props) =>  {
         let size = body.length;
 
         //assert
-        let assertList = processAssert(response.assertList);
-        const assertNeedData ={
-            "status":status,
-            "header":headers,
-            "body":body,
-            "assertList":assertList
+        let assertList=[];
+        if(response.assertList&&response.assertList.length>0){
+            assertList = processAssert(response.assertList);
+            const assertNeedData ={
+                "status":status,
+                "header":headers,
+                "body":body,
+                "assertList":assertList
+            }
+            //断言list，添加result 字段。用于测试结果中的断言回显
+            assertCommonStore.assertCompare(assertNeedData);
         }
-        //断言list，添加result 字段。用于测试结果中的断言回显
-        assertCommonStore.assertCompare(assertNeedData);
+
 
         return(
             <Tabs

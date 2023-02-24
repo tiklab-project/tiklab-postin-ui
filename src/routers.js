@@ -20,7 +20,7 @@ import {
 import {Redirect} from "react-router";
 import {AuthResult} from "tiklab-eam-ui";
 import TestBoxQuickTest from "./modules/quicktest/components/testBoxQuickTest";
-import TestBox from "./modules/apitest/test/components/testBox";
+import TestBox from "./modules/apitest/test/components/apiTestPage";
 import {Directory, OrgaList, UserGroup, UserList} from "tiklab-user-ui";
 import LoginContent from "./modules/integration/login/loginContent";
 import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";

@@ -1,5 +1,4 @@
 
-import ApxMethod from './http/components/apxMethod';
 import ApxMethodDetail from './http/components/apxMethodEditPage';
 import ApxMethodEdit from './http/components/apxMethodEdit';
 import { APXMETHOD_STORE, ApxMethodStore } from './http/store/apxMethodStore';
@@ -25,7 +24,6 @@ import { APIRESPONSE_STORE, ApiResponseStore } from './http/store/apiResponseSto
 
 
 export{
-    ApxMethod,
     ApxMethodDetail,
     ApxMethodEdit,
     APXMETHOD_STORE, ApxMethodStore,

@@ -55,12 +55,9 @@ module.exports = merge(baseWebpackConfig, {
         historyApiFallback: true,
         disableHostCheck: true,
         proxy:{
-            "/local-proxy":{
-                target:"http://127.0.0.1:3009"
+            "/request":{
+                target:"http://192.168.10.18:8080"
             },
-            "/cloud-proxy":{
-                target:"http://172.11.1.15:3009"
-            }
         }
     },
     plugins: [

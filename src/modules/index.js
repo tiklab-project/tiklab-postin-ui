@@ -9,7 +9,7 @@ import {
 
 import { Category } from "./category";
 
-import { ApxMethod, ApxMethodDetail } from "./apxMethod";
+import { ApxMethodDetail } from "./apxMethod";
 
 import{ Test, TestCase, TestCaseDetail }from'./apitest';
 
@@ -43,7 +43,7 @@ export {
 
     WorkspaceDetailLayout,LayoutApiContent,TabsPage,
     DetailIndex,
-    Category, ApxMethod, ApxMethodDetail,
+    Category, ApxMethodDetail,
 
     LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,WorkspaceDetailInitPage,
 

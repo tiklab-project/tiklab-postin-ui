@@ -34,11 +34,12 @@ const WorkspaceSettingMenu = (props) =>{
             title: '权限',
             key: '/workspace/setting/privilege',
             // icon: 'icon-modular',
-        },{
-            title: '代理',
-            key: '/workspace/setting/proxy',
-            // icon: 'icon-setting',
         },
+        // {
+        //     title: '代理',
+        //     key: '/workspace/setting/proxy',
+        //     // icon: 'icon-setting',
+        // },
     ]
 
     const proxyItem = [
@@ -81,7 +82,7 @@ const WorkspaceSettingMenu = (props) =>{
                 <ul className="ws-menu-ul">
                     <li style={{
                         borderBottom:"1px solid #cecece",
-                        padding:"10px 20px"
+                        padding:"10px 30px"
                     }}
                     >空间设置</li>
                     {

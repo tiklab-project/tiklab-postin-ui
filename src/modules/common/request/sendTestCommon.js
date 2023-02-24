@@ -1,12 +1,13 @@
-// import axiosIns from "axios";
+
 import {testFunctionCommon} from "../../apitest/common/testFunctionCommon";
 import qs from "qs";
 import {
     bodyTypeJsonDictionary as bodyTypeJson,
     rawTypeJsonDictionary as rawTypeJson
 } from "../dictionary/dictionary";
-import {darth, execute, getHeader, getQuery} from "../../apitest/common/dtAction";
+import {getHeader, getQuery} from "../../apitest/common/dtAction";
 import axiosIns from "../../../common/utils/localrequest";
+
 
 //发送测试 数据处理
 export const sendTestDataProcess=(data,preParamTestInfo)=>{
@@ -64,6 +65,7 @@ export const sendTest=async (data)=>{
         //time, ms
         let responseTimeMs = receiveDate - sendDate;
 
+        console.log(res)
         return {
             time:responseTimeMs,
             res:res
@@ -89,36 +91,150 @@ export const sendTest=async (data)=>{
     return res
 }
 
-//localProxy send test
+
+
+const processResponse = (res) =>{
+
+    let resDate={};
+
+
+    if(Object.keys(res.headers).length>0){
+        let headerStr = res.headers["pi-header"]
+
+        let headerObj={};
+        const regex = /(\w+):\[(\w+)\]/g;
+        let match;
+        while ((match = regex.exec(headerStr)) !== null) {
+            const key = match[1];
+            const value = match[2];
+            headerObj[key] = value;
+        }
+
+
+
+        //解析 基础信息 statusCode,statusText,times
+        let base = res.headers["pi-base"]
+        const obj = base.split(",").reduce((acc, cur) => {
+            const [key, value] = cur.split("=");
+            acc[key] = isNaN(value) ? value : Number(value);
+            return acc;
+        }, {});
+
+
+        resDate.time=obj.time;
+        res.headers=headerObj
+
+    }
+
+
+    resDate.res=res
+
+
+    return resDate
+}
+
+
+
+//Proxy send test
 
 //发送测试
 export const localProxySendTest=async (proxyPath,data)=>{
+    //request接口 请求头
+    let fetchHeaders;
 
-
-    let req = {
-        method: data.method,
-        url: data.url,
-        data: data.bodys,
-        params: data.params,
-        headers: data.headers,
+    //当前执行的请求的接口参数
+    let body = data.bodys
+    let header = data.headers
+    let queryHeader;
+    if(data.method!=="get"){
+        queryHeader=Object.assign({}, {"User-Agent":"PostIn/1.0.0"},{"content-type": header["Content-Type"]})
+        fetchHeaders={"content-type": header["Content-Type"]}
+    }else {
+        queryHeader={"User-Agent":"PostIn/1.0.0"}
     }
 
-    let res = await axiosIns.post(proxyPath,req).then(res=>{
-console.log(res.data)
-        return res.data
+
+    //处理后的查询参数
+    let fetchHeader =processPiHeader(queryHeader,data)
+
+    //request接口 请求地址
+    let fetchUrl = `/request?${fetchHeader}`;
+    // try{
+    //     if(base_url){
+    //         fetchUrl = `${base_url}/request?${fetchHeader}`
+    //     }else {
+    //         fetchUrl = `http://192.168.10.18:8080/request?${fetchHeader}`
+    //     }
+    // }catch {
+    //     fetchUrl = `http://192.168.10.18:8080/request?${fetchHeader}`
+    // }
+
+    // 请求前的毫秒数
+    let sendDate = (new Date()).getTime();
+    //请求
+   let res =  axiosIns.post(fetchUrl,body,{ headers:fetchHeaders}).then(res=>{
+
+       let resDate={};
+
+       if(Object.keys(res.headers).length>0){
+           let headerStr = res.headers["pi-header"]
+
+
+           const headerObj = {};
+           // headerStr=headerStr.substring(1, headerStr.length - 1);
+           // headerStr.replace(/\[(.*?)\]/g, function(_, val) {
+           //     const parts = val.split(':');
+           //     headerObj[parts[0].trim()] = parts[1].trim();
+           // });
+
+
+           //解析 基础信息 statusCode,statusText,times
+           let base = res.headers["pi-base"]
+           const obj = base.split(",").reduce((acc, cur) => {
+               const [key, value] = cur.split("=");
+               acc[key] = isNaN(value) ? value : Number(value);
+               return acc;
+           }, {});
+
+
+           resDate.time=obj.time;
+           // res.headers=headerObj
+
+       }
+
+
+       resDate.res=res
+
+       console.log(resDate)
+       return resDate
+
     }).catch(error=>{
-        console.log("error-------:",error)
+        console.log(error.message)
     })
 
     return res
 }
 
 
+//把当前请求的接口基础信息放到query参数里请求，转换成query字符参数?a=b&c=d
+const processPiHeader = (queryHeader,data) =>{
+    //头部
+    let queryHeaderStr = Object.entries(queryHeader).map(([key, value]) => `${key}:${value}`).join(",");
+
+    let queryHeaderObj=  {"pi-header":queryHeaderStr,"pi-url":data.url,"pi-method":data.method}
+
+    let fetchHeader = Object.keys(queryHeaderObj).map(key => key + '=' + queryHeaderObj[key]).join('&');
+
+    return fetchHeader;
+}
+
+
+
 
 
 //获取相应的请求体数据
 const bodySwitch = (data,headers) =>{
-    debugger
+
     switch (data.bodyType) {
         case bodyTypeJson.none:
             return null;
@@ -137,13 +253,13 @@ const bodySwitch = (data,headers) =>{
 
 //获取formdata数据
 const formData = (data,headers)=>{
-    headers['content-type']='multipart/form-data';
+    headers['Content-Type']='multipart/form-data';
     return testFunctionCommon.formData(data)
 }
 
 //获取formUrlencoded数据
 const formUrlencoded = (data,headers) =>{
-    headers['content-type']='application/x-www-form-urlencoded';
+    headers['Content-Type']='application/x-www-form-urlencoded';
     let formUrlencoded =testFunctionCommon.transData(data);
 
     return qs.stringify(formUrlencoded);
@@ -151,7 +267,7 @@ const formUrlencoded = (data,headers) =>{
 
 //获取json数据
 const json = (data,headers) =>{
-    headers['content-type']='application/json';
+    headers['Content-Type']='application/json';
     return testFunctionCommon.jsonData(data)
 }
 
@@ -159,19 +275,19 @@ const json = (data,headers) =>{
 const rawSwitch = (data,headers) =>{
     switch (data&&data.type){
         case rawTypeJson.text:
-            headers['content-type']='text/plain';
+            headers['Content-Type']='text/plain';
             return data.raw;
         case rawTypeJson.json:
-            headers['content-type']='application/json';
+            headers['Content-Type']='application/json';
             return data.raw;
         case rawTypeJson.javascript:
-            headers['content-type']='application/javascript';
+            headers['Content-Type']='application/javascript';
             return data.raw;
         case rawTypeJson.xml:
-            headers['content-type']='text/xml';
+            headers['Content-Type']='text/xml';
             return data.raw;
         case rawTypeJson.html:
-            headers['content-type']='text/html';
+            headers['Content-Type']='text/html';
             return data.raw;
     }
 }
