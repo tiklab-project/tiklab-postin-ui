@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
 import { CaretRightOutlined, CaretDownOutlined } from '@ant-design/icons';
 import {Dropdown, Menu, Popconfirm, Tooltip} from "antd";
-import {ApxMethodEdit} from "../../apxMethod";
+import {ApxMethodEdit} from "../../api/http/definition";
 import CategoryEdit from './categoryEdit';
 import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
 import {TextMethodType} from "../../common/methodType";

@@ -16,7 +16,7 @@ import {
     processQueryData
 } from "../common/instanceDataProcess";
 import {getUser} from "tiklab-core-ui";
-import TestResultCommon from "../../apitest/common/testResultCommon";
+import TestResultCommon from "../../api/http/test/common/testResultCommon";
 import IconCommon from "../../common/iconCommon";
 
 const { Option } = Select;

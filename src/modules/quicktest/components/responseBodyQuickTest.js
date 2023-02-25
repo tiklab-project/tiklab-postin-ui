@@ -1,5 +1,5 @@
 import React from "react";
-import ResponseBodyCommon from "../../apitest/common/responseBodyCommon";
+import ResponseBodyCommon from "../../api/http/test/common/responseBodyCommon";
 import {inject, observer} from "mobx-react";
 
 const ResponseBodyQuickTest = (props) =>{

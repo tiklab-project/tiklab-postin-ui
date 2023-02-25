@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Drawer} from "antd";
 import {inject, observer} from "mobx-react";
-import ShareModal from "../../share/components/shareModal";
+import ShareModal from "../../api/http/document/components/shareModal";
 import IconBtn from "../../common/iconBtn/IconBtn";
 import CategoryDocTree from "./categoryDocTree";
 import DocContent from "../../common/apiDoc/docContent";

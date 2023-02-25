@@ -1,7 +1,7 @@
 import {EAM_STORE, EamStore} from 'tiklab-eam-ui/es/store'
-import { SEARCHSTORE, SearchStore } from './modules/integration/search'
+import { SEARCHSTORE, SearchStore } from './modules/home/search'
 
-import {USERSELECT_STORE, UserSelectStore} from './modules/integration/userSelect/store/userSelectStore'
+import {USERSELECT_STORE, UserSelectStore} from './modules/support/userSelect/store/userSelectStore'
 
 import {JSON_SCHEMA_STORE,JsonSchemaStore} from "./modules/common/jsonSchema/jsonSchemaStore";
 
@@ -33,7 +33,7 @@ import {
     RAWRESPONSE_STORE, RawResponseStore,
     APIRESPONSE_STORE, ApiResponseStore,
 
-} from "./modules/apxMethod";
+} from "./modules/api/http/definition";
 
 import {
     TEST_STORE, TestStore,
@@ -64,7 +64,7 @@ import {
     BINARY_PARAM_TESTCASE_STORE, BinaryParamTestCaseStore,
 
     INSTANCE_STORE, InstanceStore,
-} from "./modules/apitest";
+} from "./modules/api/http/test";
 
 import {
     MOCKSTORE, MockStore ,
@@ -78,17 +78,9 @@ import {
     MOCK_RAWRESPONSE_STORE,MockRawResponseStore,
     MOCK_RESPONSERESULT_STORE, ResponseResultMockStore,
     MOCK_RESPONSE_STORE, ResponseMockStore,
-} from "./modules/apimock"
+} from "./modules/api/http/mock"
 
-import {
-    ENVIRONMENT_STORE, EnvironmentStore,
-    DATASTRUCTURE_STORE, DataStructureStore,
-    ENUMPARAMDS_STORE, EnumParamDSStore,
-    JSONPARAMDS_STORE, JsonParamDSStore,
-    APXMETHOD_STATUS_STORE,ApxMethodStatusStore,
-} from './modules/sysmgr'
-
-import {IM_EX_PORT_STORE, ImexportStore} from "./modules/integration/imexport/store/imexportStore"
+import {IM_EX_PORT_STORE, ImexportStore} from "./modules/support/imexport/store/imexportStore"
 
 import {
     HEADER_QUICKTEST_STORE, HeaderQuickTestStore,
@@ -104,7 +96,12 @@ import {
     QUICKTEST_STORE, QuickTestStore
 } from "./modules/quicktest/index"
 
-import {SHARE_STORE,ShareStore} from "./modules/share/store/shareStore";
+import {SHARE_STORE,ShareStore} from "./modules/api/http/document/store/shareStore";
+import {APXMETHOD_STATUS_STORE, ApxMethodStatusStore} from "./modules/support/apiStatus/store/apxMethodStatusStore";
+import {ENVIRONMENT_STORE, EnvironmentStore} from "./modules/support/environment/store/environmentStore";
+import {DATASTRUCTURE_STORE, DataStructureStore} from "./modules/support/dataStructure/store/dataStructureStore";
+import {ENUMPARAMDS_STORE, EnumParamDSStore} from "./modules/support/dataStructure/store/enumParamDSStore";
+import {JSONPARAMDS_STORE, JsonParamDSStore} from "./modules/support/dataStructure/store/jsonParamDSStore";
 
 
 function createStores() {

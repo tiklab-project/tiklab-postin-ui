@@ -1,6 +1,6 @@
 
 import React from 'react'
-import PortalHeader from "./modules/integration/header/portalContent"
+import PortalHeader from "./modules/home/header/portalContent"
 
 import {
     Home, SearchResult,
@@ -12,7 +12,7 @@ import {
 
     Mock, MockDetail,
 
-    SystemContent,  DataStructure,
+    SystemContent,
 
     LoginOut, ElectronLoginContant, WorkspaceSettingMenu,
 } from './modules';
@@ -20,23 +20,24 @@ import {
 import {Redirect} from "react-router";
 import {AuthResult} from "tiklab-eam-ui";
 import TestBoxQuickTest from "./modules/quicktest/components/testBoxQuickTest";
-import TestBox from "./modules/apitest/test/components/apiTestPage";
+import TestBox from "./modules/api/http/test/test/components/apiTestPage";
 import {Directory, OrgaList, UserGroup, UserList} from "tiklab-user-ui";
-import LoginContent from "./modules/integration/login/loginContent";
-import WorkspaceSetting from "./modules/integration/workspaceSetting/workspaceSetting";
+import LoginContent from "./modules/home/login/loginContent";
+import WorkspaceSetting from "./modules/workspace/workspaceSetting/workspaceSetting";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
 // import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
 import { LogTemplateList, LogTypeList, MyLogList} from "tiklab-oplog-ui";
 import {PluginDetail, PluginList} from "tiklab-plugin-ui";
-import DynamicDetail from "./modules/integration/home/dynamicDetail";
-import Version from "./modules/sysmgr/version/version";
-import StructureDetail from "./modules/sysmgr/dataStructure/components/StructureDetail";
-import Share from "./modules/share/components/share";
-import ShareMain from "./modules/share/components/shareMain";
-import ApiDocument from "./modules/apxMethod/http/components/apiDocumentPage";
-import ProxyPage from "./modules/integration/workspaceSetting/proxyPage";
-import ApiInitPage from "./modules/workspaceDetail/apiInitPage";
+import DynamicDetail from "./modules/home/home/dynamicDetail";
+import Version from "./modules/setting/version/version";
+import StructureDetail from "./modules/support/dataStructure/components/StructureDetail";
+import Share from "./modules/api/http/document/components/share";
+import ShareMain from "./modules/api/http/document/components/shareMain";
+import ApiDocument from "./modules/api/http/definition/components/apiDocumentPage";
+import ProxyPage from "./modules/workspace/workspaceSetting/proxyPage";
+import ApiInitPage from "./modules/workspace/workspaceDetail/apiInitPage";
+import DataStructure from "./modules/support/dataStructure/components/dataStructure";
 
 
 const routers =  [

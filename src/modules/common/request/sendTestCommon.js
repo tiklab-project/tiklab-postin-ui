@@ -1,11 +1,11 @@
 
-import {testFunctionCommon} from "../../apitest/common/testFunctionCommon";
+import {testFunctionCommon} from "../../api/http/test/common/testFunctionCommon";
 import qs from "qs";
 import {
     bodyTypeJsonDictionary as bodyTypeJson,
     rawTypeJsonDictionary as rawTypeJson
 } from "../dictionary/dictionary";
-import {getHeader, getQuery} from "../../apitest/common/dtAction";
+import {getHeader, getQuery} from "../../api/http/test/common/dtAction";
 import axiosIns from "../../../common/utils/localrequest";
 
 

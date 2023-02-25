@@ -1,6 +1,6 @@
 
-import Home from './integration/home/home';
-import {Search, SearchResult} from './integration/search';
+import Home from './home/home/home';
+import {Search, SearchResult} from './home/search';
 
 import {
     WorkspaceRole, WorkspacePrivilege, Workspace,  WorkspaceList,
@@ -9,29 +9,29 @@ import {
 
 import { Category } from "./category";
 
-import { ApxMethodDetail } from "./apxMethod";
+import { ApxMethodDetail } from "./api/http/definition";
 
-import{ Test, TestCase, TestCaseDetail }from'./apitest';
+import{ Test, TestCase, TestCaseDetail }from './api/http/test';
 
-import { Mock,MockDetail } from "./apimock"
+import { Mock,MockDetail } from "./api/http/mock"
 
 import {
-    SystemContent, SysManage,DataStructure, ApiStatus,
-} from './sysmgr/index'
+    SystemContent, SysManage
+} from './setting'
 
-import PageContent from "./integration/header/pageContent";
-import HeaderContent from './integration/header/headerContent'
-import WorkspaceDetailLayout from "./workspaceDetail/workspaceDetailLayout";
-import LayoutApiContent from "./apxMethod/http/components/layoutApiContent"
-import TabsPage from "./workspaceDetail/tabsPage";
+import PageContent from "./home/header/pageContent";
+import HeaderContent from './home/header/headerContent'
+import WorkspaceDetailLayout from "./workspace/workspaceDetail/workspaceDetailLayout";
+import LayoutApiContent from "./api/http/definition/components/layoutApiContent"
+import TabsPage from "./workspace/workspaceDetail/tabsPage";
 import LayoutQuickTest from "./quicktest/components/layoutQuickTest";
 import TabsQuickTest from "./quicktest/components/tabsQuickTest";
 import TestdetailQuickTest from "./quicktest/components/testdetailQuickTest";
-import WorkspaceDetailInitPage from "./workspaceDetail/workspaceDetailInitPage";
-import WorkspaceSettingMenu from "./integration/workspaceSetting/workspaceSettingMenu";
-import LoginOut from "./integration/header/loginOut";
-import LoginContent from "./integration/login/loginContent";
-import ElectronLoginContant from "./integration/login/electronLoginContant";
+import WorkspaceDetailInitPage from "./workspace/workspaceDetail/workspaceDetailInitPage";
+import WorkspaceSettingMenu from "./workspace/workspaceSetting/workspaceSettingMenu";
+import LoginOut from "./home/header/loginOut";
+import LoginContent from "./home/login/loginContent";
+import ElectronLoginContant from "./home/login/electronLoginContant";
 
 export {
     Home,PageContent,HeaderContent,
@@ -52,7 +52,6 @@ export {
     Mock, MockDetail,
 
     SystemContent,SysManage,
-    DataStructure,ApiStatus,
     LoginOut,LoginContent,
     ElectronLoginContant,
 

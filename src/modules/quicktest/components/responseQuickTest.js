@@ -1,6 +1,6 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
-import TestResultCommon from "../../apitest/common/testResultCommon";
+import TestResultCommon from "../../api/http/test/common/testResultCommon";
 import ResponseBodyQuickTest from "./responseBodyQuickTest";
 import ResponseHeaderQuickTest from "./responseHeaderQuickTest";
 import ResponseReqHeaderQuickTest from "./responseReqHeaderQuickTest";

@@ -1,13 +1,13 @@
 
-import WorkspaceRole from '../integration/workspaceRole/workspaceRole';
-import WorkspacePrivilege from '../integration/workspacePrivilege/workspacePrivilege';
+import WorkspaceRole from './workspaceSetting/workspaceRole';
+import WorkspacePrivilege from './workspaceSetting/workspacePrivilege';
 
-import Workspace from './components/workspace';
-import WorkspaceList from './components/workspaceList';
+import Workspace from './workspace/components/workspace';
+import WorkspaceList from './workspace/components/workspaceList';
 import DetailIndex from '../common/rightContent';
-import { WORKSPACE_STORE, WorkspaceStore } from './store/workspaceStore';
-import {WORKSPACE_RECENT_STORE,WorkspaceRecentStore} from "./store/workspaceRecentStore";
-import {WORKSPACE_FOLLOW_STORE,WorkspaceFollowStore} from "./store/workspaceFollowStore";
+import { WORKSPACE_STORE, WorkspaceStore } from './workspace/store/workspaceStore';
+import {WORKSPACE_RECENT_STORE,WorkspaceRecentStore} from "./workspace/store/workspaceRecentStore";
+import {WORKSPACE_FOLLOW_STORE,WorkspaceFollowStore} from "./workspace/store/workspaceFollowStore";
 
 export {
     WorkspacePrivilege, WorkspaceRole,

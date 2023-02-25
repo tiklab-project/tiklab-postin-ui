@@ -1,5 +1,5 @@
 import {action, observable} from "mobx";
-import {AssertCommonStore} from "../../apitest/common/assertCommonStore";
+import {AssertCommonStore} from "../../api/http/test/common/assertCommonStore";
 import qs from "qs";
 
 let assertCommonStore = new AssertCommonStore();

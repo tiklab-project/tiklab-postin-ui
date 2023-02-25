@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer, inject } from 'mobx-react'
-import RequestBodyCommon from "../../apitest/common/requestBodyCommon";
+import RequestBodyCommon from "../../api/http/test/common/requestBodyCommon";
 
 const ResponseReqBodyQuickTest = (props) => {
     const { quickTestStore } = props;

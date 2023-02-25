@@ -4,8 +4,8 @@ import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
 import {CaretDownOutlined, CaretRightOutlined} from "@ant-design/icons";
 import {Dropdown, Menu, Popconfirm, Tooltip} from "antd";
 import CategoryEdit from "./categoryEdit";
-import ShareModal from "../../share/components/shareModal";
-import {ApxMethodEdit} from "../../apxMethod";
+import ShareModal from "../../api/http/document/components/shareModal";
+import {ApxMethodEdit} from "../../api/http/definition";
 import {TextMethodType} from "../../common/methodType";
 
 const CategoryDocTree = (props) =>{
