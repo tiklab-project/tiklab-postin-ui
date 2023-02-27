@@ -14,7 +14,7 @@ import {
     ElectronLoginContant,
     LayoutQuickTest,TabsQuickTest,
     Test, TestdetailQuickTest,TestCaseDetail,
-} from "./components/modules/index"
+} from "./components/container/index"
 
 
 export {

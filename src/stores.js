@@ -1,18 +1,18 @@
 import {EAM_STORE, EamStore} from 'tiklab-eam-ui/es/store'
-import { SEARCHSTORE, SearchStore } from './modules/home/search'
+import { SEARCHSTORE, SearchStore } from './home/search'
 
-import {USERSELECT_STORE, UserSelectStore} from './modules/support/userSelect/store/userSelectStore'
+import {USERSELECT_STORE, UserSelectStore} from './support/userSelect/store/UserSelectStore'
 
-import {JSON_SCHEMA_STORE,JsonSchemaStore} from "./modules/common/jsonSchema/jsonSchemaStore";
+import {JSON_SCHEMA_STORE,JsonSchemaStore} from "./common/jsonSchema/JsonSchemaStore";
 
 import {
     WORKSPACE_STORE, WorkspaceStore,
     WORKSPACE_RECENT_STORE,WorkspaceRecentStore,
     WORKSPACE_FOLLOW_STORE,WorkspaceFollowStore
-} from './modules/workspace';
+} from './workspace';
 
 
-import {CATEGORY_STORE, CategoryStore} from "./modules/category";
+import {CATEGORY_STORE, CategoryStore} from "./category";
 
 import {
     APXMETHOD_STORE, ApxMethodStore,
@@ -33,7 +33,7 @@ import {
     RAWRESPONSE_STORE, RawResponseStore,
     APIRESPONSE_STORE, ApiResponseStore,
 
-} from "./modules/api/http/definition";
+} from "./api/http/definition";
 
 import {
     TEST_STORE, TestStore,
@@ -64,7 +64,7 @@ import {
     BINARY_PARAM_TESTCASE_STORE, BinaryParamTestCaseStore,
 
     INSTANCE_STORE, InstanceStore,
-} from "./modules/api/http/test";
+} from "./api/http/test";
 
 import {
     MOCKSTORE, MockStore ,
@@ -78,9 +78,9 @@ import {
     MOCK_RAWRESPONSE_STORE,MockRawResponseStore,
     MOCK_RESPONSERESULT_STORE, ResponseResultMockStore,
     MOCK_RESPONSE_STORE, ResponseMockStore,
-} from "./modules/api/http/mock"
+} from "./api/http/mock"
 
-import {IM_EX_PORT_STORE, ImexportStore} from "./modules/support/imexport/store/imexportStore"
+import {IM_EX_PORT_STORE, ImexportStore} from "./support/imexport/store/ImexportStore"
 
 import {
     HEADER_QUICKTEST_STORE, HeaderQuickTestStore,
@@ -94,14 +94,14 @@ import {
     AFTERSCRIPT_QUICKTEST_STORE, AfterScriptQuickTestStore,
     ASSERT_QUICKTEST_STORE, AssertQuickTestStore,
     QUICKTEST_STORE, QuickTestStore
-} from "./modules/quicktest/index"
+} from "./quicktest/index"
 
-import {SHARE_STORE,ShareStore} from "./modules/api/http/document/store/shareStore";
-import {APXMETHOD_STATUS_STORE, ApxMethodStatusStore} from "./modules/support/apiStatus/store/apxMethodStatusStore";
-import {ENVIRONMENT_STORE, EnvironmentStore} from "./modules/support/environment/store/environmentStore";
-import {DATASTRUCTURE_STORE, DataStructureStore} from "./modules/support/dataStructure/store/dataStructureStore";
-import {ENUMPARAMDS_STORE, EnumParamDSStore} from "./modules/support/dataStructure/store/enumParamDSStore";
-import {JSONPARAMDS_STORE, JsonParamDSStore} from "./modules/support/dataStructure/store/jsonParamDSStore";
+import {SHARE_STORE,ShareStore} from "./api/http/document/store/ShareStore";
+import {APXMETHOD_STATUS_STORE, ApxMethodStatusStore} from "./support/apiStatus/store/ApxMethodStatusStore";
+import {ENVIRONMENT_STORE, EnvironmentStore} from "./support/environment/store/environmentStore";
+import {DATASTRUCTURE_STORE, DataStructureStore} from "./support/dataStructure/store/DataStructureStore";
+import {ENUMPARAMDS_STORE, EnumParamDSStore} from "./support/dataStructure/store/EnumParamDSStore";
+import {JSONPARAMDS_STORE, JsonParamDSStore} from "./support/dataStructure/store/JsonParamDSStore";
 
 
 function createStores() {
