@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer, inject } from "mobx-react";
 import { Table } from 'antd';
 
 const AssertInstance = (props) =>{
