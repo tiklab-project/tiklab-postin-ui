@@ -6,17 +6,27 @@ import {
     deleteResponseHeaderMock
 } from '../api/mockResponseHeader';
 
+/**
+ * mock
+ * 响应头 store
+ */
 export class MockResponseHeaderStore {
 
     @observable mockResponseHeaderList = [];
     @observable mockId = '';
     @observable dataLength;
 
+    /**
+     * 获取新的list
+     */
     @action
     setList = (values) => {
         this.mockResponseHeaderList = [...values]
     }
 
+    /**
+     * 查询响应头列表
+     */
     @action
     findResponseHeaderMockList = async (id) => {
         this.mockId = id;
@@ -37,6 +47,9 @@ export class MockResponseHeaderStore {
         }
     }
 
+    /**
+     * 创建响应头
+     */
     @action
     createResponseHeaderMock = async (values) => {
         values.mock = {id: this.mockId}
@@ -46,6 +59,9 @@ export class MockResponseHeaderStore {
         }
     }
 
+    /**
+     * 更新响应头
+     */
     @action
 	updateResponseHeaderMock =async (values) => {
 		const res = await updateResponseHeaderMock(values)
@@ -54,6 +70,9 @@ export class MockResponseHeaderStore {
         }
     }
 
+    /**
+     * 删除响应头
+     */
     @action
     deleteResponseHeaderMock = async (id) => {
         const param = new FormData();

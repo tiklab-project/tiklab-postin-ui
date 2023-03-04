@@ -7,6 +7,9 @@ import IconCommon from "../../IconCommon";
 
 const {Option} = Select;
 
+/**
+ * 断言可编辑表格
+ */
 const AssertTableCommon = (props)=>{
     const {dataList, saveList, addNewList, deleteList} = props;
 
@@ -70,8 +73,9 @@ const AssertTableCommon = (props)=>{
         }
     ]
 
-
-    // 表格select选择事件
+    /**
+     * 表格checked
+     */
     const onSelect = (value, row) => {
         const data = {
             ...row,
@@ -80,7 +84,9 @@ const AssertTableCommon = (props)=>{
         handleSave(data);
     }
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave =  (row) => {
         let newData = toJS(dataList);
         //获取当前行对应的下标

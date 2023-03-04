@@ -3,12 +3,15 @@ import {Tabs, Tag} from "antd";
 import ReactMonacoEditor from "../monacoEditor/ReactMonacoEditor";
 const { TabPane } = Tabs;
 
+/**
+ * 响应结果
+ */
 const ResponseResultDoc = (props) =>{
     const {dataSource} = props;
 
-
-
-
+    /**
+     * 渲染响应结果
+     */
     const showTabPane = (list) =>{
         return list && list.map(item=>{
             return <TabPane tab={item.name+"("+item.httpCode+")"} key={item.id}>

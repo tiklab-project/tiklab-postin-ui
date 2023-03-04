@@ -6,9 +6,9 @@ import JsonQuickTest from "./JsonQuickTest";
 import RawQuickTest from "./RawQuickTest";
 import RequestBodyCom from "../../common/tableCommon/components/RequestBodyCom";
 
-
 /**
- *请求体
+ * 快捷测试
+ * 请求体
  */
 const RequestBodyQuickTest  = (props) =>{
     const { requestBodyQuickTestStore } = props;

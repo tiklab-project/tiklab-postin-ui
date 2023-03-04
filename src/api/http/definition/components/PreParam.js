@@ -1,16 +1,14 @@
-/*
- * @Description: 接口定义中后置脚本
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-08 18:03:26
- */
-
 import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import {Button, Form} from 'antd';
 import CodeMirror from "../../../../common/CodeMirror";
 import {onBlur} from "codemirror/src/display/focus";
 
-
+/**
+ * @Description: 接口定义中后置脚本
+ * @Author: sunxiancheng
+ * @LastEditTime: 2021-05-08 18:03:26
+ */
 const PreParam = (props) => {
     const { apiRequestStore }  = props;
     const {createApiRequest, updateApiRequest, findApiRequest} = apiRequestStore;
@@ -32,7 +30,9 @@ const PreParam = (props) => {
         })
     },[apxMethodId])
 
-
+    /**
+     * 保存脚本文本数据
+     */
     const save = async () =>{
 
         //获取EdiText文本数据

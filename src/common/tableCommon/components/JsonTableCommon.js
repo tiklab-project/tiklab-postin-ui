@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Tooltip, Space } from 'antd';
 import {dataTypeDictionary, mockValueDictionary} from "../../dictionary/dictionary";
 import ExSelect from "../../ExSelect";
 import {ExTable} from "../../EditTable";
 import {uuid} from "../../utils/createId";
 
-// 请求参数的可编辑表格组件
+/**
+ * json
+ */
 const JsonTableCommon = (props) => {
     const { getJsonList,dataList,saveList,addNewList,deleteList,setJsonChild, bodyType } = props;
 
@@ -63,14 +65,18 @@ const JsonTableCommon = (props) => {
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-    // 添加下一行
+    /**
+     * 添加下一行
+     */
     const handleAdd = () => {
         const newData = [ {id: uuid()}];
 
         addNewList(newData)
     };
 
-    // 点击子按钮，添加子行
+    /**
+     * 点击子按钮，添加子行
+     */
     const addChild = (dataType, parentid) => {
         if(dataType === 'object'){
 
@@ -78,7 +84,9 @@ const JsonTableCommon = (props) => {
         }
     }
 
-    // 递归数据
+    /**
+     * 递归数据
+     */
     const loop = (data, result=[], row) => {
         const parentId = row.parent && row.parent.id;
         // 没有parentid
@@ -111,7 +119,9 @@ const JsonTableCommon = (props) => {
     }
 
 
-    // 编辑单元格，保存数据
+    /**
+     * 编辑单元格，保存数据
+     */
     const handleSave = (row) => {
         let result = loop(dataList, [], row)
         saveList(result)
@@ -123,7 +133,9 @@ const JsonTableCommon = (props) => {
         setSelectedRowKeys(newSelectedRowKeys);
     };
 
-    //表格前的checkbox根据“必须”项，当必选时，设置disabled
+    /**
+     * 表格前的checkbox根据“必须”项，当必选时，设置disabled
+     */
     const rowSelection = {
         selectedRowKeys,
         onChange:onSelectChange

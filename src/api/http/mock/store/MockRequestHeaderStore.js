@@ -7,6 +7,10 @@ import {
     deleteRequestHeaderMock 
 } from '../api/mockRequestHeaderApi';
 
+/**
+ * mock
+ * 请求头 store
+ */
 export class MockRequestHeaderStore {
 
     @observable mockRequestHeaderList = [];
@@ -15,11 +19,17 @@ export class MockRequestHeaderStore {
     @observable mockId = '';
     @observable dataLength;
 
+    /**
+     * 获取新的list
+     */
     @action 
     setList = (values) => {
         this.mockRequestHeaderList = [...values]
     }
 
+    /**
+     * 查询请求头列表
+     */
     @action
     findRequestHeaderMockList = async (id) => {
         this.mockId = id;
@@ -41,6 +51,9 @@ export class MockRequestHeaderStore {
         }
     }
 
+    /**
+     * 通过id查询单个请求头
+     */
     @action
     findRequestHeaderMock = async (id) => {
         const param = new FormData();
@@ -52,7 +65,9 @@ export class MockRequestHeaderStore {
         }
     }
 
-
+    /**
+     * 创建请求头
+     */
     @action
     createRequestHeaderMock = async (values) => {
         values.mock ={id: this.mockId }
@@ -62,6 +77,9 @@ export class MockRequestHeaderStore {
         }
     }
 
+    /**
+     * 更新请求头
+     */
     @action
 	updateRequestHeaderMock = async (values) => {
 		const res = await updateRequestHeaderMock(values)
@@ -70,6 +88,9 @@ export class MockRequestHeaderStore {
         }
     }
 
+    /**
+     * 删除请求头
+     */
     @action
 	deleteRequestHeaderMock = async (id) => {
         const param = new FormData();

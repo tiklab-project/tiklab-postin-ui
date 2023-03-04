@@ -3,6 +3,9 @@ import {Button, Form, Input, Modal, Tag} from "antd";
 import {inject, observer} from "mobx-react";
 import { SketchPicker } from 'react-color';
 
+/**
+ * 接口状态的弹框
+ */
 const ApiStatusModal = (props) =>{
     const {apxMethodStatusStore} = props;
     const {findApiStatusList,createApiStatus,deleteApiStatus} = apxMethodStatusStore;
@@ -24,6 +27,9 @@ const ApiStatusModal = (props) =>{
         findCustomList()
     },[])
 
+    /**
+     * 查询所有用户自定义的接口状态
+     */
     const findCustomList = () =>{
         let param = {type:"custom",workspaceId:workspaceId}
         findApiStatusList(param).then(res=>{
@@ -31,6 +37,9 @@ const ApiStatusModal = (props) =>{
         });
     }
 
+    /**
+     * 查询系统定义的状态
+     */
     const showSystemStatus = (list) =>{
         return list&&list.map(item=>{
             return(
@@ -39,6 +48,9 @@ const ApiStatusModal = (props) =>{
         })
     }
 
+    /**
+     * 接口状态的渲染
+     */
     const showCustomStatus = (list) =>{
         return list&&list.map(item=>{
             return(
@@ -54,6 +66,9 @@ const ApiStatusModal = (props) =>{
         })
     }
 
+    /**
+     * 添加自定义状态
+     */
     const onSave = async ()=>{
         let value = await form.getFieldsValue();
         value.type="custom";
@@ -62,10 +77,12 @@ const ApiStatusModal = (props) =>{
         createApiStatus(value).then(()=>findCustomList())
     }
 
+    /**
+     * 关闭弹窗
+     */
     const onClose = (id) =>{
         deleteApiStatus(id).then(()=>findCustomList())
     }
-
 
     const showModal = () => setIsModalVisible(true);
 
@@ -75,6 +92,9 @@ const ApiStatusModal = (props) =>{
 
     const [color, setColor] = useState("#F06161");
 
+    /**
+     * 颜色选择
+     */
     const toggleColorPick = () =>{
         return <div className={"status-color-box"}>
             <div className={`status-color-box-select`} style={{"background":`${color}`}}> </div>

@@ -3,8 +3,9 @@ import React, { useRef} from 'react';
 import { Form } from 'antd';
 import CodeMirror from "../../CodeMirror";
 
-
-
+/**
+ * 前置后置 脚本公共组件
+ */
 const ScriptCommon = (props) => {
     const {form,updateFn}  = props;
 
@@ -12,7 +13,9 @@ const ScriptCommon = (props) => {
     const ediTextRef = useRef(null);
 
 
-    //失去焦点，获取更改raw中类型执行
+    /**
+     *  失去焦点，获取更改raw中类型执行
+     */
     const blurFn = ()=>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()

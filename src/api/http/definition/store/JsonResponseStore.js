@@ -7,7 +7,11 @@ import {
     deleteJsonResponse
 } from '../api/jsonResponseApi';
 
-//响应结果Store
+/**
+ * 定义
+ * http
+ * 响应json store
+ */
 export class JsonResponseStore {
 
     @observable jsonResponseList = [];
@@ -24,7 +28,9 @@ export class JsonResponseStore {
         this.jsonResponseList = [...values]
     }
 
-//根据查询对象按分页查询响应结果列表
+    /**
+     * 根据查询对象按分页查询响应结果列表
+     */
     @action
     findJsonResponseListTree = async (id) => {
         this.apxMethodId = id;
@@ -48,7 +54,9 @@ export class JsonResponseStore {
         }
     }
 
-    // 根据ID查找响应结果
+    /**
+     * 根据ID查找响应结果
+     */
     @action
     findJsonResponse = async (id) => {
 
@@ -62,7 +70,9 @@ export class JsonResponseStore {
         }
     }
 
-    // 添加
+    /**
+     * 添加
+     */
     @action
     createJsonResponse = async (values) => {
         const res = await createJsonResponse(values)
@@ -71,7 +81,9 @@ export class JsonResponseStore {
         }
     }
 
-    // 更改
+    /**
+     * 更改
+     */
     @action
 	updateJsonResponse = async (values) => {
 		const res = await updateJsonResponse(values)
@@ -80,7 +92,9 @@ export class JsonResponseStore {
         }
     }
 
-    // 删除
+    /**
+     *  删除
+     */
     @action
 	deleteJsonResponse = async (id) => {
         const param = new FormData();
@@ -92,6 +106,9 @@ export class JsonResponseStore {
         }
     }
 
+    /**
+     * 新增子集
+     */
     @action
 	setJsonResponseListChild = (parentId) => {
         const pid = ({id: parentId })

@@ -1,6 +1,8 @@
 import {createID} from "../../common/utils/createId";
 
-//header处理
+/**
+ * header处理
+ */
 export const processHeaderData = (data) =>{
     let json = JSON.parse(data);
 
@@ -16,7 +18,9 @@ export const processHeaderData = (data) =>{
     return arr;
 }
 
-//Query处理
+/**
+ * Query处理
+ */
 export const processQueryData = (url) =>{
     let arr = [];
 
@@ -43,7 +47,9 @@ export const processQueryData = (url) =>{
     return arr;
 }
 
-//formData处理
+/**
+ * formData处理
+ */
 export const processFormParamData = (data) =>{
     let json = JSON.parse(data);
 
@@ -60,7 +66,9 @@ export const processFormParamData = (data) =>{
     return arr;
 }
 
-//FormUrlencoded处理
+/**
+ * FormUrlencoded处理
+ */
 export const processFormUrlencodedData = (data) =>{
     let json = JSON.parse(data);
 

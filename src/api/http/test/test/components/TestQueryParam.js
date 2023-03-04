@@ -2,7 +2,10 @@ import React from 'react';
 import { observer, inject } from "mobx-react";
 import QueryTableCommon from "../../../../../common/tableCommon/components/QueryTableCommon";
 
-// 请求参数的可编辑表格
+/**
+ * 测试页
+ * 查询参数
+ */
 const QueryParam = (props) =>{
     const { queryParamTestStore } = props;
     const {

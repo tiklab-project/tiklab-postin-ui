@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {Button, Space, Tooltip, Upload} from 'antd';
+import React, { useState } from 'react';
+import {Button, Upload} from 'antd';
 import { mockValueDictionary} from "../../dictionary/dictionary";
 import ExSelect from "../../ExSelect";
 import {ExTable} from "../../EditTable";
@@ -9,7 +9,9 @@ import {uuid} from "../../utils/createId";
 import IconCommon from "../../IconCommon";
 import {toJS} from "mobx";
 
-// 请求参数的可编辑表格
+/**
+ * formdata
+ */
 const FormDataTableCommon = (props) =>{
     const {dataList, saveList, deleteList} = props;
 
@@ -99,7 +101,9 @@ const FormDataTableCommon = (props) =>{
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave =  (row) => {
         let newData = toJS(dataList);
         //获取当前行对应的下标

@@ -5,9 +5,16 @@ import {
     updateRequestMock
 } from '../api/requestMockApi';
 
+/**
+ * mock
+ * 请求 store
+ */
 export class RequestMockStore {
     @observable mockId;
 
+    /**
+     * 通过id查询单个请求
+     */
     @action
     findRequestMock = async (id) => {
         this.mockId = id;
@@ -21,6 +28,9 @@ export class RequestMockStore {
         }
     }
 
+    /**
+     * 创建请求
+     */
     @action
     createRequestMock = async (values) => {
         values.mockId =  this.mockId
@@ -29,6 +39,9 @@ export class RequestMockStore {
         await createRequestMock(values);
     }
 
+    /**
+     * 更新请求
+     */
     @action
 	updateRequestMock = async (values) => {
         values.mockId =  this.mockId;

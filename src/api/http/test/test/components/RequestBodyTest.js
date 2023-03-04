@@ -7,11 +7,19 @@ import RawParamTest from "./TestRawParam";
 import {bodyTypeJsonDictionary as bodyTypeJson, mediaTypeDictionary} from "../../../../../common/dictionary/dictionary";
 import RequestNoBody from "../../../../../common/tableCommon/components/RequestNoBody";
 
+/**
+ * 测试页
+ * 请求体
+ * FormUrlencoded
+ */
 const RequestBodyTest = (props)=>{
     const { requestBodyTestStore } = props;
 
     const { bodyType,mediaType } = requestBodyTestStore;
 
+    /**
+     * 展示不同的contentType 类型
+     */
     const showBodyType = (type) =>{
         let bodyKeyArr = Object.keys(mediaTypeDictionary)
 
@@ -28,7 +36,9 @@ const RequestBodyTest = (props)=>{
     }
 
 
-    //渲染对应类型的组件
+    /**
+     *  渲染对应类型的组件
+     */
     const showItemComponent = (data)=>{
         switch(data) {
             case bodyTypeJson.none:

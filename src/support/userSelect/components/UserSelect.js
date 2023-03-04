@@ -27,6 +27,9 @@ const columns = [
     },
 ]
 
+/**
+ * 用户选择下拉框
+ */
 const UserSelect =(props) =>{
     const {userSelectStore} = props;
     const {findUserSelectPage,userSelectList,totalRecord,getUserId,userName} = userSelectStore;

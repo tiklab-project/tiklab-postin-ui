@@ -2,21 +2,33 @@ import { observable,  action } from "mobx";
 import {bodyTypeJsonDictionary as bodyTypeJsonDic} from "../../common/dictionary/dictionary";
 
 
+/**
+ * 快捷测试
+ * 请求体 store
+ */
 export class RequestBodyQuickTestStore {
     @observable bodyType="none";
     @observable mediaType
 
-    //获取bodyType
+    /**
+     *  获取bodyType
+     */
     @action
     getBodyType = (value) => {
         this.bodyType = value;
     }
 
+    /**
+     *  更新bodyType
+     */
     @action
     updateBodyType = (data) => {
          this.bodyType  = data.bodyType
     }
 
+    /**
+     * 根据不同的mediaType设置相应的类型
+     */
     @action
     getMediaType = (value) => {
         this.mediaType = value;

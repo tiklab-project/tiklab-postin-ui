@@ -7,6 +7,11 @@ import {
     deleteJsonParam
 } from '../api/jsonParamApi'
 
+/**
+ * 定义
+ * http
+ * json store
+ */
 export class JsonParamStore {
 
     @observable jsonParamList = [];
@@ -15,12 +20,17 @@ export class JsonParamStore {
     @observable httpId = '';
     @observable jsonParamId= '';
 
-
+    /**
+     * 获取新的list
+     */
     @action
     setList = (values) => {
         this.jsonParamList = [...values]
     }
 
+    /**
+     * 查询json列表
+     */
     @action
     findJsonParamListTree = async (id) => {
         this.httpId = id;
@@ -43,6 +53,9 @@ export class JsonParamStore {
 
     }
 
+    /**
+     * 通过id查询单个json
+     */
     @action
     findJsonParam = async (id) => {
         this.jsonParamId = id;
@@ -56,7 +69,9 @@ export class JsonParamStore {
         }
     }
 
-
+    /**
+     * 创建json
+     */
     @action
     createJsonParam =async (values) => {
         values.http = { id:this.httpId }
@@ -68,6 +83,9 @@ export class JsonParamStore {
 
     }
 
+    /**
+     * 更新json
+     */
     @action
 	updateJsonParam = async (values) => {
 		const res = await updateJsonParam(values)
@@ -77,6 +95,9 @@ export class JsonParamStore {
         }
     }
 
+    /**
+     * 删除json
+     */
     @action
 	deleteJsonParam = async (id) => {
         const param = new FormData();
@@ -88,6 +109,9 @@ export class JsonParamStore {
         }
     }
 
+    /**
+     * 本地设置新值
+     */
     @action
 	setJsonParamListChild = (parentId) => {
         const pid = ({ id: parentId  })

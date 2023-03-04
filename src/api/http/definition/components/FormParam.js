@@ -1,9 +1,3 @@
-/*
- * @Description:  请求参数中From可编辑表格
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-08 17:47:43
- */
-
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import {Space, Checkbox, Popconfirm} from 'antd';
@@ -11,6 +5,11 @@ import {ExTable}from '../../../../common/EditTable';
 import FileTextSelect from "../../../../common/FileTextSelect";
 import IconCommon from "../../../../common/IconCommon";
 
+/**
+ * 定义
+ * http
+ * From可编辑表格
+ */
 const FormParam = (props) =>{
     const { formParamStore } = props;
     const {
@@ -78,7 +77,9 @@ const FormParam = (props) =>{
         }
     ]
 
-    // 表格checked
+    /**
+     * 表格checked
+     */
     const toggleChecked= (e,row)=> {
         let checked;
         if(e.target.checked){
@@ -106,7 +107,9 @@ const FormParam = (props) =>{
     //     console.log(newData)
     // }
 
-    //取消
+    /**
+     * 取消编辑
+     */
     const onCancel = () =>{
         let data = {
             id:"InitNewRowId",
@@ -124,7 +127,9 @@ const FormParam = (props) =>{
 
     const [newRowAction, setNewRowAction] = useState(false);
 
-    // 表格里的操作
+    /**
+     * 表格里的操作列展示
+     */
     const operation = (record,data) => {
         if(record.id === 'InitNewRowId'){
             return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
@@ -169,12 +174,16 @@ const FormParam = (props) =>{
         }
     }
 
-    //更新
+    /**
+     * 更新
+     */
     const upData = (value) => {
         updateFormParam(value).then(res=>setDataSource(res));
     }
 
-    // 添加
+    /**
+     * 添加
+     */
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
             return null
@@ -186,7 +195,9 @@ const FormParam = (props) =>{
         setNewRowAction(false)
     }
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave = (row) => {
         const newData = formParamList;
         const index = newData.findIndex((item) => row.id === item.id);
@@ -195,16 +206,18 @@ const FormParam = (props) =>{
 
         //如果是新行 操作 显示操作按钮
         if(row.id==="InitNewRowId"){
-            newRowKeyDown()
+            document.addEventListener('keydown', (e) =>{
+                setNewRowAction(true)
+            });
         }
     };
 
-    //当新行按键按下的时候显示后面的操作按钮
-    const newRowKeyDown = () => {
-        document.addEventListener('keydown', (e) =>{
-            setNewRowAction(true)
-        });
-    };
+    // //当新行按键按下的时候显示后面的操作按钮
+    // const newRowKeyDown = () => {
+    //     document.addEventListener('keydown', (e) =>{
+    //         setNewRowAction(true)
+    //     });
+    // };
 
     return (
         <ExTable

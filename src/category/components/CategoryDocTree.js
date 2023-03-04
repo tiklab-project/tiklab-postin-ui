@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {inject, observer} from "mobx-react";
-import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
 import {CaretDownOutlined, CaretRightOutlined} from "@ant-design/icons";
-import {Dropdown, Menu, Popconfirm, Tooltip} from "antd";
-import CategoryEdit from "./CategoryEdit";
-import ShareModal from "../../api/http/document/components/ShareModal";
-import {ApxMethodEdit} from "../../api/http/definition";
+
 import {TextMethodType} from "../../common/MethodType";
 
+/**
+ *文档中使用的目录树
+ */
 const CategoryDocTree = (props) =>{
     const { treeList,setApiDoc,apxMethodStore,categoryId } = props;
     const { findApxMethod } = apxMethodStore;
@@ -16,13 +15,17 @@ const CategoryDocTree = (props) =>{
     const [expandedTree, setExpandedTree] = useState([categoryId]);
     const [clickKey, setClickKey] = useState();
 
-    //保存分类id，跳往分类页
+    /**
+     *  保存分类id，跳往分类页
+     */
     const onClick = (item) =>{
         setClickKey(item.id);
         setOpenOrClose(item.id);
     }
 
-    //保存接口id，跳往接口详情页
+    /**
+     * 保存接口id，跳往接口详情页
+     */
     const onMethod = async (item) => {
         setClickKey(item.id);
         let res = await findApxMethod(item.id);
@@ -34,7 +37,9 @@ const CategoryDocTree = (props) =>{
         return expandedTree.some(item => item === key)
     }
 
-    //展开闭合 分类
+    /**
+     * 展开闭合 分类
+     */
     const setOpenOrClose = key => {
         if (isExpandedTree(key)) {
             setExpandedTree(expandedTree.filter(item => item !== key))
@@ -53,8 +58,9 @@ const CategoryDocTree = (props) =>{
     }
 
 
-
-    //设置有子集的li
+    /**
+     * 设置有子集的li
+     */
     const expendTreeLi = (item,icon,deep) => {
         return(
             <div className={'cate-li'}>
@@ -73,7 +79,9 @@ const CategoryDocTree = (props) =>{
         )
     }
 
-    //接口
+    /**
+     * 接口
+     */
     const methodView = (data) => {
         return data&&data.map(item=>{
             return(
@@ -90,7 +98,9 @@ const CategoryDocTree = (props) =>{
         })
     }
 
-    //递归渲染分类列表
+    /**
+     * 递归渲染分类列表
+     */
     const tree = (data = [],deep) => {
         return(
             data && data.map((item) => {
@@ -137,8 +147,6 @@ const CategoryDocTree = (props) =>{
             })
         )
     }
-
-
 
     return(
         <>

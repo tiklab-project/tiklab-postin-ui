@@ -2,7 +2,10 @@ import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
 import JsonTableCommon from "../../common/tableCommon/components/JsonTableCommon";
 
-// 请求参数的可编辑表格组件
+/**
+ * 快捷测试
+ * json
+ */
 const JsonQuickTest= (props) => {
     const { jsonQuickTestStore, bodyType } = props;
 

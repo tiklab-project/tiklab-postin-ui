@@ -5,10 +5,18 @@ import {
     updatePreScript
 } from '../api/preParamApi';
 
+/**
+ * 定义
+ * http
+ * 前置 store
+ */
 export class PreParamStore {
     @observable preScriptInfo;
     @observable apxMethodId = '';
 
+    /**
+     * 通过id查询单个前置
+     */
     @action
     findPreScript = async (id) => {
         this.apxMethodId = id;
@@ -22,6 +30,9 @@ export class PreParamStore {
         }
     }
 
+    /**
+     * 创建前置
+     */
     @action
     createPreScript = async (values) => {
         values.http = {id: this.apxMethodId};
@@ -30,6 +41,9 @@ export class PreParamStore {
         return await createPreScript(values);
     }
 
+    /**
+     * 更新前置
+     */
     @action
 	updatePreScript = async (values) => {
         values.http = {id: this.apxMethodId}

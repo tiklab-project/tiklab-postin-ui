@@ -1,6 +1,9 @@
 import React from "react";
 import MonacoEditor  from "react-monaco-editor"
 
+/**
+ * React monaco文本编辑器
+ */
 const ReactMonacoEditor = (props) =>{
     const {value,editorChange,language,readOnly,width,height} = props
 

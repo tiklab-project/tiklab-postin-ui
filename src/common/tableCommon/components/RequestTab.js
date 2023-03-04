@@ -29,7 +29,9 @@ const RequestTab = (props) =>{
         })
     }
 
-    //渲染相应tab下的组件
+    /**
+     *   渲染相应tab下的组件
+     */
     const showTabPaneComponent =(type)=>{
         switch (type) {
             case "header":

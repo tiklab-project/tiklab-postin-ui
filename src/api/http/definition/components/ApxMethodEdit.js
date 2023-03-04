@@ -15,6 +15,11 @@ import IconCommon from "../../../../common/IconCommon";
 const {Option} = Select;
 const {TextArea} = Input;
 
+/**
+ * 接口
+ * http
+ * 新增 编辑 弹框
+ */
 const ApxMethodEdit = (props) => {
     const {
         apxMethodStore,
@@ -37,7 +42,9 @@ const ApxMethodEdit = (props) => {
     const [cascaderCategoryId, setCascaderCategoryId] = useState(categoryItemId);
     const apiTabListInfo = JSON.parse(sessionStorage.getItem("apiTabListInfo"))
 
-    // 弹框展示
+    /**
+     * 展示弹框
+     */
     const showModal = () => {
         findCategoryList(workspaceId);
 
@@ -48,8 +55,9 @@ const ApxMethodEdit = (props) => {
         setVisible(true);
     };
 
-
-    // 展示接口信息
+    /**
+     * 展示接口信息
+     */
     const showApxMethodInfo = () => {
         findApxMethod(httpId?httpId:apxMethodId).then((res)=>{
             form.setFieldsValue({
@@ -61,12 +69,16 @@ const ApxMethodEdit = (props) => {
         })
     }
 
-    // 弹框关闭
+    /**
+     * 弹框关闭
+     */
     const onCancel = () => {
         setVisible(false);
     };
 
-    // 提交
+    /**
+     * 提交
+     */
     const onFinish =  async () => {
         let values =await form.validateFields()
         delete values.category
@@ -94,13 +106,13 @@ const ApxMethodEdit = (props) => {
                         name:values.name,
                         type:"api"
                     })
-                    let newApiTabInfo = {
-                        workspaceId:workspaceId,
-                        activeKey:length++,
-                        tabList:[...tablist]
-                    }
-                    sessionStorage.setItem("apiTabListInfo",JSON.stringify(newApiTabInfo))
-                    setIsAddTab(!isAddTab);
+                    // let newApiTabInfo = {
+                    //     workspaceId:workspaceId,
+                    //     activeKey:length++,
+                    //     tabList:[...tablist]
+                    // }
+                    // sessionStorage.setItem("apiTabListInfo",JSON.stringify(newApiTabInfo))
+                    // setIsAddTab(!isAddTab);
                 }
 
                 localStorage.setItem('apxMethodId',id);
@@ -123,20 +135,27 @@ const ApxMethodEdit = (props) => {
 
     };
 
-    //渲染 http 方法，如post，get
+    /**
+     * 渲染 http 方法，如post，get
+     */
     const showMethod = (data) =>{
         return data&&data.map((item,index)=>{
             return <Option value={item} key={index}> <TextMethodType type={item}/></Option>
         })
     }
 
+    /**
+     * 设置目录
+     */
     function changeCategory(value) {
         //获取最后数组最后一位值
         const list = value.slice(-1);
         setCascaderCategoryId(list[0])
     }
 
-    //不同地方，展示不同按钮的效果
+    /**
+     * 不同地方，展示不同按钮的效果
+     */
     const showClickView = ()=>{
         if(props.type==="edit"){
            return (

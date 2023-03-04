@@ -4,6 +4,9 @@ import {BellOutlined} from "@ant-design/icons";
 import {Axios, getUser} from "tiklab-core-ui";
 import "./messageStyle.scss"
 
+/**
+ * 消息抽屉
+ */
 const MessageDrawer = (props) =>{
 
     const [initLoading, setInitLoading] = useState(true);
@@ -33,7 +36,9 @@ const MessageDrawer = (props) =>{
 
     },[])
 
-    //抽屉展示
+    /**
+     * 抽屉展示
+     */
     const showDrawer = () => {
         let params = {
             status:0,
@@ -51,7 +56,9 @@ const MessageDrawer = (props) =>{
         setOpen(true);
     };
 
-    //加载更多
+    /**
+     * 加载更多
+     */
     const onLoadMore = () => {
         setLoading(true);
         setCount(count+1)
@@ -76,7 +83,9 @@ const MessageDrawer = (props) =>{
         }
     }
 
-    //查询接口
+    /**
+     * 查询接口
+     */
     const findList = async (params) =>{
         const param = {
             sendType: 'site',
@@ -93,7 +102,9 @@ const MessageDrawer = (props) =>{
     }
 
 
-    //是否展示 加载更多
+    /**
+     * 是否展示 加载更多
+     */
     const loadMore =()=>{
        return  count<totalPage&&!initLoading && !loading ? (
             <div
@@ -110,8 +121,9 @@ const MessageDrawer = (props) =>{
     }
 
 
-
-    //list item 渲染
+    /**
+     *  list item 渲染
+     */
     const showListItem = (list) =>{
         if(!list) return null;
 
@@ -141,7 +153,9 @@ const MessageDrawer = (props) =>{
     }
 
 
-    //关闭抽屉
+    /**
+     * 关闭抽屉
+     */
     const onClose = () => {
         setOpen(false)
 
@@ -163,7 +177,10 @@ const MessageDrawer = (props) =>{
         },
     ]
     const [selectItem, setSelectItem] = useState(0);
-    //渲染筛选项
+
+    /**
+     * 渲染筛选项
+     */
     const showMenu = (data) =>{
         return data&&data.map(item=>{
             return(
@@ -196,8 +213,9 @@ const MessageDrawer = (props) =>{
     }
 
 
-
-    //点击以后未读改为已读
+    /**
+     * 点击以后未读改为已读
+     */
     const readFn = async (item)=>{
         const updateParams = {
             id:item.id,

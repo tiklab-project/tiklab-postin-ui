@@ -5,6 +5,9 @@ import {toWorkspaceDetail} from "./WorkspaceFn";
 import {Empty} from "antd";
 import emptyImg from "../../../assets/img/empty.png";
 
+/**
+ * 最近访问的空间
+ */
 const WorkspaceRecentHome = (props) =>{
     const {workspaceStore} = props;
     const {findWorkspaceRecentList,workspaceRecent}=workspaceStore;
@@ -20,12 +23,17 @@ const WorkspaceRecentHome = (props) =>{
         setDataList(newList)
     },[userId])
 
-    // 去往详情页
+    /**
+     * 去往详情页
+     */
     const toDetail = (workspaceId) => {
         toWorkspaceDetail(workspaceId,userId,workspaceRecent)
         props.history.push('/workspace');
     }
 
+    /**
+     * 渲染最近访问的空间项
+     */
     const showRecent=(list)=>{
         return list&&list.map(item=>{
             return(

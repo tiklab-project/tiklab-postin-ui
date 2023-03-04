@@ -5,11 +5,18 @@ import {
     updateRawResponseMock
 } from '../api/mockRawResponseApi';
 
+/**
+ * mock
+ * 响应中raw store
+ */
 export class MockRawResponseStore {
 
     @observable mockRawResponseInfo ;
     @observable mockId = '';
 
+    /**
+     * 通过id查询单个响应中raw
+     */
     @action
     findRawResponseMock = async (id) => {
         this.mockId = id;
@@ -21,6 +28,9 @@ export class MockRawResponseStore {
         }
     }
 
+    /**
+     * 创建响应中raw
+     */
     @action
     createRawResponseMock = async (values) => {
         values.mock = {id: this.mockId,}
@@ -28,6 +38,9 @@ export class MockRawResponseStore {
         return await createRawResponseMock(values);
     }
 
+    /**
+     * 更新响应中raw
+     */
     @action
 	updateRawResponseMock = async (values) => {
         values.mock = {id: this.mockId,}

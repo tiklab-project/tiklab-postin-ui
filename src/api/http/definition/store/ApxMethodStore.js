@@ -21,14 +21,16 @@ export class ApxMethodStore {
     @observable verParams= {};
     @observable currentVersion = {};
     @observable oldVersion = {};
-    @observable isAddTab = false;
+    // @observable isAddTab = false;
 
-    @action
-    setIsAddTab = (data) =>{
-        this.isAddTab = data
-    }
+    // @action
+    // setIsAddTab = (data) =>{
+    //     this.isAddTab = data
+    // }
 
-    //根据查询对象按分页查询接口列表
+    /**
+     * 根据查询对象按分页查询接口列表
+     */
     @action
     findApxMethodPage = async (values) => {
         this.params = {
@@ -44,6 +46,9 @@ export class ApxMethodStore {
         }
     }
 
+    /**
+     * 查询接口列表
+     */
     @action
     findApxMethodListByApix = async (id) => {
         let param ={
@@ -58,8 +63,6 @@ export class ApxMethodStore {
         }
     }
 
-
-
     //根据接口ID查找接口
     @action
     findApxMethod = async (id) => {
@@ -73,7 +76,9 @@ export class ApxMethodStore {
         }
     }
 
-    //创建接口
+    /**
+     * 创建接口
+     */
     @action
     createApxMethod = async (values) => {
         const res = await createMethod(values)
@@ -84,12 +89,16 @@ export class ApxMethodStore {
         }
     }
 
-    //更新接口
+    /**
+     * 更新接口
+     */
     @action
 	updateApxMethod = async (values) =>  await updateMethod(values)
 
 
-    //接口删除
+    /**
+     * 删除接口
+     */
     @action
 	deleteApxMethod = async (id) => {
         const param = new FormData();

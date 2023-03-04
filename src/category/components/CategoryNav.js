@@ -7,7 +7,9 @@ import CategoryEdit from './CategoryEdit';
 import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
 import {TextMethodType} from "../../common/MethodType";
 
-//分类导航
+/**
+ *  目录树
+ */
 const CategoryNav = (props) => {
     const { categoryStore } = props;
     const { findCategoryList, deleteCategory,categoryList } = categoryStore;
@@ -21,7 +23,9 @@ const CategoryNav = (props) => {
     const apiTabListInfo = JSON.parse(sessionStorage.getItem("apiTabListInfo"))
 
 
-    //保存分类id，跳往分类页
+    /**
+     * 保存分类id，跳往分类页
+     */
     const onClick = (item) =>{
         setClickKey(item.id);
         setOpenOrClose(item.id);
@@ -32,7 +36,9 @@ const CategoryNav = (props) => {
         props.history.push('/workspace/apis/category');
     }
 
-    //保存接口id，跳往接口详情页
+    /**
+     * 保存接口id，跳往接口详情页
+     */
     const onMethod = (item) => {
         setClickKey(item.id);
 
@@ -51,7 +57,9 @@ const CategoryNav = (props) => {
         return expandedTree.some(item => item === key)
     }
 
-    //展开闭合 分类
+    /**
+     * 展开闭合 分类
+     */
     const setOpenOrClose = key => {
         if (isExpandedTree(key)) {
             setExpandedTree(expandedTree.filter(item => item !== key))
@@ -69,7 +77,9 @@ const CategoryNav = (props) => {
         preIcon:<CaretRightOutlined/>
     }
 
-    //目录悬浮的操作项
+    /**
+     * 目录悬浮的操作项
+     */
     const menu = (id)=>(
         <Menu>
             <Menu.Item  key={2}>
@@ -91,13 +101,17 @@ const CategoryNav = (props) => {
         </Menu>
     );
 
-    //删除分组
+    /**
+     * 删除分组
+     */
     const delCategory = (id)=>{
 
         deleteCategory(id)
     }
 
-    //目录悬浮项
+    /**
+     * 目录悬浮项
+     */
     const categoryAct = (id) => {
         return (
             <div className={'category-action'}>
@@ -125,7 +139,9 @@ const CategoryNav = (props) => {
         )
     }
 
-    //设置有子集的li
+    /**
+     * 设置有子集的li
+     */
     const expendTreeLi = (item,icon,deep) => {
         return(
             <div className={'cate-li'}>
@@ -147,7 +163,9 @@ const CategoryNav = (props) => {
         )
     }
 
-    //接口
+    /**
+     * 接口项展示
+     */
     const methodView = (data) => {
         return data&&data.map(item=>{
             return(
@@ -164,7 +182,9 @@ const CategoryNav = (props) => {
         })
     }
 
-    //递归渲染分类列表
+    /**
+     * 递归渲染分类列表
+     */
     const tree = (data = [],deep) => {
         return(
             data && data.map((item) => {

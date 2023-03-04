@@ -5,12 +5,19 @@ import {
     updateResponseResultMock
 } from '../api/mockResponseResultApi';
 
+/**
+ * mock
+ * 响应结果 store
+ */
 export class ResponseResultMockStore {
 
     @observable responseResult = '';
     @observable mockId = '';
     @observable mockResponseResultId = '';
 
+    /**
+     * 通过id查询单个响应结果
+     */
     @action
     findResponseResultMock = async (id) => {
         this.mockId = id;
@@ -26,7 +33,10 @@ export class ResponseResultMockStore {
         }
       
     }
-    
+
+    /**
+     * 创建响应结果
+     */
     @action
     createResponseResultMock = async (values) => {
         values.mock = {id: this.mockId}
@@ -35,6 +45,9 @@ export class ResponseResultMockStore {
         return await createResponseResultMock(values)
     }
 
+    /**
+     * 更新响应结果
+     */
     @action
 	updateResponseResultMock = async (values) => {
         values.mock = { id: this.mockId }

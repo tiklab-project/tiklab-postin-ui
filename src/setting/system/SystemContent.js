@@ -1,6 +1,9 @@
 import React from "react";
 import SysManage from "./SysManagMenu";
 
+/**
+ * 系统导航项
+ */
 const SystemContent = (props) =>{
 
     const settingMenu = [
@@ -136,7 +139,9 @@ const SystemContent = (props) =>{
         }
     ]
 
-    //判断是否为开发环境
+    /**
+     *  判断是否为开发环境
+     */
     let menu = ()=>{
         try{
             if(IS_DEV){

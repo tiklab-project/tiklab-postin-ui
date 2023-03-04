@@ -2,6 +2,9 @@ import React from "react";
 import {UnControlled as ReactCodeMirror} from "react-codemirror2";
 import {Space, Tag} from "antd";
 
+/**
+ * 文档中raw
+ */
 const RawDoc = (props) =>{
     const {dataSource} = props;
 

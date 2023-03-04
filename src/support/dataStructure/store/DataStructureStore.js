@@ -12,12 +12,17 @@ import {
     findDataStructureList
 } from '../api/dataStructureApi';
 
-
+/**
+ * 数据结构
+ */
 export class DataStructureStore {
     @observable dataStructureList = [];
     @observable dataStructureInfo = {};
     @observable totalRecord ;
 
+    /**
+     * 查询数据结构列表
+     */
     @action
     findDataStructureList = async (params) => {
 
@@ -29,6 +34,9 @@ export class DataStructureStore {
         }
     }
 
+    /**
+     * 通过id查询单个数据结构
+     */
     @action
     findDataStructure = async (id) => {
         const param = new FormData();
@@ -42,12 +50,21 @@ export class DataStructureStore {
         }
     }
 
+    /**
+     * 创建数据结构
+     */
     @action
     createDataStructure = async (values) =>  await createDataStructure(values)
 
+    /**
+     * 更新数据结构
+     */
     @action
     updateDataStructure = async (values) =>  await updateDataStructure(values)
 
+    /**
+     * 删除数据结构
+     */
     @action
     deleteDataStructure = async (id) => {
         const param = new FormData();

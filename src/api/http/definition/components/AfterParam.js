@@ -1,16 +1,13 @@
-/*
+import React, {useEffect, useRef, useState} from 'react';
+import { observer, inject } from 'mobx-react';
+import {Button, Form} from 'antd';
+import CodeMirror from "../../../../common/CodeMirror";
+
+/**
  * @Description: 接口定义 后置脚本
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-08 17:42:56
  */
-
-import React, {useEffect, useRef, useState} from 'react';
-import { observer, inject } from 'mobx-react';
-import { AFTERPARAM_STORE } from '../store/ApiRequestStore';
-import {Button, Form} from 'antd';
-import CodeMirror from "../../../../common/CodeMirror";
-
-
 const AfterScript = (props) => {
     const {apiRequestStore }  = props;
     const {createApiRequest, updateApiRequest, findApiRequest} = apiRequestStore;
@@ -32,6 +29,9 @@ const AfterScript = (props) => {
         })
     },[apxMethodId])
 
+    /**
+     * 保存脚本文本数据
+     */
     const save = () =>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()

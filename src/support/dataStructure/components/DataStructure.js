@@ -1,7 +1,3 @@
-/**
- * @description：数据结构页
- * @date: 2021-07-29 09:54
- */
 import React, {useEffect,useState} from 'react'
 import {Input, Popconfirm, Select, Space, Table} from "antd";
 import DataStructureEdit from "./DataStructureEdit";
@@ -12,6 +8,10 @@ import {SearchOutlined} from "@ant-design/icons";
 import {Profile} from "tiklab-eam-ui";
 import IconCommon from "../../../common/IconCommon";
 
+/**
+ * @description：数据结构页
+ * @date: 2021-07-29 09:54
+ */
 const DataStructure = (props) => {
     const {dataStructureStore} = props;
     const {findDataStructureList,deleteDataStructure,dataStructureList} = dataStructureStore;
@@ -87,14 +87,18 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     },[])
 
-    //删除
+    /**
+     *  删除
+     */
     const deleteFn=(id)=>{
         deleteDataStructure(id).then(()=> {
             findDataStructureList({workspaceId: workspaceId})
         })
     }
 
-    //搜索
+    /**
+     * 搜索
+     */
     const onSearch = (e) => {
         let params = {
             name: e.target.value,
@@ -107,7 +111,9 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     }
 
-    //去往模型详情页
+    /**
+     * 去往模型详情页
+     */
     const toModeDetail = (id) =>{
         localStorage.setItem("dataStructureId",id);
 
@@ -115,7 +121,9 @@ const DataStructure = (props) => {
     }
 
 
-    //降序
+    /**
+     * 降序
+     */
     const setSortByDesc = (name) =>{
         let sort = "desc";
 
@@ -130,7 +138,9 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     }
 
-    //升序
+    /**
+     *  升序
+     */
     const setSortByAsc = (name) =>{
         let sort = "asc";
 
@@ -146,7 +156,9 @@ const DataStructure = (props) => {
         findDataStructureList(params)
     }
 
-    //排序切换
+    /**
+     * 排序切换
+     */
     const clickSort = (key) =>{
 
         setToggleSort(!toggleSort);
@@ -173,7 +185,9 @@ const DataStructure = (props) => {
     ]
 
 
-    //渲染筛选项
+    /**
+     * 渲染筛选项
+     */
     const showSortItem = (list) =>{
         return list&&list.map((item=>{
             return (
@@ -204,7 +218,9 @@ const DataStructure = (props) => {
         }))
     }
 
-    //筛选
+    /**
+     * 点击筛选
+     */
     const clickSelect=(type)=>{
         let params = {
             dataType:type,

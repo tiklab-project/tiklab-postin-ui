@@ -9,6 +9,10 @@ import AssertQuickTest from "./AssertQuickTest";
 import RequestTab from "../../common/tableCommon/components/RequestTab";
 import RequestBodyQuickTest from "./RequestBodyQuickTest";
 
+/**
+ * 快捷测试
+ * 请求中的tab
+ */
 const RequestTabQuickTest = (props) =>{
     const {instanceId} = props;
 

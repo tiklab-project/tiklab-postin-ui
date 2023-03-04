@@ -3,6 +3,10 @@ import "./quickTestStyle.scss";
 import LeftNavListQuickTest from "./LeftNavListQuickTest";
 import RightContent from "../../common/RightContent";
 
+/**
+ * 快捷测试
+ * 布局
+ */
 const LayoutQuickTest = (props) =>{
 
     return(

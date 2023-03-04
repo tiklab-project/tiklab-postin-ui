@@ -5,7 +5,10 @@ import MockResponseHeader from './MockResponseHeader';
 import CodeMirror from "../../../../common/CodeMirror";
 const { TabPane } = Tabs;
 
-// 输出参数 请求头部与请求参数的切换
+/**
+ * mock
+ * 响应部分
+ */
 const MockResponse = (props) => {
     const { responseMockStore,responseResultMockStore } = props;
     const { 
@@ -48,6 +51,9 @@ const MockResponse = (props) => {
         updateResponseMock( {bodyType : bodyType})
     };
 
+    /**
+     * 失去焦点，获取更改raw中类型执行
+     */
     const save = () =>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()

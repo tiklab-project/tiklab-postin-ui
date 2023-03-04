@@ -4,8 +4,9 @@ import {inject, observer} from "mobx-react";
 import DocContent from "../../../../common/apiDoc/DocContent";
 import noneImg from "../../../../assets/img/nonedoc.png";
 
-
-
+/**
+ *接口文档公共组件
+ */
 const ApiDoc = (props) =>{
     const {shareStore,targetId} = props
     const {findShareTree} = shareStore;

@@ -11,6 +11,9 @@ import IconBtn from "../../../../common/iconBtn/IconBtn";
 
 const { Option } = Select;
 
+/**
+ * mock详情页
+ */
 const MockDetail = (props) =>{
     const { mockStore, responseMockStore } = props;
     const { findMock, updateMock } = mockStore;
@@ -40,17 +43,17 @@ const MockDetail = (props) =>{
     },[mockId])
 
 
-
+    /**
+     * 改变状态码
+     */
     const onChange = (value) => {
         updateResponseMock({httpCode : value})
     }
 
-    const backToList = () => {
-        props.history.push('/workspace/apis/mock')
-    }
 
-
-    //编辑名字
+    /**
+     * 编辑名字
+     */
     const editName = (value) => {
         let param = {
             http:{id:apxMethodId},
@@ -60,14 +63,23 @@ const MockDetail = (props) =>{
         updateMock(param)
     };
 
+    /**
+     * 去往接口列表页
+     */
     const goToListPage = () =>{
         props.history.push("/workspace/apis/category")
     }
 
+    /**
+     * 去往接口文档页
+     */
     const goToDocPage = () =>{
         props.history.push("/workspace/apis/document")
     }
 
+    /**
+     * 去往mock列表页
+     */
     const goToMockPage = () =>{
         props.history.push("/workspace/apis/mock")
     }

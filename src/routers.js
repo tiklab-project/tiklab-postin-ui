@@ -1,6 +1,6 @@
 
 import React from 'react'
-import PortalHeader from "./home/header/PortalContent"
+import PortalHeader from "./common/header/PortalContent"
 
 import {
     Home, SearchResult,
@@ -22,21 +22,20 @@ import {AuthResult} from "tiklab-eam-ui";
 import TestBoxQuickTest from "./quicktest/components/TestBoxQuickTest";
 import TestBox from "./api/http/test/test/components/ApiTestPage";
 import {Directory, OrgaList, UserGroup, UserList} from "tiklab-user-ui";
-import LoginContent from "./home/login/LoginContent";
-import WorkspaceSetting from "./workspace/workspaceSetting/WorkspaceSetting";
+import LoginContent from "./login/LoginContent";
+import WorkspaceSetting from "./workspace/setting/WorkspaceSetting";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
-// import {MyTodoTask, TaskList, TodoTempList} from "tiklab-todotask-ui";
 import { LogTemplateList, LogTypeList, MyLogList} from "tiklab-oplog-ui";
 import {PluginDetail, PluginList} from "tiklab-plugin-ui";
-import DynamicDetail from "./home/home/DynamicDetail";
+import DynamicDetail from "./home/DynamicDetail";
 import Version from "./setting/version/Version";
 import StructureDetail from "./support/dataStructure/components/StructureDetail";
 import Share from "./api/http/document/components/Share";
 import ShareMain from "./api/http/document/components/ShareMain";
 import ApiDocument from "./api/http/definition/components/ApiDocumentPage";
-import ProxyPage from "./workspace/workspaceSetting/ProxyPage";
-import ApiInitPage from "./workspace/workspaceDetail/ApiInitPage";
+
+import ApiInitPage from "./workspace/common/ApiInitPage";
 import DataStructure from "./support/dataStructure/components/DataStructure";
 
 
@@ -391,10 +390,6 @@ const routers =  [
                                 key:'privilege',
                                 exact: true,
                                 component: WorkspacePrivilege,
-                            },{
-                                path: "/workspace/setting/proxy",
-                                exact: true,
-                                component: ProxyPage,
                             },{
                                 path:"/workspace/setting",
                                 key:'ridworkspaceSetting',

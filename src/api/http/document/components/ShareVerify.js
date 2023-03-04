@@ -3,12 +3,17 @@ import {Button, Input, Space} from "antd";
 import {Axios} from "tiklab-core-ui";
 import verifyImg from "../../../../assets/img/verify.png"
 
+/**
+ * 分享的验证页
+ */
 const ShareVerify  = (props) =>{
     const {setBackVerify,urlId} = props;
 
     const [getPassword, setGetPassword] = useState();
 
-    //验证密码
+    /**
+     * 验证密码
+     */
     const verify =async () =>{
         const param = {
             id:urlId,

@@ -7,6 +7,11 @@ import {
     deleteFormParam
 } from '../api/formParamApi'
 
+/**
+ * 定义
+ * http
+ * formdata store
+ */
 export class FormParamStore {
 
     @observable formParamList = [];
@@ -20,6 +25,9 @@ export class FormParamStore {
         this.formParamList = [...values]
     }
 
+    /**
+     * 查询form列表
+     */
     @action
     findFormParamList = async (id) => {
         this.apxMethodId = id;
@@ -42,6 +50,9 @@ export class FormParamStore {
         }
     }
 
+    /**
+     * 通过id查询单个formdata
+     */
     @action
     findFormParam = async (id) => {
         const param = new FormData();
@@ -54,7 +65,9 @@ export class FormParamStore {
         }
     }
 
-
+    /**
+     * 创建formdata
+     */
     @action
     createFormParam = async (values) => {
         values.http = {id: this.apxMethodId}
@@ -65,6 +78,9 @@ export class FormParamStore {
         }
     }
 
+    /**
+     * 更新formdata
+     */
     @action
 	updateFormParam = async (values) => {
 		const res = await updateFormParam(values)
@@ -73,6 +89,9 @@ export class FormParamStore {
         }
     }
 
+    /**
+     * 删除formdata
+     */
     @action
 	deleteFormParam = async (id) => {
         const param = new FormData();

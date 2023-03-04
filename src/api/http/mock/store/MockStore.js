@@ -7,12 +7,18 @@ import {
     findMockPage
 } from '../api/mockApi';
 
+/**
+ * mock store
+ */
 export class MockStore {
     @observable mockList = [];
     @observable apxMethodId='';
     @observable mockInfo=[];
     @observable totalRecord = ''
 
+    /**
+     * 查询mock列表
+     */
     @action
     findMockPage = async (id,value)=>{
         const params ={
@@ -27,6 +33,9 @@ export class MockStore {
         }
     }
 
+    /**
+     * 创建mock
+     */
     @action
     createMock = async (values) => {
         const res = await createMock(values)
@@ -35,6 +44,9 @@ export class MockStore {
         }
     }
 
+    /**
+     * 更新mock
+     */
     @action
     updateMock = async (values) => {
         const res = await updateMock(values)
@@ -43,6 +55,9 @@ export class MockStore {
         }
     }
 
+    /**
+     * 删除mock
+     */
     @action
     deleteMock = async (id) => {
         const param = new FormData();
@@ -54,6 +69,9 @@ export class MockStore {
         }
     }
 
+    /**
+     * 通过id查询单个mock
+     */
     @action
     findMock = async (id) => {
         const param = new FormData();

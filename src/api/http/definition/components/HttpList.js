@@ -7,7 +7,9 @@ import MethodType from "../../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
 import CategoryDocDrawer from "../../../../category/components/CategoryDocDrawer";
 
-// 点击左侧导航栏目录，查看的所在目录中的接口
+/**
+ * 点击左侧导航栏目录，查看的所在目录中的接口列表
+ */
 const HttpList = (props) => {
     const {categoryStore, apxMethodStore} = props;
     const {findCategoryList} = categoryStore;
@@ -84,7 +86,9 @@ const HttpList = (props) => {
     const categoryId =  localStorage.getItem('categoryId');
     const workspaceId = localStorage.getItem('workspaceId');
 
-    //保存接口id，并跳往接口页面
+    /**
+     * 保存接口id，并跳往接口页面
+     */
     const setLocalStorage = (record) => {
         localStorage.setItem("apxMethodId",record.id)
 
@@ -95,7 +99,9 @@ const HttpList = (props) => {
         findApxMethodListByApix(categoryId);
     },[categoryId,params])
 
-    //删除
+    /**
+     * 删除接口
+     */
     const deleteMethod = (id) =>{
         deleteApxMethod(id).then(()=> {
             findApxMethodListByApix(categoryId);
@@ -103,6 +109,9 @@ const HttpList = (props) => {
         })
     }
 
+    /**
+     * 搜索接口
+     */
     const onSearch = (e) => {
         setCurrentPage(1)
         let newParams = {
@@ -121,8 +130,6 @@ const HttpList = (props) => {
             }
         }
         setParams(newParams)
-
-
 
     }
 

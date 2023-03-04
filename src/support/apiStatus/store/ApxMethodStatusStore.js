@@ -9,6 +9,9 @@ import {
     findApiStatusList
 } from '../api/apxMethodStatus'
 
+/**
+ * 接口状态 store
+ */
 export class ApxMethodStatusStore {
 
     @observable apiStatusList = [];
@@ -29,7 +32,9 @@ export class ApxMethodStatusStore {
         this.apiStatusList = [...list];
     }
 
-    //根据查询对象按分页查询接口列表
+    /**
+     * 根据查询对象按分页查询接口列表
+     */
     @action
     findApiStatusPage = async (value) => {
         this.params = {
@@ -44,6 +49,9 @@ export class ApxMethodStatusStore {
         }
     }
 
+    /**
+     * 查询列表
+     */
     @action
     findApiStatusList = async (param) => {
         this.params = {
@@ -57,7 +65,9 @@ export class ApxMethodStatusStore {
         }
     }
 
-    //通过id查找
+    /**
+     * 通过id查询单个接口状态
+     */
     @action
     findApiStatus = async (id) => {
         this.apiStatusId=id;
@@ -71,13 +81,15 @@ export class ApxMethodStatusStore {
         }
     }
 
-    //创建接口
+    /**
+     * 创建接口状态
+     */
     @action
     createApiStatus = async (values) =>  await createApiStatus(values);
 
-      
-
-    //更新接口
+    /**
+     * 更新接口状态
+     */
     @action
     updateApiStatus = async (values) => {
         values.id = this.apiStatusId;
@@ -89,7 +101,9 @@ export class ApxMethodStatusStore {
         }
     }
 
-    //接口删除
+    /**
+     * 删除接口状态
+     */
     @action
     deleteApiStatus = async (id) => {
         const param = new FormData();

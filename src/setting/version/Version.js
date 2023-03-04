@@ -2,7 +2,9 @@ import React from "react";
 import {Version as VersionCom} from "tiklab-licence-ui";
 import {Table} from "antd";
 
-
+/**
+ * 版本
+ */
 const Version = (props) =>{
     const columns = [
         {

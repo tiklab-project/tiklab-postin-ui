@@ -1,7 +1,6 @@
-
 import React, { useEffect, useState} from 'react';
 import './workspace.scss';
-import {Input, Space} from "antd";
+import {Input} from "antd";
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 import WorkspaceEdit from "./WorkspaceEdit";
@@ -10,12 +9,13 @@ import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
 import WorkspaceRecentHome from "./WorkspaceRecentHome";
 
-//空间页
+/**
+ * 空间页
+ */
 const Workspace = (props) => {
     const {workspaceStore} = props;
 
     const {findWorkspaceList,findWorkspaceJoinList,findWorkspaceFollowList} = workspaceStore;
-
 
     const userId = getUser().userId;
     const [selectItem, setSelectItem] = useState("all");
@@ -40,8 +40,9 @@ const Workspace = (props) => {
         }
     ];
 
-
-    //渲染筛选项
+    /**
+     * 渲染筛选项
+     */
     const showMenu = (data) =>{
         return data&&data.map(item=>{
             return(
@@ -61,21 +62,27 @@ const Workspace = (props) => {
         findList()
     },[])
 
-    //点击筛选项查找
+    /**
+     * 点击筛选项查找
+     */
     const selectKeyFun = (item)=>{
         setSelectItem(item.key)
 
         findList({},item.key)
     }
 
-    //搜索空间
+    /**
+     * 搜索空间
+     */
     const onSearch = (e) =>{
         let name = {workspaceName:e.target.value}
 
         findList(name)
     }
 
-    //根据不同的筛选项查找
+    /**
+     * 根据不同的筛选项查找
+     */
     const findList = (name,selectIndex)=>{
         let uId = {userId:userId}
 
@@ -102,8 +109,6 @@ const Workspace = (props) => {
             //     break;
         }
     }
-
-
 
     return(
         <div style={{"height":"100%",overflow:"auto"}}>

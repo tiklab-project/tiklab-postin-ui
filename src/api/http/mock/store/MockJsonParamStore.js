@@ -7,6 +7,10 @@ import {
     deleteJsonParamMock 
 } from '../api/mockJsonParamApi';
 
+/**
+ * mock
+ * json store
+ */
 export class MockJsonParamStore {
 
     @observable mockJsonParamList = [];
@@ -15,11 +19,17 @@ export class MockJsonParamStore {
     @observable mockId = '';
     @observable dataLength;
 
+    /**
+     * 获取新的list
+     */
     @action 
     setList = (values) => {
         this.mockJsonParamList = [...values]
     }
 
+    /**
+     * 查询json列表
+     */
     @action
     findJsonParamMockList = async (id) => {
         this.mockId = id;
@@ -41,6 +51,9 @@ export class MockJsonParamStore {
         }
     }
 
+    /**
+     * 通过id查询单个json
+     */
     @action
     findJsonParamMock = async (id) => {
         const param = new FormData();
@@ -52,6 +65,9 @@ export class MockJsonParamStore {
         }
     }
 
+    /**
+     * 创建json
+     */
     @action
     createJsonParamMock = async (values) => {
         values.mock ={id: this.mockId};
@@ -61,6 +77,9 @@ export class MockJsonParamStore {
         }
     }
 
+    /**
+     * 更新json
+     */
     @action
 	updateJsonParamMock = async (values) => {
         const res = await updateJsonParamMock(values);
@@ -69,6 +88,9 @@ export class MockJsonParamStore {
         }
     }
 
+    /**
+     * 删除json
+     */
     @action
 	deleteJsonParamMock = async (id) => {
         const param = new FormData();

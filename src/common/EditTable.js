@@ -6,10 +6,14 @@ import React, {useEffect, useState, useRef, useContext} from 'react';
 import {Form, Input, Table} from "antd";
 
 
-// 共享父组件的值
+/**
+ * 共享父组件的值
+ */
 const EditableContext = React.createContext();
 
-// 可编辑行
+/**
+ * 可编辑行
+ */
 const EditableRow = ({ index, ...props }) => {
     const [form] = Form.useForm();
     return (
@@ -21,7 +25,9 @@ const EditableRow = ({ index, ...props }) => {
     );
 };
 
-// 可编辑单元格
+/**
+ *可编辑单元格
+ */
 const EditableCell = ({
           title,
           editable,
@@ -85,7 +91,9 @@ const EditableCell = ({
 };
 
 
-// 覆盖默认的 table 元素
+/**
+ * 覆盖默认的 table 元素
+ */
 const components = {
     body: {
         row: EditableRow,
@@ -93,7 +101,9 @@ const components = {
     },
 };
 
-// 表格列的配置,是否可编辑
+/**
+ * 表格列的配置,是否可编辑
+ */
 const column = (columns,handleSave) => {
     return columns.map((col) => {
         if (!col.editable) {
@@ -111,7 +121,6 @@ const column = (columns,handleSave) => {
         };
     });
 }
-
 
 
 const ExTable = (props) => {

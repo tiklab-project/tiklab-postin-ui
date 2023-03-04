@@ -7,6 +7,11 @@ import CodeMirror from "../../../../common/CodeMirror";
 
 const { Option } = Select;
 
+/**
+ * 定义
+ * http
+ * 请求体中raw
+ */
 const RawParam = (props) => {
     const { rawParamStore }  = props;
     const { 
@@ -42,20 +47,27 @@ const RawParam = (props) => {
         })
     },[apxMethodId])
 
+    /**
+     * 下拉框展示
+     */
     const showSelectItem = (data)=>{
         return data&&data.map(item=>{
             return  <Option value={item.value} key={item.key}>{item.value}</Option>
         })
     }
 
-    //更改raw中的类型
+    /**
+     * 更改raw中的类型
+     */
     const changeType = (type)=>{
         typeRef.current=type
         setTypeValue(typeRef.current)
         save()
     }
 
-    //失去焦点，获取更改raw中类型执行
+    /**
+     * 失去焦点，获取更改raw中类型执行
+     */
     const save = ()=>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()

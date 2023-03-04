@@ -7,7 +7,10 @@ import IconCommon from "../../../../../common/IconCommon";
 import {toJS} from "mobx";
 import {ExTable} from "../../../../../common/EditTable";
 
-// 请求参数的可编辑表格
+/**
+ * 测试页
+ * 请求头
+ */
 const RequestHeader = (props) =>{
     const { requestHeaderTestStore } = props;
 
@@ -16,7 +19,6 @@ const RequestHeader = (props) =>{
         deleteList,
         requestHeaderTestList,
     } = requestHeaderTestStore;
-
 
     let columns= [
         {
@@ -62,8 +64,9 @@ const RequestHeader = (props) =>{
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave =  (row) => {
         let newData = requestHeaderTestList;
         //获取当前行对应的下标

@@ -4,6 +4,10 @@ import {getUser} from "tiklab-core-ui";
 import {Button, message, Upload} from "antd";
 import {UploadOutlined} from "@ant-design/icons";
 
+/**
+ * 测试页
+ * binary
+ */
 const TestBinaryParam = (props) => {
     const {binaryParamStore} = props;
     const {findBinaryParamList,createBinaryParam,deleteBinaryParam,findBinaryParamByte} = binaryParamStore;

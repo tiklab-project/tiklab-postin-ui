@@ -1,8 +1,3 @@
-/**
- * @description：
- * @date: 2021-07-29 18:24
- */
-
 import { observable,  action } from "mobx";
 import {
     findEnumParamListDS,
@@ -12,10 +7,16 @@ import {
     deleteEnumParamDS,
 } from '../api/enumParamApi'
 
+/**
+ * 枚举结构 store
+ */
 export class EnumParamDSStore {
 
     @observable enumParamDSList = [];
 
+    /**
+     * 查询枚举结构列表
+     */
     @action
     findEnumParamDSList = async (id) => {
         const params = {
@@ -34,6 +35,9 @@ export class EnumParamDSStore {
         }
     }
 
+    /**
+     * 通过id查询单个枚举结构
+     */
     @action
     findEnumParamDS = async (id) => {
         const param = new FormData();
@@ -45,13 +49,21 @@ export class EnumParamDSStore {
         }
     }
 
-
+    /**
+     * 创建枚举结构
+     */
     @action
     createEnumParamDS = async (values) => await createEnumParamDS(values)
 
+    /**
+     * 更新枚举结构
+     */
     @action
     updateEnumParamDS = async (values) => await updateEnumParamDS(values)
 
+    /**
+     * 删除枚举结构
+     */
     @action
     deleteEnumParamDS = async (id) => {
         const param = new FormData();

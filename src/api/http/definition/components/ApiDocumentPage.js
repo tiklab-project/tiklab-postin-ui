@@ -10,6 +10,9 @@ import IconBtn from "../../../../common/iconBtn/IconBtn";
 import {Breadcrumb, Space} from "antd";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 
+/**
+ * 接口文档页面
+ */
 const ApiDocumentPage = (props) =>{
     const {apxMethodStore} = props;
     const { findApxMethod } = apxMethodStore;
@@ -23,20 +26,30 @@ const ApiDocumentPage = (props) =>{
         setApiDoc(res)
     },[apxMethodId])
 
-
-
+    /**
+     * 去往编辑页
+     */
     const toEditPage = () =>{
         props.history.push("/workspace/apis/edit")
     }
 
+    /**
+     * 去往测试页
+     */
     const toTestPage = () =>{
         props.history.push("/workspace/apis/test")
     }
 
+    /**
+     * 去往mock页
+     */
     const toMockPage = () =>{
         props.history.push("/workspace/apis/mock")
     }
 
+    /**
+     * 去往列表页
+     */
     const goBack = () =>{
         props.history.push("/workspace/apis/category")
     }

@@ -7,7 +7,9 @@ import copyMockUrl from "../../../../common/copyLink";
 import {Profile} from "tiklab-eam-ui";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 
-// 接口的Mock
+/**
+ * 接口的Mock列表页
+ */
 const Mock = (props) => {
     const { mockStore } = props
     const { findMockPage, deleteMock,updateMock, mockList } = mockStore
@@ -86,6 +88,9 @@ const Mock = (props) => {
         findMockPage(apxMethodId)
     },[apxMethodId])
 
+    /**
+     * 列表中的是否可以切换
+     */
     const changeEnable = (e,record) => {
         if(e===true){
             record.enable=1;
@@ -95,25 +100,35 @@ const Mock = (props) => {
         updateMock(record).then(()=>findMockPage(apxMethodId))
     }
 
+    /**
+     * 去往mock详情页
+     */
     const setLocalStorage = (mockId,id) => {
         localStorage.setItem(mockId,id)
         props.history.push('/workspace/apis/mock-detail')
     }
 
-    let mockUrl ;
+    /**
+     * 去往接口列表页
+     */
+    const goToListPage = () =>{
+        props.history.push("/workspace/apis/category")
+    }
+
+    /**
+     * 去往接口文档页
+     */
+    const goToDocPage = () =>{
+        props.history.push("/workspace/apis/document")
+    }
+
+
+    let mockUrl;
 
     if(base_url==="/"){
         mockUrl = `${window.location.origin}/mockx/`+workspaceId;
     }else {
         mockUrl = `${base_url}/mockx/`+workspaceId;
-    }
-
-    const goToListPage = () =>{
-        props.history.push("/workspace/apis/category")
-    }
-
-    const goToDocPage = () =>{
-        props.history.push("/workspace/apis/document")
     }
 
     return (

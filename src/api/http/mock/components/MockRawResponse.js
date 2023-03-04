@@ -6,6 +6,10 @@ import {Input, Button, Form, Select} from 'antd';
 const { TextArea } = Input;
 const { Option } = Select;
 
+/**
+ * mock
+ * 响应中 raw文本
+ */
 const RawResponseMock = (props) => {
     
     const { mockRawResponseStore,radioValue }  = props;
@@ -34,6 +38,7 @@ const RawResponseMock = (props) => {
         })
     },[radioValue])
 
+    // 保存数据
     const onFinish = (values) => {
         if(mockRawResponseInfo){
             updateRawResponseMock(values)

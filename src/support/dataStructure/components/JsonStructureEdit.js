@@ -6,6 +6,9 @@ import IconCommon from "../../../common/IconCommon";
 const {TextArea} = Input
 const {Option} = Select;
 
+/**
+ * json 添加 编辑
+ */
 const JsonStructureEdit = (props) =>{
     const {jsonParamDSStore,dataItemId,dataStructureId} = props;
     const {

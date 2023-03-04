@@ -5,12 +5,20 @@ import {
     updateRawParam
 } from '../api/rawParamApi';
 
+/**
+ * 定义
+ * http
+ * raw store
+ */
 export class RawParamStore {
 
     @observable rawParamInfo;
     @observable apxMethodId;
     @observable rawParamId;
 
+    /**
+     * 通过id查询单个raw
+     */
     @action
     findRawParam = async (id) => {
         this.apxMethodId = id;
@@ -26,6 +34,9 @@ export class RawParamStore {
         }
     }
 
+    /**
+     * 创建raw
+     */
     @action
     createRawParam = async (values) => {
         values.http = {id:this.apxMethodId}
@@ -34,6 +45,9 @@ export class RawParamStore {
         await createRawParam(values);
     }
 
+    /**
+     * 更新raw
+     */
     @action
 	updateRawParam = async (values) => {
         values.http = {id: this.apxMethodId}

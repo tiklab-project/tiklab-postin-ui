@@ -5,6 +5,10 @@ import { toJS } from 'mobx';
 import { Input, Button, Form } from 'antd';
 const { TextArea } = Input;
 
+/**
+ * mock
+ * 响应json
+ */
 const MockJsonResponse = (props) => {
     const { mockJsonResponseStore }  = props;
 

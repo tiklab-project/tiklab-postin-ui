@@ -9,6 +9,9 @@ import copyMockUrl from "../../../../common/copyLink";
 
 const {Option} = Select;
 
+/**
+ * 分享的弹框组件
+ */
 const ShareModal  = (props) =>{
     const {shareStore,targetId,targetType} = props;
     const {findShare,createShare,updateShare} =shareStore
@@ -19,6 +22,9 @@ const ShareModal  = (props) =>{
     const [shareUrl, setShareUrl] = useState();
     const [visible, setVisible] = useState(false);
 
+    /**
+     * 展示分享弹框
+     */
     const showModal = async () =>{
         //通过当前id，进行md5，设置为分享的Id
         let code  = md5(targetId)
@@ -49,7 +55,9 @@ const ShareModal  = (props) =>{
         setVisible(true)
     }
 
-
+    /**
+     * 参数改变保存数据库
+     */
     const changeType = (type) =>{
         setVisibility(type);
 
@@ -75,6 +83,7 @@ const ShareModal  = (props) =>{
 
     }
 
+    // 改变密码
     const changePassword = (value) =>{
         let param = {
             id:code,
@@ -88,6 +97,7 @@ const ShareModal  = (props) =>{
     }
 
 
+    // 展示目标名称
     const showTargetName = (type) =>{
 
         switch (type) {
@@ -102,9 +112,14 @@ const ShareModal  = (props) =>{
     }
 
 
-    // 弹框关闭
+    /**
+     *  弹框关闭
+     */
     const onCancel = () => setVisible(false)
 
+    /**
+     * 展示分享的按钮效果
+     */
     const showClickView = () =>{
         if(props.btn){
             return <IconBtn

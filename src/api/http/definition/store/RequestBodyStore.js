@@ -5,12 +5,20 @@ import {
     updateRequestBody
 } from '../api/requestBodyApi';
 
+/**
+ * 定义
+ * http
+ * 请求体 store
+ */
 export class RequestBodyStore {
     @observable requestbodyType = '';
     @observable apxMethodId = '';
     @observable requestBodyId = "";
     @observable bodyType;
 
+    /**
+     * 通过id查询单个请求体
+     */
     @action
     findRequestBody = async (id) => {
         this.apxMethodId = id;
@@ -27,6 +35,9 @@ export class RequestBodyStore {
         }
     }
 
+    /**
+     * 创建请求体
+     */
     @action
     createRequestBody = async (values) => {
         values.http = {id: this.apxMethodId}
@@ -35,6 +46,9 @@ export class RequestBodyStore {
         await createRequestBody(values);
     }
 
+    /**
+     * 更新请求体
+     */
     @action
 	updateRequestBody = async (values) => {
         values.http = {id: this.apxMethodId}

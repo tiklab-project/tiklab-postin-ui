@@ -1,6 +1,8 @@
 import React from "react";
 
-//响应后的一些信息：状态码、时间、大小
+/**
+ * 响应后的一些信息：状态码、时间、大小
+ */
 const ResponseInfo = (props)=>{
     let {status,time,size} = props;
 

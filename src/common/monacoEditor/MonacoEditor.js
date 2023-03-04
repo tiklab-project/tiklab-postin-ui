@@ -1,6 +1,9 @@
 import React, {useEffect, useRef} from "react";
 import * as monaco from "monaco-editor";
 
+/**
+ * monaco文本框
+ */
 const MonacoEditor = (props) =>{
     const {
         language="json",
@@ -16,6 +19,9 @@ const MonacoEditor = (props) =>{
         init ();
     }, []);
 
+    /**
+     * 配置
+     */
     const init  = () => {
         if(monacoEditorDomRef.current){
             monacoEditor = monaco.editor.create(monacoEditorDomRef.current, {
@@ -49,15 +55,6 @@ const MonacoEditor = (props) =>{
             monacoEditor.dispose()
         }
     }
-
-
-
-    // monacoEditor.onDidChangeModelContent(() => {
-    //     let newValue = monacoEditor.getValue();
-    //     console.log(newValue)
-    //     setEditorValue(newValue)
-    // });
-
 
 
     return(

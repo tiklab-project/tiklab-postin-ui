@@ -1,6 +1,9 @@
 import React from "react";
 import EdiText from "react-editext";
 
+/**
+ * 单个字段可编辑文本
+ */
 const EdiTextToggle = (props)=>{
     let  {value,tabIndex,save} = props
 

@@ -6,7 +6,11 @@ const {Option} = Select
 
 const httpCodes = [200,201,403,404,410,422,500,502,503,504]
 
-// 添加
+/**
+ * 定义
+ * http
+ * 响应中Tab添加
+ */
 const ResponseTabEdit =(props)=>{
     const { apiResponseStore,setActiveKey ,apxMethodId,apiResponseId} = props;
     const {findApiResponseList, createApiResponse,findApiResponse, updateApiResponse} = apiResponseStore;
@@ -15,7 +19,9 @@ const ResponseTabEdit =(props)=>{
     const [allData, setAllData] = useState();
     const [form] = Form.useForm();
 
-    // 弹框展示
+    /**
+     * 弹框展示
+     */
     const showModal = async () => {
         if(props.type==="edit"){
             let res = await findApiResponse(apiResponseId)
@@ -26,10 +32,14 @@ const ResponseTabEdit =(props)=>{
         setVisible(true)
     }
 
-    // 收起弹框
+    /**
+     * 收起弹框
+     */
     const hideModal = () => setVisible(false)
 
-    // 弹框提交
+    /**
+     * 弹框提交
+     */
     const onFinish = async () => {
         let values = await form.validateFields();
         values.httpId =  apxMethodId
@@ -55,7 +65,9 @@ const ResponseTabEdit =(props)=>{
         setVisible(false)
     };
 
-    //展示组件
+    /**
+     * 展示组件
+     */
     const showView = () =>{
         if(props.type==="edit"){
             return <span onClick={showModal}>编辑</span>

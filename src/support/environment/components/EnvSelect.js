@@ -5,6 +5,9 @@ import EvnMana from "./Environment";
 
 const { Option } = Select;
 
+/**
+ * 环境选择
+ */
 const EnvSelect = (props) =>{
     const { environmentStore} = props;
 
@@ -19,13 +22,18 @@ const EnvSelect = (props) =>{
     },[])
 
 
-    // 选择测试环境 input框呈现相应的地址
+    /**
+     * 选择测试环境 input框呈现相应的地址
+     */
     const onSelectChange = (value) => {
         // setSelectEnv(value)
         getTestEnvUrl(value)
 
     }
 
+    /**
+     * 渲染环境选项
+     */
     const showOption = (data)=>{
 
         return data&&data.map(item=>{

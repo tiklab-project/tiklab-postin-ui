@@ -9,7 +9,9 @@ import {getHeader, getQuery} from "../../api/http/test/common/dtAction";
 import axiosIns from "../utils/localrequest";
 
 
-//发送测试 数据处理
+/**
+ * 发送测试之前数据处理
+ */
 export const sendTestDataProcess=(data,preParamTestInfo)=>{
 
     //header
@@ -47,7 +49,10 @@ export const sendTestDataProcess=(data,preParamTestInfo)=>{
 }
 
 
-//发送测试
+/**
+ * 本地
+ * 发送测试
+ */
 export const sendTest=async (data)=>{
 
     // 请求前的毫秒数
@@ -135,9 +140,12 @@ const processResponse = (res) =>{
 
 
 
-//Proxy send test
 
-//发送测试
+
+/**
+ * request接口代理发送测试
+ * Proxy send test
+ */
 export const localProxySendTest=async (proxyPath,data)=>{
     //request接口 请求头
     let fetchHeaders;
@@ -216,7 +224,9 @@ export const localProxySendTest=async (proxyPath,data)=>{
 }
 
 
-//把当前请求的接口基础信息放到query参数里请求，转换成query字符参数?a=b&c=d
+/**
+ * 把当前请求的接口基础信息放到query参数里请求，转换成query字符参数?a=b&c=d
+ */
 const processPiHeader = (queryHeader,data) =>{
     //头部
     let queryHeaderStr = Object.entries(queryHeader).map(([key, value]) => `${key}:${value}`).join(",");
@@ -229,10 +239,9 @@ const processPiHeader = (queryHeader,data) =>{
 }
 
 
-
-
-
-//获取相应的请求体数据
+/**
+ * 获取相应的请求体数据
+ */
 const bodySwitch = (data,headers) =>{
 
     switch (data.bodyType) {
@@ -251,13 +260,17 @@ const bodySwitch = (data,headers) =>{
     }
 }
 
-//获取formdata数据
+/**
+ * 获取formdata数据
+ */
 const formData = (data,headers)=>{
     headers['Content-Type']='multipart/form-data';
     return testFunctionCommon.formData(data)
 }
 
-//获取formUrlencoded数据
+/**
+ * 获取formUrlencoded数据
+ */
 const formUrlencoded = (data,headers) =>{
     headers['Content-Type']='application/x-www-form-urlencoded';
     let formUrlencoded =testFunctionCommon.transData(data);
@@ -265,13 +278,17 @@ const formUrlencoded = (data,headers) =>{
     return qs.stringify(formUrlencoded);
 }
 
-//获取json数据
+/**
+ * 获取json数据
+ */
 const json = (data,headers) =>{
     headers['Content-Type']='application/json';
     return testFunctionCommon.jsonData(data)
 }
 
-//获取相应的raw数据
+/**
+ * 获取相应的raw数据
+ */
 const rawSwitch = (data,headers) =>{
     switch (data&&data.type){
         case rawTypeJson.text:

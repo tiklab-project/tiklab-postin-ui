@@ -7,7 +7,9 @@ import PreParam from './PreParam';
 import AfterScript from './AfterParam';
 
 
-// 输入参数
+/**
+ * 请求中的tab组件
+ */
 const Request = (props) => {
 
 

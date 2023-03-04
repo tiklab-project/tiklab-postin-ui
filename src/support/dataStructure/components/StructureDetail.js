@@ -5,7 +5,9 @@ import {inject, observer} from "mobx-react";
 import DetailHeader from "../../../common/DetailHeader";
 import IconCommon from "../../../common/IconCommon";
 
-
+/**
+ * 结构页详情
+ */
 const StructureDetail = (props) => {
     const {dataStructureStore} = props
     const {findDataStructure} = dataStructureStore
@@ -23,7 +25,9 @@ const StructureDetail = (props) => {
     },[])
 
 
-    //根据dataType切换
+    /**
+     * 根据dataType切换
+     */
     const changeType = (data) => {
         switch(data) {
             case 'enum':
@@ -35,6 +39,9 @@ const StructureDetail = (props) => {
         }
     }
 
+    /**
+     * 去往结构列表页
+     */
     const backToList =() =>{
         props.history.push("/workspace/dataStructure")
     }

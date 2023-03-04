@@ -7,27 +7,42 @@ import {
 	findEnvironmentList
 } from '../api/environmentApi';
 
+/**
+ * 接口环境 store
+ */
 export class EnvironmentStore {
 	@observable environmentList = [];
 	@observable envSourceList = [];
 	@observable dataLength;
 	@observable testEnvUrl;
 
+	/**
+	 * 获取 url
+	 */
 	@action
 	getTestEnvUrl=(url)=>{
 		this.testEnvUrl=url
 	}
 
+	/**
+	 * 设置环境列表
+	 */
 	@action
 	setList = (values) => {
 		this.environmentList = [...values]
 	}
 
+	/**
+	 * 添加接口环境
+	 */
 	@action
 	addNewList = (list) => {
 		this.environmentList = [...list];
 	}
 
+	/**
+	 * 查询接口环境列表
+	 */
 	@action
 	findEnvironmentList= async ()=>{
 		const params = {
@@ -50,7 +65,9 @@ export class EnvironmentStore {
 		}
 	}
 
-
+	/**
+	 * 删除接口环境
+	 */
 	@action
 	deleteEnvironment =async (id) => {
 		const param = new FormData();
@@ -63,6 +80,9 @@ export class EnvironmentStore {
 
 	}
 
+	/**
+	 * 创建接口环境
+	 */
     @action
 	createEnvironment = async (values) => {
 		const res = await createEnvironment(values)
@@ -72,6 +92,9 @@ export class EnvironmentStore {
 
 	}
 
+	/**
+	 * 更新接口环境
+	 */
 	@action
 	updateEnvironment = async (values) => {
 		const res = await updateEnvironment(values)
@@ -80,6 +103,9 @@ export class EnvironmentStore {
 		}
 	}
 
+	/**
+	 * 通过id查询单个接口环境
+	 */
 	@action
 	findEnvironment = (id) => {
 		const param = new FormData();

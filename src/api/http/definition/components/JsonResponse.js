@@ -1,8 +1,4 @@
-/*
- * @Description: 返回结果中Json的可编辑表格
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-08 17:58:08
- */
+
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import { Table, Tooltip, Select, Space,Checkbox } from 'antd';
@@ -12,6 +8,11 @@ import {dataTypeDictionary, mockValueDictionary} from '../../../../common/dictio
 import ExSelect from "../../../../common/ExSelect";
 import DataTypeSelect from "../../../../common/DataTypeSelect";
 
+/**
+ * @Description: 返回结果中Json的可编辑表格
+ * @Author: sunxiancheng
+ * @LastEditTime: 2021-05-08 17:58:08
+ */
 const JsonResponse = (props) => {
     const { jsonResponseStore, radioValue } = props;
     const {
@@ -96,7 +97,9 @@ const JsonResponse = (props) => {
         findJsonResponseListTree(apxMethodId)
     },[radioValue])
 
-    // 表格checked
+    /**
+     * 表格checked
+     */
     const toggleChecked= (e,row)=> {
         let checked = '';
         if(e.target.checked){
@@ -111,8 +114,9 @@ const JsonResponse = (props) => {
         handleSave(data)
     }
 
-
-    // 点击子按钮，添加子行
+    /**
+     * 点击子按钮，添加子行
+     */
     const addChild = (dataType,  parentid) => {
         if(dataType === 'object'){
             // 调用store,显示子行
@@ -120,7 +124,9 @@ const JsonResponse = (props) => {
         }
     }
 
-    // 点击保存按钮，添加
+    /**
+     *  点击保存按钮，添加
+     */
     const onCreated = (data) => {
         const values = data;
         delete values.id;
@@ -131,7 +137,9 @@ const JsonResponse = (props) => {
 
     }
 
-    // 添加下一行
+    /**
+     * 添加下一行
+     */
     const handleAdd = () => {
         const newData = [{
             id: count
@@ -141,7 +149,10 @@ const JsonResponse = (props) => {
     };
 
 
-    // 递归数据
+
+    /**
+     * 递归数据
+     */
     const loop = (data, result=[], row) => {
         const parentId = row.parent && row.parent.id;
         // 没有parentid
@@ -174,7 +185,9 @@ const JsonResponse = (props) => {
     }
 
 
-    // 编辑单元格，保存数据
+    /**
+     * 编辑单元格，保存数据
+     */
     const handleSave = (row) => {
         let result = loop(toJS(jsonResponseList), [], row)
         setList(result)

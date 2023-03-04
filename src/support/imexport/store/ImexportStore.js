@@ -4,8 +4,14 @@ import {
     importReport
 } from "../api/imexportApi"
 
+/**
+ * 导入导出 store
+ */
 export class ImexportStore{
 
+    /**
+     * 导入
+     */
     @action
     importData = (values)=>{
         const params = new FormData();
@@ -23,11 +29,17 @@ export class ImexportStore{
 
     }
 
+    /**
+     * 导入postman
+     */
     @action
     importPostman = async (values) =>{
         await importPostman(values);
     }
 
+    /**
+     * 导入上报
+     */
     @action
     importReport = async (values) =>{
         await importReport(values);

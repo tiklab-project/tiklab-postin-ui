@@ -1,9 +1,3 @@
-/*
- * @Description: 空间store
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-24 09:53:09
- */
-
 import { observable,  action } from "mobx";
 import { 
 	deleteWorkspaceFollow,
@@ -13,10 +7,16 @@ import {
 	findWorkspaceFollowPage
 } from '../api/workspaceFollowApi';
 
+/**
+ * 空间关注 store
+ */
 export class WorkspaceFollowStore {
 	@observable followList = [];
 	@observable totalRecord;
-	
+
+	/**
+	 * 获取带分页的空间关注列表
+	 */
 	@action
 	findWorkspaceFollowPage = async (value) => {
 		this.pageParams = {
@@ -31,6 +31,9 @@ export class WorkspaceFollowStore {
 		}
 	}
 
+	/**
+	 * 获取空间关注列表
+	 */
 	@action
 	findWorkspaceFollowList = async (value) => {
 		this.params = {
@@ -45,8 +48,9 @@ export class WorkspaceFollowStore {
 		}
 	}
 
-
-	// 删除
+	/**
+	 * 删除空间关注
+	 */
 	@action
 	deleteWorkspaceFollow = async (id) => {
 		const param = new FormData();
@@ -58,11 +62,15 @@ export class WorkspaceFollowStore {
 
 	}
 
-	// 新建
+	/**
+	 * 创建空间关注
+	 */
 	@action
 	createWorkspaceFollow = async (values) => await createWorkspaceFollow(values);
 
-	//更新
+	/**
+	 * 更新空间关注
+	 */
 	@action
 	updateWorkspaceFollow = async (values) => await updateWorkspaceFollow(values);
 

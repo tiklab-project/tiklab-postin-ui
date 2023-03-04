@@ -5,7 +5,10 @@ import {bodyTypeDictionary, bodyTypeJsonDictionary as bodyTypeJson} from "../../
 
 const { TabPane } = Tabs;
 
+/**
+ * 请求的tab
 
+ */
 const RequestTabCommon = (props) => {
     const { bodyType,getBodyType } = props;
 

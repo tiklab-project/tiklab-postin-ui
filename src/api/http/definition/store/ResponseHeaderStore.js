@@ -7,6 +7,11 @@ import {
     deleteResponseHeader
 } from '../api/responseHeaderApi';
 
+/**
+ * 定义
+ * http
+ * 响应头 store
+ */
 export class ResponseHeaderStore {
     @observable responseHeaderList = [];
     @observable responseHeaderInfo;
@@ -14,11 +19,17 @@ export class ResponseHeaderStore {
     @observable apxMethodId = '';
     @observable dataLength = '';
 
+    /**
+     * 获取新的list
+     */
     @action
     setList = (values) => {
         this.responseHeaderList = [...values]
     }
 
+    /**
+     * 查询响应头列表
+     */
     @action
     findResponseHeaderList = async (id) => {
         this.apxMethodId = id;
@@ -43,6 +54,9 @@ export class ResponseHeaderStore {
         }
     }
 
+    /**
+     * 通过id查询单个响应头
+     */
     @action
     findResponseHeader = async (id) => {
         const param = new FormData();
@@ -55,7 +69,9 @@ export class ResponseHeaderStore {
         }
     }
 
-
+    /**
+     * 创建响应头
+     */
     @action
     createResponseHeader = async (values) => {
         values.http = { id:this.apxMethodId }
@@ -66,6 +82,9 @@ export class ResponseHeaderStore {
         }
     }
 
+    /**
+     * 更新响应头
+     */
     @action
 	updateResponseHeader = async (values) => {
 		const res = await updateResponseHeader(values)
@@ -74,6 +93,9 @@ export class ResponseHeaderStore {
         }
     }
 
+    /**
+     * 删除响应头
+     */
     @action
 	deleteResponseHeader = async (id) => {
         const param = new FormData();

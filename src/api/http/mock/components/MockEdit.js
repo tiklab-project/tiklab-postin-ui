@@ -4,10 +4,12 @@ import { Form, Modal, Input } from 'antd';
 import IconBtn from "../../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../../common/IconCommon";
 
+/**
+ * mock添加 弹窗
+ */
 const MockEdit = (props) => {
     const { mockStore, } = props;
     const { findMock, createMock, updateMock, findMockPage} = mockStore;
-
 
     const [visible, setVisible] = useState(false);
     const [enable,setEnable] = useState()
@@ -16,8 +18,11 @@ const MockEdit = (props) => {
 
     const apxMethodId =  localStorage.getItem('apxMethodId');
 
+    /**
+     * 展示弹框
+     * 如果是编辑回显数据
+     */
     const showModal = () => {
-
         if(props.type === 'edit') {
             findMock(props.mockId).then((res)=>{
                 setEnable(res.enable)
@@ -31,8 +36,9 @@ const MockEdit = (props) => {
         setVisible(true);
     };
 
-
-
+    /**
+     * 保存或者更新数据
+     */
     const onFinish = async () => {
         let values = await form.validateFields();
 
@@ -53,6 +59,9 @@ const MockEdit = (props) => {
         setVisible(false)
     };
 
+    /**
+     * 关闭弹窗
+     */
     const onCancel = () => {setVisible(false)};
 
     return(

@@ -5,6 +5,9 @@ import CodeMirror from "../../CodeMirror";
 
 const { Option } = Select;
 
+/**
+ * 请求体中raw
+ */
 const RawParamCommon = (props) => {
     const { form,type,updateFn}  = props;
 
@@ -23,7 +26,9 @@ const RawParamCommon = (props) => {
         blurFn()
     }
 
-    //失去焦点，获取更改raw中类型执行
+    /**
+     * 失去焦点，获取更改raw中类型执行
+     */
     const blurFn = ()=>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()

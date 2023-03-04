@@ -1,5 +1,5 @@
 import {EAM_STORE, EamStore} from 'tiklab-eam-ui/es/store'
-import { SEARCHSTORE, SearchStore } from './home/search'
+import { SEARCHSTORE, SearchStore } from './common/header/search'
 
 import {USERSELECT_STORE, UserSelectStore} from './support/userSelect/store/UserSelectStore'
 
@@ -207,8 +207,6 @@ function createStores() {
 
         [JSON_SCHEMA_STORE]: new JsonSchemaStore(),
         [SHARE_STORE]: new ShareStore()
-
-
 
     };
 }

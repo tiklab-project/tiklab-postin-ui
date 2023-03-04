@@ -8,6 +8,9 @@ import './sysMana.scss'
 
 const { Sider, Content } = Layout;
 
+/**
+ * 系统设置页导航
+ */
 const SysManage = (props) => {
     const {settingMenu} = props;
 
@@ -47,8 +50,9 @@ const SysManage = (props) => {
         setSelectKey(key)
         props.history.push(key)
     }
-
-    // 树的展开与闭合
+    /**
+     * 树的展开与闭合
+     */
     const [expandedTree, setExpandedTree] = useState(["/systemManagement/system"])
 
     const isExpandedTree = (key) => {
@@ -63,7 +67,9 @@ const SysManage = (props) => {
         }
     }
 
-    // 无子级菜单处理
+    /**
+     * 无子级菜单渲染
+     */
     const renderMenu = (data,deep,isFirst)=> {
         if(data.encoded){
             return (
@@ -112,7 +118,9 @@ const SysManage = (props) => {
 
     }
 
-    // 子级菜单处理
+    /**
+     * 子级菜单处理
+     */
     const renderSubMenu = ({title,key,children,encoded,icon},deep)=> {
         if(encoded){
             return (
@@ -193,20 +201,14 @@ const SysManage = (props) => {
 
     }
 
-    const showUlView = (data)=>{
 
+    const showUlView = (data)=>{
         return data && data.map(firstItem => {
             return firstItem.children && firstItem.children.length > 0
                 ? renderSubMenu(firstItem)
                 : renderMenu(firstItem,null,true)
         })
     }
-
-
-    // let authConfig = JSON.parse(localStorage.getItem("authConfig"))
-    // let isEas =authConfig?.authType
-    // let toEasLink = authConfig?.authUrl+"/#"+"/setting/orga"
-
 
     return (
         <>

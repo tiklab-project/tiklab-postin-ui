@@ -1,14 +1,15 @@
-/**
- * @description：
- * @date: 2021-07-29 13:35
- */
+
 import React from 'react';
 import { observer, inject } from "mobx-react";
 import {Form, Modal, Button, Input, Select} from 'antd';
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../common/IconCommon";
 const {Option} = Select;
-// 添加与编辑空间
+
+/**
+ * @description：
+ * @date: 2021-07-29 13:35
+ */
 const DataStructureEdit = (props) => {
     const { dataStructureStore, dataStructureId } = props;
     const {

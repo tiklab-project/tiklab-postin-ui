@@ -2,6 +2,9 @@ import React from "react";
 import {LeftOutlined,RightOutlined} from "@ant-design/icons";
 import "./page.scss";
 
+/**
+ * 分页
+ */
 const PaginationCommon = props =>{
 
     const {currentPage,changePage,totalPage} = props

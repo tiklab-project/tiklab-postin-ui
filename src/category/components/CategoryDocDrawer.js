@@ -7,6 +7,9 @@ import CategoryDocTree from "./CategoryDocTree";
 import DocContent from "../../common/apiDoc/DocContent";
 import noneImg from "../../assets/img/nonedoc.png"
 
+/**
+ * 文档中目录
+ */
 const CategoryDocDrawer = (props) =>{
     const {categoryStore,categoryId} = props;
     const { findCategoryAddSon } = categoryStore;

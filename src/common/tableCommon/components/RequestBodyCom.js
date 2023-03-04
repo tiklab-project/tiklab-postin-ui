@@ -3,7 +3,9 @@ import {Radio} from "antd";
 import { bodyTypeJsonDictionary as bodyTypeJson} from "../../dictionary/dictionary";
 import RequestNoBody from "./RequestNoBody";
 
-//请求体中的 类型 设置，不同类型展示不同组件
+/**
+ *请求体中的 类型 设置，不同类型展示不同组件
+ */
 const RequestBodyCom = (props) =>{
     const {radioValue,updateFn,setRadioType,bodyTypeDictionary} = props;
 
@@ -12,7 +14,9 @@ const RequestBodyCom = (props) =>{
         setRadioType(type)
     }
 
-    //渲染对应类型的组件
+    /**
+     *  渲染对应类型的组件
+     */
     const showItemComponent = (data)=>{
         switch(data) {
             case bodyTypeJson.none:
@@ -31,7 +35,9 @@ const RequestBodyCom = (props) =>{
     }
 
 
-    //渲染body选项
+    /**
+     * 渲染body选项
+     */
     const showRadioItem = (data)=>{
         let arr = Object.keys(data)
 

@@ -5,6 +5,9 @@ import {Option} from "antd/es/mentions";
 import ApiStatusModal from "./ApiStatusModal";
 import {CaretDownOutlined} from "@ant-design/icons";
 
+/**
+ * 状态下拉选择框
+ */
 const ApiStatusSelect = (props) =>{
     const {apxMethodStatusStore,selectStatus,status} = props;
     const {findApiStatusList} = apxMethodStatusStore;
@@ -22,6 +25,9 @@ const ApiStatusSelect = (props) =>{
         findCustomList()
     },[])
 
+    /**
+     * 查找自定义的状态
+     */
     const findCustomList = () =>{
         let param = {type:"custom",workspaceId:workspaceId}
         findApiStatusList(param).then(res=>{
@@ -29,13 +35,18 @@ const ApiStatusSelect = (props) =>{
         });
     }
 
+    /**
+     * 查找系统设置的状态
+     */
     const findSystemList = () =>{
         findApiStatusList({type:"system"}).then(res=>{
             setStatusList(res)
         });
     }
 
-    //渲染下拉框
+    /**
+     *  渲染下拉框
+     */
     const showStatus = (data)=>{
         return data&&data.map(item=>{
             return (

@@ -1,5 +1,6 @@
-
-
+/**
+ * tab标签处理
+ */
 export const apiTabListInfoProcess = (data,info,type)=>{
     let newApiTabInfo = tabProcessCommon(data,info,type);
 
@@ -29,7 +30,9 @@ export const quickTestTabProcess = (data,info)=>{
     sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newApiTabInfo))
 }
 
-
+/**
+ * 快捷测试tab标签初始值
+ */
 const quickTestTabProcessCommon = (data,info,type)=>{
     let tablist = info.tabList;
     let newList ={

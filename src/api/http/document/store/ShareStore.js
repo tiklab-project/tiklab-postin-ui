@@ -9,10 +9,16 @@ import {
 } from '../api/shareApi';
 
 
+/**
+ * 接口文档 store
+ */
 export class ShareStore {
     @observable shareList = [];
     @observable totalRecord ;
 
+    /**
+     * 查询接口文档列表
+     */
     @action
     findShareTree = async (params) => {
 
@@ -24,9 +30,9 @@ export class ShareStore {
         }
     }
 
-
-
-
+    /**
+     * 通过id查询单个接口文档
+     */
     @action
     findShare = async (id) => {
         const param = new FormData();
@@ -39,12 +45,21 @@ export class ShareStore {
         }
     }
 
+    /**
+     * 创建接口文档
+     */
     @action
     createShare = async (values) =>  await createShare(values)
 
+    /**
+     * 更新接口文档
+     */
     @action
     updateShare = async (values) =>  await updateShare(values)
 
+    /**
+     * 删除接口文档
+     */
     @action
     deleteShare = async (id) => {
         const param = new FormData();

@@ -1,6 +1,6 @@
 
-import Home from '../home/home/Home';
-import {Search, SearchResult} from '../home/search';
+import Home from '../home/Home';
+import {Search, SearchResult} from '../common/header/search';
 
 import {
     WorkspaceRole, WorkspacePrivilege, Workspace,  WorkspaceList,
@@ -19,19 +19,19 @@ import {
     SystemContent, SysManage
 } from '../setting'
 
-import PageContent from "../home/header/PageContent";
-import HeaderContent from '../home/header/HeaderContent'
-import WorkspaceDetailLayout from "../workspace/workspaceDetail/WorkspaceDetailLayout";
+import PageContent from "../common/header/PageContent";
+import HeaderContent from '../common/header/HeaderContent'
+import WorkspaceDetailLayout from "../workspace/common/WorkspaceDetailLayout";
 import LayoutApiContent from "../api/http/definition/components/LayoutApiContent"
-import TabsPage from "../workspace/workspaceDetail/TabsPage";
+
 import LayoutQuickTest from "../quicktest/components/LayoutQuickTest";
 import TabsQuickTest from "../quicktest/components/TabsQuickTest";
 import TestdetailQuickTest from "../quicktest/components/TestdetailQuickTest";
-import WorkspaceDetailInitPage from "../workspace/workspaceDetail/WorkspaceDetailInitPage";
-import WorkspaceSettingMenu from "../workspace/workspaceSetting/WorkspaceSettingMenu";
-import LoginOut from "../home/header/LoginOut";
-import LoginContent from "../home/login/LoginContent";
-import ElectronLoginContant from "../home/login/ElectronLoginContant";
+import WorkspaceDetailInitPage from "../workspace/overview/WorkspaceOverViewPage";
+import WorkspaceSettingMenu from "../workspace/setting/WorkspaceSettingMenu";
+import LoginOut from "../common/header/LoginOut";
+import LoginContent from "../login/LoginContent";
+import ElectronLoginContant from "../login/ElectronLoginContant";
 
 export {
     Home,PageContent,HeaderContent,
@@ -41,7 +41,7 @@ export {
     Workspace,
     WorkspaceList,
 
-    WorkspaceDetailLayout,LayoutApiContent,TabsPage,
+    WorkspaceDetailLayout,LayoutApiContent,
     DetailIndex,
     Category, ApxMethodDetail,
 

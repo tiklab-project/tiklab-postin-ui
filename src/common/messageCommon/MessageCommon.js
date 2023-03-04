@@ -2,6 +2,9 @@ import React from "react";
 import {message} from "antd";
 import "./messageCommon.scss"
 
+/**
+ * alert 提示框
+ */
 export const messageFn = (type,content) =>{
 
     let successOptions = {

@@ -3,6 +3,10 @@ import {Select} from "antd";
 
 const {Option} = Select;
 
+/**
+ * 文件下拉款
+ * formdata会用到
+ */
 const FileTextSelect = (props) => {
     const {defaultValue,handleSave,rowData,setNewRowAction} = props;
 

@@ -4,6 +4,10 @@ import { observer, inject } from 'mobx-react';
 import ScriptCommon from "../../common/tableCommon/components/ScriptCommon";
 import {Form} from "antd";
 
+/**
+ * 快捷测试
+ * 后置
+ */
 const AfterQuickTest = (props) => {
     const {afterScriptQuickTestStore}  = props;
     const {getAfterInfo,setAfterInfo} = afterScriptQuickTestStore;

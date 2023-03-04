@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
-import {Button, Col, Dropdown, Menu, Row, Tabs} from 'antd';
+import { Dropdown, Menu,Tabs} from 'antd';
 import ResponseResult from "./ResponseResult";
 import ResponseTabEdit from "./ResponseTabEdit";
 import noneImg from "../../../../assets/img/none.png";
 import IconCommon from "../../../../common/IconCommon";
-import {CategoryEdit} from "../../../../category";
+
 const { TabPane } = Tabs;
 
-// 输出参数 返回头部与返回结果的切换
+/**
+ * 定义
+ * http
+ * 输出参数 返回头部与返回结果的切换
+ */
 const Response = (props) =>{
     const { apiResponseStore } = props;
     const {
@@ -30,12 +34,12 @@ const Response = (props) =>{
         setActiveKey(res[0].id)
     }
     
-    //
+    // tab页切换
     const onChange = e => {
         setActiveKey(e)
     };
 
-
+    // tab页添加删除
     const onEdit = async (targetKey, action) => {
 
         if (action === 'remove') {

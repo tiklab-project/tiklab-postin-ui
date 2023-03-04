@@ -1,14 +1,12 @@
-/*
- * @Description:
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-08 17:06:47
- */
+
 import React, {useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
 import {Table, Space, Popconfirm, Drawer, Modal} from 'antd';
 import {ExTable} from "../../../common/EditTable";
 
-//
+/**
+ * 环境管理
+ */
 const EvnMana = (props) => {
     const { environmentStore } = props;
     const {
@@ -52,8 +50,9 @@ const EvnMana = (props) => {
     },[dataLength])
 
 
-
-    // 表格里的操作
+    /**
+     *  表格里的操作
+     */
     const operation = (record,data) => {
         if(record.id === 'environmentInitRow'){
             return <a onClick={() =>onCreated(record)} >保存</a>
@@ -76,7 +75,9 @@ const EvnMana = (props) => {
         }
     }
 
-    //本地编辑的值和返回的值比较，不想同的会显示更新按钮
+    /**
+     * 本地编辑的值和返回的值比较，不想同的会显示更新按钮
+     */
     const updateView = (record,data)=>{
         return data&&data.map((item) => {
             return (
@@ -94,12 +95,17 @@ const EvnMana = (props) => {
         })
     }
 
-//更新
+    /**
+     * 更新
+     */
+
     const upData = (value) => {
         updateEnvironment(value).then(res => setDataSource(res))
     }
 
-    // 添加
+    /**
+     * 添加
+     */
     const onCreated = (values) => {
         if(Object.keys(values).length === 1&&!values.name){
             return
@@ -110,7 +116,10 @@ const EvnMana = (props) => {
         }
     }
 
-    // 单元格保存数据
+    /**
+     * 单元格保存数据
+     */
+
     const handleSave = (row) => {
         const newData = environmentList;
         const index = newData.findIndex((item) => row.id === item.id);
@@ -118,6 +127,9 @@ const EvnMana = (props) => {
         setList(newData)
     };
 
+    /**
+     * 添加行
+     */
     const addNewRow = () =>{
 
         let arr = environmentList.filter(item=> item.id==="environmentInitRow")
@@ -129,19 +141,27 @@ const EvnMana = (props) => {
         const newData = {id: "environmentInitRow"};
         const  dataSource = [...environmentList, newData]
         addNewList(dataSource)
-
     }
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
+    /**
+     * 展示弹框
+     */
     const showModal = () => {
         setIsModalVisible(true);
     };
 
+    /**
+     * 收起弹框
+     */
     const handleOk = () => {
         setIsModalVisible(false);
     };
 
+    /**
+     * 收起弹框
+     */
     const handleCancel = () => {
         setIsModalVisible(false);
     };

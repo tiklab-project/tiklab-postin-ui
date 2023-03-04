@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
-
-// 请求参数的可编辑表格
 import HeaderTableCommon from "../../common/tableCommon/components/HeaderTableCommon";
 
+/**
+ * 快捷测试
+ * 请求头
+ */
 const HeaderQuickTest = (props) =>{
     const { headerQuickTestStore,instanceId } = props;
 

@@ -1,9 +1,3 @@
-/*
- * @Description: 空间store
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-24 09:53:09
- */
-
 import { observable,  action } from "mobx";
 import {
 	deleteWorkspace,
@@ -15,11 +9,15 @@ import {
 	findWorkspaceJoinList,
 	findWorkspaceTotal,
 	findAllWorkspace,
-	findWorkspaceHomeTotal,
 } from '../api/workspaceApi';
 import {findWorkspaceRecentList, workspaceRecent} from "../api/workspaceRecentApi";
 import {findWorkspaceFollowList} from "../api/workspaceFollowApi";
 
+/**
+ * @Description: 空间store
+ * @Author: sunxiancheng
+ * @LastEditTime: 2021-05-24 09:53:09
+ */
 export class WorkspaceStore {
 	@observable workspaceList = [];
 	@observable workspaceInfo;
@@ -33,7 +31,9 @@ export class WorkspaceStore {
 	@observable length;
 	@observable settingItemSelected;
 
-	//获取带分页列表的数据/
+	/**
+	 * 获取带分页的空间列表
+	 */
 	@action
 	findWorkspacePage = async (value) => {
 		this.pageParams = {
@@ -48,6 +48,9 @@ export class WorkspaceStore {
 		}
 	}
 
+	/**
+	 * 获取空间列表
+	 */
 	@action
 	findWorkspaceList = async (value) => {
 		this.params = {
@@ -62,6 +65,9 @@ export class WorkspaceStore {
 	}
 
 
+	/**
+	 * 查询我参数的空间列表
+	 */
 	@action
 	findWorkspaceJoinList = async (value) => {
 		const res = await findWorkspaceJoinList(value)
@@ -78,7 +84,9 @@ export class WorkspaceStore {
 		}
 	}
 
-
+	/**
+	 * 查询最近访问的空间列表
+	 */
 	@action
 	findWorkspaceRecentList = async (value) => {
 		this.params = {
@@ -93,7 +101,10 @@ export class WorkspaceStore {
 			return res.data;
 		}
 	}
-	//设置最近访问
+
+	/**
+	 * 设置最近访问
+	 */
 	@action
 	workspaceRecent = async (values) => {
 		let params = {
@@ -106,7 +117,9 @@ export class WorkspaceStore {
 		}
 	}
 
-
+	/**
+	 * 查询关注的空间列表
+	 */
 	@action
 	findWorkspaceFollowList = async (value) => {
 		this.params = {
@@ -130,21 +143,9 @@ export class WorkspaceStore {
 		}
 	}
 
-
-
-
-	@action
-	findAllWorkspace = async (data) =>{
-		const res = await findAllWorkspace(data);
-
-		if(res.code === 0 ){
-
-			return res.data;
-		}
-	}
-
-
-	// 删除空间
+	/**
+	 * 删除空间
+	 */
 	@action
 	deleteWorkspace = async (id) => {
 		const param = new FormData();
@@ -153,17 +154,21 @@ export class WorkspaceStore {
 		await deleteWorkspace(param)
 	}
 
-	// 新建空间
+	/**
+	 * 创建空间
+	 */
     @action
 	createWorkspace = async (values) => await createWorkspace(values)
 
-	//更新空间
+	/**
+	 * 更新空间
+	 */
 	@action
 	updateWorkspace = async (values) => await updateWorkspace(values);
 
-
-	
-	//通过id查找空间
+	/**
+	 * 通过id查询单个空间
+	 */
 	@action
 	findWorkspace = async (id) => {
 		this.workspaceId = id;
@@ -179,6 +184,9 @@ export class WorkspaceStore {
 		}
 	}
 
+	/**
+	 * 查询空间概要
+	 */
 	@action
 	findWorkspaceTotal = async (id) =>{
 		const param = new FormData();
@@ -190,18 +198,9 @@ export class WorkspaceStore {
 		}
 	}
 
-	@action
-	findWorkspaceHomeTotal = async (userId) =>{
-		let param = new FormData();
-		param.append("userId",userId)
-
-		let res = await findWorkspaceHomeTotal(param)
-		if(res.code===0){
-			return res.data
-		}
-	}
-
-	//空间设置中的导航的选中项
+	/**
+	 * 空间设置中的导航的选中项
+	 */
 	@action
 	settingMenuSelected = (selected)=>{
 		this.settingItemSelected = selected;

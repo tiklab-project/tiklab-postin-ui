@@ -5,6 +5,9 @@ import {Space,  Popconfirm, Table, Empty} from 'antd';
 import emptyImg from "../../../assets/img/empty.png";
 import EnumStructureEdit from "./EnumStructureEdit";
 
+/**
+ * 枚举结构 可编辑表格
+ */
 const EnumStructure = (props) =>{
     const { enumParamDSStore } = props;
     const {
@@ -67,14 +70,11 @@ const EnumStructure = (props) =>{
         }
     ]
 
-
-
     const dataStructureId = localStorage.getItem("dataStructureId")
 
     useEffect( ()=>{
         findEnumParamDSList(dataStructureId)
     },[])
-
 
 
     return (

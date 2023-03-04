@@ -6,6 +6,9 @@ import { Space, Table, Empty, Popconfirm} from 'antd';
 import emptyImg from "../../../assets/img/empty.png";
 import JsonStructureEdit from "./JsonStructureEdit";
 
+/**
+ * json数据结构
+ */
 const JsonStructure = (props) => {
     const { jsonParamDSStore, } = props;
     const {

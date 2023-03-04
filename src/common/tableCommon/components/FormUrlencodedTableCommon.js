@@ -6,6 +6,9 @@ import {uuid} from "../../utils/createId";
 import IconCommon from "../../IconCommon";
 import {toJS} from "mobx";
 
+/**
+ * formUrl
+ */
 const FormUrlencodedTableCommon = (props) =>{
     const {dataList, saveList, addNewList, deleteList, bodyType, getFormUrlencodedList } = props;
 
@@ -56,7 +59,9 @@ const FormUrlencodedTableCommon = (props) =>{
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave =  (row) => {
         let newData = toJS(dataList);
         //获取当前行对应的下标

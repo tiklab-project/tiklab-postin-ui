@@ -4,7 +4,10 @@ import TestdetailQuickTest from "./TestdetailQuickTest";
 import {localProxySendTest, sendTest} from "../../common/request/sendTestCommon";
 import {inject, observer} from "mobx-react";
 
-
+/**
+ * 快捷测试
+ * 发送测试
+ */
 const TestBoxQuickTest = (props) =>{
     const {testStore} = props;
     const {proxyItem} = testStore;
@@ -12,6 +15,9 @@ const TestBoxQuickTest = (props) =>{
     let proxy = localStorage.getItem("PROXY_ITEM")
 
 
+    /**
+     * 通过/request代理发送测试
+     */
     const getRes = async  (data) =>{
         let response ;
 

@@ -5,12 +5,20 @@ import {
     updateRawResponse
 } from '../api/rawResponseApi';
 
+/**
+ * 定义
+ * http
+ * 响应中raw store
+ */
 export class RawResponseStore {
 
     @observable rawResponseInfo;
     @observable apxMethodId = '';
     @observable rawResponseId = '';
 
+    /**
+     * 通过id查询单个响应中raw
+     */
     @action
     findRawResponse = async (id) => {
         this.apxMethodId = id;
@@ -25,6 +33,9 @@ export class RawResponseStore {
         }
     }
 
+    /**
+     * 创建响应中raw
+     */
     @action
     createRawResponse = async (values) => {
         values.http = {id: this.apxMethodId}
@@ -33,6 +44,9 @@ export class RawResponseStore {
         return await createRawResponse(values)
     }
 
+    /**
+     * 更新响应中raw
+     */
     @action
 	updateRawResponse =async (values) => {
         values.http = { id: this.apxMethodId}

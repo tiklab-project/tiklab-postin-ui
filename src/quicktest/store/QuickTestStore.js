@@ -4,6 +4,9 @@ import qs from "qs";
 
 let assertCommonStore = new AssertCommonStore();
 
+/**
+ * 快捷测试 store
+ */
 export  class QuickTestStore {
     @observable status = '';
     @observable time = '';
@@ -17,6 +20,9 @@ export  class QuickTestStore {
     @observable methodType;
     @observable isResponseShow="false";
 
+    /**
+     * 获取请求参数
+     */
     @action
     getRequestInfo = (data) => {
         this.methodType = data.method;
@@ -31,6 +37,9 @@ export  class QuickTestStore {
         // this.requestBodyData = data.bodys;
     }
 
+    /**
+     * 获取响应参数
+     */
     @action
     getResponseInfo = async (data,assertData) => {
         let res = data.res;
@@ -91,6 +100,9 @@ export  class QuickTestStore {
         }
     }
 
+    /**
+     * 获取响应错误参数
+     */
     @action
     getResponseError= async (res)=>{
         this.time=null;
@@ -117,7 +129,9 @@ export  class QuickTestStore {
     }
 
 
-    //断言list处理
+    /**
+     * 断言list处理
+     */
     @action
     assertListProcess=(data)=>{
         return data && data.filter((item) => {
@@ -126,11 +140,17 @@ export  class QuickTestStore {
         });
     }
 
+    /**
+     * 获取时间
+     */
     @action
     getTime = (value) => {
         this.time= value;
     }
 
+    /**
+     * 获取实例
+     */
     @action
     getInstance = (res) =>{
         this.time = res.time;
@@ -146,6 +166,9 @@ export  class QuickTestStore {
         this.requestHeaderData = res.requestInstance?.headers;
     }
 
+    /**
+     * 响应 界面切换
+     */
     @action
     setResponseShow = () =>{
         this.isResponseShow = true

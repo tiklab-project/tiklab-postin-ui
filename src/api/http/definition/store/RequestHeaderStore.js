@@ -7,6 +7,11 @@ import {
     deleteRequestHeader
 } from '../api/requestHeaderApi';
 
+/**
+ * 定义
+ * http
+ * 请求头 store
+ */
 export  class RequestHeaderStore {
     @observable requestHeaderList = [];
     @observable requestHeaderInfo;
@@ -14,11 +19,17 @@ export  class RequestHeaderStore {
     @observable httpId = '';
     @observable dataLength = '';
 
+    /**
+     * 获取新的list
+     */
     @action
     setList = (values) => {
         this.requestHeaderList = [...values]
     }
 
+    /**
+     * 查询请求头列表
+     */
     @action
     findRequestHeaderList = async (id) => {
         this.httpId = id;
@@ -41,6 +52,9 @@ export  class RequestHeaderStore {
         }
     }
 
+    /**
+     * 通过id查询单个请求头
+     */
     @action
     findRequestHeader = async (id) => {
         const param = new FormData();
@@ -53,6 +67,9 @@ export  class RequestHeaderStore {
         }
     }
 
+    /**
+     * 创建请求头
+     */
     @action
     createRequestHeader = async (values) => {
         values.http = {id:this.httpId}
@@ -63,6 +80,9 @@ export  class RequestHeaderStore {
         }
     }
 
+    /**
+     * 更新请求头
+     */
     @action
 	updateRequestHeader = async (values) => {
         const res = await updateRequestHeader(values)
@@ -71,6 +91,9 @@ export  class RequestHeaderStore {
         }
     }
 
+    /**
+     * 删除请求头
+     */
     @action
 	deleteRequestHeader = async (id) => {
         const param = new FormData();

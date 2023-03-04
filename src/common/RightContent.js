@@ -1,10 +1,12 @@
-/*
- * @Description: 分为 左侧分组树形结构和右侧详情
- */
+
 
 import React, { useRef, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 
+/**
+ * 可以拖拽
+ * 分为 左侧分组树形结构和右侧详情
+ */
 const RightContent = (props) => {
     const route = props.route.routes;
 

@@ -21,6 +21,9 @@ import IconCommon from "../../common/IconCommon";
 
 const { Option } = Select;
 
+/**
+ * 快捷测试页
+ */
 const TestdetailQuickTest = (props) =>{
     const {
         getRes,
@@ -122,7 +125,9 @@ const TestdetailQuickTest = (props) =>{
     },[instanceId])
 
 
-    // 点击测试
+    /**
+     *  点击测试
+     */
     const onFinish = async ()=> {
         let values =await form.getFieldsValue();
 

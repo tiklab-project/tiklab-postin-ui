@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Space, Tooltip, Button } from 'antd';
 import {mockValueDictionary} from '../../dictionary/dictionary';
 import ExSelect from "../../ExSelect";
 import {ExTable} from "../../EditTable";
@@ -8,7 +7,9 @@ import IconCommon from "../../IconCommon";
 import {toJS} from "mobx";
 
 
-// 请求参数的可编辑表格
+/**
+ * 查询参数
+ */
 const QueryTableCommon = (props) =>{
     const {dataList, saveList, addNewList, deleteList } = props;
 
@@ -55,7 +56,9 @@ const QueryTableCommon = (props) =>{
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave =  (row) => {
         let newData = toJS(dataList);
         //获取当前行对应的下标

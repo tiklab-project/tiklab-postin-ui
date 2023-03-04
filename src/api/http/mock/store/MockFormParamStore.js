@@ -6,6 +6,10 @@ import {
     deleteFormParamMock 
 } from '../api/mockFormParamApi';
 
+/**
+ * mock
+ * formdata store
+ */
 export class MockFormParamStore {
 
     @observable mockFormParamList = [];
@@ -13,11 +17,17 @@ export class MockFormParamStore {
     @observable mockId = '';
     @observable dataLength;
 
+    /**
+     * 获取新的list
+     */
     @action 
     setList = (values) => {
         this.mockFormParamList = [...values]
     }
 
+    /**
+     * 查询formdata列表
+     */
     @action
     findFormParamMockList = async (id) => {
         this.mockId = id;
@@ -39,6 +49,9 @@ export class MockFormParamStore {
         }
     }
 
+    /**
+     * 创建formdata
+     */
     @action
     createFormParamMock = async (values) => {
         values.mock ={id: this.mockId}
@@ -48,6 +61,9 @@ export class MockFormParamStore {
         }
     }
 
+    /**
+     * 更新formdata
+     */
     @action
 	updateFormParamMock = async (values) => {
         const res = await updateFormParamMock(values);
@@ -56,6 +72,9 @@ export class MockFormParamStore {
         }
     }
 
+    /**
+     * 删除formdata
+     */
     @action
 	deleteFormParamMock = async (id) => {
         const param = new FormData();

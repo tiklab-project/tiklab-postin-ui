@@ -1,8 +1,15 @@
 import { observable, action } from "mobx";
 
+/**
+ * 快捷测试
+ * raw store
+ */
 export  class RawQuickTestStore {
     @observable rawQuickTestInfo ;
 
+    /**
+     * 获取raw
+     */
     @action
     getRawInfo = (info)=>{
         if(info&&Object.keys(info).length>0){
@@ -10,6 +17,9 @@ export  class RawQuickTestStore {
         }
     }
 
+    /**
+     * 设置raw
+     */
     @action
     setRawInfo = async ()=>{
         return this.rawQuickTestInfo;

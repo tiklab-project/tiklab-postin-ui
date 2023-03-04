@@ -7,10 +7,11 @@ import AssertParamTest from './AssertParamTest';
 import RequestTab from "../../../../../common/tableCommon/components/RequestTab";
 import RequestBodyTest from "./RequestBodyTest";
 
-
-// 输出参数 请求头部与请求参数的切换
+/**
+ * 测试页
+ * 请求区的tab
+ */
 const RequestTest = (props) => {
-
 
     return(
         <RequestTab

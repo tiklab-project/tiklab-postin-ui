@@ -13,7 +13,9 @@ import EnvSelect from "../../../../../support/environment/components/EnvSelect";
 
 const { Option } = Select;
 
-// 接口测试组件
+/**
+ * 接口测试组件
+ */
 const ApiTestContent = (props) => {
 
     const pi = {...pi}
@@ -48,7 +50,6 @@ const ApiTestContent = (props) => {
     const { preParamTestInfo,getPreInfo } = preParamTestStore;
     const { afterParamTestInfo,getAfterInfo } = afterParamTestStore;
     const { assertParamTestList } = assertParamTestStore;
-
 
     const [ form ] = Form.useForm();
 
@@ -98,8 +99,9 @@ const ApiTestContent = (props) => {
     },[methodId])
 
 
-
-    // 点击测试
+    /**
+     * 点击测试
+     */
     const onFinish =async ()=> {
         let values =await form.validateFields();
 
@@ -107,7 +109,6 @@ const ApiTestContent = (props) => {
             eval(preParamTestInfo.scriptex)
 
         }
-
 
         const allSendData = {
             "method":values.methodType,
@@ -122,10 +123,8 @@ const ApiTestContent = (props) => {
             "rawParam":rawParamTestInfo,
         }
 
-
         //处理后的数据
         const processData = sendTestDataProcess(allSendData,preParamTestInfo)
-
 
         if(afterParamTestInfo.scriptex){
             eval(afterParamTestInfo.scriptex)
@@ -137,12 +136,12 @@ const ApiTestContent = (props) => {
         response.assertList = assertParamTestList;
         setTestResponse(response)
 
-
         setShowResponse(true)
     }
 
-
-
+    /**
+     * 测试环境切换
+     */
     const showHost = () =>{
         if(testEnvUrl&&testEnvUrl.trim().length!==0){
             return (
@@ -171,10 +170,16 @@ const ApiTestContent = (props) => {
         }
     }
 
+    /**
+     * 去往接口列表页
+     */
     const goToListPage = () =>{
         props.history.push("/workspace/apis/category")
     }
 
+    /**
+     * 去往文档页
+     */
     const goToDocPage = () =>{
         props.history.push("/workspace/apis/document")
     }

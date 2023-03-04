@@ -2,7 +2,10 @@ import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
 import FormDataTableCommon from "../../../../../common/tableCommon/components/FormDataTableCommon";
 
-// 请求参数的可编辑表格
+/**
+ * 测试页
+ * formdata
+ */
 const FormParamTest = (props) =>{
     const { formParamTestStore, bodyType } = props;
     

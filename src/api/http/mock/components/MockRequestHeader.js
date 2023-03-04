@@ -4,11 +4,13 @@ import {Space, Popconfirm} from 'antd';
 import {headerParamDictionary} from "../../../../common/dictionary/dictionary";
 import ExSelect from "../../../../common/ExSelect";
 import {ExTable} from "../../../../common/EditTable";
-import {uuid} from "../../../../common/utils/createId";
 import IconCommon from "../../../../common/IconCommon";
 
 
-// 请求参数的可编辑表格
+/**
+ * mock
+ * 请求头可编辑表格
+ */
 const RequestHeaderMock = (props) =>{
     const { mockRequestHeaderStore } = props;
     const { 
@@ -58,7 +60,9 @@ const RequestHeaderMock = (props) =>{
         }
     ]
 
-    //取消
+    /**
+     * 取消编辑
+     */
     const onCancel = () =>{
         let data = {
             id:"InitNewRowId",
@@ -73,7 +77,9 @@ const RequestHeaderMock = (props) =>{
 
     const [newRowAction, setNewRowAction] = useState(false);
 
-    // 表格里的操作
+    /**
+     * 表格里的操作列展示
+     */
     const operation = (record,data) => {
         if(record.id === 'InitNewRowId'){
             return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
@@ -101,7 +107,9 @@ const RequestHeaderMock = (props) =>{
         }
     }
 
-    //本地编辑的值和返回的值比较，不想同的会显示更新按钮
+    /**
+     * 本地编辑的值和返回的值比较，不想同的会显示更新按钮
+     */
     const updateView = (record,data)=>{
         return data&&data.map((item) => {
             return (
@@ -123,12 +131,16 @@ const RequestHeaderMock = (props) =>{
         })
     }
 
-    //更新
+    /**
+     * 更新
+     */
     const upData = (value) => {
         updateRequestHeaderMock(value).then(res => setDataSource(res))
     }
 
-    // 添加
+    /**
+     * 添加
+     */
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
             return null
@@ -141,7 +153,9 @@ const RequestHeaderMock = (props) =>{
         setNewRowAction(false)
     }
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave = (row) => {
         let newData = mockRequestHeaderList;
         //获取当前行对应的下标
@@ -157,7 +171,9 @@ const RequestHeaderMock = (props) =>{
         }
     };
 
-    //当新行按键按下的时候显示后面的操作按钮
+    /**
+     *  当新行按键按下的时候显示后面的操作按钮
+     */
     const newRowKeyDown = () => {
         document.addEventListener('keydown', (e) =>{
             setNewRowAction(true)

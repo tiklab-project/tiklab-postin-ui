@@ -6,6 +6,9 @@ import {ExTable} from "../../EditTable";
 import IconCommon from "../../IconCommon";
 import {toJS} from "mobx";
 
+/**
+ * header
+ */
 const HeaderTableCommon = (props) =>{
 const {dataList, saveList, addNewList, deleteList} = props;
     
@@ -51,7 +54,9 @@ const {dataList, saveList, addNewList, deleteList} = props;
 
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave =  (row) => {
         let newData = toJS(dataList);
         //获取当前行对应的下标
@@ -66,6 +71,7 @@ const {dataList, saveList, addNewList, deleteList} = props;
 
         saveList(newData)
     };
+
     const onSelectChange = (newSelectedRowKeys,list) => {
         console.log('selectedRowKeys changed: ', newSelectedRowKeys);
         console.log('list: ', list);

@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+ * icon封装
+ */
 const IconCommon = (props) =>{
     const {icon,style,className,onClick} = props;
 

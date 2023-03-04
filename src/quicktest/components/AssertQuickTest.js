@@ -2,7 +2,10 @@ import React, { useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import AssertTableCommon from "../../common/tableCommon/components/AssertTableCommon";
 
-// 请求参数的可编辑表格
+/**
+ * 快捷测试
+ * 断言
+ */
 const AssertQuickTest = (props) =>{
     const { assertQuickTestStore } = props;
     const {

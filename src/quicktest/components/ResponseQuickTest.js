@@ -7,8 +7,10 @@ import ResponseReqHeaderQuickTest from "./ResponseReqHeaderQuickTest";
 import ResponseReqBodyQuickTest from "./ResponseReqBodyQuickTest";
 import ResponseAssertQuickTest from "./ResponseAssertQuickTest";
 
-
-// 输出参数 请求头部与请求参数的切换
+/**
+ * 快捷测试
+ * 响应
+ */
 const ResponseQuickTest = (props) =>  {
     const { quickTestStore, showResponse,errorMsg } = props;
     const { status, time, size } = quickTestStore;

@@ -3,6 +3,9 @@ import logo from "../../../../assets/img/postinlog.png";
 import "./shareStyle.scss"
 import {renderRoutes} from "react-router-config";
 
+/**
+ * 分享的文档页
+ */
 const Share = (props) =>{
 
     const router = props.route.routes;

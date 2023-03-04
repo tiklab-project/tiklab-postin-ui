@@ -1,9 +1,3 @@
-/*
- * @Description:  请求参数中From可编辑表格
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-08 17:47:43
- */
-
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import {Space, Checkbox, Popconfirm, Select} from 'antd';
@@ -13,6 +7,11 @@ import {ExTable}from '../../../../common/EditTable';
 import DataTypeSelect from "../../../../common/DataTypeSelect";
 import IconCommon from "../../../../common/IconCommon";
 
+/**
+ * 定义
+ * http
+ * FormUrlencoded可编辑表格
+ */
 const FormUrlencoded = (props) =>{
 
     const { formUrlencodedStore } = props;
@@ -84,7 +83,9 @@ const FormUrlencoded = (props) =>{
         
     ]
 
-    // 表格checked
+    /**
+     * 表格checked
+     */
     const toggleChecked= (e,row)=> {
         let checked;
         if(e.target.checked){
@@ -99,7 +100,9 @@ const FormUrlencoded = (props) =>{
         handleSave(data)
     }
 
-    //取消
+    /**
+     * 取消编辑
+     */
     const onCancel = () =>{
         let data = {
             id:"InitNewRowId",
@@ -118,7 +121,9 @@ const FormUrlencoded = (props) =>{
 
     const [newRowAction, setNewRowAction] = useState(false);
 
-    // 表格里的操作
+    /**
+     * 表格里的操作列展示
+     */
     const operation = (record,data) => {
         if(record.id === 'InitNewRowId'){
             return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
@@ -170,12 +175,16 @@ const FormUrlencoded = (props) =>{
         findFormUrlencodedList(apxMethodId).then(res => setDataSoure(res));
     },[dataLength])
 
-    //更新
+    /**
+     * 更新
+     */
     const upData = (value) => {
         updateFormUrlencoded(value).then(res=>setDataSoure(res));
     }
 
-    // 添加
+    /**
+     * 添加
+     */
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
             return null
@@ -187,7 +196,9 @@ const FormUrlencoded = (props) =>{
         setNewRowAction(false)
     }
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave = (row) => {
         const newData = [...formUrlencodedList];
         const index = newData.findIndex((item) => row.id === item.id);
@@ -196,16 +207,18 @@ const FormUrlencoded = (props) =>{
 
         //如果是新行 操作 显示操作按钮
         if(row.id==="InitNewRowId"){
-            newRowKeyDown()
+            document.addEventListener('keydown', (e) =>{
+                setNewRowAction(true)
+            });
         }
     };
 
     //当新行按键按下的时候显示后面的操作按钮
-    const newRowKeyDown = () => {
-        document.addEventListener('keydown', (e) =>{
-            setNewRowAction(true)
-        });
-    };
+    // const newRowKeyDown = () => {
+    //     document.addEventListener('keydown', (e) =>{
+    //         setNewRowAction(true)
+    //     });
+    // };
 
     return (
         <ExTable

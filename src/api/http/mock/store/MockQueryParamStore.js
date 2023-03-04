@@ -7,6 +7,10 @@ import {
     deleteQueryParamMock 
 } from '../api/mockQueryParamApi'
 
+/**
+ * mock
+ * 查询参数 store
+ */
 export class MockQueryParamStore {
 
     @observable mockQueryParamList = [];
@@ -14,12 +18,18 @@ export class MockQueryParamStore {
     @observable mockDataSourceList = [];
     @observable mockId = '';
     @observable dataLength;
-   
+
+    /**
+     * 获取新的list
+     */
     @action 
     setList = (values) => {
         this.mockQueryParamList = [...values]
     }
 
+    /**
+     * 查询json列表
+     */
     @action
     findQueryParamMockList = async (id) => {
         this.mockId = id;
@@ -41,6 +51,9 @@ export class MockQueryParamStore {
         }
     }
 
+    /**
+     * 通过id查询单个json
+     */
     @action
     findQueryParamMock = async (id) => {
         const param = new FormData();
@@ -52,7 +65,9 @@ export class MockQueryParamStore {
         }
     }
 
-
+    /**
+     * 创建json
+     */
     @action
     createQueryParamMock = async (values) => {
         values.mock ={id: this.mockId}
@@ -62,6 +77,9 @@ export class MockQueryParamStore {
         }
     }
 
+    /**
+     * 更新json
+     */
     @action
 	updateQueryParamMock = async (values) => {
 		const res = await updateQueryParamMock(values)
@@ -70,6 +88,9 @@ export class MockQueryParamStore {
         }
     }
 
+    /**
+     * 删除json
+     */
     @action
 	deleteQueryParamMock = async (id) => {
         const param = new FormData();

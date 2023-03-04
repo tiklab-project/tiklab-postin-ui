@@ -6,9 +6,15 @@ import RequestBodyDoc from "./RequestBodyDoc";
 import ResponseResultDoc from "./ResponseResultDoc";
 import ProtocolType from "../ProtocolType";
 
+/**
+ * 接口文档公共组件
+ */
 const DocContent = (props) =>{
     const {apiDoc,style} = props;
 
+    /**
+     * 点击锚点
+     */
     const clickAnchor = (anchorName) => {
         if (anchorName) {
             // 找到锚点
@@ -20,7 +26,9 @@ const DocContent = (props) =>{
         }
     }
 
-
+    /**
+     * 右侧锚点项
+     */
     let anchorItem =[
         {
             key: "share-base-info",
@@ -34,6 +42,9 @@ const DocContent = (props) =>{
         },
     ]
 
+    /**
+     * 锚点渲染
+     */
     const anchor = (data) =>{
         return data.map(item=>{
             return(

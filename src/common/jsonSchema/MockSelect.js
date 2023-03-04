@@ -2,7 +2,9 @@ import React, {useState} from "react";
 import {AutoComplete} from "antd";
 import {schemaEnum} from "./SchemaEnum";
 
-
+/**
+ * shcema中的mock下拉框
+ */
 const MockSelect = (props) =>{
 
     return(

@@ -1,11 +1,10 @@
 import React from "react";
 import "./commonStyle.scss";
 
-//请求类型，如：get，post
+/**
+ * 请求类型，如：get，post
+ */
 const MethodType =(props) =>{
-
-
-
 
     const showMethodType = (type)=>{
         switch (type){

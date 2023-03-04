@@ -4,12 +4,16 @@ import {dataTypeDictionary} from "./dictionary/dictionary";
 
 const {Option} = Select;
 
+/**
+ * 数据类型下拉选择框
+ */
 const DataTypeSelect = (props) =>{
     const {defaultValue,handleSave,rowData,setNewRowAction} = props;
 
 
-
-    //选择
+    /**
+     * 选择
+     */
     const onSelect = (value) => {
         const data = {
             ...rowData,
@@ -20,7 +24,9 @@ const DataTypeSelect = (props) =>{
         setNewRowAction&&setNewRowAction(true)
     }
 
-    //list渲染
+    /**
+     * list渲染
+     */
     const renderItem = (data) => {
         return  data&&data.map((item) => <Option key={item} value={item}>{item}</Option>)
     }

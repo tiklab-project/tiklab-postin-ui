@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useRef, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../index';
 import {Breadcrumb, Button, Form, Input, Popconfirm, Select, Space, Tabs} from 'antd';
@@ -20,10 +20,13 @@ const {Option} = Select;
 const {TextArea} = Input
 const {TabPane} = Tabs;
 
+/**
+ * 接口编辑页
+ */
 const ApxMethodEditPage = (props) => {
     const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore ,pluginsStore} = props;
     const {findCategoryList} = categoryStore;
-    const { findApxMethod,deleteApxMethod,findApxMethodListByApix,updateApxMethod} = apxMethodStore;
+    const { findApxMethod,updateApxMethod} = apxMethodStore;
     const { findUserSelectPage,userSelectList } = userSelectStore;
     const {findApiStatusList,apiStatusSourceList} = apxMethodStatusStore;
 
@@ -62,30 +65,18 @@ const ApxMethodEditPage = (props) => {
         findApiStatusList();
     },[])
 
-
-    // 点击测试按钮，跳到测试页
-    // const handleTest = () => {
-    //     props.history.push('/workspace/apis/test')
-    // }
-
-    // 删除接口
-    const handleDeleteApxMethod = (apxMethodId) => {
-        deleteApxMethod(apxMethodId).then(()=>{
-            findCategoryList(workspaceId);
-            findApxMethodListByApix(categoryId);
-        })
-
-        props.history.push({pathname:'/workspace/apis/category'})
-    }
-
-    //渲染执行者下拉框
+    /**
+     * 渲染执行者下拉框
+     */
     const showExecutor = (data)=>{
         return data&&data.map(item=>{
             return <Option key={item.user.id} value={item.user.id}>{item.user.nickname}</Option>
         })
     }
 
-    //设置执行者
+    /**
+     * 设置执行者
+     */
     const selectExecutor = (executor) =>{
         if(!executor) return
 
@@ -102,7 +93,9 @@ const ApxMethodEditPage = (props) => {
         });
     }
 
-    //设置状态
+    /**
+     * 设置状态
+     */
     const selectStatus = (statusId) =>{
         let param = {
             id:httpId,
@@ -117,7 +110,9 @@ const ApxMethodEditPage = (props) => {
         });
     }
 
-    //编辑名称
+    /**
+     * 编辑名称
+     */
     const editName = async () => {
 
         if(name!==resData.apix?.name) {
@@ -138,7 +133,9 @@ const ApxMethodEditPage = (props) => {
         setShowValidateStatus(null)
     };
 
-    //编辑路径
+    /**
+     * 编辑路径
+     */
     const editPath = () => {
         if(path!==resData.path){
             let param = {
@@ -159,7 +156,9 @@ const ApxMethodEditPage = (props) => {
         setShowValidateStatus(null)
     };
 
-    //编辑请求类型
+    /**
+     * 编辑请求类型
+     */
     const selectMethodType = (methodType) =>{
         let param = {
             id:httpId,
@@ -176,7 +175,9 @@ const ApxMethodEditPage = (props) => {
         })
     }
 
-    //渲染 http 方法，如post，get
+    /**
+     * 渲染 http 方法，如post，get
+     */
     const showMethod = (data) =>{
         return data&&data.map(item=>{
             return(
@@ -192,7 +193,9 @@ const ApxMethodEditPage = (props) => {
     const [showDesc, setShowDesc] = useState(false);
 
 
-    //编辑详情
+    /**
+     * 编辑详情
+     */
     const onDescSave = () =>{
         let param = {
             id:httpId,
@@ -209,14 +212,19 @@ const ApxMethodEditPage = (props) => {
 
 
     //判断是否有版本插件，返回的是true或false
-    const hasVersionPlugin = useHasPointPlugin('version');
+    let hasVersionPlugin = useHasPointPlugin('version');
 
     let version = getVersionInfo()
-    //{
-    //     "release": 1:ce, 2:ee,3:saas
-    //     "expired": true //过期 true，没过期false
-    // }
-    //展示插件
+
+
+    /**
+     * 展示插件
+     *
+     *  {
+        "release": 1:ce, 2:ee,3:saas
+        "expired": true //过期 true，没过期false
+        }
+     */
     const showPluginView = () =>{
         //如果版本不为ce，没有过期，并且有插件就显示
         if(version.release!==1&&version.expired===false&&hasVersionPlugin){
@@ -242,16 +250,23 @@ const ApxMethodEditPage = (props) => {
 
     }
 
-    //想要升级跳转到插件市场
+    /**
+     * 想要升级跳转到插件市场
+     */
     const upgrade=()=>{
         props.history.push("/systemManagement/plugin")
     }
 
-
+    /**
+     * 去往列表页
+     */
     const goToListPage = () =>{
         props.history.push("/workspace/apis/category")
     }
 
+    /**
+     * 去往文档页
+     */
     const goToDocPage = () =>{
         props.history.push("/workspace/apis/document")
     }

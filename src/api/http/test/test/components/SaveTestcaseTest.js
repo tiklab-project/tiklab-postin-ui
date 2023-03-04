@@ -3,6 +3,9 @@ import { observer, inject } from 'mobx-react';
 import { Form, Modal, Button, Input,message } from 'antd';
 import {saveTestcaseProcess} from "../../../../../common/tableCommon/components/saveTestcaseCommon";
 
+/**
+ * 保存测试用例
+ */
 const SaveTestcase = (props) => {
     const {
         testCaseStore,

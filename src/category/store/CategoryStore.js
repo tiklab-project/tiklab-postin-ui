@@ -8,6 +8,9 @@ import {
     findCategoryAddSon
 } from '../api/categoryApi';
 
+/**
+ * 目录
+ */
 export class CategoryStore{
     @observable categoryList = [];
     @observable categoryInfo = [];
@@ -16,6 +19,9 @@ export class CategoryStore{
     @observable categoryName='';
     @observable categoryLength = 0;
 
+    /**
+     * 查询目录树
+     */
     @action
     findCategoryList = async (id,categoryName) => {
         this.workspaceId = id;
@@ -32,6 +38,9 @@ export class CategoryStore{
         }
     }
 
+    /**
+     * 通过id查询单个目录
+     */
     @action
     findCategory = async (id) => {
         this.categoryId = id;
@@ -47,6 +56,10 @@ export class CategoryStore{
         }
     }
 
+    /**
+     * 通过id查询单个目录
+     * 包含接口
+     */
     @action
     findCategoryAddSon = async (id) => {
         const param = new FormData();
@@ -59,8 +72,9 @@ export class CategoryStore{
         }
     }
 
-
-
+    /**
+     * 创建目录
+     */
     @action
     createCategory = async (values) => {
         let res = await CreateCategory(values)
@@ -69,6 +83,9 @@ export class CategoryStore{
         }
     }
 
+    /**
+     * 更新目录
+     */
     @action
     updateCategory = async (values) => {
         values.id = this.categoryId;
@@ -79,6 +96,9 @@ export class CategoryStore{
         }
     }
 
+    /**
+     * 删除目录
+     */
     @action
     deleteCategory = async (categoryId) => {
         const param = new FormData();

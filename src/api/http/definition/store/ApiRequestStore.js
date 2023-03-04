@@ -5,6 +5,10 @@ import {
     createApiRequest
 } from "../api/apiRequestApi"
 
+/**
+ * 接口请求公共store
+ * 包含请求体类型 前置 后置
+ */
 export class ApiRequestStore {
     @observable radioValue ="";
     @observable bodyType;
@@ -12,6 +16,9 @@ export class ApiRequestStore {
     @observable preScript;
     @observable httpId;
 
+    /**
+     * 通过id查询
+     */
     @action
     findApiRequest = async (id) =>{
         this.httpId = id
@@ -29,6 +36,9 @@ export class ApiRequestStore {
         }
     }
 
+    /**
+     * 创建
+     */
     @action
     createApiRequest = async (values) => {
         values.httpId = this.httpId;
@@ -37,6 +47,9 @@ export class ApiRequestStore {
         return await createApiRequest(values);
     }
 
+    /**
+     * 更新
+     */
     @action
     updateApiRequest = async (values) => {
         values.httpId =  this.httpId;
@@ -45,6 +58,9 @@ export class ApiRequestStore {
         return await updateApiRequest(values);
     }
 
+    /**
+     * 获取请求体中类型
+     */
     @action
     getRadioValue = (value) => {
         this.radioValue = value; 

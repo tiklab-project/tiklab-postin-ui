@@ -4,6 +4,10 @@ import {renderRoutes} from "react-router-config";
 
 const {TabPane} = Tabs;
 
+/**
+ * 快捷测试
+ * tab
+ */
 const TabsQuickTest = (props) =>{
     const router = props.route.routes;
     const [activeKey,setActiveKey] = useState();
@@ -17,13 +21,16 @@ const TabsQuickTest = (props) =>{
         localStorage.setItem("instanceId","-1")
     },[activeKey,action])
 
-
-
+    /**
+     * 切换tab
+     */
     const onChange = (activeKey) => {
         setActiveKey(activeKey)
     };
 
-
+    /**
+     * tab添加 删除
+     */
     const onEdit  = (targetKey, action)=>{
         switch (action){
             case "add": add(); break
@@ -33,6 +40,9 @@ const TabsQuickTest = (props) =>{
 
     const [newTabId, setNewTabId] = useState(1);
 
+    /**
+     * 添加tab标签处理
+     */
     const add = ()=>{
 
         setNewTabId(newTabId+1);
@@ -55,6 +65,9 @@ const TabsQuickTest = (props) =>{
         setAction(!action)
     }
 
+    /**
+     * 删除tab标签处理
+     */
     const remove = (targetKey )=>{
         let list = quickTestTabListInfo.tabList;
 
@@ -77,6 +90,9 @@ const TabsQuickTest = (props) =>{
         setAction(!action)
     }
 
+    /**
+     * 切换tab标签
+     */
     const changeTabPane = (activeKey) =>{
         let list = quickTestTabListInfo.tabList;
         let item = list[activeKey];
@@ -90,7 +106,9 @@ const TabsQuickTest = (props) =>{
         props.history.push("/workspace/quickTest/detail/api")
     }
 
-    //展示TabPane
+    /**
+     * tab标签渲染
+     */
     const showTabPaneView = (data) =>{
         let list = data.tabList;
         return list&&list.map((item,index )=> (

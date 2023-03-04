@@ -1,8 +1,3 @@
-/*
- * @Description: 空间列表页
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-08 17:20:46
- */
 
 import React from 'react';
 import { observer, inject } from "mobx-react";
@@ -13,6 +8,9 @@ import {toWorkspaceDetail} from "./WorkspaceFn";
 import emptyImg  from "../../../assets/img/empty.png"
 import {Profile} from "tiklab-eam-ui";
 
+/**
+ * 空间页
+ */
 const WorkspaceList = (props) => {
     const { workspaceStore,workspaceRecentStore,workspaceFollowStore,findList,selectItem } = props;
 
@@ -91,7 +89,9 @@ const WorkspaceList = (props) => {
         },
     ]
 
-    //可见范围的展示
+    /**
+     * 可见范围的展示
+     */
     const showVisibility = (name,icon) =>{
         return <div style={{"display":"flex","alignItems":"center","gap":"6px"}}>
             <svg style={{width:16,height:16}} aria-hidden="true">
@@ -110,7 +110,9 @@ const WorkspaceList = (props) => {
         props.history.push('/workspace/setting/role');
     }
 
-    // 保存空间id到缓存
+    /**
+     *  保存空间id到缓存
+     */
     const setLocalStorage = (workspaceId) => {
 
         toWorkspaceDetail(workspaceId,userId,workspaceRecent)
@@ -119,7 +121,9 @@ const WorkspaceList = (props) => {
     }
 
 
-    //收藏空间
+    /**
+     * 收藏空间
+     */
     const follow = (record)=>{
 
         if(record.isFollow===1){

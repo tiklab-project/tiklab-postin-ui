@@ -4,6 +4,11 @@ import { UploadOutlined } from '@ant-design/icons';
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 
+/**
+ * 定义
+ * http
+ * binary
+ */
 const BinaryParam = (props) => {
     const {binaryParamStore} = props;
     const {findBinaryParamList,createBinaryParam,deleteBinaryParam} = binaryParamStore;
@@ -17,7 +22,9 @@ const BinaryParam = (props) => {
         })
     },[]);
 
-    //改变数据的时候调用
+    /**
+     * 改变数据的时候调用
+     */
     const onChange = (info) => {
         setFileList(info.fileList);
         if(info.file.status === 'done'){

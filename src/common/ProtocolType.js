@@ -1,6 +1,9 @@
 import React from "react";
 import {dir} from "./dictionary/dictionary";
 
+/**
+ * 协议类型
+ */
 const ProtocolType = (props) =>{
     const {type} = props;
 

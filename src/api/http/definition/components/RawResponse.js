@@ -4,8 +4,11 @@ import { observer, inject } from 'mobx-react';
 import {Button, Form} from 'antd';
 import CodeMirror from "../../../../common/CodeMirror";
 
-
-
+/**
+ *定义
+ * http
+ * 响应中raw
+ */
 const RawResponse = (props) => {
     const { rawResponseStore, radioValue }  = props;
 
@@ -35,7 +38,9 @@ const RawResponse = (props) => {
         })
     },[apxMethodId])
 
-
+    /**
+     * 失去焦点，获取更改raw中类型执行
+     */
     const save = () =>{
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()

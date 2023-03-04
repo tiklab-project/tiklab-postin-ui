@@ -31,6 +31,9 @@ import 'codemirror/mode/xml/xml';
 // import 'codemirror/addon/display/fullscreen.css';
 // import 'codemirror/addon/display/fullscreen.js';
 
+/**
+ * codemirror 文本编辑器
+ */
 const CodeMirror = (props) => {
     const { value,mediaType,blurFn,focusFn,ediTextRef} = props;
 

@@ -1,7 +1,3 @@
-/**
- * @description：
- * @date: 2021-07-30 09:13
- */
 import { observable,  action , toJS} from "mobx";
 import {
     findJsonParamDSListTree,
@@ -11,11 +7,17 @@ import {
     deleteJsonParamDS
 } from '../api/jsonParamDSApi'
 
+/**
+ * json结构 store
+ */
 export class JsonParamDSStore {
 
     @observable jsonParamDSList = [];
     @observable jsonParamDSInfo = [];
 
+    /**
+     * 查询json结构列表
+     */
     @action
     findJsonParamDSListTree =async (id) => {
         this.dataStructureId = id;
@@ -38,6 +40,9 @@ export class JsonParamDSStore {
 
     }
 
+    /**
+     * 通过id查询单个json结构
+     */
     @action
     findJsonParamDS = async (id) => {
         const param = new FormData();
@@ -49,13 +54,21 @@ export class JsonParamDSStore {
         }
     }
 
-
+    /**
+     * 创建json结构
+     */
     @action
     createJsonParamDS = async (values) =>  await createJsonParamDS(values)
 
+    /**
+     * 更新json结构
+     */
     @action
     updateJsonParamDS = async (values) => await updateJsonParamDS(values)
 
+    /**
+     * 删除json结构
+     */
     @action
     deleteJsonParamDS = async (id) => {
         const param = new FormData();

@@ -3,8 +3,9 @@ import "./schemaStyle.scss"
 import ToggleSchema from "./ToggleSchema";
 import {inject, observer} from "mobx-react";
 
-
-
+/**
+ * schema
+ */
 const Schema = (props) =>{
     const {jsonSchemaStore,apiResponseStore,httpId,resultId} = props
     const {schemaData} =jsonSchemaStore

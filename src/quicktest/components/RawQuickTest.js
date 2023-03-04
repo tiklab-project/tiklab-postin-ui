@@ -4,6 +4,10 @@ import { observer, inject } from 'mobx-react';
 import RawParamCommon from "../../common/tableCommon/components/RawParamCommon";
 import {Form} from "antd";
 
+/**
+ * 快捷测试
+ * 请求体中raw
+ */
 const RawQuickTest = (props) => {
     const { rawQuickTestStore, bodyType }  = props;
     const {getRawInfo,setRawInfo,rawQuickTestInfo} = rawQuickTestStore;

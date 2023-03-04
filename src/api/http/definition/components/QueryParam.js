@@ -1,8 +1,3 @@
-/*
- * @Description: 请求参数中query可编辑表格
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-10 09:08:21
- */
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import {Space, Checkbox, Popconfirm} from 'antd';
@@ -10,6 +5,11 @@ import { mockValueDictionary } from '../../../../common/dictionary/dictionary';
 import ExSelect from "../../../../common/ExSelect";
 import {ExTable} from '../../../../common/EditTable';
 
+/**
+ * @Description: 请求参数中query可编辑表格
+ * @Author: sunxiancheng
+ * @LastEditTime: 2021-05-10 09:08:21
+ */
 const QueryParam = (props) =>{
     const { queryParamStore } = props;
     const {
@@ -77,7 +77,9 @@ const QueryParam = (props) =>{
 
     ]
 
-    // 必须项的checked
+    /**
+     * 表格checked
+     */
     const toggleChecked = (e,row) => {
         let checked;
         if(e.target.checked){
@@ -90,7 +92,9 @@ const QueryParam = (props) =>{
         handleSave(data)
     }
 
-    //取消
+    /**
+     * 取消编辑
+     */
     const onCancel = () =>{
         let data = {
             id:"InitNewRowId",
@@ -107,8 +111,9 @@ const QueryParam = (props) =>{
 
     const [newRowAction, setNewRowAction] = useState(false);
 
-
-    // 表格里的操作
+    /**
+     * 表格里的操作列展示
+     */
     const operation = (record,data) => {
         if(record.id === 'InitNewRowId'){
             return  <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
@@ -136,7 +141,9 @@ const QueryParam = (props) =>{
         }
     }
 
-    //本地编辑的值和返回的值比较，不想同的会显示更新按钮
+    /**
+     * 本地编辑的值和返回的值比较，不想同的会显示更新按钮
+     */
     const updateView = (record,data)=>{
         return data&&data.map((item) => {
             return (
@@ -159,7 +166,9 @@ const QueryParam = (props) =>{
         })
     }
 
-    // 添加
+    /**
+     * 添加
+     */
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
             return null;
@@ -172,12 +181,16 @@ const QueryParam = (props) =>{
         setNewRowAction(false)
     }
 
-    //更新
+    /**
+     * 更新
+     */
     const upData = (value) => {
         updateQueryParam(value).then(res=>setDataSource(res))
     }
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave = (row) => {
         const newData = queryParamList;
         const index = newData.findIndex((item) => row.id === item.id);
@@ -190,8 +203,9 @@ const QueryParam = (props) =>{
         }
     };
 
-
-    //当新行按键按下的时候显示后面的操作按钮
+    /**
+     *  当新行按键按下的时候显示后面的操作按钮
+     */
     const newRowKeyDown = () => {
         document.addEventListener('keydown', (e) =>{
             setNewRowAction(true)

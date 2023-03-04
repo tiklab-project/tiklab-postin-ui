@@ -10,6 +10,9 @@ const layout = {
     wrapperCol: {span: 16},
 };
 
+/**
+ * 导入
+ */
 const Import = (props) => {
     const {imexportStore,workspaceId} = props;
     const {importData} = imexportStore;
@@ -31,7 +34,9 @@ const Import = (props) => {
 
     const onCancel = () => { setVisible(false) };
 
-    //获取文件
+    /**
+     * 获取文件
+     */
     const normFile = (e) => {
         setFileList(e.fileList)
         return  e.file

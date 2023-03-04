@@ -3,7 +3,11 @@ import { observer, inject } from "mobx-react";
 import {Table, Space, Checkbox, Popconfirm} from 'antd';
 import {components, column, ExTable} from '../../../../common/EditTable'
 
-// 请求参数的可编辑表格
+/**
+ * 定义
+ * http
+ * 响应头可编辑表格
+ */
 const ResponseHeader = (props) =>{
     const { responseHeaderStore } = props;
     const {
@@ -58,8 +62,9 @@ const ResponseHeader = (props) =>{
         
     ]
 
-
-    // 表格checked
+    /**
+     * 表格checked
+     */
     const toggleChecked= (e,row)=> {
         let checked ;
         if(e.target.checked){
@@ -74,7 +79,9 @@ const ResponseHeader = (props) =>{
         handleSave(data)
     }
 
-    //取消
+    /**
+     * 取消编辑
+     */
     const onCancel = () =>{
         let data = {
             id:"InitNewRowId",
@@ -91,7 +98,9 @@ const ResponseHeader = (props) =>{
 
     const [newRowAction, setNewRowAction] = useState(false);
 
-    // 表格里的操作
+    /**
+     * 表格里的操作列展示
+     */
     const operation = (record,data) => {
         if(record.id === 'InitNewRowId'){
             return  <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
@@ -140,7 +149,9 @@ const ResponseHeader = (props) =>{
         findResponseHeaderList(apxMethodId).then(res=>setDataSource(res))
     },[dataLength])
 
-    // 添加
+    /**
+     * 添加
+     */
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
             return
@@ -153,11 +164,16 @@ const ResponseHeader = (props) =>{
         setNewRowAction(false)
     }
 
+    /**
+     * 更新
+     */
     const upData = (value) => {
         updateResponseHeader(value).then(res => setDataSource(res))
     }
 
-    // 保存数据
+    /**
+     * 保存数据
+     */
     const handleSave = (row) => {
         const newData = responseHeaderList;
         const index = newData.findIndex((item) =>row.id === item.id);
@@ -171,7 +187,9 @@ const ResponseHeader = (props) =>{
         }
     };
 
-    //当新行按键按下的时候显示后面的操作按钮
+    /**
+     *  当新行按键按下的时候显示后面的操作按钮
+     */
     const newRowKeyDown = () => {
         document.addEventListener('keydown', (e) =>{
             setNewRowAction(true)

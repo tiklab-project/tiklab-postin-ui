@@ -1,8 +1,10 @@
 import React from "react";
 import {Checkbox, Table} from "antd";
-import ExSelect from "../ExSelect";
-import {mockValueDictionary} from "../dictionary/dictionary";
 
+/**
+ * 文档
+ * 查询参数
+ */
 const TableQueryDoc = (props) =>{
     const {dataSource} = props;
 

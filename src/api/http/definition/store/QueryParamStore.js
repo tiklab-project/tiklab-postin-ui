@@ -7,6 +7,11 @@ import {
     deleteQueryParam
 } from '../api/queryParamApi';
 
+/**
+ * 定义
+ * http
+ * 查询参数 store
+ */
 export class QueryParamStore {
 
     @observable queryParamList = [];
@@ -15,11 +20,17 @@ export class QueryParamStore {
     @observable httpId = '';
     @observable dataLength = '';
 
+    /**
+     * 获取新的查询参数
+     */
     @action
     setList = (values) => {
         this.queryParamList = [...values]
     }
 
+    /**
+     * 查询查询参数列表
+     */
     @action
     findQueryParamList = async (id) => {
         this.httpId = id;
@@ -44,6 +55,9 @@ export class QueryParamStore {
 
     }
 
+    /**
+     * 通过id查询单个查询参数
+     */
     @action
     findQueryParam = async (id) => {
         const that =this;
@@ -57,7 +71,9 @@ export class QueryParamStore {
         }
     }
 
-
+    /**
+     * 创建查询参数
+     */
     @action
     createQueryParam = async (values) => {
         values.http = {id:this.httpId}
@@ -68,6 +84,9 @@ export class QueryParamStore {
         }
     }
 
+    /**
+     * 更新查询参数
+     */
     @action
 	updateQueryParam = async (values) => {
 		const res = await updateQueryParam(values)
@@ -76,6 +95,9 @@ export class QueryParamStore {
         }
     }
 
+    /**
+     * 删除查询参数
+     */
     @action
 	deleteQueryParam = async (id) => {
         const param = new FormData();

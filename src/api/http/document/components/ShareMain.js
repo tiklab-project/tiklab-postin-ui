@@ -3,8 +3,9 @@ import {Axios} from "tiklab-core-ui";
 import ShareVerify from "./ShareVerify";
 import ApiDoc from "./ApiDoc";
 
-
-
+/**
+ * 分享的文档是否需要密码验证
+ */
 const ShareMain = (props) =>{
 
     const [targetId, setTargetId] = useState();

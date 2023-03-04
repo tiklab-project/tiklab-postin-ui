@@ -1,8 +1,4 @@
-/*
- * @Description: 请求参数中Json的可编辑表格组件
- * @Author: sunxiancheng
- * @LastEditTime: 2021-05-08 17:56:56
- */
+
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import { toJS } from 'mobx';
@@ -11,15 +7,12 @@ import {MOCK_SOURCE, mockValueDictionary} from '../../../../common/dictionary/di
 import ExSelect from "../../../../common/ExSelect";
 import {ExTable} from '../../../../common/EditTable';
 import DataTypeSelect from "../../../../common/DataTypeSelect";
-// require('json-schema-editor-visual/dist/main.css')
-// const schemaEditor = require("json-schema-editor-visual");
-// import SchemaEditor from "json-schema-editor-visual"
 
-import json5 from 'json5';
-
-// const SchemaEditor = schemaEditor({ lang: 'zh_CN', mock: MOCK_SOURCE })
-
-
+/**
+ * @Description: 请求参数中Json的可编辑表格组件
+ * @Author: sunxiancheng
+ * @LastEditTime: 2021-05-08 17:56:56
+ */
 const JsonParam = (props) => {
     const { jsonParamStore, radioValue} = props;
     const {
@@ -108,7 +101,10 @@ const JsonParam = (props) => {
 
 
     const [count, setCount] = useState(1);
-    // 添加下一行
+
+    /**
+     * 添加下一行
+     */
     const handleAdd = () => {
         const newData = [{
             id: count
@@ -117,7 +113,9 @@ const JsonParam = (props) => {
         addList(newData)
     };
 
-    // 表格checked
+    /**
+     * 表格checked
+     */
     const toggleChecked= (e,row)=> {
         let checked = '';
         if(e.target.checked){
@@ -139,7 +137,9 @@ const JsonParam = (props) => {
     },[radioValue])
 
 
-    // 点击子按钮，添加子行
+    /**
+     * 点击子按钮，添加子行
+     */
     const addChild = (dataType, parentid) => {
         if(dataType === 'object'){
             // 调用store,显示子行
@@ -147,7 +147,9 @@ const JsonParam = (props) => {
         }
     }
 
-    // 点击保存按钮，添加
+    /**
+     *  点击保存按钮，添加
+     */
     const onCreated = (data) => {
         const values = data;
         values.method = {
@@ -157,7 +159,9 @@ const JsonParam = (props) => {
     }
 
 
-    // 递归数据
+    /**
+     * 递归数据
+     */
     const loop = (data, result=[], row) => {
         const parentId = row.parent && row.parent.id;
         if(!parentId) {
@@ -189,7 +193,9 @@ const JsonParam = (props) => {
     }
 
 
-    // 编辑单元格，保存数据
+    /**
+     * 编辑单元格，保存数据
+     */
     const handleSave = (row) => {
         let result = loop(toJS(jsonParamList), [], row)
         setList(result)
@@ -211,13 +217,7 @@ const JsonParam = (props) => {
 
 
     return (
-        // <SchemaEditor
-        //     // mock={true}
-        //     data={jsonData}
-        //     onChange={(data) => {
-        //         // setJsonData(data);
-        //     }}
-        // />
+
         <ExTable
             columns={columns}
             dataSource={jsonParamList}

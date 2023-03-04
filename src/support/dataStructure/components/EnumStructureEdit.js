@@ -6,6 +6,9 @@ import IconCommon from "../../../common/IconCommon";
 const {TextArea} = Input
 const {Option} = Select;
 
+/**
+ * 枚举结构 添加编辑
+ */
 const EnumStructureEdit = (props) =>{
     const {enumParamDSStore,dataItemId,dataStructureId} = props;
     const {
@@ -19,7 +22,9 @@ const EnumStructureEdit = (props) =>{
     const [visible, setVisible] = React.useState(false);
 
 
-    //弹框展示
+    /**
+     * 弹框展示
+     */
     const showModal = async () => {
 
         if(props.type==="edit"){
@@ -36,8 +41,9 @@ const EnumStructureEdit = (props) =>{
     }
 
 
-
-    //提交
+    /**
+     * 提交
+     */
     const onFinish = async () => {
         let values = await form.validateFields()
         values.dataStructure={id:dataStructureId}
@@ -52,11 +58,16 @@ const EnumStructureEdit = (props) =>{
         setVisible(false)
     }
 
-    //取消
+    /**
+     * 取消
+     */
+
     const onCancel = () => { setVisible(false) };
 
 
-    //渲染按钮的样式
+    /**
+     * 渲染按钮的样式
+     */
     const showView = () =>{
         if(props.btn==="btn"&&props.type==="add"){
            return <IconBtn

@@ -2,6 +2,10 @@ import React from 'react';
 import { observer, inject } from "mobx-react";
 import { Table } from 'antd';
 
+/**
+ * 快捷测试
+ * 响应中断言
+ */
 const ResponseAssertQuickTest = (props) =>{
     const { quickTestStore } = props;
     const { assertResponse } = quickTestStore;

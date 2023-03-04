@@ -6,7 +6,11 @@ import ExSelect from "../../../../common/ExSelect";
 import {ExTable} from '../../../../common/EditTable';
 import IconCommon from "../../../../common/IconCommon";
 
-// 请求头的可编辑表格
+/**
+ * 定义
+ * http
+ * 请求头的可编辑表格
+ */
 const RequestHeader = (props) =>{
     const { requestHeaderStore } = props;
     const {
@@ -72,7 +76,9 @@ const RequestHeader = (props) =>{
         }
     ]
 
-    // 表格里checked
+    /**
+     * 表格checked
+     */
     const toggleChecked= (e,row)=> {
         let checked;
         if(e.target.checked){
@@ -84,7 +90,9 @@ const RequestHeader = (props) =>{
         handleSave(data)
     }
 
-    //取消
+    /**
+     * 取消编辑
+     */
     const onCancel = () =>{
         let data = {
             id:"InitNewRowId",
@@ -101,8 +109,9 @@ const RequestHeader = (props) =>{
 
     const [newRowAction, setNewRowAction] = useState(false);
 
-
-    // 表格里的操作
+    /**
+     * 表格里的操作列展示
+     */
     const operation = (record,data) => {
         if(record.id === 'InitNewRowId'){
             return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
@@ -131,7 +140,9 @@ const RequestHeader = (props) =>{
         }
     }
 
-    //本地编辑的值和返回的值比较，不想同的会显示更新按钮
+    /**
+     * 本地编辑的值和返回的值比较，不想同的会显示更新按钮
+     */
     const updateView = (record,data)=>{
         return data&&data.map((item) => {
             return (
@@ -155,7 +166,9 @@ const RequestHeader = (props) =>{
         })
     }
 
-    // 添加
+    /**
+     * 添加
+     */
     const onCreated = (values) => {
         if(Object.keys(values).length === 1){
             return
@@ -168,12 +181,16 @@ const RequestHeader = (props) =>{
         setNewRowAction(false)
     }
 
-    //更新
+    /**
+     * 更新
+     */
     const upData = (value) => {
         updateRequestHeader(value).then(res => setDataSource(res))
     }
 
-    // 单元格保存数据
+    /**
+     * 保存数据
+     */
     const handleSave = (row) => {
         const newData = requestHeaderList;
         const index = newData.findIndex((item) => row.id === item.id);
@@ -186,7 +203,9 @@ const RequestHeader = (props) =>{
         }
     };
 
-    //当新行按键按下的时候显示后面的操作按钮
+    /**
+     *  当新行按键按下的时候显示后面的操作按钮
+     */
     const newRowKeyDown = () => {
         document.addEventListener('keydown', (e) =>{
             setNewRowAction(true)

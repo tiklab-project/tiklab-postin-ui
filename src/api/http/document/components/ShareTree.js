@@ -4,20 +4,26 @@ import {TextMethodType} from "../../../../common/MethodType";
 import {inject, observer} from "mobx-react";
 import {Axios} from "tiklab-core-ui";
 
-//目录导航
+/**
+ * 分享页中 目录导航
+ */
 const ShareTree = (props) => {
     const {setApiDoc,treeList,categoryId} = props;
 
     const [expandedTree, setExpandedTree] = useState([categoryId]);
     const [clickKey, setClickKey] = useState();
 
-    //目录
+    /**
+     *  点击目录
+     */
     const onClick = (item) =>{
         setClickKey(item.id);
         setOpenOrClose(item.id);
     }
 
-    //接口
+    /**
+     *  点击接口
+     */
     const onMethod = async (item) => {
         setClickKey(item.id);
 
@@ -27,13 +33,13 @@ const ShareTree = (props) => {
         setApiDoc(res.data)
     }
 
-    //展开
     const isExpandedTree = (key) => {
         return expandedTree.some(item => item === key)
     }
 
-
-    //展开闭合 分类
+    /**
+     * 目录展开闭合
+     */
     const setOpenOrClose = key => {
         if (isExpandedTree(key)) {
             setExpandedTree(expandedTree.filter(item => item !== key))
@@ -52,7 +58,9 @@ const ShareTree = (props) => {
     }
 
 
-    //设置有子集的li
+    /**
+     * 设置有子集的li
+     */
     const expendTreeLi = (item,icon,deep) => {
         return(
             <div className={'cate-li'}>
@@ -71,7 +79,9 @@ const ShareTree = (props) => {
         )
     }
 
-    //接口
+    /**
+     * 接口展示
+     */
     const methodView = (data) => {
         return data&&data.map(item=>{
             return(
@@ -88,7 +98,9 @@ const ShareTree = (props) => {
         })
     }
 
-    //递归渲染分类列表
+    /**
+     * 递归渲染分类列表
+     */
     const tree = (data = [],deep) => {
         return(
             data && data.map((item) => {
@@ -135,8 +147,6 @@ const ShareTree = (props) => {
             })
         )
     }
-
-
 
     return(
         <>

@@ -1,8 +1,3 @@
-/*
- * @Description: 空间详情左侧导航栏
- * @Author: sunxiancheng
- */
-
 import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
 import {CategoryEdit,CategoryNav} from '../index'
@@ -11,13 +6,20 @@ import Import from "../../support/imexport/components/Import";
 import {SearchOutlined} from "@ant-design/icons";
 import IconCommon from "../../common/IconCommon";
 
+/**
+ * @Description: 空间详情左侧导航栏
+ * @Author: sunxiancheng
+ */
+
 const CategoryAside = (props) => {
     const { categoryStore } = props;
     const { findCategoryList } = categoryStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
 
-    // 搜索目录
+    /**
+     * 搜索目录
+     */
     const onSearch=(e)=> {
         findCategoryList(workspaceId,e.target.value);
     }

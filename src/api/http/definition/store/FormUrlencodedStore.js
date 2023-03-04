@@ -7,6 +7,11 @@ import {
     deleteFormUrlencoded
 } from '../api/formUrlencodedApi'
 
+/**
+ * 定义
+ * http
+ * formUrl store
+ */
 export class FormUrlencodedStore {
 
     @observable formUrlencodedList = [];
@@ -20,6 +25,9 @@ export class FormUrlencodedStore {
         this.formUrlencodedList = [...values]
     }
 
+    /**
+     * 查询formUrl列表
+     */
     @action
     findFormUrlencodedList = async (id) => {
         this.apxMethodId = id;
@@ -41,6 +49,9 @@ export class FormUrlencodedStore {
         }  
     }
 
+    /**
+     * 通过id查询单个formUrl
+     */
     @action
     findFormUrlencoded = async (id) => {
         const param = new FormData();
@@ -53,7 +64,9 @@ export class FormUrlencodedStore {
         }
     }
 
-
+    /**
+     * 创建formUrl
+     */
     @action
     createFormUrlencoded = async (values) => {
         values.http = {id: this.apxMethodId}
@@ -64,6 +77,9 @@ export class FormUrlencodedStore {
         }
     }
 
+    /**
+     * 更新formUrl
+     */
     @action
     updateFormUrlencoded = async (values) => {
         const res = await updateFormUrlencoded(values)
@@ -72,6 +88,9 @@ export class FormUrlencodedStore {
         }
     }
 
+    /**
+     * 删除formUrl
+     */
     @action
     deleteFormUrlencoded = async (id) => {
         const param = new FormData();

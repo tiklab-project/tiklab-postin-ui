@@ -6,11 +6,11 @@ import MockQueryParam from './MockQueryParam';
 import MockFormParam from './MockFormParamRequest';
 import JsonParamMock from './MockJsonParam';
 
-
 const { TabPane } = Tabs;
 
-
-// 输出参数 请求头部与请求参数的切换
+/**
+ * 输出参数 请求头部与请求参数的切换
+ */
 const MockRequest = (props) => {
     const { requestMockStore } =props;
     const { 
@@ -28,11 +28,18 @@ const MockRequest = (props) => {
         })
     },[mockId])
 
+    /**
+     * 切换请求体
+     * @param bodyType
+     */
     const onChange = bodyType => {
         setRadioType(bodyType);
         updateRequestMock({bodyType : bodyType})
     };
 
+    /**
+     * 展示请求体对应的组件
+     */
     const changeFormat = (radioType) => {
 
         switch(radioType) {

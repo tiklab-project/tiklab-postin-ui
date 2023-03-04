@@ -1,5 +1,8 @@
 import React from "react";
 
+/**
+ * 一般用于头部左右结构 如： 左侧面包屑，右侧添加
+ */
 const DetailHeader = (props) =>{
 
     return(

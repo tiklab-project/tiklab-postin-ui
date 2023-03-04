@@ -2,7 +2,9 @@ import React, { Fragment, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Modal,Form,Input} from 'antd';
 
-// 目录的编辑与添加
+/**
+ * 目录的编辑与添加弹窗
+ */
 const CategoryEdit =(props)=>{
     const { categoryStore,type } = props;
     const {findCategory, createCategory, updateCategory, categoryId} = categoryStore;
@@ -13,7 +15,9 @@ const CategoryEdit =(props)=>{
 
     const workspaceId = localStorage.getItem('workspaceId');
 
-    // 弹框展示
+    /**
+     * 弹框展示
+     */
     const showModal = async () => {
         if(type === "edit"){
             let res = await findCategory(props.categoryId?props.categoryId:categoryId)
@@ -26,10 +30,14 @@ const CategoryEdit =(props)=>{
     };
 
 
-    // 收起弹框
+    /**
+     * 收起弹框
+     */
     const hideModal = () => {setVisible(false)};
 
-    // 弹框提交
+    /**
+     *  弹框提交
+     */
     const onFinish = async () => {
         let values = await form.validateFields();
         values.workspace = {id:workspaceId}

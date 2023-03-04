@@ -1,6 +1,9 @@
 
 import {messageFn} from "./messageCommon/MessageCommon";
 
+/**
+ * 用于点击文本复制
+ */
 const copyMockUrl = (id) =>{
     const link = document.getElementById(id)
     if (document.body.createTextRange) {

@@ -6,6 +6,10 @@ import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "tiklab-core-ui";
 import {SearchOutlined} from "@ant-design/icons";
 
+/**
+ * 快捷测试
+ * 左侧目录
+ */
 const LeftNavListQuickTest =(props)=>{
     const {instanceStore,quickTestStore} = props;
     const {findInstanceList,instanceList,deleteAllInstance,deleteInstance} = instanceStore;
@@ -30,6 +34,9 @@ const LeftNavListQuickTest =(props)=>{
 
     const quickTestTabListInfo = JSON.parse(sessionStorage.getItem("quickTestTabListInfo"))
 
+    /**
+     * 点击打开不同的实例
+     */
     const onClick=(item)=>{
         localStorage.setItem("instanceId",item.id)
 
@@ -41,6 +48,9 @@ const LeftNavListQuickTest =(props)=>{
     }
 
 
+    /**
+     * 耗时渲染
+     */
     const showTime = (time) =>{
         if(!time) return
 
@@ -51,6 +61,9 @@ const LeftNavListQuickTest =(props)=>{
         }
     }
 
+    /**
+     * 大小渲染
+     */
     const showSize = (size) =>{
         if(!size) return
 
@@ -61,6 +74,9 @@ const LeftNavListQuickTest =(props)=>{
         }
     }
 
+    /**
+     * 列表项渲染
+     */
     const showListView = (data) =>{
         return data&&data.map(item=>{
             return(
@@ -89,6 +105,9 @@ const LeftNavListQuickTest =(props)=>{
     }
 
 
+    /**
+     * 清空所有实例
+     */
     const deleteAllInstanceFn = ()=>{
         deleteAllInstance(userId).then(()=>findList())
     }

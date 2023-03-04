@@ -3,34 +3,12 @@ import {Button, Form, Input, Radio, Select, Space} from "antd"
 import {inject, observer} from "mobx-react";
 import Schema from "../../../../common/jsonSchema/Schema";
 import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
-import {dir} from "../../../../common/dictionary/dictionary";
 
-const {Option} = Select;
-// const httpCodes = [200,201,403,404,410,422,500,502,503,504]
-
-const checkIsJsonSchema=(json)=> {
-    try {
-        json = JSON.parse(json);
-        if (json.properties && typeof json.properties === 'object' && !json.type) {
-            json.type = 'object';
-        }
-        if (json.items && typeof json.items === 'object' && !json.type) {
-            json.type = 'array';
-        }
-        if (!json.type) {
-            return false;
-        }
-        json.type = json.type.toLowerCase();
-        let types = ['object', 'string', 'number', 'array', 'boolean', 'integer'];
-        if (types.indexOf(json.type) === -1) {
-            return false;
-        }
-        return JSON.stringify(json);
-    } catch (e) {
-        return false;
-    }
-}
-
+/**
+ * 定义
+ * http
+ * 响应结果
+ */
 const ResponseResult = (props) =>{
     const {apiResponseStore,jsonSchemaStore,resultId,httpId} = props;
     const {findApiResponse,updateApiResponse,findApiResponseList} = apiResponseStore;
@@ -40,8 +18,6 @@ const ResponseResult = (props) =>{
     const [rawText, setRawText] = useState();
     const [dataValue, setDataValue] = useState();
     const [type, setType] = useState();
-
-
 
     useEffect(async ()=>{
         let res =  await findApiResponse(resultId)
@@ -62,7 +38,9 @@ const ResponseResult = (props) =>{
     },[resultId])
 
 
-    //值改变，更新
+    /**
+     * 值改变，更新
+     */
     const onChange = async ()=>{
         let value = await form.getFieldsValue();
         value.id=resultId;
@@ -74,12 +52,16 @@ const ResponseResult = (props) =>{
     }
 
 
-    //raw里面的数据改变，获取值
+    /**
+     * raw里面的数据改变，获取值
+     */
     const rawChange = (value)=>{
         setRawText(value)
     }
 
-    //保存raw参数，防止切换类型后jsonText里面还有值
+    /**
+     * 保存raw参数，防止切换类型后jsonText里面还有值
+     */
     const saveRawText = async () =>{
         const param = {
             id: dataValue?.id,
@@ -95,12 +77,16 @@ const ResponseResult = (props) =>{
         setDataValue(res)
     }
 
-    //raw 取消输入
+    /**
+     * raw 取消输入
+     */
     const cancelRawText = () =>{
         setRawText(dataValue?.rawText)
     }
 
-    //当旧的数据和新的输入不一样时，显示：取消、保存  按钮
+    /**
+     * 当旧的数据和新的输入不一样时，显示：取消、保存  按钮
+     */
     const showSaveView = () =>{
         let isTrue = dataValue?.rawText!==rawText
 
