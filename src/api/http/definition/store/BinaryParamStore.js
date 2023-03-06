@@ -1,13 +1,9 @@
 import { observable,  action } from "mobx";
-import {
-    findBinaryParamList,
-    createBinaryParam,
-    findBinaryParam,
-    updateBinaryParam,
-    deleteBinaryParam,
-    findBinaryParamByte
-} from '../api/binaryParamApi'
+import {Axios} from "tiklab-core-ui";
 
+/**
+ * binary store
+ */
 export class BinaryParamStore {
 
     @observable binaryParamList = [];
@@ -18,7 +14,7 @@ export class BinaryParamStore {
     findBinaryParamList = async (id) => {
         this.methodId = id;
         const params = {methodId: id}
-        const res = await findBinaryParamList(params);
+        const res = await Axios.post("/binaryParam/findBinaryParamList",params);
         if(res.code === 0) {
             let data = res.data;
             let newData = data&&data.map((item,index)=>{
@@ -39,7 +35,7 @@ export class BinaryParamStore {
     findBinaryParam = async (id) => {
         const param = new FormData();
         param.append('id', id);
-        const res = await findBinaryParam(param);
+        const res = await Axios.post("/binaryParam/findBinaryParam",param);
         if( res.code === 0){
            return  this.binaryParamInfo = res.data;
         }
@@ -48,7 +44,7 @@ export class BinaryParamStore {
 
     @action
     createBinaryParam = async (values) => {
-        const res = await createBinaryParam(values)
+        const res = await Axios.post("/binaryParam/createBinaryParam",values)
         if( res.code === 0){
             return this.findBinaryParamList(this.methodId);
         }
@@ -56,7 +52,7 @@ export class BinaryParamStore {
 
     @action
     updateBinaryParam = async (values) => {
-        const res = await updateBinaryParam(values)
+        const res = await Axios.post("/binaryParam/updateBinaryParam",values)
         if( res.code === 0){
             return this.findBinaryParamList(this.methodId);
         }
@@ -66,7 +62,7 @@ export class BinaryParamStore {
     deleteBinaryParam = async (id) => {
         const param = new FormData();
         param.append('id', id);
-        const res = await deleteBinaryParam(param)
+        const res = await Axios.post("/binaryParam/deleteBinaryParam",param)
         if( res.code === 0){
             return this.findBinaryParamList(this.methodId);
         }
@@ -75,9 +71,8 @@ export class BinaryParamStore {
     @action
     findBinaryParamByte = async (id)=>{
         const params = {methodId: id}
-        const res = await findBinaryParamByte(params)
+        const res = await Axios.post("/binaryParam/findBinaryParamByte",params)
         if( res.code === 0){
-            debugger
             console.log(res)
         }
     }

@@ -1,11 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-	deleteWorkspaceFollow,
-	createWorkspaceFollow,
-	updateWorkspaceFollow,
-	findWorkspaceFollowList,
-	findWorkspaceFollowPage
-} from '../api/workspaceFollowApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 空间关注 store
@@ -14,39 +8,33 @@ export class WorkspaceFollowStore {
 	@observable followList = [];
 	@observable totalRecord;
 
-	/**
-	 * 获取带分页的空间关注列表
-	 */
-	@action
-	findWorkspaceFollowPage = async (value) => {
-		this.pageParams = {
-			orderParams:[{name:'createTime', orderType:'desc'}],
-			...value
-		}
-		const res = await findWorkspaceFollowPage(this.pageParams)
-		if(res.code === 0 ) {
-			this.followList = res.data.dataList;
-			this.totalRecord = res.data.totalRecord;
-			return res;
-		}
-	}
 
 	/**
-	 * 获取空间关注列表
+	 * 查询关注的空间列表
 	 */
 	@action
 	findWorkspaceFollowList = async (value) => {
-		this.params = {
+		let params = {
 			...value,
 			orderParams:[{name:'createTime', orderType:'desc'}],
 		}
-		const res = await findWorkspaceFollowList(this.params)
+		const res = await Axios.post("/workspaceFollow/findWorkspaceFollowList",params)
 		if(res.code === 0 ) {
-			this.followList = res.data;
+			let list = res.data;
 
-			return res;
+			let newList = [];
+			if(list&&list.length>0){
+				list.map(item=>{
+					newList.push(item.workspace)
+				})
+			}
+
+			this.workspaceList = newList
+
+			return newList;
 		}
 	}
+
 
 	/**
 	 * 删除空间关注
@@ -55,7 +43,7 @@ export class WorkspaceFollowStore {
 	deleteWorkspaceFollow = async (id) => {
 		const param = new FormData();
 		param.append('id', id)
-		const res = await deleteWorkspaceFollow(param)
+		const res = await Axios.post("/workspaceFollow/deleteWorkspaceFollow",param)
 		if(res.code === 0){
 			return res.data
 		}
@@ -66,13 +54,13 @@ export class WorkspaceFollowStore {
 	 * 创建空间关注
 	 */
 	@action
-	createWorkspaceFollow = async (values) => await createWorkspaceFollow(values);
+	createWorkspaceFollow = async (values) => await Axios.post("/workspaceFollow/createWorkspaceFollow",values);
 
 	/**
 	 * 更新空间关注
 	 */
 	@action
-	updateWorkspaceFollow = async (values) => await updateWorkspaceFollow(values);
+	updateWorkspaceFollow = async (values) => await Axios.post("/workspaceFollow/updateWorkspaceFollow",values);
 
 }
 

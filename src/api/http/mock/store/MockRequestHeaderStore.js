@@ -1,11 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findRequestHeaderMockList, 
-    createRequestHeaderMock, 
-    findRequestHeaderMock,
-    updateRequestHeaderMock, 
-    deleteRequestHeaderMock 
-} from '../api/mockRequestHeaderApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * mock
@@ -38,7 +32,7 @@ export class MockRequestHeaderStore {
             orderParams:[{name:'headerName',orderType:'asc' }],
         }
         const newRow =[{ id: 'InitNewRowId'}];
-        const res = await findRequestHeaderMockList(params);
+        const res = await Axios.post("/requestHeaderMock/findRequestHeaderMockList",params);
         if( res.code === 0){
             this.mockDataSourceList=res.data;
             this.dataLength = res.data.length;
@@ -58,7 +52,7 @@ export class MockRequestHeaderStore {
     findRequestHeaderMock = async (id) => {
         const param = new FormData();
         param.append('id', id)
-        const res = await findRequestHeaderMock(param)
+        const res = await Axios.post("/requestHeaderMock/findRequestHeaderMock",param)
         if( res.code === 0){
             this.mockRequestHeaderInfo = res.data;
             return  res.data;
@@ -71,7 +65,7 @@ export class MockRequestHeaderStore {
     @action
     createRequestHeaderMock = async (values) => {
         values.mock ={id: this.mockId }
-        const res = await createRequestHeaderMock(values)
+        const res = await Axios.post("/requestHeaderMock/createRequestHeaderMock",values)
         if( res.code === 0){
             this.findRequestHeaderMockList(this.mockId);
         }
@@ -82,7 +76,7 @@ export class MockRequestHeaderStore {
      */
     @action
 	updateRequestHeaderMock = async (values) => {
-		const res = await updateRequestHeaderMock(values)
+		const res = await Axios.post("/requestHeaderMock/updateRequestHeaderMock",values)
         if( res.code === 0){
             return this.findRequestHeaderMockList(this.mockId);
         }
@@ -95,7 +89,7 @@ export class MockRequestHeaderStore {
 	deleteRequestHeaderMock = async (id) => {
         const param = new FormData();
         param.append('id', id);
-		const res = await deleteRequestHeaderMock(param)
+		const res = await Axios.post("/requestHeaderMock/deleteRequestHeaderMock",param)
         if( res.code === 0){
             this.findRequestHeaderMockList(this.mockId);
         }

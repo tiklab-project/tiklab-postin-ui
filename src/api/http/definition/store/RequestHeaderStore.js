@@ -1,11 +1,5 @@
 import { observable,  action } from "mobx";
-import {
-    findRequestHeaderList,
-    createRequestHeader,
-    findRequestHeader,
-    updateRequestHeader,
-    deleteRequestHeader
-} from '../api/requestHeaderApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 定义
@@ -39,7 +33,7 @@ export  class RequestHeaderStore {
         }
         const newRow =[ { id: 'InitNewRowId'}];
 
-        const res = await findRequestHeaderList(params);
+        const res = await Axios.post("/requestHeader/findRequestHeaderList",params);
         if( res.code===0 ){
             this.dataLength = res.data.length
             this.requestHeaderDataSource=res.data
@@ -60,7 +54,7 @@ export  class RequestHeaderStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await findRequestHeader(param)
+        const res = await Axios.post("/requestHeader/findRequestHeader",param)
         if( res.code === 0){
             this.requestHeaderInfo = res.data;
             return res.data;
@@ -74,7 +68,7 @@ export  class RequestHeaderStore {
     createRequestHeader = async (values) => {
         values.http = {id:this.httpId}
 
-        const res = await createRequestHeader(values)
+        const res = await Axios.post("/requestHeader/createRequestHeader",values)
         if( res.code === 0){
             return this.findRequestHeaderList(this.httpId);
         }
@@ -85,7 +79,7 @@ export  class RequestHeaderStore {
      */
     @action
 	updateRequestHeader = async (values) => {
-        const res = await updateRequestHeader(values)
+        const res = await Axios.post("/requestHeader/updateRequestHeader",values)
         if( res.code === 0){
             return this.findRequestHeaderList(this.httpId);
         }
@@ -99,7 +93,7 @@ export  class RequestHeaderStore {
         const param = new FormData();
         param.append('id', id)
 
-		const res = await deleteRequestHeader(param)
+		const res = await Axios.post("/requestHeader/deleteRequestHeader",param)
         if(res.code === 0){
             this.findRequestHeaderList(this.httpId);
         }

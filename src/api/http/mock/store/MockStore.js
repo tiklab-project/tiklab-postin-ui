@@ -1,11 +1,5 @@
 import { observable,  action  } from "mobx";
-import {
-    createMock,
-    updateMock,
-    deleteMock,
-    findMock,
-    findMockPage
-} from '../api/mockApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * mock store
@@ -25,7 +19,7 @@ export class MockStore {
             ...value,
             httpId:id
         }
-        const res = await findMockPage(params);
+        const res = await Axios.post("/mock/findMockPage",params);
         if( res.code === 0){
             this.mockList = res.data.dataList;
             this.totalRecord = res.data.totalRecord;
@@ -38,7 +32,7 @@ export class MockStore {
      */
     @action
     createMock = async (values) => {
-        const res = await createMock(values)
+        const res = await Axios.post("/mock/createMock",values)
         if( res.code === 0){
             return res
         }
@@ -49,7 +43,7 @@ export class MockStore {
      */
     @action
     updateMock = async (values) => {
-        const res = await updateMock(values)
+        const res = await Axios.post("/mock/updateMock",values)
         if( res.code === 0){
             return res
         }
@@ -63,7 +57,7 @@ export class MockStore {
         const param = new FormData();
         param.append('id', id)
 
-        const res = await deleteMock(param)
+        const res = await Axios.post("/mock/deleteMock",param)
         if( res.code === 0){
             return res
         }
@@ -77,7 +71,7 @@ export class MockStore {
         const param = new FormData();
         param.append('id', id)
 
-        const res = await findMock(param);
+        const res = await Axios.post("/mock/findMock",param);
         if( res.code === 0){
             this.mockInfo = res.data;
 

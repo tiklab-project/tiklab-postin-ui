@@ -1,9 +1,5 @@
 import { observable,  action } from "mobx";
-import {
-    findApiRequest,
-    updateApiRequest,
-    createApiRequest
-} from "../api/apiRequestApi"
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 接口请求公共store
@@ -23,10 +19,10 @@ export class ApiRequestStore {
     findApiRequest = async (id) =>{
         this.httpId = id
 
-        const param = new FormData();
-        param.append('id', id);
+        const params = new FormData();
+        params.append('id', id);
 
-        const res = await findApiRequest(param);
+        const res = await Axios.post("/apiRequest/findApiRequest",params);
 
         if( res.code === 0 ){
             this.afterScript = res.data?.afterScript;
@@ -40,22 +36,22 @@ export class ApiRequestStore {
      * 创建
      */
     @action
-    createApiRequest = async (values) => {
-        values.httpId = this.httpId;
-        values.id =  this.httpId;
+    createApiRequest = async (params) => {
+        params.httpId = this.httpId;
+        params.id =  this.httpId;
 
-        return await createApiRequest(values);
+        return await Axios.post("/apiRequest/createApiRequest",params);
     }
 
     /**
      * 更新
      */
     @action
-    updateApiRequest = async (values) => {
-        values.httpId =  this.httpId;
-        values.id= this.httpId;
+    updateApiRequest = async (params) => {
+        params.httpId =  this.httpId;
+        params.id= this.httpId;
 
-        return await updateApiRequest(values);
+        return await Axios.post("/apiRequest/updateApiRequest",params);
     }
 
     /**

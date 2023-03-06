@@ -9,8 +9,8 @@ import emptyImg from "../../../assets/img/empty.png";
  * 最近访问的空间
  */
 const WorkspaceRecentHome = (props) =>{
-    const {workspaceStore} = props;
-    const {findWorkspaceRecentList,workspaceRecent}=workspaceStore;
+    const {workspaceRecentStore} = props;
+    const {findWorkspaceRecentList,workspaceRecent}=workspaceRecentStore;
 
     const userId = getUser().userId;
     const [dataList, setDataList] = useState([]);
@@ -76,4 +76,4 @@ const WorkspaceRecentHome = (props) =>{
     )
 }
 
-export default inject("workspaceStore")(observer(WorkspaceRecentHome));
+export default inject("workspaceRecentStore")(observer(WorkspaceRecentHome));

@@ -1,11 +1,6 @@
 import { observable,  action } from "mobx";
-import { 
-    findJsonParamMockList, 
-    createJsonParamMock, 
-    findJsonParamMock,
-    updateJsonParamMock, 
-    deleteJsonParamMock 
-} from '../api/mockJsonParamApi';
+import {Axios} from "tiklab-core-ui";
+
 
 /**
  * mock
@@ -38,7 +33,7 @@ export class MockJsonParamStore {
             orderParams:[{name:'exp', orderType:'asc'}],
         }
         const newRow =[{ id: 'InitNewRowId'}];
-        const res = await findJsonParamMockList(params);
+        const res = await Axios.post("/jsonParamMock/findJsonParamMockList",params);
         if(res.code === 0) {
             this.mockDataSourceList = res.data;
             this.dataLength = res.data.length;
@@ -58,7 +53,7 @@ export class MockJsonParamStore {
     findJsonParamMock = async (id) => {
         const param = new FormData();
         param.append('id', id);
-        const res = await findJsonParamMock(param);
+        const res = await Axios.post("/jsonParamMock/findJsonParamMockList",param);
         if( res.code === 0){
             this.mockJsonParamInfo = res.data;
             return res
@@ -71,7 +66,7 @@ export class MockJsonParamStore {
     @action
     createJsonParamMock = async (values) => {
         values.mock ={id: this.mockId};
-        const res = await createJsonParamMock(values);
+        const res = await Axios.post("/jsonParamMock/createJsonParamMock",values);
         if( res.code === 0){
             this.findJsonParamMockList(this.mockId);
         }
@@ -82,7 +77,7 @@ export class MockJsonParamStore {
      */
     @action
 	updateJsonParamMock = async (values) => {
-        const res = await updateJsonParamMock(values);
+        const res = await Axios.post("/jsonParamMock/updateJsonParamMock",values);
         if( res.code === 0){
             return this.findJsonParamMockList(this.mockId);
         }
@@ -95,7 +90,7 @@ export class MockJsonParamStore {
 	deleteJsonParamMock = async (id) => {
         const param = new FormData();
         param.append('id', id);
-        const res = await deleteJsonParamMock(param);
+        const res = await Axios.post("/jsonParamMock/deleteJsonParamMock",param);
         if( res.code === 0){
             this.findJsonParamMockList(this.mockId);
         }

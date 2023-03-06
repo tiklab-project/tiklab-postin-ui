@@ -1,11 +1,6 @@
 import { observable,  action , toJS} from "mobx";
-import {
-    findJsonParamListTree,
-    createJsonParam,
-    findJsonParam,
-    updateJsonParam,
-    deleteJsonParam
-} from '../api/jsonParamApi'
+import {Axios} from "tiklab-core-ui";
+
 
 /**
  * 定义
@@ -40,7 +35,7 @@ export class JsonParamStore {
         }
         const newRow =[ { id: 'jsonParamInitRow'}]
 
-        const res = await findJsonParamListTree(params)
+        const res = await Axios.post("/jsonParam/findJsonParamListTree",params)
         if(res.code === 0) {
             this.jsonParamDataSource = res.data;
             if( res.data.length === 0){
@@ -59,10 +54,10 @@ export class JsonParamStore {
     @action
     findJsonParam = async (id) => {
         this.jsonParamId = id;
-        const param = new FormData();
-        param.append('id', id);
+        const params = new FormData();
+        params.append('id', id);
 
-        const res = await findJsonParam(param)
+        const res = await Axios.post("/jsonParam/findJsonParam",params)
         if( res.code === 0){
             this.jsonParamInfo = res.data;
             return  res.data;
@@ -73,10 +68,10 @@ export class JsonParamStore {
      * 创建json
      */
     @action
-    createJsonParam =async (values) => {
-        values.http = { id:this.httpId }
+    createJsonParam =async (params) => {
+        params.http = { id:this.httpId }
 
-        const res = await createJsonParam(values)
+        const res = await Axios.post("/jsonParam/createJsonParam",params)
         if( res.code === 0){
             this.findJsonParamListTree(this.httpId);
         }
@@ -87,8 +82,8 @@ export class JsonParamStore {
      * 更新json
      */
     @action
-	updateJsonParam = async (values) => {
-		const res = await updateJsonParam(values)
+	updateJsonParam = async (params) => {
+		const res = await Axios.post("/jsonParam/updateJsonParam",params)
 
         if( res.code === 0){
             return this.findJsonParamListTree(this.httpId);
@@ -100,10 +95,10 @@ export class JsonParamStore {
      */
     @action
 	deleteJsonParam = async (id) => {
-        const param = new FormData();
-        param.append('id', id);
+        const params = new FormData();
+        params.append('id', id);
 
-		const res = await deleteJsonParam(param)
+		const res = await Axios.post("/jsonParam/deleteJsonParam",params)
         if( res.code === 0){
             this.findJsonParamListTree(this.httpId);
         }

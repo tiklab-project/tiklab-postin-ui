@@ -1,13 +1,9 @@
 import { observable,  action } from "mobx";
-import { 
-    findInstancePage, 
-    createInstance, 
-    findInstance,
-    deleteAllInstance,
-    deleteInstance,
-    findInstanceList
-} from '../api/instanceApi'
+import {Axios} from "tiklab-core-ui";
 
+/**
+ * 历史实例 store
+ */
 export class InstanceStore {
 
     @observable instanceList = [];
@@ -20,6 +16,9 @@ export class InstanceStore {
     @observable requestHeaderData;
     @observable assertList;
 
+    /**
+     * 查询历史列表 带分页
+     */
     @action
     findInstancePage = async (id,value) => {
         this.params = {
@@ -28,7 +27,7 @@ export class InstanceStore {
             orderParams:[{name:'createTime', orderType:'asc' }]
         }
 
-        const res = await findInstancePage(this.params );
+        const res = await Axios.post("/testInstance/findTestInstancePage",this.params );
         if(res.code === 0) {
             this.instanceList = res.data.dataList;
             this.totalRecord = res.data.totalRecord;
@@ -36,6 +35,9 @@ export class InstanceStore {
         }
     }
 
+    /**
+     * 查询历史列表
+     */
     @action
     findInstanceList = async (values) =>{
         this.param = {
@@ -43,7 +45,7 @@ export class InstanceStore {
             ...values
         }
 
-        const res = await findInstanceList(this.param);
+        const res = await Axios.post("/testInstance/findTestInstanceList",this.param);
         if(res.code===0){
             this.instanceList = res.data;
             return res.data;
@@ -57,7 +59,7 @@ export class InstanceStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await findInstance(param)
+        const res = await Axios.post("/testInstance/findTestInstance",param)
         if(res.code === 0){
             let requestInstance = res.data.requestInstance;
 
@@ -79,7 +81,7 @@ export class InstanceStore {
     
     @action
     createInstance = async (values) => {
-        const res = await createInstance(values)
+        const res = await Axios.post("/testInstance/createTestInstance",values)
         if(res.code === 0) {
 
             return res.data
@@ -91,7 +93,7 @@ export class InstanceStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await deleteInstance(param)
+        const res = await Axios.post("/testInstance/deleteAllTestInstance",param)
         if(res.code===0){
             return res
         }
@@ -102,7 +104,7 @@ export class InstanceStore {
         const param = new FormData();
         param.append('userId', id);
 
-        await deleteAllInstance(param)
+        await Axios.post("/testInstance/deleteTestInstance",param)
     }
 
 

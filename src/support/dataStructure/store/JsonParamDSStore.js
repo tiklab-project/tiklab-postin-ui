@@ -1,11 +1,6 @@
-import { observable,  action , toJS} from "mobx";
-import {
-    findJsonParamDSListTree,
-    createJsonParamDS,
-    findJsonParamDS,
-    updateJsonParamDS,
-    deleteJsonParamDS
-} from '../api/jsonParamDSApi'
+import { observable,  action } from "mobx";
+import {Axios} from "tiklab-core-ui";
+
 
 /**
  * json结构 store
@@ -30,7 +25,7 @@ export class JsonParamDSStore {
             }],
         }
 
-        let res =await findJsonParamDSListTree(params)
+        let res =await Axios.post("/jsonParamDS/findJsonParamDSListTree",params)
         if(res.code === 0) {
             this.jsonParamDSList = res.data;
 
@@ -48,7 +43,7 @@ export class JsonParamDSStore {
         const param = new FormData();
         param.append('id', id);
 
-        let res = await findJsonParamDS(param)
+        let res = await Axios.post("/jsonParamDS/findJsonParamDS",param)
         if(res.code ===0){
             return res.data
         }
@@ -58,13 +53,13 @@ export class JsonParamDSStore {
      * 创建json结构
      */
     @action
-    createJsonParamDS = async (values) =>  await createJsonParamDS(values)
+    createJsonParamDS = async (values) =>  await Axios.post("/jsonParamDS/createJsonParamDS",values)
 
     /**
      * 更新json结构
      */
     @action
-    updateJsonParamDS = async (values) => await updateJsonParamDS(values)
+    updateJsonParamDS = async (values) => await Axios.post("/jsonParamDS/updateJsonParamDS",values)
 
     /**
      * 删除json结构
@@ -74,7 +69,7 @@ export class JsonParamDSStore {
         const param = new FormData();
         param.append('id', id);
 
-        await deleteJsonParamDS(param)
+        await Axios.post("/jsonParamDS/deleteJsonParamDS",param)
     }
 
 }

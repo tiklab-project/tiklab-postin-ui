@@ -1,12 +1,6 @@
 
 import {observable,action} from "mobx";
-import {
-    findShare,
-    createShare,
-    deleteShare,
-    updateShare,
-    findShareTree
-} from '../api/shareApi';
+import {Axios} from "tiklab-core-ui";
 
 
 /**
@@ -22,7 +16,7 @@ export class ShareStore {
     @action
     findShareTree = async (params) => {
 
-        let  res = await findShareTree(params)
+        let  res = await Axios.post("/share/findShareTree",params)
         if(res.code === 0) {
             this.shareList = res.data;
 
@@ -38,8 +32,7 @@ export class ShareStore {
         const param = new FormData();
         param.append('id', id);
 
-
-        let res = await findShare(param)
+        let res = await Axios.post("/share/findShare",param)
         if(res.code === 0){
             return res;
         }
@@ -49,13 +42,13 @@ export class ShareStore {
      * 创建接口文档
      */
     @action
-    createShare = async (values) =>  await createShare(values)
+    createShare = async (values) =>  await Axios.post("/share/createShare",values)
 
     /**
      * 更新接口文档
      */
     @action
-    updateShare = async (values) =>  await updateShare(values)
+    updateShare = async (values) =>  await Axios.post("/share/updateShare",values)
 
     /**
      * 删除接口文档
@@ -64,7 +57,7 @@ export class ShareStore {
     deleteShare = async (id) => {
         const param = new FormData();
         param.append('id', id)
-        await deleteShare(param)
+        await Axios.post("/share/deleteShare",param)
     }
 
 

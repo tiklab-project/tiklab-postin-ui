@@ -1,10 +1,5 @@
-
+import { Axios } from "tiklab-core-ui";
 import { observable,  action } from "mobx";
-import {
-    findAfterScript,
-    createAfterScript,
-    updateAfterScript
-} from '../api/afterParamApi';
 
 /**
  * 后置脚本store
@@ -24,7 +19,7 @@ export class AfterParamStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await findAfterScript(param);
+        const res = await Axios.post("/afterScript/findAfterScript",param);
         if( res.code === 0 ){
             this.afterScriptInfo = res.data;
             return res.data;
@@ -39,7 +34,7 @@ export class AfterParamStore {
         values.http = {id: this.apxMethodId};
         values.id =  this.apxMethodId;
 
-        return await createAfterScript(values);
+        return await  Axios.post("/afterScript/createAfterScript",values);
     }
 
     /**
@@ -50,7 +45,7 @@ export class AfterParamStore {
         values.http = {id: this.apxMethodId};
         values.id= this.apxMethodId;
 
-		return await updateAfterScript(values);
+		return await Axios.post("/afterScript/updateAfterScript",values);
     }
 }
 

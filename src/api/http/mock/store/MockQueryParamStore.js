@@ -1,11 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findQueryParamMockList, 
-    createQueryParamMock , 
-    findQueryParamMock,
-    updateQueryParamMock, 
-    deleteQueryParamMock 
-} from '../api/mockQueryParamApi'
+import {Axios} from "tiklab-core-ui";
 
 /**
  * mock
@@ -38,7 +32,7 @@ export class MockQueryParamStore {
             orderParams:[{name:'paramName',orderType:'asc'}],
         }
         const newRow =[{ id: 'InitNewRowId'}];
-        const res = await findQueryParamMockList(params);
+        const res = await Axios.post("/queryParamMock/findQueryParamMockList",params);
         if(res.code === 0){
             this.mockDataSourceList = res.data;
             this.dataLength = res.data.length
@@ -58,7 +52,7 @@ export class MockQueryParamStore {
     findQueryParamMock = async (id) => {
         const param = new FormData();
         param.append('id', id)
-        const res = await findQueryParamMock(param);
+        const res = await Axios.post("/queryParamMock/findQueryParamMock",param);
         if( res.code === 0){
             this.mockQueryParamInfo = res.data;
             return res.data;
@@ -71,7 +65,7 @@ export class MockQueryParamStore {
     @action
     createQueryParamMock = async (values) => {
         values.mock ={id: this.mockId}
-        const res = await createQueryParamMock(values)
+        const res = await Axios.post("/queryParamMock/createQueryParamMock",values)
         if( res.code === 0){
             this.findQueryParamMockList(this.mockId);
         }
@@ -82,7 +76,7 @@ export class MockQueryParamStore {
      */
     @action
 	updateQueryParamMock = async (values) => {
-		const res = await updateQueryParamMock(values)
+		const res = await Axios.post("/queryParamMock/updateQueryParamMock",values)
         if( res.code === 0){
             return this.findQueryParamMockList(this.mockId);
         }
@@ -95,7 +89,7 @@ export class MockQueryParamStore {
 	deleteQueryParamMock = async (id) => {
         const param = new FormData();
         param.append('id', id)
-		const res = await deleteQueryParamMock(param)
+		const res = await Axios.post("/queryParamMock/deleteQueryParamMock",param)
         if( res.code === 0){
             this.findQueryParamMockList(this.mockId);
         }

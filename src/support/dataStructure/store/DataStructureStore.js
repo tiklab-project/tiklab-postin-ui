@@ -1,16 +1,6 @@
-/**
- * @description：
- * @date: 2021-07-29 13:21
- */
 import {observable,action} from "mobx";
-import {
-    findDataStructurePage,
-    findDataStructure,
-    createDataStructure,
-    deleteDataStructure,
-    updateDataStructure,
-    findDataStructureList
-} from '../api/dataStructureApi';
+
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 数据结构
@@ -26,7 +16,7 @@ export class DataStructureStore {
     @action
     findDataStructureList = async (params) => {
 
-        let  res = await findDataStructureList(params)
+        let  res = await Axios.post("/dataStructure/findDataStructureList",params)
         if(res.code === 0) {
             this.dataStructureList = res.data;
 
@@ -43,7 +33,7 @@ export class DataStructureStore {
         param.append('id', id);
 
 
-        let res = await findDataStructure(param)
+        let res = await Axios.post("/dataStructure/findDataStructure",param)
         if(res.code === 0){
             this.dataStructureInfo = res.data;
             return res.data;
@@ -54,13 +44,13 @@ export class DataStructureStore {
      * 创建数据结构
      */
     @action
-    createDataStructure = async (values) =>  await createDataStructure(values)
+    createDataStructure = async (values) =>  await Axios.post("/dataStructure/createDataStructure",values)
 
     /**
      * 更新数据结构
      */
     @action
-    updateDataStructure = async (values) =>  await updateDataStructure(values)
+    updateDataStructure = async (values) =>  await Axios.post("/dataStructure/updateDataStructure",values)
 
     /**
      * 删除数据结构
@@ -69,7 +59,7 @@ export class DataStructureStore {
     deleteDataStructure = async (id) => {
         const param = new FormData();
         param.append('id', id)
-        await deleteDataStructure(param)
+        await Axios.post("/dataStructure/deleteDataStructure",param)
     }
 
 

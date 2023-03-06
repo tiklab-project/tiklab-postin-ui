@@ -1,10 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findFormParamMockList, 
-    createFormParamMock,
-    updateFormParamMock, 
-    deleteFormParamMock 
-} from '../api/mockFormParamApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * mock
@@ -36,7 +31,7 @@ export class MockFormParamStore {
             orderParams:[{name:'paramName', orderType:'asc'}],
         }
         const newRow =[{ id: 'InitNewRowId'}];
-        const res = await findFormParamMockList(params);
+        const res = await Axios.post("/formParamMock/findFormParamMockList",params);
         if(res.code === 0) {
             this.mockDataSourceList = res.data;
             this.dataLength = res.data.length;
@@ -55,7 +50,7 @@ export class MockFormParamStore {
     @action
     createFormParamMock = async (values) => {
         values.mock ={id: this.mockId}
-        const res = await createFormParamMock(values);
+        const res = await Axios.post("/formParamMock/createFormParamMock",values);
         if( res.code === 0){
             this.findFormParamMockList(this.mockId);
         }
@@ -66,7 +61,7 @@ export class MockFormParamStore {
      */
     @action
 	updateFormParamMock = async (values) => {
-        const res = await updateFormParamMock(values);
+        const res = await Axios.post("/formParamMock/updateFormParamMock",values);
         if( res.code === 0){
             return this.findFormParamMockList(this.mockId);
         }
@@ -79,7 +74,7 @@ export class MockFormParamStore {
 	deleteFormParamMock = async (id) => {
         const param = new FormData();
         param.append('id', id);
-        const res = await deleteFormParamMock(param);
+        const res = await Axios.post("/formParamMock/deleteFormParamMock",param);
         if( res.code === 0){
             this.findFormParamMockList(this.mockId);
         }

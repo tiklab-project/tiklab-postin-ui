@@ -1,8 +1,6 @@
-import {action, observable} from "mobx";
-import {
-    importPostman,
-    importReport
-} from "../api/imexportApi"
+import {action} from "mobx";
+
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 导入导出 store
@@ -34,7 +32,7 @@ export class ImexportStore{
      */
     @action
     importPostman = async (values) =>{
-        await importPostman(values);
+        await Axios.post("/port/importPostman",values);
     }
 
     /**
@@ -42,7 +40,7 @@ export class ImexportStore{
      */
     @action
     importReport = async (values) =>{
-        await importReport(values);
+        await Axios.post("/port/importReport",values);
     }
 }
 

@@ -1,9 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findResponseMock, 
-    createResponseMock,
-    updateResponseMock
-} from '../api/mockResponseApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * mock
@@ -23,7 +19,7 @@ export class ResponseMockStore {
         this.mockId = id;
         const param = new FormData();
         param.append('id', id)
-        const res = await findResponseMock(param);
+        const res = await Axios.post("/responseMock/findResponseMock",param);
         if( res.code === 0){
             this.mockResponseInfo = res.data;
             return res.data;
@@ -37,7 +33,7 @@ export class ResponseMockStore {
     createResponseMock = async (values) => {
         values.mockId = this.mockId;
         values.id =  this.mockId;
-        await createResponseMock(values)
+        await Axios.post("/responseMock/createResponseMock",values)
     }
 
     /**
@@ -47,7 +43,7 @@ export class ResponseMockStore {
 	updateResponseMock = async (values) => {
         values.mockId = this.mockId;
         values.id =  this.mockId;
-		await updateResponseMock(values)
+		await Axios.post("/responseMock/updateResponseMock",values)
     }
     
     

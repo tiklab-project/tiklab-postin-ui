@@ -1,11 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-	deleteEnvironment,
-	createEnvironment, 
-    findEnvironment, 
-	updateEnvironment,
-	findEnvironmentList
-} from '../api/environmentApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 接口环境 store
@@ -51,7 +45,7 @@ export class EnvironmentStore {
 
 		let newRow = [{id:"environmentInitRow"}]
 
-		const res = await findEnvironmentList(params);
+		const res = await Axios.post("/environment/findEnvironmentList",params);
 		if(res.code===0){
 			this.dataLength = res.data.length
 			this.envSourceList = res.data;
@@ -72,7 +66,7 @@ export class EnvironmentStore {
 	deleteEnvironment =async (id) => {
 		const param = new FormData();
 		param.append('id', id);
-		const res = await deleteEnvironment(param)
+		const res = await Axios.post("/environment/deleteEnvironment",param)
 
 		if(res.code === 0){
 			this.findEnvironmentList();
@@ -85,7 +79,7 @@ export class EnvironmentStore {
 	 */
     @action
 	createEnvironment = async (values) => {
-		const res = await createEnvironment(values)
+		const res = await Axios.post("/environment/createEnvironment",values)
 		if(res.code === 0) {
 			return this.findEnvironmentList()
 		}
@@ -97,7 +91,7 @@ export class EnvironmentStore {
 	 */
 	@action
 	updateEnvironment = async (values) => {
-		const res = await updateEnvironment(values)
+		const res = await Axios.post("/environment/updateEnvironment",values)
 		if(res.code === 0) {
 			return this.findEnvironmentList()
 		}
@@ -107,16 +101,12 @@ export class EnvironmentStore {
 	 * 通过id查询单个接口环境
 	 */
 	@action
-	findEnvironment = (id) => {
+	findEnvironment = async (id) => {
 		const param = new FormData();
 		param.append('id', id);
-        return new Promise(function(resolve, reject){
-            findEnvironment(param).then(res => {
-				if( res.code === 0){
-                	resolve(res.data);
-				}
-            })
-        })
+
+		await Axios.post("/environment/findEnvironment",param)
+
 	}
 
 }

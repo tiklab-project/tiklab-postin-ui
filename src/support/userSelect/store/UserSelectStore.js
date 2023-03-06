@@ -1,5 +1,5 @@
 import { observable,  action } from "mobx";
-import {findUserSelectPage} from '../api/userSelectApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 用户下拉框store
@@ -20,7 +20,7 @@ export class UserSelectStore {
             domainId:workspaceId,
             ...param
         };
-        const res = await findUserSelectPage(params);
+        const res = await Axios.post("/dmUser/findDmUserPage",params);
         if(res.code === 0) {
             this.totalRecord = res.data.totalRecord;
             this.userSelectList = res.data.dataList;

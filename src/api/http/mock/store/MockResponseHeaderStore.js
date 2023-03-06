@@ -1,10 +1,5 @@
 import { observable,  action } from "mobx";
-import {
-    createResponseHeaderMock,
-    updateResponseHeaderMock,
-    findResponseHeaderMockList,
-    deleteResponseHeaderMock
-} from '../api/mockResponseHeader';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * mock
@@ -35,7 +30,7 @@ export class MockResponseHeaderStore {
             orderParams:[{name:'headerName',orderType:'asc' }],
         }
         const newRow =[{ id: 'InitNewRowId'}];
-        const res = await findResponseHeaderMockList(params);
+        const res = await Axios.post("/responseHeaderMock/findResponseHeaderMockList",params);
         if( res.code === 0){
             this.dataLength = res.data.length
             if(  this.dataLength=== 0){
@@ -53,7 +48,7 @@ export class MockResponseHeaderStore {
     @action
     createResponseHeaderMock = async (values) => {
         values.mock = {id: this.mockId}
-        const res = await createResponseHeaderMock(values)
+        const res = await Axios.post("/responseHeaderMock/createResponseHeaderMock",values)
         if( res.code === 0){
             this.findResponseHeaderMockList(this.mockId);
         }
@@ -64,7 +59,7 @@ export class MockResponseHeaderStore {
      */
     @action
 	updateResponseHeaderMock =async (values) => {
-		const res = await updateResponseHeaderMock(values)
+		const res = await Axios.post("/responseHeaderMock/updateResponseHeaderMock",values)
         if( res.code === 0){
             return this.findResponseHeaderMockList(this.mockId);
         }
@@ -77,7 +72,7 @@ export class MockResponseHeaderStore {
     deleteResponseHeaderMock = async (id) => {
         const param = new FormData();
         param.append('id', id);
-        const res = await deleteResponseHeaderMock(param)
+        const res = await Axios.post("/responseHeaderMock/deleteResponseHeaderMock",param)
         if( res.code === 0){
             this.findResponseHeaderMockList(this.mockId);
         }

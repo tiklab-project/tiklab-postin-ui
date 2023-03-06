@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './homestyle.scss';
 import WorkspaceRecentHome from "../workspace/workspace/components/WorkspaceRecentHome";
-
 import DynamicWidget from "./DynamicWidget";
-
 import {RightOutlined} from "@ant-design/icons";
 import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";

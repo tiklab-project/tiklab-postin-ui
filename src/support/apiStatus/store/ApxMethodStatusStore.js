@@ -1,13 +1,6 @@
 import {observable, action} from "mobx";
-import {
-    findApiStatusPage,
-    createApiStatus,
-    findApiStatus,
-    updateApiStatus,
-    deleteApiStatus,
-    findAllApiStatus,
-    findApiStatusList
-} from '../api/apxMethodStatus'
+import {Axios} from "tiklab-core-ui";
+
 
 /**
  * 接口状态 store
@@ -41,7 +34,7 @@ export class ApxMethodStatusStore {
             orderParams:[{name:'name', orderType:'asc'}],
             ...value
         }
-        const res = await findApiStatusPage(this.params);
+        const res = await Axios.post("/apiStatus/findApiStatusPage",this.params);
         if(res.code === 0 ) {
             this.apiStatusList = res.data.dataList;
             this.totalRecord = res.data.totalRecord;
@@ -59,7 +52,7 @@ export class ApxMethodStatusStore {
             orderParams:[{name:'name', orderType:'asc'}],
         }
 
-        const res = await findApiStatusList(this.params);
+        const res = await Axios.post("/apiStatus/findApiStatusList",this.params);
         if(res.code === 0 ) {
             return  res.data;
         }
@@ -74,7 +67,7 @@ export class ApxMethodStatusStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await findApiStatus(param);
+        const res = await Axios.post("/apiStatus/findApiStatus",param);
         if(res.code === 0){
             this.statusType = res.data.type;
             return res.data;
@@ -85,7 +78,7 @@ export class ApxMethodStatusStore {
      * 创建接口状态
      */
     @action
-    createApiStatus = async (values) =>  await createApiStatus(values);
+    createApiStatus = async (values) =>  await Axios.post("/apiStatus/createApiStatus",values);
 
     /**
      * 更新接口状态
@@ -95,7 +88,7 @@ export class ApxMethodStatusStore {
         values.id = this.apiStatusId;
         values.type=this.statusType;
 
-        const res = await updateApiStatus(values);
+        const res = await Axios.post("/apiStatus/updateApiStatus",values);
         if( res.code === 0 ){
             return this.findApiStatusList();
         }
@@ -109,7 +102,7 @@ export class ApxMethodStatusStore {
         const param = new FormData();
         param.append('id', id);
 
-        return await  deleteApiStatus(param)
+        return await Axios.post("/apiStatus/deleteApiStatus",param)
 
     }
 }

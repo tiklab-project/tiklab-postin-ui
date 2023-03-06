@@ -1,11 +1,6 @@
 import { observable,  action } from "mobx";
-import {
-    findFormUrlencodedList,
-    createFormUrlencoded,
-    findFormUrlencoded,
-    updateFormUrlencoded,
-    deleteFormUrlencoded
-} from '../api/formUrlencodedApi'
+import {Axios} from "tiklab-core-ui";
+
 
 /**
  * 定义
@@ -36,7 +31,7 @@ export class FormUrlencodedStore {
             orderParams:[{name:'paramName', orderType:'asc'}],
         }
         const newRow =[ { id: 'InitNewRowId'}];
-        const res = await findFormUrlencodedList(params);
+        const res = await Axios.post("/formUrlencoded/findFormUrlencodedList",params);
         if(res.code === 0) {
             this.dataLength = res.data.length
             this.formUrlencodedDataSource = res.data;
@@ -54,10 +49,10 @@ export class FormUrlencodedStore {
      */
     @action
     findFormUrlencoded = async (id) => {
-        const param = new FormData();
-        param.append('id', id);
+        const params = new FormData();
+        params.append('id', id);
 
-        const res = await findFormUrlencoded(param);
+        const res = await Axios.post("/formUrlencoded/findFormUrlencoded",params);
         if( res.code === 0){
             this.formUrlencodedInfo = res.data;
            return res.data;
@@ -68,10 +63,10 @@ export class FormUrlencodedStore {
      * 创建formUrl
      */
     @action
-    createFormUrlencoded = async (values) => {
-        values.http = {id: this.apxMethodId}
+    createFormUrlencoded = async (params) => {
+        params.http = {id: this.apxMethodId}
 
-        const res = await createFormUrlencoded(values)
+        const res = await Axios.post("/formUrlencoded/createFormUrlencoded",params)
         if( res.code === 0){
             return this.findFormUrlencodedList(this.apxMethodId);
         }
@@ -81,8 +76,8 @@ export class FormUrlencodedStore {
      * 更新formUrl
      */
     @action
-    updateFormUrlencoded = async (values) => {
-        const res = await updateFormUrlencoded(values)
+    updateFormUrlencoded = async (params) => {
+        const res = await Axios.post("/formUrlencoded/updateFormUrlencoded",params)
         if( res.code === 0){
             return this.findFormUrlencodedList(this.apxMethodId);
         }
@@ -93,9 +88,9 @@ export class FormUrlencodedStore {
      */
     @action
     deleteFormUrlencoded = async (id) => {
-        const param = new FormData();
-        param.append('id', id);
-        const res = await deleteFormUrlencoded(param)
+        const params = new FormData();
+        params.append('id', id);
+        const res = await Axios.post("/formUrlencoded/deleteFormUrlencoded",params)
         if( res.code === 0){
             this.findFormUrlencodedList(this.apxMethodId);
         }

@@ -13,9 +13,10 @@ import WorkspaceRecentHome from "./WorkspaceRecentHome";
  * 空间页
  */
 const Workspace = (props) => {
-    const {workspaceStore} = props;
+    const {workspaceStore,workspaceFollowStore} = props;
+    const {findWorkspaceFollowList} = workspaceFollowStore
 
-    const {findWorkspaceList,findWorkspaceJoinList,findWorkspaceFollowList} = workspaceStore;
+    const {findWorkspaceList,findWorkspaceJoinList} = workspaceStore;
 
     const userId = getUser().userId;
     const [selectItem, setSelectItem] = useState("all");

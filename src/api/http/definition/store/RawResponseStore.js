@@ -1,9 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findRawResponse, 
-    createRawResponse,
-    updateRawResponse
-} from '../api/rawResponseApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 定义
@@ -27,7 +23,7 @@ export class RawResponseStore {
         const param = new FormData();
         param.append('id', id)
 
-        const res = await findRawResponse(param);
+        const res = await Axios.post("/rawParam/findRawParam",param);
         if( res.code === 0){
             return this.rawResponseInfo = res.data
         }
@@ -41,7 +37,7 @@ export class RawResponseStore {
         values.http = {id: this.apxMethodId}
         values.id =  this.rawResponseId;
 
-        return await createRawResponse(values)
+        return await Axios.post("/rawParam/createRawParam",values)
     }
 
     /**
@@ -52,7 +48,7 @@ export class RawResponseStore {
         values.http = { id: this.apxMethodId}
         values.id =  this.rawResponseId;
 
-		return await updateRawResponse(values)
+		return await Axios.post("/rawParam/updateRawParam",values)
     }
     
 }

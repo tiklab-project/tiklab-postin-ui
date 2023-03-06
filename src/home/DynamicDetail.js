@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import IconCommon from "../common/IconCommon";
 import {List, Select, Skeleton} from "antd";
-import {findLogList} from "./commonApi";
 import PaginationCommon from "../common/pagination/Page";
 import {inject, observer} from "mobx-react";
 import {Axios, getUser} from "tiklab-core-ui";
@@ -62,12 +61,17 @@ const DynamicDetail = (props) =>{
     /**
      * 查询日志列表
      */
-    const findList = async (params) => {
-        let res =  await findLogList(params);
-        setTotalPage(res.totalPage)
-        setCurrentPage(res.currentPage)
+    const findList = async (param) => {
+        const params = {
+            ...param,
+            bgroup:"postin"
+        }
 
-        return res.dataList
+        let res =  await  Axios.post('/oplog/findlogpage',params);
+        setTotalPage(res.data.totalPage)
+        setCurrentPage(res.data.currentPage)
+
+        return res.data.dataList
     };
 
     /**

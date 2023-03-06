@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Empty, List, Skeleton} from "antd";
-
-import {findLogList} from "./commonApi";
-import {getUser} from "tiklab-core-ui";
+import {Axios, getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 import emptyImg from "../assets/img/empty.png";
 
@@ -42,8 +40,13 @@ const DynamicWidget = (props) =>{
     /**
      * 查询日志列表
      */
-    const findList = async (params) => {
-        let data = await findLogList(params);
+    const findList = async (param) => {
+        let params = {
+            ...param,
+            bgroup:"postin"
+        }
+        let res = await Axios.post('/oplog/findlogpage',params);
+        let data = res.data
 
         let list = data.dataList;
 

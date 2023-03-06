@@ -1,11 +1,6 @@
 import { observable,  action, toJS } from "mobx";
-import {
-    findJsonResponseListTree,
-    createJsonResponse,
-    findJsonResponse,
-    updateJsonResponse,
-    deleteJsonResponse
-} from '../api/jsonResponseApi';
+import {Axios} from "tiklab-core-ui";
+
 
 /**
  * 定义
@@ -41,7 +36,7 @@ export class JsonResponseStore {
 
         const newRow =[ { id: 'JsonResponseInitRow'}]
 
-        const res = await findJsonResponseListTree(params)
+        const res = await Axios.post("/jsonResponse/findJsonResponseListTree",params)
         if( res.code === 0){
             this.jsonResponseDataSource = res.data;
             if( res.data.length === 0){
@@ -63,7 +58,7 @@ export class JsonResponseStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await findJsonResponse(param);
+        const res = await Axios.post("/jsonResponse/findJsonResponse",param);
         if( res.code === 0){
             this.jsonResponseInfo = res.data;
             return res.data;
@@ -75,7 +70,7 @@ export class JsonResponseStore {
      */
     @action
     createJsonResponse = async (values) => {
-        const res = await createJsonResponse(values)
+        const res = await Axios.post("/jsonResponse/createJsonResponse",values)
         if( res.code === 0){
             this.findJsonResponseListTree(this.apxMethodId);
         }
@@ -86,7 +81,7 @@ export class JsonResponseStore {
      */
     @action
 	updateJsonResponse = async (values) => {
-		const res = await updateJsonResponse(values)
+		const res = await Axios.post("/jsonResponse/updateJsonResponse",values)
         if( res.code === 0){
             this.findJsonResponseListTree(this.apxMethodId);
         }
@@ -100,7 +95,7 @@ export class JsonResponseStore {
         const param = new FormData();
         param.append('id', id);
 
-		const res = await deleteJsonResponse(param)
+		const res = await Axios.post("/jsonResponse/deleteJsonResponse",param)
         if( res.code === 0){
             this.findJsonResponseListTree(this.apxMethodId);
         }

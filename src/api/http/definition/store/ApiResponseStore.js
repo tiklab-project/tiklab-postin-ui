@@ -1,11 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findApiResponse, 
-    createApiResponse,
-    updateApiResponse,
-    findApiResponseList,
-    deleteApiResponse
-} from '../api/apiResponseApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 接口响应结果store
@@ -22,10 +16,10 @@ export class ApiResponseStore {
      */
     @action
     findApiResponse = async (id) => {
-        const param = new FormData();
-        param.append('id', id);
+        const params = new FormData();
+        params.append('id', id);
 
-        const res = await findApiResponse(param);
+        const res = await Axios.post("/apiResponse/findApiResponse",params);
         if( res.code === 0){
 
             return res.data;
@@ -36,8 +30,8 @@ export class ApiResponseStore {
      * 查询响应结果列表
      */
     @action
-    findApiResponseList = async (param) => {
-        const res = await findApiResponseList(param);
+    findApiResponseList = async (params) => {
+        const res = await Axios.post("/apiResponse/findApiResponseList",params);
         if( res.code === 0){
             this.apiResponseList = res.data;
             return res.data;
@@ -48,23 +42,23 @@ export class ApiResponseStore {
      * 创建响应结果
      */
     @action
-    createApiResponse = async (values) => await createApiResponse(values)
+    createApiResponse = async (params) => await Axios.post("/apiResponse/createApiRespons",params)
 
     /**
      * 更新响应结果
      */
     @action
-	updateApiResponse = async (values) => await updateApiResponse(values)
+	updateApiResponse = async (params) => await Axios.post("/apiResponse/updateApiRespons",params)
 
     /**
      * 删除响应结果
      */
     @action
     deleteApiResponse = async (id) => {
-        let param = new FormData()
-        param.append("id",id)
+        let params = new FormData()
+        params.append("id",id)
 
-        await deleteApiResponse(param);
+        await Axios.post("/apiResponse/deleteApiResponse",params);
     }
 }
 

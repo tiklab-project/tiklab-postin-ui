@@ -1,23 +1,17 @@
-import {observable, action, toJS} from "mobx";
-import {
-    findMethodPage,
-    createMethod,
-    findMethod,
-    updateMethod,
-    deleteMethod,
-    findMethodListByApix
-} from '../api/apxMethodApi'
+import {observable, action} from "mobx";
+import {Axios} from "tiklab-core-ui";
 
+/**
+ * 接口store
+ */
 export class ApxMethodStore {
 
     @observable apxMethodList = [];
-    @observable apiInfo={};
     @observable versionList = [];
     @observable apxMethodId = '';
     @observable categoryId= '';
     @observable versionId = '';
     @observable	totalRecord = "";
-    @observable params = {};
     @observable verParams= {};
     @observable currentVersion = {};
     @observable oldVersion = {};
@@ -33,12 +27,12 @@ export class ApxMethodStore {
      */
     @action
     findApxMethodPage = async (values) => {
-        this.params = {
+        let params = {
             orderParams:[{name:'name', orderType:'asc'}],
             ...values
         }
 
-        const res = await findMethodPage(this.params);
+        const res = await Axios.post("/http/findHttpApiPage",params);
         if(res.code === 0 ) {
             this.apxMethodList = res.data.dataList;
             this.totalRecord = res.data.totalRecord;
@@ -56,7 +50,7 @@ export class ApxMethodStore {
             protocolType:'http',
             apiUid:null
         }
-        const res = await findMethodListByApix(param);
+        const res = await Axios.post("/http/findHttpApiListByApix",param);
         if(res.code === 0 ) {
             this.apxMethodList = res.data;
             return  res;
@@ -69,9 +63,8 @@ export class ApxMethodStore {
         this.apxMethodId = id;
         const param = new FormData();
         param.append('id', id);
-        const res = await findMethod(param);
+        const res = await Axios.post("/http/findHttpApi",param);
         if( res.code === 0 ){
-            this.apiInfo = res.data;
             return res.data;
         }
     }
@@ -81,7 +74,7 @@ export class ApxMethodStore {
      */
     @action
     createApxMethod = async (values) => {
-        const res = await createMethod(values)
+        const res = await Axios.post("/http/createHttpApi",values)
         if( res.code === 0 ){
             // this.findApxMethodPage(this.params);
 
@@ -93,7 +86,7 @@ export class ApxMethodStore {
      * 更新接口
      */
     @action
-	updateApxMethod = async (values) =>  await updateMethod(values)
+	updateApxMethod = async (values) =>  await Axios.post("/http/updateHttpApi",values)
 
 
     /**
@@ -103,9 +96,8 @@ export class ApxMethodStore {
 	deleteApxMethod = async (id) => {
         const param = new FormData();
         param.append('id', id);
-		const res = await deleteMethod(param)
+		const res = await Axios.post("/http/deleteHttpApi",param)
         if( res.code === 0 ){
-            // this.findApxMethodPage(this.params);
             return res
         }
     }

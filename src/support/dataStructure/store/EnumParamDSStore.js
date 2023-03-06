@@ -1,11 +1,6 @@
 import { observable,  action } from "mobx";
-import {
-    findEnumParamListDS,
-    createEnumParamDS,
-    findEnumParamDS,
-    updateEnumParamDS,
-    deleteEnumParamDS,
-} from '../api/enumParamApi'
+import {Axios} from "tiklab-core-ui";
+
 
 /**
  * 枚举结构 store
@@ -27,7 +22,7 @@ export class EnumParamDSStore {
             }],
         }
 
-        let res = await findEnumParamListDS(params)
+        let res = await Axios.post("/enumParamDS/findEnumParamListDS",params)
         if(res.code === 0) {
             this.enumParamDSList = res.data;
 
@@ -43,7 +38,7 @@ export class EnumParamDSStore {
         const param = new FormData();
         param.append('id', id);
 
-        let res = await findEnumParamDS(param)
+        let res = await Axios.post("/enumParamDS/findEnumParamDS",param)
         if( res.code === 0){
             return  res.data;
         }
@@ -53,13 +48,13 @@ export class EnumParamDSStore {
      * 创建枚举结构
      */
     @action
-    createEnumParamDS = async (values) => await createEnumParamDS(values)
+    createEnumParamDS = async (values) => await Axios.post("/enumParamDS/createEnumParamDS",values)
 
     /**
      * 更新枚举结构
      */
     @action
-    updateEnumParamDS = async (values) => await updateEnumParamDS(values)
+    updateEnumParamDS = async (values) => await Axios.post("/enumParamDS/updateEnumParamDS",values)
 
     /**
      * 删除枚举结构
@@ -69,7 +64,7 @@ export class EnumParamDSStore {
         const param = new FormData();
         param.append('id', id);
 
-        return await deleteEnumParamDS(param)
+        return await Axios.post("/enumParamDS/deleteEnumParamDS",param)
     }
 }
 

@@ -1,13 +1,5 @@
 import { observable,  action } from "mobx";
-import {
-    FindCategory,
-    CreateCategory,
-    DeleteCategory,
-    UpdateCategory,
-    FindCategoryListTree,
-    findCategoryAddSon
-} from '../api/categoryApi';
-
+import {Axios} from "tiklab-core-ui";
 /**
  * 目录
  */
@@ -31,7 +23,7 @@ export class CategoryStore{
             orderParams:[{name:'name', orderType:'asc'}],
         }
 
-        let res = await FindCategoryListTree(params)
+        let res = await Axios.post("/category/likeFindCategoryListTree",params)
         if(res.code === 0) {
             this.categoryList = res.data;
             return res.data;
@@ -46,7 +38,7 @@ export class CategoryStore{
         this.categoryId = id;
         const param = new FormData();
         param.append('id', id);
-        let res = await FindCategory(param)
+        let res = await Axios.post("/category/findCategory",param)
 
         if(res.code === 0){
             if(res.data){
@@ -65,7 +57,7 @@ export class CategoryStore{
         const param = new FormData();
         param.append('id', id);
 
-        let res = await findCategoryAddSon(param)
+        let res = await Axios.post("/category/findCategoryAddSon",param)
 
         if(res.code === 0){
             return res.data
@@ -77,7 +69,7 @@ export class CategoryStore{
      */
     @action
     createCategory = async (values) => {
-        let res = await CreateCategory(values)
+        let res = await Axios.post("/category/createCategory",values)
         if(res.code === 0){
            await this.findCategoryList(this.workspaceId)
         }
@@ -89,7 +81,7 @@ export class CategoryStore{
     @action
     updateCategory = async (values) => {
         values.id = this.categoryId;
-        let res = await UpdateCategory(values)
+        let res = await Axios.post("/category/updateCategory",values)
 
         if(res.code === 0){
             await this.findCategoryList(this.workspaceId);
@@ -103,7 +95,7 @@ export class CategoryStore{
     deleteCategory = async (categoryId) => {
         const param = new FormData();
         param.append('id', categoryId)
-        const res = await DeleteCategory(param)
+        const res = await Axios.post("/category/deleteCategory",param)
 
         if(res.code === 0){
             await this.findCategoryList(this.workspaceId);

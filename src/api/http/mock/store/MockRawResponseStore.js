@@ -1,9 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findRawResponseMock, 
-    createRawResponseMock,
-    updateRawResponseMock
-} from '../api/mockRawResponseApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * mock
@@ -22,7 +18,7 @@ export class MockRawResponseStore {
         this.mockId = id;
         const param = new FormData();
         param.append('id', id);
-        const res = await findRawResponseMock(param);
+        const res = await Axios.post("/rawResponseMock/findRawResponseMock",param);
         if( res.code === 0){
             return this.mockRawResponseInfo = res.data;
         }
@@ -35,7 +31,7 @@ export class MockRawResponseStore {
     createRawResponseMock = async (values) => {
         values.mock = {id: this.mockId,}
         values.id =  this.mockId;
-        return await createRawResponseMock(values);
+        return await Axios.post("/rawResponseMock/createRawResponseMock",values);
     }
 
     /**
@@ -45,7 +41,7 @@ export class MockRawResponseStore {
 	updateRawResponseMock = async (values) => {
         values.mock = {id: this.mockId,}
         values.id =  this.mockId;
-		return await updateRawResponseMock(values)
+		return await Axios.post("/rawResponseMock/updateRawResponseMock",values)
     }
     
 

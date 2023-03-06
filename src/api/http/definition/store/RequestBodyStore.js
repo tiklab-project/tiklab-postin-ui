@@ -1,9 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findRequestBody, 
-    createRequestBody,
-    updateRequestBody
-} from '../api/requestBodyApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 定义
@@ -27,7 +23,7 @@ export class RequestBodyStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res  = await findRequestBody(param);
+        const res  = await Axios.post("/requestBody/findRequestBody",param);
         if( res.code === 0){
             this.requestbodyType = res.data?.bodyType;
             this.bodyType = res.data?.bodyType;
@@ -43,7 +39,7 @@ export class RequestBodyStore {
         values.http = {id: this.apxMethodId}
         values.id = this.requestBodyId;
 
-        await createRequestBody(values);
+        await Axios.post("/requestBody/createRequestBody",values);
     }
 
     /**
@@ -54,7 +50,7 @@ export class RequestBodyStore {
         values.http = {id: this.apxMethodId}
         values.id= this.requestBodyId;
 
-        await updateRequestBody(values);
+        await Axios.post("/requestBody/updateRequestBody",values);
     }
     
 }

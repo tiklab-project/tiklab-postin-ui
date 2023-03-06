@@ -1,9 +1,5 @@
 import { observable,  action } from "mobx";
-import { 
-    findRequestMock, 
-    createRequestMock,
-    updateRequestMock
-} from '../api/requestMockApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * mock
@@ -22,7 +18,7 @@ export class RequestMockStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await findRequestMock(param);
+        const res = await Axios.post("/requestMock/findRequestMock",param);
         if( res.code === 0){
             return  res.data
         }
@@ -36,7 +32,7 @@ export class RequestMockStore {
         values.mockId =  this.mockId
         values.id =  this.mockId;
 
-        await createRequestMock(values);
+        await Axios.post("/requestMock/createRequestMock",values);
     }
 
     /**
@@ -47,7 +43,7 @@ export class RequestMockStore {
         values.mockId =  this.mockId;
         values.id= this.mockId;
 
-        await updateRequestMock(values)
+        await Axios.post("/requestMock/updateRequestMock",values)
     }
     
 }

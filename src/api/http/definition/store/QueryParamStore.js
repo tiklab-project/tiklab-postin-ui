@@ -1,11 +1,5 @@
 import { observable,  action } from "mobx";
-import {
-    findQueryParamList,
-    createQueryParam,
-    findQueryParam,
-    updateQueryParam,
-    deleteQueryParam
-} from '../api/queryParamApi';
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 定义
@@ -40,7 +34,7 @@ export class QueryParamStore {
         }
 
         const newRow =[ { id: 'InitNewRowId'}]
-        const res = await  findQueryParamList(params)
+        const res = await Axios.post("/queryParam/findQueryParamList",params)
 
         if( res.code === 0) {
             this.dataLength = res.data.length
@@ -64,7 +58,7 @@ export class QueryParamStore {
         const param = new FormData();
         param.append('id', id)
 
-        const res = await findQueryParam(param);
+        const res = await Axios.post("/queryParam/findQueryParam",param);
         if( res.code === 0){
             that.queryParamInfo = res.data;
             return res.data
@@ -78,7 +72,7 @@ export class QueryParamStore {
     createQueryParam = async (values) => {
         values.http = {id:this.httpId}
 
-        const res = await createQueryParam(values)
+        const res = await Axios.post("/queryParam/createQueryParam",values)
         if( res.code === 0){
            return this.findQueryParamList(this.httpId);
         }
@@ -89,7 +83,7 @@ export class QueryParamStore {
      */
     @action
 	updateQueryParam = async (values) => {
-		const res = await updateQueryParam(values)
+		const res = await Axios.post("/queryParam/updateQueryParam",values)
         if( res.code === 0){
             return this.findQueryParamList(this.httpId);
         }
@@ -102,7 +96,7 @@ export class QueryParamStore {
 	deleteQueryParam = async (id) => {
         const param = new FormData();
         param.append('id', id)
-		const res = await deleteQueryParam(param);
+		const res = await Axios.post("/queryParam/deleteQueryParam",param);
         if( res.code === 0){
             this.findQueryParamList(this.httpId);
         }

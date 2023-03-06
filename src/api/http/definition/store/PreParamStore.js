@@ -1,9 +1,6 @@
 import { observable,  action } from "mobx";
-import {
-    findPreScript,
-    createPreScript,
-    updatePreScript
-} from '../api/preParamApi';
+import {Axios} from "tiklab-core-ui";
+
 
 /**
  * 定义
@@ -23,7 +20,7 @@ export class PreParamStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await findPreScript(param);
+        const res = await Axios.post("/preScript/findPreScript",param);
         if( res.code === 0){
             this.preScriptInfo = res.data;
             return  res.data;
@@ -38,7 +35,7 @@ export class PreParamStore {
         values.http = {id: this.apxMethodId};
         values.id =  this.apxMethodId;
 
-        return await createPreScript(values);
+        return await Axios.post("/preScript/createPreScript",values);
     }
 
     /**
@@ -49,7 +46,7 @@ export class PreParamStore {
         values.http = {id: this.apxMethodId}
         values.id = this.apxMethodId;
 
-        return await updatePreScript(values);
+        return await Axios.post("/preScript/updatePreScript",values);
     }
 }
 
