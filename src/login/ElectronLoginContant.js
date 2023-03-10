@@ -1,5 +1,5 @@
 import React from "react";
-import {ElectronLogin} from "tiklab-eam-ui";
+import ElectronLogin from "./electronLogin";
 
 /**
  * 用于electron验证登录

@@ -20,6 +20,7 @@ const Workspace = (props) => {
 
     const userId = getUser().userId;
     const [selectItem, setSelectItem] = useState("all");
+    const [workspaceList, setWorkspaceList] = useState([]);
 
     //空间筛选列表
     const items = [
@@ -93,17 +94,23 @@ const Workspace = (props) => {
                     ...uId,
                     ...name
                 }
-                findWorkspaceJoinList(params)
+                findWorkspaceJoinList(params).then(list=>{
+                    setWorkspaceList(list)
+                })
                 break;
             case "create":
                 let param = {
                     ...uId,
                     ...name
                 }
-                findWorkspaceList(param)
+                findWorkspaceList(param).then(list=>{
+                    setWorkspaceList(list)
+                })
                 break;
             case "follow":
-                findWorkspaceFollowList(uId)
+                findWorkspaceFollowList(uId).then(list=>{
+                    setWorkspaceList(list)
+                })
                 break;
             // case "recent":
             //     findWorkspaceRecentList(uId)
@@ -161,6 +168,7 @@ const Workspace = (props) => {
                 <div className='contant-box'>
                     <WorkspaceList
                         {...props}
+                        workspaceList={workspaceList}
                         findList={findList}
                         selectItem={selectItem}
                     />

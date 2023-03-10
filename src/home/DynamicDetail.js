@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import IconCommon from "../common/IconCommon";
-import {List, Select, Skeleton} from "antd";
+import {List, Select} from "antd";
 import PaginationCommon from "../common/pagination/Page";
 import {inject, observer} from "mobx-react";
 import {Axios, getUser} from "tiklab-core-ui";

@@ -4,7 +4,7 @@ import { observer, inject } from "mobx-react";
 import {Form, Modal, Button, Input, Radio, Row, Col, Select} from 'antd';
 import IconCommon from "../../../common/IconCommon";
 import {Axios, getUser} from "tiklab-core-ui";
-import {Profile} from "tiklab-eam-ui";
+// import {Profile} from "tiklab-eam-ui";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 
 const {TextArea} = Input
@@ -91,7 +91,7 @@ const WorkspaceEdit = (props) => {
     const showOption = (list) =>{
         return  list&&list.map((item) => <Option key={item.id} value={item.id}>
             <div className={"ws-edit-box-select"}>
-                <Profile userInfo={item}/>
+                {/*<Profile userInfo={item}/>*/}
                 {item.name}
             </div>
         </Option>

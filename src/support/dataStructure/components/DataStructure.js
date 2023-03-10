@@ -5,7 +5,7 @@ import {inject, observer} from "mobx-react";
 import "./structureStyle.scss"
 import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
-import {Profile} from "tiklab-eam-ui";
+// import {Profile} from "tiklab-eam-ui";
 import IconCommon from "../../../common/IconCommon";
 
 /**
@@ -34,7 +34,7 @@ const DataStructure = (props) => {
             key: "user",
             render: (text, record) => (
                 <div className={"ws-user-item"}>
-                    <Profile userInfo={record.createUser}/>
+                    {/*<Profile userInfo={record.createUser}/>*/}
                     <span>{record.createUser.nickname} </span>
                 </div>
             )

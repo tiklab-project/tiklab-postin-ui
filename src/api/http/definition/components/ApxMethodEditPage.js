@@ -1,11 +1,10 @@
 import React, { useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../index';
-import {Breadcrumb, Button, Form, Input, Popconfirm, Select, Space, Tabs} from 'antd';
+import {Breadcrumb, Button, Input, Popconfirm, Select, Space, Tabs} from 'antd';
 import './apxMethod.scss'
 import MethodType from "../../../../common/MethodType";
-import {RemoteUmdComponent} from 'tiklab-plugin-ui'
-import {useHasPointPlugin, useSelector} from "tiklab-plugin-ui/es/_utils"
+import {RemoteComponent,useHasPointPlugin, useSelector} from 'tiklab-plugin-core-ui'
 import ApiStatusModal from "../../../../support/apiStatus/components/ApiStatusSelect";
 import IconCommon from "../../../../common/IconCommon";
 import {methodDictionary} from "../../../../common/dictionary/dictionary";
@@ -228,7 +227,7 @@ const ApxMethodEditPage = (props) => {
     const showPluginView = () =>{
         //如果版本不为ce，没有过期，并且有插件就显示
         if(version.release!==1&&version.expired===false&&hasVersionPlugin){
-            return <RemoteUmdComponent
+            return <RemoteComponent
                     point='version'
                     pluginStore={pluginStore}
                     extraProps={{ history: props.history}}

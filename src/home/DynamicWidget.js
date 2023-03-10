@@ -18,9 +18,11 @@ const DynamicWidget = (props) =>{
         let workspaceList=[];
         if(!screen){
             let res = await findWorkspaceJoinList({userId: getUser().userId})
-            res.map(item=>{
-                workspaceList.push( item.id)
-            })
+            if(res){
+                res.map(item=>{
+                    workspaceList.push( item.id)
+                })
+            }
         }
         let contentList = { workspaceId:workspaceList }
 
@@ -45,6 +47,7 @@ const DynamicWidget = (props) =>{
             ...param,
             bgroup:"postin"
         }
+
         let res = await Axios.post('/oplog/findlogpage',params);
         let data = res.data
 

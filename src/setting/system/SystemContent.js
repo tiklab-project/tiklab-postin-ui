@@ -82,6 +82,10 @@ const SystemContent = (props) =>{
             title: '版本与许可证',
             icon: 'modular',
             key: '/systemManagement/version'
+        },{
+            title: '产品授权',
+            icon: 'modular',
+            key: '/systemManagement/product'
         },
     ]
 

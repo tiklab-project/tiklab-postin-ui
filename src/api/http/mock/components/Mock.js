@@ -4,7 +4,7 @@ import {Table, Space, Tooltip, Popconfirm, Switch, Breadcrumb} from 'antd';
 import MockEdit from './MockEdit';
 import './mock.scss';
 import copyMockUrl from "../../../../common/copyLink";
-import {Profile} from "tiklab-eam-ui";
+// import {Profile} from "tiklab-eam-ui";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 
 /**
@@ -44,7 +44,7 @@ const Mock = (props) => {
             render: (text, record) => (
                 <div className={"ws-user-item"}>
                     <Space>
-                        <Profile userInfo={record.createUser}/>
+                        {/*<Profile userInfo={record.createUser}/>*/}
                         <span>{record.createUser?.nickname} </span>
                     </Space>
                 </div>

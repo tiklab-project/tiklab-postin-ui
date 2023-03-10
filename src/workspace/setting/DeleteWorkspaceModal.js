@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Form, Input, Modal} from "antd";
-import {PrivilegeProjectButton} from "tiklab-privilege-ui";
+import {PrivilegeProjectButton} from "tiklab-user-ui";
 
 /**
  * 空间设置中的删除空间

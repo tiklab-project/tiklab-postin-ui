@@ -18,16 +18,16 @@ import {
 } from './container';
 
 import {Redirect} from "react-router";
-import {AuthResult} from "tiklab-eam-ui";
+import {Auth} from "tiklab-eam-ui";
 import TestBoxQuickTest from "./quicktest/components/TestBoxQuickTest";
 import TestBox from "./api/http/test/test/components/ApiTestPage";
-import {Directory, OrgaList, UserGroup, UserList} from "tiklab-user-ui";
+import {Directory, Orga, UserGroup, User} from "tiklab-user-ui";
 import LoginContent from "./login/LoginContent";
 import WorkspaceSetting from "./workspace/setting/WorkspaceSetting";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
-import {ProjectFeatureList, ProjectRoleList, SystemFeatureList, SystemRoleList} from "tiklab-privilege-ui";
-import { LogTemplateList, LogTypeList, MyLogList} from "tiklab-oplog-ui";
-import {PluginDetail, PluginList} from "tiklab-plugin-ui";
+import {ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "tiklab-user-ui";
+import { LogTemplate, LogType, MyLog} from "tiklab-security-ui";
+import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
 import DynamicDetail from "./home/DynamicDetail";
 import Version from "./setting/version/Version";
 import StructureDetail from "./support/dataStructure/components/StructureDetail";
@@ -37,7 +37,7 @@ import ApiDocument from "./api/http/definition/components/ApiDocumentPage";
 
 import ApiInitPage from "./workspace/common/ApiInitPage";
 import DataStructure from "./support/dataStructure/components/DataStructure";
-
+import {ProductAuth} from "tiklab-licence-ui"
 
 const routers =  [
     {
@@ -76,7 +76,7 @@ const routers =  [
         exact: true,
     },{
         path:"/auth_result",
-        component:AuthResult,
+        component:Auth,
         key:"auth_result",
         exact: true,
     },{
@@ -116,13 +116,13 @@ const routers =  [
                         path: "/systemManagement/org",
                         key:'org',
                         exact: true,
-                        render:(props)=> <OrgaList {...props} bgroup={'postin'}/>
+                        render:(props)=> <Orga {...props} bgroup={'postin'}/>
                     },{
                         path: "/systemManagement/user",
                         key:'user',
                         exact: true,
                         render:(props)=>{
-                            return <UserList {...props} bgroup={'postin'}/>
+                            return <User {...props} bgroup={'postin'}/>
                         }
                     },{
                         path: "/systemManagement/authConfig",
@@ -139,7 +139,7 @@ const routers =  [
                     {
                         path: "/systemManagement/systemRole",
                         key:'SystemRole',
-                        render: () => <SystemRoleList group={'system'} bgroup={"postin"}/>,
+                        render: () => <SystemRole group={'system'} bgroup={"postin"}/>,
                     },
                     //消息
                     {
@@ -165,7 +165,7 @@ const routers =  [
                     {
                         path: "/systemManagement/plugin",
                         key:'plugin',
-                        render:(props)=> <PluginList {...props}  detailRouter={"/systemManagement/plugindetail"}/>,
+                        render:(props)=> <Plugin {...props}  detailRouter={"/systemManagement/plugindetail"}/>,
                     },
                     {
                         path: "/systemManagement/plugindetail",
@@ -178,7 +178,7 @@ const routers =  [
                         path: "/systemManagement/log",
                         key:'log',
                         exact: true,
-                        render:(props)=>  <MyLogList {...props} bgroup={"postin"}/>,
+                        render:(props)=>  <MyLog {...props} bgroup={"postin"}/>,
                     },
                     //版本
                     {
@@ -188,28 +188,37 @@ const routers =  [
                         component:Version
 
                     },
+                    //产品授权
+                    {
+                        path: "/systemManagement/product",
+                        key:'version',
+                        exact: true,
+                        render:(props)=><ProductAuth />
+                    },
+
+
                     {
                         path: "/systemManagement/baseSystemRole",
                         exact: true,
-                        render: () => <SystemRoleList isBase={true} group={'system'} bgroup={"postin"}/>,
+                        render: () => <SystemRole isBase={true} group={'system'} bgroup={"postin"}/>,
                     },
                     {
                         path: "/systemManagement/systemFeature",
                         key:'SystemFeature',
                         exact: true,
-                        render: () => <SystemFeatureList bgroup={"postin"}/>,
+                        render: () => <SystemFeature bgroup={"postin"}/>,
                     },
                     {
                         path: "/systemManagement/privilege",
                         key:'ProjectFeature',
                         exact: true,
-                        render: (props) => <ProjectFeatureList {...props} bgroup={"postin"}/>,
+                        render: (props) => <ProjectFeature {...props} bgroup={"postin"}/>,
                     },
                     {
                         path: "/systemManagement/role",
                         key:'ProjectRole',
                         exact: true,
-                        render: (props) => <ProjectRoleList isBase={true} {...props} bgroup={"postin"}/>,
+                        render: (props) => <ProjectRole isBase={true} {...props} bgroup={"postin"}/>,
                     },
                     {
                         path: "/systemManagement/messageSendTypeBase",
@@ -234,12 +243,12 @@ const routers =  [
                         path: "/systemManagement/logTemplate",
                         key:'logTemplate',
                         exact: true,
-                        render:(props)=>  <LogTemplateList {...props} bgroup={"postin"}/>,
+                        render:(props)=>  <LogTemplate {...props} bgroup={"postin"}/>,
                     },{
                         path: "/systemManagement/logType",
                         key:'logTemplate',
                         exact: true,
-                        render:()=>  <LogTypeList bgroup={"postin"}/>,
+                        render:()=>  <LogType bgroup={"postin"}/>,
                     },
                     // {
                     //     path: "/systemManagement/taskList",

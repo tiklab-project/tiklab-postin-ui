@@ -1,5 +1,5 @@
 import React from "react";
-import { DomainRoleList } from 'tiklab-privilege-ui';
+import { DomainRole } from 'tiklab-user-ui';
 
 /**
  * 包装权限
@@ -7,7 +7,7 @@ import { DomainRoleList } from 'tiklab-privilege-ui';
 const WorkspacePrivilege = props => {
     const workspaceId = localStorage.getItem('workspaceId')
     return (
-            <DomainRoleList
+            <DomainRole
                 {...props} 
                 domainId = {workspaceId}
                 bgroup={"postin"}

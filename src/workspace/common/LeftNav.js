@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
 import {Space} from "antd";
 import {toWorkspaceDetail} from "../workspace/components/WorkspaceFn";
-import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
+import {SYSTEM_ROLE_STORE} from 'tiklab-user-ui/es/store'
 
 /**
  * 左侧导航展示

@@ -1,6 +1,6 @@
 import React from 'react';
-import {verifyUserHoc} from "tiklab-eam-ui";
-import {connect} from 'tiklab-plugin-ui/es/_utils';
+import {UserVerify} from "tiklab-eam-ui";
+import {connect} from 'tiklab-plugin-core-ui';
 import PageContent from "./PageContent";
 
 
@@ -27,7 +27,7 @@ function mapStateToProps(state) {
 /**
  * 再把对象，使用平台高阶组件传递给verifyUser，验证用户
  */
-export default connect(mapStateToProps)(verifyUserHoc(Page));
+export default connect(mapStateToProps)(UserVerify(Page));
 
 
 

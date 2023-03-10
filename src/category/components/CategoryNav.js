@@ -4,7 +4,6 @@ import { CaretRightOutlined, CaretDownOutlined } from '@ant-design/icons';
 import {Dropdown, Menu, Popconfirm, Tooltip} from "antd";
 import {ApxMethodEdit} from "../../api/http/definition";
 import CategoryEdit from './CategoryEdit';
-import {apiTabListInfoProcess} from "../../common/apiTabListInfoProcess";
 import {TextMethodType} from "../../common/MethodType";
 
 /**
@@ -20,7 +19,6 @@ const CategoryNav = (props) => {
 
     const workspaceId = localStorage.getItem('workspaceId');
 
-    const apiTabListInfo = JSON.parse(sessionStorage.getItem("apiTabListInfo"))
 
 
     /**
@@ -31,8 +29,6 @@ const CategoryNav = (props) => {
         setOpenOrClose(item.id);
         localStorage.setItem('categoryId',item.id);
 
-        apiTabListInfoProcess(item,apiTabListInfo,"list")
-
         props.history.push('/workspace/apis/category');
     }
 
@@ -41,8 +37,6 @@ const CategoryNav = (props) => {
      */
     const onMethod = (item) => {
         setClickKey(item.id);
-
-        apiTabListInfoProcess(item,apiTabListInfo,"api")
 
         localStorage.setItem('apxMethodId',item.id);
         props.history.push('/workspace/apis/document');

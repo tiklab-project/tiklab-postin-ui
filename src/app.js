@@ -7,8 +7,8 @@ import './common/language/i18n';
 import "./assets/iconfont/iconfont";
 import "./assets/iconfont/iconfont.css";
 import {useTranslation} from "react-i18next";
-import { PluginProvider} from 'tiklab-plugin-ui';
-import { initFetch} from 'tiklab-plugin-ui/es/_utils';
+import { PluginProvider,pluginLoader} from 'tiklab-plugin-core-ui';
+
 import resources from "./common/language/resource";
 import {getUser} from "tiklab-core-ui";
 import "./assets/index"
@@ -30,7 +30,7 @@ const App = (props) => {
 
      useEffect(() => {
          if(!props.type){
-             initFetch('post', routers, resources,i18n).then(res => {
+             pluginLoader( routers, resources,i18n).then(res => {
                  setPluginData(res)
              })
          }

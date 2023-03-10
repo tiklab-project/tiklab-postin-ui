@@ -58,13 +58,15 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|jpeg|gif)/,
+                exclude: /\.(png|jpg|jpeg|gif).js/,
                 // exclude: /node_modules/,
                 use: {
                     loader: 'url-loader',
                     options: {
+                        // publicPath: 'images',
                         outputPath: 'images/',
                         name: '[name].[ext]', // 图片输出的路径
-                        limit: 0,
+                        limit: 8*1024,
                     }
                 }
             },
@@ -84,7 +86,7 @@ module.exports = {
             },
             {
                 test: /\.svg/,
-                // exclude: /node_modules/,
+                exclude:  /\.svg.js/,
                 use: {
                     loader: 'file-loader',
                     options: {
@@ -123,6 +125,7 @@ module.exports = {
         new webpack.DefinePlugin( envData),
 
         new MonacoWebpackPlugin({
+            filename :"js/[name].work.js",
             languages: ["json", "xml","javascript", "html"],
             features: ["coreCommands", "find", "format", "folding", 'smartSelect', 'snippets', 'suggest', 'hover']
         })

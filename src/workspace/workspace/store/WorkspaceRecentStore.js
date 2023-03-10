@@ -13,11 +13,13 @@ export class WorkspaceRecentStore {
 	 */
 	@action
 	workspaceRecent = async (values) => {
+
+
 		let params = {
 			orderParams:[{name:'updateTime', orderType:'desc'}],
 			...values
 		}
-		const res = await Axios.post("/workspaceRecent/findWorkspaceRecentList",params);
+		const res = await Axios.post("/workspaceRecent/workspaceRecent",params);
 		if(res.code === 0 ) {
 			return res.data;
 		}

@@ -148,7 +148,7 @@ const processResponse = (res) =>{
  */
 export const localProxySendTest=async (proxyPath,data)=>{
     //request接口 请求头
-    let fetchHeaders;
+    let axiosHeaders;
 
     //当前执行的请求的接口参数
     let body = data.bodys
@@ -156,17 +156,18 @@ export const localProxySendTest=async (proxyPath,data)=>{
     let queryHeader;
     if(data.method!=="get"){
         queryHeader=Object.assign({}, {"User-Agent":"PostIn/1.0.0"},{"content-type": header["Content-Type"]})
-        fetchHeaders={"content-type": header["Content-Type"]}
+        axiosHeaders={"content-type": header["Content-Type"]}
     }else {
         queryHeader={"User-Agent":"PostIn/1.0.0"}
+        axiosHeaders={"User-Agent":"PostIn/1.0.0"}
     }
 
 
     //处理后的查询参数
-    let fetchHeader =processPiHeader(queryHeader,data)
+    let axiosQuery =processPiHeader(queryHeader,data)
 
     //request接口 请求地址
-    let fetchUrl = `/request?${fetchHeader}`;
+    let fetchUrl = `/request?${axiosQuery}`;
     // try{
     //     if(base_url){
     //         fetchUrl = `${base_url}/request?${fetchHeader}`
@@ -180,7 +181,7 @@ export const localProxySendTest=async (proxyPath,data)=>{
     // 请求前的毫秒数
     let sendDate = (new Date()).getTime();
     //请求
-   let res =  axiosIns.post(fetchUrl,body,{ headers:fetchHeaders}).then(res=>{
+   let res =  axiosIns.post(fetchUrl,body,{ headers:axiosHeaders}).then(res=>{
 
        let resDate={};
 

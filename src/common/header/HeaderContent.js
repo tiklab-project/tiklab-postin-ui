@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
-import {Divider, Dropdown, Menu, Space} from "antd";
+import {Avatar, Dropdown, Menu} from "antd";
 import {Search} from "../../container";
-import {Profile, WorkAppConfig} from "tiklab-eam-ui"
+import {AppLink} from "tiklab-integration-ui"
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
 import HeaderMenu from "./HeaderMenu";
 import logo from "../../assets/img/postinlog.png";
 import MessageDrawer from "../../setting/message/MessageDrawer";
-import {QuestionCircleOutlined, RightOutlined, SettingOutlined} from "@ant-design/icons";
+import {QuestionCircleOutlined, RightOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
 
 /**
  * 页面头部
@@ -100,8 +100,8 @@ const HeaderContent = props => {
     return(
         <div className="frame-header">
             <div className={"pi-header-left"}>
-                <WorkAppConfig isSSO={false}/>
-                {/*<div className={"pi-header-right-item"}><WorkAppConfig isSSO={false}/></div>*/}
+                <AppLink isSSO={false}/>
+                {/*<div className={"pi-header-right-item"}><AppLink isSSO={false}/></div>*/}
                 <div className={'frame-header-logo'}>
                     {logo && <img src={logo} alt='logo' />}
                 </div>
@@ -133,13 +133,13 @@ const HeaderContent = props => {
                     <div className={"header-right-item"}>
                         <div className={"toggle-hover"}>
                             <div className="user-header-icon-hover">
-                                <Profile userInfo={getUser()}/>
+                                <Avatar size="small" icon={<UserOutlined />} />
                             </div>
                             <div className={"toggle-hidden-box header-user-box"}>
                                 <div className={"user-detail-box"}>
                                     <div className={"user-detail-item  user-detail-item-icon"}>
                                         <div className="header-user-icon">
-                                            <Profile userInfo={getUser()}/>
+                                            <Avatar icon={<UserOutlined />} />
                                         </div>
                                     </div>
                                     <div className={"user-detail-item"}>

@@ -16,8 +16,8 @@ const userProduction = true;
 
 const appKey = JSON.stringify('appkey');
 const appSecret = JSON.stringify('appsecret');
-const version = JSON.stringify('1.0.1');
-const client = JSON.stringify('1.1.0');
+const version = JSON.stringify('ce');
+const client = JSON.stringify('web');
 
 const IS_DEV = true;
 

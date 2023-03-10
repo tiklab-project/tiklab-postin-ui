@@ -2,8 +2,8 @@ import React, { useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
 import { DownOutlined,UpOutlined} from '@ant-design/icons';
-import { PrivilegeButton } from "tiklab-privilege-ui";
-import {useSelector} from 'tiklab-plugin-ui/es/_utils'
+import { PrivilegeButton } from "tiklab-user-ui";
+import {useSelector} from 'tiklab-plugin-core-ui'
 import './sysMana.scss'
 
 const { Sider, Content } = Layout;

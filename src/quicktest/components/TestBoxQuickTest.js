@@ -9,10 +9,6 @@ import {inject, observer} from "mobx-react";
  * 发送测试
  */
 const TestBoxQuickTest = (props) =>{
-    const {testStore} = props;
-    const {proxyItem} = testStore;
-
-    let proxy = localStorage.getItem("PROXY_ITEM")
 
 
     /**
@@ -22,18 +18,7 @@ const TestBoxQuickTest = (props) =>{
         let response ;
 
         response= await localProxySendTest("/request",data)
-        // switch (proxy?proxy:proxyItem) {
-        //     case "local":
-        //         response=  localProxySendTest("/local-proxy",data)
-        //         break;
-        //     case "cloud":
-        //         response=  localProxySendTest("/cloud-proxy",data)
-        //         break;
-        //     default:
-        //         response=  sendTest(data);
-        //         break
-        //
-        // }
+
 
         return response;
     }
