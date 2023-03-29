@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../index';
-import {Breadcrumb, Button, Input, Popconfirm, Select, Space, Tabs} from 'antd';
+import {Breadcrumb, Button, Input, Popconfirm, Select, Space, Tabs, TreeSelect} from 'antd';
 import './apxMethod.scss'
 import MethodType from "../../../../common/MethodType";
 import {RemoteComponent,useHasPointPlugin, useSelector} from 'tiklab-plugin-core-ui'
@@ -24,13 +24,12 @@ const {TabPane} = Tabs;
  */
 const ApxMethodEditPage = (props) => {
     const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore ,pluginsStore} = props;
-    const {findCategoryList} = categoryStore;
+    const {findCategoryList,findCategoryTreeList} = categoryStore;
     const { findApxMethod,updateApxMethod} = apxMethodStore;
     const { findUserSelectPage,userSelectList } = userSelectStore;
     const {findApiStatusList,apiStatusSourceList} = apxMethodStatusStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
-    const categoryId = localStorage.getItem('categoryId');
     const apxMethodId = localStorage.getItem('apxMethodId');
 
     const [showValidateStatus, setShowValidateStatus ] = useState()
@@ -42,6 +41,10 @@ const ApxMethodEditPage = (props) => {
     const [methodType,setMethodType] =useState();
     const [status, setStatus] = useState();
     const [executorId, setExecutorId] = useState();
+    const [categoryList, setCategoryList] = useState();
+    const [categoryId, setCategoryId] = useState();
+    const [tabTip, setTabTip] = useState();
+
     const pluginStore = useSelector(store => store.pluginStore)
 
     useEffect(async ()=>{
@@ -54,6 +57,46 @@ const ApxMethodEditPage = (props) => {
         setMethodType(res.methodType);
         setStatus(res.apix.status?.id);
         setExecutorId(res.apix.executor?.id)
+        setCategoryId(res.apix.category?.id)
+
+        let tabTipObj = {};
+
+        if(res.headerList){
+            tabTipObj.header = true;
+        }
+
+        if(res.queryList){
+            tabTipObj.query = true;
+        }
+
+        switch (res.request.bodyType) {
+            case "none":
+                tabTipObj.body = false;
+                break
+            case "formdata":
+                if(res.formList){
+                    tabTipObj.body = true;
+                }
+                break
+            case "formUrlencoded":
+                if(res.formList){
+                    tabTipObj.body = true;
+                }
+                break
+            case "json":
+                if(res.jsonList){
+                    tabTipObj.body = true;
+                }
+                break
+            case "raw":
+                if(res.rawParam){
+                    tabTipObj.body = true;
+                }
+                break
+        }
+        setTabTip(tabTipObj)
+
+
     },[apxMethodId]);
 
     useEffect(()=>{
@@ -62,6 +105,12 @@ const ApxMethodEditPage = (props) => {
 
     useEffect(()=>{
         findApiStatusList();
+    },[])
+
+    useEffect(()=>{
+        findCategoryTreeList(workspaceId).then(res=>{
+            setCategoryList(res)
+        })
     },[])
 
     /**
@@ -89,6 +138,10 @@ const ApxMethodEditPage = (props) => {
 
         updateApxMethod(param).then((res)=>{
             setExecutorId(executor)
+
+            //编辑完重新查询目录树
+            findCategoryList(workspaceId)
+
         });
     }
 
@@ -106,6 +159,9 @@ const ApxMethodEditPage = (props) => {
 
         updateApxMethod(param).then((res)=>{
             setStatus(statusId)
+
+            //编辑完重新查询目录树
+            findCategoryList(workspaceId)
         });
     }
 
@@ -125,7 +181,12 @@ const ApxMethodEditPage = (props) => {
 
             let res = await updateApxMethod(param)
             if(res.code===0){
-                findApxMethod(apxMethodId).then(res=>setResData(res))
+                findApxMethod(apxMethodId).then(res=> {
+                    setResData(res)
+
+                    //编辑完重新查询目录树
+                    findCategoryList(workspaceId)
+                })
             }
         }
 
@@ -147,7 +208,12 @@ const ApxMethodEditPage = (props) => {
 
             updateApxMethod(param).then(res=>{
                 if(res.code===0){
-                    findApxMethod(apxMethodId).then(res=>setResData(res))
+                    findApxMethod(apxMethodId).then(res=> {
+                        setResData(res)
+
+                        //编辑完重新查询目录树
+                        findCategoryList(workspaceId)
+                    })
                 }
             })
         }
@@ -171,6 +237,11 @@ const ApxMethodEditPage = (props) => {
 
         updateApxMethod(param).then(res=>{
             setMethodType(methodType)
+
+            findApxMethod(apxMethodId).then(res=> {
+                //编辑完重新查询目录树
+                findCategoryList(workspaceId)
+            })
         })
     }
 
@@ -207,6 +278,29 @@ const ApxMethodEditPage = (props) => {
         updateApxMethod(param)
 
         setShowDesc(false)
+    }
+
+    /**
+     * 更改分组
+     */
+    const changeCategory = (categoryId) =>{
+        if(!categoryId) return
+
+        let param = {
+            id:httpId,
+            apix:{
+                ...resData?.apix,
+                category:{id:categoryId}
+            }
+        }
+
+        updateApxMethod(param).then((res)=>{
+            setCategoryId(categoryId)
+
+            //编辑完重新查询目录树
+            findCategoryList(workspaceId)
+
+        });
     }
 
 
@@ -357,10 +451,29 @@ const ApxMethodEditPage = (props) => {
                     <div className={"method"}>
                         <div  style={{display:"flex","justifyContent":"space-between","alignItems":"center"}}>
                             <div className={"method-people-info"}>
-                                <span className={"people-item "}>分组: {resData?.apix?.category?.name}</span>
+                                <span className={"people-item api-detail-base-box"}>
+                                    分组:
+                                        <TreeSelect
+                                            fieldNames={{ label: 'name', value: 'id', children: 'children' }}
+                                            style={{  width: '120px'}}
+                                            dropdownStyle={{
+                                                maxHeight: 400,
+                                                overflow: 'auto',
+                                            }}
+                                            value={categoryId?categoryId:null}
+                                            allowClear
+                                            treeDefaultExpandAll
+                                            onChange={(e)=>changeCategory(e)}
+                                            treeData={categoryList}
+                                            showArrow={showValidateStatus === "category"}
+                                            suffixIcon={showValidateStatus === "category"?<CaretDownOutlined />:null}
+                                            onMouseEnter={()=>{setShowValidateStatus("category")}}
+                                            onMouseLeave={()=>{setShowValidateStatus(null)}}
+                                        />
+                                </span>
                                 <span className={"people-item api-detail-base-box"}>
                                     负责人: <Select
-                                            style={{width:75,height:32}}
+                                            style={{width:100,height:32}}
                                             value={executorId?executorId:null}
                                             onChange={(e)=>selectExecutor(e)}
                                             placeholder={"未设置"}
@@ -369,7 +482,7 @@ const ApxMethodEditPage = (props) => {
                                             onMouseEnter={()=>{setShowValidateStatus("executor")}}
                                             onMouseLeave={()=>{setShowValidateStatus("")}}
                                         >
-                                                {showExecutor(userSelectList)}
+                                            {showExecutor(userSelectList)}
                                         </Select>
                                 </span>
                                 <span className={"people-item "}>更新人: {resData?.apix?.updateUser?.name}</span>
@@ -431,7 +544,7 @@ const ApxMethodEditPage = (props) => {
 
                 <div className="header-title ex-title">输入参数</div>
                 <div className={"white-bg-box"}>
-                    <Request  />
+                    <Request tabTip={tabTip} />
                 </div>
 
                 <div className="header-title ex-title">输出结果</div>

@@ -185,7 +185,11 @@ const RequestHeader = (props) =>{
      * 更新
      */
     const upData = (value) => {
-        updateRequestHeader(value).then(res => setDataSource(res))
+        updateRequestHeader(value).then(res => {
+            findRequestHeaderList(apxMethodId).then(res=>{
+                setDataSource(res)
+            })
+        })
     }
 
     /**

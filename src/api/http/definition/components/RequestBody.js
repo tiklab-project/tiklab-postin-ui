@@ -32,6 +32,7 @@ const RequestBody  = (props) =>{
         none:"none",
         formdata:"form-data",
         formUrlencoded:"x-www-form-urlencoded",
+        // json:"json",
         raw:"raw",
         // binary:"binary"
     }
@@ -43,6 +44,7 @@ const RequestBody  = (props) =>{
             setRadioType={setRadioType}
             form={<FormParam  />}
             formUrlencoded={<FormUrlencoded />}
+            // json={<JsonParam />}
             raw={<RawParam />}
             binary={null}
             bodyTypeDictionary={bodyTypeDictionary}

@@ -1,5 +1,10 @@
 
 .qk-test-box{
+    height: 100%;
+
+    .ant-tabs-tabpane{
+        height: 100%;
+    }
 
     .ant-tabs-tab .ant-tabs-tab-active .ant-tabs-tab-btn {
         color:  var(--pi-base-color);

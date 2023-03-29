@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import {Form, Button, Input, Select, Breadcrumb} from 'antd';
+import {Form, Button, Input, Select, Breadcrumb, InputNumber} from 'antd';
 import { MockRequest, MockResponse } from '../index';
 import { observer, inject } from 'mobx-react';
 import EdiText from "react-editext";
@@ -8,6 +8,7 @@ import IconCommon from "../../../../common/IconCommon";
 import {dir} from "../../../../common/dictionary/dictionary";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 import IconBtn from "../../../../common/iconBtn/IconBtn";
+import {messageFn} from "../../../../common/messageCommon/MessageCommon";
 
 const { Option } = Select;
 
@@ -25,31 +26,24 @@ const MockDetail = (props) =>{
 
     const mockId =  localStorage.getItem('mockId');
     const apxMethodId =  localStorage.getItem('apxMethodId');
+    const [selectValue, setSelectValue] = useState();
+    const [delayTime, setDelayTime] = useState();
 
     useEffect(()=>{
         findMock(mockId).then((res)=> {
-            setResData(res)
+            setResData(res);
+
         })
     },[mockId])
 
     useEffect(()=>{
         findResponseMock(mockId).then((res)=>{
             if(res.httpCode){
-                form.setFieldsValue({
-                    httpCode: res.httpCode
-                })
+                setSelectValue(res.httpCode)
+                setDelayTime(res.time)
             }
         })
     },[mockId])
-
-
-    /**
-     * 改变状态码
-     */
-    const onChange = (value) => {
-        updateResponseMock({httpCode : value})
-    }
-
 
     /**
      * 编辑名字
@@ -84,6 +78,37 @@ const MockDetail = (props) =>{
         props.history.push("/workspace/apis/mock")
     }
 
+
+
+    const changeSelect = (value) => {
+        setSelectValue(value);
+
+        //匹配正确的状态码
+        const regex = /^([1-5][0-9][0-9])$/;
+        if(regex.test(value)){
+            updateResponseMock({httpCode : value})
+        }else {
+            messageFn("error","请输入1xx, 2xx, 3xx, 4xx, 或 5xx 状态码")
+        }
+    };
+
+    const searchSelect = (value) => {
+        if (value) {
+            setSelectValue(value);
+        }
+    };
+
+    const blurSelect = () => {
+        setSelectValue(selectValue);
+        changeSelect(selectValue)
+    };
+
+
+    const changeInputNumber = (value) =>{
+        setDelayTime(value)
+
+        updateResponseMock({time : value})
+    }
 
     return(
         <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
@@ -131,22 +156,17 @@ const MockDetail = (props) =>{
 
                 <div className='header-title  ex-title'>返回结果</div>
                 <div className={"white-bg-box mock-resp-code"}>
-                <Form form={form}>
-                    <Form.Item
-                        label="Http code"
-                        name="httpCode"
-                        // rules={[
-                        //     {
-                        //         required: true,
-                        //         pattern: new RegExp(/^\d{3}$/),
-                        //         message: '输入正确http code'
-                        //     },
-                        // ]}
-                    >
+                <Form form={form} layout={"inline"}>
+                    <Form.Item label="响应状态码">
                         <Select
+                            allowClear
                             showSearch
-                            style={{ 'width': 200 }}
-                            onChange={(value)=>onChange(value)}
+                            placeholder="HTTP CODE"
+                            onChange={changeSelect}
+                            onSearch={searchSelect}
+                            onBlur={blurSelect}
+                            style={{width: 170}}
+                            value={selectValue}
                         >
                             {
                                 dir.httpCode.map(item=>{
@@ -154,6 +174,9 @@ const MockDetail = (props) =>{
                                 })
                             }
                         </Select>
+                    </Form.Item>
+                    <Form.Item label="响应延迟时间(/ms)">
+                        <InputNumber min={0} max={100000} value={delayTime}  onChange={changeInputNumber} />
                     </Form.Item>
                 </Form>
                 <MockResponse  {...props}/>

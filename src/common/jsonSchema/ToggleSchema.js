@@ -1,16 +1,21 @@
 import React, {useCallback, useState} from "react";
-import {Checkbox, Input, Select} from "antd";
+import {Checkbox, Divider, Input, Select, Tag} from "antd";
 import {schemaEnum} from "./SchemaEnum";
 import MockSelect from "./MockSelect";
 import IconCommon from "../IconCommon";
 import {toJS} from "mobx";
 import {messageFn} from "../messageCommon/MessageCommon";
+import {RightOutlined} from "@ant-design/icons";
+import ModeModal from "../../support/dataStructure/components/modeModal";
 const {Option} = Select
 
+/**
+ * JSONSchema
+ * todo组件后面需要从新开发
+ */
 const ToggleSchema = (props) =>{
-    const {data,deep,preKey,parent,root,jsonSchemaStore,apiResponseStore,httpId,resultId} = props
-    const {updateApiResponse} =apiResponseStore
-    const {setSchemaData,schemaData} = jsonSchemaStore;
+    const {data,schemaData,deep,preKey,parent,root,setSchemaData,updateFn,httpId,resultId} = props
+
 
     const [toggleShow, setToggleShow] = useState(false);
 
@@ -27,8 +32,7 @@ const ToggleSchema = (props) =>{
         let loop = (inlineDeep,data,result ) =>{
             let properties = data.properties;
 
-            const keys = Object.keys(properties);
-            keys.forEach(key=>{
+            Object.keys(properties).forEach(key=>{
                 let d = { ...properties[key] }
 
                 if(deep===inlineDeep&&key===preKey){
@@ -37,15 +41,9 @@ const ToggleSchema = (props) =>{
                     result[key] = d
                 }
 
-
                 if (properties[key].properties) {
-                    loop(
-                        inlineDeep+1,
-                        properties[key],
-                        d.properties
-                    )
+                    loop(inlineDeep + 1, properties[key], d.properties);
                 }
-
             })
         }
 
@@ -66,49 +64,44 @@ const ToggleSchema = (props) =>{
             httpId:httpId,
             jsonText:JSON.stringify(newResult)
         }
-        updateApiResponse(param)
+
+        updateFn(param)
     }
 
     const changeCheckbox = (e) =>{
         let checked = e.target.checked
 
         let checkedLoop = (inlineDeep,data,result) =>{
-            let keys = Object.keys(data.properties)||"root"
+            const keys = Object.keys(data.properties);
 
             keys.forEach(key=>{
-
                 let a = {...data}
                 let required
-                if(checked){
-                    if(data.required) {
-                        required = [].concat(a.required, preKey)
-                    }
-                }else {
-                    if(data.required) {
-                        required =a.required.filter(item => item !== preKey)
-                    }
+
+                if (checked) {
+                    required = data.required ? [...data.required, preKey] : [key];
+                } else {
+                    required = data.required?.filter((item) => item !== preKey);
                 }
 
-                result={
+                result = {
                     ...data,
-                    required:[...required]
-                }
-
+                    required: [...required],
+                };
 
                 if (data.properties[key].properties) {
                     checkedLoop(
-                        inlineDeep+1,
+                        inlineDeep + 1,
                         data.properties[key],
                         a.properties[key].properties
                     )
                 }
             })
-
-
         }
 
         let result = {}
         let inlineDeep = 1
+
         checkedLoop(inlineDeep,schemaData,result)
 
 
@@ -116,45 +109,52 @@ const ToggleSchema = (props) =>{
     }
 
     //改变类型
-    const changeType = (type)=>{
+    const changeType = (type,preKey,dataModel)=>{
 
         let loop = (inlineDeep,data, result={} ) =>{
             const keys = Object.keys(data.properties);
 
-            keys.forEach(key=>{
-                const {...res} = data.properties[key];
-                let d = {
-                    ...res,
-                }
+            keys.forEach((key) => {
+                const { ...res } = data.properties[key];
+                let d = {...res};
 
-                if(deep===inlineDeep&&key===preKey){
-                    if(type==="object"){
+                if (deep === inlineDeep && key === preKey) {
+
+                    if(type === "object"&&!!dataModel){
+                        result[dataModel.properties]={
+                            type:"object",
+                            isModel:true,
+                            id:dataModel.id
+                        }
+                        return
+                    }
+
+                    if (type === "object") {
                         result[key] = {
                             ...d,
-                            type:type,
-                            properties:{}
-                        }
+                            type: type,
+                            properties: {},
+                        };
                     }else {
                         result[key] = {
                             ...d,
-                            type:type
-                        }
+                            type: type,
+                        };
                     }
-
-                }else {
-                    result[key] = d
+                } else {
+                    result[key] = d;
                 }
 
                 if (data.properties[key].properties) {
                     loop(
-                        inlineDeep+1,
+                        inlineDeep + 1,
                         data.properties[key],
                         d.properties
-                    )
+                    );
                 }
+            });
+        };
 
-            })
-        }
 
         let result = {};
         let inlineDeep=1;
@@ -173,7 +173,7 @@ const ToggleSchema = (props) =>{
             httpId:httpId,
             jsonText:JSON.stringify(newResult)
         }
-        updateApiResponse(param)
+        updateFn(param)
 
     }
 
@@ -228,7 +228,7 @@ const ToggleSchema = (props) =>{
             httpId:httpId,
             jsonText:JSON.stringify(newResult)
         }
-        updateApiResponse(param)
+        updateFn(param)
 
     };
 
@@ -331,7 +331,7 @@ const ToggleSchema = (props) =>{
             httpId:httpId,
             jsonText:JSON.stringify(newResult)
         }
-        updateApiResponse(param)
+        updateFn(param)
     }
 
     //删除
@@ -375,7 +375,7 @@ const ToggleSchema = (props) =>{
             httpId:httpId,
             jsonText:JSON.stringify(newResult)
         }
-        updateApiResponse(param)
+        updateFn(param)
     }
 
     //CheckBox
@@ -384,25 +384,31 @@ const ToggleSchema = (props) =>{
     }
 
     //展示前面是否展开图标
-    const showPreIcon = (type)=>{
-        if(type==="object"||type==="array"){
-            return <div
-                className={"schema-item"}
-                onClick={()=>setToggleShow(!toggleShow)}
-            >
-                <IconCommon
-                    icon={`${toggleShow?"Solid-up":"Solid-right"}`}
-                    className={"icon-m pi-schema-prefix-icon"}
-                />
-            </div>
-        }else {
+    const showPreIcon = (data)=>{
+        if(data?.isModel ===true){
             return <div style={{width:"28px"}}/>
+        }else {
+            if(data?.type==="object"||data?.type==="array"){
+                return <div
+                    className={"schema-item"}
+                    onClick={()=>setToggleShow(!toggleShow)}
+                >
+                    <IconCommon
+                        icon={`${toggleShow?"Solid-up":"Solid-right"}`}
+                        className={"icon-m pi-schema-prefix-icon"}
+                    />
+                </div>
+            }else {
+                return <div style={{width:"28px"}}/>
+            }
         }
+
+
     }
 
     //展示后面是否添加图标
-    const showAddIcon = (type) =>{
-        if(type==="object"){
+    const showAddIcon = (data) =>{
+        if(data?.type==="object" && data?.isModel !==true){
             return <IconCommon
                 icon={"tianjia-"}
                 style={{"cursor":"pointer"}}
@@ -432,6 +438,7 @@ const ToggleSchema = (props) =>{
             return <Input
                 defaultValue={preKey}
                 onBlur={(e)=>changeName(e)}
+                disabled={data?.isModel===true}
             />
         }
 
@@ -449,11 +456,12 @@ const ToggleSchema = (props) =>{
             return  Object.keys(data.properties).map(preKey=>{
                 return <ToggleSchema
                     data={data.properties[preKey]}
+                    schemaData={schemaData}
+                    setSchemaData={setSchemaData}
                     deep={deep+1}
                     parent={data}
                     preKey={preKey}
-                    jsonSchemaStore={jsonSchemaStore}
-                    apiResponseStore={apiResponseStore}
+                    updateFn={updateFn}
                     httpId={httpId}
                     resultId={resultId}
                 />
@@ -462,50 +470,63 @@ const ToggleSchema = (props) =>{
     }
 
     return(
-        <div key={`${preKey+deep}`}>
-            <div className={"pi-schema-box"}>
+        <div key={`${preKey+deep}`} >
+            <div  key={`${preKey+deep}`} className={"pi-schema-box"}>
                 <div className={"pi-schema-root"}>
                     <div className={"schema-item schema-item-flex-1"}>
                         <div className={"schema-item-pre"} style={{marginLeft: `${20 * deep}px`}}>
                             {
-                                showPreIcon(data?.type)
+                                showPreIcon(data)
                             }
                             {
-                                showInputName()
+                                showInputName(data)
                             }
                         </div>
                     </div>
                     <div className={"schema-item"}>
                         <Checkbox
-                            disabled={root}
+                            disabled={root || data?.isModel===true}
                             defaultChecked={getCheckBox()}
                             onChange={(e)=>changeCheckbox(e)}
                         />
                     </div>
                     <div className={"schema-item "}>
                         <Select
+                            disabled={data?.isModel===true}
                             className={"schema-item-select"}
-                            onChange={e =>changeType(e)}
+                            onChange={(type) =>changeType(type,preKey)}
                             defaultValue={ data?.type||"Object"}
+                            dropdownRender={(item)=>(
+                                <>
+                                    <div style={{"overflow":"auto"}}>{item}</div>
+                                    <Divider style={{ margin: '8px 0' }} />
+
+                                    <ModeModal changeType={changeType} preKey={preKey}/>
+                                </>
+                                )
+                            }
                         >
                             {
                                 schemaEnum.SCHEMA_TYPE.map(itemEnum=>{
                                     return <Option value={itemEnum} key={itemEnum}> {itemEnum} </Option>
                                 })
                             }
+
                         </Select>
                     </div>
                     <div className={"schema-item "}>
                         <MockSelect
                             // schema={schema}
 
-                            defaultValue={  data?.mock?.mock }
-                            disabled={deep === 0}
+                            defaultValue={  data?.mock?.mock ||  data?.isModel===true?preKey+"模型":null  }
+                            disabled={deep === 0|| data?.isModel===true}
                             onChange={e => changeValue( e)}
                         />
+
                     </div>
                     <div className={"schema-item schema-item-flex-1"}>
                         <Input
+                            disabled={data?.isModel===true}
                             defaultValue={  data?.description }
                             onBlur={e => changeDesc(e.target.value)}
                         />
@@ -516,7 +537,7 @@ const ToggleSchema = (props) =>{
                             showDelIcon()
                         }
                         {
-                            showAddIcon(data?.type)
+                            showAddIcon(data)
                         }
                     </div>
                 </div>

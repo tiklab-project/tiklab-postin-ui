@@ -19,6 +19,7 @@ const appSecret = JSON.stringify('appsecret');
 const version = JSON.stringify('ce');
 const client = JSON.stringify('web');
 
+//发送请求有用到
 const IS_DEV = true;
 
 module.exports = {

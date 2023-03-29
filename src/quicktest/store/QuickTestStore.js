@@ -28,9 +28,9 @@ export  class QuickTestStore {
         this.methodType = data.method;
 
         if(data.params&&Object.keys(data.params).length>0){
-            this.baseInfo = data.url+'?'+qs.stringify(data.params)
+            this.baseInfo = data.path+'?'+qs.stringify(data.params)
         }else {
-            this.baseInfo = data.url
+            this.baseInfo = data.path
         }
 
         // this.requestHeaderData = JSON.stringify(data.headers);
@@ -44,11 +44,9 @@ export  class QuickTestStore {
     getResponseInfo = async (data,assertData) => {
         let res = data.res;
 
-        this.methodType =res?.config?.method;
-        this.baseInfo = res?.config?.url;
-
         this.time=data.time;
         this.status = res.status;
+        debugger
         let requestHeaders= res?.config?.headers;
         let requestBody =  res?.config?.data;
 
@@ -160,7 +158,6 @@ export  class QuickTestStore {
             this.responseBodyData = res.responseInstance?.body;
             this.responseHeaderData = res.responseInstance?.headers;
         }
-
 
         this.requestBodyData = res.requestInstance?.body;
         this.requestHeaderData = res.requestInstance?.headers;

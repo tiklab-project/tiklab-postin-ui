@@ -11,7 +11,7 @@ import {toJS} from "mobx";
  * 查询参数
  */
 const QueryTableCommon = (props) =>{
-    const {dataList, saveList, addNewList, deleteList } = props;
+    const {dataList, saveList, deleteList,selectList,selectKeys } = props;
 
     let columns= [
         {
@@ -54,7 +54,7 @@ const QueryTableCommon = (props) =>{
         }
     ]
 
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
 
     /**
      * 保存数据
@@ -76,13 +76,11 @@ const QueryTableCommon = (props) =>{
 
 
     const onSelectChange = (newSelectedRowKeys,list) => {
-        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-        console.log('list: ', list);
-        setSelectedRowKeys(newSelectedRowKeys);
+        selectList(list)
     };
 
     const rowSelection = {
-        selectedRowKeys,
+        defaultSelectedRowKeys:selectKeys,
         onChange: onSelectChange,
     };
 

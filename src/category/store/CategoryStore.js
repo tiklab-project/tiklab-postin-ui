@@ -13,6 +13,7 @@ export class CategoryStore{
 
     /**
      * 查询目录树
+     * 带接口
      */
     @action
     findCategoryList = async (id,categoryName) => {
@@ -26,6 +27,24 @@ export class CategoryStore{
         let res = await Axios.post("/category/likeFindCategoryListTree",params)
         if(res.code === 0) {
             this.categoryList = res.data;
+            return res.data;
+        }
+    }
+
+    /**
+     * 查询目录树
+     * 带接口
+     */
+    @action
+    findCategoryTreeList = async (id) => {
+        this.workspaceId = id;
+        const params = {
+            workspaceId: id,
+            orderParams:[{name:'name', orderType:'asc'}],
+        }
+
+        let res = await Axios.post("/category/findCategoryListTree",params)
+        if(res.code === 0) {
             return res.data;
         }
     }

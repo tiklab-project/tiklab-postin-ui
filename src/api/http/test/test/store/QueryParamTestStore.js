@@ -4,12 +4,27 @@ import {TableCommonStore} from "../../../../../common/tableCommon/store/tableCom
 const tableCommonStore = new TableCommonStore();
 
 export  class QueryParamTestStore {
+    //选择后的项
+    @observable querySelectList;
+    //表格默认选择的行id
+    @observable selectKeys;
+
+    //带过来所有的项
     @observable queryParamTestList = [];
+    @observable newRow=[{id: 'InitNewRowId'}];
+
 
     @action
     getQueryParamTestList= (data) => {
-        this.queryParamTestList = tableCommonStore.getList(data)
+        if(data){
+            this.querySelectList=[...data]
+            this.selectKeys = data.map(item => item.id);
+            this.queryParamTestList= [...data,...this.newRow]
+        }else {
+            this.queryParamTestList = this.newRow;
+        }
     }
+
 
     @action
     deleteList = (id) => {
@@ -17,13 +32,29 @@ export  class QueryParamTestStore {
     }
 
     @action
+    deleteList = (id) =>{
+        let newList  = this.queryParamTestList.filter((item)=> {
+            return item.id !== id
+        })
+
+        if(newList.length === 0){
+            return this.newRow;
+        }
+
+        this.selectKeys = newList.map(item => item.id);
+        this.queryParamTestList=newList;
+    }
+
+
+    @action
     saveList = (list) => {
+        this.selectKeys = list.map(item => item.id);
         this.queryParamTestList = [...list];
     }
 
     @action
-    addNewList = (list) => {
-        this.queryParamTestList =[...list];
+    selectList = (list) => {
+        this.querySelectList = [...list];
     }
 
 }

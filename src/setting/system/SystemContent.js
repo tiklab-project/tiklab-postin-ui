@@ -134,11 +134,7 @@ const SystemContent = (props) =>{
                     icon: 'modular',
                     key: '/systemManagement/logType',
                 },
-                {
-                    title: '代办模板',
-                    icon: 'modular',
-                    key: '/systemManagement/todoTemp',
-                },
+
             ],
         }
     ]

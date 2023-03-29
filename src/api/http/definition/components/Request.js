@@ -5,16 +5,19 @@ import QueryParam from './QueryParam';
 import RequestBody from "./RequestBody";
 import PreParam from './PreParam';
 import AfterScript from './AfterParam';
+import {inject, observer} from "mobx-react";
 
 
 /**
  * 请求中的tab组件
  */
 const Request = (props) => {
+    const {tabTip} = props
 
 
     return(
         <RequestTab
+            tabTip={tabTip}
             header={<RequestHeader />}
             query={<QueryParam />}
             body={<RequestBody />}
@@ -24,4 +27,4 @@ const Request = (props) => {
     )
 }
 
-export default Request;
+export default inject("requestHeaderStore")(observer(Request));

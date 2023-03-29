@@ -9,6 +9,7 @@ import {pi} from "../../common/dtAction";
 import TestResultCommon from "../../common/TestResultCommon";
 import IconBtn from "../../../../../common/iconBtn/IconBtn";
 import EnvSelect from "../../../../../support/environment/components/EnvSelect";
+import {messageFn} from "../../../../../common/messageCommon/MessageCommon";
 
 
 const { Option } = Select;
@@ -40,11 +41,11 @@ const ApiTestContent = (props) => {
     const {findApxMethod} = apxMethodStore;
     const {testEnvUrl} = environmentStore;
     const { getResponseInfo, getResponseError } = testStore;
-    const { requestHeaderTestList,getRequestHeaderTestList } = requestHeaderTestStore;
-    const { queryParamTestList,getQueryParamTestList } = queryParamTestStore;
+    const { requestHeaderList,getRequestHeaderTestList } = requestHeaderTestStore;
+    const { querySelectList,getQueryParamTestList } = queryParamTestStore;
     const { bodyTypeInfo,getBodyType,getMediaType } = requestBodyTestStore;
-    const { formParamTestList,getFormParamTestList } = formParamTestStore;
-    const { formUrlencodedTestList,getFormUrlencodedTestList } = formUrlencodedTestStore;
+    const { formSelectList,getFormParamTestList } = formParamTestStore;
+    const { formUrlSelectList,getFormUrlencodedTestList } = formUrlencodedTestStore;
     const { jsonParamTestList,getJsonParamTestList } = jsonParamTestStore;
     const { rawParamTestInfo,getRawInfo } = rawParamTestStore;
     const { preParamTestInfo,getPreInfo } = preParamTestStore;
@@ -56,6 +57,8 @@ const ApiTestContent = (props) => {
     const [apiData, setApiData] = useState();
     const [showResponse,setShowResponse]= useState(false);
     const [testResponse, setTestResponse] = useState();
+    const [tabTip, setTabTip] = useState();
+
     const methodId = localStorage.getItem('apxMethodId');
 
     useEffect(()=>{
@@ -67,23 +70,45 @@ const ApiTestContent = (props) => {
                 path: res.path,
             })
 
-            getRequestHeaderTestList(res.headerList);
-            getQueryParamTestList(res.queryList);
+            let tabTipObj = {};
+            if(res.headerList) {
+                tabTipObj.header = true;
+                getRequestHeaderTestList(res.headerList);
+            }
+
+            if(res.queryList){
+                tabTipObj.query = true;
+                getQueryParamTestList(res.queryList);
+            }
+
             getBodyType(res.request.bodyType);
 
             switch (res.request.bodyType){
                 case "formdata":
-                    getFormParamTestList(res.formList);
+                    if(res.formList) {
+                        tabTipObj.body = true;
+                        getFormParamTestList(res.formList);
+                    }
                     break;
                 case "formUrlencoded":
-                    getFormUrlencodedTestList(res.urlencodedList);
+                    if(res.formList){
+                        tabTipObj.body = true;
+                        getFormUrlencodedTestList(res.urlencodedList);
+                    }
                     break;
                 case "json":
-                    getJsonParamTestList(res.jsonList);
+                    if(res.jsonList){
+                        tabTipObj.body = true;
+                        getJsonParamTestList(res.jsonList);
+                    }
                     break;
                 case "raw":
-                    getRawInfo(res.rawParam);
-                    getMediaType(res.rawParam.type);
+                    if(res.rawParam){
+                        tabTipObj.body = true;
+
+                        getRawInfo(res.rawParam);
+                        getMediaType(res.rawParam.type);
+                    }
                     break;
                 case "binary":
                     //问题
@@ -91,10 +116,10 @@ const ApiTestContent = (props) => {
                 default:
                     break;
             }
-
-
             getPreInfo(res.request.preScript);
             getAfterInfo(res.request.afterScript);
+
+            setTabTip(tabTipObj)
         })
     },[methodId])
 
@@ -114,11 +139,11 @@ const ApiTestContent = (props) => {
             "method":values.methodType,
             "baseUrl":values.host?values.host:testEnvUrl,
             "path":values.path,
-            "headerList":requestHeaderTestList,
-            "queryList":queryParamTestList,
+            "headerList":requestHeaderList,
+            "queryList":querySelectList,
             "bodyType":bodyTypeInfo,
-            "formDataList":formParamTestList,
-            "formUrlencoded":formUrlencodedTestList,
+            "formDataList":formSelectList,
+            "formUrlencoded":formUrlSelectList,
             "jsonList":jsonParamTestList,
             "rawParam":rawParamTestInfo,
         }
@@ -132,11 +157,15 @@ const ApiTestContent = (props) => {
 
         //发送测试，返回结果
         let response =await getRes(processData)
+        if(!!response){
+            if(assertParamTestList&&assertParamTestList.length>0){
+                response.assertList =[ ...assertParamTestList];
+            }
 
-        response.assertList = assertParamTestList;
-        setTestResponse(response)
+            setTestResponse(response)
 
-        setShowResponse(true)
+            setShowResponse(true)
+        }
     }
 
     /**
@@ -185,7 +214,7 @@ const ApiTestContent = (props) => {
     }
 
     return(
-        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+        <div className={"content-margin"} >
             <div className="content-margin-box">
                 <div className={"pi-box-between"}>
                     <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
@@ -243,7 +272,7 @@ const ApiTestContent = (props) => {
 
                 <div className='header-title ex-title'>请求</div>
                 <div className={"white-bg-box"}>
-                    <TestRequest {...props}/>
+                    <TestRequest tabTip={tabTip}/>
                 </div>
 
                 <div className='header-title ex-title'>响应</div>

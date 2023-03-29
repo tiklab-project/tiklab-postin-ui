@@ -34,7 +34,6 @@ export class TestStore {
         //状态码
         this.status = res.status;
 
-
         let requestHeaders= res?.config?.headers;
         let requestBody =  res?.config?.data;
 

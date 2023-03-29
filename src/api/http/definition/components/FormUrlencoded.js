@@ -179,7 +179,9 @@ const FormUrlencoded = (props) =>{
      * 更新
      */
     const upData = (value) => {
-        updateFormUrlencoded(value).then(res=>setDataSoure(res));
+        updateFormUrlencoded(value).then(()=>{
+            findFormUrlencodedList(apxMethodId).then(res => setDataSoure(res));
+        });
     }
 
     /**
@@ -212,13 +214,6 @@ const FormUrlencoded = (props) =>{
             });
         }
     };
-
-    //当新行按键按下的时候显示后面的操作按钮
-    // const newRowKeyDown = () => {
-    //     document.addEventListener('keydown', (e) =>{
-    //         setNewRowAction(true)
-    //     });
-    // };
 
     return (
         <ExTable

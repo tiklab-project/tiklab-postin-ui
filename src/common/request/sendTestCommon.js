@@ -1,12 +1,9 @@
-
 import {testFunctionCommon} from "../../api/http/test/common/TestFunctionCommon";
 import qs from "qs";
-import {
-    bodyTypeJsonDictionary as bodyTypeJson,
-    rawTypeJsonDictionary as rawTypeJson
-} from "../dictionary/dictionary";
+import {bodyTypeJsonDictionary as bodyTypeJson, rawTypeJsonDictionary as rawTypeJson} from "../dictionary/dictionary";
 import {getHeader, getQuery} from "../../api/http/test/common/dtAction";
 import axiosIns from "../utils/localrequest";
+import {messageFn} from "../messageCommon/MessageCommon";
 
 
 /**
@@ -49,173 +46,42 @@ export const sendTestDataProcess=(data,preParamTestInfo)=>{
 }
 
 
-/**
- * 本地
- * 发送测试
- */
-export const sendTest=async (data)=>{
-
-    // 请求前的毫秒数
-    let sendDate = (new Date()).getTime();
-
-    let res = await axiosIns({
-        method: data.method,
-        url: data.url,
-        data: data.bodys,
-        params: data.params,
-        headers: data.headers,
-    }).then(res=>{
-
-        let receiveDate = (new Date()).getTime();
-        //time, ms
-        let responseTimeMs = receiveDate - sendDate;
-
-        console.log(res)
-        return {
-            time:responseTimeMs,
-            res:res
-        }
-    }).catch(error=>{
-        if (error.response) {
-            // 请求已发出，但服务器响应的状态码不在 2xx 范围内
-            let receiveDate = (new Date()).getTime();
-            let responseTimeMs = receiveDate - sendDate;
-
-            return  {
-                time:responseTimeMs,
-                res:error.response
-            }
-        } else {
-            // network Error
-            console.log('Error', error.message);
-
-            return {error:error.message}
-        }
-    })
-
-    return res
-}
-
-
-
-const processResponse = (res) =>{
-
-    let resDate={};
-
-
-    if(Object.keys(res.headers).length>0){
-        let headerStr = res.headers["pi-header"]
-
-        let headerObj={};
-        const regex = /(\w+):\[(\w+)\]/g;
-        let match;
-        while ((match = regex.exec(headerStr)) !== null) {
-            const key = match[1];
-            const value = match[2];
-            headerObj[key] = value;
-        }
-
-
-
-        //解析 基础信息 statusCode,statusText,times
-        let base = res.headers["pi-base"]
-        const obj = base.split(",").reduce((acc, cur) => {
-            const [key, value] = cur.split("=");
-            acc[key] = isNaN(value) ? value : Number(value);
-            return acc;
-        }, {});
-
-
-        resDate.time=obj.time;
-        res.headers=headerObj
-
-    }
-
-
-    resDate.res=res
-
-
-    return resDate
-}
-
-
-
-
 
 /**
  * request接口代理发送测试
  * Proxy send test
  */
 export const localProxySendTest=async (proxyPath,data)=>{
-    //request接口 请求头
-    let axiosHeaders;
+    const {bodys,headers} = data;
 
     //当前执行的请求的接口参数
-    let body = data.bodys
-    let header = data.headers
-    let queryHeader;
+    let queryHeader=Object.assign({}, {"User-Agent":"PostIn/1.0.0"}, {...headers})
+
+    //request接口 请求头
+    let axiosHeaders
     if(data.method!=="get"){
-        queryHeader=Object.assign({}, {"User-Agent":"PostIn/1.0.0"},{"content-type": header["Content-Type"]})
-        axiosHeaders={"content-type": header["Content-Type"]}
+        axiosHeaders={"content-type": headers["Content-Type"]}
     }else {
-        queryHeader={"User-Agent":"PostIn/1.0.0"}
         axiosHeaders={"User-Agent":"PostIn/1.0.0"}
     }
-
 
     //处理后的查询参数
     let axiosQuery =processPiHeader(queryHeader,data)
 
     //request接口 请求地址
-    let fetchUrl = `/request?${axiosQuery}`;
-    // try{
-    //     if(base_url){
-    //         fetchUrl = `${base_url}/request?${fetchHeader}`
-    //     }else {
-    //         fetchUrl = `http://192.168.10.18:8080/request?${fetchHeader}`
-    //     }
-    // }catch {
-    //     fetchUrl = `http://192.168.10.18:8080/request?${fetchHeader}`
-    // }
+    let fetchUrl
 
-    // 请求前的毫秒数
-    let sendDate = (new Date()).getTime();
+    if (!!IS_DEV) {
+        fetchUrl = `/request?${axiosQuery}`;
+    } else {
+        const baseUrl = base_url ?? window.location.origin;
+        fetchUrl = `${baseUrl}/request?${axiosQuery}`;
+    }
+
     //请求
-   let res =  axiosIns.post(fetchUrl,body,{ headers:axiosHeaders}).then(res=>{
+   let res =  axiosIns.post(fetchUrl,bodys,{ headers:axiosHeaders}).then(res=>{
 
-       let resDate={};
-
-       if(Object.keys(res.headers).length>0){
-           let headerStr = res.headers["pi-header"]
-
-
-           const headerObj = {};
-           // headerStr=headerStr.substring(1, headerStr.length - 1);
-           // headerStr.replace(/\[(.*?)\]/g, function(_, val) {
-           //     const parts = val.split(':');
-           //     headerObj[parts[0].trim()] = parts[1].trim();
-           // });
-
-
-           //解析 基础信息 statusCode,statusText,times
-           let base = res.headers["pi-base"]
-           const obj = base.split(",").reduce((acc, cur) => {
-               const [key, value] = cur.split("=");
-               acc[key] = isNaN(value) ? value : Number(value);
-               return acc;
-           }, {});
-
-
-           resDate.time=obj.time;
-           // res.headers=headerObj
-
-       }
-
-
-       resDate.res=res
-
-       console.log(resDate)
-       return resDate
+       return processResponse(res)
 
     }).catch(error=>{
         console.log(error.message)
@@ -224,6 +90,46 @@ export const localProxySendTest=async (proxyPath,data)=>{
     return res
 }
 
+/**
+ * 处理响应数据
+ */
+const processResponse = (res) =>{
+    let resDate={};
+
+    if(Object.keys(res.headers).length>0){
+
+        //解析 基础信息 statusCode,statusText,times
+        let base = res.headers["pi-base"]
+        let baseInfo;
+        if(base) {
+             baseInfo = base.split(",").reduce((acc, cur) => {
+                const [key, value] = cur.split("=");
+                acc[key] = isNaN(value) ? value : Number(value);
+                return acc;
+            }, {});
+
+            resDate.time=baseInfo.time;
+            res.status=baseInfo["statusCode"]
+        }
+
+        //获取响应头
+        let headerStr = res.headers["pi-header"]
+
+        let headerObj;
+        if(headerStr){
+            //解析后的响应头
+            headerObj = parseResponseHeaders(headerStr);
+
+            res.headers=headerObj
+        }
+
+
+    }
+
+    resDate.res=res
+
+    return resDate
+}
 
 /**
  * 把当前请求的接口基础信息放到query参数里请求，转换成query字符参数?a=b&c=d
@@ -234,9 +140,24 @@ const processPiHeader = (queryHeader,data) =>{
 
     let queryHeaderObj=  {"pi-header":queryHeaderStr,"pi-url":data.url,"pi-method":data.method}
 
-    let fetchHeader = Object.keys(queryHeaderObj).map(key => key + '=' + queryHeaderObj[key]).join('&');
+    return Object.keys(queryHeaderObj).map(key => key + '=' + queryHeaderObj[key]).join('&');
+}
 
-    return fetchHeader;
+/**
+ * 解析响应头里的pi-header
+ * 这是当前发送测试接口的响应头
+ */
+const  parseResponseHeaders = (headersText) => {
+    //正则 解析如：”Bdpagetype:[1],Bdqid:[0x91b9b91c0001489e],Connection:[keep-alive]“的响应头字符串
+    const headers = {};
+
+    const pattern = /([^,]+):\[(.*?)\]/g;
+
+    let match;
+    while ((match = pattern.exec(headersText)) !== null) {
+        headers[match[1]] = match[2];
+    }
+    return headers;
 }
 
 
@@ -309,5 +230,55 @@ const rawSwitch = (data,headers) =>{
             return data.raw;
     }
 }
+
+
+
+/**
+ * 本地
+ * 发送测试
+ */
+// export const sendTest=async (data)=>{
+//
+//     // 请求前的毫秒数
+//     let sendDate = (new Date()).getTime();
+//
+//     let res = await axiosIns({
+//         method: data.method,
+//         url: data.url,
+//         data: data.bodys,
+//         params: data.params,
+//         headers: data.headers,
+//     }).then(res=>{
+//
+//         let receiveDate = (new Date()).getTime();
+//         //time, ms
+//         let responseTimeMs = receiveDate - sendDate;
+//
+//         console.log(res)
+//         return {
+//             time:responseTimeMs,
+//             res:res
+//         }
+//     }).catch(error=>{
+//         if (error.response) {
+//             // 请求已发出，但服务器响应的状态码不在 2xx 范围内
+//             let receiveDate = (new Date()).getTime();
+//             let responseTimeMs = receiveDate - sendDate;
+//
+//             return  {
+//                 time:responseTimeMs,
+//                 res:error.response
+//             }
+//         } else {
+//             // network Error
+//             console.log('Error', error.message);
+//
+//             return {error:error.message}
+//         }
+//     })
+//
+//     return res
+// }
+
 
 

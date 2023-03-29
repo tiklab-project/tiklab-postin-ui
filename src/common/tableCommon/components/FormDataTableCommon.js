@@ -13,7 +13,7 @@ import {toJS} from "mobx";
  * formdata
  */
 const FormDataTableCommon = (props) =>{
-    const {dataList, saveList, deleteList} = props;
+    const {dataList, saveList, deleteList,selectList,selectKeys} = props;
 
     let columns= [
         {
@@ -98,7 +98,6 @@ const FormDataTableCommon = (props) =>{
         handleSave(newData)
     }
 
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
 
     /**
@@ -113,6 +112,7 @@ const FormDataTableCommon = (props) =>{
 
         //如果是最后一行，添加新行
         if(index===newData.length-1){
+
             newData.push({id:uuid()})
         }
 
@@ -121,13 +121,11 @@ const FormDataTableCommon = (props) =>{
 
 
     const onSelectChange = (newSelectedRowKeys,list) => {
-        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-        console.log('list: ', list);
-        setSelectedRowKeys(newSelectedRowKeys);
+        selectList(list)
     };
 
     const rowSelection = {
-        selectedRowKeys,
+        defaultSelectedRowKeys:selectKeys,
         onChange: onSelectChange,
     };
 

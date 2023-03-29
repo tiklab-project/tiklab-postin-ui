@@ -10,7 +10,7 @@ import {toJS} from "mobx";
  * formUrl
  */
 const FormUrlencodedTableCommon = (props) =>{
-    const {dataList, saveList, addNewList, deleteList, bodyType, getFormUrlencodedList } = props;
+    const {dataList, saveList, deleteList,selectList,selectKeys  } = props;
 
     //表头
     let columns= [
@@ -57,7 +57,6 @@ const FormUrlencodedTableCommon = (props) =>{
         }
     ]
 
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
     /**
      * 保存数据
@@ -79,13 +78,11 @@ const FormUrlencodedTableCommon = (props) =>{
 
 
     const onSelectChange = (newSelectedRowKeys,list) => {
-        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-        console.log('list: ', list);
-        setSelectedRowKeys(newSelectedRowKeys);
+        selectList(list)
     };
 
     const rowSelection = {
-        selectedRowKeys,
+        defaultSelectedRowKeys:selectKeys,
         onChange: onSelectChange,
     };
 

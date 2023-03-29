@@ -4,7 +4,6 @@ import ExSelect from "../../../../../common/ExSelect";
 import {headerParamDictionary} from "../../../../../common/dictionary/dictionary";
 import {uuid} from "../../../../../common/utils/createId";
 import IconCommon from "../../../../../common/IconCommon";
-import {toJS} from "mobx";
 import {ExTable} from "../../../../../common/EditTable";
 
 /**
@@ -18,6 +17,8 @@ const RequestHeader = (props) =>{
         saveList,
         deleteList,
         requestHeaderTestList,
+        selectHeaderList,
+        selectKeys
     } = requestHeaderTestStore;
 
     let columns= [
@@ -62,7 +63,6 @@ const RequestHeader = (props) =>{
         },
     ]
 
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
 
     /**
      * 保存数据
@@ -76,22 +76,21 @@ const RequestHeader = (props) =>{
 
         //如果是最后一行，添加新行
         if(index===newData.length-1){
-            newData.push({id:uuid()})
+            let id = uuid();
+
+            newData.push({id:id})
         }
 
         saveList(newData)
     };
 
 
-
     const onSelectChange = (newSelectedRowKeys,list) => {
-        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
-        console.log('list: ', list);
-        setSelectedRowKeys(newSelectedRowKeys);
+        selectHeaderList(list)
     };
 
     const rowSelection = {
-        selectedRowKeys,
+        defaultSelectedRowKeys:selectKeys,
         onChange: onSelectChange,
     };
 

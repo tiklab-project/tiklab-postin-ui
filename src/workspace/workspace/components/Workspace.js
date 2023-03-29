@@ -3,11 +3,11 @@ import './workspace.scss';
 import {Input} from "antd";
 import {getUser} from "tiklab-core-ui";
 import {inject, observer} from "mobx-react";
-import WorkspaceEdit from "./WorkspaceEdit";
 import WorkspaceList from "./WorkspaceList";
 import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
 import WorkspaceRecentHome from "./WorkspaceRecentHome";
+import IconBtn from "../../../common/iconBtn/IconBtn";
 
 /**
  * 空间页
@@ -16,10 +16,10 @@ const Workspace = (props) => {
     const {workspaceStore,workspaceFollowStore} = props;
     const {findWorkspaceFollowList} = workspaceFollowStore
 
-    const {findWorkspaceList,findWorkspaceJoinList} = workspaceStore;
+    const {findWorkspaceList,findWorkspaceJoinList,setWorkspaceSelect,workspaceSelect} = workspaceStore;
 
     const userId = getUser().userId;
-    const [selectItem, setSelectItem] = useState("all");
+    // const [selectItem, setSelectItem] = useState("all");
     const [workspaceList, setWorkspaceList] = useState([]);
 
     //空间筛选列表
@@ -50,7 +50,7 @@ const Workspace = (props) => {
             return(
                 <div
                     key={item.key}
-                    className={`ws-header-menu-item  ${item.key === selectItem ? "ws-header-menu-item-selected" : ""}`}
+                    className={`ws-header-menu-item  ${item.key === workspaceSelect ? "ws-header-menu-item-selected" : ""}`}
                     onClick={()=>selectKeyFun(item)}
                 >
                     <span> {item.title} </span>
@@ -68,7 +68,7 @@ const Workspace = (props) => {
      * 点击筛选项查找
      */
     const selectKeyFun = (item)=>{
-        setSelectItem(item.key)
+        setWorkspaceSelect(item.key)
 
         findList({},item.key)
     }
@@ -88,7 +88,7 @@ const Workspace = (props) => {
     const findList = (name,selectIndex)=>{
         let uId = {userId:userId}
 
-        switch (selectIndex?selectIndex:selectItem) {
+        switch (selectIndex?selectIndex:workspaceSelect) {
             case "all":
                 let params= {
                     ...uId,
@@ -112,10 +112,12 @@ const Workspace = (props) => {
                     setWorkspaceList(list)
                 })
                 break;
-            // case "recent":
-            //     findWorkspaceRecentList(uId)
-            //     break;
+
         }
+    }
+
+    const toWorkspaceEdit = () =>{
+        props.history.push("/workspace-edit")
     }
 
     return(
@@ -136,13 +138,10 @@ const Workspace = (props) => {
                         </div>
                     }
                     right={
-                        <WorkspaceEdit
+                        <IconBtn
+                            className="important-btn"
+                            onClick={toWorkspaceEdit}
                             name={"添加空间"}
-                            btn={"btn"}
-                            userId={userId}
-                            findList={findList}
-                            selectItem={selectItem}
-                            {...props}
                         />
                     }
                 />
@@ -170,7 +169,7 @@ const Workspace = (props) => {
                         {...props}
                         workspaceList={workspaceList}
                         findList={findList}
-                        selectItem={selectItem}
+                        selectItem={workspaceSelect}
                     />
                 </div>
             </div>

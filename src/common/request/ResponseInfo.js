@@ -11,7 +11,7 @@ const ResponseInfo = (props)=>{
     const showStatus = (status) =>{
         if(!status) return
 
-        let statusPre = JSON.stringify(status).split(0,1)[0]
+        let statusPre = JSON.stringify(status).split("")[0]
 
         switch (statusPre) {
             case "1":
@@ -25,25 +25,37 @@ const ResponseInfo = (props)=>{
         }
     }
 
-    const showTime = (time) =>{
-        if(!time) return
+    /**
+     * 响应时间展示
+     */
+    const showTime = (time) => {
+        if (!time) return;
 
-        if(JSON.stringify(time).length>3){
-            return<span style={{color:"green"}}> {time/1000} ms</span>
-        }else {
-            return <span style={{color:"green"}}>{time} ms</span>
+        const timeString = time.toString();
+        if (timeString.length > 3) {
+            return <span style={{ color: "green" }}>{time / 1000} ms</span>;
+        } else {
+            return <span style={{ color: "green" }}>{time} ms</span>;
         }
-    }
+    };
 
-    const showSize = (size) =>{
-        if(!size) return
+    /**
+     * 响应数据大小展示
+     */
+    const showSize = (size) => {
+        if (!size) return null;
 
-        if(JSON.stringify(size).length>3){
-            return<span style={{color:"green"}}>{size/1000} kb</span>
-        }else {
-            return <span style={{color:"green"}}>{size} b</span>
-        }
-    }
+        const sizeString = JSON.stringify(size);
+        const isKb = sizeString.length > 3;
+        const sizeValue = isKb ? size / 1024 : size;
+        const sizeUnit = isKb ? "kb" : "b";
+
+        return (
+            <span style={{ color: "green" }}>
+              {sizeValue} {sizeUnit}
+            </span>
+        );
+    };
 
     return(
         <div className="test-responseInfo">

@@ -9,7 +9,7 @@ import {TextMethodType} from "../../common/MethodType";
 /**
  *  目录树
  */
-const CategoryNav = (props) => {
+const CategoryTree = (props) => {
     const { categoryStore } = props;
     const { findCategoryList, deleteCategory,categoryList } = categoryStore;
 
@@ -243,4 +243,4 @@ const CategoryNav = (props) => {
 }
 
 
-export default inject('categoryStore')(observer(CategoryNav));
+export default inject('categoryStore')(observer(CategoryTree));

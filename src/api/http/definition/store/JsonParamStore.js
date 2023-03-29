@@ -15,6 +15,26 @@ export class JsonParamStore {
     @observable httpId = '';
     @observable jsonParamId= '';
 
+    @observable schemaData={};
+
+    /**
+     * 获取schema值
+     */
+    @action
+    getSchemaData = (data) =>{
+        this.schemaData = data;
+    }
+
+    /**
+     * 获取schema值
+     */
+    @action
+    setSchemaData = (data) =>{
+        this.schemaData = data;
+    }
+
+
+
     /**
      * 获取新的list
      */
@@ -71,11 +91,7 @@ export class JsonParamStore {
     createJsonParam =async (params) => {
         params.http = { id:this.httpId }
 
-        const res = await Axios.post("/jsonParam/createJsonParam",params)
-        if( res.code === 0){
-            this.findJsonParamListTree(this.httpId);
-        }
-
+        await Axios.post("/jsonParam/createJsonParam",params)
     }
 
     /**

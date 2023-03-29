@@ -25,20 +25,14 @@ const PageContent =(props)=> {
      * 头部退出方法跳往退出页
      */
     const Logout = () => {
-
-        props.history.push({
-            pathname: '/logout',
-            state:{
-                preRoute: props.location.pathname
-            }
-        })
+        props.history.push( '/logout')
     }
 
 
     return(
         <div style={{height:"100%",overflow:"hidden"}}>
             <HeaderContent
-                logout={Logout}
+                logout={props.logout?props.logout:Logout}
                 {...props}
             />
             {

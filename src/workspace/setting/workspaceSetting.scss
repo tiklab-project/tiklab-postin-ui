@@ -91,6 +91,10 @@
         margin: 0 auto;
         padding: var(--pi-page-padding);
         min-width: 800px;
+
+        .ant-collapse-item{
+            background: white;
+        }
     }
 
     .ws-setting-title{

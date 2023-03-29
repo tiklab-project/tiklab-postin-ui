@@ -7,24 +7,23 @@ import FormDataTableCommon from "../../../../../common/tableCommon/components/Fo
  * formdata
  */
 const FormParamTest = (props) =>{
-    const { formParamTestStore, bodyType } = props;
+    const { formParamTestStore } = props;
     
     const {
-        getFormParamTestList,
         formParamTestList,
         saveList,
-        addNewList,
         deleteList,
+        selectKeys,
+        selectList
     } = formParamTestStore;
 
     return (
         <FormDataTableCommon
             dataList={formParamTestList}
             saveList={saveList}
-            addNewList={addNewList}
             deleteList={deleteList}
-            getFormDataList={getFormParamTestList}
-            bodyType={bodyType}
+            selectList={selectList}
+            selectKeys={selectKeys}
         />
     );
 }

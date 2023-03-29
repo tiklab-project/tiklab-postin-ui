@@ -42,13 +42,13 @@ export class ApiResponseStore {
      * 创建响应结果
      */
     @action
-    createApiResponse = async (params) => await Axios.post("/apiResponse/createApiRespons",params)
+    createApiResponse = async (params) => await Axios.post("/apiResponse/createApiResponse",params)
 
     /**
      * 更新响应结果
      */
     @action
-	updateApiResponse = async (params) => await Axios.post("/apiResponse/updateApiRespons",params)
+	updateApiResponse = async (params) => await Axios.post("/apiResponse/updateApiResponse",params)
 
     /**
      * 删除响应结果

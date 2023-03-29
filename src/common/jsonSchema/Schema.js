@@ -8,17 +8,18 @@ import {inject, observer} from "mobx-react";
  */
 const Schema = (props) =>{
     const {jsonSchemaStore,apiResponseStore,httpId,resultId} = props
-    const {schemaData} =jsonSchemaStore
-
+    const {schemaData,setSchemaData} =jsonSchemaStore
+    const {updateApiResponse} =apiResponseStore
 
     return(
         <ToggleSchema
             data={schemaData}
+            schemaData={schemaData}
+            setSchemaData={setSchemaData}
             deep={0}
             parent={schemaData}
             root={true}
-            jsonSchemaStore={jsonSchemaStore}
-            apiResponseStore={apiResponseStore}
+            updateFn={updateApiResponse}
             httpId={httpId}
             resultId={resultId}
         />

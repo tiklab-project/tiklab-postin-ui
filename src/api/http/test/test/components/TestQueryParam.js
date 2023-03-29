@@ -12,7 +12,8 @@ const QueryParam = (props) =>{
         queryParamTestList,
         saveList,
         deleteList,
-        addNewList,
+        selectKeys,
+        selectList
     } = queryParamTestStore;
   
     return (
@@ -21,8 +22,9 @@ const QueryParam = (props) =>{
             <QueryTableCommon
                 dataList={queryParamTestList}
                 saveList={saveList}
-                addNewList={addNewList}
                 deleteList={deleteList}
+                selectList={selectList}
+                selectKeys={selectKeys}
             />
         </>
 

@@ -2,8 +2,6 @@ import axios from "axios";
 
 // 请求拦截
 axios.interceptors.request.use(function (config) {
-
-    console.log("axios-instance--------",config)
     // 在发送请求之前做些什么
     return config;
 }, function (error) {

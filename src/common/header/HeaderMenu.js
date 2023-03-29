@@ -52,4 +52,4 @@ const HeaderMenu = (props) =>{
 
     )
 }
-export default inject("workspaceStore")(observer(HeaderMenu));
+export default HeaderMenu;

@@ -1,11 +1,10 @@
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
-import {Form, Modal, Button, Input, Radio, Row, Col, Select} from 'antd';
-import IconCommon from "../../../common/IconCommon";
+import {Form, Button, Input, Row, Col, Select} from 'antd';
 import {Axios, getUser} from "tiklab-core-ui";
-// import {Profile} from "tiklab-eam-ui";
-import IconBtn from "../../../common/iconBtn/IconBtn";
+import {toWorkspaceDetail} from "./WorkspaceFn";
+
 
 const {TextArea} = Input
 const {Option} = Select;
@@ -20,25 +19,24 @@ const tailLayout = {
 };
 
 /**
- * 空间添加编辑框
+ * 空间添加页面
  */
 const WorkspaceEdit = (props) => {
-    const { workspaceStore, workspaceId,findList,selectItem } = props;
+    const { workspaceStore, workspaceRecentStore } = props;
     const {
         createWorkspace,
      } = workspaceStore;
+    const {workspaceRecent}=workspaceRecentStore;
 
     const [form] = Form.useForm();
 
-    const [visible, setVisible] = React.useState(false);
     const [visibility, setVisibility] = useState(1);
     const [memberList, setMemberList] = useState([]);
     const [memberSelectList, setMemberSelectList] = useState([]);
 
-    /**
-     * 弹框展示
-     */
-    const showModal = async () => {
+    let userId = getUser().userId;
+
+    useEffect( async () => {
 
         let param ={ }
 
@@ -48,8 +46,7 @@ const WorkspaceEdit = (props) => {
             setMemberList(res.data)
         }
 
-        setVisible(true);
-    }
+    },[])
 
     /**
      * 提交
@@ -57,14 +54,15 @@ const WorkspaceEdit = (props) => {
     const onFinish = async () => {
         let values = await form.validateFields();
         values.visibility=visibility
-        values.memberList = memberSelectList;
+        values.userList = memberSelectList;
         values.iconUrl=iconRandom();
 
-        createWorkspace(values).then(()=>  findList({},selectItem) );
+        //创建空间成功跳到空间详情
+        createWorkspace(values).then((res)=> {
+            toWorkspaceDetail(res.data,userId,workspaceRecent)
 
-        props.history.push("/workspacePage");
-
-        setVisible(false);
+            props.history.push('/workspace');
+        });
     };
 
     /**
@@ -72,11 +70,11 @@ const WorkspaceEdit = (props) => {
      */
     const iconRandom = () =>{
         let arr = [
-            "/images/pi1.png",
-            "/images/pi2.png",
-            "/images/pi3.png",
-            "/images/pi4.png",
-            "/images/pi5.png",
+            "images/pi1.png",
+            "images/pi2.png",
+            "images/pi3.png",
+            "images/pi4.png",
+            "images/pi5.png",
         ]
 
         let index = Math.floor(Math.random()*arr.length)
@@ -89,51 +87,39 @@ const WorkspaceEdit = (props) => {
      * 成员下拉框选项
      */
     const showOption = (list) =>{
-        return  list&&list.map((item) => <Option key={item.id} value={item.id}>
-            <div className={"ws-edit-box-select"}>
-                {/*<Profile userInfo={item}/>*/}
-                {item.name}
-            </div>
-        </Option>
-        )
+        return  list&&list.map((item) => {
+            return<Option key={item.id} value={item.id}>
+                <div className={"ws-edit-box-select"}>
+                    {item.name}
+                </div>
+            </Option>
+        })
     }
 
     /**
-     * 成员选择
+     * 成员选择，设置默认权限
      */
-    const selectChange = (memberId) =>{
-        setMemberSelectList(memberId)
+    const selectChange = (memberList) =>{
+        if(memberList&&memberList.length>0){
+            let newList=memberList.map(item=>({
+                    id:item,
+                    adminRole:item === "111111"
+                }))
+            setMemberSelectList(newList)
+        }
+
     }
+
 
    /**
     * 关闭
     */
-    const onCancel = () => { setVisible(false) };
+    const onCancel = () => {
+        props.history.push("/workspacePage")
+    };
 
     return (
-        <>
-        {
-            props.btn === 'btn'
-                ? <IconBtn
-                    className="important-btn"
-                    onClick={showModal}
-                    name={"添加空间"}
-                />
-                : <a style={{'cursor':'pointer'}} onClick={showModal}>{props.name}</a>
-        }
-        <Modal
-            destroyOnClose={true}
-            title={"添加"}
-            visible={visible}
-            onCancel={onCancel}
-            onOk={onFinish}
-            // okText="提交"
-            // cancelText="取消"
-            footer={false}
-            mask={false}
-            width={"100vw"}
-            className="ws-edit-modal"
-        >
+        <div className="ws-edit-modal">
             <Row>
                 <Col
                     lg={{ span: "18", offset: "3" }}
@@ -144,14 +130,6 @@ const WorkspaceEdit = (props) => {
                     <div className={"ws-edit-box"}>
                         <div className={"ws-edit-box-header"}>
                             <div className={"ws-edit-box-header-title"}>添加空间</div>
-                            <div>
-                                <IconCommon
-                                    icon={"shanchu2"}
-                                    style={{"cursor": "pointer"}}
-                                    className={"icon-s"}
-                                    onClick={onCancel}
-                                />
-                            </div>
                         </div>
 
                         <Form
@@ -229,9 +207,8 @@ const WorkspaceEdit = (props) => {
                     </div>
                 </Col>
             </Row>
-        </Modal>
-        </>
+        </div>
     );
 };
 
-export default inject('workspaceStore')(observer(WorkspaceEdit));
+export default inject('workspaceStore',"workspaceRecentStore")(observer(WorkspaceEdit));

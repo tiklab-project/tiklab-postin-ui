@@ -178,7 +178,9 @@ const FormParam = (props) =>{
      * 更新
      */
     const upData = (value) => {
-        updateFormParam(value).then(res=>setDataSource(res));
+        updateFormParam(value).then(()=> {
+            findFormParamList(apxMethodId).then(res => setDataSource(res));
+        });
     }
 
     /**
@@ -212,12 +214,6 @@ const FormParam = (props) =>{
         }
     };
 
-    // //当新行按键按下的时候显示后面的操作按钮
-    // const newRowKeyDown = () => {
-    //     document.addEventListener('keydown', (e) =>{
-    //         setNewRowAction(true)
-    //     });
-    // };
 
     return (
         <ExTable

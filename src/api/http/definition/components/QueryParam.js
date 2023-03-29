@@ -185,7 +185,9 @@ const QueryParam = (props) =>{
      * 更新
      */
     const upData = (value) => {
-        updateQueryParam(value).then(res=>setDataSource(res))
+        updateQueryParam(value).then(res=> {
+            findQueryParamList(apxMethodId).then(res=>setDataSource(res))
+        })
     }
 
     /**

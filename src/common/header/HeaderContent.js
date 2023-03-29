@@ -101,7 +101,6 @@ const HeaderContent = props => {
         <div className="frame-header">
             <div className={"pi-header-left"}>
                 <AppLink isSSO={false}/>
-                {/*<div className={"pi-header-right-item"}><AppLink isSSO={false}/></div>*/}
                 <div className={'frame-header-logo'}>
                     {logo && <img src={logo} alt='logo' />}
                 </div>
@@ -114,18 +113,12 @@ const HeaderContent = props => {
                 </div>
                 <div className={"frame-header-right-detail"}>
                     <div className={"header-right-item"} >
-                        {/*<svg className="icon-l user-header-icon-hover" aria-hidden="true"  onClick={toSystem}>*/}
-                        {/*    <use xlinkHref= {`#icon-setting`} />*/}
-                        {/*</svg>*/}
                         <SettingOutlined className={"header-icon-item"} onClick={toSystem}/>
                     </div>
                     <div className={"header-right-item"}>
                         <MessageDrawer />
                     </div>
                     <Dropdown overlay={helpMenu}  placement="bottomRight" >
-                        {/*<svg className="icon-l user-header-icon-hover" aria-hidden="true" >*/}
-                        {/*    <use xlinkHref= {`#icon-bangzhu`} />*/}
-                        {/*</svg>*/}
                         <div className={"header-right-item"} >
                             <QuestionCircleOutlined  className={"header-icon-item"} />
                         </div>

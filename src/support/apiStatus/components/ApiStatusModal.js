@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Form, Input, Modal, Tag} from "antd";
 import {inject, observer} from "mobx-react";
 import { SketchPicker } from 'react-color';
-
+import "./apiStatus.scss"
 /**
  * 接口状态的弹框
  */

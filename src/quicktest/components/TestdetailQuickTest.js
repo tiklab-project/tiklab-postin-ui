@@ -73,7 +73,7 @@ const TestdetailQuickTest = (props) =>{
                     methodType: request?.methodType,
                     path: request?.url,
                 })
-                debugger
+
 
                 if(res.errorMessage){
                     let errorValue = {
@@ -155,49 +155,53 @@ const TestdetailQuickTest = (props) =>{
             "assertList":assertQuickTestList,
         }
 
+        //获取请求信息
+        getRequestInfo(allSendData)
+
         //处理后的数据
         const processData = sendTestDataProcess(allSendData)
 
         //发送测试，返回结果
         let response =await getRes(processData)
 
-        // response.assertList = assertQuickTestList;
         //获取响应结果
-        setTestResponse(response)
+        if(response&&!response.error){
+            //获取响应结果
+            setTestResponse(response)
 
-        //获取响应结果
-        // if(response&&!response.error){
-        //     getResponseInfo(response,assertQuickTestList).then(res=>{
-        //         res.httpCase = {"id":"quickTestInstanceId"}
-        //         res.workspaceId=workspaceId
-        //         createInstance(res).then(()=>{
-        //             let params={
-        //                 "workspaceId":workspaceId,
-        //                 "httpCaseId":"quickTestInstanceId",
-        //                 "userId":userId,
-        //             }
-        //             findInstanceList(params)
-        //         })
-        //     })
-        //
-        // }else {
-        //     getResponseError(response).then((res)=>{
-        //         res.httpCase = {"id":"quickTestInstanceId"}
-        //         res.workspaceId=workspaceId
-        //         createInstance(res).then(()=>{
-        //             let params={
-        //                 "workspaceId":workspaceId,
-        //                 "httpCaseId":"quickTestInstanceId",
-        //                 "userId":userId,
-        //             }
-        //             findInstanceList(params)
-        //         })
-        //     })
-        //
-        // }
+            response.assertList = assertQuickTestList;
 
-        //点击测试按钮显示输出结果详情
-        setShowResponse(true);
+            getResponseInfo(response,assertQuickTestList).then(res=>{
+                res.httpCase = {"id":"quickTestInstanceId"}
+                res.workspaceId=workspaceId
+                createInstance(res).then(()=>{
+                    let params={
+                        "workspaceId":workspaceId,
+                        "httpCaseId":"quickTestInstanceId",
+                        "userId":userId,
+                    }
+                    findInstanceList(params)
+                })
+            })
+
+            //点击测试按钮显示输出结果详情
+            setShowResponse(true);
+        }else {
+            getResponseError(response).then((res)=>{
+                res.httpCase = {"id":"quickTestInstanceId"}
+                res.workspaceId=workspaceId
+                createInstance(res).then(()=>{
+                    let params={
+                        "workspaceId":workspaceId,
+                        "httpCaseId":"quickTestInstanceId",
+                        "userId":userId,
+                    }
+                    findInstanceList(params)
+                })
+            })
+        }
+
+
     }
 
     //请求类型下拉选择框

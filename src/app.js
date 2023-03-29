@@ -8,9 +8,9 @@ import "./assets/iconfont/iconfont";
 import "./assets/iconfont/iconfont.css";
 import {useTranslation} from "react-i18next";
 import { PluginProvider,pluginLoader} from 'tiklab-plugin-core-ui';
+import {getUser} from "tiklab-core-ui";
 
 import resources from "./common/language/resource";
-import {getUser} from "tiklab-core-ui";
 import "./assets/index"
 import {Spin} from "antd";
 
@@ -29,6 +29,7 @@ const App = (props) => {
 
 
      useEffect(() => {
+         //type 默认是false，electron设置了type
          if(!props.type){
              pluginLoader( routers, resources,i18n).then(res => {
                  setPluginData(res)

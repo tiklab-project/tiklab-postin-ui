@@ -6,7 +6,7 @@ import  { useTranslation } from 'react-i18next'
 import {getUser} from "tiklab-core-ui";
 import {toWorkspaceDetail} from "./WorkspaceFn";
 import emptyImg  from "../../../assets/img/empty.png"
-// import {Profile} from "tiklab-eam-ui";
+
 
 /**
  * 空间页
@@ -45,7 +45,6 @@ const WorkspaceList = (props) => {
             render: (text, record) => (
                 <div className={"ws-user-item"}>
                     <Space>
-                        {/*<Profile userInfo={record.user}/>*/}
                         <span>{record.user.nickname} </span>
                     </Space>
                 </div>
@@ -114,8 +113,6 @@ const WorkspaceList = (props) => {
      *  保存空间id到缓存
      */
     const setLocalStorage = (workspaceId) => {
-
-
         toWorkspaceDetail(workspaceId,userId,workspaceRecent)
 
         props.history.push('/workspace');

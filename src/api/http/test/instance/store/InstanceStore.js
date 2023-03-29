@@ -93,7 +93,7 @@ export class InstanceStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await Axios.post("/testInstance/deleteAllTestInstance",param)
+        const res = await Axios.post("/testInstance/deleteTestInstance",param)
         if(res.code===0){
             return res
         }
@@ -104,7 +104,7 @@ export class InstanceStore {
         const param = new FormData();
         param.append('userId', id);
 
-        await Axios.post("/testInstance/deleteTestInstance",param)
+        await Axios.post("/testInstance/deleteAllTestInstance",param)
     }
 
 

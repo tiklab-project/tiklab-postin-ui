@@ -38,13 +38,13 @@ const HttpList = (props) => {
             title: '状态',
             dataIndex: ['apix','status','name'],
             width: '15%',
-            render:(text) =>(
-                <span>{text}</span>
+            render:(text,record) =>(
+                <span style={{color:`${record.apix.status.color}`}}>{text}</span>
             )
         },
         {
             title: '执行人',
-            dataIndex: ['apix','executor','name'],
+            dataIndex: ['apix','executor','nickname'],
             width: '15%',
         },
         {

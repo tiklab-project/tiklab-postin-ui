@@ -30,6 +30,7 @@ const Mock = (props) => {
             width:'10%',
             render:(text,record )=>(
                 <Switch
+                    checked={text===1}
                     checkedChildren="启用"
                     unCheckedChildren="停用"
                     onChange={(e)=>changeEnable(e,record)}

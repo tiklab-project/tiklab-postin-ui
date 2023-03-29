@@ -8,17 +8,39 @@ const { TabPane } = Tabs;
  * 请求中的tab，公共组件
  */
 const RequestTab = (props) =>{
+    const {tabTip} = props
 
     //渲染tabPane
     const showTabPane = (data)=>{
         let arr = Object.keys(data)
 
-        return arr.map(item=>{
+        return arr.map((item)=>{
             //如果没有传进来的assert组件，并且当前item是asset，直接返回null
             if(!props.assert&&item==="assert") return null
 
             return(
-                <TabPane tab={data[item]} key={item} >
+                <TabPane
+                    tab={
+                        <div style={{"display":"flex","alignItems":"center"}}>
+                            {data[item]}
+                            <div>
+                                {
+                                    tabTip&&tabTip[item] === true
+                                        ?<div
+                                            style={{
+                                                background:"#00d403",
+                                                width: "8px",
+                                                height: "8px",
+                                                borderRadius:" 8px",
+                                                margin: "0 0 0 5px"
+                                            }}> </div>
+                                        :null
+                                }
+                            </div>
+                        </div>
+                    }
+                    key={item}
+                >
                     <div className={"tabPane-item-box"}>
                         {
                             showTabPaneComponent(item)

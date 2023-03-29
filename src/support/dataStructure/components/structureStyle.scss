@@ -41,3 +41,18 @@
     }
 
 }
+
+.def-mode-li{
+    padding: 10px;
+    border-bottom: 1px solid var(--pi-border-color);
+    cursor: pointer;
+}
+
+.def-mode-li:hover{
+    background: var(--pi-hover-color);
+}
+
+.def-mode-btn{
+    padding: 0 0 0 10px;
+    cursor: pointer;
+}

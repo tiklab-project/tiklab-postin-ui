@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {Button, Collapse, Form, Input} from "antd";
-import EdiText from "react-editext";
 import {inject, observer} from "mobx-react";
-import WorkspaceEdit from "../workspace/components/WorkspaceEdit";
 import DetailHeader from "../../common/DetailHeader";
 import DeleteWorkspaceModal from "./DeleteWorkspaceModal";
+import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
 
 const { Panel } = Collapse;
 const {TextArea} = Input;
@@ -71,8 +70,14 @@ const WorkspaceSetting = (props) =>{
                         </div>
                     }
                 />
-                <Collapse  defaultActiveKey={['1']} >
-                    <Panel header="编辑空间" key="1">
+                <div style={{
+                    "padding": "10px 15px",
+                    "border": "1px solid #d9d9d9",
+                    "borderBottom": "none",
+                    "background": "#f8f8f8"
+                }}>以下为功能配置 </div>
+                <Collapse  defaultActiveKey={['1']} expandIconPosition={"end"}>
+                    <Panel header={<><EditOutlined/> 编辑空间</>} key="1"  >
                         <div>
                             <Form
                                 className='ws-edit-modal-form'
@@ -132,7 +137,7 @@ const WorkspaceSetting = (props) =>{
                         </div>
 
                     </Panel>
-                    <Panel header="删除空间" key="2">
+                    <Panel header={<><DeleteOutlined /> 删除空间</>}  key="2" >
                         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                             <div>
                                 <div  style={{fontWeight:"bold"}}>删除此空间</div>

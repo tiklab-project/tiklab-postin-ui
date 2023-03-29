@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {Button} from "antd";
+import React from "react";
 import TestdetailQuickTest from "./TestdetailQuickTest";
-import {localProxySendTest, sendTest} from "../../common/request/sendTestCommon";
+import {localProxySendTest} from "../../common/request/sendTestCommon";
 import {inject, observer} from "mobx-react";
 
 /**
@@ -12,15 +11,11 @@ const TestBoxQuickTest = (props) =>{
 
 
     /**
-     * 通过/request代理发送测试
+     * web 和 electron 请求不一样
+     * web通过/request代理发送测试
      */
     const getRes = async  (data) =>{
-        let response ;
-
-        response= await localProxySendTest("/request",data)
-
-
-        return response;
+        return await localProxySendTest("/request", data);
     }
 
     return(

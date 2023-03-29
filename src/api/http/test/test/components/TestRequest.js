@@ -12,9 +12,11 @@ import RequestBodyTest from "./RequestBodyTest";
  * 请求区的tab
  */
 const RequestTest = (props) => {
+    const {tabTip} = props
 
     return(
         <RequestTab
+            tabTip={tabTip}
             header={<TestRequestHeader />}
             query={<TestQueryParam />}
             body={<RequestBodyTest/>}

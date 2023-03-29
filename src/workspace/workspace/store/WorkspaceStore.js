@@ -9,16 +9,14 @@ import {Axios} from "tiklab-core-ui";
  */
 export class WorkspaceStore {
 	@observable workspaceList = [];
-	@observable workspaceInfo;
 	@observable workspaceIdList=[];
-	@observable workspaceId ='';
-	@observable workspaceName = '';
 	@observable workspaceIcon
 	@observable	totalRecord = "";
 	@observable params;
 	@observable pageParams;
 	@observable length;
 	@observable settingItemSelected;
+	@observable workspaceSelect="all"
 
 	/**
 	 * 获取带分页的空间列表
@@ -107,8 +105,6 @@ export class WorkspaceStore {
 
 		const res = await Axios.post("/workspace/findWorkspace",param);
 		if(res.code === 0){
-			this.workspaceInfo = res.data
-			this.workspaceName =res.data.workspaceName;
 			this.workspaceIcon = res.data.iconUrl
 			return res.data;
 		}
@@ -127,6 +123,16 @@ export class WorkspaceStore {
 			return res.data;
 		}
 	}
+
+
+	/**
+	 * 获取空间页只中筛选项
+	 */
+	@action
+	setWorkspaceSelect = (select) =>{
+		this.workspaceSelect = select
+	}
+
 
 	/**
 	 * 空间设置中的导航的选中项

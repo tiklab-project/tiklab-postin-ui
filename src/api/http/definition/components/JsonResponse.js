@@ -9,6 +9,7 @@ import ExSelect from "../../../../common/ExSelect";
 import DataTypeSelect from "../../../../common/DataTypeSelect";
 
 /**
+ * 废弃
  * @Description: 返回结果中Json的可编辑表格
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-08 17:58:08

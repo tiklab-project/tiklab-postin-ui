@@ -12,7 +12,8 @@ const ApiInitPage = (props) =>{
             "display": "flex",
             "alignItems": "center",
             "justifyContent": "center",
-            "flex":1
+            "flex":1,
+            "overflow":"hidden"
         }}>
             <div>
                 <img src={noneImg} alt={"none-img"} width={200} />

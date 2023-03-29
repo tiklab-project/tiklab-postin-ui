@@ -8,26 +8,24 @@ import FormUrlencodedTableCommon from "../../../../../common/tableCommon/compone
  * FormUrlencoded表格
  */
 const FormUrlencodedTest = (props) =>{
-    const { formUrlencodedTestStore, bodyType } = props;
+    const { formUrlencodedTestStore } = props;
 
     const {
-        getFormUrlencodedTestList,
         formUrlencodedTestList,
         saveList,
-        addNewList,
         deleteList,
+        selectKeys,
+        selectList
     } = formUrlencodedTestStore;
 
-    // useEffect(()=>{
-    //     getFormUrlencodedTestList()
-    // },[bodyType])
 
     return (
         <FormUrlencodedTableCommon
             dataList={formUrlencodedTestList}
             saveList={saveList}
-            addNewList={addNewList}
             deleteList={deleteList}
+            selectList={selectList}
+            selectKeys={selectKeys}
         />
     );
 }

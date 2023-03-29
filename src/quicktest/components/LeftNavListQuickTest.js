@@ -22,11 +22,11 @@ const LeftNavListQuickTest =(props)=>{
         findList()
     },[])
 
-    let findList = ()=>{
+    let findList = (url)=>{
         let params={
             "workspaceId":workspaceId,
-            "httpCaseId":"quickTestInstanceId",
             "userId":userId,
+            "url":url
         }
         findInstanceList(params)
     }
@@ -113,12 +113,17 @@ const LeftNavListQuickTest =(props)=>{
     }
 
 
+    const onSearch = (e)=>{
+        findList(e.target.value)
+    }
+
     return(
         <>
             <div className={"qt-left-header"}  style={{minWidth: "280px"}}>
                 <Input
                     prefix={<SearchOutlined />}
                     placeholder={"搜索"}
+                    onPressEnter={onSearch}
                 />
                 <div className={"qt-left-heaer-clear"}>
                     <Tooltip placement="right" title={"清空"}>

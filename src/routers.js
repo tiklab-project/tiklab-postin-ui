@@ -1,7 +1,18 @@
 
 import React from 'react'
-import PortalHeader from "./common/header/PortalContent"
+//----平台组件----
+import {
+    Directory, Orga, UserGroup, User,
+    ProjectFeature, ProjectRole, SystemFeature, SystemRole
+} from "tiklab-user-ui";
+import {Auth} from "tiklab-eam-ui";
+import {ProductAuth} from "tiklab-licence-ui"
+import {LogTemplate, LogType, MyLog} from "tiklab-security-ui";
+import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
+import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 
+//----内部组件----
+import PortalHeader from "./common/header/PortalContent"
 import {
     Home, SearchResult,
 
@@ -18,26 +29,20 @@ import {
 } from './container';
 
 import {Redirect} from "react-router";
-import {Auth} from "tiklab-eam-ui";
+
 import TestBoxQuickTest from "./quicktest/components/TestBoxQuickTest";
 import TestBox from "./api/http/test/test/components/ApiTestPage";
-import {Directory, Orga, UserGroup, User} from "tiklab-user-ui";
 import LoginContent from "./login/LoginContent";
 import WorkspaceSetting from "./workspace/setting/WorkspaceSetting";
-import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
-import {ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "tiklab-user-ui";
-import { LogTemplate, LogType, MyLog} from "tiklab-security-ui";
-import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
 import DynamicDetail from "./home/DynamicDetail";
 import Version from "./setting/version/Version";
 import StructureDetail from "./support/dataStructure/components/StructureDetail";
 import Share from "./api/http/document/components/Share";
 import ShareMain from "./api/http/document/components/ShareMain";
 import ApiDocument from "./api/http/definition/components/ApiDocumentPage";
-
 import ApiInitPage from "./workspace/common/ApiInitPage";
 import DataStructure from "./support/dataStructure/components/DataStructure";
-import {ProductAuth} from "tiklab-licence-ui"
+import WorkspaceEdit from "./workspace/workspace/components/WorkspaceEdit";
 
 const routers =  [
     {
@@ -105,6 +110,11 @@ const routers =  [
                 path: "/workspacePage",
                 component: Workspace,
                 key:'workspacePage',
+            },
+            {
+                path: "/workspace-edit",
+                component: WorkspaceEdit,
+                key:'workspace-edit',
             },
             {
                 path:'/systemManagement',
@@ -206,13 +216,13 @@ const routers =  [
                         path: "/systemManagement/systemFeature",
                         key:'SystemFeature',
                         exact: true,
-                        render: () => <SystemFeature bgroup={"postin"}/>,
+                        render: () => <SystemFeature isBase={true} bgroup={"postin"}/>,
                     },
                     {
                         path: "/systemManagement/privilege",
                         key:'ProjectFeature',
                         exact: true,
-                        render: (props) => <ProjectFeature {...props} bgroup={"postin"}/>,
+                        render: (props) => <ProjectFeature isBase={true} {...props} bgroup={"postin"}/>,
                     },
                     {
                         path: "/systemManagement/role",
