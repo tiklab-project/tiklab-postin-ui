@@ -76,7 +76,7 @@ const LeftNav = (props) =>{
     const addQuickTestTabInfo = (router) =>{
         if(router==="/workspace/quickTest"){
             const apiTabInfo = {
-                activeKey:0,
+                activeKey:"0",
                 tabList:[
                     {
                         name:"新标签",

@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
 import { DownOutlined,UpOutlined} from '@ant-design/icons';
-import { PrivilegeButton } from "tiklab-user-ui";
+import { PrivilegeButton,SystemNav } from "tiklab-user-ui";
 import {useSelector} from 'tiklab-plugin-core-ui'
 import './sysMana.scss'
 
@@ -211,7 +211,13 @@ const SysManage = (props) => {
     }
 
     return (
-        <>
+        <SystemNav
+            {...props}
+            expandedTree={expandedTree} // 树的展开和闭合(非必传)
+            setExpandedTree={setExpandedTree} // 树的展开和闭合(非必传)
+            applicationRouters={menuRouter} // 菜单
+            outerPath={"/systemManagement"} // 系统设置Layout路径
+        >
             <Layout className = 'sysmana-layout'>
                 <Sider
                     className = 'sysmana-sider'
@@ -230,7 +236,7 @@ const SysManage = (props) => {
                     {renderRoutes(routers)}
                 </Content>
             </Layout>
-        </>
+        </SystemNav>
     )
 }
 

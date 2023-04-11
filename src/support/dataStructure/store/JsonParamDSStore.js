@@ -10,6 +10,25 @@ export class JsonParamDSStore {
     @observable jsonParamDSList = [];
     @observable jsonParamDSInfo = [];
 
+    @observable schemaData={};
+
+    /**
+     * 获取schema值
+     */
+    @action
+    getSchemaData = (data) =>{
+        this.schemaData = data;
+    }
+
+    /**
+     * 获取schema值
+     */
+    @action
+    setSchemaData = (data) =>{
+        this.schemaData = data;
+    }
+
+
     /**
      * 查询json结构列表
      */

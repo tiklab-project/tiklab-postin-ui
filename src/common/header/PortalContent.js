@@ -27,7 +27,7 @@ function mapStateToProps(state) {
 /**
  * 再把对象，使用平台高阶组件传递给verifyUser，验证用户
  */
-export default connect(mapStateToProps)(UserVerify(Page));
+export default connect(mapStateToProps)(UserVerify(Page,"/no-auth"));
 
 
 

@@ -10,6 +10,7 @@ import TestResultCommon from "../../common/TestResultCommon";
 import IconBtn from "../../../../../common/iconBtn/IconBtn";
 import EnvSelect from "../../../../../support/environment/components/EnvSelect";
 import {messageFn} from "../../../../../common/messageCommon/MessageCommon";
+import GlobalParamModal from "../../../../../support/globalParam/globalParamModal";
 
 
 const { Option } = Select;
@@ -36,6 +37,7 @@ const ApiTestContent = (props) => {
         assertParamTestStore,
         environmentStore,
         testStore,
+        globalHeaderStore
     } = props;
 
     const {findApxMethod} = apxMethodStore;
@@ -51,6 +53,8 @@ const ApiTestContent = (props) => {
     const { preParamTestInfo,getPreInfo } = preParamTestStore;
     const { afterParamTestInfo,getAfterInfo } = afterParamTestStore;
     const { assertParamTestList } = assertParamTestStore;
+
+    const {globalHeaderList} = globalHeaderStore;
 
     const [ form ] = Form.useForm();
 
@@ -148,8 +152,12 @@ const ApiTestContent = (props) => {
             "rawParam":rawParamTestInfo,
         }
 
+        const globalParam = {
+            header:globalHeaderList
+        }
+
         //处理后的数据
-        const processData = sendTestDataProcess(allSendData,preParamTestInfo)
+        const processData = sendTestDataProcess(allSendData,preParamTestInfo,globalParam)
 
         if(afterParamTestInfo.scriptex){
             eval(afterParamTestInfo.scriptex)
@@ -222,7 +230,10 @@ const ApiTestContent = (props) => {
                         <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
                         <Breadcrumb.Item>接口测试</Breadcrumb.Item>
                     </Breadcrumb>
-                    <EnvSelect {...props}/>
+                    <div style={{display:"flex",alignItems:"center","justifyContent":"space-between",width: "260px"}}>
+                        <GlobalParamModal />
+                        <EnvSelect {...props}/>
+                    </div>
                 </div>
 
 
@@ -303,7 +314,8 @@ export default inject(
     'testStore',
     'testCaseStore',
     "environmentStore",
-    "apxMethodStore"
+    "apxMethodStore",
+    "globalHeaderStore"
  )(observer(ApiTestContent));
 
 

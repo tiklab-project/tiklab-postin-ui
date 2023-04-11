@@ -5,7 +5,7 @@
  * @description index
  */
 import React, {useEffect, useState} from 'react';
-import {setCookie, saveUser, urlQuery, LOCALSTORAGE_KEY, disableFunction, Axios} from 'tiklab-core-ui'
+import {setCookie, saveUser, urlQuery, LOCALSTORAGE_KEY, disableFunction, Axios, getVersionInfo} from 'tiklab-core-ui'
 
 import {inject, observer} from 'mobx-react';
 import { Button, Layout} from 'antd';
@@ -14,6 +14,7 @@ import LocalLogin from "./components/localLogin";
 import AccountLogin from "./components/accountLogin";
 import {EAM_STORE} from "tiklab-eam-ui/es/store";
 import './style/login.scss'
+import {useHasPointPlugin} from "tiklab-plugin-core-ui";
 
 const { Content, Footer } = Layout;
 
@@ -56,6 +57,11 @@ const ElectronLogin = props => {
     const query = urlQuery(window.location.href);
     // 获取登录配置
     const [authData, setAuthData] = useState(JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY.AUTH_CONFIG)) || {})
+
+
+    let versionInfo = getVersionInfo()
+    const isPlugin = versionInfo && versionInfo.release===2 && !versionInfo.expired
+    const hasWechatLoginBtn = useHasPointPlugin('wechatLoginBtn');
 
     const [wechatConfig, setWechatConfig] = useState(null);
     const [dingConfig, setDingConfig] = useState(null);
@@ -184,26 +190,7 @@ const ElectronLogin = props => {
                     <div className={'eam-login-content-wrap-row'}>
                         <div className={'eam-login-content-formWrap'}>
                             <h1 style={{textAlign: 'center', marginTop: '30px'}}>
-                                {t(loginType === "1" ?'loginForm.userLoginTitle' : "loginForm.userLoginLdapTitle")} electron</h1>
-                            {/*{*/}
-                            {/*    !authData.authType && <AccountLogin*/}
-                            {/*        loginGo={loginGoRouter}*/}
-                            {/*        urlParams={authData}*/}
-                            {/*        title={title}*/}
-                            {/*        loginType={loginType}*/}
-                            {/*        {...rest}*/}
-                            {/*    />*/}
-                            {/*}*/}
-                            {/*{*/}
-                            {/*    authData.authType &&*/}
-                            {/*    <LocalLogin*/}
-                            {/*        title={title}*/}
-                            {/*        loginGo={loginGoRouter}*/}
-                            {/*        loginType={loginType}*/}
-                            {/*        {...rest}*/}
-                            {/*    />*/}
-                            {/*}*/}
-
+                                {t(loginType === "1" ?'loginForm.userLoginTitle' : "loginForm.userLoginLdapTitle")}ELE</h1>
                             <LocalLogin
                                 title={title}
                                 loginGo={loginGoRouter}
@@ -214,14 +201,14 @@ const ElectronLogin = props => {
                                 loginType === "1" ?
                                     <div className={'eam-login-content-action'}>
                                         {/*<Button type="text" onClick={goDingLogin} disabled={disableFunction()}  >钉钉</Button>*/}
-                                        <Button type="text" onClick={goWechat} disabled={disableFunction()} >企业微信</Button>
+                                        <Button type="text" onClick={goWechat} disabled={!(isPlugin && hasWechatLoginBtn)}>企业微信</Button>
                                         <Button type="text" onClick={onLdap}>
                                             Ldap
                                         </Button>
                                     </div>
                                     :
                                     <div className={'eam-login-content-action'}>
-                                        <Button type="text" onClick={goWechat} disabled={disableFunction()} >企业微信</Button>
+                                        <Button type="text" onClick={goWechat} disabled={!(isPlugin && hasWechatLoginBtn)} >企业微信</Button>
                                         <Button type="text" onClick={onLdap}>
                                             账号登录
                                         </Button>

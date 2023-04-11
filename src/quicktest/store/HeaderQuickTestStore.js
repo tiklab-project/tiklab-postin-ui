@@ -9,21 +9,39 @@ const tableCommonStore = new TableCommonStore();
  */
 export  class HeaderQuickTestStore {
     @observable headerQuickTestList = [];
+    @observable newHeaderRow=[{id: 'InitRowId'}];
 
     /**
      * 获取请求头列表
      */
     @action
     getRequestHeaderTestList= (data) => {
-        this.headerQuickTestList= tableCommonStore.getList(data)
+
+        if(data){
+            this.headerQuickTestList=  [...data,...this.newHeaderRow]
+        }else {
+            this.headerQuickTestList= this.newHeaderRow;
+        }
     }
+
+
+
+
 
     /**
      * 删除请求头
      */
     @action
-    deleteList = (id) => {
-        this.headerQuickTestList=tableCommonStore.deleteList(id,this.headerQuickTestList)
+    deleteList = (id) =>{
+        let newList  = this.headerQuickTestList.filter((item)=> {
+            return item.id !== id
+        })
+
+        if(newList.length === 0){
+            this.headerQuickTestList= this.newHeaderRow;
+        }
+
+        this.headerQuickTestList= newList;
     }
 
     /**
@@ -34,13 +52,6 @@ export  class HeaderQuickTestStore {
         this.headerQuickTestList = [...list]
     }
 
-    /**
-     * 添加请求头
-     */
-    @action
-    addNewList = (list) => {
-        this.headerQuickTestList = [...list];
-    }
 
 }
 

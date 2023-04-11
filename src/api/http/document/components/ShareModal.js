@@ -39,7 +39,6 @@ const ShareModal  = (props) =>{
                 targetType:targetType,
                 visibility:visibility,
                 password:null,
-
             }
 
              createShare(param)

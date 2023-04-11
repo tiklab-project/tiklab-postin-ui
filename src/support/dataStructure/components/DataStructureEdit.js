@@ -4,6 +4,7 @@ import { observer, inject } from "mobx-react";
 import {Form, Modal, Button, Input, Select} from 'antd';
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../common/IconCommon";
+import Radio from "antd/es/radio/radio";
 const {Option} = Select;
 
 /**
@@ -105,10 +106,10 @@ const DataStructureEdit = (props) => {
                         rules={[{ required: true}]}
                         name="dataType"
                     >
-                        <Select>
-                            <Option value="enum" >enum</Option>
-                            <Option value="json" >json</Option>
-                        </Select>
+                        <Radio.Group >
+                            <Radio value={"json" }>json</Radio>
+
+                        </Radio.Group>
                     </Form.Item>
                 </Form>
             </Modal>

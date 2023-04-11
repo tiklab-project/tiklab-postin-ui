@@ -17,9 +17,9 @@ const QueryQuickTest = (props) =>{
     } = queryQuickTestStore;
 
 
-    useEffect(()=>{
-        getQueryParamTestList()
-    },[instanceId])
+    // useEffect(()=>{
+    //     getQueryParamTestList()
+    // },[instanceId])
 
     return (
         <>

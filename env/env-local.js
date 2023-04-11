@@ -4,7 +4,7 @@
  * @LastEditTime: 2021-05-27 13:53:54
  */
 
-const base_url =  JSON.stringify('http://192.168.10.18:8080');
+const base_url =  JSON.stringify('http://192.168.10.16:8080');
 const plugin_base_url = JSON.stringify("http://127.0.0.1:3000");
 
 let pluginAddressUrl =  JSON.stringify("http://127.0.0.1:3000/plugin.json");

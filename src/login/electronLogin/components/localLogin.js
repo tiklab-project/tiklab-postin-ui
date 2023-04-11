@@ -34,7 +34,7 @@ const LocalLogin =  props => {
             password: values.password,
             dirId: props.loginType
         }
-        const res = await props.eamStore.login(params)
+        const res = await props.eamStore.loginAction(params)
 
         if(res.code) {
             switch (res.code) {

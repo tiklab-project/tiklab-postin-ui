@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {inject, observer} from "mobx-react";
 import {Checkbox, Popconfirm, Space} from 'antd';
-import {headerParamDictionary} from '../../../../common/dictionary/dictionary';
-import ExSelect from "../../../../common/ExSelect";
-import {ExTable} from '../../../../common/EditTable';
-import IconCommon from "../../../../common/IconCommon";
+import {ExTable} from "../../../common/EditTable";
+import IconCommon from "../../../common/IconCommon";
+import ExSelect from "../../../common/ExSelect";
+import {headerParamDictionary} from "../../../common/dictionary/dictionary";
+
 
 /**
  * 定义
  * http
  * 请求头的可编辑表格
  */
-const RequestHeader = (props) =>{
-    const { requestHeaderStore } = props;
+const GlobalHeader = (props) =>{
+    const { globalHeaderStore } = props;
     const {
         findRequestHeaderList,
         deleteRequestHeader,
@@ -21,13 +22,13 @@ const RequestHeader = (props) =>{
         requestHeaderList,
         setList,
         dataLength,
-    } = requestHeaderStore;
+    } = globalHeaderStore;
 
     const [dataSource,setDataSource] = useState([]);
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect( ()=>{
-        findRequestHeaderList({httpId:apxMethodId}).then(res=>setDataSource(res));
+        findRequestHeaderList({workspaceId:workspaceId}).then(res=>setDataSource(res));
     },[dataLength])
 
     //表头
@@ -129,9 +130,7 @@ const RequestHeader = (props) =>{
                 <Popconfirm
                     title="确定删除？"
                     onConfirm={() => deleteRequestHeader(record.id).then(() => {
-                        findRequestHeaderList({httpId:apxMethodId}).then(res=>{
-                            setDataSource(res)
-                        })
+                        findRequestHeaderList({workspaceId:workspaceId}).then(res=>setDataSource(res))
                     })}
                     okText='确定'
                     cancelText='取消'
@@ -180,12 +179,10 @@ const RequestHeader = (props) =>{
             // 创建新行的时候自带一个id，所以删了，后台会自行创建id
             delete values.id;
 
-            values.http = {id:apxMethodId}
+            values.workspaceId = workspaceId;
 
             createRequestHeader(values).then(() => {
-                findRequestHeaderList({httpId:apxMethodId}).then(res=>{
-                    setDataSource(res)
-                })
+                findRequestHeaderList({workspaceId:workspaceId}).then(res=>setDataSource(res))
             })
         }
 
@@ -197,9 +194,7 @@ const RequestHeader = (props) =>{
      */
     const upData = (value) => {
         updateRequestHeader(value).then(() => {
-            findRequestHeaderList({httpId:apxMethodId}).then(res=>{
-                setDataSource(res)
-            })
+            findRequestHeaderList({workspaceId:workspaceId}).then(res=>setDataSource(res))
         })
     }
 
@@ -237,8 +232,7 @@ const RequestHeader = (props) =>{
                 handleSave={handleSave}
             />
         </>
-
     );
 }
 
-export default inject('requestHeaderStore')(observer(RequestHeader));
+export default inject('globalHeaderStore')(observer(GlobalHeader));

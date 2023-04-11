@@ -5,6 +5,7 @@ import { Space, Table, Empty, Popconfirm} from 'antd';
 
 import emptyImg from "../../../assets/img/empty.png";
 import JsonStructureEdit from "./JsonStructureEdit";
+import ToggleSchema from "../../../common/jsonSchema/ToggleSchema";
 
 /**
  * json数据结构
@@ -12,9 +13,11 @@ import JsonStructureEdit from "./JsonStructureEdit";
 const JsonStructure = (props) => {
     const { jsonParamDSStore, } = props;
     const {
-        findJsonParamDSListTree,
+        findJsonParamDS,
         deleteJsonParamDS,
-        jsonParamDSList
+        updateJsonParamDS,
+        setSchemaData,
+        schemaData,
     } = jsonParamDSStore;
 
     //表头
@@ -87,36 +90,51 @@ const JsonStructure = (props) => {
 
     const dataStructureId = localStorage.getItem("dataStructureId")
     useEffect(()=>{
-        findJsonParamDSListTree(dataStructureId);
+        findJsonParamDS(dataStructureId).then(res=>{
+            setSchemaData(JSON.parse(res.jsonText))
+        })
+
     },[])
 
 
-    return (
-        <div className={"structure-item-list"}>
-            <div className={"structure-item-list-header"}>
-                <JsonStructureEdit
-                    type={"add"}
-                    btn={"btn"}
-                    name={"添加"}
-                    jsonParamDSStore={jsonParamDSStore}
-                    dataStructureId={dataStructureId}
-                />
-            </div>
 
-            <Table
-                columns={columns}
-                dataSource={jsonParamDSList}
-                rowKey={record => record.id}
-                pagination={false}
-                locale={{
-                    emptyText: <Empty
-                        imageStyle={{ height: 120 }}
-                        description={<span>暂无模型</span>}
-                        image={emptyImg}
-                    />,
-                }}
-            />
-        </div>
+    return (
+        <ToggleSchema
+            data={schemaData}
+            schemaData={schemaData}
+            setSchemaData={setSchemaData}
+            deep={0}
+            parent={schemaData}
+            root={true}
+            updateFn={updateJsonParamDS}
+            httpId={dataStructureId}
+            resultId={dataStructureId}
+        />
+        // <div className={"structure-item-list"}>
+        //     <div className={"structure-item-list-header"}>
+        //         <JsonStructureEdit
+        //             type={"add"}
+        //             btn={"btn"}
+        //             name={"添加"}
+        //             jsonParamDSStore={jsonParamDSStore}
+        //             dataStructureId={dataStructureId}
+        //         />
+        //     </div>
+        //
+        //     <Table
+        //         columns={columns}
+        //         dataSource={jsonParamDSList}
+        //         rowKey={record => record.id}
+        //         pagination={false}
+        //         locale={{
+        //             emptyText: <Empty
+        //                 imageStyle={{ height: 120 }}
+        //                 description={<span>暂无模型</span>}
+        //                 image={emptyImg}
+        //             />,
+        //         }}
+        //     />
+        // </div>
 
     );
 }

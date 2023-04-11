@@ -3,16 +3,25 @@ import qs from "qs";
 import {bodyTypeJsonDictionary as bodyTypeJson, rawTypeJsonDictionary as rawTypeJson} from "../dictionary/dictionary";
 import {getHeader, getQuery} from "../../api/http/test/common/dtAction";
 import axiosIns from "../utils/localrequest";
-import {messageFn} from "../messageCommon/MessageCommon";
 
 
 /**
  * 发送测试之前数据处理
  */
-export const sendTestDataProcess=(data,preParamTestInfo)=>{
+export const sendTestDataProcess=(data,preParamTestInfo,globalParam)=>{
 
     //header
     let header = testFunctionCommon.headerData(data.headerList);
+
+    let globalHeader;
+    if(globalParam){
+        globalHeader = testFunctionCommon.headerData(globalParam.header);
+    }
+
+
+    if(globalHeader){
+        header=Object.assign({},header,globalHeader)
+    }
 
     //前置：获取header进行操作
     getHeader(header);

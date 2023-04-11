@@ -103,6 +103,7 @@ import {DATASTRUCTURE_STORE, DataStructureStore} from "./support/dataStructure/s
 import {ENUMPARAMDS_STORE, EnumParamDSStore} from "./support/dataStructure/store/EnumParamDSStore";
 import {JSONPARAMDS_STORE, JsonParamDSStore} from "./support/dataStructure/store/JsonParamDSStore";
 
+import {GLOBAL_HEADER_STORE,GlobalHeaderStore} from "./support/globalParam/header/globalHeaderStore";
 
 function createStores() {
     return {
@@ -206,7 +207,9 @@ function createStores() {
         [QUICKTEST_STORE]: new QuickTestStore(),
 
         [JSON_SCHEMA_STORE]: new JsonSchemaStore(),
-        [SHARE_STORE]: new ShareStore()
+        [SHARE_STORE]: new ShareStore(),
+
+        [GLOBAL_HEADER_STORE]: new GlobalHeaderStore()
 
     };
 }

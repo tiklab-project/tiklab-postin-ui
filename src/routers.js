@@ -2,10 +2,10 @@
 import React from 'react'
 //----平台组件----
 import {
-    Directory, Orga, UserGroup, User,
+    Directory, Orga, UserGroup, User, NotFound,
     ProjectFeature, ProjectRole, SystemFeature, SystemRole
 } from "tiklab-user-ui";
-import {Auth} from "tiklab-eam-ui";
+import {Auth,ExcludeProductUser} from "tiklab-eam-ui";
 import {ProductAuth} from "tiklab-licence-ui"
 import {LogTemplate, LogType, MyLog} from "tiklab-security-ui";
 import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
@@ -69,11 +69,19 @@ const routers =  [
         exact: true,
         key:'logout',
     },
-    // {
-    //     path:"/no-auth",
-    //     exact: true,
-    //     component:NoProductAuthUser
-    // },
+    {
+        path:"/index/404",
+        render:(props)=>{
+            return <NotFound {...props}/>
+        }
+    },
+    {
+        path:"/no-auth",
+        exact: true,
+        render:(props)=>{
+            return <ExcludeProductUser {...props}/>
+        }
+    },
     {
         path:"/account",
         component:ElectronLoginContant,

@@ -2,10 +2,9 @@ import React, {useEffect, useState} from "react";
 import {Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./RequestTabQuickTest";
 import {inject, observer} from "mobx-react";
-import {localProxySendTest, sendTest, sendTestDataProcess} from "../../common/request/sendTestCommon";
-import ResponseQuickTest from "./ResponseQuickTest";
+import {sendTestDataProcess} from "../../common/request/sendTestCommon";
+
 import {
-    methodDictionary,
     methodJsonDictionary,
     bodyTypeJsonDictionary as bodyTypeJsonDic
 } from "../../common/dictionary/dictionary";
@@ -74,7 +73,6 @@ const TestdetailQuickTest = (props) =>{
                     path: request?.url,
                 })
 
-
                 if(res.errorMessage){
                     let errorValue = {
                         errorMessage:res.errorMessage,
@@ -85,7 +83,6 @@ const TestdetailQuickTest = (props) =>{
                     // setErrorMsg({showError:false})
                 }
 
-
                 getRequestHeaderTestList(processHeaderData(request.headers));
                 getQueryParamTestList(processQueryData(request.url));
 
@@ -95,14 +92,10 @@ const TestdetailQuickTest = (props) =>{
                     case bodyTypeJsonDic.none:
                         break;
                     case bodyTypeJsonDic.formdata:
-
                         getFormParamTestList(processFormParamData(res.formParamCaseList));
                         break;
                     case bodyTypeJsonDic.formUrlencoded:
                         getFormUrlencodedTestList(processFormUrlencodedData(res.formUrlencodedCaseList));
-                        break;
-                    case bodyTypeJsonDic.json:
-                        getJsonParamTestList(res.jsonParamCaseList);
                         break;
                     case bodyTypeJsonDic.raw:
                         let rawInfo = {
@@ -111,9 +104,6 @@ const TestdetailQuickTest = (props) =>{
                         }
                         getRawInfo(rawInfo)
                         break;
-                    // case bodyTypeJsonDic.binary:
-                        //问题
-                        // break;
                     default:
                         break;
                 }
@@ -121,6 +111,18 @@ const TestdetailQuickTest = (props) =>{
                 getPreInfo(request?.preScript);
                 getAfterInfo(request?.afterScript)
             })
+        }else {
+            form.setFieldsValue({
+                methodType: "get",
+                path: null,
+            })
+            getRequestHeaderTestList([]);
+            getQueryParamTestList([]);
+            getFormParamTestList([]);
+            getFormUrlencodedTestList([]);
+            getRawInfo({});
+            getPreInfo();
+            getAfterInfo()
         }
     },[instanceId])
 

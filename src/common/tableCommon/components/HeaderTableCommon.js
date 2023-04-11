@@ -10,7 +10,7 @@ import {toJS} from "mobx";
  * header
  */
 const HeaderTableCommon = (props) =>{
-const {dataList, saveList, addNewList, deleteList} = props;
+const {dataList, saveList, deleteList} = props;
     
     let columns= [
         {

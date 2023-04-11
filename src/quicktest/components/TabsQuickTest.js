@@ -10,7 +10,6 @@ const {TabPane} = Tabs;
  */
 const TabsQuickTest = (props) =>{
     const router = props.route.routes;
-    const [activeKey,setActiveKey] = useState();
 
     const [action, setAction] = useState(false);
 
@@ -19,13 +18,18 @@ const TabsQuickTest = (props) =>{
     useEffect(()=>{
         console.log('quickTest')
         localStorage.setItem("instanceId","-1")
-    },[activeKey,action])
+    },[action])
 
     /**
      * 切换tab
      */
     const onChange = (activeKey) => {
-        setActiveKey(activeKey)
+        const { tabList } = quickTestTabListInfo;
+        let newTabInfo = {
+            activeKey:activeKey,
+            tabList:tabList
+        }
+        sessionStorage.setItem("quickTestTabListInfo", JSON.stringify(newTabInfo));
     };
 
     /**
@@ -34,108 +38,94 @@ const TabsQuickTest = (props) =>{
     const onEdit  = (targetKey, action)=>{
         switch (action){
             case "add": add(); break
-            case "remove":remove(); break
+            case "remove":remove(targetKey); break
         }
     }
 
-    const [newTabId, setNewTabId] = useState(1);
 
     /**
      * 添加tab标签处理
      */
     const add = ()=>{
+        const { tabList } = quickTestTabListInfo;
 
-        setNewTabId(newTabId+1);
+        const newTabId = "newTabPane"+Date.now(); // 使用时间戳生成唯一 ID
+        const newTab = { name: "新标签", id: newTabId, type: "api" };
 
-        let list = quickTestTabListInfo.tabList;
+        const newTabList = [...tabList, newTab];
+        const activeKey = JSON.stringify(newTabList.length - 1);
+        const newTabInfo = { activeKey:activeKey, tabList: newTabList };
 
-        const newList = [...list];
-
-        const tabId = `newTab${newTabId}`;
-
-        newList.push({name:"新标签", id:tabId,type: "api"})
-
-        let newTabInfo ={
-            activeKey:newList.length-1,
-            tabList:newList
-        }
-
-        sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newTabInfo))
-        props.history.push("/workspace/quickTest/detail/api")
-        setAction(!action)
+        sessionStorage.setItem("quickTestTabListInfo", JSON.stringify(newTabInfo));
+        props.history.push("/workspace/quickTest/detail/api");
+        setAction(!action);
     }
 
     /**
      * 删除tab标签处理
      */
-    const remove = (targetKey )=>{
-        let list = quickTestTabListInfo.tabList;
+    const remove = (targetKey) => {
+        const { tabList, activeKey } = quickTestTabListInfo;
+        let newList = [...tabList];
+        newList.splice(targetKey, 1);
 
-        let newlist = list.slice(0,list.length-1);
+        let newActiveKey = activeKey < tabList.length - 1 ? activeKey : JSON.stringify(newList.length - 1);
+        //如果删除所有的标签后 newActiveKey 会等于 -1，把它重新设置为0
+        let updatedActiveKey = newActiveKey < 0 ? "0" : newActiveKey;
 
-        let newTabInfo = {};
-        if(quickTestTabListInfo.activeKey<list.length-1){
-            newTabInfo = {
-                activeKey:quickTestTabListInfo.activeKey,
-                tabList:newlist
-            }
-        }else {
-            newTabInfo = {
-                activeKey:newlist.length-1,
-                tabList:newlist
-            }
-        }
+        let newTabInfo = {
+            activeKey: updatedActiveKey,
+            tabList: newList.length ? newList : [{ name: "新标签", id: Date.now(), type: "api" }]
+        };
 
-        sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newTabInfo))
-        setAction(!action)
-    }
+        sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newTabInfo));
+        setAction(!action);
+    };
 
     /**
      * 切换tab标签
      */
     const changeTabPane = (activeKey) =>{
-        let list = quickTestTabListInfo.tabList;
-        let item = list[activeKey];
+        const { tabList } = quickTestTabListInfo;
+        let item = tabList[activeKey];
 
         let newTab = {...quickTestTabListInfo,activeKey:activeKey}
 
         sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(newTab))
-
-        localStorage.setItem("instanceId",item.id)
+        if(item.id.includes("newTabPane")){
+            localStorage.setItem("instanceId","-1")
+        }else {
+            localStorage.setItem("instanceId",item.id)
+        }
 
         props.history.push("/workspace/quickTest/detail/api")
     }
 
-    /**
-     * tab标签渲染
-     */
-    const showTabPaneView = (data) =>{
-        let list = data.tabList;
-        return list&&list.map((item,index )=> (
-            <TabPane
-                tab={item.name}
-                key={index}
-                forceRender
-            >
-                {
-                    renderRoutes(router)
-                }
-            </TabPane>
-        ))
-    }
+
 
     return (
         <div className={"qk-test-box"}>
             <Tabs
                 type="editable-card"
                 onChange={onChange}
-                activeKey={activeKey?activeKey:String(quickTestTabListInfo.activeKey)}//字符串才生效
+                activeKey={quickTestTabListInfo.activeKey}//字符串才生效
                 onEdit={onEdit}
                 onTabClick={changeTabPane}
                 style={{"backgroundColor":"var(--pi-bg-grey-100)"}}
             >
                 {
-                    showTabPaneView(quickTestTabListInfo)
+                    quickTestTabListInfo&&quickTestTabListInfo.tabList.map((item,index )=> (
+                        <TabPane
+                            tab={item.name}
+                            key={index}
+                            forceRender
+                        >
+                            {
+                                renderRoutes(router)
+                            }
+                        </TabPane>
+                    ))
+
                 }
             </Tabs>
         </div>

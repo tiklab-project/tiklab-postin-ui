@@ -16,23 +16,23 @@ const SystemContent = (props) =>{
                     title: '部门',
                     key: '/systemManagement/org',
                     icon: 'modular',
-                    encoded: "orga",
+                    purviewCode: "orga",
                 },{
                     title: '用户',
                     key: '/systemManagement/user',
                     icon: 'modular',
-                    encoded: "user",
+                    purviewCode: "user",
 
                 },{
                     title: '用户目录',
                     key: '/systemManagement/authConfig',
                     icon: 'modular',
-                    encoded: "user_dir",
+                    purviewCode: "user_dir",
                 },{
                     title: '用户组',
                     key: '/systemManagement/userGroup',
                     icon: 'modular',
-                    // encoded: "userGroup",
+                    // purviewCode: "userGroup",
                 },
             ]
         },
@@ -40,7 +40,7 @@ const SystemContent = (props) =>{
             title: '权限',
             icon: 'modular',
             key: '/systemManagement/systemRole',
-            // encoded: "systemPrivilege",
+            // purviewCode: "systemPrivilege",
         },
         {
             title: "消息",
@@ -51,12 +51,12 @@ const SystemContent = (props) =>{
                     title: "消息发送方式",
                     icon: 'rizhijilu',
                     key: '/systemManagement/messageSendType',
-                    encoded: "MSG_SendType",
+                    purviewCode: "MSG_SendType",
                 },{
                     title: "消息通知方案",
                     icon: 'rizhijilu',
                     key: '/systemManagement/message-notice',
-                    encoded: "MSG_Notice",
+                    purviewCode: "MSG_Notice",
                 },
             ],
         },
@@ -64,18 +64,18 @@ const SystemContent = (props) =>{
             title: '插件',
             icon: 'modular',
             key: '/systemManagement/plugin',
-            encoded: "plugin",
+            purviewCode: "plugin",
         },{
             title: "安全",
             icon: 'rizhijilu',
             key: '/systemManagement/log',
-            encoded: "security",
+            purviewCode: "security",
             children: [
                 {
                     title: "操作日志",
                     icon: 'rizhijilu',
                     key: '/systemManagement/log',
-                    encoded: "log",
+                    purviewCode: "log",
                 },
             ],
         },{

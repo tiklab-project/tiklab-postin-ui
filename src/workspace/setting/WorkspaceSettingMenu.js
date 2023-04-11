@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {renderRoutes} from "react-router-config";
 import "./workspaceSetting.scss"
 import {inject, observer} from "mobx-react";
-
+import {ProjectNav} from "tiklab-user-ui"
 /**
  * 空间设置页中的左侧导航
  */
@@ -13,6 +13,8 @@ const WorkspaceSettingMenu = (props) =>{
 
 
     const [selected, setSelected] = useState(settingItemSelected?settingItemSelected:"/workspace/setting/detail");
+
+    const workspaceId = localStorage.getItem("workspaceId")
 
     /**
      * 点击左侧菜单，设置路由地址
@@ -67,27 +69,34 @@ const WorkspaceSettingMenu = (props) =>{
 
 
     return(
-        <div className={"workspace-setting-box"}>
-            <div className={"ws-side-menu"}>
-                <ul className="ws-menu-ul">
-                    <li style={{
-                        borderBottom:"1px solid #cecece",
-                        padding:"10px 30px"
-                    }}
-                    >空间设置</li>
+        <ProjectNav
+            {...props}
+            domainId={workspaceId} // 项目id
+            projectRouters={items} // 菜单
+            outerPath={`/workspace/setting`} // 项目设置Layout路径
+        >
+            <div className={"workspace-setting-box"}>
+                <div className={"ws-side-menu"}>
+                    <ul className="ws-menu-ul">
+                        <li style={{
+                            borderBottom:"1px solid #cecece",
+                            padding:"10px 30px"
+                        }}
+                        >空间设置</li>
+                        {
+                            renderList(items)
+                        }
+                    </ul>
+
+                </div>
+
+                <div className={"workspace-setting-right"}>
                     {
-                        renderList(items)
+                        renderRoutes(routes)
                     }
-                </ul>
-
+                </div>
             </div>
-
-            <div className={"workspace-setting-right"}>
-                {
-                    renderRoutes(routes)
-                }
-            </div>
-        </div>
+        </ProjectNav>
     )
 }
 

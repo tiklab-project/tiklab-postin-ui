@@ -2,14 +2,13 @@ import { observable,  action } from "mobx";
 import {Axios} from "tiklab-core-ui";
 
 /**
- * 定义
- * http
+ * 全局header
  * 请求头 store
  */
-export  class RequestHeaderStore {
+export  class GlobalHeaderStore {
     @observable requestHeaderList = [];
     @observable requestHeaderInfo;
-    @observable requestHeaderDataSource = [];
+    @observable globalHeaderList = [];
     @observable httpId = '';
     @observable dataLength = '';
 
@@ -36,7 +35,7 @@ export  class RequestHeaderStore {
         const res = await Axios.post("/requestHeader/findRequestHeaderList",params);
         if( res.code===0 ){
             this.dataLength = res.data.length
-            this.requestHeaderDataSource=res.data
+            this.globalHeaderList=res.data
             if( res.data.length === 0){
                 this.requestHeaderList=newRow;
             }else {
@@ -88,4 +87,4 @@ export  class RequestHeaderStore {
 
 }
 
-export const REQUESTHEADER_STORE = 'requestHeaderStore';
+export const GLOBAL_HEADER_STORE = 'globalHeaderStore';

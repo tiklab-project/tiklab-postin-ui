@@ -14,6 +14,7 @@ import ResponseHeader from "./ResponseHeader";
 import ProtocolType from "../../../../common/ProtocolType";
 import {getVersionInfo} from "tiklab-core-ui";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
+import GlobalParamModal from "../../../../support/globalParam/globalParamModal";
 
 const {Option} = Select;
 const {TextArea} = Input
@@ -373,7 +374,11 @@ const ApxMethodEditPage = (props) => {
                         <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
                         <Breadcrumb.Item>接口编辑</Breadcrumb.Item>
                     </Breadcrumb>
-                    <EnvSelect {...props}/>
+                    <div style={{display:"flex",alignItems:"center","justifyContent":"space-between",width: "260px"}}>
+                        <GlobalParamModal />
+                        <EnvSelect {...props}/>
+                    </div>
+
                 </div>
                 <div className={"white-bg-box"} style={{marginTop:0}}>
                     <div className="api-detail-base-box">

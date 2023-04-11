@@ -11,15 +11,14 @@ const HeaderQuickTest = (props) =>{
 
     const {
         saveList,
-        addNewList,
         deleteList,
         headerQuickTestList,
         getRequestHeaderTestList
     } = headerQuickTestStore;
 
-    useEffect(()=>{
-        getRequestHeaderTestList()
-    },[instanceId])
+    // useEffect(()=>{
+    //     getRequestHeaderTestList()
+    // },[instanceId])
 
     return (
         <>
@@ -27,7 +26,6 @@ const HeaderQuickTest = (props) =>{
             <HeaderTableCommon
                 dataList={headerQuickTestList}
                 saveList={saveList}
-                addNewList={addNewList}
                 deleteList={deleteList}
             />
         </>

@@ -11,8 +11,8 @@ const LoginContent = (props)=> {
         <Login
             {...props}
             title={"Postin"}
-            // logoIcon={logo}
-            // vaildUserAuthRouter={"/no-auth"}
+            loginGoRouter="/"
+            vaildUserAuthRouter={"/no-auth"}
         />
     )
 

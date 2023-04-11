@@ -16,9 +16,9 @@ import RequestBodyQuickTest from "./RequestBodyQuickTest";
 const RequestTabQuickTest = (props) =>{
     const {instanceId} = props;
 
-     useEffect(()=>{
-         console.log(instanceId)
-     },[instanceId])
+     // useEffect(()=>{
+     //     console.log(instanceId)
+     // },[instanceId])
 
     return(
         <RequestTab

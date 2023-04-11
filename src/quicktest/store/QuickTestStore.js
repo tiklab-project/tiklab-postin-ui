@@ -25,16 +25,17 @@ export  class QuickTestStore {
      */
     @action
     getRequestInfo = (data) => {
-        this.methodType = data.method;
+        const {method,params,path} = data;
+        this.methodType = method;
 
-        if(data.params&&Object.keys(data.params).length>0){
-            this.baseInfo = data.path+'?'+qs.stringify(data.params)
+        if(params&&Object.keys(params).length>0){
+            this.baseInfo = path+'?'+qs.stringify(data.params)
         }else {
-            this.baseInfo = data.path
+            this.baseInfo =path
         }
 
-        // this.requestHeaderData = JSON.stringify(data.headers);
-        // this.requestBodyData = data.bodys;
+        this.requestHeaderData = JSON.stringify(data.headers);
+        this.requestBodyData = data.bodys;
     }
 
     /**
@@ -42,59 +43,60 @@ export  class QuickTestStore {
      */
     @action
     getResponseInfo = async (data,assertData) => {
-        let res = data.res;
+        if(data){
+            const {res,time} = data;
+            this.time=time;
 
-        this.time=data.time;
-        this.status = res.status;
-        debugger
-        let requestHeaders= res?.config?.headers;
-        let requestBody =  res?.config?.data;
+            this.status = res.status;
 
-        const headers = res.headers;
-        const body =res.data;
+            let requestHeaders= res?.config?.headers;
+            let requestBody =  res?.config?.data;
 
-        //大小
-        this.size = JSON.stringify(body).length;
+            const headers = res.headers;
+            const body =res.data;
 
-        //断言处理
-        let assertList = this.assertListProcess(assertData);
+            //大小
+            this.size = JSON.stringify(body).length;
 
-        const assertNeedData ={
-            "status":res.status,
-            "header":headers,
-            "body":body,
-            "assertList":assertList
-        }
+            //断言处理
+            let assertList = this.assertListProcess(assertData);
 
-        //断言list，添加result 字段。用于测试结果中的断言回显
-        let allAssertResult=assertCommonStore.assertCompare(assertNeedData);
+            const assertNeedData ={
+                "status":res.status,
+                "header":headers,
+                "body":body,
+                "assertList":assertList
+            }
 
-        this.requestBodyData= requestBody
-        this.requestHeaderData=JSON.stringify(requestHeaders);
-        this.responseHeaderData = JSON.stringify(headers);
-        this.responseBodyData = JSON.stringify(body);
-        this.assertResponse = assertList;
+            //断言list，添加result 字段。用于测试结果中的断言回显
+            let allAssertResult=assertCommonStore.assertCompare(assertNeedData);
 
-        //创建instance所需的参数
-        return {
-            'statusCode': this.status,
-            'result': allAssertResult,
-            "time": this.time,
-            "size": this.size,
-            'requestInstance': {
-                "url": this.baseInfo,
-                "methodType": this.methodType,
-                "mediaType": requestHeaders["content-type"],
-                'headers': this.requestHeaderData,
-                'body': this.requestBodyData,
-                "preScript": null,
-                "afterScript": null
-            },
-            'responseInstance': {
-                'headers': headers ? JSON.stringify(headers) : "",
-                'body': body ? JSON.stringify(body) : ""
-            },
-            'assertInstanceList': assertData
+
+            this.responseHeaderData = JSON.stringify(headers);
+            this.responseBodyData = JSON.stringify(body);
+            this.assertResponse = assertList;
+
+            //创建instance所需的参数
+            return {
+                'statusCode': this.status,
+                'result': allAssertResult,
+                "time": this.time,
+                "size": this.size,
+                'requestInstance': {
+                    "url": this.baseInfo,
+                    "methodType": this.methodType,
+                    "mediaType": requestHeaders["content-type"],
+                    'headers': this.requestHeaderData,
+                    'body': this.requestBodyData,
+                    "preScript": null,
+                    "afterScript": null
+                },
+                'responseInstance': {
+                    'headers': headers ? JSON.stringify(headers) : "",
+                    'body': body ? JSON.stringify(body) : ""
+                },
+                'assertInstanceList': assertData
+            }
         }
     }
 
@@ -151,16 +153,21 @@ export  class QuickTestStore {
      */
     @action
     getInstance = (res) =>{
-        this.time = res.time;
-        this.status = res.statusCode;
+        if(res){
+            const {statusCode,time} = res;
 
-        if(!res.errorMessage){
-            this.responseBodyData = res.responseInstance?.body;
-            this.responseHeaderData = res.responseInstance?.headers;
+            this.time = time;
+            this.status = statusCode;
+
+            if(!res.errorMessage){
+                this.responseBodyData = res.responseInstance?.body;
+                this.responseHeaderData = res.responseInstance?.headers;
+            }
+
+            this.requestBodyData = res.requestInstance?.body;
+            this.requestHeaderData = res.requestInstance?.headers;
         }
 
-        this.requestBodyData = res.requestInstance?.body;
-        this.requestHeaderData = res.requestInstance?.headers;
     }
 
     /**

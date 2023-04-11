@@ -8,6 +8,18 @@
 
     .ant-tabs-tab .ant-tabs-tab-active .ant-tabs-tab-btn {
         color:  var(--pi-base-color);
+
+
+
+    }
+
+    .ant-tabs-tab-btn{
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        white-space: nowrap;
+        text-indent: 0;
     }
 
 
