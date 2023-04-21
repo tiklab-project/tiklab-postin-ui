@@ -73,7 +73,7 @@ const ResponseTabEdit =(props)=>{
             return <span onClick={showModal}>编辑</span>
         }else {
             return <Button
-                style={{border: "none", width: "179px",height: "40px"}}
+                style={{border: "none", height: "40px",color:"rgb(25 145 255)"}}
                 onClick={showModal}
             >
                 添加

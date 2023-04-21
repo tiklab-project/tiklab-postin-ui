@@ -5,11 +5,10 @@ import { TestRequest } from '../index';
 import './test.scss';
 import { sendTestDataProcess} from "../../../../../common/request/sendTestCommon";
 import { methodJsonDictionary} from "../../../../../common/dictionary/dictionary";
-import {pi} from "../../common/dtAction";
+import {execute} from "../../common/dtAction";
 import TestResultCommon from "../../common/TestResultCommon";
 import IconBtn from "../../../../../common/iconBtn/IconBtn";
 import EnvSelect from "../../../../../support/environment/components/EnvSelect";
-import {messageFn} from "../../../../../common/messageCommon/MessageCommon";
 import GlobalParamModal from "../../../../../support/globalParam/globalParamModal";
 
 
@@ -19,9 +18,6 @@ const { Option } = Select;
  * 接口测试组件
  */
 const ApiTestContent = (props) => {
-
-    const pi = {...pi}
-
     const {
         getRes,
         apxMethodStore,
@@ -75,47 +71,45 @@ const ApiTestContent = (props) => {
             })
 
             let tabTipObj = {};
+
+            getRequestHeaderTestList(res.headerList);
             if(res.headerList) {
                 tabTipObj.header = true;
-                getRequestHeaderTestList(res.headerList);
             }
 
+            getQueryParamTestList(res.queryList);
             if(res.queryList){
                 tabTipObj.query = true;
-                getQueryParamTestList(res.queryList);
             }
 
             getBodyType(res.request.bodyType);
 
             switch (res.request.bodyType){
                 case "formdata":
+                    getFormParamTestList(res.formList);
                     if(res.formList) {
                         tabTipObj.body = true;
-                        getFormParamTestList(res.formList);
                     }
                     break;
                 case "formUrlencoded":
+                    getFormUrlencodedTestList(res.urlencodedList);
                     if(res.formList){
                         tabTipObj.body = true;
-                        getFormUrlencodedTestList(res.urlencodedList);
                     }
                     break;
                 case "json":
+                    getJsonParamTestList(res.jsonList);
                     if(res.jsonList){
                         tabTipObj.body = true;
-                        getJsonParamTestList(res.jsonList);
                     }
                     break;
                 case "raw":
+                    getRawInfo(res.rawParam);
+                    getMediaType(res.rawParam.type);
+
                     if(res.rawParam){
                         tabTipObj.body = true;
-
-                        getRawInfo(res.rawParam);
-                        getMediaType(res.rawParam.type);
                     }
-                    break;
-                case "binary":
-                    //问题
                     break;
                 default:
                     break;
@@ -127,6 +121,7 @@ const ApiTestContent = (props) => {
         })
     },[methodId])
 
+    const [afterScript, setAfterScript] = useState();
 
     /**
      * 点击测试
@@ -134,10 +129,18 @@ const ApiTestContent = (props) => {
     const onFinish =async ()=> {
         let values =await form.validateFields();
 
-        if(preParamTestInfo.scriptex){
-            eval(preParamTestInfo.scriptex)
 
+        //前置
+        let preObj
+        try{
+            if(preParamTestInfo){
+                preObj =  execute(preParamTestInfo)
+                console.log(preObj)
+            }
+        }catch {
+            preObj ={}
         }
+
 
         const allSendData = {
             "method":values.methodType,
@@ -157,11 +160,8 @@ const ApiTestContent = (props) => {
         }
 
         //处理后的数据
-        const processData = sendTestDataProcess(allSendData,preParamTestInfo,globalParam)
+        const processData = sendTestDataProcess(allSendData,preObj,globalParam)
 
-        if(afterParamTestInfo.scriptex){
-            eval(afterParamTestInfo.scriptex)
-        }
 
         //发送测试，返回结果
         let response =await getRes(processData)
@@ -170,10 +170,21 @@ const ApiTestContent = (props) => {
                 response.assertList =[ ...assertParamTestList];
             }
 
+
+            //后置
+            if(afterParamTestInfo){
+                let data =execute(afterParamTestInfo,response)
+                setAfterScript(data)
+            }
+
+
             setTestResponse(response)
 
             setShowResponse(true)
         }
+
+
+
     }
 
     /**
@@ -291,6 +302,7 @@ const ApiTestContent = (props) => {
                     <TestResultCommon
                         testResponse={testResponse}
                         showResponse={showResponse}
+                        afterScript={afterScript}
                     />
                 </div>
             </div>

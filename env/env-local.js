@@ -5,9 +5,9 @@
  */
 
 const base_url =  JSON.stringify('http://192.168.10.16:8080');
-const plugin_base_url = JSON.stringify("http://127.0.0.1:3000");
+const plugin_base_url = JSON.stringify("http://192.168.10.16:8080");
 
-let pluginAddressUrl =  JSON.stringify("http://127.0.0.1:3000/plugin.json");
+let pluginAddressUrl =  JSON.stringify("http://192.168.10.16:8080/plugin.json");
 
 const fetchMethod = JSON.stringify("get");
 

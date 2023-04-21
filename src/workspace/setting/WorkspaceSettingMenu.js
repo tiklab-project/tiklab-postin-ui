@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {renderRoutes} from "react-router-config";
 import "./workspaceSetting.scss"
 import {inject, observer} from "mobx-react";
-import {ProjectNav} from "tiklab-user-ui"
+import {ProjectNav} from "tiklab-privilege-ui"
 /**
  * 空间设置页中的左侧导航
  */
@@ -79,8 +79,8 @@ const WorkspaceSettingMenu = (props) =>{
                 <div className={"ws-side-menu"}>
                     <ul className="ws-menu-ul">
                         <li style={{
-                            borderBottom:"1px solid #cecece",
-                            padding:"10px 30px"
+                            padding: "10px 30px",
+                            fontSize: "16px"
                         }}
                         >空间设置</li>
                         {

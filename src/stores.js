@@ -95,6 +95,8 @@ import {
     ASSERT_QUICKTEST_STORE, AssertQuickTestStore,
     QUICKTEST_STORE, QuickTestStore
 } from "./quicktest/index"
+import {TAB_QUICK_TEST_STORE,TabQuickTestStore} from "./quicktest/store/TabQuickTestStore";
+
 
 import {SHARE_STORE,ShareStore} from "./api/http/document/store/ShareStore";
 import {APXMETHOD_STATUS_STORE, ApxMethodStatusStore} from "./support/apiStatus/store/ApxMethodStatusStore";
@@ -205,6 +207,8 @@ function createStores() {
         [AFTERSCRIPT_QUICKTEST_STORE]: new AfterScriptQuickTestStore(),
         [ASSERT_QUICKTEST_STORE]: new AssertQuickTestStore(),
         [QUICKTEST_STORE]: new QuickTestStore(),
+
+        [TAB_QUICK_TEST_STORE]: new TabQuickTestStore(),
 
         [JSON_SCHEMA_STORE]: new JsonSchemaStore(),
         [SHARE_STORE]: new ShareStore(),

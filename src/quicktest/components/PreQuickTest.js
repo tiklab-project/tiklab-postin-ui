@@ -9,31 +9,27 @@ import {Form} from "antd";
  * 前置脚本
  */
 const PreQuickTest = (props) => {
-    const { preScriptQuickTestStore }  = props;
-    const { getPreInfo,setPreInfo } = preScriptQuickTestStore;
+    const { tabQuickTestStore }  = props;
+    const { updatePreScript,setPreScript } = tabQuickTestStore;
 
     const [form] = Form.useForm();
 
-    let instanceId=localStorage.getItem("instanceId")
-
     useEffect(()=>{
-        setPreInfo().then(res=>{
+        setPreScript().then(res=>{
             if(!res) return
-
             form.setFieldsValue({
                 scriptex: res.scriptex,
-
             })
         })
-    },[instanceId])
+    },[])
 
     return (
         <ScriptCommon
-            updateFn={getPreInfo}
+            updateFn={updatePreScript}
             form={form}
         />
     )
 
 }
 
-export default  inject('preScriptQuickTestStore')(observer(PreQuickTest));
+export default  inject('tabQuickTestStore')(observer(PreQuickTest));

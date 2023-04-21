@@ -10,27 +10,27 @@ const SystemContent = (props) =>{
         {
             title: "用户与部门",
             icon: 'team',
-            key: 'accountMember',
+            id: 'accountMember',
             children: [
                 {
                     title: '部门',
-                    key: '/systemManagement/org',
+                    id: '/systemManagement/org',
                     icon: 'modular',
                     purviewCode: "orga",
                 },{
                     title: '用户',
-                    key: '/systemManagement/user',
+                    id: '/systemManagement/user',
                     icon: 'modular',
                     purviewCode: "user",
 
                 },{
                     title: '用户目录',
-                    key: '/systemManagement/authConfig',
+                    id: '/systemManagement/authConfig',
                     icon: 'modular',
                     purviewCode: "user_dir",
                 },{
                     title: '用户组',
-                    key: '/systemManagement/userGroup',
+                    id: '/systemManagement/userGroup',
                     icon: 'modular',
                     // purviewCode: "userGroup",
                 },
@@ -39,23 +39,23 @@ const SystemContent = (props) =>{
         {
             title: '权限',
             icon: 'modular',
-            key: '/systemManagement/systemRole',
+            id: '/systemManagement/systemRole',
             // purviewCode: "systemPrivilege",
         },
         {
             title: "消息",
             icon: 'xiaoxi',
-            key: '/systemManagement',
+            id: '/systemManagement',
             children: [
                 {
                     title: "消息发送方式",
                     icon: 'rizhijilu',
-                    key: '/systemManagement/messageSendType',
+                    id: '/systemManagement/messageSendType',
                     purviewCode: "MSG_SendType",
                 },{
                     title: "消息通知方案",
                     icon: 'rizhijilu',
-                    key: '/systemManagement/message-notice',
+                    id: '/systemManagement/message-notice',
                     purviewCode: "MSG_Notice",
                 },
             ],
@@ -63,29 +63,29 @@ const SystemContent = (props) =>{
         {
             title: '插件',
             icon: 'modular',
-            key: '/systemManagement/plugin',
+            id: '/systemManagement/plugin',
             purviewCode: "plugin",
         },{
             title: "安全",
             icon: 'rizhijilu',
-            key: '/systemManagement/log',
+            id: '/systemManagement/log',
             purviewCode: "security",
             children: [
                 {
                     title: "操作日志",
                     icon: 'rizhijilu',
-                    key: '/systemManagement/log',
+                    id: '/systemManagement/log',
                     purviewCode: "log",
                 },
             ],
         },{
             title: '版本与许可证',
             icon: 'modular',
-            key: '/systemManagement/version'
+            id: '/systemManagement/version'
         },{
             title: '产品授权',
             icon: 'modular',
-            key: '/systemManagement/product'
+            id: '/systemManagement/product'
         },
     ]
 
@@ -93,46 +93,46 @@ const SystemContent = (props) =>{
         {
             title: "基础数据",
             icon: 'zu',
-            key: 'dev',
+            id: 'dev',
             children: [
                 {
                     title: '系统功能管理',
                     icon: 'modular',
-                    key: '/systemManagement/systemFeature',
+                    id: '/systemManagement/systemFeature',
                 },{
                     title: '系统权限',
                     icon: 'modular',
-                    key: '/systemManagement/baseSystemRole',
+                    id: '/systemManagement/baseSystemRole',
                 },{
                     title: '项目功能管理',
                     icon: 'modular',
-                    key: '/systemManagement/privilege',
+                    id: '/systemManagement/privilege',
                 }, {
                     title: '项目权限',
                     icon: 'modular',
-                    key: '/systemManagement/role',
+                    id: '/systemManagement/role',
                 },{
                     title: "消息发送方式",
                     icon: 'rizhijilu',
-                    key: '/systemManagement/messageSendTypeBase',
+                    id: '/systemManagement/messageSendTypeBase',
                 },
                 {
                     title: "消息通知方案",
                     icon: 'rizhijilu',
-                    key: '/systemManagement/message-notice-base',
+                    id: '/systemManagement/message-notice-base',
                 },
                 {
                     title: '消息类型管理',
                     icon: 'modular',
-                    key: '/systemManagement/messageType',
+                    id: '/systemManagement/messageType',
                 },{
                     title: '日志模板',
                     icon: 'modular',
-                    key: '/systemManagement/logTemplate',
+                    id: '/systemManagement/logTemplate',
                 },{
                     title: '日志类型',
                     icon: 'modular',
-                    key: '/systemManagement/logType',
+                    id: '/systemManagement/logType',
                 },
 
             ],

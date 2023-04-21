@@ -1,54 +1,46 @@
 import {testFunctionCommon} from "../../api/http/test/common/TestFunctionCommon";
 import qs from "qs";
 import {bodyTypeJsonDictionary as bodyTypeJson, rawTypeJsonDictionary as rawTypeJson} from "../dictionary/dictionary";
-import {getHeader, getQuery} from "../../api/http/test/common/dtAction";
 import axiosIns from "../utils/localrequest";
+import {getUser} from "tiklab-core-ui";
 
 
 /**
  * 发送测试之前数据处理
  */
-export const sendTestDataProcess=(data,preParamTestInfo,globalParam)=>{
+export const sendTestDataProcess=(data,preScriptInfo,globalParam)=>{
 
     //header
     let header = testFunctionCommon.headerData(data.headerList);
+    if(preScriptInfo&&preScriptInfo.header){
+        header=Object.assign({},header,preScriptInfo.header)
+    }
 
     let globalHeader;
     if(globalParam){
         globalHeader = testFunctionCommon.headerData(globalParam.header);
     }
 
-
     if(globalHeader){
         header=Object.assign({},header,globalHeader)
     }
 
-    //前置：获取header进行操作
-    getHeader(header);
-
-    // let headers =  darth.header.set("accept","123")
-
-
     //query
-    let params = testFunctionCommon.transData(data.queryList);
-
-    //前置：获取header进行操作
-    getQuery(params);
+    let query = testFunctionCommon.transData(data.queryList);
+    if(preScriptInfo&&preScriptInfo.query){
+        query=Object.assign({},query,preScriptInfo.query)
+    }
 
     //body
     let bodys = bodySwitch(data,header)
 
-    //前置
-    // if(preParamTestInfo){
-    //     execute(preParamTestInfo?.scriptex)
-    // }
 
     //请求参数
     return {
         "method": data.method,
         "url": data.baseUrl ? data.baseUrl + data.path : data.path,
         "headers": header,
-        "params": params,
+        "params": query,
         "bodys": bodys,
     };
 
@@ -61,17 +53,28 @@ export const sendTestDataProcess=(data,preParamTestInfo,globalParam)=>{
  * Proxy send test
  */
 export const localProxySendTest=async (proxyPath,data)=>{
-    const {bodys,headers} = data;
+    const {bodys,headers,url} = data;
 
     //当前执行的请求的接口参数
     let queryHeader=Object.assign({}, {"User-Agent":"PostIn/1.0.0"}, {...headers})
 
+
     //request接口 请求头
-    let axiosHeaders
+    let axiosHeaders = {};
+    //ce版本不需要tenant租户
+    if(version!=="ce"){
+        axiosHeaders=Object.assign({},axiosHeaders,{"tenant":getUser().tenant})
+
+        //mockx saas版需要添加租户
+        if(url.includes("mockx")){
+            queryHeader=Object.assign({},queryHeader,{"tenant":getUser().tenant})
+        }
+    }
+
     if(data.method!=="get"){
-        axiosHeaders={"content-type": headers["Content-Type"]}
+        axiosHeaders=Object.assign({},axiosHeaders,{"content-type": headers["Content-Type"]})
     }else {
-        axiosHeaders={"User-Agent":"PostIn/1.0.0"}
+        axiosHeaders=Object.assign({},axiosHeaders,{"User-Agent":"PostIn/1.0.0"})
     }
 
     //处理后的查询参数
@@ -80,10 +83,10 @@ export const localProxySendTest=async (proxyPath,data)=>{
     //request接口 请求地址
     let fetchUrl
 
-    if (!!IS_DEV) {
+    if (IS_DEV) {
         fetchUrl = `/request?${axiosQuery}`;
     } else {
-        const baseUrl = base_url ?? window.location.origin;
+        const baseUrl = window.location.origin;
         fetchUrl = `${baseUrl}/request?${axiosQuery}`;
     }
 
@@ -147,7 +150,12 @@ const processPiHeader = (queryHeader,data) =>{
     //头部
     let queryHeaderStr = Object.entries(queryHeader).map(([key, value]) => `${key}:${value}`).join(",");
 
-    let queryHeaderObj=  {"pi-header":queryHeaderStr,"pi-url":data.url,"pi-method":data.method}
+    //QUERY
+    const queryString = Object.entries(data.params)
+        .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+        .join('&');
+
+    let queryHeaderObj=  {"pi-header":queryHeaderStr,"pi-url":`${queryString?`${data.url}?${queryString}`:data.url}`,"pi-method":data.method}
 
     return Object.keys(queryHeaderObj).map(key => key + '=' + queryHeaderObj[key]).join('&');
 }

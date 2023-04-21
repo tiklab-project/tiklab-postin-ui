@@ -4,6 +4,7 @@ import JsonParamDS from "./JsonStructure";
 import {inject, observer} from "mobx-react";
 import DetailHeader from "../../../common/DetailHeader";
 import IconCommon from "../../../common/IconCommon";
+import {Breadcrumb} from "antd";
 
 /**
  * 结构页详情
@@ -49,31 +50,10 @@ const StructureDetail = (props) => {
     return(
         <div className={"structure-content"}>
             <div className={"structure-content-box"}>
-                <DetailHeader
-                    left={
-                        <div style={{
-                            display:"flex",
-                            alignItems:"center",
-                            justifyContent:"space-between",
-                            width: 90
-                        }}>
-                            <IconCommon
-                                icon={"31fanhui1"}
-                                style={{margin:"0 0 0 5px","cursor":"pointer"}}
-                                className={"icon-s"}
-                                onClick={backToList}
-                            />
-                            <span> 模型详情</span>
-                        </div>
-                    }
-                    // right={
-                    //     <DataStructureEdit
-                    //         type={"add"}
-                    //         dataStructureId={dataStructureId}
-                    //         name={'编辑'}
-                    //     />
-                    // }
-                />
+                <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
+                    <Breadcrumb.Item onClick={backToList} className={"first-item"}>数据结构</Breadcrumb.Item>
+                    <Breadcrumb.Item>{data?.name}</Breadcrumb.Item>
+                </Breadcrumb>
                 <div className={"structure-content-box-main"}>
                     <div className={"structure-content-box-main-detail"}>
                         <div>名称： {data?.name}</div>

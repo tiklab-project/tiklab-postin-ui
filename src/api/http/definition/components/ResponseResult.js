@@ -4,6 +4,7 @@ import {inject, observer} from "mobx-react";
 import Schema from "../../../../common/jsonSchema/Schema";
 import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
 
+const {Option} = Select
 /**
  * 定义
  * http
@@ -98,10 +99,28 @@ const ResponseResult = (props) =>{
         }
     }
 
+    const httpCodes = [200,201,403,404,410,422,500,502,503,504]
+
     return(
         <div className={"api-res-result"}>
             <div className={"api-res-result-top-box"}>
                 <Form form={form}   layout={"inline"}  style={{margin:" 0 0 10px 0"}}>
+                    <Form.Item
+                        name="name"
+                    >
+                        <Input  onBlur={onChange}/>
+                    </Form.Item>
+                    <Form.Item
+                        name="httpCode"
+                    >
+                        <Select showSearch style={{width:"150px"}} onSelect={onChange}>
+                            {
+                                httpCodes.map(item=>{
+                                    return <Option value={item} key={item}>{item}</Option>
+                                })
+                            }
+                        </Select>
+                    </Form.Item>
                     <Form.Item
                         label="数据类型"
                         name="dataType"

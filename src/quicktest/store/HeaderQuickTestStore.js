@@ -8,7 +8,7 @@ const tableCommonStore = new TableCommonStore();
  * 请求头 store
  */
 export  class HeaderQuickTestStore {
-    @observable headerQuickTestList = [];
+    @observable headerQuickTestList = [{id: 'InitRowId'}];
     @observable newHeaderRow=[{id: 'InitRowId'}];
 
     /**
@@ -23,8 +23,6 @@ export  class HeaderQuickTestStore {
             this.headerQuickTestList= this.newHeaderRow;
         }
     }
-
-
 
 
 

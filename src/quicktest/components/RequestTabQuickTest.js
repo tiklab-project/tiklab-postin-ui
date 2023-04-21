@@ -22,11 +22,11 @@ const RequestTabQuickTest = (props) =>{
 
     return(
         <RequestTab
-           header={<HeaderQuickTest instanceId={instanceId}/>}
-           query={<QueryQuickTest instanceId={instanceId}/>}
-           body={<RequestBodyQuickTest instanceId={instanceId} />}
-           pre={<PreQuickTest instanceId={instanceId}/>}
-           after={<AfterQuickTest instanceId={instanceId}/>}
+           header={<HeaderQuickTest />}
+           query={<QueryQuickTest />}
+           body={<RequestBodyQuickTest  />}
+           pre={<PreQuickTest />}
+           after={<AfterQuickTest />}
            assert={<AssertQuickTest />}
         />
 

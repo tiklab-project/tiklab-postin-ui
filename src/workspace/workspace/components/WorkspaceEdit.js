@@ -59,7 +59,7 @@ const WorkspaceEdit = (props) => {
 
         //创建空间成功跳到空间详情
         createWorkspace(values).then((res)=> {
-            toWorkspaceDetail(res.data,userId,workspaceRecent)
+            toWorkspaceDetail(res.data,workspaceRecent)
 
             props.history.push('/workspace');
         });

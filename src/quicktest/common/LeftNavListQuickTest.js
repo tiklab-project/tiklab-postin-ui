@@ -1,19 +1,29 @@
 import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
-import {quickTestTabProcess} from "../../common/apiTabListInfoProcess";
 import {Empty, Input, Space, Tooltip} from "antd";
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "tiklab-core-ui";
 import {SearchOutlined} from "@ant-design/icons";
+import {
+    getMediaType,
+    processFormParamData,
+    processFormUrlencodedData,
+    processHeaderData,
+    processQueryData
+} from "./instanceDataProcess";
+import {bodyTypeJsonDictionary as bodyTypeJsonDic} from "../../common/dictionary/dictionary";
+
+
 
 /**
  * 快捷测试
  * 左侧目录
  */
 const LeftNavListQuickTest =(props)=>{
-    const {instanceStore,quickTestStore} = props;
-    const {findInstanceList,instanceList,deleteAllInstance,deleteInstance} = instanceStore;
+    const {instanceStore,quickTestStore,tabQuickTestStore} = props;
+    const {findInstanceList,instanceList,deleteAllInstance,deleteInstance,findInstance} = instanceStore;
     const {setResponseShow} = quickTestStore;
+    const {tabPaneInfo,setTabPaneInfo} = tabQuickTestStore
 
     const userId = getUser().userId;
     const workspaceId = localStorage.getItem("workspaceId")
@@ -32,19 +42,106 @@ const LeftNavListQuickTest =(props)=>{
     }
 
 
-    const quickTestTabListInfo = JSON.parse(sessionStorage.getItem("quickTestTabListInfo"))
+
 
     /**
      * 点击打开不同的实例
      */
-    const onClick=(item)=>{
-        localStorage.setItem("instanceId",item.id)
+    const onClick= (item)=>{
 
-        quickTestTabProcess(item,quickTestTabListInfo);
+        let instance = {}
+        findInstance(item.id).then(res=>{
+            let request = res.requestInstance;
+            let header = processHeaderData(request.headers)
+            if(header&&header.length===0){
+                header = [{id: 'InitRowId'}]
+            }
+            let query = processQueryData(request.url)
+            if(query&&query.length===0){
+                query = [{id: 'InitRowId'}]
+            }
+
+            let bodyType = getMediaType(request?.mediaType);
+            let bodyData = {
+                "bodyType":"none",
+                "form":[{id: 'InitRowId'}],
+                "formUrl":[{id: 'InitRowId'}],
+                "raw":{
+                    "type":"application/json",
+                    "raw":null
+                }
+            }
+            switch (bodyType){
+                case bodyTypeJsonDic.none:
+                    break;
+                case bodyTypeJsonDic.formdata:
+                    bodyData = {
+                        ...bodyData,
+                        "bodyType":bodyType,
+                        "form":processFormParamData(request.body)
+                    }
+                    break;
+                case bodyTypeJsonDic.formUrlencoded:
+                    bodyData = {
+                        ...bodyData,
+                        "bodyType":bodyType,
+                        "formUrl":processFormUrlencodedData(request.body)
+                    }
+                    break;
+                case bodyTypeJsonDic.raw:
+                    let rawInfo = {
+                        raw:request?.body,
+                        type:request?.mediaType
+                    }
+                    bodyData = {
+                        ...bodyData,
+                        "bodyType":bodyType,
+                        "raw":rawInfo
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            instance = {
+                "id":res.id,
+                "type":"api",
+                "data":{
+                    "baseInfo":{
+                        "path":request.url,
+                        "methodType":request.methodType,
+                    },
+                    "header":header,
+                    "query":query,
+                    "body":bodyData,
+                    "preScript":{"scriptex":null},
+                    "afterScript":{"scriptex":null},
+                    "assert":[{id: 'InitRowId'}],
+                }
+            }
+
+            let { tabList } = tabPaneInfo;
+            let activeKey
+
+            //获取当前行对应的下标
+            let index = tabList.findIndex((item) => res.id === item.id);
+            //替换上一次录入的数据
+            if(index===-1){
+                tabList = [...tabList, instance];
+
+                activeKey = JSON.stringify(tabList.length - 1);
+            }else {
+                tabList.splice(index, 1, { ...tabList[index], instance});
+
+                activeKey = JSON.stringify(index);
+            }
+
+            let newTabInfo = { activeKey:activeKey, tabList: tabList };
+
+            setTabPaneInfo(newTabInfo)
+        })
 
         setResponseShow();
-
-        props.history.push("/workspace/quickTest/detail/api")
     }
 
 
@@ -85,7 +182,7 @@ const LeftNavListQuickTest =(props)=>{
                     key={item.id}
                 >
                     <div className={"qt-left-list-box"} onClick={()=>onClick(item)}>
-                        <div>
+                        <div className={"qt-left-list-box-ellipsis"}>
                             <TextMethodType type={item.requestInstance?.methodType} /><span>{item.requestInstance?.url}</span>
                         </div>
 
@@ -152,4 +249,4 @@ const LeftNavListQuickTest =(props)=>{
 
 }
 
-export default inject("instanceStore","quickTestStore")(observer(LeftNavListQuickTest));
+export default inject("instanceStore","quickTestStore","tabQuickTestStore")(observer(LeftNavListQuickTest));

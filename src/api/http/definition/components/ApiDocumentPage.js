@@ -7,7 +7,7 @@ import TableQueryDoc from "../../../../common/apiDoc/TableQueryDoc";
 import RequestBodyDoc from "../../../../common/apiDoc/RequestBodyDoc";
 import ResponseResultDoc from "../../../../common/apiDoc/ResponseResultDoc";
 import IconBtn from "../../../../common/iconBtn/IconBtn";
-import {Breadcrumb, Space} from "antd";
+import {Breadcrumb, Space, Tag} from "antd";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 
 /**
@@ -68,23 +68,26 @@ const ApiDocumentPage = (props) =>{
 
                 <div className={"share-box-right-content-item"}  >
                     <div className={"pi-box-between"}>
-                        <div className={"share-box-api-title"}>{apiDoc?.apix?.name}</div>
+                        <div className={"share-box-api-title"}>
+                            {apiDoc?.apix?.name}
+                            <Tag color={apiDoc?.apix?.status?.color} style={{margin:"0 10px"}}>{apiDoc?.apix?.status?.name}</Tag>
+                        </div>
 
                         <Space>
                             <IconBtn
-                                icon={"bianji11"}
+                                // icon={"bianji11"}
                                 className="pi-icon-btn-grey"
                                 name={"编辑"}
                                 onClick={toEditPage}
                             />
                             <IconBtn
-                                icon={"fasong"}
+                                // icon={"fasong"}
                                 className="pi-icon-btn-grey"
                                 name={"测试"}
                                 onClick={toTestPage}
                             />
                             <IconBtn
-                                icon={"gongdan"}
+                                // icon={"gongdan"}
                                 className="pi-icon-btn-grey"
                                 name={"MOCK"}
                                 onClick={toMockPage}
@@ -108,10 +111,10 @@ const ApiDocumentPage = (props) =>{
                         <MethodType type={apiDoc?.methodType} />
                         <div>{apiDoc?.path}</div>
                     </div>
-                    <div className={"share-box-right-content-item-detail"}>
-                        <div className={"share-detail-title"}>状态:</div>
-                        <div style={{color:` ${apiDoc?.apix?.status?.color}`}}>{apiDoc?.apix?.status?.name}</div>
-                    </div>
+                    {/*<div className={"share-box-right-content-item-detail"}>*/}
+                    {/*    <div className={"share-detail-title"}>状态:</div>*/}
+                    {/*    <div style={{color:` ${apiDoc?.apix?.status?.color}`}}>{apiDoc?.apix?.status?.name}</div>*/}
+                    {/*</div>*/}
                     <div className={"share-box-right-content-item-detail"}>
                         {
                             apiDoc?.apix?.desc

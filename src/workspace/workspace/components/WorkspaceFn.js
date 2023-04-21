@@ -1,31 +1,38 @@
-import {globalTabListInit} from "../../../common/GlobalSharing";
-
 /**
  * 点击空间，初始化的一些数据，并跳往空间详情
  */
-export const toWorkspaceDetail = (workspaceId,userId,workspaceRecent) => {
-    //点击api按钮时初始化api中tab页信息
-    // const apiTabInfo = {
-    //     activeKey:0,
-    //     tabList:[
-    //         {
-    //             name:"初始页",
-    //             id:workspaceId,
-    //             type:"list",
-    //         }
-    //     ]
-    // }
-    // sessionStorage.setItem("apiTabListInfo",JSON.stringify(apiTabInfo))
+import {getUser} from "tiklab-core-ui";
+
+
+export const toWorkspaceDetail = (workspaceId,workspaceRecent,leftMenuSelect) => {
+
+    //点击进入空间，默认选中接口调试
+    const apiTabInfo = {
+        activeKey:"0",
+        tabList:[
+            {
+                name:"新标签",
+                id:"newTab",
+                type:"api",
+            }
+        ]
+    }
+
+    sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(apiTabInfo))
+
+    localStorage.setItem("instanceId","-1")
+
+
 
     //最近空间
     let params = {
         workspace: {id:workspaceId},
-        user: {id:userId}
+        user: {id:getUser().userId}
     }
     workspaceRecent(params)
 
 
-    localStorage.setItem("LEFT_MENU_SELECT","overview");
+    localStorage.setItem("LEFT_MENU_SELECT",leftMenuSelect?leftMenuSelect:"quickTest");
 
     localStorage.setItem('workspaceId',workspaceId);
 }

@@ -20,10 +20,10 @@ const ScriptCommon = (props) => {
         //获取EdiText文本数据
         let text = ediTextRef.current.editor.getValue()
 
-        let param = {scriptex:text }
-        console.log(param)
+        // let param = {scriptex:text }
+        // console.log(param)
         //本地获取值
-        updateFn(param)
+        updateFn(text)
     }
 
 

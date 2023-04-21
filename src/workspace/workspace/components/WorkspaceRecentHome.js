@@ -27,8 +27,9 @@ const WorkspaceRecentHome = (props) =>{
      * 去往详情页
      */
     const toDetail = (workspaceId) => {
-        toWorkspaceDetail(workspaceId,userId,workspaceRecent)
-        props.history.push('/workspace');
+
+        toWorkspaceDetail(workspaceId,workspaceRecent)
+        props.history.push('/workspace/quickTest/detail/api');
     }
 
     /**
@@ -70,7 +71,6 @@ const WorkspaceRecentHome = (props) =>{
                         image={emptyImg}
                     />
             }
-
 
         </div>
     )

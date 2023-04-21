@@ -77,7 +77,7 @@ const WorkspaceSetting = (props) =>{
                     "background": "#f8f8f8"
                 }}>以下为功能配置 </div>
                 <Collapse  defaultActiveKey={['1']} expandIconPosition={"end"}>
-                    <Panel header={<><EditOutlined/> 编辑空间</>} key="1"  >
+                    <Panel header={<><EditOutlined/> <span style={{padding:"0 5px"}}>编辑空间</span></>} key="1"  >
                         <div>
                             <Form
                                 className='ws-edit-modal-form'
@@ -137,11 +137,11 @@ const WorkspaceSetting = (props) =>{
                         </div>
 
                     </Panel>
-                    <Panel header={<><DeleteOutlined /> 删除空间</>}  key="2" >
-                        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                            <div>
+                    <Panel header={<><DeleteOutlined />  <span style={{padding:"0 5px"}}>删除空间</span> </>}  key="2" >
+                        <div >
+                            <div style={{display:"flex",alignItems:"center",margin:"0 0 10px 0"}}>
                                 <div  style={{fontWeight:"bold"}}>删除此空间</div>
-                                <div className={"ws-setting-delete"}>删除存储库后，将无法返回。请确定</div>
+                                <div className={"ws-setting-delete"}>(删除存储库后,将无法返回,请确定)</div>
                             </div>
 
                             <DeleteWorkspaceModal

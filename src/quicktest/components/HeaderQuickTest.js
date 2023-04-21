@@ -7,30 +7,20 @@ import HeaderTableCommon from "../../common/tableCommon/components/HeaderTableCo
  * 请求头
  */
 const HeaderQuickTest = (props) =>{
-    const { headerQuickTestStore,instanceId } = props;
-
-    const {
-        saveList,
-        deleteList,
-        headerQuickTestList,
-        getRequestHeaderTestList
-    } = headerQuickTestStore;
-
-    // useEffect(()=>{
-    //     getRequestHeaderTestList()
-    // },[instanceId])
+    const {tabQuickTestStore } = props;
+    const {headerList,saveRequestHeaderList,deleteRequestHeaderList} = tabQuickTestStore
 
     return (
         <>
             <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>请求头参数</span></div>
             <HeaderTableCommon
-                dataList={headerQuickTestList}
-                saveList={saveList}
-                deleteList={deleteList}
+                dataList={headerList}
+                saveList={saveRequestHeaderList}
+                deleteList={deleteRequestHeaderList}
             />
         </>
 
     );
 }
 
-export default inject('headerQuickTestStore')(observer(HeaderQuickTest));
+export default inject("tabQuickTestStore")(observer(HeaderQuickTest));

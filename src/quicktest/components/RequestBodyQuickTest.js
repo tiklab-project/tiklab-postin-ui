@@ -11,12 +11,11 @@ import RequestBodyCom from "../../common/tableCommon/components/RequestBodyCom";
  * 请求体
  */
 const RequestBodyQuickTest  = (props) =>{
-    const { requestBodyQuickTestStore } = props;
+    const { tabQuickTestStore } = props;
     const {
         updateBodyType,
-        getBodyType,
-        bodyType
-    } = requestBodyQuickTestStore;
+        requestBodyType
+    } = tabQuickTestStore;
 
     let bodyTypeDictionary ={
         none:"none",
@@ -29,17 +28,17 @@ const RequestBodyQuickTest  = (props) =>{
 
     return(
         <RequestBodyCom
-            radioValue={bodyType}
+            radioValue={requestBodyType}
             updateFn={updateBodyType}
-            setRadioType={getBodyType}
-            form={<FormDataQuickTest bodyType={bodyType}/>}
-            formUrlencoded={<FormUrlencodedQuickTest bodyType={bodyType}/>}
-            // json={<JsonQuickTest bodyType={bodyType}/>}
-            raw={<RawQuickTest bodyType={bodyType}/>}
+
+            form={<FormDataQuickTest />}
+            formUrlencoded={<FormUrlencodedQuickTest />}
+            // json={<JsonQuickTest />}
+            raw={<RawQuickTest />}
             binary={null}
             bodyTypeDictionary={bodyTypeDictionary}
         />
     )
 }
 
-export default inject('requestBodyQuickTestStore')(observer(RequestBodyQuickTest));
+export default inject('tabQuickTestStore')(observer(RequestBodyQuickTest));

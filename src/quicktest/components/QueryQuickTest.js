@@ -7,32 +7,25 @@ import QueryTableCommon from "../../common/tableCommon/components/QueryTableComm
  * 查询参数
  */
 const QueryQuickTest = (props) =>{
-    const { queryQuickTestStore,instanceId } = props;
+    const { tabQuickTestStore } = props;
     const {
-        queryQuickTestList,
-        saveList,
-        deleteList,
-        addNewList,
-        getQueryParamTestList
-    } = queryQuickTestStore;
+        queryList,
+        saveQueryList,
+        deleteQueryList,
+    } = tabQuickTestStore;
 
-
-    // useEffect(()=>{
-    //     getQueryParamTestList()
-    // },[instanceId])
 
     return (
         <>
             <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>查询参数</span></div>
             <QueryTableCommon
-                dataList={queryQuickTestList}
-                saveList={saveList}
-                addNewList={addNewList}
-                deleteList={deleteList}
+                dataList={queryList}
+                saveList={saveQueryList}
+                deleteList={deleteQueryList}
             />
         </>
 
     );
 }
 
-export default inject('queryQuickTestStore')(observer(QueryQuickTest));
+export default inject('tabQuickTestStore')(observer(QueryQuickTest));

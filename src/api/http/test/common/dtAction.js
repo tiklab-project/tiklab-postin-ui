@@ -9,87 +9,87 @@ let response,
     json
   = {};
 
-export const pi =  {
+let preObj = {}
+let resData
+
+
+const pi =  {
     md5:md5,
 
     header:{
         set: (key, value) => {
-            let setValue = {[key]:value}
-            return  {...headers,...setValue}
-        },
-        get:(key)=>{
-            return headers[key]
-        },
+            let header = {[key]: value}
+            preObj.header=header
+            return preObj
+        }
     },
 
     query:{
         set: (key, value) => {
-            let setValue = {[key]:value}
-            querys={...querys,...setValue}
-        },
-        get:(key)=>{
-            return querys[key]
+            let query = {[key]: value}
+            preObj.query=query
+            return preObj
         }
     },
 
     body:{
         form:{
             set: (key, value) => {
-                let setValue = {[key]:value}
-                forms={...forms,...setValue}
-            },
-            get:(key)=>{
-                return forms[key]
+                let form = {[key]: value}
+                preObj.query=form
+                return preObj
             }
         },
         urlencoded:{
             set: (key, value) => {
-                let setValue = {[key]:value}
-                urlencodeds={...urlencodeds,...setValue}
-            },
-            get:(key)=>{
-                return urlencodeds[key]
+                let formUrl = {[key]: value}
+                preObj.formUrl=formUrl
+                return preObj
             }
         },
-        json:{
-            set: (key,value) => {
-                let setValue = {[key]:value}
-                json={...json,...setValue}
-            },
-            get:(key)=>{
-                return jsonPath(json, `$.${key}`).toString();
-            }
-        },
+        // json:{
+        //     set: (key,value) => {
+        //         let setValue = {[key]:value}
+        //         json={...json,...setValue}
+        //     },
+        //     get:(key)=>{
+        //         return jsonPath(json, `$.${key}`).toString();
+        //     }
+        // },
     },
 
     response:{
-        set: (value)=>{
-            response = {...response,response:value}
+        get: ()=>{
+            return  resData
+        },
+        getStatusCode: ()=>{
+            return  resData.res.status
         }
     }
 }
 
-export const getHeader =(data)=>{
-    headers = data
-}
+// export const getHeader =(data)=>{
+//     headers = data
+// }
+//
+// export const getQuery =(data)=>{
+//     querys = data
+// }
+//
+// export const getForm =(data)=>{
+//     forms = data
+// }
+//
+// export const getUrlencoded =(data)=>{
+//     urlencodeds = data
+// }
+//
+// export const getJson =(data)=>{
+//     json = data
+// }
 
-export const getQuery =(data)=>{
-    querys = data
-}
 
-export const getForm =(data)=>{
-    forms = data
-}
-
-export const getUrlencoded =(data)=>{
-    urlencodeds = data
-}
-
-export const getJson =(data)=>{
-    json = data
-}
-
-
-export const execute=(express)=>{
+export const execute=(express,responseData)=>{
+    resData=responseData?responseData:{}
     return eval(express)
 }

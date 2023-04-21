@@ -1,10 +1,9 @@
-
 import React from 'react'
 //----平台组件----
-import {
-    Directory, Orga, UserGroup, User, NotFound,
-    ProjectFeature, ProjectRole, SystemFeature, SystemRole
-} from "tiklab-user-ui";
+
+import {Directory, Orga, UserGroup, User,} from "tiklab-user-ui";
+import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "tiklab-privilege-ui"
+
 import {Auth,ExcludeProductUser} from "tiklab-eam-ui";
 import {ProductAuth} from "tiklab-licence-ui"
 import {LogTemplate, LogType, MyLog} from "tiklab-security-ui";
@@ -43,6 +42,7 @@ import ApiDocument from "./api/http/definition/components/ApiDocumentPage";
 import ApiInitPage from "./workspace/common/ApiInitPage";
 import DataStructure from "./support/dataStructure/components/DataStructure";
 import WorkspaceEdit from "./workspace/workspace/components/WorkspaceEdit";
+
 
 const routers =  [
     {
@@ -356,32 +356,15 @@ const routers =  [
                     },
                     {
                         path: "/workspace/quickTest",
-                        key:'quickTest',
                         component: LayoutQuickTest,
+                        cacheKey: 'quickTest',
+                        cache: true,// 缓存 组件
                         routes:[
                             {
                                 path: "/workspace/quickTest/detail",
-                                key: 'TabsQuickTest',
+                                cacheKey: 'TabsQuickTest',
                                 component: TabsQuickTest,
-                                routes: [
-                                    {
-                                        path: "/workspace/quickTest/detail/api",
-
-                                        key:'TestdetailQuickTest',
-                                        component: TestBoxQuickTest,
-                                    },{
-                                        path:"/workspace/quickTest/detail",
-                                        exact: true,
-                                        key:'reTestdetailQuickTest',
-                                        component: ()=><Redirect to='/workspace/quickTest/detail/api'/>,
-                                    },
-                                ]
-                            },
-                            {
-                                path:"/workspace/quickTest",
-                                exact: true,
-                                key:'ridquickTestdetail',
-                                component: ()=><Redirect to='/workspace/quickTest/detail'/>,
+                                cache: true,// 缓存 组件
                             },
                         ]
                     },{
@@ -425,12 +408,6 @@ const routers =  [
                             },
                         ]
                     },
-                    {
-                        path:"/workspace",
-                        key:'ridapidetail',
-                        exact: true,
-                        component: ()=><Redirect to='/workspace/overview'/>,
-                    },
                 ]
             },
             {
@@ -444,4 +421,6 @@ const routers =  [
 
   ];
 
+
+console.log(routers)
 export default routers

@@ -7,30 +7,20 @@ import FormDataTableCommon from "../../common/tableCommon/components/FormDataTab
  * formdata
  */
 const FormDataQuickTest = (props) =>{
-    const { formDataQuickTestStore, bodyType,instanceId } = props;
-
+    const { tabQuickTestStore } = props;
     const {
-        getFormParamTestList,
-        formQuickTestList,
-        saveList,
-        addNewList,
-        deleteList,
-    } = formDataQuickTestStore;
-
-    useEffect(()=>{
-        getFormParamTestList()
-    },[instanceId])
+        formList,
+        saveFormList,
+        deleteFormList,
+    } = tabQuickTestStore;
 
     return (
         <FormDataTableCommon
-            dataList={formQuickTestList}
-            saveList={saveList}
-            addNewList={addNewList}
-            deleteList={deleteList}
-            getFormDataList={getFormParamTestList}
-            bodyType={bodyType}
+            dataList={formList}
+            saveList={saveFormList}
+            deleteList={deleteFormList}
         />
     );
 }
 
-export default inject('formDataQuickTestStore')(observer(FormDataQuickTest));
+export default inject('tabQuickTestStore')(observer(FormDataQuickTest));

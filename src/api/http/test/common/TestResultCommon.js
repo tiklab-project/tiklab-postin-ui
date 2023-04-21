@@ -15,7 +15,7 @@ let assertCommonStore = new AssertCommonStore();
 
 // 输出参数 请求头部与请求参数的切换
 const TestResultCommon = (props) =>  {
-    const {showResponse,testResponse} = props;
+    const {showResponse,testResponse,afterScript} = props;
 
 
     const isErrorTest = (response)=>{
@@ -105,6 +105,14 @@ const TestResultCommon = (props) =>  {
                 {/*    /!*{props.requestBody}*!/*/}
                 {/*</TabPane>*/}
                 <TabPane tab="断言" key="5">
+                    {
+                        afterScript
+                            ?<div style={{"padding":"10px",background: "#f9f9f9"}}>
+                                <div>后置 statusCode: {afterScript}</div>
+
+                            </div>
+                            :null
+                    }
                     <AssertResponseCommon assertList={assertList} />
                 </TabPane>
             </Tabs>

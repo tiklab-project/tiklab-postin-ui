@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
 import {CategoryEdit,CategoryNav} from '../index'
 import { Input, Button, Dropdown, Menu} from 'antd';
-import Import from "../../support/imexport/components/Import";
 import {SearchOutlined} from "@ant-design/icons";
 import IconCommon from "../../common/IconCommon";
 

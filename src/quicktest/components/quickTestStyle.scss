@@ -91,6 +91,14 @@
         border-bottom: 1px solid var(--pi-border-color);
         position: relative;
 
+        .qt-left-list-box-ellipsis{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+            white-space: nowrap;
+            padding: 0 25px 0 0;
+        }
+
         .qt-left-list-icon{
             display: none;
             width: 18px;

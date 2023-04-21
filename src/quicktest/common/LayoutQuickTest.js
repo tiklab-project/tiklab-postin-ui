@@ -1,5 +1,5 @@
 import React from "react";
-import "./quickTestStyle.scss";
+import "../components/quickTestStyle.scss";
 import LeftNavListQuickTest from "./LeftNavListQuickTest";
 import RightContent from "../../common/RightContent";
 

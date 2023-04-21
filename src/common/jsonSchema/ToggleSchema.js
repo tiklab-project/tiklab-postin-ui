@@ -17,7 +17,7 @@ const ToggleSchema = (props) =>{
     const {data,schemaData,deep,preKey,parent,root,setSchemaData,updateFn,httpId,resultId} = props
 
 
-    const [toggleShow, setToggleShow] = useState(false);
+    const [toggleShow, setToggleShow] = useState(true);
 
 
 
@@ -71,42 +71,59 @@ const ToggleSchema = (props) =>{
     const changeCheckbox = (e) =>{
         let checked = e.target.checked
 
-        let checkedLoop = (inlineDeep,data,result) =>{
-            const keys = Object.keys(data.properties);
+        // let checkedLoop = (inlineDeep,data,result) =>{
+        //     const keys = Object.keys(data.properties);
+        //
+        //     keys.forEach(key=>{
+        //         let a = {...data}
+        //         let required
+        //
+        //         if (checked) {
+        //             required = data.required ? [...data.required, preKey] : [key];
+        //         } else {
+        //             required = data.required?.filter((item) => item !== preKey);
+        //         }
+        //
+        //         result = {
+        //             ...data,
+        //             required: [...required],
+        //         };
+        //
+        //         if (data.properties[key].properties) {
+        //             checkedLoop(
+        //                 inlineDeep + 1,
+        //                 data.properties[key],
+        //                 a.properties[key].properties
+        //             )
+        //         }
+        //     })
+        // }
 
-            keys.forEach(key=>{
-                let a = {...data}
-                let required
-
-                if (checked) {
-                    required = data.required ? [...data.required, preKey] : [key];
-                } else {
-                    required = data.required?.filter((item) => item !== preKey);
-                }
-
-                result = {
-                    ...data,
-                    required: [...required],
-                };
-
-                if (data.properties[key].properties) {
-                    checkedLoop(
-                        inlineDeep + 1,
-                        data.properties[key],
-                        a.properties[key].properties
-                    )
-                }
-            })
-        }
-
-        let result = {}
+        // let result = {}
         let inlineDeep = 1
 
-        checkedLoop(inlineDeep,schemaData,result)
+        // checkedLoop(inlineDeep,schemaData,result)
+
+        // const checkedLoop = (inlineDeep,data)=>{
+        //     const keys = Object.keys(data.properties);
+        //
+        //     return keys.map(item=>{
+        //         let obj ={}
+        //         if(deep===inlineDeep-1){
+        //
+        //         }
+        //
+        //
+        //     })
+        // }
+        //
+        // let result = checkedLoop(inlineDeep,schemaData)
 
 
         console.log(result)
     }
+
+
 
     //改变类型
     const changeType = (type,preKey,dataModel)=>{
@@ -518,9 +535,9 @@ const ToggleSchema = (props) =>{
                         <MockSelect
                             // schema={schema}
 
-                            defaultValue={  data?.mock?.mock ||  data?.isModel===true?preKey+"模型":null  }
+                            defaultValue={ ( data?.mock?.mock )||  (data?.isModel===true?preKey+"模型":null ) }
                             disabled={deep === 0|| data?.isModel===true}
-                            onChange={e => changeValue( e)}
+                            changeValue={ changeValue}
                         />
 
                     </div>
@@ -529,6 +546,7 @@ const ToggleSchema = (props) =>{
                             disabled={data?.isModel===true}
                             defaultValue={  data?.description }
                             onBlur={e => changeDesc(e.target.value)}
+                            placeholder={"字段描述"}
                         />
 
                     </div>
@@ -550,3 +568,4 @@ const ToggleSchema = (props) =>{
 }
 
 export default ToggleSchema
+

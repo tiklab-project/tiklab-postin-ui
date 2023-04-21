@@ -44,7 +44,9 @@ const CategoryTree = (props) => {
 
 
     useEffect(() => {
-        findCategoryList(workspaceId)
+        findCategoryList(workspaceId).then((list)=>{
+            onClick(list[0])
+        })
     },[workspaceId])
 
     const isExpandedTree = (key) => {

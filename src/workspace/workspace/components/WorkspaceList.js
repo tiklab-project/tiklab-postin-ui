@@ -6,6 +6,7 @@ import  { useTranslation } from 'react-i18next'
 import {getUser} from "tiklab-core-ui";
 import {toWorkspaceDetail} from "./WorkspaceFn";
 import emptyImg  from "../../../assets/img/empty.png"
+import Avatar from "../../../common/avatar/avatar";
 
 
 /**
@@ -45,6 +46,7 @@ const WorkspaceList = (props) => {
             render: (text, record) => (
                 <div className={"ws-user-item"}>
                     <Space>
+                        <Avatar isBig={true} name={record.user.nickname}/>
                         <span>{record.user.nickname} </span>
                     </Space>
                 </div>
@@ -102,7 +104,8 @@ const WorkspaceList = (props) => {
 
 
     const toWorkspaceUser = (workspaceId)=>{
-        toWorkspaceDetail(workspaceId,userId,workspaceRecent);
+        toWorkspaceDetail(workspaceId,workspaceRecent,"setting");
+
 
         settingMenuSelected("/workspace/setting/role");
 
@@ -113,9 +116,9 @@ const WorkspaceList = (props) => {
      *  保存空间id到缓存
      */
     const setLocalStorage = (workspaceId) => {
-        toWorkspaceDetail(workspaceId,userId,workspaceRecent)
+        toWorkspaceDetail(workspaceId,workspaceRecent)
 
-        props.history.push('/workspace');
+        props.history.push('/workspace/quickTest/detail/api');
     }
 
 

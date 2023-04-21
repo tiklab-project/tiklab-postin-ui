@@ -16,7 +16,7 @@ const ResponseResultDoc = (props) =>{
         return list && list.map(item=>{
             return <TabPane tab={item.name+"("+item.httpCode+")"} key={item.id}>
                     <div>
-                        <Tag>{item.dataType}</Tag>
+                        {/*<Tag>{item.dataType}</Tag>*/}
                         <div style={{border:"1px solid var(--pi-border-color)"}}>
                             {
                                 item.dataType==="json"

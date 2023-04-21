@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Dropdown, Menu,Tabs} from 'antd';
+import { Tabs} from 'antd';
 import ResponseResult from "./ResponseResult";
 import ResponseTabEdit from "./ResponseTabEdit";
 import noneImg from "../../../../assets/img/none.png";
-import IconCommon from "../../../../common/IconCommon";
 
 const { TabPane } = Tabs;
 
@@ -59,10 +58,9 @@ const Response = (props) =>{
                 activeKey={activeKey}
                 onEdit={onEdit}
                 type="editable-card"
-                tabPosition={"left"}
                 style={{height: 365 }}
                 tabBarExtraContent={{
-                    left:<ResponseTabEdit
+                    right:<ResponseTabEdit
                     apxMethodId={apxMethodId}
                     setActiveKey={setActiveKey}
                     />
@@ -71,12 +69,7 @@ const Response = (props) =>{
                 {
                     apiResponseList && apiResponseList.map(pane=>{
                         return <TabPane
-                            tab={
-                                <TabWithButton
-                                    pane={pane}
-                                    deleteTab={() => onEdit(pane.id, "remove")}
-                                />
-                            }
+                            tab={pane.name+"("+pane.httpCode+")"}
                             key={pane.id}
                         >
                             <ResponseResult httpId={apxMethodId} resultId={pane.id} />
@@ -100,38 +93,6 @@ const Response = (props) =>{
 
         </div>
     )
-    
 }
-
-const TabWithButton = ({ pane, deleteTab }) => {
-
-
-    const menu = (
-        <Menu>
-            <Menu.Item>
-                <ResponseTabEdit type={"edit"} apiResponseId={pane.id}/>
-            </Menu.Item>
-            <Menu.Item>
-                <span onClick={deleteTab}>删除</span>
-            </Menu.Item>
-        </Menu>
-    );
-
-
-    return (
-        <div style={{ display: "flex", justifyContent: "space-between",width: "160px",color:"black"}}>
-            <span className={"api-result-box-tab-item-title"}>{pane.name+"("+pane.httpCode+")"}</span>
-            <Dropdown overlay={menu}  >
-                <div style={{"display":"flex","alignItems":"center"}}>
-                    <IconCommon
-                        className={"icon-s"}
-                        icon={"more"}
-                    />
-                </div>
-            </Dropdown>
-        </div>
-    );
-};
-
 
 export default inject("apiResponseStore")(observer(Response));

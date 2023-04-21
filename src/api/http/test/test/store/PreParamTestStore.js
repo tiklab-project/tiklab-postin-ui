@@ -5,7 +5,8 @@ export  class PreParamTestStore {
 
     @action
     getPreInfo = (value)=>{
-        this.preParamTestInfo = {...this.preParamTestInfo,...value};
+
+        this.preParamTestInfo = value;
     }
 
     @action

@@ -9,9 +9,8 @@ import {Form} from "antd";
  * 请求体中raw
  */
 const RawQuickTest = (props) => {
-    const { rawQuickTestStore, bodyType }  = props;
-    const {getRawInfo,setRawInfo,rawQuickTestInfo} = rawQuickTestStore;
-    const instanceId = localStorage.getItem("instanceId")
+    const { tabQuickTestStore }  = props;
+    const {updateRawInfo,setRawInfo,rawInfo} = tabQuickTestStore;
 
     const [form] = Form.useForm();
 
@@ -24,18 +23,18 @@ const RawQuickTest = (props) => {
                 type:res.type
             })
         })
-    },[instanceId])
+    },[])
 
     return (
         <RawParamCommon
             form={form}
-            dataSource={rawQuickTestInfo}
-            type={rawQuickTestInfo?.type}
-            updateFn={getRawInfo}
+            dataSource={rawInfo}
+            type={rawInfo?.type}
+            updateFn={updateRawInfo}
             use={"quick"}
         />
     )
 }
 
 
-export default inject('rawQuickTestStore')(observer(RawQuickTest));
+export default inject('tabQuickTestStore')(observer(RawQuickTest));

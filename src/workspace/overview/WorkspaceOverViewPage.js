@@ -28,10 +28,10 @@ const WorkspaceOverViewPage = (props) =>{
             title:"分组数",
             value:total?.categoryTotal,
         },
-        {
-            title:"用例数",
-            value:total?.caseTotal,
-        },
+        // {
+        //     title:"用例数",
+        //     value:total?.caseTotal,
+        // },
         {
             title:"数据模型数",
             value:total?.modelTotal,

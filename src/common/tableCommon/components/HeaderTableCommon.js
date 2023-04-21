@@ -88,7 +88,7 @@ const {dataList, saveList, deleteList} = props;
             columns={columns}
             dataSource={dataList}
             handleSave={handleSave}
-            rowSelection={rowSelection}
+            // rowSelection={rowSelection}
         />
     );
     

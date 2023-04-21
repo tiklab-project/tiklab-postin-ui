@@ -8,30 +8,21 @@ import FormUrlencodedTableCommon from "../../common/tableCommon/components/FormU
  * formUrl
  */
 const FormUrlencodedQuickTest = (props) =>{
-    const { formUrlencodedQuickTestStore, bodyType } = props;
-
+    const { tabQuickTestStore } = props;
     const {
-        getFormUrlencodedTestList,
-        formUrlencodedQuickTestList,
-        saveList,
-        addNewList,
-        deleteList,
-    } = formUrlencodedQuickTestStore;
+        saveFormUrlList,
+        formUrlList,
+        deleteFormUrlList,
+    } = tabQuickTestStore;
 
-    useEffect(()=>{
-        getFormUrlencodedTestList()
-    },[])
 
     return (
         <FormUrlencodedTableCommon
-            dataList={formUrlencodedQuickTestList}
-            saveList={saveList}
-            addNewList={addNewList}
-            deleteList={deleteList}
-            getFormUrlencodedList={getFormUrlencodedTestList}
-            bodyType={bodyType}
+            dataList={formUrlList}
+            saveList={saveFormUrlList}
+            deleteList={deleteFormUrlList}
         />
     );
 }
 
-export default inject('formUrlencodedQuickTestStore')(observer(FormUrlencodedQuickTest));
+export default inject('tabQuickTestStore')(observer(FormUrlencodedQuickTest));

@@ -1,6 +1,7 @@
 import {action, observable} from "mobx";
 import {AssertCommonStore} from "../../api/http/test/common/AssertCommonStore";
 import qs from "qs";
+import {Axios} from "tiklab-core-ui";
 
 let assertCommonStore = new AssertCommonStore();
 
@@ -19,6 +20,7 @@ export  class QuickTestStore {
     @observable requestHeaderData;
     @observable methodType;
     @observable isResponseShow="false";
+
 
     /**
      * 获取请求参数
@@ -43,6 +45,7 @@ export  class QuickTestStore {
      */
     @action
     getResponseInfo = async (data,assertData) => {
+
         if(data){
             const {res,time} = data;
             this.time=time;
@@ -85,9 +88,9 @@ export  class QuickTestStore {
                 'requestInstance': {
                     "url": this.baseInfo,
                     "methodType": this.methodType,
-                    "mediaType": requestHeaders["content-type"],
-                    'headers': this.requestHeaderData,
-                    'body': this.requestBodyData,
+                    "mediaType": requestHeaders["Content-Type"],
+                    'headers': JSON.stringify(requestHeaders),
+                    'body': requestBody,
                     "preScript": null,
                     "afterScript": null
                 },
@@ -178,6 +181,8 @@ export  class QuickTestStore {
         this.isResponseShow = true
     }
 
+    @action
+    saveToApi = async (data) => await Axios.post("/quickTest/saveToApi",data);
 
 }
 

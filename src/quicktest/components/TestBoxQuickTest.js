@@ -14,12 +14,12 @@ const TestBoxQuickTest = (props) =>{
      * web 和 electron 请求不一样
      * web通过/request代理发送测试
      */
-    const getRes = async  (data) =>{
+    const sendRequest = async  (data) =>{
         return await localProxySendTest("/request", data);
     }
 
     return(
-        <TestdetailQuickTest {...props} getRes={getRes} />
+        <TestdetailQuickTest {...props} sendRequest={sendRequest} />
     )
 }
 

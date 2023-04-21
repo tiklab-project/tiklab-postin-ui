@@ -160,15 +160,16 @@
         .wd-total-box{
             display: flex;
             justify-content: space-between;
-            border: 1px solid var(--pi-border-color);
+            //border: 1px solid var(--pi-border-color);
             padding: 20px;
-            border-radius: var(--pi-border-radius);
+            //border-radius: var(--pi-border-radius);
             background: #fff;
             margin: 0 10px;
         }
 
         &-item{
             width: 100px;
+            text-align: center;
 
             &-title{
                 padding: 5px;

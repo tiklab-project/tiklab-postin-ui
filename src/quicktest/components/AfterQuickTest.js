@@ -9,30 +9,27 @@ import {Form} from "antd";
  * 后置
  */
 const AfterQuickTest = (props) => {
-    const {afterScriptQuickTestStore}  = props;
-    const {getAfterInfo,setAfterInfo} = afterScriptQuickTestStore;
+    const {tabQuickTestStore}  = props;
+    const {updateAfterScript,setAfterScript} = tabQuickTestStore;
 
     const [form] = Form.useForm();
 
-    let instanceId=localStorage.getItem("instanceId")
-
     useEffect(()=>{
-        setAfterInfo().then(res=>{
+        setAfterScript().then(res=>{
             if(!res) return
 
             form.setFieldsValue({
                 scriptex: res.scriptex,
-
             })
         })
-    },[instanceId])
+    },[])
 
     return (
         <ScriptCommon
-            updateFn={getAfterInfo}
+            updateFn={updateAfterScript}
             form={form}
         />
     )
 }
 
-export default inject('afterScriptQuickTestStore')(observer(AfterQuickTest));
+export default inject('tabQuickTestStore')(observer(AfterQuickTest));

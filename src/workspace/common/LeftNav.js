@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
 import {Space} from "antd";
 import {toWorkspaceDetail} from "../workspace/components/WorkspaceFn";
-import {SYSTEM_ROLE_STORE} from 'tiklab-user-ui/es/store'
+import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 
 /**
  * 左侧导航展示
@@ -23,7 +23,7 @@ const LeftNav = (props) =>{
             "icon":"kuaijieyingyon",
             "name":"接口调试",
             "key":"quickTest",
-            "router":"/workspace/quickTest"
+            "router":"/workspace/quickTest/detail/api"
         },
         {
             "icon":"jiekou",
@@ -75,18 +75,18 @@ const LeftNav = (props) =>{
      */
     const addQuickTestTabInfo = (router) =>{
         if(router==="/workspace/quickTest"){
-            const apiTabInfo = {
-                activeKey:"0",
-                tabList:[
-                    {
-                        name:"新标签",
-                        id:"newTab",
-                        type:"api",
-                    }
-                ]
-            }
-
-            sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(apiTabInfo))
+            // const apiTabInfo = {
+            //     activeKey:"0",
+            //     tabList:[
+            //         {
+            //             name:"新标签",
+            //             id:"newTab",
+            //             type:"api",
+            //         }
+            //     ]
+            // }
+            //
+            // sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(apiTabInfo))
 
             localStorage.setItem("instanceId","-1")
         }
@@ -138,7 +138,7 @@ const LeftNav = (props) =>{
      * 切换空间
      */
     const toggleWorkspace = (workspaceId)=>{
-        toWorkspaceDetail(workspaceId,getUser().userId,workspaceRecent)
+        toWorkspaceDetail(workspaceId,workspaceRecent)
 
         props.history.push('/workspace');
     }

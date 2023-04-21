@@ -5,7 +5,7 @@ import {getUser} from "tiklab-core-ui";
 import './portalStyle.scss'
 import {inject, observer} from "mobx-react";
 import {EAM_STORE} from "tiklab-eam-ui/es/store";
-import { SYSTEM_ROLE_STORE } from 'tiklab-user-ui/es/store';
+import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store';
 
 /**
  * 整个页面
@@ -25,7 +25,12 @@ const PageContent =(props)=> {
      * 头部退出方法跳往退出页
      */
     const Logout = () => {
-        props.history.push( '/logout')
+        props.history.push({
+            pathname: "/logout",
+            state:{
+                preRoute: props.location.pathname
+            }
+        })
     }
 
 

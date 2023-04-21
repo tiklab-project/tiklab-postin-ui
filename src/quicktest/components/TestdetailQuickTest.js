@@ -1,22 +1,15 @@
 import React, {useEffect, useState} from "react";
-import {Button, Form, Input, Select} from "antd";
+import {Dropdown,Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./RequestTabQuickTest";
 import {inject, observer} from "mobx-react";
 import {sendTestDataProcess} from "../../common/request/sendTestCommon";
 
-import {
-    methodJsonDictionary,
-    bodyTypeJsonDictionary as bodyTypeJsonDic
-} from "../../common/dictionary/dictionary";
-import {
-    processFormParamData,
-    processFormUrlencodedData,
-    processHeaderData,
-    processQueryData
-} from "../common/instanceDataProcess";
+import {methodJsonDictionary} from "../../common/dictionary/dictionary";
 import {getUser} from "tiklab-core-ui";
 import TestResultCommon from "../../api/http/test/common/TestResultCommon";
-import IconCommon from "../../common/IconCommon";
+import {execute} from "../../api/http/test/common/dtAction";
+import {DownOutlined} from "@ant-design/icons";
+import SaveToApi from "./saveToApi";
 
 const { Option } = Select;
 
@@ -25,33 +18,18 @@ const { Option } = Select;
  */
 const TestdetailQuickTest = (props) =>{
     const {
-        getRes,
+        sendRequest,
         instanceStore,
         quickTestStore,
-        headerQuickTestStore,
-        queryQuickTestStore,
-        requestBodyQuickTestStore,
-        formDataQuickTestStore,
-        formUrlencodedQuickTestStore,
-        jsonQuickTestStore,
-        rawQuickTestStore,
-        preScriptQuickTestStore,
-        afterScriptQuickTestStore,
-        assertQuickTestStore
+        tabQuickTestStore
     } = props;
 
-    const {findInstance,createInstance,findInstanceList} = instanceStore;
+    const {createInstance,findInstanceList} = instanceStore;
     const { getRequestInfo, getResponseInfo, setResponseShow,isResponseShow,getInstance,getResponseError } = quickTestStore;
-    const {headerQuickTestList,getRequestHeaderTestList} = headerQuickTestStore;
-    const {queryQuickTestList,getQueryParamTestList} = queryQuickTestStore;
-    const {bodyType,getBodyType,getMediaType} = requestBodyQuickTestStore;
-    const {formQuickTestList,getFormParamTestList} = formDataQuickTestStore;
-    const {formUrlencodedQuickTestList,getFormUrlencodedTestList} = formUrlencodedQuickTestStore;
-    const {jsonQuickTestList,getJsonParamTestList} = jsonQuickTestStore;
-    const {rawQuickTestInfo,getRawInfo} = rawQuickTestStore;
-    const {preQuickTestInfo,getPreInfo} = preScriptQuickTestStore;
-    const {afterQuickTestInfo,getAfterInfo} = afterScriptQuickTestStore;
-    const {assertQuickTestList} = assertQuickTestStore;
+    const {
+        updateBaseInfo,activeKey,baseInfo, headerList,queryList,requestBodyType,
+        formList,formUrlList,rawInfo,preScript,afterScript,assertList
+    } = tabQuickTestStore
 
     const [ form ] = Form.useForm();
 
@@ -61,70 +39,12 @@ const TestdetailQuickTest = (props) =>{
     const [testResponse, setTestResponse] = useState();
     const instanceId = localStorage.getItem("instanceId")
     const workspaceId = localStorage.getItem("workspaceId")
+    const [afterScriptex, setAfterScript] = useState();
+
 
     useEffect(()=>{
-        if(instanceId!=="-1"){
-            findInstance(instanceId).then(res=>{
-                getInstance(res);
-                let request = res.requestInstance;
-
-                form.setFieldsValue({
-                    methodType: request?.methodType,
-                    path: request?.url,
-                })
-
-                if(res.errorMessage){
-                    let errorValue = {
-                        errorMessage:res.errorMessage,
-                        showError:true
-                    }
-                    // setErrorMsg(errorValue)
-                }else {
-                    // setErrorMsg({showError:false})
-                }
-
-                getRequestHeaderTestList(processHeaderData(request.headers));
-                getQueryParamTestList(processQueryData(request.url));
-
-
-                let type = getMediaType(request?.mediaType)
-                switch (type){
-                    case bodyTypeJsonDic.none:
-                        break;
-                    case bodyTypeJsonDic.formdata:
-                        getFormParamTestList(processFormParamData(res.formParamCaseList));
-                        break;
-                    case bodyTypeJsonDic.formUrlencoded:
-                        getFormUrlencodedTestList(processFormUrlencodedData(res.formUrlencodedCaseList));
-                        break;
-                    case bodyTypeJsonDic.raw:
-                        let rawInfo = {
-                            raw:request?.body,
-                            type:request?.mediaType
-                        }
-                        getRawInfo(rawInfo)
-                        break;
-                    default:
-                        break;
-                }
-
-                getPreInfo(request?.preScript);
-                getAfterInfo(request?.afterScript)
-            })
-        }else {
-            form.setFieldsValue({
-                methodType: "get",
-                path: null,
-            })
-            getRequestHeaderTestList([]);
-            getQueryParamTestList([]);
-            getFormParamTestList([]);
-            getFormUrlencodedTestList([]);
-            getRawInfo({});
-            getPreInfo();
-            getAfterInfo()
-        }
-    },[instanceId])
+        form.setFieldsValue(baseInfo)
+    },[activeKey])
 
 
     /**
@@ -143,37 +63,48 @@ const TestdetailQuickTest = (props) =>{
             url="http://"+values.path
         }
 
-
         const allSendData = {
             "method":values.methodType,
             "path":url,
-            "headerList":headerQuickTestList,
-            "queryList":queryQuickTestList,
-            "bodyType":bodyType,
-            "formDataList":formQuickTestList,
-            "formUrlencoded":formUrlencodedQuickTestList,
-            "jsonList":jsonQuickTestList,
-            "rawParam":rawQuickTestInfo,
-            "assertList":assertQuickTestList,
+            "headerList":headerList,
+            "queryList":queryList,
+            "bodyType":requestBodyType,
+            "formDataList":formList,
+            "formUrlencoded":formUrlList,
+            "rawParam":rawInfo,
+            "assertList":assertList,
         }
 
         //获取请求信息
         getRequestInfo(allSendData)
 
+
+        //前置
+        let preObj
+        try{
+            if(preScript&&preScript.scriptex){
+                preObj =  execute(preScript.scriptex)
+                console.log(preObj)
+            }
+        }catch {
+            preObj ={}
+        }
+
+
         //处理后的数据
-        const processData = sendTestDataProcess(allSendData)
+        const processData = sendTestDataProcess(allSendData,preObj)
 
         //发送测试，返回结果
-        let response =await getRes(processData)
+        let response =await sendRequest(processData)
 
         //获取响应结果
         if(response&&!response.error){
             //获取响应结果
             setTestResponse(response)
 
-            response.assertList = assertQuickTestList;
+            response.assertList = assertList;
 
-            getResponseInfo(response,assertQuickTestList).then(res=>{
+            getResponseInfo(response,assertList).then(res=>{
                 res.httpCase = {"id":"quickTestInstanceId"}
                 res.workspaceId=workspaceId
                 createInstance(res).then(()=>{
@@ -185,6 +116,13 @@ const TestdetailQuickTest = (props) =>{
                     findInstanceList(params)
                 })
             })
+
+            //后置
+            if(afterScript&&afterScript.scriptex){
+                let data =execute(afterScript.scriptex,response)
+                setAfterScript(data)
+            }
+
 
             //点击测试按钮显示输出结果详情
             setShowResponse(true);
@@ -202,14 +140,18 @@ const TestdetailQuickTest = (props) =>{
                 })
             })
         }
+    }
 
 
+    const changeInfo = async () =>{
+        let value = await form.getFieldsValue()
+        updateBaseInfo(value)
     }
 
     //请求类型下拉选择框
     const prefixSelector = (
         <Form.Item name="methodType" noStyle>
-            <Select style={{width: 100}} >
+            <Select style={{width: 100}} onSelect={changeInfo}>
                 {
                     Object.keys(methodJsonDictionary).map(item=>{
                         return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
@@ -219,6 +161,13 @@ const TestdetailQuickTest = (props) =>{
         </Form.Item>
     );
 
+    const items = [
+        {
+            label: (<SaveToApi />),
+            key: '1',
+        },
+    ];
+
     return(
         <div style={{height: "100%","overflow":"auto"}} className={"content-margin"}>
             <div className={"content-margin-box"}>
@@ -226,7 +175,7 @@ const TestdetailQuickTest = (props) =>{
                     <Form
                         form = {form}
                         className="test-header"
-                        initialValues={{ methodType: "get" }}
+                        // initialValues={{ methodType: "get" }}
                     >
                         <div className={"test-url"}>
                             <Form.Item
@@ -240,17 +189,18 @@ const TestdetailQuickTest = (props) =>{
                                 //     },
                                 // ]}
                             >
-                                <Input placeholder={"请输入请求地址"} addonBefore={prefixSelector}/>
+                                <Input onChange={changeInfo} placeholder={"请输入请求地址"} addonBefore={prefixSelector}/>
                             </Form.Item>
                         </div>
                         <div className={"test-base-item"}>
-                            <Button className="important-btn" onClick={onFinish} style={{display:"flex",alignItems:"center"}}>
-                                <IconCommon
-                                    icon={"fasong-copy"}
-                                    style={{width:20,height:20}}
-                                />
+                            <Dropdown.Button
+                                icon={<DownOutlined />}
+                                menu={{items,}}
+                                onClick={onFinish}
+                                type={"primary "}
+                            >
                                 发送
-                            </Button>
+                            </Dropdown.Button>
                         </div>
                     </Form>
                 </div>
@@ -266,6 +216,7 @@ const TestdetailQuickTest = (props) =>{
                     <TestResultCommon
                         testResponse={testResponse}
                         showResponse={showResponse}
+                        afterScript={afterScriptex}
                     />
                 </div>
 
@@ -286,5 +237,6 @@ export default inject(
     "rawQuickTestStore",
     "preScriptQuickTestStore",
     "afterScriptQuickTestStore",
-    'assertQuickTestStore'
+    'assertQuickTestStore',
+    "tabQuickTestStore"
     )(observer(TestdetailQuickTest))

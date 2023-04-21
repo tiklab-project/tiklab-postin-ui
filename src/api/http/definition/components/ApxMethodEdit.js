@@ -40,7 +40,6 @@ const ApxMethodEdit = (props) => {
     const categoryId = localStorage.getItem("categoryId");
     const workspaceId = localStorage.getItem('workspaceId');
     const [cascaderCategoryId, setCascaderCategoryId] = useState(categoryItemId);
-    const apiTabListInfo = JSON.parse(sessionStorage.getItem("apiTabListInfo"))
 
     /**
      * 展示弹框
@@ -90,30 +89,12 @@ const ApxMethodEdit = (props) => {
                 methodType:values.methodType,
                 path:values.path,
                 desc:values.desc,
-                status: {id:"developmentid"},
                 category:{id:cascaderCategoryId?cascaderCategoryId:categoryId},
-                protocolType:"http",
             }
 
             createApxMethod(values).then((id)=>{
                 findApxMethodListByApix(categoryId);
                 findCategoryList(workspaceId);
-                if(props.tab){
-                    let tablist = apiTabListInfo.tabList;
-                    let length = apiTabListInfo.tabList.length;
-                    tablist.push({
-                        id:id,
-                        name:values.name,
-                        type:"api"
-                    })
-                    // let newApiTabInfo = {
-                    //     workspaceId:workspaceId,
-                    //     activeKey:length++,
-                    //     tabList:[...tablist]
-                    // }
-                    // sessionStorage.setItem("apiTabListInfo",JSON.stringify(newApiTabInfo))
-                    // setIsAddTab(!isAddTab);
-                }
 
                 localStorage.setItem('apxMethodId',id);
                 props.history.push("/workspace/apis/edit");

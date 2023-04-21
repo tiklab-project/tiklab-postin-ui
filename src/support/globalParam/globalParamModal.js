@@ -25,7 +25,7 @@ const GlobalParamModal = () =>{
         <>
             <div className={"global-param-btn"} onClick={showModal}>全局</div>
             <Modal
-                open={isModalOpen}
+                visible={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
                 width={960}

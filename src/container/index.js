@@ -24,8 +24,8 @@ import HeaderContent from '../common/header/HeaderContent'
 import WorkspaceDetailLayout from "../workspace/common/WorkspaceDetailLayout";
 import LayoutApiContent from "../api/http/definition/components/LayoutApiContent"
 
-import LayoutQuickTest from "../quicktest/components/LayoutQuickTest";
-import TabsQuickTest from "../quicktest/components/TabsQuickTest";
+import LayoutQuickTest from "../quicktest/common/LayoutQuickTest";
+import TabsQuickTest from "../quicktest/common/TabsQuickTest";
 import TestdetailQuickTest from "../quicktest/components/TestdetailQuickTest";
 import WorkspaceDetailInitPage from "../workspace/overview/WorkspaceOverViewPage";
 import WorkspaceSettingMenu from "../workspace/setting/WorkspaceSettingMenu";

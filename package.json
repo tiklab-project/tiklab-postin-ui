@@ -1,6 +1,6 @@
 {
   "name": "tiklab-postin-ui",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "tiklab-postin-ui",
   "main": "es/index.js",
   "files": [
@@ -119,6 +119,7 @@
     "tiklab-message-ui": "^1.0.1",
     "tiklab-plugin-core-ui": "^1.0.1",
     "tiklab-plugin-manager-ui": "^1.0.1",
+    "tiklab-privilege-ui": "^1.0.1",
     "tiklab-security-ui": "^1.0.1",
     "tiklab-user-ui": "^1.0.1"
   }

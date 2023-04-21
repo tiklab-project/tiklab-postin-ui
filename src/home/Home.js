@@ -24,14 +24,6 @@ const Home =(props)=> {
         props.history.push("/dynamic")
     }
 
-    /**
-     * 去往空间页
-     */
-    const toWorkspace =() =>{
-        props.history.push("/workspacePage")
-    }
-
-
     return(
         <div className={"home-content"}>
             <div className={"home-content-box"}>
@@ -43,7 +35,6 @@ const Home =(props)=> {
                             </svg>
                             <span>最近访问</span>
                         </div>
-                        <RightOutlined onClick={toWorkspace} />
                     </div>
                     <div className={"home-box-item-detail"}>
                         <WorkspaceRecentHome {...props}/>

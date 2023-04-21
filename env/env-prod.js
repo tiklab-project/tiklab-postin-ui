@@ -16,8 +16,8 @@ const userProduction = true;
 
 const appKey =  JSON.stringify('tiklab');
 const appSecret = JSON.stringify('tiklab');
-const version = JSON.stringify('1.0.0');
-const client = JSON.stringify('1.0.0');
+const version = JSON.stringify('ce');
+const client = JSON.stringify('web');
 
 const IS_DEV = false;
 // const acc_url = JSON.stringify('http://portal.dev.doublekit.net');

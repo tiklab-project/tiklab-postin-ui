@@ -5,7 +5,7 @@ export  class AfterParamTestStore {
 
     @action
     getAfterInfo = (value)=>{
-        this.afterParamTestInfo = {...this.afterParamTestInfo,...value};
+        this.afterParamTestInfo = value;
     }
 
     @action

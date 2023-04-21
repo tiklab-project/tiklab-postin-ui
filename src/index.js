@@ -9,7 +9,7 @@ import React from 'react';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { orgStores } from 'tiklab-user-ui/es/store';
-import { privilegeStores } from 'tiklab-user-ui/es/store';
+import { privilegeStores } from 'tiklab-privilege-ui/es/store';
 import { messageModuleStores } from 'tiklab-message-ui/es/store';
 import { stores } from './stores';
 import routers from './routers';

@@ -19,7 +19,7 @@ const TestPreParam = (props) => {
             if(!res) return
 
             form.setFieldsValue({
-                scriptex: res.scriptex,
+                scriptex: res,
 
             })
         })
