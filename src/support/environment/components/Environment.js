@@ -44,6 +44,7 @@ const EvnMana = (props) => {
     ]
 
     const [dataSource,setDataSource] = useState([]);
+    const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(()=> {
         findEnvironmentList().then(res=>setDataSource(res));
@@ -112,6 +113,7 @@ const EvnMana = (props) => {
         }else {
             // 创建新行的时候自带一个id，所以删了，后台会自行创建id
             delete values.id;
+            values.workspaceId=workspaceId;
             createEnvironment(values)
         }
     }

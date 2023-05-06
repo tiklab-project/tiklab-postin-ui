@@ -11,7 +11,6 @@ import {
 
     SysManage,
     LoginOut,LoginContent,
-    ElectronLoginContant,
     LayoutQuickTest,TabsQuickTest,
     Test, TestdetailQuickTest,TestCaseDetail,
 } from "./components/container/index"
@@ -25,7 +24,6 @@ export {
 
     SysManage,
     LoginOut,LoginContent,
-    ElectronLoginContant,
 
 
 }

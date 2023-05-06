@@ -52,7 +52,7 @@ const ResponseInfo = (props)=>{
 
         return (
             <span style={{ color: "green" }}>
-              {sizeValue} {sizeUnit}
+              {sizeValue.toFixed(2)} {sizeUnit}
             </span>
         );
     };

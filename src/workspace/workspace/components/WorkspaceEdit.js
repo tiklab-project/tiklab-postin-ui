@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
 import {Form, Button, Input, Row, Col, Select} from 'antd';
-import {Axios, getUser} from "tiklab-core-ui";
+import {Axios} from "tiklab-core-ui";
 import {toWorkspaceDetail} from "./WorkspaceFn";
 
 
@@ -34,8 +34,6 @@ const WorkspaceEdit = (props) => {
     const [memberList, setMemberList] = useState([]);
     const [memberSelectList, setMemberSelectList] = useState([]);
 
-    let userId = getUser().userId;
-
     useEffect( async () => {
 
         let param ={ }
@@ -61,7 +59,7 @@ const WorkspaceEdit = (props) => {
         createWorkspace(values).then((res)=> {
             toWorkspaceDetail(res.data,workspaceRecent)
 
-            props.history.push('/workspace');
+            props.history.push('/workspace/quickTest/detail');
         });
     };
 

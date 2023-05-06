@@ -193,14 +193,20 @@ const TestdetailQuickTest = (props) =>{
                             </Form.Item>
                         </div>
                         <div className={"test-base-item"}>
-                            <Dropdown.Button
-                                icon={<DownOutlined />}
-                                menu={{items,}}
-                                onClick={onFinish}
-                                type={"primary "}
-                            >
-                                发送
-                            </Dropdown.Button>
+                            {
+                                client==="electron"
+                                    ?<Button type={"primary"} onClick={onFinish}>发送</Button>
+                                    :<Dropdown.Button
+                                        icon={<DownOutlined />}
+                                        menu={{items,}}
+                                        onClick={onFinish}
+                                        type={"primary"}
+                                    >
+                                        发送
+                                    </Dropdown.Button>
+                            }
+
+
                         </div>
                     </Form>
                 </div>

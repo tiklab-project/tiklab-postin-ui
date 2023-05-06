@@ -31,7 +31,6 @@ import WorkspaceDetailInitPage from "../workspace/overview/WorkspaceOverViewPage
 import WorkspaceSettingMenu from "../workspace/setting/WorkspaceSettingMenu";
 import LoginOut from "../common/header/LoginOut";
 import LoginContent from "../login/LoginContent";
-import ElectronLoginContant from "../login/ElectronLoginContant";
 
 export {
     Home,PageContent,HeaderContent,
@@ -53,7 +52,6 @@ export {
 
     SystemContent,SysManage,
     LoginOut,LoginContent,
-    ElectronLoginContant,
 
 
 }

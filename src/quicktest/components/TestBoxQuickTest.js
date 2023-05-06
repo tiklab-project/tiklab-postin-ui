@@ -1,7 +1,7 @@
 import React from "react";
-import TestdetailQuickTest from "./TestdetailQuickTest";
 import {localProxySendTest} from "../../common/request/sendTestCommon";
 import {inject, observer} from "mobx-react";
+import TabsQuickTest from "../common/TabsQuickTest";
 
 /**
  * 快捷测试
@@ -19,7 +19,7 @@ const TestBoxQuickTest = (props) =>{
     }
 
     return(
-        <TestdetailQuickTest {...props} sendRequest={sendRequest} />
+        <TabsQuickTest {...props} sendRequest={sendRequest} />
     )
 }
 

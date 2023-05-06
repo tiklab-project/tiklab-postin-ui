@@ -76,8 +76,6 @@ export class ApxMethodStore {
     createApxMethod = async (values) => {
         const res = await Axios.post("/http/createHttpApi",values)
         if( res.code === 0 ){
-            // this.findApxMethodPage(this.params);
-
             return res.data
         }
     }
@@ -96,7 +94,7 @@ export class ApxMethodStore {
 	deleteApxMethod = async (id) => {
         const param = new FormData();
         param.append('id', id);
-		const res = await Axios.post("/http/deleteHttpApi",param)
+		const res = await Axios.post("/apix/deleteApix",param)
         if( res.code === 0 ){
             return res
         }

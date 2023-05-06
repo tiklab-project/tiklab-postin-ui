@@ -4,7 +4,7 @@ import React from 'react'
 import {Directory, Orga, UserGroup, User,} from "tiklab-user-ui";
 import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "tiklab-privilege-ui"
 
-import {Auth,ExcludeProductUser} from "tiklab-eam-ui";
+import {ExcludeProductUser} from "tiklab-eam-ui";
 import {ProductAuth} from "tiklab-licence-ui"
 import {LogTemplate, LogType, MyLog} from "tiklab-security-ui";
 import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
@@ -17,14 +17,14 @@ import {
 
     WorkspaceRole, WorkspacePrivilege, Workspace,
     WorkspaceDetailLayout,
-    LayoutApiContent, LayoutQuickTest, TabsQuickTest,  WorkspaceDetailInitPage,
+    LayoutApiContent, LayoutQuickTest,  WorkspaceDetailInitPage,
     Category, ApxMethodDetail,
 
     Mock, MockDetail,
 
     SystemContent,
 
-    LoginOut, ElectronLoginContant, WorkspaceSettingMenu,
+    LoginOut, WorkspaceSettingMenu,
 } from './container';
 
 import {Redirect} from "react-router";
@@ -83,16 +83,6 @@ const routers =  [
         }
     },
     {
-        path:"/account",
-        component:ElectronLoginContant,
-        key:"account",
-        exact: true,
-    },{
-        path:"/auth_result",
-        component:Auth,
-        key:"auth_result",
-        exact: true,
-    },{
         component: PortalHeader,
         path: '/',
         key:'poroute',
@@ -363,7 +353,7 @@ const routers =  [
                             {
                                 path: "/workspace/quickTest/detail",
                                 cacheKey: 'TabsQuickTest',
-                                component: TabsQuickTest,
+                                component: TestBoxQuickTest,
                                 cache: true,// 缓存 组件
                             },
                         ]
