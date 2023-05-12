@@ -91,8 +91,6 @@ import {
     JSON_QUICKTEST_STORE, JsonQuickTestStore,
     RAW_QUICKTEST_STORE, RawQuickTestStore,
     PRESCRIPT_QUICKTEST_STORE, PreScriptQuickTestStore,
-    AFTERSCRIPT_QUICKTEST_STORE, AfterScriptQuickTestStore,
-    ASSERT_QUICKTEST_STORE, AssertQuickTestStore,
     QUICKTEST_STORE, QuickTestStore
 } from "./quicktest/index"
 import {TAB_QUICK_TEST_STORE,TabQuickTestStore} from "./quicktest/store/TabQuickTestStore";
@@ -204,8 +202,6 @@ function createStores() {
         [JSON_QUICKTEST_STORE]: new JsonQuickTestStore(),
         [RAW_QUICKTEST_STORE]: new RawQuickTestStore(),
         [PRESCRIPT_QUICKTEST_STORE]:new PreScriptQuickTestStore(),
-        [AFTERSCRIPT_QUICKTEST_STORE]: new AfterScriptQuickTestStore(),
-        [ASSERT_QUICKTEST_STORE]: new AssertQuickTestStore(),
         [QUICKTEST_STORE]: new QuickTestStore(),
 
         [TAB_QUICK_TEST_STORE]: new TabQuickTestStore(),

@@ -7,28 +7,16 @@ import AssertTableCommon from "../../common/tableCommon/components/AssertTableCo
  * 断言
  */
 const AssertQuickTest = (props) =>{
-    const { assertQuickTestStore } = props;
-    const {
-        getAssertTestList,
-        assertQuickTestList,
-        saveList,
-        addNewList,
-        deleteList,
-    } = assertQuickTestStore;
-
-    useEffect(()=>{
-        getAssertTestList()
-    },[])
+    const {tabQuickTestStore}  = props;
+    const {deleteAssertList,saveAssertList,assertList} = tabQuickTestStore;
 
     return (
         <AssertTableCommon
-            dataList={assertQuickTestList}
-            saveList={saveList}
-            addNewList={addNewList}
-            deleteList={deleteList}
+            dataList={assertList}
+            saveList={saveAssertList}
+            deleteList={deleteAssertList}
         />
-
     );
 }
 
-export default inject('assertQuickTestStore')(observer(AssertQuickTest));
+export default inject('tabQuickTestStore')(observer(AssertQuickTest));

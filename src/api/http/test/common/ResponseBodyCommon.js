@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./testResponseStyle.scss"
 import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
 
@@ -6,35 +6,59 @@ const ResponseBodyCommon = (props) => {
     const {responseBodyData,mediaType} = props;
 
 
-    const [language, setLanguage] = useState();
+    const [language, setLanguage] = useState("json");
+    const [precessValue, setPrecessValue] = useState();
 
+    useEffect(()=>{
+        setPrecessValue(processData(responseBodyData))
+
+    },[responseBodyData])
+
+    //数据处理
     const processData =(data)=>{
 
         //空值
         if(!data) return
 
-        if(JSON.parse(data) instanceof Object){
-            setLanguage("json")
-            return JSON.stringify(JSON.parse(data),null,4)
-        }else {
-            setLanguage("text")
-            return  JSON.parse(data)
+        let language = getLanguageFromMIME(mediaType)
+        setLanguage(language)
+
+        if(language==="json"){
+            return JSON.stringify(responseBodyData)
+        }
+
+        return  responseBodyData
+    }
+
+    /**
+     * 根据mediaType，获取monaco-editor响应的language
+     */
+    const getLanguageFromMIME = (mime) => {
+        if(!mime) return 'plaintext'
+
+        let mimeObj = {
+            "html":"html",
+            "javascript":"javascript",
+            "json":"json",
+            "text":"plaintext"
+        }
+
+        //如果包含某个key，就会返回对应的key
+        const matchingMime = Object.keys(mimeObj).find((key) => mime.includes(key));
+
+        //通过key获取相应的language
+        if (matchingMime) {
+            return mimeObj[matchingMime];
+        } else {
+            return 'plaintext';
         }
     }
 
-
-
     return(
         <div className={"codemirror-box"}>
-            {/*<CodeMirror*/}
-            {/*    value={processData(responseBodyData)}*/}
-            {/*    mediaType={mediaType}*/}
-            {/*    readOnly={true}*/}
-            {/*/>*/}
-
             <ReactMonacoEditor
-                value={JSON.stringify(JSON.parse(responseBodyData),null,4)}
-                language={"json"}
+                value={precessValue}
+                language={language}
                 height={"400px"}
                 width={"100%"}
                 readOnly={true}

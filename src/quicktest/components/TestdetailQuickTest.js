@@ -242,7 +242,5 @@ export default inject(
     "jsonQuickTestStore",
     "rawQuickTestStore",
     "preScriptQuickTestStore",
-    "afterScriptQuickTestStore",
-    'assertQuickTestStore',
     "tabQuickTestStore"
     )(observer(TestdetailQuickTest))

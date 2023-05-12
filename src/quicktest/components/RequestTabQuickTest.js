@@ -14,11 +14,6 @@ import RequestBodyQuickTest from "./RequestBodyQuickTest";
  * 请求中的tab
  */
 const RequestTabQuickTest = (props) =>{
-    const {instanceId} = props;
-
-     // useEffect(()=>{
-     //     console.log(instanceId)
-     // },[instanceId])
 
     return(
         <RequestTab

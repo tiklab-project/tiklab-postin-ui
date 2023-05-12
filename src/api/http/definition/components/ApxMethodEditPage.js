@@ -365,6 +365,13 @@ const ApxMethodEditPage = (props) => {
         props.history.push("/workspace/apis/document")
     }
 
+    /**
+     * 去往测试页
+     */
+    const toTestPage = () =>{
+        props.history.push("/workspace/apis/test")
+    }
+
     return(
         <div className={"content-margin"} style={{height:"100%"}}>
             <div className="content-margin-box">
@@ -418,6 +425,13 @@ const ApxMethodEditPage = (props) => {
                         </div>
 
                         <Space >
+                            <IconBtn
+                                // icon={"fasong"}
+                                className="pi-icon-btn-grey"
+                                name={"测试"}
+                                onClick={toTestPage}
+                            />
+
                             <IconBtn
                                 icon={"fanhui2"}
                                 className="pi-icon-btn-grey"

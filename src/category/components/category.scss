@@ -75,6 +75,12 @@
     height: 35px;
     padding-left: 25px;
     line-height: 35px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+
 }
 
 .category-action{

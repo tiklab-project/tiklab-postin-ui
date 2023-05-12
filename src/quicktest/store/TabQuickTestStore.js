@@ -3,7 +3,6 @@ import {initTabPane} from "../common/quickTestCommon";
 
 
 export class TabQuickTestStore {
-    //
     @observable activeKey=0;
     //接口调试中的tab页初始值
     @observable tabPaneInfo = {

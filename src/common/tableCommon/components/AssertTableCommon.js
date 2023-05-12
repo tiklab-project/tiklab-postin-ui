@@ -11,7 +11,7 @@ const {Option} = Select;
  * 断言可编辑表格
  */
 const AssertTableCommon = (props)=>{
-    const {dataList, saveList, addNewList, deleteList} = props;
+    const {dataList, saveList, deleteList} = props;
 
     let columns= [
         {

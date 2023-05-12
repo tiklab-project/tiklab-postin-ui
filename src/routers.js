@@ -197,12 +197,12 @@ const routers =  [
 
                     },
                     //产品授权
-                    {
-                        path: "/systemManagement/product",
-                        key:'version',
-                        exact: true,
-                        render:(props)=><ProductAuth />
-                    },
+                    // {
+                    //     path: "/systemManagement/product",
+                    //     key:'version',
+                    //     exact: true,
+                    //     render:(props)=><ProductAuth />
+                    // },
 
 
                     {

@@ -43,7 +43,19 @@ const RawParam = (props) => {
                     raw: res.raw,
                     type:res.type
                 })
+            }else {
+                let param = {
+                    type:"application/json",
+                    raw:""
+                }
+                createRawParam(param).then(()=>{
+                    findRawParam(apxMethodId).then((res)=>{
+                        if(!res) return
+                        rawDataRef.current = res
+                    })
+                })
             }
+
         })
     },[apxMethodId])
 

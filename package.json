@@ -89,6 +89,7 @@
     "echarts": "^5.4.0",
     "i18next": "^19.8.4",
     "i18next-browser-languagedetector": "^6.0.1",
+    "js-beautify": "^1.14.7",
     "js-md5": "^0.7.3",
     "json-schema-typed": "^8.0.1",
     "json5": "^2.2.1",

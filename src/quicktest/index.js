@@ -6,8 +6,6 @@ import {FORMURLENCODED_QUICKTEST_STORE, FormUrlencodedQuickTestStore} from "./st
 import {JSON_QUICKTEST_STORE, JsonQuickTestStore} from "./store/JsonQuickTestStore";
 import { RAW_QUICKTEST_STORE, RawQuickTestStore} from "./store/RawQuickTestStore";
 import {PRESCRIPT_QUICKTEST_STORE, PreScriptQuickTestStore} from "./store/PreScriptQuickTestStore";
-import {AFTERSCRIPT_QUICKTEST_STORE, AfterScriptQuickTestStore} from "./store/AfterScriptQuickTestStore";
-import {ASSERT_QUICKTEST_STORE, AssertQuickTestStore} from "./store/AssertQuickTestStore";
 import {QUICKTEST_STORE, QuickTestStore} from "./store/QuickTestStore"
 
 export {
@@ -19,7 +17,5 @@ export {
     JSON_QUICKTEST_STORE, JsonQuickTestStore,
     RAW_QUICKTEST_STORE, RawQuickTestStore,
     PRESCRIPT_QUICKTEST_STORE, PreScriptQuickTestStore,
-    AFTERSCRIPT_QUICKTEST_STORE, AfterScriptQuickTestStore,
-    ASSERT_QUICKTEST_STORE, AssertQuickTestStore,
     QUICKTEST_STORE, QuickTestStore
 }

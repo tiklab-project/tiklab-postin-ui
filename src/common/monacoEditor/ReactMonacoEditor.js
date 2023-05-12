@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import MonacoEditor  from "react-monaco-editor"
+import beautify from "js-beautify";
 
 /**
  * React monaco文本编辑器
  */
 const ReactMonacoEditor = (props) =>{
     const {value,editorChange,language,readOnly,width,height} = props
+
+
 
     const options = {
         selectOnLineNumbers: true,
@@ -18,13 +21,21 @@ const ReactMonacoEditor = (props) =>{
         contextmenu: false,
         readOnly: readOnly, //是否只读
         formatOnPaste: true,
+        formatOnType: true,
         folding: true, // 是否启用代码折叠
         overviewRulerBorder: false, // 滚动条的边框
         scrollBeyondLastLine: true,
         theme: 'vs', // 主题
         fontSize: 13, // 字体
-        tabSize: 4, // tab缩进长度
+        tabSize: 4, // tab缩进长度，
+
+
     };
+
+    let beautifyCode = (code) => beautify(code, {
+        indent_size: 2,//缩进两个空格
+        space_in_empty_paren: true,
+    });
 
     const editorDidMount = (editor, monaco) => {
         console.log('Editor did mount', editor);
@@ -38,17 +49,16 @@ const ReactMonacoEditor = (props) =>{
         });
 
 
+
         editor.getAction('editor.action.formatDocument').run();
         editor.focus();
     };
 
 
+
     const handleEditorBlur = (editor, event) => {
         // 获取 Monaco 编辑器中的值
         const value = editor.getValue();
-
-        // 在这里处理获取到的值
-        console.log(value);
 
         editorChange(value)
     }
@@ -61,7 +71,7 @@ const ReactMonacoEditor = (props) =>{
             language={language}
             theme="vs"
             onBlur={handleEditorBlur}
-            value={value}
+            value={beautifyCode(value)}
             options={options}
             onChange={editorChange}
             editorDidMount={editorDidMount}

@@ -11,7 +11,7 @@ const { Option } = Select;
 const EnvSelect = (props) =>{
     const { environmentStore} = props;
 
-    const { findEnvironmentList, envSourceList,getTestEnvUrl } = environmentStore;
+    const { findEnvironmentList, envSourceList,getTestEnvUrl,testEnvUrl } = environmentStore;
 
     // let testEnv=localStorage.getItem("TEST_ENV")
 
@@ -52,7 +52,7 @@ const EnvSelect = (props) =>{
             className={"ws-select-box"}
             placeholder={"未设置环境"}
             onSelect={(value)=> onSelectChange(value)}
-            // defaultValue={selectEnv}
+            defaultValue={testEnvUrl}
             dropdownRender={item=>(
                 <>
                     <div style={{"overflow":"auto","height":"100px"}}>{item}</div>

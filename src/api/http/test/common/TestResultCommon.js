@@ -55,7 +55,7 @@ const TestResultCommon = (props) =>  {
         let headers = res.headers;
         let mediaType;
         if(headers&&Object.keys(headers).length>0){
-            mediaType  = headers["content-type"]
+            mediaType  = headers["content-type"] || headers["Content-Type"]
         }else {
             mediaType="text/plain"
         }
@@ -73,7 +73,7 @@ const TestResultCommon = (props) =>  {
             const assertNeedData ={
                 "status":status,
                 "header":headers,
-                "body":body,
+                "body":JSON.stringify(res.data),
                 "assertList":assertList
             }
             //断言list，添加result 字段。用于测试结果中的断言回显
@@ -93,7 +93,7 @@ const TestResultCommon = (props) =>  {
                 }
             >
                 <TabPane tab="响应体" key="1">
-                    <ResponseBodyCommon responseBodyData={body} mediaType={mediaType}/>
+                    <ResponseBodyCommon responseBodyData={res.data} mediaType={mediaType}/>
                 </TabPane>
                 <TabPane tab="响应头" key="2">
                     <ResHeaderCommon headers={processResHeader(JSON.stringify(headers))}/>
@@ -101,9 +101,6 @@ const TestResultCommon = (props) =>  {
                 <TabPane tab="请求头" key="3">
                     <ResHeaderCommon headers={processResHeader(JSON.stringify((requestHeaders)))}/>
                 </TabPane>
-                {/*<TabPane tab="请求内容" key="4">*/}
-                {/*    /!*{props.requestBody}*!/*/}
-                {/*</TabPane>*/}
                 <TabPane tab="断言" key="5">
                     {
                         afterScript
