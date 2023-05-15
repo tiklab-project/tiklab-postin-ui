@@ -21,7 +21,7 @@ const ResponseResultDoc = (props) =>{
                             {
                                 item.dataType==="json"
                                     ?<ReactMonacoEditor
-                                        value={JSON.stringify(JSON.parse(item.jsonText),null,4)}
+                                        value={item.jsonText}
                                         language={"json"}
                                         readOnly={true}
                                         height={"200px"}

@@ -57,9 +57,8 @@ const TestResultCommon = (props) =>  {
         if(headers&&Object.keys(headers).length>0){
             mediaType  = headers["content-type"] || headers["Content-Type"]
         }else {
-            mediaType="text/plain"
+            mediaType = "text/plain"
         }
-
 
         let body = JSON.stringify(res.data);
 

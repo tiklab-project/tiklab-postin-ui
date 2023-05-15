@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {UnControlled as ReactCodeMirror} from "react-codemirror2";
 import {Space, Tag} from "antd";
+import ReactMonacoEditor from "../monacoEditor/ReactMonacoEditor";
 
 /**
  * 文档中raw
@@ -8,19 +9,27 @@ import {Space, Tag} from "antd";
 const RawDoc = (props) =>{
     const {dataSource} = props;
 
+    /**
+     * 根据Type，获取monaco-editor响应的language
+     */
+    const getLanguageFromMIME = (mime) => {
+        if(!mime) return 'plaintext'
 
-    const precessData = (data) =>{
-        let isJson ;
-        try {
-            isJson=JSON.parse(data)
-        }catch {
-            isJson=data
+        let mimeObj = {
+            "html":"html",
+            "javascript":"javascript",
+            "json":"json",
+            "text":"plaintext"
         }
-        switch (typeof isJson) {
-            case "object":
-                return JSON.stringify(isJson,null,4)
-            case "string":
-                return data
+
+        //如果包含某个key，就会返回对应的key
+        const matchingMime = Object.keys(mimeObj).find((key) => mime.includes(key));
+
+        //通过key获取相应的language
+        if (matchingMime) {
+            return mimeObj[matchingMime];
+        } else {
+            return 'plaintext';
         }
     }
 
@@ -32,32 +41,13 @@ const RawDoc = (props) =>{
                     ? <div className={"share-request-item"}>
                         <Space><div>Body参数</div><Tag>{dataSource.type}</Tag></Space>
                         <div className={"share-right-table"} style={{border:"1px solid var(--pi-border-color)"}}>
-                                <ReactCodeMirror
-                                    value={precessData(dataSource.raw)}
-                                    options={{
-                                        mode:dataSource.type,
-                                        theme: 'idea',
-                                        lineWiseCopyCut: true,
-                                        autofocus: false, //自动获取焦点
-                                        styleActiveLine: true, //光标代码高亮
-                                        lineNumbers: true, //显示行号
-                                        smartIndent: true, //自动缩进
-                                        lineWrapping: true,
-                                        foldGutter: true,
-                                        matchBrackets: true,
-
-                                        readOnly:true,
-                                        indentUnit:4,
-                                        // fullScreen: true,//全屏
-                                        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'], //end
-                                    }}
-                                    // 设置尺寸
-                                    editorDidMount={(editor) => {
-                                        // debugger
-                                        editor.setSize('auto', 'auto');
-                                    }}
-                                    onBeforeChange={(editor, data, value) => {}}
-                                />
+                            <ReactMonacoEditor
+                                value={dataSource.raw}
+                                language={getLanguageFromMIME(dataSource.type)}
+                                readOnly={true}
+                                height={"200px"}
+                                width={"100%"}
+                            />
                         </div>
                     </div>
                 :null

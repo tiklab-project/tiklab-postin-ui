@@ -3,7 +3,6 @@ import {Tabs} from "antd";
 import {inject, observer} from "mobx-react";
 import {TextMethodType} from "../../common/MethodType";
 import {initTabPane} from "./quickTestCommon";
-import TestBoxQuickTest from "../components/TestBoxQuickTest";
 import TestdetailQuickTest from "../components/TestdetailQuickTest";
 
 const {TabPane} = Tabs;
