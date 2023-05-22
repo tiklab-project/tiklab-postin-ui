@@ -5,6 +5,7 @@ import DynamicWidget from "./DynamicWidget";
 import {RightOutlined} from "@ant-design/icons";
 import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
+import ApiRecentHome from "../api/apix/components/ApiRecentHome";
 
 /**
  * 首页
@@ -33,7 +34,7 @@ const Home =(props)=> {
                             <svg className="icon-m home-item-title-icon" aria-hidden="true">
                                 <use xlinkHref= {`#icon-zuijinfangwen-`} />
                             </svg>
-                            <span>最近访问</span>
+                            <span>最近空间访问</span>
                         </div>
                     </div>
                     <div className={"home-box-item-detail"}>
@@ -46,14 +47,15 @@ const Home =(props)=> {
                             <svg className="icon-m home-item-title-icon" aria-hidden="true">
                                 <use xlinkHref= {`#icon-rizhijilu`} />
                             </svg>
-                            <span>动态信息</span>
+                            <span>最近接口访问</span>
                         </div>
-                        <RightOutlined onClick={changeDynamic} />
+                        {/*<RightOutlined onClick={changeDynamic} />*/}
                     </div>
                     <div style={{"padding":" 0 20px"}}>
-                        <DynamicWidget />
+                        <ApiRecentHome {...props}/>
                     </div>
                 </div>
+
             </div>
         </div>
     )

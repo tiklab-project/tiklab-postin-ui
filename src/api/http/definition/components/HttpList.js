@@ -6,15 +6,16 @@ import ApxMethodEdit from './ApxMethodEdit';
 import MethodType from "../../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
 import CategoryDocDrawer from "../../../../category/components/CategoryDocDrawer";
+import {getUser} from "tiklab-core-ui";
 
 /**
  * 点击左侧导航栏目录，查看的所在目录中的接口列表
  */
 const HttpList = (props) => {
-    const {categoryStore, apxMethodStore} = props;
+    const {categoryStore, apxMethodStore,apiRecentStore} = props;
     const {findCategoryList} = categoryStore;
     const {findApxMethodListByApix,apxMethodList,deleteApxMethod} = apxMethodStore;
-
+    const {apiRecent} = apiRecentStore;
     //接口列表头
     const columns = [
         {
@@ -90,8 +91,17 @@ const HttpList = (props) => {
      * 保存接口id，并跳往接口页面
      */
     const setLocalStorage = (record) => {
-        localStorage.setItem("apxMethodId",record.id)
+        //设置最近打开的接口
+        let params = {
+            workspace:{id:workspaceId},
+            user:{id:getUser().userId},
+            apix:{id:item.id},
+            // protocolType:record.apix.protocolType
+        }
+        apiRecent(params)
 
+
+        localStorage.setItem("apxMethodId",record.id)
         props.history.push('/workspace/apis/document')
     }
 
@@ -173,5 +183,5 @@ const HttpList = (props) => {
     )
 }
 
-export default inject('apxMethodStore','categoryStore')(observer(HttpList));
+export default inject('apxMethodStore','categoryStore','apiRecentStore')(observer(HttpList));
 

@@ -124,6 +124,44 @@
     }
 }
 
+.home-list-item{
+    display: flex;
+    align-items: center;
+
+    &-title{
+        margin: 0 0 0 10px;
+        font-size: var(--pi-font-size-16);
+        color: #009cff;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &-other{
+        padding: 5px 10px 0;
+        display:flex;
+
+        &-text{
+            font-size: 12px;
+            color: #9b9b9b;
+        }
+    }
+}
+
+.home-list-api{
+
+    cursor:pointer;
+    border-radius:5px;
+    padding: 10px!important;
+    margin: 0 0 5px 0;
+}
+
+.home-list-api:hover{
+    transition:0.5s;
+    background:var(--pi-hover-color);
+}
+
+
 .ws-img-icon{
     //width: var(--pi-icon-x);
     //height: var(--pi-icon-x);

@@ -14,6 +14,7 @@ import {
 
 import {CATEGORY_STORE, CategoryStore} from "./category";
 
+import {API_RECENT_STORE,ApiRecentStore} from "./api/apix/store/ApiRecentStore";
 import {
     APXMETHOD_STORE, ApxMethodStore,
     APIREQUEST_STORE,ApiRequestStore,
@@ -121,6 +122,7 @@ function createStores() {
         [CATEGORY_STORE]: new CategoryStore(),
 
         // 接口
+        [API_RECENT_STORE]: new ApiRecentStore(),
         [APIREQUEST_STORE]: new ApiRequestStore(),
         [APXMETHOD_STORE]: new ApxMethodStore(),
         [APXMETHOD_STATUS_STORE]: new ApxMethodStatusStore(),

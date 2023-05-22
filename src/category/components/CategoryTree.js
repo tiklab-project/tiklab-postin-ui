@@ -5,13 +5,15 @@ import {Dropdown, Menu, Popconfirm, Tooltip} from "antd";
 import {ApxMethodEdit} from "../../api/http/definition";
 import CategoryEdit from './CategoryEdit';
 import {TextMethodType} from "../../common/MethodType";
+import {getUser} from "tiklab-core-ui";
 
 /**
  *  目录树
  */
 const CategoryTree = (props) => {
-    const { categoryStore } = props;
+    const { categoryStore,apiRecentStore } = props;
     const { findCategoryList, deleteCategory,categoryList } = categoryStore;
+    const {apiRecent} = apiRecentStore;
 
 
     const [expandedTree, setExpandedTree] = useState([]);
@@ -38,6 +40,15 @@ const CategoryTree = (props) => {
     const onMethod = (item) => {
         setClickKey(item.id);
 
+        //设置最近打开的接口
+        let params = {
+            workspace:{id:workspaceId},
+            user:{id:getUser().userId},
+            apix:{id:item.id},
+            // protocolType:record.apix.protocolType
+        }
+        apiRecent(params)
+
         localStorage.setItem('apxMethodId',item.id);
         props.history.push('/workspace/apis/document');
     }
@@ -45,7 +56,7 @@ const CategoryTree = (props) => {
 
     useEffect(() => {
         findCategoryList(workspaceId).then((list)=>{
-            onClick(list[0])
+            // onClick(list[0])
         })
     },[workspaceId])
 
@@ -245,4 +256,4 @@ const CategoryTree = (props) => {
 }
 
 
-export default inject('categoryStore')(observer(CategoryTree));
+export default inject('categoryStore',"apiRecentStore")(observer(CategoryTree));
