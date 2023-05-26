@@ -27,7 +27,6 @@ const HttpList = (props) => {
                     <MethodType type={record.methodType}/>
                     <a onClick = {()=>setLocalStorage(record)}>{text}</a>
                 </Space>
-
             )
         },
         {
