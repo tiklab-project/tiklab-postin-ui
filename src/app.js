@@ -31,7 +31,7 @@ const App = (props) => {
      useEffect(() => {
          //type 默认是false，electron设置了type
          if(!props.type){
-             pluginLoader( routers, resources,i18n).then(res => {
+             pluginLoader( routers, resources,i18n,fetchMethod).then(res => {
                  setPluginData(res)
              })
          }

@@ -4,6 +4,10 @@ import {inject, observer} from "mobx-react";
 import DetailHeader from "../../common/DetailHeader";
 import DeleteWorkspaceModal from "./DeleteWorkspaceModal";
 import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import HtmlExport from "./export/HtmlExport";
+import PdfExport from "./export/PdfExport";
+import {useSelector} from "tiklab-plugin-core-ui";
+import RemoteComponent from "tiklab-plugin-core-ui/es/plugin/RemoteComponent";
 
 const { Panel } = Collapse;
 const {TextArea} = Input;
@@ -51,6 +55,7 @@ const WorkspaceSetting = (props) =>{
         updateWorkspace(param);
     }
 
+    const pluginStore = useSelector(state => state.pluginStore)
 
     return(
         <div className={"ws-setting-flex"}>
@@ -137,7 +142,19 @@ const WorkspaceSetting = (props) =>{
                         </div>
 
                     </Panel>
-                    <Panel header={<><DeleteOutlined />  <span style={{padding:"0 5px"}}>删除空间</span> </>}  key="2" >
+                    <Panel header={<><DeleteOutlined />  <span style={{padding:"0 5px"}}>导出项目</span> </>}  key="2" >
+                        <div style={{"display":'flex',"gap":"10px"}}>
+                            <HtmlExport />
+                            <RemoteComponent
+                                point="exportPdf"
+                                pluginStore={pluginStore}
+                                isModalType={true}
+                            /> 
+                            
+                        </div>
+                        
+                    </Panel>
+                    <Panel header={<><DeleteOutlined />  <span style={{padding:"0 5px"}}>删除空间</span> </>}  key="3" >
                         <div >
                             <div style={{display:"flex",alignItems:"center",margin:"0 0 10px 0"}}>
                                 <div  style={{fontWeight:"bold"}}>删除此空间</div>

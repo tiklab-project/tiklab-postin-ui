@@ -56,7 +56,7 @@ module.exports = merge(baseWebpackConfig, {
         disableHostCheck: true,
         proxy:{
             "/request":{
-                target:"http://192.168.10.16:8080"
+                target:"http://192.168.10.22:8080"
             },
         }
     },
