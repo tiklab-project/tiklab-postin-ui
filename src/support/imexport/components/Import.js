@@ -1,38 +1,105 @@
 import React, {useState} from "react";
 import {inject, observer} from "mobx-react";
-import {Form, Input, Modal, Select,Button, Upload} from "antd";
-import { UploadOutlined } from '@ant-design/icons';
+import {Form, Modal, Upload} from "antd";
+import {InboxOutlined} from '@ant-design/icons';
+import Ajv from 'ajv';
+import {messageFn} from "../../../common/messageCommon/MessageCommon";
 
-const {Option} = Select;
+const { Dragger } = Upload;
 
 const layout = {
-    labelCol: {span: 8},
-    wrapperCol: {span: 16},
+    labelCol: {span: 0},
+    wrapperCol: {span: 24},
 };
 
+const ajv = new Ajv();
+const schema = require('./postman-jsonSchema-2.0.json');
+const validate = ajv.compile(schema);
+
 /**
- * 导入
+ * 导入postman
  */
 const Import = (props) => {
-    const {imexportStore,workspaceId} = props;
-    const {importData} = imexportStore;
+    const {imexportStore,categoryStore,workspaceId} = props;
+    const {findCategoryList} = categoryStore;
+    const {importPostman} = imexportStore;
 
     const [form] = Form.useForm();
     const [visible, setVisible] = React.useState(false);
+    //上传的文件
     const [fileList,setFileList] = useState([]);
+    //判断是否效验正确
+    const [valid, setValid] = useState(false);
 
     const showModal = () => setVisible(true);
 
     const onFinish =  () => {
         form.validateFields().then(values=>{
             values.workspaceId = workspaceId
-            importData(values)
+            importPostman(values).then((res)=>{
+                if(res.code===0){
+                    findCategoryList(workspaceId);
+                    setFileList([]);
+                    messageFn("success","导入成功")
+                }else{
+                    messageFn("error","导入失败")
+                }
+            })
         });
-        setFileList([])
+
         setVisible(false);
     };
 
-    const onCancel = () => { setVisible(false) };
+    const onCancel = () => {
+        setVisible(false);
+        setFileList([]);
+        setValid(false);
+    };
+
+
+    /**
+     * 上传前效验
+     */
+    const beforeUpload = async (file) => {
+        try {
+            // 读取上传的文件内容
+            const text = await file.text();
+
+            // 校验上传的文件内容是否符合JSON Schema
+            const isValid = validate(JSON.parse(text));
+
+            if (!isValid) {
+                setValid(false)
+                messageFn("error",'不符合Postman的文件!');
+            }else {
+                //效验成功
+                setValid(true)
+            }
+
+        } catch (error) {
+            setValid(false)
+            messageFn("error",'校验文件失败');
+        }
+
+        return false;
+    };
+
+    /**
+     * 改变
+     */
+    const handleChange = ({ file }) => {
+
+        if(file.status==="removed"){
+            setValid(false);
+            setFileList([]);
+        }else {
+            if(valid){
+                setFileList([file]);
+            }else {
+                setFileList([]);
+            }
+        }
+    }
 
     /**
      * 获取文件
@@ -40,13 +107,12 @@ const Import = (props) => {
     const normFile = (e) => {
         setFileList(e.fileList)
         return  e.file
-    };
+    }
 
-    const beforeUpload = ({fileList}) =>  false;
 
     return(
         <>
-            <span onClick={showModal}>导入</span>
+            <span onClick={showModal}>导入Postman</span>
             <Modal
                 destroyOnClose={true}
                 title={'导入'}
@@ -65,29 +131,23 @@ const Import = (props) => {
                     preserve={false}
                 >
                     <Form.Item
-                        label="导入类型"
-                        rules={[{ required: true, message: '' }]}
-                        name="type"
-                    >
-                        <Select>
-                            <Option value={'postman'}>Postman</Option>
-                            <Option value={'report'}>Report</Option>
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        label="导入文件"
+                        // label="导入文件"
                         name="file"
                         getValueFromEvent={normFile}
                     >
-                        <Upload
-                            beforeUpload={beforeUpload} //返回false时就会停止文件的自动上传。
+
+                        <Dragger
+                            beforeUpload={beforeUpload}
+                            fileList={fileList}
+                            onChange={handleChange}
+                            {...props}
                         >
-                            {
-                                fileList.length<1
-                                    ?<Button icon={<UploadOutlined />}>Click to upload</Button>
-                                    :null
-                            }
-                        </Upload>
+                            <p className="ant-upload-drag-icon">
+                                <InboxOutlined />
+                            </p>
+                            <p className="ant-upload-text">点击导入  postman 2.0  文件</p>
+
+                        </Dragger>
                     </Form.Item>
                 </Form>
             </Modal>
@@ -95,4 +155,4 @@ const Import = (props) => {
     )
 }
 
-export default inject('imexportStore')(observer(Import));
+export default inject('imexportStore',"categoryStore")(observer(Import));

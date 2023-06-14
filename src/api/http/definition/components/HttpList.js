@@ -94,7 +94,7 @@ const HttpList = (props) => {
         let params = {
             workspace:{id:workspaceId},
             user:{id:getUser().userId},
-            apix:{id:item.id},
+            apix:{id:record.id},
             // protocolType:record.apix.protocolType
         }
         apiRecent(params)

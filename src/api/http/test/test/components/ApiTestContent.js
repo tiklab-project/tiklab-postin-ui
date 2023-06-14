@@ -298,7 +298,7 @@ const ApiTestContent = (props) => {
                 </div>
 
                 <div className='header-title ex-title'>响应</div>
-                <div className={"white-bg-box"}>
+                <div className={"white-bg-box "}>
                     <TestResultCommon
                         testResponse={testResponse}
                         showResponse={showResponse}

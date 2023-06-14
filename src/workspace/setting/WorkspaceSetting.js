@@ -3,9 +3,8 @@ import {Button, Collapse, Form, Input} from "antd";
 import {inject, observer} from "mobx-react";
 import DetailHeader from "../../common/DetailHeader";
 import DeleteWorkspaceModal from "./DeleteWorkspaceModal";
-import {DeleteOutlined, EditOutlined} from "@ant-design/icons";
+import {DeleteOutlined, EditOutlined, ExportOutlined} from "@ant-design/icons";
 import HtmlExport from "./export/HtmlExport";
-import PdfExport from "./export/PdfExport";
 import {useSelector} from "tiklab-plugin-core-ui";
 import RemoteComponent from "tiklab-plugin-core-ui/es/plugin/RemoteComponent";
 
@@ -142,7 +141,7 @@ const WorkspaceSetting = (props) =>{
                         </div>
 
                     </Panel>
-                    <Panel header={<><DeleteOutlined />  <span style={{padding:"0 5px"}}>导出项目</span> </>}  key="2" >
+                    <Panel header={<><ExportOutlined />  <span style={{padding:"0 5px"}}>导出项目</span> </>}  key="2" >
                         <div style={{"display":'flex',"gap":"10px"}}>
                             <HtmlExport />
                             <RemoteComponent

@@ -87,7 +87,6 @@ const ApxMethodEdit = (props) => {
                 workspaceId:workspaceId,
                 name:values.name,
                 methodType:values.methodType,
-                path:values.path,
                 desc:values.desc,
                 category:{id:cascaderCategoryId?cascaderCategoryId:categoryId},
             }

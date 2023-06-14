@@ -117,7 +117,7 @@ const TestResultCommon = (props) =>  {
 
 
     return(
-        <>
+        <div className={"api-test-res-box"}>
             <div className={`test-response-before  ${showResponse === true? 'test-response-hide':'test-response-show'}`}>
                 <div className="test-response-error">
                     <div>
@@ -131,7 +131,7 @@ const TestResultCommon = (props) =>  {
             <div className={`test-response-after  ${showResponse === true? 'test-response-show':'test-response-hide'}`} >
                 {isErrorTest(testResponse)}
             </div>
-        </>
+        </div>
     )
 }
 

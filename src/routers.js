@@ -42,6 +42,7 @@ import ApiDocument from "./api/http/definition/components/ApiDocumentPage";
 import ApiInitPage from "./workspace/common/ApiInitPage";
 import DataStructure from "./support/dataStructure/components/DataStructure";
 import WorkspaceEdit from "./workspace/workspace/components/WorkspaceEdit";
+import AppTest from "./test";
 
 
 const routers =  [
@@ -90,6 +91,12 @@ const routers =  [
             {
                 path: "/home",
                 component: Home,
+                exact: true,
+                key:'Home',
+            },
+            {
+                path: "/test",
+                component: AppTest,
                 exact: true,
                 key:'Home',
             },

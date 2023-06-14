@@ -4,6 +4,7 @@ import {CategoryEdit,CategoryNav} from '../index'
 import { Input, Button, Dropdown, Menu} from 'antd';
 import {SearchOutlined} from "@ant-design/icons";
 import IconCommon from "../../common/IconCommon";
+import Import from "../../support/imexport/components/Import";
 
 /**
  * @Description: 空间详情左侧导航栏
@@ -25,11 +26,11 @@ const CategoryAside = (props) => {
 
     const menu = (
         <Menu>
-            <Menu.Item>
+            <Menu.Item key={1}>
                 <CategoryEdit name="添加目录"  type="add" />
             </Menu.Item>
-            <Menu.Item>
-                {/*<Import workspaceId={workspaceId}/>*/}
+            <Menu.Item key={2}>
+                <Import workspaceId={workspaceId}/>
             </Menu.Item>
         </Menu>
     );

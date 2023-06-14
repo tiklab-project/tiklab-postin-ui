@@ -45,8 +45,8 @@ const CategoryEdit =(props)=>{
         if(type === 'edit'){
             updateCategory(values);
         }else{
-            values.parentCategory = {
-                id:values.parentCategory?values.parentCategory:props.categoryId,
+            values.parent = {
+                id:values.parent?values.parent:props.categoryId,
             }
 
             createCategory(values);

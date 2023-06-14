@@ -24,7 +24,6 @@ export class ImexportStore{
                 this.importReport(params);
                 break;
         }
-
     }
 
     /**
@@ -32,16 +31,18 @@ export class ImexportStore{
      */
     @action
     importPostman = async (values) =>{
-        await Axios.post("/port/importPostman",values);
+        const params = new FormData();
+        params.append("workspaceId",values.workspaceId);
+        params.append("file",values.file);
+        return await Axios.post("/port/importPostman",params);
     }
 
     /**
      * 导入上报
      */
     @action
-    importReport = async (values) =>{
-        await Axios.post("/port/importReport",values);
-    }
+    importReport = async (values) => await Axios.post("/port/importReport",values);
+
 }
 
 export const IM_EX_PORT_STORE = 'imexportStore';
