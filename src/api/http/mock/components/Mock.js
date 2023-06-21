@@ -66,7 +66,6 @@ const Mock = (props) => {
                 <Space  size="middle">
 
                     <MockEdit type="edit"  name={"编辑"}  {...props } mockId={record.id}/>
-
                     <Popconfirm
                         title="确定删除？"
                         onConfirm={() =>deleteMock(record.id).then(()=>findMockPage(apxMethodId))}

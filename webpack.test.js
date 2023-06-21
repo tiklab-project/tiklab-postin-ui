@@ -1,6 +1,4 @@
 
-
-
 const { merge } = require('webpack-merge');
 const path = require('path');
 const os = require('os');
@@ -8,6 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const optimizeCss = require('optimize-css-assets-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const baseWebpackConfig = require('./webpack.base');
 
@@ -16,9 +15,9 @@ module.exports = merge(baseWebpackConfig, {
     entry: [
         path.resolve(__dirname, './src/index.js')
     ],
-    devtool: 'source-map',
 
     plugins: [
+        new BundleAnalyzerPlugin({defaultSizes: 'parsed'}),
         new UglifyJSPlugin({
             parallel: os.cpus().length,
             cache:true,
@@ -52,7 +51,6 @@ module.exports = merge(baseWebpackConfig, {
                 }
             }
         }),
-
         new ProgressBarPlugin()
     ],
     optimization: {
@@ -60,58 +58,124 @@ module.exports = merge(baseWebpackConfig, {
         nodeEnv: process.env.NODE_ENV,
         splitChunks: {
             chunks: "all",
-            minSize: 30000,
+            minSize: 50, // 默认值，超过30K才独立分包
             minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests:5,
-            automaticNameDelimiter: '--', // 分包打包生成文件的名称的连接符
-            name:true,
-            cacheGroups: { //  cacheGroups 缓存组，如：将某个特定的库打包
-                /* 抽离node_modules下的第三方库 可视需要打开会生成两个文件  vender: node-module下的文件*/
-                vendor: {
-                    chunks:'all',
-                    name:'vender',
-                    test: (module, chunks) => {
-                        if (/node_modules/.test(module.context)) {
-                            return true
-                        }
-                    },
-                    minChunks: 2,//  提取公共部分最少的文件数
-                    priority: 10,
-                    enforce: true
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            automaticNameDelimiter: '--',
+            name: true,
+            cacheGroups: {
+                moment: {
+                    name: "chunk-moment",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]moment[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
                 },
-                /* 提取共用部分，一下提取的部分会议commons 命名 */
+                jsBeautify: {
+                    name: "chunk-js-beautify",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]js-beautify[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                tiklabEamUI: {
+                    name: "chunk-tiklab-eam-ui",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]tiklab-eam-ui[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                tiklabPrivilegeUI: {
+                    name: "chunk-tiklab-privilege-ui",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]tiklab-privilege-ui[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                tiklabIntegrationUI: {
+                    name: "chunk-tiklab-integration-ui",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]tiklab-integration-ui[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                tiklabLicenceUI: {
+                    name: "chunk-tiklab-licence-ui",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]tiklab-licence-ui[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                tiklabMessageUI: {
+                    name: "chunk-tiklab-message-ui",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]tiklab-message-ui[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                tiklabUserUI: {
+                    name: "chunk-tiklab-user-ui",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]tiklab-user-ui[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                antdUI: {
+                    name: 'chunk-antd-ui',
+                    chunks: 'all',
+                    test: /[\\/]node_modules[\\/]antd[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                mockjs: {
+                    name: "chunk-mockjs",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]mockjs[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                monacoEditor: {
+                    name: "chunk-monaco-editor",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]monaco-editor[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
+                reactMonacoEditor: {
+                    name: "chunk-react-monaco-editor",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]react-monaco-editor[\\/]/,
+                    priority: 0,
+                    reuseExistingChunk: true
+                },
                 commons: {
                     name: 'commons',
                     test: function (module, chunks) {
                         if (
-                            /src\/components\//.test(module.context) ||
-                            /src\/util\//.test(module.context) ||
                             /react/.test(module.context) ||
-                            /react-dom/.test(module.context) ||
-                            /redux/.test(module.context)
+                            /react-dom/.test(module.context)
                         ) {
                             return true
                         }
                     },
                     chunks: 'all',
-                    minChunks: 2, //  提取公共部分最少的文件数
-                    // minportal: 0 // 提取公共部分最小的大小
-                    // enforce: true
-                }
+                    minChunks: 2,
+                    priority: 1, //该配置项是设置处理的优先级，数值越大越优先处理
+                },
             }
         },
         minimizer: [
-            new TerserPlugin({  // 压缩js
+            new TerserPlugin({
                 cache: true,
                 parallel: true,
                 terserOptions: {
                     compress: {
                         drop_console: true,
-                        // drop_debugger: true // 去除console.log 和debuger
                     },
-                }
-            })
+                },
+            }),
+
         ]
     }
 });

@@ -1,11 +1,9 @@
-import React, {useCallback, useState} from "react";
+import React, {useState} from "react";
 import {Checkbox, Divider, Input, Select, Tag} from "antd";
 import {schemaEnum} from "./SchemaEnum";
 import MockSelect from "./MockSelect";
 import IconCommon from "../IconCommon";
 import {toJS} from "mobx";
-import {messageFn} from "../messageCommon/MessageCommon";
-import {RightOutlined} from "@ant-design/icons";
 import ModeModal from "../../support/dataStructure/components/modeModal";
 const {Option} = Select
 

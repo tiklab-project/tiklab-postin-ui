@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {localProxySendTest, sendTest} from "../../../../../common/request/sendTestCommon";
+import {localProxySendTest} from "../../../../../common/request/sendTestCommon";
 import TestCaseDetail from "./TestCaseDetail";
 import {inject, observer} from "mobx-react";
 
@@ -22,7 +22,7 @@ const TestCaseBox =(props)=>{
                 response=  localProxySendTest("/cloud-proxy",data)
                 break;
             default:
-                response=  sendTest(data);
+                // response=  sendTest(data);
                 break
 
         }

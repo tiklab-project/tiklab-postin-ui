@@ -18,9 +18,7 @@
         cursor: pointer;
 
     }
-    //.testcase-header-right-back:hover{
-    //    color: #00adff;
-    //}
+
 
 }
 
@@ -28,8 +26,7 @@
     width: 200px;
 }
 
-// ---------------------
-// testCaseDetail
+
 .testCase-baseInfo{
     display: flex;
     justify-content: space-between;
@@ -49,9 +46,6 @@
         color: black;
     }
 }
-
-
-// responseTestcase
 
 .testcase-response-show {
     display: block;

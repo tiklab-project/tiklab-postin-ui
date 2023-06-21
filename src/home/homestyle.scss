@@ -18,16 +18,11 @@
 
         .home-box-item{
             border: 1px solid var(--pi-border-color);
-            //width: 595px;
-            //min-height: 425px;
             margin-bottom: 10px;
             border-radius: var(--pi-border-radius);
             background: var(--pi-bg-color);
-            //box-shadow: 0 3px 6px rgb(140 149 159 / 15%);
             overflow: hidden;
         }
-
-        //}
 
         .home-item-title-box{
             padding: 10px;
@@ -56,7 +51,6 @@
             border: 1px solid var(--pi-border-color);
             background: #fff;
             margin: 0 0 10px 0;
-            //box-shadow: 0 3px 6px rgb(140 149 159 / 15%);
 
         }
 
@@ -74,7 +68,6 @@
         .home-recent-item{
             height: 100px;
             width: 210px;
-            //border: 1px solid var(--pi-border-color);
             border-radius: var(--pi-border-radius) ;
             margin: 0 20px 10px 0;
             background: #f5f5f5;
@@ -163,8 +156,6 @@
 
 
 .ws-img-icon{
-    //width: var(--pi-icon-x);
-    //height: var(--pi-icon-x);
     width: 40px;
     height: 40px;
 }
@@ -172,7 +163,6 @@
 .dynamic-item-box-icon{
     width: 30px;
     height: 30px;
-    //margin: 0 10px 0 0;
 }
 
 .demo-loadmore-list {
@@ -227,7 +217,6 @@
 
         .home-help-item{
             padding: 10px;
-            //display: block;
             color: black;
         }
     }
@@ -281,7 +270,6 @@
 .dynamic-detail-header{
     display: flex;
     align-items: center;
-    //cursor: pointer;
 
 }
 

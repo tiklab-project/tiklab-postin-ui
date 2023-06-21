@@ -1,28 +1,18 @@
 module.exports={
     "presets": [
-        [
-            "@babel/preset-env",
-            {
-                "targets": {
-                    "browsers": [
-                        "> 1%",
-                        "last 5 versions",
-                        "ie >= 8"
-                    ]
-                }
-            }
-        ],
+        "@babel/preset-env",
         "@babel/preset-react"
     ],
     "plugins": [
         "@babel/plugin-transform-react-jsx",
-        "@babel/plugin-transform-arrow-functions",
+        ["@babel/plugin-transform-react-jsx-source"],
+        ["@babel/plugin-transform-arrow-functions"],
+
         ["import", {
             "libraryName": "antd",
             "libraryDirectory": "es",
             "style": "css"
         }],
-
 
         ["import", {
             "libraryName": "tiklab-eam-ui",
@@ -140,15 +130,9 @@ module.exports={
 
 
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
+        ["@babel/plugin-proposal-class-properties", { "loose" : false }],
         ["dynamic-import-webpack"],
         "@babel/plugin-syntax-dynamic-import",
-        ["@babel/plugin-transform-runtime",
-            {
-                "regenerator": true
-            }
-        ],
-        "@babel/plugin-transform-async-to-generator",
-        "react-hot-loader/babel",
-        ["@babel/plugin-syntax-jsx"]
+        "react-hot-loader/babel"
     ]
 }

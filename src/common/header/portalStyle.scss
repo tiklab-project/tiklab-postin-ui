@@ -161,8 +161,6 @@
     align-items: center;
     height: 48px;
     border-bottom: 1px solid var(--pi-border-color);
-    //-webkit-app-region: drag;//electron无边框拖动
-    //-webkit-app-region: no-drag;
 
     .frame-header-logo{
         height: 35px;
@@ -237,7 +235,6 @@
         justify-content: space-between;
         align-items: center;
         height: 100%;
-        //width: 470px;
 
 
         .frame-header-right-detail{

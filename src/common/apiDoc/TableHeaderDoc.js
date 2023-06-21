@@ -26,7 +26,6 @@ const TableHeaderDoc = (props) =>{
             render:(text)=>text===1?"是":"否"
         },{
             title: '说明',
-            // width: '20%',
             dataIndex: 'desc',
             editable: true,
         }

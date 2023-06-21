@@ -11,8 +11,8 @@ ul{
     font-size: 13px;
 }
 
-//------------------------------------------
-//dragbox
+/*------------------------------------------*/
+/*dragbox*/
 
 .left-tree-box{
     position: relative;
@@ -93,8 +93,8 @@ ul{
     }
 }
 
-// --------------------------------------------
-// --workspace--
+/* --------------------------------------------*/
+/* --workspace--*/
 
 .ws-layout{
     width: 1080px;
@@ -112,7 +112,6 @@ ul{
     height: 45px;
     align-items: center;
     justify-content: space-between;
-    //border-bottom: 1px solid  var(--pi-border-color);
 
     .ws-header-menu-left{
         display: flex;
@@ -131,7 +130,6 @@ ul{
 
         span{
             font-size: var(--pi-font-size-14);
-            //font-weight: var(--pi-font-weight-title);
         }
     }
 
@@ -160,12 +158,9 @@ ul{
 
     background-color:  var(--pi-bg-color);
     height: 100%;
-    //background-color: #f0f0f0;
 }
 
 .ws-content-box{
-    //min-width: 1140px;
-    //margin: 0 auto;
     padding: 10px;
 }
 
@@ -177,11 +172,9 @@ ul{
     display: none;
 }
 
-// ws左侧导航
 .ws-menu-ul {
     padding: 0;
     .ws-menu-li {
-        //padding: 0 20px;
         height: 40px;
         width: 220px;
         line-height: 40px;
@@ -193,7 +186,6 @@ ul{
 
     .ws-menu-li:hover{
         background-color:  var(--pi-hover-color);
-        //margin: 5px 20px;
     }
     .ws-menu-li-action{
 
@@ -217,10 +209,6 @@ ul{
 .action-li{
     background-color:  var(--pi-action-color);
 }
-
-
-// --------------------------------------------
-// --workspaceEdit --
 
 .ws-edit-modal{
     padding: 0!important;
@@ -256,7 +244,6 @@ ul{
 
     .ws-edit-box{
         height: 100%;
-        //background: white;
         border-radius: var(--pi-border-radius);
         padding: 10px;
 
@@ -292,7 +279,6 @@ ul{
         .ws-edit-box-footer{
             padding: 10px;
             display: flex;
-            //justify-content: end;
 
             .ws-edit-box-footer-btn{
                 margin:0 10px 0 0;
@@ -333,7 +319,6 @@ ul{
 
 .ws-edit-visibility{
     display: flex;
-    //justify-content: space-between;
 
     &-item{
         width: 255px;
@@ -362,8 +347,8 @@ ul{
 }
 
 
-// --------------------------------------------
-// --workspaceList --
+/*--------------------------------------------*/
+/*--workspaceList --*/
 
 .wslist-searchbtn{
     padding: 15px 0;
@@ -377,8 +362,8 @@ ul{
 }
 
 
-// --------------------------------------------
-// --workspaceDetailMenu--
+/* --------------------------------------------*/
+/* --workspaceDetailMenu--*/
 
 .ws-menu{
     height: 100%;
@@ -473,7 +458,6 @@ ul{
     display: none;
     width: 100px;
     box-shadow:var(--pi-box-shadow);
-    // border: 1px solid black;
 }
 
 .show-categorynav:hover{

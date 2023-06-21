@@ -9,16 +9,13 @@
     max-width: 1680px;
 }
 
-//---------------------------------
-// testResponse
+
 .test-response-before{
     position: relative;
     margin: 10px 0 0 0;
     height: 300px;
-    //border: 1px solid #eaeaea
 }
 .test-response-before-alert{
-    // width: 200px;
     height: 20px;
     position: absolute;
     left: 50%;
@@ -64,8 +61,6 @@
     justify-content: space-around;
 }
 
-// --------------------------------
-// testResponseResult
 .test-response-result-format{
     display: flex;
     margin: 0 0 10px 0;

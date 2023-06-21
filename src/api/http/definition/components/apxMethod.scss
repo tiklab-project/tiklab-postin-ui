@@ -23,7 +23,7 @@
 .header-title{
     font-weight: var(--pi-font-weight-title);
     font-size: var(--pi-font-size-13);
-    //padding-left: 3px;
+
 }
 
 .ex-title{
@@ -33,7 +33,6 @@
 
 
 .edit-api-name{
-    //padding:10px;
     font-size:20px;
     cursor: auto
 }
@@ -57,9 +56,6 @@
     cursor: auto;
 }
 
-
-
-// apxMethod
 .api-content-box{
     height: 100%;
 
@@ -67,9 +63,6 @@
         background: var(--pi-background-color);
     }
 
-    //.ant-menu-horizontal{
-    //    background-color: var(--pi-bg-grey-100);
-    //}
 
 }
 
@@ -99,12 +92,8 @@
     padding: 10px;
 
     .content-margin-box{
-        //background-color:var(--pi-bg-grey-100);
         margin: 0 auto;
-        //padding: 10px;
         border-radius:var(--pi-border-radius);
-        //border:1px solid #efefef;
-        //min-height: 700px;
         max-width: 1440px;
     }
 
@@ -145,7 +134,6 @@
         background:  var(--pi-bg-color) !important;
     }
 
-    // 表头设置
     .ant-table-thead>tr .ant-table-cell{
         font-weight: var(--pi-font-weight-light);
         padding: 7px;
@@ -175,8 +163,6 @@
 }
 
 
-// --------------------------------
-// ApxMethodDetail
 .api-base-info-header{
     display: flex;
     align-items: center;
@@ -239,7 +225,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    //padding: 0 0 0 5px;
     height: 32px;
     margin: 10px 0;
 
@@ -340,7 +325,6 @@
 }
 
 .method{
-    //padding: 0 0 0 5px;
     margin: 0 0 10px 0 ;
 
     .method-info{
@@ -396,9 +380,7 @@
             color: #9b9b9b;
             font-size: var(--pi-font-size-13);
             cursor: text;
-            width: 700px;
-            //height: 32px;
-            //line-height: 32px;
+            width: 700px;;
         }
 
         &-text-show{
@@ -421,7 +403,7 @@
 
 
 
-// 可编辑表格，当鼠标移入行时，显示单元格
+/* 可编辑表格，当鼠标移入行时，显示单元格*/
 .editable-row{
     .editable-cell-value-wrap {
         height: 31.6px;
@@ -468,19 +450,9 @@
     border: 1px solid var(--pi-border-color);
 }
 
-// .ant-table-thead>tr>th{
-//     padding: 10px;
-//     font-size: 13px;
-// }
-
-// .ant-table-tbody>tr>td{
-//     padding: 5px;
-//     font-size: 13px;
-// }
 
 
 
-// request
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
     color:#0053ca;
 }
@@ -510,12 +482,10 @@
 }
 
 
-//
 .request-radio{
     margin:8px 0 ;
 }
 
-//
 .binary-box{
     height: 80px;
 }
@@ -535,7 +505,6 @@
 .api-res-result{
     padding: 0 0 10px 0;
     min-height: 365px;
-    //border: 1px solid #f0f0f0;
 
     &-top-box{
         display: flex;
@@ -583,22 +552,6 @@
         white-space: nowrap;
     }
 
-    .ant-tabs {
-        //.ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-ink-bar{
-        //    visibility: visible;
-        //    background: var(--pi-border-color);
-        //    width: 1px;
-        //}
-        //
-        //.ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab{
-        //    padding: 6px 10px;
-        //    border-bottom: 0;
-        //}
-
-        //.ant-tabs-tab-remove{
-        //    display: none;
-        //}
-    }
 }
 .ant-tabs-dropdown-menu-item{
     .ant-tabs-dropdown-menu-item-remove{

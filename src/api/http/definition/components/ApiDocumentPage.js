@@ -9,6 +9,7 @@ import ResponseResultDoc from "../../../../common/apiDoc/ResponseResultDoc";
 import IconBtn from "../../../../common/iconBtn/IconBtn";
 import {Breadcrumb, Space, Tag} from "antd";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
+import "../../document/components/shareStyle.scss"
 
 /**
  * 接口文档页面

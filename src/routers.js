@@ -1,49 +1,47 @@
 import React from 'react'
+import {Redirect} from "react-router";
+import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----
 
 import {Directory, Orga, UserGroup, User,} from "tiklab-user-ui";
 import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "tiklab-privilege-ui"
 
 import {ExcludeProductUser} from "tiklab-eam-ui";
-import {ProductAuth} from "tiklab-licence-ui"
 import {LogTemplate, LogType, MyLog} from "tiklab-security-ui";
 import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 
 //----内部组件----
-import PortalHeader from "./common/header/PortalContent"
-import {
-    Home, SearchResult,
-
-    WorkspaceRole, WorkspacePrivilege, Workspace,
-    WorkspaceDetailLayout,
-    LayoutApiContent, LayoutQuickTest,  WorkspaceDetailInitPage,
-    Category, ApxMethodDetail,
-
-    Mock, MockDetail,
-
-    SystemContent,
-
-    LoginOut, WorkspaceSettingMenu,
-} from './container';
-
-import {Redirect} from "react-router";
-
-import TestBoxQuickTest from "./quicktest/components/TestBoxQuickTest";
-import TestBox from "./api/http/test/test/components/ApiTestPage";
-import LoginContent from "./login/LoginContent";
-import WorkspaceSetting from "./workspace/setting/WorkspaceSetting";
-import DynamicDetail from "./home/DynamicDetail";
-import Version from "./setting/version/Version";
-import StructureDetail from "./support/dataStructure/components/StructureDetail";
-import Share from "./api/http/document/components/Share";
-import ShareMain from "./api/http/document/components/ShareMain";
-import ApiDocument from "./api/http/definition/components/ApiDocumentPage";
-import ApiInitPage from "./workspace/common/ApiInitPage";
-import DataStructure from "./support/dataStructure/components/DataStructure";
-import WorkspaceEdit from "./workspace/workspace/components/WorkspaceEdit";
-import AppTest from "./test";
-
+const PortalHeader = AsyncComponent(() => import("./common/header/PortalContent"));
+const Home = AsyncComponent(() => import('./home/Home'));
+const SearchResult = AsyncComponent(() => import('./common/header/search'));
+const WorkspaceRole = AsyncComponent(() => import('./workspace/setting/WorkspaceRole'));
+const WorkspacePrivilege = AsyncComponent(() => import('./workspace/setting/WorkspacePrivilege'));
+const Workspace = AsyncComponent(() => import('./workspace/workspace/components/Workspace'));
+const WorkspaceDetailLayout = AsyncComponent(() => import("./workspace/common/WorkspaceDetailLayout"));
+const LayoutApiContent = AsyncComponent(() => import("./api/http/definition/components/LayoutApiContent"));
+const LayoutQuickTest = AsyncComponent(() => import("./quicktest/common/LayoutQuickTest"));
+const WorkspaceDetailInitPage = AsyncComponent(() => import("./workspace/overview/WorkspaceOverViewPage"));
+const Category = AsyncComponent(() => import("./api/http/definition/components/HttpList"));
+const ApxMethodDetail = AsyncComponent(() => import("./api/http/definition/components/ApxMethodEditPage"));
+const Mock = AsyncComponent(() => import("./api/http/mock/components/Mock"));
+const MockDetail = AsyncComponent(() => import("./api/http/mock/components/MockDetail"));
+const SystemContent = AsyncComponent(() => import("./setting"));
+const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
+const WorkspaceSettingMenu = AsyncComponent(() => import("./workspace/setting/WorkspaceSettingMenu"));
+const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/components/TestBoxQuickTest"));
+const TestBox = AsyncComponent(() => import( "./api/http/test/test/components/ApiTestPage"));
+const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
+const WorkspaceSetting = AsyncComponent(() => import("./workspace/setting/WorkspaceSetting"));
+const DynamicDetail = AsyncComponent(() => import("./home/DynamicDetail"));
+const Version = AsyncComponent(() => import("./setting/version/Version"));
+const StructureDetail = AsyncComponent(() => import("./support/dataStructure/components/StructureDetail"));
+const Share = AsyncComponent(() => import("./api/http/document/components/Share"));
+const ShareMain = AsyncComponent(() => import("./api/http/document/components/ShareMain"));
+const ApiDocument = AsyncComponent(() => import("./api/http/definition/components/ApiDocumentPage"));
+const ApiInitPage = AsyncComponent(() => import("./workspace/common/ApiInitPage"));
+const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
+const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
 
 const routers =  [
     {
@@ -94,23 +92,18 @@ const routers =  [
                 exact: true,
                 key:'Home',
             },
-            {
-                path: "/test",
-                component: AppTest,
-                exact: true,
-                key:'Home',
-            },
+            // {
+            //     path: "/test",
+            //     component: AppTest,
+            //     exact: true,
+            //     key:'Home',
+            // },
             {
                 path: "/dynamic",
                 component: DynamicDetail,
                 exact: true,
                 key:'DynamicDetail',
             },
-            // {
-            //     path: "/test",
-            //     component: Test,
-            //     key:'test',
-            // },
             {
                 path: "/workspacePage",
                 component: Workspace,
@@ -418,6 +411,4 @@ const routers =  [
 
   ];
 
-
-console.log(routers)
 export default routers

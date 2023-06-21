@@ -11,9 +11,7 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
     margin: 0;
     padding: 0;
     /*字体设置*/
-    //font-size: 14px !important;
-    //font-family: "Microsoft Yahei",sans-serif;
-    //color: #ccc;
+
     /* 去掉列表的原点 */
     list-style: none;
     /* 默认鼠标 */
@@ -22,7 +20,6 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
 
 /*控制整个滚动条*/
 ::-webkit-scrollbar {
-    //background-color: white;
     width: 10px;
     height: 10px;
 }
@@ -31,7 +28,6 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
 ::-webkit-scrollbar-button {
     height: 0;
     width: 0;
-    //background-color: white;
 }
 
 /*滚动条中间滑动部分*/
@@ -50,12 +46,8 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
     background-color: white;
 }
 
-//::-webkit-scrollbar-thumb:window-inactive {
-//    background-color: rgba(0, 0, 0, .2);
-//}
 
-
-//面包屑
+/*面包屑*/
 .breadcrumb-contant{
     display: flex;
     justify-content: space-between;
@@ -68,7 +60,6 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
     font-size: 15px;
     font-weight: 600;
     padding: 10px;
-    //border-bottom: 1px solid #ececec;
     margin: 0 0 5px 0;
 }
 
@@ -76,27 +67,10 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
     cursor: pointer;
 }
 
-
-
-
-
-table{
-    //border-bottom: 1px solid #f0f0f0;
-}
-//
-//.search-input{
-//    width: 200px!important;
-//    border-radius: 5px;
-//}
-
-
-
-//弹出框表单的弹框样式，遮罩层背景
 .ant-modal-mask {
     background-color: #4a60848f!important;
 }
 
-//弹框标题
 .ant-modal-title {
     font-weight: 600!important;
 }
@@ -163,16 +137,10 @@ table .icon{
     font-size: var(--pi-font-size-12);
 }
 
-//表单
-//.ant-form-item{
-//    margin: 10px;
-//}
 
 .ant-input{
     border-radius: var(--pi-border-radius);
 }
-
-//icon
 
 
 .icon {
@@ -188,36 +156,21 @@ table .icon{
 .icon-s {
     width: var(--pi-icon-s);
     height: var(--pi-icon-s);
-    //vertical-align: -0.15em;
-    //fill: currentColor;
-    //overflow: hidden;
-    //margin:0 5px  ;
+
 }
 
 .icon-m {
     width: var(--pi-icon-m);
     height: var(--pi-icon-m);
-    //vertical-align: -0.15em;
-    //fill: currentColor;
-    //overflow: hidden;
-    //margin:0 5px  ;
 }
 
 .icon-l {
     width: var(--pi-icon-l);
     height: var(--pi-icon-l);
-    //vertical-align: -0.15em;
-    //fill: currentColor;
-    //overflow: hidden;
-    //margin:0 5px  ;
 }
 .icon-x {
     width: var(--pi-icon-x);
     height: var(--pi-icon-x);
-    //vertical-align: -0.15em;
-    //fill: currentColor;
-    //overflow: hidden;
-    //margin:0 5px  ;
 }
 
 
@@ -235,9 +188,8 @@ table .icon{
     justify-content: space-between;
 }
 
-//面包屑
+/**面包屑**/
 .breadcrumb-box{
-    //padding: 10px 6px 0;
     font-weight: bold;
 
     .first-item:hover{

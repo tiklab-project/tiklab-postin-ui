@@ -4,7 +4,7 @@ import {Form, Modal, Upload} from "antd";
 import {InboxOutlined} from '@ant-design/icons';
 import Ajv from 'ajv';
 import {messageFn} from "../../../common/messageCommon/MessageCommon";
-
+import {postmanJsonSchema20} from './postman-jsonSchema-2.0.js';
 const { Dragger } = Upload;
 
 const layout = {
@@ -13,8 +13,8 @@ const layout = {
 };
 
 const ajv = new Ajv();
-const schema = require('./postman-jsonSchema-2.0.json');
-const validate = ajv.compile(schema);
+
+const validate = ajv.compile(postmanJsonSchema20);
 
 /**
  * 导入postman

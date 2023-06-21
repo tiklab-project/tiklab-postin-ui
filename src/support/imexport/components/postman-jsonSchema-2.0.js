@@ -1,4 +1,4 @@
-{
+export let postmanJsonSchema20={
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://schema.getpostman.com/json/draft-07/collection/v2.1.0/",
   "type": "object",

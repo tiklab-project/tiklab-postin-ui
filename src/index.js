@@ -15,6 +15,7 @@ import { stores } from './stores';
 import routers from './routers';
 import {enableAxiosCE} from "tiklab-core-ui"
 import App from "./app";
+import "./assets/index"
 
 enableAxiosCE();
 

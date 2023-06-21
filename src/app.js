@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { renderRoutes  } from "react-router-config";
-import "antd/dist/antd.css"
+
 import './common/styles/base.scss';
 import './common/styles/global.scss';
 import './common/language/i18n';
@@ -11,7 +11,7 @@ import { PluginProvider,pluginLoader} from 'tiklab-plugin-core-ui';
 import {getUser} from "tiklab-core-ui";
 
 import resources from "./common/language/resource";
-import "./assets/index"
+
 import {Spin} from "antd";
 
 const App = (props) => {

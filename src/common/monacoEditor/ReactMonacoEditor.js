@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import MonacoEditor  from "react-monaco-editor"
 import beautify from "js-beautify";
 
@@ -7,8 +7,6 @@ import beautify from "js-beautify";
  */
 const ReactMonacoEditor = (props) =>{
     const {value,editorChange,language,readOnly,width,height} = props
-
-
 
     const options = {
         selectOnLineNumbers: true,
@@ -28,8 +26,6 @@ const ReactMonacoEditor = (props) =>{
         theme: 'vs', // 主题
         fontSize: 13, // 字体
         tabSize: 4, // tab缩进长度，
-
-
     };
 
     let beautifyCode = (code) => beautify(code, {
@@ -38,16 +34,6 @@ const ReactMonacoEditor = (props) =>{
     });
 
     const editorDidMount = (editor, monaco) => {
-        console.log('Editor did mount', editor);
-        monaco.languages.json.jsonDefaults.setDiagnosticsOptions({
-            validate: true, // 启用 JSON Schema 校验
-            // schemas: [{
-            //     uri: 'mySchema', // 指定 JSON Schema 的唯一标识符
-            //     fileMatch: ['*'], // 指定文件匹配规则，表示所有文件都需要使用此 JSON Schema
-            //     schema, // 指定 JSON Schema
-            // }],
-        });
-
 
 
         editor.getAction('editor.action.formatDocument').run();

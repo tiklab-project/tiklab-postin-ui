@@ -14,6 +14,7 @@ module.exports = merge(baseWebpackConfig, {
         `webpack-dev-server/client?http://0.0.0.0:${PORT}/`,
         path.resolve(__dirname, './src/index.js')
     ],
+
     optimization:{
         namedModules: true,
         namedChunks: true,
@@ -56,7 +57,7 @@ module.exports = merge(baseWebpackConfig, {
         disableHostCheck: true,
         proxy:{
             "/request":{
-                target:"http://192.168.10.22:8090"
+                target:"http://192.168.10.3:8090"
             },
         }
     },
