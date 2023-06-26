@@ -10,29 +10,26 @@ import TestResultCommon from "../../common/TestResultCommon";
 import IconBtn from "../../../../../common/iconBtn/IconBtn";
 import EnvSelect from "../../../../../support/environment/components/EnvSelect";
 import GlobalParamModal from "../../../../../support/globalParam/globalParamModal";
-
+import apxMethodStore from "../../../definition/store/ApxMethodStore";
+import afterParamTestStore from "../store/AfterParamTestStore";
+import assertParamTestStore from "../store/AssertParamTestStore";
+import formParamTestStore from "../store/FormParamTestStore";
+import formUrlencodedTestStore from "../store/FormUrlencodedTestStore";
+import preParamTestStore from "../store/PreParamTestStore";
+import queryParamTestStore from "../store/QueryParamTestStore";
+import rawParamTestStore from "../store/RawParamTestStore";
+import requestBodyTestStore from "../store/RequestBodyTestStore";
+import requestHeaderTestStore from "../store/RequestHeaderTestStore";
+import testStore from "../store/TestStore";
+import environmentStore from "../../../../../support/environment/store/environmentStore";
 
 const { Option } = Select;
-
 /**
  * 接口测试组件
  */
 const ApiTestContent = (props) => {
     const {
-        getRes,
-        apxMethodStore,
-        requestHeaderTestStore,
-        queryParamTestStore,
-        requestBodyTestStore,
-        formParamTestStore,
-        formUrlencodedTestStore,
-        jsonParamTestStore,
-        rawParamTestStore,
-        preParamTestStore,
-        afterParamTestStore,
-        assertParamTestStore,
-        environmentStore,
-        testStore,
+        sendTest,
         globalHeaderStore
     } = props;
 
@@ -44,7 +41,6 @@ const ApiTestContent = (props) => {
     const { bodyTypeInfo,getBodyType,getMediaType } = requestBodyTestStore;
     const { formSelectList,getFormParamTestList } = formParamTestStore;
     const { formUrlSelectList,getFormUrlencodedTestList } = formUrlencodedTestStore;
-    const { jsonParamTestList,getJsonParamTestList } = jsonParamTestStore;
     const { rawParamTestInfo,getRawInfo } = rawParamTestStore;
     const { preParamTestInfo,getPreInfo } = preParamTestStore;
     const { afterParamTestInfo,getAfterInfo } = afterParamTestStore;
@@ -97,12 +93,6 @@ const ApiTestContent = (props) => {
                         tabTipObj.body = true;
                     }
                     break;
-                case "json":
-                    getJsonParamTestList(res.jsonList);
-                    if(res.jsonList){
-                        tabTipObj.body = true;
-                    }
-                    break;
                 case "raw":
                     getRawInfo(res.rawParam);
                     getMediaType(res.rawParam.type);
@@ -151,7 +141,6 @@ const ApiTestContent = (props) => {
             "bodyType":bodyTypeInfo,
             "formDataList":formSelectList,
             "formUrlencoded":formUrlSelectList,
-            "jsonList":jsonParamTestList,
             "rawParam":rawParamTestInfo,
         }
 
@@ -164,7 +153,7 @@ const ApiTestContent = (props) => {
 
 
         //发送测试，返回结果
-        let response =await getRes(processData)
+        let response =await sendTest(processData)
         if(!!response){
             if(assertParamTestList&&assertParamTestList.length>0){
                 response.assertList =[ ...assertParamTestList];
@@ -312,21 +301,6 @@ const ApiTestContent = (props) => {
 
 
 export default inject(
-    'requestHeaderTestStore',
-    'queryParamTestStore',
-    'requestBodyStore',
-    'requestBodyTestStore',
-    'formParamTestStore',
-    'formUrlencodedTestStore',
-    'jsonParamTestStore',
-    'rawParamTestStore',
-    "preParamTestStore",
-    "afterParamTestStore",
-    'assertParamTestStore',
-    'testStore',
-    'testCaseStore',
-    "environmentStore",
-    "apxMethodStore",
     "globalHeaderStore"
  )(observer(ApiTestContent));
 

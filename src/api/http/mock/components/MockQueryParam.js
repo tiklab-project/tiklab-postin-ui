@@ -3,13 +3,12 @@ import { observer, inject } from "mobx-react";
 import { Space, Popconfirm} from 'antd';
 import {ExTable} from "../../../../common/EditTable";
 import IconCommon from "../../../../common/IconCommon";
-
+import mockQueryParamStore from "../store/MockQueryParamStore";
 /**
  * mock
  * 查询参数可编辑表格
  */
 const QueryParamMock = (props) =>{
-    const { mockQueryParamStore } = props;
     const { 
         findQueryParamMockList, 
         deleteQueryParamMock, 
@@ -177,4 +176,4 @@ const QueryParamMock = (props) =>{
     ); 
 }
 
-export default inject('mockQueryParamStore')(observer(QueryParamMock));
+export default observer(QueryParamMock);

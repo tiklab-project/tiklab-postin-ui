@@ -1,18 +1,18 @@
 
 import React from 'react';
 import { observer, inject } from "mobx-react";
-import {Form, Modal, Button, Input, Select} from 'antd';
+import {Form, Modal, Input} from 'antd';
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../common/IconCommon";
 import Radio from "antd/es/radio/radio";
-const {Option} = Select;
 
+import dataStructureStore from "../store/DataStructureStore";
 /**
  * @description：
  * @date: 2021-07-29 13:35
  */
 const DataStructureEdit = (props) => {
-    const { dataStructureStore, dataStructureId } = props;
+    const {  dataStructureId } = props;
     const {
         findDataStructure,
         createDataStructure,
@@ -117,4 +117,4 @@ const DataStructureEdit = (props) => {
     );
 };
 
-export default inject('dataStructureStore')(observer(DataStructureEdit));
+export default observer(DataStructureEdit);

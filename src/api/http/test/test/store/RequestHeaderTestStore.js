@@ -1,9 +1,6 @@
 import { observable, action } from "mobx";
-import {TableCommonStore} from "../../../../../common/tableCommon/store/tableCommonStore";
 
-const tableCommonStore = new TableCommonStore();
-
-export  class RequestHeaderTestStore {
+class RequestHeaderTestStore {
     //选择后的项
     @observable requestHeaderList;
     //表格默认选择的行id
@@ -54,4 +51,5 @@ export  class RequestHeaderTestStore {
 
 }
 
-export const REQUESTHEADER_TEST_STORE = 'requestHeaderTestStore';
+let requestHeaderTestStore = new RequestHeaderTestStore();
+export default requestHeaderTestStore;

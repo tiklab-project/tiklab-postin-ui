@@ -1,12 +1,9 @@
 import React from 'react';
-import { observer, inject } from "mobx-react";
 import { Table } from 'antd';
 
 const AssertResponseCommon = (props) =>{
     const {assertList} = props;
 
-    // const { testStore } = props;
-    // const { assertResponse } = testStore;
     let columns= [
         {
             title: '来源',
@@ -75,5 +72,3 @@ const AssertResponseCommon = (props) =>{
 
 
 export default AssertResponseCommon;
-
-// export default inject('testStore')(observer(AssertResponseCommon));

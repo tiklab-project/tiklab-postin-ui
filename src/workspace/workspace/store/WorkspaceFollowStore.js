@@ -4,7 +4,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 空间关注 store
  */
-export class WorkspaceFollowStore {
+class WorkspaceFollowStore {
 	@observable followList = [];
 	@observable totalRecord;
 
@@ -64,5 +64,6 @@ export class WorkspaceFollowStore {
 
 }
 
-export const WORKSPACE_FOLLOW_STORE = 'workspaceFollowStore';
+let workspaceFollowStore = new WorkspaceFollowStore();
+export default workspaceFollowStore;
 

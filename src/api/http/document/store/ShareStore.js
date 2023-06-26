@@ -6,7 +6,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 接口文档 store
  */
-export class ShareStore {
+class ShareStore {
     @observable shareList = [];
     @observable totalRecord ;
 
@@ -64,4 +64,5 @@ export class ShareStore {
 
 }
 
-export const SHARE_STORE = 'shareStore';
+let shareStore = new ShareStore();
+export default shareStore;

@@ -1,13 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { observer, inject } from "mobx-react";
-import { Table, Tooltip, Select, Space,Checkbox } from 'antd';
+import {observer} from "mobx-react";
+import { Tooltip, Space,Checkbox } from 'antd';
 import { toJS } from 'mobx';
-import {components, column, ExTable} from '../../../../common/EditTable';
-import {dataTypeDictionary, mockValueDictionary} from '../../../../common/dictionary/dictionary';
-import ExSelect from "../../../../common/ExSelect";
+import {ExTable} from '../../../../common/EditTable';
 import DataTypeSelect from "../../../../common/DataTypeSelect";
-
+import jsonResponseStore from "../store/JsonResponseStore";
 /**
  * 废弃
  * @Description: 返回结果中Json的可编辑表格
@@ -15,7 +13,7 @@ import DataTypeSelect from "../../../../common/DataTypeSelect";
  * @LastEditTime: 2021-05-08 17:58:08
  */
 const JsonResponse = (props) => {
-    const { jsonResponseStore, radioValue } = props;
+    const { radioValue } = props;
     const {
         findJsonResponseListTree,
         deleteJsonResponse,
@@ -203,4 +201,4 @@ const JsonResponse = (props) => {
     );
 }
 
-export default inject('jsonResponseStore')(observer(JsonResponse));
+export default observer(JsonResponse);

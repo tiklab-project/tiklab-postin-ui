@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
 import QueryTableCommon from "../../common/tableCommon/components/QueryTableCommon";
-
+import tabQuickTestStore from "../store/TabQuickTestStore";
 /**
  * 快捷测试
  * 查询参数
  */
 const QueryQuickTest = (props) =>{
-    const { tabQuickTestStore } = props;
     const {
         queryList,
         saveQueryList,
@@ -28,4 +27,4 @@ const QueryQuickTest = (props) =>{
     );
 }
 
-export default inject('tabQuickTestStore')(observer(QueryQuickTest));
+export default observer(QueryQuickTest);

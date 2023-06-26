@@ -10,7 +10,6 @@ import { HashRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { orgStores } from 'tiklab-user-ui/es/store';
 import { privilegeStores } from 'tiklab-privilege-ui/es/store';
-import { messageModuleStores } from 'tiklab-message-ui/es/store';
 import { stores } from './stores';
 import routers from './routers';
 import {enableAxiosCE} from "tiklab-core-ui"
@@ -25,7 +24,6 @@ export const Entry = (props) => {
         ...stores,
         ...privilegeStores,
         ...orgStores,
-        ...messageModuleStores,
     }
 
     return (

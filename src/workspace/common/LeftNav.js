@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
 import {Space} from "antd";
 import {toWorkspaceDetail} from "../workspace/components/WorkspaceFn";
 import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
+import workspaceRecentStore from "../workspace/store/WorkspaceRecentStore";
 
 /**
  * 左侧导航展示
  */
 const LeftNav = (props) =>{
-    const {workspaceStore,workspaceRecentStore,systemRoleStore} = props;
-    const {workspaceIcon,workspaceList,findWorkspaceList,settingMenuSelected,findWorkspace } = workspaceStore;
+    const {workspaceStore,systemRoleStore} = props;
+    const {workspaceIcon,workspaceList,findWorkspaceList,findWorkspace } = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const menuData = [
         {
@@ -75,19 +76,6 @@ const LeftNav = (props) =>{
      */
     const addQuickTestTabInfo = (router) =>{
         if(router==="/workspace/quickTest"){
-            // const apiTabInfo = {
-            //     activeKey:"0",
-            //     tabList:[
-            //         {
-            //             name:"新标签",
-            //             id:"newTab",
-            //             type:"api",
-            //         }
-            //     ]
-            // }
-            //
-            // sessionStorage.setItem("quickTestTabListInfo",JSON.stringify(apiTabInfo))
-
             localStorage.setItem("instanceId","-1")
         }
     }
@@ -189,4 +177,4 @@ const LeftNav = (props) =>{
     )
 }
 
-export default inject("workspaceStore","workspaceRecentStore",SYSTEM_ROLE_STORE)(observer(LeftNav));
+export default inject("workspaceStore",SYSTEM_ROLE_STORE)(observer(LeftNav));

@@ -8,18 +8,17 @@ import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
 import WorkspaceRecentHome from "./WorkspaceRecentHome";
 import IconBtn from "../../../common/iconBtn/IconBtn";
-
+import workspaceFollowStore from "../store/WorkspaceFollowStore";
 /**
  * 空间页
  */
 const Workspace = (props) => {
-    const {workspaceStore,workspaceFollowStore} = props;
+    const {workspaceStore} = props;
     const {findWorkspaceFollowList} = workspaceFollowStore
 
     const {findWorkspaceList,findWorkspaceJoinList,setWorkspaceSelect,workspaceSelect} = workspaceStore;
 
     const userId = getUser().userId;
-    // const [selectItem, setSelectItem] = useState("all");
     const [workspaceList, setWorkspaceList] = useState([]);
 
     //空间筛选列表
@@ -28,10 +27,6 @@ const Workspace = (props) => {
             title: '所有空间',
             key: `all`,
         },
-        // {
-        //     title: `我最近浏览的`,
-        //     key: `recent`,
-        // },
         {
             title: '我收藏的',
             key: `follow`,
@@ -177,4 +172,4 @@ const Workspace = (props) => {
     )
 }
 
-export default inject("workspaceStore","workspaceFollowStore","workspaceRecentStore")(observer(Workspace));
+export default inject("workspaceStore")(observer(Workspace));

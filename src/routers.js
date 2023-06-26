@@ -26,14 +26,13 @@ const Category = AsyncComponent(() => import("./api/http/definition/components/H
 const ApxMethodDetail = AsyncComponent(() => import("./api/http/definition/components/ApxMethodEditPage"));
 const Mock = AsyncComponent(() => import("./api/http/mock/components/Mock"));
 const MockDetail = AsyncComponent(() => import("./api/http/mock/components/MockDetail"));
-const SystemContent = AsyncComponent(() => import("./setting"));
+const SystemContent = AsyncComponent(() => import("./setting/system/SystemContent"));
 const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
 const WorkspaceSettingMenu = AsyncComponent(() => import("./workspace/setting/WorkspaceSettingMenu"));
 const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/components/TestBoxQuickTest"));
 const TestBox = AsyncComponent(() => import( "./api/http/test/test/components/ApiTestPage"));
 const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
 const WorkspaceSetting = AsyncComponent(() => import("./workspace/setting/WorkspaceSetting"));
-const DynamicDetail = AsyncComponent(() => import("./home/DynamicDetail"));
 const Version = AsyncComponent(() => import("./setting/version/Version"));
 const StructureDetail = AsyncComponent(() => import("./support/dataStructure/components/StructureDetail"));
 const Share = AsyncComponent(() => import("./api/http/document/components/Share"));
@@ -91,18 +90,6 @@ const routers =  [
                 component: Home,
                 exact: true,
                 key:'Home',
-            },
-            // {
-            //     path: "/test",
-            //     component: AppTest,
-            //     exact: true,
-            //     key:'Home',
-            // },
-            {
-                path: "/dynamic",
-                component: DynamicDetail,
-                exact: true,
-                key:'DynamicDetail',
             },
             {
                 path: "/workspacePage",

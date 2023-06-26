@@ -5,15 +5,14 @@ import {inject, observer} from "mobx-react";
 import "./structureStyle.scss"
 import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
-// import {Profile} from "tiklab-eam-ui";
 import IconCommon from "../../../common/IconCommon";
+import dataStructureStore from "../store/DataStructureStore";
 
 /**
  * @description：数据结构页
  * @date: 2021-07-29 09:54
  */
 const DataStructure = (props) => {
-    const {dataStructureStore} = props;
     const {findDataStructureList,deleteDataStructure,dataStructureList} = dataStructureStore;
 
     const columns = [
@@ -312,4 +311,4 @@ const DataStructure = (props) => {
     )
 }
 
-export default inject('dataStructureStore')(observer(DataStructure));
+export default observer(DataStructure);

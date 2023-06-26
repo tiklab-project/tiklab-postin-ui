@@ -6,14 +6,13 @@ import {ApxMethodEdit} from "../../api/http/definition";
 import CategoryEdit from './CategoryEdit';
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "tiklab-core-ui";
-
+import categoryStore from "../store/CategoryStore";
 /**
  *  目录树
  */
 const CategoryTree = (props) => {
-    const { categoryStore,apiRecentStore } = props;
-    const { findCategoryList, deleteCategory,categoryList } = categoryStore;
-    const {apiRecent} = apiRecentStore;
+    const { findCategoryList, deleteCategory,categoryList,apiRecent } = categoryStore;
+
 
 
     const [expandedTree, setExpandedTree] = useState([]);
@@ -45,7 +44,7 @@ const CategoryTree = (props) => {
             workspace:{id:workspaceId},
             user:{id:getUser().userId},
             apix:{id:item.id},
-            // protocolType:record.apix.protocolType
+            // protocolType:record.apiRecent.protocolType
         }
         apiRecent(params)
 
@@ -256,4 +255,4 @@ const CategoryTree = (props) => {
 }
 
 
-export default inject('categoryStore',"apiRecentStore")(observer(CategoryTree));
+export default observer(CategoryTree);

@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
 import FormDataTableCommon from "../../../../../common/tableCommon/components/FormDataTableCommon";
-
+import formParamTestStore from "../store/FormParamTestStore";
 /**
  * 测试页
  * formdata
  */
 const FormParamTest = (props) =>{
-    const { formParamTestStore } = props;
     
     const {
         formParamTestList,
@@ -28,4 +27,4 @@ const FormParamTest = (props) =>{
     );
 }
 
-export default inject('formParamTestStore')(observer(FormParamTest));
+export default observer(FormParamTest);

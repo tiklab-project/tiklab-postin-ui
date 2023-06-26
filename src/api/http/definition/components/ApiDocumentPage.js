@@ -10,12 +10,11 @@ import IconBtn from "../../../../common/iconBtn/IconBtn";
 import {Breadcrumb, Space, Tag} from "antd";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 import "../../document/components/shareStyle.scss"
-
+import apxMethodStore from "../store/ApxMethodStore";
 /**
  * 接口文档页面
  */
 const ApiDocumentPage = (props) =>{
-    const {apxMethodStore} = props;
     const { findApxMethod } = apxMethodStore;
     const [apiDoc, setApiDoc] = useState();
 
@@ -114,7 +113,7 @@ const ApiDocumentPage = (props) =>{
                     </div>
                     {/*<div className={"share-box-right-content-item-detail"}>*/}
                     {/*    <div className={"share-detail-title"}>状态:</div>*/}
-                    {/*    <div style={{color:` ${apiDoc?.apix?.status?.color}`}}>{apiDoc?.apix?.status?.name}</div>*/}
+                    {/*    <div style={{color:` ${apiDoc?.apiRecent?.status?.color}`}}>{apiDoc?.apiRecent?.status?.name}</div>*/}
                     {/*</div>*/}
                     <div className={"share-box-right-content-item-detail"}>
                         {
@@ -166,4 +165,4 @@ const ApiDocumentPage = (props) =>{
 
 }
 
-export default inject("apxMethodStore")(observer(ApiDocumentPage));
+export default observer(ApiDocumentPage);

@@ -10,22 +10,18 @@ import TestResultCommon from "../../api/http/test/common/TestResultCommon";
 import {execute} from "../../api/http/test/common/dtAction";
 import {DownOutlined} from "@ant-design/icons";
 import SaveToApi from "./saveToApi";
-
+import instanceStore from "../../api/http/test/instance/store/InstanceStore";
 const { Option } = Select;
-
+import quickTestStore from "../store/QuickTestStore";
+import tabQuickTestStore from "../store/TabQuickTestStore";
 /**
  * 快捷测试页
  */
 const TestdetailQuickTest = (props) =>{
-    const {
-        sendRequest,
-        instanceStore,
-        quickTestStore,
-        tabQuickTestStore
-    } = props;
+    const {sendRequest} = props;
 
     const {createInstance,findInstanceList} = instanceStore;
-    const { getRequestInfo, getResponseInfo, setResponseShow,isResponseShow,getInstance,getResponseError } = quickTestStore;
+    const { getRequestInfo, getResponseInfo, getResponseError } = quickTestStore;
     const {
         updateBaseInfo,activeKey,baseInfo, headerList,queryList,requestBodyType,
         formList,formUrlList,rawInfo,preScript,afterScript,assertList
@@ -231,16 +227,4 @@ const TestdetailQuickTest = (props) =>{
     )
 }
 
-export default inject(
-    "instanceStore",
-    "quickTestStore",
-    "headerQuickTestStore",
-    "queryQuickTestStore",
-    "requestBodyQuickTestStore",
-    "formDataQuickTestStore",
-    "formUrlencodedQuickTestStore",
-    "jsonQuickTestStore",
-    "rawQuickTestStore",
-    "preScriptQuickTestStore",
-    "tabQuickTestStore"
-    )(observer(TestdetailQuickTest))
+export default observer(TestdetailQuickTest)

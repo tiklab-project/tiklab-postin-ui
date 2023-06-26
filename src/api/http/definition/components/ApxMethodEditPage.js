@@ -15,16 +15,20 @@ import ProtocolType from "../../../../common/ProtocolType";
 import {getVersionInfo} from "tiklab-core-ui";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 import GlobalParamModal from "../../../../support/globalParam/globalParamModal";
+import categoryStore from "../../../../category/store/CategoryStore";
+import apxMethodStore from "../store/ApxMethodStore";
+import apxMethodStatusStore from "../../../../support/apiStatus/store/ApxMethodStatusStore";
 
 const {Option} = Select;
 const {TextArea} = Input
 const {TabPane} = Tabs;
 
+
 /**
  * 接口编辑页
  */
 const ApxMethodEditPage = (props) => {
-    const { apxMethodStore,categoryStore,userSelectStore,apxMethodStatusStore ,pluginsStore} = props;
+    const { userSelectStore ,pluginsStore} = props;
     const {findCategoryList,findCategoryTreeList} = categoryStore;
     const { findApxMethod,updateApxMethod} = apxMethodStore;
     const { findUserSelectPage,userSelectList } = userSelectStore;
@@ -582,9 +586,4 @@ const ApxMethodEditPage = (props) => {
     )
 }
 
-export default inject(
-    'apxMethodStore',
-    'categoryStore',
-    "userSelectStore",
-    "apxMethodStatusStore"
-)(observer(ApxMethodEditPage));
+export default inject("userSelectStore")(observer(ApxMethodEditPage));

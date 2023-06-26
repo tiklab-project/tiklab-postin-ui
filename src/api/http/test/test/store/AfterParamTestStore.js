@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 
-export  class AfterParamTestStore {
+class AfterParamTestStore {
     @observable afterParamTestInfo ;
 
     @action
@@ -15,4 +15,6 @@ export  class AfterParamTestStore {
 
 }
 
-export const AFTER_PARAM_TEST_STORE = 'afterParamTestStore';
+let afterParamTestStore = new  AfterParamTestStore()
+
+export default afterParamTestStore;

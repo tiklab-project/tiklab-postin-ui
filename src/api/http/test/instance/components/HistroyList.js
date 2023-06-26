@@ -7,9 +7,11 @@ import {getUser} from "tiklab-core-ui";
 import {TextMethodType} from "../../../../../common/MethodType";
 import "./instanceStyle.scss"
 import IconCommon from "../../../../../common/IconCommon";
+import instanceStore from "../store/InstanceStore";
+
 
 const HistoryList = (props) =>{
-    const {instanceStore,testcaseId} = props;
+    const {testcaseId} = props;
     const {findInstanceList,instanceList,deleteInstance} = instanceStore;
 
     const userId = getUser().userId;

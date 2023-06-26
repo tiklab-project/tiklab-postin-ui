@@ -1,9 +1,10 @@
-import { Button, Modal } from 'antd';
+import { Modal } from 'antd';
 import React, { useState } from 'react';
 import {inject, observer} from "mobx-react";
+import dataStructureStore from "../store/DataStructureStore";
 
 const ModeModal = (props) => {
-    const {dataStructureStore,changeType,preKey} = props;
+    const {changeType,preKey} = props;
     const {findDataStructureList,dataStructureList} = dataStructureStore;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,4 +73,4 @@ const ModeModal = (props) => {
     );
 };
 
-export default inject("dataStructureStore")(observer(ModeModal));
+export default observer(ModeModal);

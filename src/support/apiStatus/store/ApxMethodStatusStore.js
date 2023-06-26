@@ -1,11 +1,10 @@
 import {observable, action} from "mobx";
 import {Axios} from "tiklab-core-ui";
 
-
 /**
  * 接口状态 store
  */
-export class ApxMethodStatusStore {
+class ApxMethodStatusStore {
 
     @observable apiStatusList = [];
     @observable apiStatusSourceList=[];
@@ -107,5 +106,5 @@ export class ApxMethodStatusStore {
     }
 }
 
-
-export const APXMETHOD_STATUS_STORE = 'apxMethodStatusStore';
+let apxMethodStatusStore = new ApxMethodStatusStore();
+export default apxMethodStatusStore;

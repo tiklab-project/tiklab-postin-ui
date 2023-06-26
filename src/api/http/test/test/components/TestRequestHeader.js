@@ -5,13 +5,12 @@ import {headerParamDictionary} from "../../../../../common/dictionary/dictionary
 import {uuid} from "../../../../../common/utils/createId";
 import IconCommon from "../../../../../common/IconCommon";
 import {ExTable} from "../../../../../common/EditTable";
-
+import requestHeaderTestStore from "../store/RequestHeaderTestStore";
 /**
  * 测试页
  * 请求头
  */
 const RequestHeader = (props) =>{
-    const { requestHeaderTestStore } = props;
 
     const {
         saveList,
@@ -109,4 +108,4 @@ const RequestHeader = (props) =>{
     );
 }
 
-export default inject('requestHeaderTestStore')(observer(RequestHeader));
+export default observer(RequestHeader);

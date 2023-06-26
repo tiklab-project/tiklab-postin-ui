@@ -1,10 +1,10 @@
 
 import React, {useEffect, useState} from 'react';
-import { observer, inject } from "mobx-react";
+import {inject, observer} from "mobx-react";
 import {Form, Button, Input, Row, Col, Select} from 'antd';
 import {Axios} from "tiklab-core-ui";
 import {toWorkspaceDetail} from "./WorkspaceFn";
-
+import workspaceRecentStore from "../store/WorkspaceRecentStore";
 
 const {TextArea} = Input
 const {Option} = Select;
@@ -22,10 +22,8 @@ const tailLayout = {
  * 空间添加页面
  */
 const WorkspaceEdit = (props) => {
-    const { workspaceStore, workspaceRecentStore } = props;
-    const {
-        createWorkspace,
-     } = workspaceStore;
+    const {workspaceStore} = props;
+    const {createWorkspace} = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
 
     const [form] = Form.useForm();
@@ -209,4 +207,4 @@ const WorkspaceEdit = (props) => {
     );
 };
 
-export default inject('workspaceStore',"workspaceRecentStore")(observer(WorkspaceEdit));
+export default inject('workspaceStore')(observer(WorkspaceEdit));

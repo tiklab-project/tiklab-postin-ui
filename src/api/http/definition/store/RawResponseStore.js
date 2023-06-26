@@ -6,7 +6,7 @@ import {Axios} from "tiklab-core-ui";
  * http
  * 响应中raw store
  */
-export class RawResponseStore {
+class RawResponseStore {
 
     @observable rawResponseInfo;
     @observable apxMethodId = '';
@@ -53,4 +53,6 @@ export class RawResponseStore {
     
 }
 
-export const RAWRESPONSE_STORE = 'rawResponseStore';
+let rawResponseStore = new RawResponseStore()
+
+export default rawResponseStore;

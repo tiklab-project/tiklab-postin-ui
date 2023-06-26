@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {Avatar, Dropdown, Menu} from "antd";
-import {Search} from "../../container";
+
 import {AppLink} from "tiklab-integration-ui"
 import {getUser} from "tiklab-core-ui";
-import {inject, observer} from "mobx-react";
 import HeaderMenu from "./HeaderMenu";
 import logo from "../../assets/img/postinlog.png";
 import MessageDrawer from "../../setting/message/MessageDrawer";
 import {QuestionCircleOutlined, RightOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
+import Search from "./search/components/Search";
 
 /**
  * 页面头部

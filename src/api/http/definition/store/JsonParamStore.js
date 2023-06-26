@@ -7,7 +7,7 @@ import {Axios} from "tiklab-core-ui";
  * http
  * json store
  */
-export class JsonParamStore {
+class JsonParamStore {
 
     @observable jsonParamList = [];
     @observable jsonParamDataSource = [];
@@ -156,4 +156,6 @@ export class JsonParamStore {
 
 
 
-export const JSONPARAM_STORE = 'jsonParamStore';
+let jsonParamStore =  new JsonParamStore();
+
+export default jsonParamStore;

@@ -6,7 +6,7 @@ import ExSelect from "../../../../common/ExSelect";
 import {ExTable}from '../../../../common/EditTable';
 import DataTypeSelect from "../../../../common/DataTypeSelect";
 import IconCommon from "../../../../common/IconCommon";
-
+import formUrlencodedStore from "../store/FormUrlencodedStore";
 /**
  * 定义
  * http
@@ -14,7 +14,6 @@ import IconCommon from "../../../../common/IconCommon";
  */
 const FormUrlencoded = (props) =>{
 
-    const { formUrlencodedStore } = props;
     const {
         findFormUrlencodedList,
         deleteFormUrlencoded,
@@ -227,4 +226,4 @@ const FormUrlencoded = (props) =>{
 
 
 
-export default inject('formUrlencodedStore')(observer(FormUrlencoded));
+export default observer(FormUrlencoded);

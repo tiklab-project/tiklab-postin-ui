@@ -3,13 +3,12 @@ import React, {useEffect} from 'react';
 import { observer, inject } from 'mobx-react';
 import ScriptCommon from "../../../../../common/tableCommon/components/ScriptCommon";
 import {Form} from "antd";
-
+import afterParamTestStore from "../store/AfterParamTestStore";
 /**
  * 测试页
  * 后置脚本
  */
 const TestAfterParam = (props) => {
-    const {afterParamTestStore}  = props;
     const {getAfterInfo,setAfterInfo} = afterParamTestStore;
 
     const [form] = Form.useForm();
@@ -32,4 +31,4 @@ const TestAfterParam = (props) => {
     )
 }
 
-export default inject('afterParamTestStore')(observer(TestAfterParam));
+export default observer(TestAfterParam);

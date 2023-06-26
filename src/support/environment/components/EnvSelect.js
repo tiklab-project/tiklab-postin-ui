@@ -2,14 +2,13 @@ import React, {useEffect, useState} from "react";
 import {Divider, Select, Tooltip} from "antd";
 import {inject, observer} from "mobx-react";
 import EvnMana from "./Environment";
-
+import environmentStore from "../store/environmentStore";
 const { Option } = Select;
 
 /**
  * 环境选择
  */
 const EnvSelect = (props) =>{
-    const { environmentStore} = props;
 
     const { findEnvironmentList, envSourceList,getTestEnvUrl,testEnvUrl } = environmentStore;
 
@@ -70,4 +69,4 @@ const EnvSelect = (props) =>{
     )
 }
 
-export default inject("environmentStore")(observer(EnvSelect));
+export default observer(EnvSelect);

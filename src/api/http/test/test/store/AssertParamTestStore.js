@@ -3,7 +3,7 @@ import {TableCommonStore} from "../../../../../common/tableCommon/store/tableCom
 
 const tableCommonStore = new TableCommonStore();
 
-export class AssertParamTestStore {
+class AssertParamTestStore {
     @observable assertParamTestList = [];
 
 
@@ -29,5 +29,5 @@ export class AssertParamTestStore {
     
 }
 
-
-export const ASSERTPARAM_TEST_STORE = 'assertParamTestStore';
+let assertParamTestStore = new AssertParamTestStore();
+export default assertParamTestStore;

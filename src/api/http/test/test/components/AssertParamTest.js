@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import AssertTableCommon from "../../../../../common/tableCommon/components/AssertTableCommon";
-
+import assertParamTestStore from "../store/AssertParamTestStore";
 /**
  * 测试页
  * 断言表格
  */
 const AssertParamTest = (props) =>{
-    const { assertParamTestStore } = props;
     const {
         getAssertTestList,
         assertParamTestList,
@@ -32,4 +31,4 @@ const AssertParamTest = (props) =>{
 }
 
 
-export default inject('assertParamTestStore')(observer(AssertParamTest));
+export default observer(AssertParamTest);

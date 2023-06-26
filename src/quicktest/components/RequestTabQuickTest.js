@@ -1,8 +1,6 @@
-import React, {useEffect} from "react";
-import {inject, observer} from "mobx-react";
+import React from "react";
 import HeaderQuickTest from "./HeaderQuickTest";
 import QueryQuickTest from "./QueryQuickTest";
-
 import PreQuickTest from "./PreQuickTest";
 import AfterQuickTest from "./AfterQuickTest";
 import AssertQuickTest from "./AssertQuickTest";
@@ -28,4 +26,4 @@ const RequestTabQuickTest = (props) =>{
     )
 }
 
-export default inject("requestBodyQuickTestStore")(observer(RequestTabQuickTest));
+export default RequestTabQuickTest;

@@ -12,15 +12,14 @@ import {
     processQueryData
 } from "./instanceDataProcess";
 import {bodyTypeJsonDictionary as bodyTypeJsonDic} from "../../common/dictionary/dictionary";
-
-
-
+import instanceStore from "../../api/http/test/instance/store/InstanceStore";
+import quickTestStore from "../store/QuickTestStore";
+import tabQuickTestStore from "../store/TabQuickTestStore";
 /**
  * 快捷测试
  * 左侧目录
  */
 const LeftNavListQuickTest =(props)=>{
-    const {instanceStore,quickTestStore,tabQuickTestStore} = props;
     const {findInstanceList,instanceList,deleteAllInstance,deleteInstance,findInstance} = instanceStore;
     const {setResponseShow} = quickTestStore;
     const {tabPaneInfo,setTabPaneInfo} = tabQuickTestStore
@@ -249,4 +248,4 @@ const LeftNavListQuickTest =(props)=>{
 
 }
 
-export default inject("instanceStore","quickTestStore","tabQuickTestStore")(observer(LeftNavListQuickTest));
+export default observer(LeftNavListQuickTest);

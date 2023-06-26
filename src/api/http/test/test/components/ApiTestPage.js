@@ -11,7 +11,7 @@ const ApiTestPage =(props)=>{
     /**
      * 通过代理接口发送测试
      */
-    const getRes = async (data) =>{
+    const sendTest = async (data) =>{
         let response ;
 
         response= await localProxySendTest("/request",data)
@@ -19,7 +19,7 @@ const ApiTestPage =(props)=>{
     }
 
     return(
-        <ApiTestContent {...props}   getRes={getRes}/>
+        <ApiTestContent {...props}   sendTest={sendTest}/>
     )
 }
 

@@ -8,7 +8,7 @@ let assertCommonStore = new AssertCommonStore();
 /**
  * 快捷测试 store
  */
-export  class QuickTestStore {
+class QuickTestStore {
     @observable status = '';
     @observable time = '';
     @observable assertResponse = [];
@@ -186,4 +186,5 @@ export  class QuickTestStore {
 
 }
 
-export const QUICKTEST_STORE = 'quickTestStore';
+let quickTestStore = new QuickTestStore();
+export default quickTestStore;

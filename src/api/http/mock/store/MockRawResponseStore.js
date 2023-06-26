@@ -5,7 +5,7 @@ import {Axios} from "tiklab-core-ui";
  * mock
  * 响应中raw store
  */
-export class MockRawResponseStore {
+class MockRawResponseStore {
 
     @observable mockRawResponseInfo ;
     @observable mockId = '';
@@ -48,4 +48,5 @@ export class MockRawResponseStore {
     
 }
 
-export const MOCK_RAWRESPONSE_STORE = 'mockRawResponseStore';
+let mockRawResponseStore = new MockRawResponseStore()
+export default mockRawResponseStore;

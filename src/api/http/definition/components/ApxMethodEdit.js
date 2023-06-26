@@ -11,6 +11,8 @@ import {methodDictionary} from "../../../../common/dictionary/dictionary";
 import {TextMethodType} from "../../../../common/MethodType";
 import IconBtn from "../../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../../common/IconCommon";
+import categoryStore from "../../../../category/store/CategoryStore";
+import apxMethodStore from "../store/ApxMethodStore";
 
 const {Option} = Select;
 const {TextArea} = Input;
@@ -22,14 +24,11 @@ const {TextArea} = Input;
  */
 const ApxMethodEdit = (props) => {
     const {
-        apxMethodStore,
-        categoryStore,
         setEdit,
         httpId,
-        categoryItemId,
-        pagination
+        categoryItemId
     } =props;
-    const {setIsAddTab,isAddTab,findApxMethod,updateApxMethod,createApxMethod,findApxMethodListByApix} = apxMethodStore;
+    const {findApxMethod,updateApxMethod,createApxMethod,findApxMethodListByApix} = apxMethodStore;
 
     const { findCategoryList,categoryList } = categoryStore;
 
@@ -247,4 +246,4 @@ const ApxMethodEdit = (props) => {
     )
 }
 
-export default inject('apxMethodStore','categoryStore')(observer(ApxMethodEdit));
+export default observer(ApxMethodEdit);

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { observer, inject } from "mobx-react";
+import { observer } from "mobx-react";
 import { Space, Popconfirm} from 'antd';
 import {ExTable} from "../../../../common/EditTable";
 import IconCommon from "../../../../common/IconCommon";
-
+import mockJsonParamStore from "../store/MockJsonParamStore";
 /**
  * mock
  * json
  */
 const JsonParamMock = (props) =>{
-    const { mockJsonParamStore } = props;
     const { 
         findJsonParamMockList, 
         deleteJsonParamMock, 
@@ -179,4 +178,4 @@ const JsonParamMock = (props) =>{
 }
 
 
-export default inject('mockJsonParamStore')(observer(JsonParamMock));
+export default observer(JsonParamMock);

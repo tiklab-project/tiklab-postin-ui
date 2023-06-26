@@ -197,3 +197,83 @@ table .icon{
         color: #48a8d9;
     }
 }
+
+.ws-img-icon{
+    width: 40px;
+    height: 40px;
+}
+
+.workspace-icon{
+    width:var(--pi-icon-x);
+    height:var(--pi-icon-x);
+    background: white;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+
+
+.home-box-item-detail{
+    padding: 10px;
+    min-height: 130px;
+
+    .home-recent-box{
+        display: flex;
+        align-items: center;
+
+        .home-recent-item{
+            height: 100px;
+            width: 210px;
+            border-radius: var(--pi-border-radius) ;
+            margin: 0 20px 10px 0;
+            background: #f5f5f5;
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 2px solid #ffffff00;
+
+
+            &-left{
+                display: flex;
+                align-items: center;
+
+                &-name{
+                    margin: 0 0 0 10px;
+                    font-size: var(--pi-font-size-16);
+                    font-weight: bold;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+
+            &-num{
+                padding: 10px;
+                display: flex;
+                align-items: center;
+
+                &-title{
+                    font-size: 13px;
+                    color: #9b9b9b;
+                    margin: 0 10px 0 0;
+                }
+            }
+        }
+
+        .home-recent-item:hover{
+            border-radius: var(--pi-border-radius) var(--pi-border-radius) 0 0;
+            border-bottom: 2px solid var(--pi-base-color);
+            transition: 1s;
+        }
+
+        .ant-empty{
+            margin: 0 auto;
+        }
+
+    }
+}
+
+.wscontant-contant{
+    flex:1;
+    overflow: auto;
+}

@@ -1,11 +1,10 @@
 import { observable,  action } from "mobx";
 import {Axios} from "tiklab-core-ui";
 
-
 /**
  * 枚举结构 store
  */
-export class EnumParamDSStore {
+class EnumParamDSStore {
 
     @observable enumParamDSList = [];
 
@@ -68,4 +67,5 @@ export class EnumParamDSStore {
     }
 }
 
-export const ENUMPARAMDS_STORE = 'enumParamDSStore';
+let enumParamDSStore = new EnumParamDSStore()
+export default enumParamDSStore;

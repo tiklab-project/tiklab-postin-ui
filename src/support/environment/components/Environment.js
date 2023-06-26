@@ -3,12 +3,11 @@ import React, {useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
 import {Table, Space, Popconfirm, Drawer, Modal} from 'antd';
 import {ExTable} from "../../../common/EditTable";
-
+import environmentStore from "../store/environmentStore";
 /**
  * 环境管理
  */
 const EvnMana = (props) => {
-    const { environmentStore } = props;
     const {
         findEnvironmentList,
         environmentList,
@@ -196,4 +195,4 @@ const EvnMana = (props) => {
     )
 }
 
-export default inject('environmentStore')(observer(EvnMana));
+export default observer(EvnMana);

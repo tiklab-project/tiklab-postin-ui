@@ -3,7 +3,7 @@ import {TableCommonStore} from "../../../../../common/tableCommon/store/tableCom
 
 const tableCommonStore = new TableCommonStore();
 
-export  class FormParamTestStore {
+class FormParamTestStore {
     //选择后的项
     @observable formSelectList;
     //表格默认选择的行id
@@ -52,4 +52,5 @@ export  class FormParamTestStore {
 
 }
 
-export const FORMPARAM_TEST_STORE = 'formParamTestStore';
+let formParamTestStore = new FormParamTestStore();
+export default formParamTestStore;

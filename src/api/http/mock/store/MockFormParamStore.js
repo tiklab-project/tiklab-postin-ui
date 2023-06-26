@@ -5,7 +5,7 @@ import {Axios} from "tiklab-core-ui";
  * mock
  * formdata store
  */
-export class MockFormParamStore {
+class MockFormParamStore {
 
     @observable mockFormParamList = [];
     @observable mockDataSourceList = [];
@@ -82,4 +82,5 @@ export class MockFormParamStore {
     
 }
 
-export const MOCK_FORMPARAM_STORE = 'mockFormParamStore';
+let mockFormParamStore = new MockFormParamStore();
+export default mockFormParamStore;

@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Form, Input, Modal, Radio, Select, Tooltip} from "antd";
+import {Form, Input, Modal, Radio, Select} from "antd";
 import {dataTypeDictionary} from "../../../common/dictionary/dictionary";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../common/IconCommon";

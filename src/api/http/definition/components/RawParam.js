@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 import { Button, Form, Select} from 'antd';
 import {rawTypeDictionary} from "../../../../common/dictionary/dictionary";
 import CodeMirror from "../../../../common/CodeMirror";
-
+import rawParamStore from "../store/RawParamStore";
 const { Option } = Select;
 
 /**
@@ -13,7 +13,6 @@ const { Option } = Select;
  * 请求体中raw
  */
 const RawParam = (props) => {
-    const { rawParamStore }  = props;
     const { 
         createRawParam,
         updateRawParam,
@@ -152,4 +151,4 @@ const RawParam = (props) => {
     )
 }
 
-export default inject('rawParamStore')(observer(RawParam));
+export default observer(RawParam);

@@ -3,7 +3,8 @@ import {Button, Form, Input, Radio, Select, Space} from "antd"
 import {inject, observer} from "mobx-react";
 import Schema from "../../../../common/jsonSchema/Schema";
 import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
-
+import apiResponseStore from "../store/ApiResponseStore";
+import jsonSchemaStore from "../../../../common/jsonSchema/JsonSchemaStore";
 const {Option} = Select
 /**
  * 定义
@@ -11,7 +12,7 @@ const {Option} = Select
  * 响应结果
  */
 const ResponseResult = (props) =>{
-    const {apiResponseStore,jsonSchemaStore,resultId,httpId} = props;
+    const {resultId,httpId} = props;
     const {findApiResponse,updateApiResponse,findApiResponseList} = apiResponseStore;
     const {setSchemaData,schemaData} = jsonSchemaStore
 
@@ -158,4 +159,4 @@ const ResponseResult = (props) =>{
     )
 }
 
-export default inject("apiResponseStore","jsonSchemaStore")(observer(ResponseResult));
+export default observer(ResponseResult);

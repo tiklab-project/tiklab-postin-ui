@@ -4,12 +4,11 @@ import { observer, inject } from "mobx-react";
 import {Space,  Popconfirm, Table, Empty} from 'antd';
 import emptyImg from "../../../assets/img/empty.png";
 import EnumStructureEdit from "./EnumStructureEdit";
-
+import enumParamDSStore from "../store/EnumParamDSStore";
 /**
  * 枚举结构 可编辑表格
  */
 const EnumStructure = (props) =>{
-    const { enumParamDSStore } = props;
     const {
         findEnumParamDSList,
         deleteEnumParamDS,
@@ -107,4 +106,4 @@ const EnumStructure = (props) =>{
 }
 
 
-export default inject('enumParamDSStore')(observer(EnumStructure));
+export default observer(EnumStructure);

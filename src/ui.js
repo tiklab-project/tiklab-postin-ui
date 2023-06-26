@@ -21,7 +21,6 @@ const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/components/Tes
 const TestBox = AsyncComponent(() => import( "./api/http/test/test/components/ApiTestPage"));
 const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
 const WorkspaceSetting = AsyncComponent(() => import("./workspace/setting/WorkspaceSetting"));
-const DynamicDetail = AsyncComponent(() => import("./home/DynamicDetail"));
 const Version = AsyncComponent(() => import("./setting/version/Version"));
 const StructureDetail = AsyncComponent(() => import("./support/dataStructure/components/StructureDetail"));
 const Share = AsyncComponent(() => import("./api/http/document/components/Share"));
@@ -53,7 +52,6 @@ export {
     TestBox,
     LoginContent,
     WorkspaceSetting,
-    DynamicDetail,
     Version,
     StructureDetail,
     Share,

@@ -4,7 +4,7 @@ import {inject, observer} from "mobx-react";
 import {TextMethodType} from "../../common/MethodType";
 import {initTabPane} from "./quickTestCommon";
 import TestdetailQuickTest from "../components/TestdetailQuickTest";
-
+import tabQuickTestStore from "../store/TabQuickTestStore";
 const {TabPane} = Tabs;
 
 /**
@@ -12,7 +12,6 @@ const {TabPane} = Tabs;
  * tab
  */
 const TabsQuickTest = (props) =>{
-    const {tabQuickTestStore} = props;
     const {setTabPaneInfo,tabPaneInfo} = tabQuickTestStore;
 
     const [action, setAction] = useState(false);
@@ -115,4 +114,4 @@ const TabsQuickTest = (props) =>{
     );
 }
 
-export default inject("tabQuickTestStore")(observer(TabsQuickTest));
+export default observer(TabsQuickTest);

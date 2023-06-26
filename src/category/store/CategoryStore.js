@@ -1,9 +1,10 @@
 import { observable,  action } from "mobx";
 import {Axios} from "tiklab-core-ui";
+
 /**
  * 目录
  */
-export class CategoryStore{
+class CategoryStore{
     @observable categoryList = [];
     @observable categoryInfo = [];
     @observable workspaceId = '';
@@ -121,7 +122,19 @@ export class CategoryStore{
         }
     }
 
+
+    /**
+     * 设置最近访问的接口
+     */
+    @action
+    apiRecent = async (values) => {
+        const res = await Axios.post("/apiRecent/apiRecent",values);
+        if(res.code === 0 ) {
+            return res.data;
+        }
+    }
+
 }
 
-
-export const CATEGORY_STORE = 'categoryStore';
+let categoryStore =new CategoryStore();
+export default categoryStore;

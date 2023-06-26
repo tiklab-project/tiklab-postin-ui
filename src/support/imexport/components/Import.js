@@ -5,8 +5,10 @@ import {InboxOutlined} from '@ant-design/icons';
 import Ajv from 'ajv';
 import {messageFn} from "../../../common/messageCommon/MessageCommon";
 import {postmanJsonSchema20} from './postman-jsonSchema-2.0.js';
-const { Dragger } = Upload;
+import categoryStore from "../../../category/store/CategoryStore";
+import imexportStore from "../store/ImexportStore";
 
+const { Dragger } = Upload;
 const layout = {
     labelCol: {span: 0},
     wrapperCol: {span: 24},
@@ -20,7 +22,7 @@ const validate = ajv.compile(postmanJsonSchema20);
  * 导入postman
  */
 const Import = (props) => {
-    const {imexportStore,categoryStore,workspaceId} = props;
+    const {workspaceId} = props;
     const {findCategoryList} = categoryStore;
     const {importPostman} = imexportStore;
 
@@ -155,4 +157,4 @@ const Import = (props) => {
     )
 }
 
-export default inject('imexportStore',"categoryStore")(observer(Import));
+export default observer(Import);

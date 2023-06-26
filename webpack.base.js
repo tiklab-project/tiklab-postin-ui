@@ -7,7 +7,7 @@ const path = require('path');
 // const CheckVersion = require('check-package-version')
 const DIST_PATH = path.resolve(__dirname, 'dist');
 const envData = require(`./env/env-${process.env.API_ENV}`);
-
+const TerserPlugin = require('terser-webpack-plugin');
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';

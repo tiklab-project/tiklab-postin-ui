@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
 import {Input, Button, Form, Select} from 'antd';
-
+import mockRawResponseStore from "../store/MockRawResponseStore";
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -12,7 +12,7 @@ const { Option } = Select;
  */
 const RawResponseMock = (props) => {
     
-    const { mockRawResponseStore,radioValue }  = props;
+    const { radioValue }  = props;
 
     const { 
         createRawResponseMock, 
@@ -79,4 +79,4 @@ const RawResponseMock = (props) => {
     )
 }
 
-export default inject('mockRawResponseStore')(observer(RawResponseMock));
+export default observer(RawResponseMock);

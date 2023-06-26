@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { observer, inject } from "mobx-react";
-import {Table, Space, Checkbox, Popconfirm} from 'antd';
-import {components, column, ExTable} from '../../../../common/EditTable'
-
+import { observer } from "mobx-react";
+import { Space, Checkbox, Popconfirm} from 'antd';
+import { ExTable} from '../../../../common/EditTable'
+import responseHeaderStore from "../store/ResponseHeaderStore";
 /**
  * 定义
  * http
  * 响应头可编辑表格
  */
 const ResponseHeader = (props) =>{
-    const { responseHeaderStore } = props;
     const {
         findResponseHeaderList,
         deleteResponseHeader,
@@ -209,4 +208,4 @@ const ResponseHeader = (props) =>{
 }
 
 
-export default inject('responseHeaderStore')(observer(ResponseHeader));
+export default observer(ResponseHeader);

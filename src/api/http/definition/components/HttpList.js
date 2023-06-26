@@ -7,15 +7,17 @@ import MethodType from "../../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
 import CategoryDocDrawer from "../../../../category/components/CategoryDocDrawer";
 import {getUser} from "tiklab-core-ui";
+import categoryStore from "../../../../category/store/CategoryStore";
+import apxMethodStore from "../store/ApxMethodStore";
 
 /**
  * 点击左侧导航栏目录，查看的所在目录中的接口列表
  */
 const HttpList = (props) => {
-    const {categoryStore, apxMethodStore,apiRecentStore} = props;
-    const {findCategoryList} = categoryStore;
+
+    const {findCategoryList,apiRecent} = categoryStore;
     const {findApxMethodListByApix,apxMethodList,deleteApxMethod} = apxMethodStore;
-    const {apiRecent} = apiRecentStore;
+
     //接口列表头
     const columns = [
         {
@@ -95,7 +97,7 @@ const HttpList = (props) => {
             workspace:{id:workspaceId},
             user:{id:getUser().userId},
             apix:{id:record.id},
-            // protocolType:record.apix.protocolType
+            // protocolType:record.apiRecent.protocolType
         }
         apiRecent(params)
 
@@ -182,5 +184,5 @@ const HttpList = (props) => {
     )
 }
 
-export default inject('apxMethodStore','categoryStore','apiRecentStore')(observer(HttpList));
+export default observer(HttpList);
 

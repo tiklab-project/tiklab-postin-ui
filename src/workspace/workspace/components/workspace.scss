@@ -14,45 +14,6 @@ ul{
 /*------------------------------------------*/
 /*dragbox*/
 
-.left-tree-box{
-    position: relative;
-    display: flex;
-
-    .left-tree-content{
-        height: 100%;
-        width: 100%;
-        background: #fafafa;
-        border-right: 1px solid var(--pi-border-color);
-    }
-
-
-    .middleBox{
-        cursor: col-resize;
-        height: 100%;
-        width: 16px;
-        background: rgba(255, 255, 255, 0);
-        position: absolute;
-        display: flex;
-        justify-content: center;
-
-        .middleBox-show{
-            width: 2px;
-            height: 100%;
-        }
-    }
-
-    .middleBox:hover .middleBox-show{
-        background: var(--pi-base-color);
-    }
-}
-
-.workspace-icon{
-    width:var(--pi-icon-x);
-    height:var(--pi-icon-x);
-    background: white;
-    border-radius: 4px;
-    padding: 3px;
-}
 
 
 .pi-list-box{
@@ -398,12 +359,6 @@ ul{
    display: none;
 }
 
-.ws-detail-menu-serchbtn{
-    padding: 10px;
-    border-bottom:1px solid var(--pi-border-color) ;
-    display: flex;
-    justify-content: space-around;
-}
 .ws-detail-menu-protitle{
     display: flex;
     justify-content: space-around;
@@ -473,10 +428,6 @@ ul{
 }
 
 
-.wscontant-contant{
-    flex:1;
-    overflow: auto;
-}
 
 
 .pi-input{

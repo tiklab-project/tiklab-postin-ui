@@ -4,14 +4,13 @@ import {Space, Checkbox, Popconfirm} from 'antd';
 import { mockValueDictionary } from '../../../../common/dictionary/dictionary';
 import ExSelect from "../../../../common/ExSelect";
 import {ExTable} from '../../../../common/EditTable';
-
+import queryParamStore from "../store/QueryParamStore";
 /**
  * @Description: 请求参数中query可编辑表格
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-10 09:08:21
  */
 const QueryParam = (props) =>{
-    const { queryParamStore } = props;
     const {
         findQueryParamList,
         deleteQueryParam,
@@ -229,4 +228,4 @@ const QueryParam = (props) =>{
 }
 
 
-export default inject('queryParamStore')(observer(QueryParam));
+export default observer(QueryParam);

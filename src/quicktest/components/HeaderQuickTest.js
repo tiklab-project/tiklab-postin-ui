@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
 import HeaderTableCommon from "../../common/tableCommon/components/HeaderTableCommon";
-
+import tabQuickTestStore from "../store/TabQuickTestStore";
 /**
  * 快捷测试
  * 请求头
  */
 const HeaderQuickTest = (props) =>{
-    const {tabQuickTestStore } = props;
     const {headerList,saveRequestHeaderList,deleteRequestHeaderList} = tabQuickTestStore
 
     return (
@@ -23,4 +22,4 @@ const HeaderQuickTest = (props) =>{
     );
 }
 
-export default inject("tabQuickTestStore")(observer(HeaderQuickTest));
+export default observer(HeaderQuickTest);

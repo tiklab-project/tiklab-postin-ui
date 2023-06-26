@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 
-export  class RawParamTestStore {
+class RawParamTestStore {
     @observable rawParamTestInfo ;
 
     @action
@@ -15,4 +15,5 @@ export  class RawParamTestStore {
 
 }
 
-export const RAWPARAM_TEST_STORE = 'rawParamTestStore';
+let rawParamTestStore = new RawParamTestStore();
+export default rawParamTestStore;

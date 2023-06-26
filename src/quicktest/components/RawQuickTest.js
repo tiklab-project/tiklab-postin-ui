@@ -3,13 +3,12 @@ import React, {useEffect, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import RawParamCommon from "../../common/tableCommon/components/RawParamCommon";
 import {Form} from "antd";
-
+import tabQuickTestStore from "../store/TabQuickTestStore";
 /**
  * 快捷测试
  * 请求体中raw
  */
 const RawQuickTest = (props) => {
-    const { tabQuickTestStore }  = props;
     const {updateRawInfo,setRawInfo,rawInfo} = tabQuickTestStore;
 
     const [form] = Form.useForm();
@@ -37,4 +36,4 @@ const RawQuickTest = (props) => {
 }
 
 
-export default inject('tabQuickTestStore')(observer(RawQuickTest));
+export default observer(RawQuickTest);

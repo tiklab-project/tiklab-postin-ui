@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {Cascader, Form, Input, Modal} from "antd";
 import {inject, observer} from "mobx-react";
+import categoryStore from "../../category/store/CategoryStore";
+import quickTestStore from "../store/QuickTestStore";
+import tabQuickTestStore from "../store/TabQuickTestStore";
 
 const SaveToApi = (props) =>{
-    const { categoryStore,tabQuickTestStore,quickTestStore } = props;
     const { findCategoryList,categoryList } = categoryStore;
     const { baseInfo,headerList,queryList,requestBodyType,formList,formUrlList,rawInfo,preScript,afterScript } = tabQuickTestStore
     const { saveToApi } = quickTestStore
@@ -14,8 +16,8 @@ const SaveToApi = (props) =>{
     const workspaceId = localStorage.getItem('workspaceId');
     const [cascaderCategoryId, setCascaderCategoryId] = useState();
 
-    const showModal = () => {
-        findCategoryList(workspaceId);
+    const showModal = async () => {
+        await findCategoryList(workspaceId);
 
         setIsModalOpen(true);
     };
@@ -111,4 +113,4 @@ debugger
     )
 }
 
-export default inject("quickTestStore","categoryStore","tabQuickTestStore")(observer(SaveToApi));
+export default observer(SaveToApi);

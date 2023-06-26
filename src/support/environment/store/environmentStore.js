@@ -4,7 +4,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 接口环境 store
  */
-export class EnvironmentStore {
+class EnvironmentStore {
 	@observable environmentList = [];
 	@observable envSourceList = [];
 	@observable dataLength;
@@ -111,5 +111,6 @@ export class EnvironmentStore {
 
 }
 
-export const ENVIRONMENT_STORE = 'environmentStore';
+let environmentStore = new EnvironmentStore();
+export default environmentStore;
 

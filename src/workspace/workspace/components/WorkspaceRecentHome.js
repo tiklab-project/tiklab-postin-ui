@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {getUser} from "tiklab-core-ui";
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
 import {toWorkspaceDetail} from "./WorkspaceFn";
 import {Empty} from "antd";
 import emptyImg from "../../../assets/img/empty.png";
+import workspaceRecentStore from "../store/WorkspaceRecentStore";
 
 /**
  * 最近访问的空间
  */
 const WorkspaceRecentHome = (props) =>{
-    const {workspaceRecentStore} = props;
     const {findWorkspaceRecentList,workspaceRecent}=workspaceRecentStore;
 
     const userId = getUser().userId;
@@ -76,4 +76,4 @@ const WorkspaceRecentHome = (props) =>{
     )
 }
 
-export default inject("workspaceRecentStore")(observer(WorkspaceRecentHome));
+export default observer(WorkspaceRecentHome);

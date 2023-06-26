@@ -1,22 +1,20 @@
 
 import React, {useEffect, useRef, useState} from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import {Button, Form} from 'antd';
 import CodeMirror from "../../../../common/CodeMirror";
-
+import rawResponseStore from "../store/RawResponseStore";
 /**
  *定义
  * http
  * 响应中raw
  */
 const RawResponse = (props) => {
-    const { rawResponseStore, radioValue }  = props;
 
     const { 
         createRawResponse, 
         updateRawResponse, 
-        findRawResponse, 
-        rawResponseInfo 
+        findRawResponse
     } = rawResponseStore;
 
     const ediTextRef = useRef(null);
@@ -98,4 +96,4 @@ const RawResponse = (props) => {
     )
 }
 
-export default inject('rawResponseStore')(observer(RawResponse));
+export default observer(RawResponse);

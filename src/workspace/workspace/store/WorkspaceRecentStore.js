@@ -4,7 +4,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 最近访问的空间 store
  */
-export class WorkspaceRecentStore {
+class WorkspaceRecentStore {
 	@observable recentList = [];
 
 
@@ -43,10 +43,8 @@ export class WorkspaceRecentStore {
 		}
 	}
 
-
-
-
 }
 
-export const WORKSPACE_RECENT_STORE = 'workspaceRecentStore';
+let workspaceRecentStore = new WorkspaceRecentStore();
+export default workspaceRecentStore;
 

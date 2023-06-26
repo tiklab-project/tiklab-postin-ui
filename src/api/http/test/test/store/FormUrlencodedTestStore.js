@@ -1,9 +1,6 @@
 import { observable, action } from "mobx";
-import {TableCommonStore} from "../../../../../common/tableCommon/store/tableCommonStore";
 
-const tableCommonStore = new TableCommonStore();
-
-export  class FormUrlencodedTestStore {
+ class FormUrlencodedTestStore {
     //选择后的项
     @observable formUrlSelectList;
     //表格默认选择的行id
@@ -50,4 +47,5 @@ export  class FormUrlencodedTestStore {
     }
 }
 
-export const FORM_URLENCODED_TEST_STORE = 'formUrlencodedTestStore';
+ let formUrlencodedTestStore = new FormUrlencodedTestStore();
+ export default formUrlencodedTestStore

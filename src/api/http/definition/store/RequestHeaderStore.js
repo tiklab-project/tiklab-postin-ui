@@ -6,7 +6,7 @@ import {Axios} from "tiklab-core-ui";
  * http
  * 请求头 store
  */
-export  class RequestHeaderStore {
+class RequestHeaderStore {
     @observable requestHeaderList = [];
     @observable requestHeaderInfo;
     @observable requestHeaderDataSource = [];
@@ -88,4 +88,5 @@ export  class RequestHeaderStore {
 
 }
 
-export const REQUESTHEADER_STORE = 'requestHeaderStore';
+let requestHeaderStore = new RequestHeaderStore()
+export default requestHeaderStore;

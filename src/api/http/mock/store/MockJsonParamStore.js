@@ -6,7 +6,7 @@ import {Axios} from "tiklab-core-ui";
  * mock
  * json store
  */
-export class MockJsonParamStore {
+class MockJsonParamStore {
 
     @observable mockJsonParamList = [];
     @observable mockJsonParamInfo ;
@@ -98,4 +98,5 @@ export class MockJsonParamStore {
     
 }
 
-export const MOCK_JSONPARAM_STORE = 'mockJsonParamStore';
+let mockJsonParamStore = new MockJsonParamStore()
+export default mockJsonParamStore;

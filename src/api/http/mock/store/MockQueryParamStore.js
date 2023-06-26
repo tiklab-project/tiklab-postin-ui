@@ -5,7 +5,7 @@ import {Axios} from "tiklab-core-ui";
  * mock
  * 查询参数 store
  */
-export class MockQueryParamStore {
+class MockQueryParamStore {
 
     @observable mockQueryParamList = [];
     @observable mockQueryParamInfo;
@@ -98,4 +98,5 @@ export class MockQueryParamStore {
     
 }
 
-export const MOCK_QUERYPARAM_STORE = 'mockQueryParamStore';
+let mockQueryParamStore = new MockQueryParamStore()
+export default mockQueryParamStore;

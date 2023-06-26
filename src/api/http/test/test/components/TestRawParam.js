@@ -3,13 +3,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import RawParamCommon from "../../../../../common/tableCommon/components/RawParamCommon";
 import {Form} from "antd";
-
+import rawParamTestStore from "../store/RawParamTestStore";
 /**
  * 测试页
  * 请求体中raw
  */
 const RawParamTest = (props) => {
-    const { rawParamTestStore, bodyType }  = props;
+    const {  bodyType }  = props;
     const {getRawInfo,setRawInfo,rawParamTestInfo} = rawParamTestStore;
 
     const [form] = Form.useForm();
@@ -36,4 +36,4 @@ const RawParamTest = (props) => {
     )
 }
 
-export default inject('rawParamTestStore')(observer(RawParamTest));
+export default observer(RawParamTest);

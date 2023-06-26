@@ -4,7 +4,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * mock store
  */
-export class MockStore {
+class MockStore {
     @observable mockList = [];
     @observable apxMethodId='';
     @observable mockInfo=[];
@@ -81,4 +81,5 @@ export class MockStore {
 
 }
 
-export const MOCKSTORE = 'mockStore';
+let mockStore = new MockStore()
+export default mockStore;

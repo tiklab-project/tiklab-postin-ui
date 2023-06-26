@@ -3,13 +3,12 @@ import React, {useEffect} from 'react';
 import { observer, inject } from 'mobx-react';
 import ScriptCommon from "../../../../../common/tableCommon/components/ScriptCommon";
 import {Form} from "antd";
-
+import preParamTestStore from "../store/PreParamTestStore";
 /**
  * 测试页
  * 前置脚本
  */
 const TestPreParam = (props) => {
-    const { preParamTestStore }  = props;
     const { getPreInfo,setPreInfo } = preParamTestStore;
 
     const [form] = Form.useForm();
@@ -34,4 +33,4 @@ const TestPreParam = (props) => {
 
 }
 
-export default inject('preParamTestStore')(observer(TestPreParam));
+export default observer(TestPreParam);

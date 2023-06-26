@@ -3,12 +3,11 @@ import { observer, inject } from "mobx-react";
 import { Form, Modal, Input } from 'antd';
 import IconBtn from "../../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../../common/IconCommon";
-
+import mockStore from "../store/MockStore";
 /**
  * mock添加 弹窗
  */
 const MockEdit = (props) => {
-    const { mockStore, } = props;
     const { findMock, createMock, updateMock, findMockPage} = mockStore;
 
     const [visible, setVisible] = useState(false);
@@ -114,4 +113,4 @@ const MockEdit = (props) => {
     )
 }
 
-export default inject('apxMethodStore')(observer(MockEdit));
+export default observer(MockEdit);

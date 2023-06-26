@@ -5,12 +5,11 @@ import {inject, observer} from "mobx-react";
 import DetailHeader from "../../../common/DetailHeader";
 import IconCommon from "../../../common/IconCommon";
 import {Breadcrumb} from "antd";
-
+import dataStructureStore from "../store/DataStructureStore";
 /**
  * 结构页详情
  */
 const StructureDetail = (props) => {
-    const {dataStructureStore} = props
     const {findDataStructure} = dataStructureStore
 
 
@@ -75,4 +74,4 @@ const StructureDetail = (props) => {
 }
 
 
-export default  inject("dataStructureStore")(observer(StructureDetail));
+export default observer(StructureDetail);

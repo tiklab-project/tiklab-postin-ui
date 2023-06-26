@@ -3,12 +3,11 @@ import ShareTree from "./ShareTree";
 import {inject, observer} from "mobx-react";
 import DocContent from "../../../../common/apiDoc/DocContent";
 import noneImg from "../../../../assets/img/nonedoc.png";
-
+import shareStore from "../store/ShareStore";
 /**
  *接口文档公共组件
  */
 const ApiDoc = (props) =>{
-    const {shareStore,targetId} = props
     const {findShareTree} = shareStore;
 
     const [apiDoc, setApiDoc] = useState();
@@ -74,4 +73,4 @@ const ApiDoc = (props) =>{
     )
 }
 
-export default inject("shareStore")(observer(ApiDoc));
+export default observer(ApiDoc);

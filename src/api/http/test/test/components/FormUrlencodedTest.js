@@ -2,13 +2,12 @@
 import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
 import FormUrlencodedTableCommon from "../../../../../common/tableCommon/components/FormUrlencodedTableCommon";
-
+import formUrlencodedTestStore from "../store/FormUrlencodedTestStore";
 /**
  * 测试页
  * FormUrlencoded表格
  */
 const FormUrlencodedTest = (props) =>{
-    const { formUrlencodedTestStore } = props;
 
     const {
         formUrlencodedTestList,
@@ -30,4 +29,4 @@ const FormUrlencodedTest = (props) =>{
     );
 }
 
-export default inject('formUrlencodedTestStore')(observer(FormUrlencodedTest));
+export default observer(FormUrlencodedTest);

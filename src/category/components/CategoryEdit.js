@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Modal,Form,Input} from 'antd';
-
+import categoryStore from "../store/CategoryStore";
 /**
  * 目录的编辑与添加弹窗
  */
 const CategoryEdit =(props)=>{
-    const { categoryStore,type } = props;
+    const {type } = props;
     const {findCategory, createCategory, updateCategory, categoryId} = categoryStore;
 
     const [visible, setVisible] = useState(false);
@@ -87,4 +87,4 @@ const CategoryEdit =(props)=>{
 
 }
 
-export default inject('categoryStore')(observer(CategoryEdit));
+export default observer(CategoryEdit);

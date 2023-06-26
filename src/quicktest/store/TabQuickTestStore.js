@@ -2,7 +2,7 @@ import {action, observable} from "mobx";
 import {initTabPane} from "../common/quickTestCommon";
 
 
-export class TabQuickTestStore {
+class TabQuickTestStore {
     @observable activeKey=0;
     //接口调试中的tab页初始值
     @observable tabPaneInfo = {
@@ -224,5 +224,5 @@ export class TabQuickTestStore {
     }
 }
 
-
-export const TAB_QUICK_TEST_STORE = 'tabQuickTestStore';
+let tabQuickTestStore = new TabQuickTestStore()
+export default tabQuickTestStore;

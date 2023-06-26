@@ -1,17 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
-import { toJS } from 'mobx';
 import { Input, Button, Form } from 'antd';
 const { TextArea } = Input;
+import mockJsonResponseStore from "../store/MockJsonResponseStore";
 
 /**
  * mock
  * 响应json
  */
 const MockJsonResponse = (props) => {
-    const { mockJsonResponseStore }  = props;
-
     const { 
         createJsonResponseMock, 
         updateJsonResponseMock, 
@@ -67,4 +65,4 @@ const MockJsonResponse = (props) => {
     )
 }
 
-export default inject('mockJsonResponseStore')(observer(MockJsonResponse));
+export default observer(MockJsonResponse);

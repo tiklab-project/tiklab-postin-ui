@@ -1,19 +1,17 @@
 import React from "react";
 import {inject, observer} from "mobx-react";
 import FormParamTest from './TestFormParam';
-import JsonParamTest from "./TestJsonParam";
 import FormUrlencodedTest from "./FormUrlencodedTest";
 import RawParamTest from "./TestRawParam";
 import {bodyTypeJsonDictionary as bodyTypeJson, mediaTypeDictionary} from "../../../../../common/dictionary/dictionary";
 import RequestNoBody from "../../../../../common/tableCommon/components/RequestNoBody";
-
+import requestBodyTestStore from "../store/RequestBodyTestStore";
 /**
  * 测试页
  * 请求体
  * FormUrlencoded
  */
 const RequestBodyTest = (props)=>{
-    const { requestBodyTestStore } = props;
 
     const { bodyType,mediaType } = requestBodyTestStore;
 
@@ -47,8 +45,6 @@ const RequestBodyTest = (props)=>{
                 return <FormParamTest />
             case bodyTypeJson.formUrlencoded:
                 return <FormUrlencodedTest />
-            case bodyTypeJson.json:
-                return <JsonParamTest />
             case bodyTypeJson.raw:
                 return <RawParamTest />
             // case 'binary':
@@ -73,4 +69,4 @@ const RequestBodyTest = (props)=>{
     )
 }
 
-export default inject('requestBodyTestStore')(observer(RequestBodyTest));
+export default observer(RequestBodyTest);

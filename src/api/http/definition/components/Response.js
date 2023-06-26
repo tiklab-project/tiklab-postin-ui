@@ -4,7 +4,7 @@ import { Tabs} from 'antd';
 import ResponseResult from "./ResponseResult";
 import ResponseTabEdit from "./ResponseTabEdit";
 import noneImg from "../../../../assets/img/none.png";
-
+import apiResponseStore from "../store/ApiResponseStore";
 const { TabPane } = Tabs;
 
 /**
@@ -13,7 +13,6 @@ const { TabPane } = Tabs;
  * 输出参数 返回头部与返回结果的切换
  */
 const Response = (props) =>{
-    const { apiResponseStore } = props;
     const {
         findApiResponseList,
         apiResponseList,
@@ -95,4 +94,4 @@ const Response = (props) =>{
     )
 }
 
-export default inject("apiResponseStore")(observer(Response));
+export default observer(Response);

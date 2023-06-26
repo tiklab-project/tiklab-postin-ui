@@ -6,7 +6,7 @@ import ExSelect from "../../../../common/ExSelect";
 import {headerParamDictionary} from "../../../../common/dictionary/dictionary";
 import {ExTable} from "../../../../common/EditTable";
 import IconCommon from "../../../../common/IconCommon";
-
+import mockResponseHeaderStore from "../store/MockResponseHeaderStore";
 /**
  * mock
  * 响应头可编辑表格
@@ -15,7 +15,6 @@ import IconCommon from "../../../../common/IconCommon";
  * @constructor
  */
 const MockResponseHeader = (props) => {
-    const { mockResponseHeaderStore } = props;
     const {
         findResponseHeaderMockList,
         deleteResponseHeaderMock,
@@ -191,4 +190,4 @@ const MockResponseHeader = (props) => {
     );
 }
 
-export default inject('mockResponseHeaderStore')(observer(MockResponseHeader));
+export default observer(MockResponseHeader);

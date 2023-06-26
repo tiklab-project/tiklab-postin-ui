@@ -1,33 +1,20 @@
 import React, {useEffect, useState} from "react";
 import {Empty, List, Skeleton} from "antd";
-import {Axios, getUser} from "tiklab-core-ui";
-import {inject, observer} from "mobx-react";
+import {Axios} from "tiklab-core-ui";
 import emptyImg from "../assets/img/empty.png";
 
 /**
  * 首页中动态
  */
 const DynamicWidget = (props) =>{
-    const {screen,workspaceStore} = props;
-    const {findWorkspaceJoinList} = workspaceStore;
+    const {screen} = props;
 
     const [initLoading, setInitLoading] = useState(true);
     const [list, setList] = useState([]);
 
     useEffect(async () => {
-        let workspaceList=[];
-        if(!screen){
-            let res = await findWorkspaceJoinList({userId: getUser().userId})
-            if(res){
-                res.map(item=>{
-                    workspaceList.push( item.id)
-                })
-            }
-        }
-        let contentList = { workspaceId:workspaceList }
-
         let params = {
-            content:screen?screen:contentList,
+            content:screen,
             pageParam: {
                 pageSize: 8,
                 currentPage:1
@@ -95,4 +82,4 @@ const DynamicWidget = (props) =>{
     );
 }
 
-export default inject("workspaceStore")(observer(DynamicWidget));
+export default DynamicWidget;

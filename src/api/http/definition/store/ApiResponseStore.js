@@ -4,7 +4,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 接口响应结果store
  */
-export class ApiResponseStore {
+class ApiResponseStore {
     //响应体类型
     @observable bodyType;
 
@@ -62,4 +62,6 @@ export class ApiResponseStore {
     }
 }
 
-export const APIRESPONSE_STORE = 'apiResponseStore';
+let apiResponseStore = new ApiResponseStore();
+export default apiResponseStore;
+

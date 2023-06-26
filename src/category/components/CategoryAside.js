@@ -5,14 +5,13 @@ import { Input, Button, Dropdown, Menu} from 'antd';
 import {SearchOutlined} from "@ant-design/icons";
 import IconCommon from "../../common/IconCommon";
 import Import from "../../support/imexport/components/Import";
-
+import categoryStore from "../store/CategoryStore";
 /**
  * @Description: 空间详情左侧导航栏
  * @Author: sunxiancheng
  */
 
 const CategoryAside = (props) => {
-    const { categoryStore } = props;
     const { findCategoryList } = categoryStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
@@ -64,4 +63,4 @@ const CategoryAside = (props) => {
 }
 
 
-export default inject( 'categoryStore')(observer(CategoryAside)) ;
+export default observer(CategoryAside);

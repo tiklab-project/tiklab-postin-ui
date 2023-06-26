@@ -5,7 +5,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 数据结构
  */
-export class DataStructureStore {
+class DataStructureStore {
     @observable dataStructureList = [];
     @observable dataStructureInfo = {};
     @observable totalRecord ;
@@ -66,4 +66,5 @@ export class DataStructureStore {
 
 }
 
-export const DATASTRUCTURE_STORE = 'dataStructureStore';
+let dataStructureStore = new DataStructureStore();
+export default dataStructureStore;

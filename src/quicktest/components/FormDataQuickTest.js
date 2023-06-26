@@ -1,13 +1,12 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { observer, inject } from "mobx-react";
 import FormDataTableCommon from "../../common/tableCommon/components/FormDataTableCommon";
-
+import tabQuickTestStore from "../store/TabQuickTestStore";
 /**
  * 快捷测试
  * formdata
  */
 const FormDataQuickTest = (props) =>{
-    const { tabQuickTestStore } = props;
     const {
         formList,
         saveFormList,
@@ -23,4 +22,4 @@ const FormDataQuickTest = (props) =>{
     );
 }
 
-export default inject('tabQuickTestStore')(observer(FormDataQuickTest));
+export default observer(FormDataQuickTest);

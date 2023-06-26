@@ -2,16 +2,14 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import FormDataQuickTest from "./FormDataQuickTest";
 import FormUrlencodedQuickTest from "./FormUrlencodedQuickTest";
-import JsonQuickTest from "./JsonQuickTest";
 import RawQuickTest from "./RawQuickTest";
 import RequestBodyCom from "../../common/tableCommon/components/RequestBodyCom";
-
+import tabQuickTestStore from "../store/TabQuickTestStore";
 /**
  * 快捷测试
  * 请求体
  */
 const RequestBodyQuickTest  = (props) =>{
-    const { tabQuickTestStore } = props;
     const {
         updateBodyType,
         requestBodyType
@@ -41,4 +39,4 @@ const RequestBodyQuickTest  = (props) =>{
     )
 }
 
-export default inject('tabQuickTestStore')(observer(RequestBodyQuickTest));
+export default observer(RequestBodyQuickTest);

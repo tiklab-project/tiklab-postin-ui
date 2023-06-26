@@ -78,12 +78,7 @@ const SystemContent = (props) =>{
                     purviewCode: "log",
                 },
             ],
-        },
-        {
-            title: '版本与许可证',
-            icon: 'modular',
-            id: '/systemManagement/version'
-        },
+        }
     ]
 
     const devMenu = [

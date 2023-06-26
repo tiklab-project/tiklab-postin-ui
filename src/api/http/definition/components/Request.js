@@ -27,4 +27,4 @@ const Request = (props) => {
     )
 }
 
-export default inject("requestHeaderStore")(observer(Request));
+export default observer(Request);

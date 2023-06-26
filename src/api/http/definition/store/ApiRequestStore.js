@@ -5,7 +5,7 @@ import {Axios} from "tiklab-core-ui";
  * 接口请求公共store
  * 包含请求体类型 前置 后置
  */
-export class ApiRequestStore {
+class ApiRequestStore {
     @observable radioValue ="";
     @observable bodyType;
     @observable afterScript;
@@ -64,4 +64,5 @@ export class ApiRequestStore {
 
 }
 
-export const APIREQUEST_STORE = 'apiRequestStore';
+let apiRequestStore =new ApiRequestStore();
+export default apiRequestStore;

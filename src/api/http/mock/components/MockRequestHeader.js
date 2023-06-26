@@ -5,14 +5,13 @@ import {headerParamDictionary} from "../../../../common/dictionary/dictionary";
 import ExSelect from "../../../../common/ExSelect";
 import {ExTable} from "../../../../common/EditTable";
 import IconCommon from "../../../../common/IconCommon";
-
+import mockRequestHeaderStore from "../store/MockRequestHeaderStore";
 
 /**
  * mock
  * 请求头可编辑表格
  */
 const RequestHeaderMock = (props) =>{
-    const { mockRequestHeaderStore } = props;
     const { 
         findRequestHeaderMockList, 
         deleteRequestHeaderMock, 
@@ -189,4 +188,4 @@ const RequestHeaderMock = (props) =>{
     ); 
 }
 
-export default inject( 'mockRequestHeaderStore' )(observer(RequestHeaderMock));
+export default observer(RequestHeaderMock);

@@ -3,11 +3,12 @@ import {Button, Form, Input, Modal, Tag} from "antd";
 import {inject, observer} from "mobx-react";
 import { SketchPicker } from 'react-color';
 import "./apiStatus.scss"
+import apxMethodStatusStore from "../store/ApxMethodStatusStore";
 /**
  * 接口状态的弹框
  */
 const ApiStatusModal = (props) =>{
-    const {apxMethodStatusStore} = props;
+
     const {findApiStatusList,createApiStatus,deleteApiStatus} = apxMethodStatusStore;
 
     const [form] = Form.useForm();
@@ -155,4 +156,4 @@ const ApiStatusModal = (props) =>{
     )
 }
 
-export default inject('apxMethodStatusStore')(observer(ApiStatusModal));
+export default observer(ApiStatusModal);

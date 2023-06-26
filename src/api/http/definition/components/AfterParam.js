@@ -2,14 +2,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import {Button, Form} from 'antd';
 import CodeMirror from "../../../../common/CodeMirror";
-
+import apiRequestStore from "../store/ApiRequestStore";
 /**
  * @Description: 接口定义 后置脚本
  * @Author: sunxiancheng
  * @LastEditTime: 2021-05-08 17:42:56
  */
 const AfterScript = (props) => {
-    const {apiRequestStore }  = props;
     const {createApiRequest, updateApiRequest, findApiRequest} = apiRequestStore;
 
     const ediTextRef = useRef(null);
@@ -85,4 +84,4 @@ const AfterScript = (props) => {
     )
 }
 
-export default inject("apiRequestStore")(observer(AfterScript));
+export default observer(AfterScript);

@@ -6,12 +6,12 @@ import IconBtn from "../../common/iconBtn/IconBtn";
 import CategoryDocTree from "./CategoryDocTree";
 import DocContent from "../../common/apiDoc/DocContent";
 import noneImg from "../../assets/img/nonedoc.png"
-
+import categoryStore from "../store/CategoryStore";
 /**
  * 文档中目录
  */
 const CategoryDocDrawer = (props) =>{
-    const {categoryStore,categoryId} = props;
+    const {categoryId} = props;
     const { findCategoryAddSon } = categoryStore;
     const [open, setOpen] = useState(false);
     const [treeList, setTreeList] = useState();
@@ -20,7 +20,7 @@ const CategoryDocDrawer = (props) =>{
 
     const showDrawer = async () => {
         let res = await findCategoryAddSon(categoryId);
-        // setName(res.apix.name)
+        // setName(res.apiRecent.name)
         setName(res[0].name)
         setTreeList(res)
 
@@ -98,4 +98,4 @@ const CategoryDocDrawer = (props) =>{
 
 }
 
-export default inject("categoryStore")(observer(CategoryDocDrawer));
+export default observer(CategoryDocDrawer);

@@ -4,7 +4,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 历史实例 store
  */
-export class InstanceStore {
+class InstanceStore {
 
     @observable instanceList = [];
     @observable instanceId = '';
@@ -111,4 +111,5 @@ export class InstanceStore {
 }
 
 
-export const INSTANCE_STORE = 'instanceStore';
+let instanceStore = new InstanceStore()
+export default instanceStore;

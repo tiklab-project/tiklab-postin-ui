@@ -11,7 +11,7 @@ import { Category } from "../category";
 
 import { ApxMethodDetail } from "../api/http/definition";
 
-import{ Test, TestCase, TestCaseDetail }from '../api/http/test';
+import{ Test, }from '../api/http/test';
 
 import { Mock,MockDetail } from "../api/http/mock"
 
@@ -46,13 +46,11 @@ export {
 
     LayoutQuickTest,TabsQuickTest,TestdetailQuickTest,WorkspaceDetailInitPage,
 
-    Test, TestCase, TestCaseDetail,
+    Test,
 
     Mock, MockDetail,
 
     SystemContent,SysManage,
     LoginOut,LoginContent,
-
-
 }
 

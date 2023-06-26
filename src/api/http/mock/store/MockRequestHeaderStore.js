@@ -5,7 +5,7 @@ import {Axios} from "tiklab-core-ui";
  * mock
  * 请求头 store
  */
-export class MockRequestHeaderStore {
+class MockRequestHeaderStore {
 
     @observable mockRequestHeaderList = [];
     @observable mockRequestHeaderInfo;
@@ -97,4 +97,5 @@ export class MockRequestHeaderStore {
 
 }
 
-export const MOCK_REQUESTHEADER_STORE = 'mockRequestHeaderStore';
+let mockRequestHeaderStore = new MockRequestHeaderStore()
+export default mockRequestHeaderStore;

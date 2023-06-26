@@ -3,7 +3,7 @@ import {AssertCommonStore} from "../../common/AssertCommonStore";
 
 let assertCommonStore = new AssertCommonStore();
 
-export class TestStore {
+class TestStore {
     @observable proxyItem;
 
     @observable status = '';
@@ -85,4 +85,5 @@ export class TestStore {
     }
 }
 
-export const TEST_STORE = 'testStore'
+let testStore = new TestStore();
+export default testStore;

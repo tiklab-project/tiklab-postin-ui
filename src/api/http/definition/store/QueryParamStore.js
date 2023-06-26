@@ -6,7 +6,7 @@ import {Axios} from "tiklab-core-ui";
  * http
  * 查询参数 store
  */
-export class QueryParamStore {
+class QueryParamStore {
 
     @observable queryParamList = [];
     @observable queryParamInfo = [];
@@ -105,4 +105,5 @@ export class QueryParamStore {
 
 }
 
-export const QUERYPARAM_STORE = 'queryParamStore';
+let queryParamStore = new QueryParamStore()
+export default queryParamStore;

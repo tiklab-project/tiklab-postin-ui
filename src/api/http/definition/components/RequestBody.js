@@ -1,17 +1,15 @@
 import React, {useEffect, useState} from "react";
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
 import RequestBodyCom from "../../../../common/tableCommon/components/RequestBodyCom";
 import FormParam from "./FormParam";
 import FormUrlencoded from "./FormUrlencoded";
-import JsonParam from "./JsonParam";
 import RawParam from "./RawParam";
-
+import apiRequestStore from "../store/ApiRequestStore";
 
 /**
  *接口定义中的请求体
  */
 const RequestBody  = (props) =>{
-    const { apiRequestStore } = props;
     const {
         findApiRequest,
         updateApiRequest,
@@ -52,4 +50,4 @@ const RequestBody  = (props) =>{
     )
 }
 
-export default inject('apiRequestStore')(observer(RequestBody));
+export default observer(RequestBody);

@@ -1,3 +1,8 @@
+/*
+ * @Description:
+ * @Author: sunxiancheng
+ * @LastEditTime: 2021-05-31 11:24:55
+ */
 
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
@@ -11,29 +16,28 @@ module.exports = merge(baseWebpackConfig, {
     mode:'development',
     entry: [
         'react-hot-loader/patch',
-        `webpack-dev-server/client?http://0.0.0.0:${PORT}/`,
+        `webpack-dev-server/client?http://127.0.0.1:${PORT}/`,
         path.resolve(__dirname, './src/index.js')
     ],
-
     optimization:{
         namedModules: true,
         namedChunks: true,
         runtimeChunk: {
             name: 'runtime'
         },
-        splitChunks:{
+        splitChunks: {
             name: false,
             chunks: 'all',
             minChunks: 1,
-            cacheGroups:{
+            cacheGroups: {
                 default: false,
-                vendors:{
+                vendors: {
                     name: 'common',
                     chunks: 'all',
                     minChunks: 2,
                     test: /node_modules/
                 },
-                styles:{
+                styles: {
                     name: 'common',
                     chunks: 'all',
                     minChunks: 2,
@@ -46,18 +50,17 @@ module.exports = merge(baseWebpackConfig, {
     },
 
     devServer: {
-        contentBase: path.join(__dirname, 'plugin'), //开发服务运行时的文件根目录
-        port:PORT,//端口
+        contentBase: path.join(__dirname, 'plugins'), //开发服务运行时的文件根目录
+        port:PORT,
+        historyApiFallback: true,
         inline: true,
-        hot: true,//热更新
+        hot: true,
         host: '0.0.0.0',
         hotOnly:true,
-        open:false,//自动打开浏览器
-        historyApiFallback: true,
         disableHostCheck: true,
         proxy:{
             "/request":{
-                target:"http://192.168.10.3:8090"
+                target:"http://192.168.10.3:8082"
             },
         }
     },

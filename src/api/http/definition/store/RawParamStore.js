@@ -7,7 +7,7 @@ import {Axios} from "tiklab-core-ui";
  * http
  * raw store
  */
-export class RawParamStore {
+class RawParamStore {
 
     @observable rawParamInfo;
     @observable apxMethodId;
@@ -55,4 +55,5 @@ export class RawParamStore {
     
 }
 
-export const RAWPARAM_STORE = 'rawParamStore';
+let rawParamStore = new RawParamStore()
+export default rawParamStore;

@@ -4,7 +4,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 接口store
  */
-export class ApxMethodStore {
+class ApxMethodStore {
 
     @observable apxMethodList = [];
     @observable versionList = [];
@@ -15,12 +15,6 @@ export class ApxMethodStore {
     @observable verParams= {};
     @observable currentVersion = {};
     @observable oldVersion = {};
-    // @observable isAddTab = false;
-
-    // @action
-    // setIsAddTab = (data) =>{
-    //     this.isAddTab = data
-    // }
 
     /**
      * 根据查询对象按分页查询接口列表
@@ -94,14 +88,17 @@ export class ApxMethodStore {
 	deleteApxMethod = async (id) => {
         const param = new FormData();
         param.append('id', id);
-		const res = await Axios.post("/apix/deleteApix",param)
+		const res = await Axios.post("/apiRecent/deleteApix",param)
         if( res.code === 0 ){
             return res
         }
     }
 
 
+
+
 }
 
 
-export const APXMETHOD_STORE = 'apxMethodStore';
+let apxMethodStore = new ApxMethodStore();
+export default apxMethodStore;

@@ -4,12 +4,11 @@ import {inject, observer} from "mobx-react";
 import {Empty, List, Skeleton, Tag} from "antd";
 import emptyImg from "../../../assets/img/empty.png";
 import IconCommon from "../../../common/IconCommon";
-
+import apiRecentStore from "../store/ApiRecentStore";
 /**
  * 最近访问的空间
  */
 const ApiRecentHome = (props) =>{
-    const {apiRecentStore} = props;
     const {findApiRecentList,apiRecent}=apiRecentStore;
 
     const userId = getUser().userId;
@@ -34,7 +33,7 @@ const ApiRecentHome = (props) =>{
             workspace:{id:workspaceId},
             user:{id:getUser().userId},
             apix:{id:apiId},
-            // protocolType:item.apix.protocolType
+            // protocolType:item.apiRecent.protocolType
         }
         apiRecent(params)
 
@@ -86,4 +85,4 @@ const ApiRecentHome = (props) =>{
     )
 }
 
-export default inject("apiRecentStore")(observer(ApiRecentHome));
+export default observer(ApiRecentHome);

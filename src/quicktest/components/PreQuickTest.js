@@ -3,13 +3,12 @@ import React, {useEffect} from 'react';
 import { observer, inject } from 'mobx-react';
 import ScriptCommon from "../../common/tableCommon/components/ScriptCommon";
 import {Form} from "antd";
-
+import tabQuickTestStore from "../store/TabQuickTestStore";
 /**
  * 快捷测试
  * 前置脚本
  */
 const PreQuickTest = (props) => {
-    const { tabQuickTestStore }  = props;
     const { updatePreScript,setPreScript } = tabQuickTestStore;
 
     const [form] = Form.useForm();
@@ -32,4 +31,4 @@ const PreQuickTest = (props) => {
 
 }
 
-export default  inject('tabQuickTestStore')(observer(PreQuickTest));
+export default observer(PreQuickTest);

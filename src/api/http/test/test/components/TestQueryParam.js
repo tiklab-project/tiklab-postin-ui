@@ -1,13 +1,12 @@
 import React from 'react';
 import { observer, inject } from "mobx-react";
 import QueryTableCommon from "../../../../../common/tableCommon/components/QueryTableCommon";
-
+import queryParamTestStore from "../store/QueryParamTestStore";
 /**
  * 测试页
  * 查询参数
  */
 const QueryParam = (props) =>{
-    const { queryParamTestStore } = props;
     const {
         queryParamTestList,
         saveList,
@@ -31,4 +30,4 @@ const QueryParam = (props) =>{
     ); 
 }
 
-export default inject('queryParamTestStore')(observer(QueryParam));
+export default observer(QueryParam);

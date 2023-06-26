@@ -4,7 +4,6 @@ import {renderRoutes} from "react-router-config";
 import {getUser} from "tiklab-core-ui";
 import './portalStyle.scss'
 import {inject, observer} from "mobx-react";
-import {EAM_STORE} from "tiklab-eam-ui/es/store";
 import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store';
 
 /**
@@ -48,4 +47,4 @@ const PageContent =(props)=> {
     )
 }
 
-export default inject(EAM_STORE,SYSTEM_ROLE_STORE)(observer(PageContent))
+export default inject(SYSTEM_ROLE_STORE)(observer(PageContent))

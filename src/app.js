@@ -17,7 +17,7 @@ import {Spin} from "antd";
 const App = (props) => {
      const {allStore,routers} = props;
 
-     const {i18n,t} = useTranslation();
+     const {i18n} = useTranslation();
 
      const [viable,setViable] = useState(false);
 
@@ -26,7 +26,6 @@ const App = (props) => {
          pluginStore:[],
          languageStore:[]
      });
-
 
      useEffect(() => {
          //type 默认是false，electron设置了type

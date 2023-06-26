@@ -4,19 +4,18 @@ import {Form, Button, Input, Select, Breadcrumb, InputNumber} from 'antd';
 import { MockRequest, MockResponse } from '../index';
 import { observer, inject } from 'mobx-react';
 import EdiText from "react-editext";
-import IconCommon from "../../../../common/IconCommon";
 import {dir} from "../../../../common/dictionary/dictionary";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 import IconBtn from "../../../../common/iconBtn/IconBtn";
 import {messageFn} from "../../../../common/messageCommon/MessageCommon";
-
+import responseMockStore from "../store/MockResponseStore";
+import mockStore from "../store/MockStore";
 const { Option } = Select;
 
 /**
  * mock详情页
  */
 const MockDetail = (props) =>{
-    const { mockStore, responseMockStore } = props;
     const { findMock, updateMock } = mockStore;
     const { findResponseMock, updateResponseMock } = responseMockStore;
 
@@ -188,4 +187,4 @@ const MockDetail = (props) =>{
 
 }
 
-export default inject('mockStore', 'responseMockStore')(observer(MockDetail));
+export default observer(MockDetail);

@@ -7,7 +7,7 @@ import {Axios} from "tiklab-core-ui";
  * http
  * 响应json store
  */
-export class JsonResponseStore {
+class JsonResponseStore {
 
     @observable jsonResponseList = [];
     @observable jsonResponseInfo = [];
@@ -137,4 +137,5 @@ export class JsonResponseStore {
 
 }
 
-export const JSONRESPONSE_STORE = 'jsonResponseStore';
+let jsonResponseStore = new JsonResponseStore()
+export default jsonResponseStore;

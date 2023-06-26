@@ -4,12 +4,12 @@ import {inject, observer} from "mobx-react";
 import {Option} from "antd/es/mentions";
 import ApiStatusModal from "./ApiStatusModal";
 import {CaretDownOutlined} from "@ant-design/icons";
-
+import apxMethodStatusStore from "../store/ApxMethodStatusStore";
 /**
  * 状态下拉选择框
  */
 const ApiStatusSelect = (props) =>{
-    const {apxMethodStatusStore,selectStatus,status} = props;
+    const {selectStatus,status} = props;
     const {findApiStatusList} = apxMethodStatusStore;
 
     const [showValidateStatus, setShowValidateStatus ] = useState()
@@ -89,4 +89,4 @@ const ApiStatusSelect = (props) =>{
     )
 }
 
-export default inject('apxMethodStatusStore')(observer(ApiStatusSelect));
+export default observer(ApiStatusSelect);

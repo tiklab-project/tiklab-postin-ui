@@ -4,7 +4,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * binary store
  */
-export class BinaryParamStore {
+class BinaryParamStore {
 
     @observable binaryParamList = [];
     @observable binaryParamInfo = [];
@@ -79,4 +79,5 @@ export class BinaryParamStore {
 
 }
 
-export const BINARY_PARAM_STORE = 'binaryParamStore';
+let binaryParamStore = new BinaryParamStore()
+export default binaryParamStore;

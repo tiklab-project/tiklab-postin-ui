@@ -1,8 +1,10 @@
-import React, {Fragment, useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef} from 'react';
 import { observer, inject } from 'mobx-react';
 import {Tabs, Radio, Form, Button} from 'antd';
 import MockResponseHeader from './MockResponseHeader';
 import CodeMirror from "../../../../common/CodeMirror";
+import responseMockStore from "../store/MockResponseStore";
+import responseResultMockStore from "../store/ResponseResultMockStore";
 const { TabPane } = Tabs;
 
 /**
@@ -10,7 +12,6 @@ const { TabPane } = Tabs;
  * 响应部分
  */
 const MockResponse = (props) => {
-    const { responseMockStore,responseResultMockStore } = props;
     const { 
         findResponseMock, 
         updateResponseMock,
@@ -127,4 +128,4 @@ const MockResponse = (props) => {
     
 }
 
-export default inject('responseMockStore',"responseResultMockStore")(observer(MockResponse));
+export default observer(MockResponse);

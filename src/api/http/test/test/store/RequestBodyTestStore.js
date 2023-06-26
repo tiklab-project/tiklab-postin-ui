@@ -1,7 +1,7 @@
 import { observable,  action } from "mobx";
 
 
-export class RequestBodyTestStore {
+class RequestBodyTestStore {
     @observable bodyTypeInfo;
     @observable bodyType;
     @observable mediaType;
@@ -29,5 +29,6 @@ export class RequestBodyTestStore {
 
 }
 
+let requestBodyTestStore = new RequestBodyTestStore();
 
-export const REQUESTBODY_TEST_STORE = 'requestBodyTestStore';
+export default requestBodyTestStore;

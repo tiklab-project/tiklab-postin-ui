@@ -7,10 +7,12 @@ import RequestBodyInstance from "./RequestBodyInstance";
 import RequestHeaderInstance from "./RequestHeaderInstance";
 import AssertInstance from "./AssertInstance";
 import {TextMethodType} from "../../../../../common/MethodType";
+import instanceStore from "../store/InstanceStore";
+
 const { TabPane } = Tabs;
 
 const InstanceDetail = (props) => {
-    const { instanceStore, instanceId } = props;
+    const {  instanceId } = props;
     const { findInstance } = instanceStore;
 
     const [visible, setVisible] = useState(false);
@@ -135,4 +137,4 @@ const InstanceDetail = (props) => {
     )
 }
 
-export default inject('instanceStore')(observer(InstanceDetail));
+export default observer(InstanceDetail);

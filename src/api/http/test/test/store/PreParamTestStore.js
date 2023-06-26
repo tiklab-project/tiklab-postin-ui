@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 
-export  class PreParamTestStore {
+class PreParamTestStore {
     @observable preParamTestInfo ;
 
     @action
@@ -16,4 +16,6 @@ export  class PreParamTestStore {
 
 }
 
-export const PRE_PARAM_TEST_STORE = 'preParamTestStore';
+let preParamTestStore = new PreParamTestStore()
+
+export default preParamTestStore;

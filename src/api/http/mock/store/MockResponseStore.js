@@ -6,7 +6,7 @@ import {Axios} from "tiklab-core-ui";
  * 响应公共 store
  * 包含httpcode 响应体类型
  */
-export class ResponseMockStore {
+class ResponseMockStore {
 
     @observable mockResponseInfo = [];
     @observable mockId = '';
@@ -49,5 +49,6 @@ export class ResponseMockStore {
     
 }
 
-export const MOCK_RESPONSE_STORE = 'responseMockStore';
+let responseMockStore =  new ResponseMockStore()
+export default responseMockStore;
 

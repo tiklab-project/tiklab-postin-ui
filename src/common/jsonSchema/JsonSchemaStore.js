@@ -4,7 +4,7 @@ import {action, observable} from "mobx";
 /**
  * json schema
  */
-export class JsonSchemaStore{
+class JsonSchemaStore{
     @observable schemaData={};
 
     /**
@@ -26,4 +26,5 @@ export class JsonSchemaStore{
 
 }
 
-export const JSON_SCHEMA_STORE = "jsonSchemaStore";
+let jsonSchemaStore = new JsonSchemaStore();
+export default jsonSchemaStore;

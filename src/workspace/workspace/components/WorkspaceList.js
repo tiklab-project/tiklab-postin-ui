@@ -7,16 +7,14 @@ import {getUser} from "tiklab-core-ui";
 import {toWorkspaceDetail} from "./WorkspaceFn";
 import emptyImg  from "../../../assets/img/empty.png"
 import Avatar from "../../../common/avatar/avatar";
-
-
+import workspaceFollowStore from "../store/WorkspaceFollowStore";
+import workspaceRecentStore from "../store/WorkspaceRecentStore";
 /**
  * 空间页
  */
 const WorkspaceList = (props) => {
-    const { workspaceStore,workspaceRecentStore,workspaceFollowStore,findList,selectItem,workspaceList } = props;
-
-    const {deleteWorkspace,settingMenuSelected } = workspaceStore;
-
+    const {workspaceStore, findList,selectItem,workspaceList } = props;
+    const {settingMenuSelected} = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const {createWorkspaceFollow,deleteWorkspaceFollow} = workspaceFollowStore;
 
@@ -30,7 +28,6 @@ const WorkspaceList = (props) => {
             dataIndex: "workspaceName",
             key: "workspaceName",
             width:"50%",
-            // align:"center",
             render: (text,record) =>(
                 <Space>
                     <img src={record.iconUrl} alt={"icon"} className={"workspace-icon"}/>
@@ -167,4 +164,4 @@ const WorkspaceList = (props) => {
     )
 }
 
-export default inject('workspaceStore',"workspaceFollowStore","workspaceRecentStore")(observer(WorkspaceList));
+export default inject('workspaceStore')(observer(WorkspaceList));

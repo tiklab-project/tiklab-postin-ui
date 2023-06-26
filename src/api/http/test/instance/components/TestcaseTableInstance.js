@@ -3,9 +3,11 @@ import React, {useEffect, useState} from "react";
 import InstanceDetail from "./InstanceDetail";
 import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
+import instanceStore from "../store/InstanceStore";
+
 
 const TestcaseTableInstance = (props) =>{
-    const {testcaseId,instanceStore} = props;
+    const {testcaseId} = props;
     const {findInstanceList} = instanceStore;
     const [instanceId, setInstanceId] = useState("");
     const [result, setResult] = useState("");
@@ -42,4 +44,4 @@ const TestcaseTableInstance = (props) =>{
 
 }
 
-export default inject("instanceStore")(observer(TestcaseTableInstance));
+export default observer(TestcaseTableInstance);

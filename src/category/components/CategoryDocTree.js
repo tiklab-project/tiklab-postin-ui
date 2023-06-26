@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import {inject, observer} from "mobx-react";
 import {CaretDownOutlined, CaretRightOutlined} from "@ant-design/icons";
-
+import apxMethodStore from "../../api/http/definition/store/ApxMethodStore";
 import {TextMethodType} from "../../common/MethodType";
 
 /**
  *文档中使用的目录树
  */
 const CategoryDocTree = (props) =>{
-    const { treeList,setApiDoc,apxMethodStore,categoryId } = props;
+    const { treeList,setApiDoc,categoryId } = props;
     const { findApxMethod } = apxMethodStore;
 
 
@@ -159,4 +159,4 @@ const CategoryDocTree = (props) =>{
     )
 }
 
-export default inject("categoryStore","apxMethodStore")(observer(CategoryDocTree));
+export default observer(CategoryDocTree);

@@ -6,14 +6,14 @@ import {inject, observer} from "mobx-react";
 import md5 from "js-md5"
 import IconBtn from "../../../../common/iconBtn/IconBtn";
 import copyMockUrl from "../../../../common/copyLink";
-
+import shareStore from "../store/ShareStore";
 const {Option} = Select;
 
 /**
  * 分享的弹框组件
  */
 const ShareModal  = (props) =>{
-    const {shareStore,targetId,targetType} = props;
+    const {targetId,targetType} = props;
     const {findShare,createShare,updateShare} =shareStore
 
     const [code, setCode] = useState();
@@ -198,4 +198,4 @@ const ShareModal  = (props) =>{
     )
 }
 
-export default inject("shareStore")(observer(ShareModal))
+export default observer(ShareModal)

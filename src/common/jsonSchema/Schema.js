@@ -1,13 +1,14 @@
 import React from "react";
 import "./schemaStyle.scss"
 import ToggleSchema from "./ToggleSchema";
-import {inject, observer} from "mobx-react";
-
+import {observer} from "mobx-react";
+import jsonSchemaStore from "./JsonSchemaStore";
+import apiResponseStore from "../../api/http/definition/store/ApiResponseStore";
 /**
  * schema
  */
 const Schema = (props) =>{
-    const {jsonSchemaStore,apiResponseStore,httpId,resultId} = props
+    const {httpId,resultId} = props
     const {schemaData,setSchemaData} =jsonSchemaStore
     const {updateApiResponse} =apiResponseStore
 
@@ -26,4 +27,4 @@ const Schema = (props) =>{
     )
 }
 
-export default inject("jsonSchemaStore","apiResponseStore")(observer(Schema));
+export default observer(Schema);

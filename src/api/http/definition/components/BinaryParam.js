@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import { Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import {getUser} from "tiklab-core-ui";
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
+import binaryParamStore from "../store/BinaryParamStore";
 
 /**
  * 定义
@@ -10,7 +11,6 @@ import {inject, observer} from "mobx-react";
  * binary
  */
 const BinaryParam = (props) => {
-    const {binaryParamStore} = props;
     const {findBinaryParamList,createBinaryParam,deleteBinaryParam} = binaryParamStore;
     const ticket = getUser().ticket;
     const apxMethodId = localStorage.getItem('apxMethodId');
@@ -66,4 +66,4 @@ const BinaryParam = (props) => {
     )
 }
 
-export default inject('binaryParamStore')(observer(BinaryParam));
+export default observer(BinaryParam);

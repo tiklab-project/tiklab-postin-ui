@@ -3,7 +3,7 @@ import {TableCommonStore} from "../../../../../common/tableCommon/store/tableCom
 
 const tableCommonStore = new TableCommonStore();
 
-export  class QueryParamTestStore {
+class QueryParamTestStore {
     //选择后的项
     @observable querySelectList;
     //表格默认选择的行id
@@ -59,4 +59,5 @@ export  class QueryParamTestStore {
 
 }
 
-export const QUERYPARAM_TEST_STORE = 'queryParamTestStore';
+let queryParamTestStore = new QueryParamTestStore();
+export default queryParamTestStore;

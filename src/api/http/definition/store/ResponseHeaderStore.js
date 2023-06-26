@@ -6,7 +6,7 @@ import {Axios} from "tiklab-core-ui";
  * http
  * 响应头 store
  */
-export class ResponseHeaderStore {
+class ResponseHeaderStore {
     @observable responseHeaderList = [];
     @observable responseHeaderInfo;
     @observable responseHeaderDataSource = [];
@@ -103,4 +103,5 @@ export class ResponseHeaderStore {
 
 }
 
-export const RESPONSEHEADER_STORE = 'responseHeaderStore';
+let responseHeaderStore = new ResponseHeaderStore()
+export default responseHeaderStore;

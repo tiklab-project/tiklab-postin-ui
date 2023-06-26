@@ -6,12 +6,11 @@ import './mock.scss';
 import copyMockUrl from "../../../../common/copyLink";
 // import {Profile} from "tiklab-eam-ui";
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
-
+import mockStore from "../store/MockStore";
 /**
  * 接口的Mock列表页
  */
 const Mock = (props) => {
-    const { mockStore } = props
     const { findMockPage, deleteMock,updateMock, mockList } = mockStore
     const columns = [
         {
@@ -170,4 +169,4 @@ const Mock = (props) => {
     )
 }
 
-export default inject('mockStore')(observer(Mock));
+export default observer(Mock);

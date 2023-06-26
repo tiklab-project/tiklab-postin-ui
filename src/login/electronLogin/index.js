@@ -12,7 +12,7 @@ import { Button, Layout} from 'antd';
 import {useTranslation} from "react-i18next";
 import LocalLogin from "./components/localLogin";
 import AccountLogin from "./components/accountLogin";
-import {EAM_STORE} from "tiklab-eam-ui/es/store";
+
 import './style/login.scss'
 import {useHasPointPlugin} from "tiklab-plugin-core-ui";
 
@@ -221,4 +221,4 @@ const ElectronLogin = props => {
         </Layout>
     )
 }
-export default inject(EAM_STORE)(observer(ElectronLogin))
+export default observer(ElectronLogin)

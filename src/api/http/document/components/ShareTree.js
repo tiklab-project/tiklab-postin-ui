@@ -160,4 +160,4 @@ const ShareTree = (props) => {
 }
 
 
-export default inject("shareStore")(observer(ShareTree));
+export default observer(ShareTree);

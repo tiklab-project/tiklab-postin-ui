@@ -5,7 +5,7 @@ import {Axios} from "tiklab-core-ui";
 /**
  * 导入导出 store
  */
-export class ImexportStore{
+class ImexportStore{
 
     /**
      * 导入
@@ -45,4 +45,5 @@ export class ImexportStore{
 
 }
 
-export const IM_EX_PORT_STORE = 'imexportStore';
+let imexportStore = new ImexportStore();
+export default imexportStore;

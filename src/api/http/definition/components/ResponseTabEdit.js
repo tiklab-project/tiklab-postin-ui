@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Modal, Form, Input, Select, Radio, Button} from 'antd';
+import apiResponseStore from "../store/ApiResponseStore";
 
 const {Option} = Select
 
@@ -12,7 +13,7 @@ const httpCodes = [200,201,403,404,410,422,500,502,503,504]
  * 响应中Tab添加
  */
 const ResponseTabEdit =(props)=>{
-    const { apiResponseStore,setActiveKey ,apxMethodId,apiResponseId} = props;
+    const { setActiveKey ,apxMethodId,apiResponseId} = props;
     const {findApiResponseList, createApiResponse,findApiResponse, updateApiResponse} = apiResponseStore;
 
     const [visible, setVisible] = useState(false);
@@ -133,4 +134,4 @@ const ResponseTabEdit =(props)=>{
 
 }
 
-export default inject('apiResponseStore')(observer(ResponseTabEdit));
+export default observer(ResponseTabEdit);

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { observer, inject } from "mobx-react";
+import { observer } from "mobx-react";
 import {Popconfirm, Space} from 'antd';
 import {ExTable} from "../../../../common/EditTable";
 import IconCommon from "../../../../common/IconCommon";
-
+import mockFormParamStore from "../store/MockFormParamStore";
 /**
  * 请求参数的可编辑表格
  */
 const FormParamMock = (props) =>{
-    const { mockFormParamStore } = props;
     const { 
         findFormParamMockList, 
         deleteFormParamMock, 
@@ -177,4 +176,4 @@ const FormParamMock = (props) =>{
     ); 
 }
 
-export default inject('mockFormParamStore')(observer(FormParamMock));
+export default observer(FormParamMock);

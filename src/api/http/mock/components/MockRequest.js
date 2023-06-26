@@ -5,17 +5,15 @@ import MockRequestHeader from './MockRequestHeader';
 import MockQueryParam from './MockQueryParam';
 import MockFormParam from './MockFormParamRequest';
 import JsonParamMock from './MockJsonParam';
-
+import requestMockStore from "../store/RequestMockStore";
 const { TabPane } = Tabs;
 
 /**
  * 输出参数 请求头部与请求参数的切换
  */
 const MockRequest = (props) => {
-    const { requestMockStore } =props;
     const { 
-        findRequestMock, 
-        createRequestMock, 
+        findRequestMock,
         updateRequestMock,
     } = requestMockStore; 
 
@@ -82,4 +80,4 @@ const MockRequest = (props) => {
     
 }
 
-export default inject('requestMockStore')(observer(MockRequest));
+export default observer(MockRequest);

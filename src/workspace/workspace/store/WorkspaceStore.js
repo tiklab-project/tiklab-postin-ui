@@ -1,7 +1,6 @@
 import { observable,  action } from "mobx";
 import {Axios} from "tiklab-core-ui";
 
-
 /**
  * @Description: 空间store
  * @Author: sunxiancheng
@@ -141,8 +140,6 @@ export class WorkspaceStore {
 	settingMenuSelected = (selected)=>{
 		this.settingItemSelected = selected;
 	}
-
-
 
 }
 
