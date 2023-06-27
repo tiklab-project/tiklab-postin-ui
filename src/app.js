@@ -8,18 +8,13 @@ import "./assets/iconfont/iconfont";
 import "./assets/iconfont/iconfont.css";
 import {useTranslation} from "react-i18next";
 import { PluginProvider,pluginLoader} from 'tiklab-plugin-core-ui';
-import {getUser} from "tiklab-core-ui";
 
 import resources from "./common/language/resource";
 
-import {Spin} from "antd";
-
 const App = (props) => {
-     const {allStore,routers} = props;
+     const {routers} = props;
 
      const {i18n} = useTranslation();
-
-     const [viable,setViable] = useState(false);
 
      const [pluginData,setPluginData] = useState({
          routes:routers,
@@ -34,28 +29,9 @@ const App = (props) => {
                  setPluginData(res)
              })
          }
-         setViable(true)
 
      }, []);
 
-
-     //获取系统权限
-     const userInfo = getUser();
-     if(userInfo && userInfo.userId) {
-         allStore.systemRoleStore.getSystemPermissions(userInfo.userId);
-     }
-
-
-     if (!viable) {
-         return <div style={{
-             "height":"100%",
-             "display":"flex",
-             "justifyContent":"center",
-             "alignItems":"center"
-         }}>
-             <Spin size="large"/>
-         </div>
-     }
 
      return(
          <PluginProvider store={pluginData}>

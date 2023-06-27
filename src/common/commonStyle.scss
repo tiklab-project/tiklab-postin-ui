@@ -249,3 +249,33 @@
         background: var(--pi-base-color);
     }
 }
+
+.content-margin{
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+    padding: 10px;
+
+    .content-margin-box{
+        margin: 0 auto;
+        border-radius:var(--pi-border-radius);
+        max-width: 1440px;
+    }
+
+
+    .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
+        content: none;
+    }
+
+}
+
+
+.ws-param-title{
+    font-size: var(--pi-font-size-12);
+}
+
+
+.header-title{
+    font-weight: var(--pi-font-weight-title);
+    font-size: var(--pi-font-size-13);
+}

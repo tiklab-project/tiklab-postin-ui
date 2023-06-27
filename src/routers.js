@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {lazy} from 'react'
 import {Redirect} from "react-router";
 import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----
@@ -8,39 +8,40 @@ import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from 
 
 import {ExcludeProductUser} from "tiklab-eam-ui";
 import {LogTemplate, LogType, MyLog} from "tiklab-security-ui";
+
 import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 
 //----内部组件----
-const PortalHeader = AsyncComponent(() => import("./common/header/PortalContent"));
-const Home = AsyncComponent(() => import('./home/Home'));
-const SearchResult = AsyncComponent(() => import('./common/header/search'));
-const WorkspaceRole = AsyncComponent(() => import('./workspace/setting/WorkspaceRole'));
-const WorkspacePrivilege = AsyncComponent(() => import('./workspace/setting/WorkspacePrivilege'));
-const Workspace = AsyncComponent(() => import('./workspace/workspace/components/Workspace'));
-const WorkspaceDetailLayout = AsyncComponent(() => import("./workspace/common/WorkspaceDetailLayout"));
-const LayoutApiContent = AsyncComponent(() => import("./api/http/definition/components/LayoutApiContent"));
-const LayoutQuickTest = AsyncComponent(() => import("./quicktest/common/LayoutQuickTest"));
-const WorkspaceDetailInitPage = AsyncComponent(() => import("./workspace/overview/WorkspaceOverViewPage"));
-const Category = AsyncComponent(() => import("./api/http/definition/components/HttpList"));
-const ApxMethodDetail = AsyncComponent(() => import("./api/http/definition/components/ApxMethodEditPage"));
-const Mock = AsyncComponent(() => import("./api/http/mock/components/Mock"));
-const MockDetail = AsyncComponent(() => import("./api/http/mock/components/MockDetail"));
-const SystemContent = AsyncComponent(() => import("./setting/system/SystemContent"));
-const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
-const WorkspaceSettingMenu = AsyncComponent(() => import("./workspace/setting/WorkspaceSettingMenu"));
-const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/components/TestBoxQuickTest"));
-const TestBox = AsyncComponent(() => import( "./api/http/test/test/components/ApiTestPage"));
-const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
-const WorkspaceSetting = AsyncComponent(() => import("./workspace/setting/WorkspaceSetting"));
-const Version = AsyncComponent(() => import("./setting/version/Version"));
-const StructureDetail = AsyncComponent(() => import("./support/dataStructure/components/StructureDetail"));
-const Share = AsyncComponent(() => import("./api/http/document/components/Share"));
-const ShareMain = AsyncComponent(() => import("./api/http/document/components/ShareMain"));
-const ApiDocument = AsyncComponent(() => import("./api/http/definition/components/ApiDocumentPage"));
-const ApiInitPage = AsyncComponent(() => import("./workspace/common/ApiInitPage"));
-const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
-const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
+const PortalHeader = lazy(() => import("./common/header/PortalContent"));
+const Home = lazy(() => import('./home/Home'));
+const SearchResult = lazy(() => import('./common/header/search'));
+const WorkspaceRole = lazy(() => import('./workspace/setting/WorkspaceRole'));
+const WorkspacePrivilege = lazy(() => import('./workspace/setting/WorkspacePrivilege'));
+const Workspace = lazy(() => import('./workspace/workspace/components/Workspace'));
+const WorkspaceDetailLayout = lazy(() => import("./workspace/common/WorkspaceDetailLayout"));
+const LayoutApiContent = lazy(() => import( "./api/http/definition/components/LayoutApiContent"));
+const LayoutQuickTest = lazy(() => import("./quicktest/common/LayoutQuickTest"));
+const WorkspaceDetailInitPage = lazy(() => import("./workspace/overview/WorkspaceOverViewPage"));
+const Category = lazy(() => import("./api/http/definition/components/HttpList"));
+const ApxMethodDetail = lazy(() => import("./api/http/definition/components/ApxMethodEditPage"));
+const Mock = lazy(() => import("./api/http/mock/components/Mock"));
+const MockDetail = lazy(() => import("./api/http/mock/components/MockDetail"));
+const SystemContent = lazy(() => import("./setting/system/SystemContent"));
+const LoginOut = lazy(() => import("./common/header/LoginOut"));
+const WorkspaceSettingMenu = lazy(() => import("./workspace/setting/WorkspaceSettingMenu"));
+const TestBoxQuickTest = lazy(() => import("./quicktest/components/TestBoxQuickTest"));
+const TestBox = lazy(() => import( "./api/http/test/test/components/ApiTestPage"));
+const LoginContent = lazy(() => import("./login/LoginContent"));
+const WorkspaceSetting = lazy(() => import("./workspace/setting/WorkspaceSetting"));
+const Version = lazy(() => import("./setting/version/Version"));
+const StructureDetail = lazy(() => import("./support/dataStructure/components/StructureDetail"));
+const Share = lazy(() => import("./api/http/document/components/Share"));
+const ShareMain = lazy(() => import("./api/http/document/components/ShareMain"));
+const ApiDocument = lazy(() => import("./api/http/definition/components/ApiDocumentPage"));
+const ApiInitPage = lazy(() => import("./workspace/common/ApiInitPage"));
+const DataStructure = lazy(() => import("./support/dataStructure/components/DataStructure"));
+const WorkspaceEdit = lazy(() => import("./workspace/workspace/components/WorkspaceEdit"));
 
 const routers =  [
     {

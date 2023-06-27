@@ -20,12 +20,6 @@
     }
 }
 
-.header-title{
-    font-weight: var(--pi-font-weight-title);
-    font-size: var(--pi-font-size-13);
-
-}
-
 .ex-title{
     margin: 15px 0 0;
 
@@ -85,24 +79,6 @@
 }
 
 
-.content-margin{
-    height: 100%;
-    overflow: auto;
-    background-color: #fff;
-    padding: 10px;
-
-    .content-margin-box{
-        margin: 0 auto;
-        border-radius:var(--pi-border-radius);
-        max-width: 1440px;
-    }
-
-
-    .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
-        content: none;
-    }
-
-}
 
 .method-menu{
     background-color:var(--pi-bg-color);
@@ -490,10 +466,6 @@
     height: 80px;
 }
 
-
-.ws-param-title{
-    font-size: var(--pi-font-size-12);
-}
 
 
 .action-btn-box{
