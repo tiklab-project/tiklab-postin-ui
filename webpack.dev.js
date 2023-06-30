@@ -20,6 +20,7 @@ module.exports = merge(baseWebpackConfig, {
         path.resolve(__dirname, './src/index.js')
     ],
     optimization:{
+        nodeEnv: process.env.NODE_ENV,
         namedModules: true,
         namedChunks: true,
         runtimeChunk: {
@@ -60,7 +61,7 @@ module.exports = merge(baseWebpackConfig, {
         disableHostCheck: true,
         proxy:{
             "/request":{
-                target:"http://192.168.10.3:8082"
+                target:"http://192.168.10.3:8080"
             },
         }
     },

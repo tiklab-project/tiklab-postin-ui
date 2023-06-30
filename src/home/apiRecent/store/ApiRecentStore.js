@@ -9,6 +9,17 @@ class ApiRecentStore {
 
 
 	/**
+	 * 设置最近访问的接口
+	 */
+	@action
+	apiRecent = async (values) => {
+		const res = await Axios.post("/apiRecent/apiRecent",values);
+		if(res.code === 0 ) {
+			return res.data;
+		}
+	}
+
+	/**
 	 * 查询最近访问的接口列表
 	 */
 	@action

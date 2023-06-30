@@ -60,6 +60,7 @@ module.exports = merge(baseWebpackConfig, {
     ],
 
     optimization: {
+        usedExports: true,
         minimize: true,
         nodeEnv: process.env.NODE_ENV,
         splitChunks: {

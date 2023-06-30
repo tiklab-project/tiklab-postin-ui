@@ -1,10 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
-import { observer, inject } from 'mobx-react';
+import React, { useEffect } from 'react';
+import { observer } from 'mobx-react';
 import {Table, Space, Tooltip, Popconfirm, Switch, Breadcrumb} from 'antd';
 import MockEdit from './MockEdit';
 import './mock.scss';
 import copyMockUrl from "../../../../common/copyLink";
-// import {Profile} from "tiklab-eam-ui";
+
 import EnvSelect from "../../../../support/environment/components/EnvSelect";
 import mockStore from "../store/MockStore";
 /**

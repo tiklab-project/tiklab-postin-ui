@@ -34,9 +34,6 @@ const ReactMonacoEditor = (props) =>{
     });
 
     const editorDidMount = (editor, monaco) => {
-
-
-        editor.getAction('editor.action.formatDocument').run();
         editor.focus();
     };
 

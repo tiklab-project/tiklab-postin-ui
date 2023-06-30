@@ -5,7 +5,7 @@
  */
 
 import ReactDOM from 'react-dom';
-import React,{Suspense} from 'react';
+import React from 'react';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
 import { orgStores } from 'tiklab-user-ui/es/store';
@@ -15,7 +15,6 @@ import routers from './routers';
 import {enableAxiosCE} from "tiklab-core-ui"
 import App from "./app";
 import "./assets/index"
-import {Spin} from "antd";
 
 enableAxiosCE();
 
@@ -28,33 +27,16 @@ export const Entry = (props) => {
     }
 
     return (
-            <Provider {...allStore} >
-                <HashRouter>
-                    <App routers={routers}/>
-                </HashRouter>
-            </Provider>
-
-    )
-}
-
-const Main = () =>{
-    return(
-        <Suspense fallback={
-            <div style={{
-                "height":"100%",
-                "display":"flex",
-                "justifyContent":"center",
-                "alignItems":"center"
-            }}>
-                <Spin size="large"/>
-            </div>
-        }>
-            <Entry />
-        </Suspense>
+        <Provider {...allStore} >
+            <HashRouter>
+                <App routers={routers}/>
+            </HashRouter>
+        </Provider>
     )
 }
 
 
-ReactDOM.render(<Main/>,document.getElementById('container'));
+
+ReactDOM.render(<Entry/>,document.getElementById('container'));
 
 

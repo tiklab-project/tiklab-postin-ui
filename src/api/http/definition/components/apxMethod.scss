@@ -105,26 +105,6 @@
 
 }
 
-.tabPane-item-box{
-    th{
-        background:  var(--pi-bg-color) !important;
-    }
-
-    .ant-table-thead>tr .ant-table-cell{
-        font-weight: var(--pi-font-weight-light);
-        padding: 7px;
-        font-size: 13px;
-    }
-
-
-    .newRow-action-hidden{
-        display: none;
-    }
-    .newRow-action-show{
-        display: block;
-    }
-
-}
 
 .api-script-box{
 

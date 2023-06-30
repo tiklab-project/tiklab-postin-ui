@@ -78,7 +78,6 @@ export default () => {
      case "esm":
          return {
              input: [
-                 'src/ui.js',
                  ...getFiles('./src', extensions),
              ],
              output: { ...esOutput, dir: 'es', format: 'es', sourcemap: IS_DEV},
