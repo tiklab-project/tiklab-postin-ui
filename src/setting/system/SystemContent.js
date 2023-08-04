@@ -1,5 +1,5 @@
 import React from "react";
-import SysManage from "./SysManagMenu";
+import SysManagMenu from "./SysManagMenu";
 
 /**
  * 系统导航项
@@ -15,23 +15,19 @@ const SystemContent = (props) =>{
                 {
                     title: '部门',
                     id: '/systemManagement/org',
-                    icon: 'modular',
                     purviewCode: "orga",
                 },{
                     title: '用户',
                     id: '/systemManagement/user',
-                    icon: 'modular',
                     purviewCode: "user",
 
                 },{
                     title: '用户目录',
                     id: '/systemManagement/authConfig',
-                    icon: 'modular',
                     purviewCode: "user_dir",
                 },{
                     title: '用户组',
                     id: '/systemManagement/userGroup',
-                    icon: 'modular',
                     // purviewCode: "userGroup",
                 },
             ]
@@ -49,12 +45,10 @@ const SystemContent = (props) =>{
             children: [
                 {
                     title: "消息发送方式",
-                    icon: 'rizhijilu',
                     id: '/systemManagement/messageSendType',
                     purviewCode: "MSG_SendType",
                 },{
                     title: "消息通知方案",
-                    icon: 'rizhijilu',
                     id: '/systemManagement/message-notice',
                     purviewCode: "MSG_Notice",
                 },
@@ -67,13 +61,12 @@ const SystemContent = (props) =>{
             purviewCode: "plugin",
         },{
             title: "安全",
-            icon: 'rizhijilu',
+            icon: 'modular',
             id: '/systemManagement/log',
             purviewCode: "security",
             children: [
                 {
                     title: "操作日志",
-                    icon: 'rizhijilu',
                     id: '/systemManagement/log',
                     purviewCode: "log",
                 },
@@ -95,41 +88,32 @@ const SystemContent = (props) =>{
             children: [
                 {
                     title: '系统功能管理',
-                    icon: 'modular',
                     id: '/systemManagement/systemFeature',
                 },{
                     title: '系统权限',
-                    icon: 'modular',
                     id: '/systemManagement/baseSystemRole',
                 },{
                     title: '项目功能管理',
-                    icon: 'modular',
                     id: '/systemManagement/privilege',
                 }, {
                     title: '项目权限',
-                    icon: 'modular',
                     id: '/systemManagement/role',
                 },{
                     title: "消息发送方式",
-                    icon: 'rizhijilu',
                     id: '/systemManagement/messageSendTypeBase',
                 },
                 {
                     title: "消息通知方案",
-                    icon: 'rizhijilu',
                     id: '/systemManagement/message-notice-base',
                 },
                 {
                     title: '消息类型管理',
-                    icon: 'modular',
                     id: '/systemManagement/messageType',
                 },{
                     title: '日志模板',
-                    icon: 'modular',
                     id: '/systemManagement/logTemplate',
                 },{
                     title: '日志类型',
-                    icon: 'modular',
                     id: '/systemManagement/logType',
                 },
 
@@ -153,7 +137,7 @@ const SystemContent = (props) =>{
     }
 
     return(
-        <SysManage
+        <SysManagMenu
             settingMenu={menu}
             {...props}
         />

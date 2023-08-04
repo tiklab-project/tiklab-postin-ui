@@ -116,7 +116,7 @@ const Workspace = (props) => {
     }
 
     return(
-        <div style={{"height":"100%",overflow:"auto"}}>
+        <div style={{"height":"var(--pi-calc-content)",overflow:"auto"}}>
             <div className='ws-layout'>
                 <DetailHeader
                     left={

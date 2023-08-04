@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{lazy} from 'react'
 import {Redirect} from "react-router";
 import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----

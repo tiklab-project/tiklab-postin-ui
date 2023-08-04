@@ -54,6 +54,10 @@
     display: none;
 }
 
+.test-response-show .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+    padding: 5px;
+}
+
 
 .test-responseInfo{
     width: 300px;

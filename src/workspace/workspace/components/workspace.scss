@@ -73,6 +73,7 @@ ul{
     height: 45px;
     align-items: center;
     justify-content: space-between;
+    padding: 0 0 0 10px;
 
     .ws-header-menu-left{
         display: flex;
@@ -84,7 +85,7 @@ ul{
     }
 
     .ws-header-menu-item{
-        padding: 10px;
+        padding: 10px 0;
         margin: 0 15px 0 0;
         cursor: pointer;
         border-bottom: 3px solid #ffffff00;
@@ -177,8 +178,8 @@ ul{
     top: 0!important;
     max-width: 100vw!important;
     width: 100vw!important;
-    height:100%;
-    overflow: hidden;
+    height: var(--pi-calc-content);
+    overflow: auto;
 
 
     .ant-modal-content{
@@ -326,81 +327,7 @@ ul{
 /* --------------------------------------------*/
 /* --workspaceDetailMenu--*/
 
-.ws-menu{
-    height: 100%;
-}
 
-
-.detailmenu-fold{
-    height: 100%;
-}
-
-.ws-detail-menu{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
-}
-
-.ws-detail-menu-ul-box{
-    overflow: auto;
-    overflow-x: hidden;
-    height: 85%;
-    padding: 5px 0;
-}
-
-
-
-.ws-detail-menu-ul-show{
-   display: block;
-}
-
-.ws-detail-menu-ul-collapsed{
-   display: none;
-}
-
-.ws-detail-menu-protitle{
-    display: flex;
-    justify-content: space-around;
-}
-
-.ws-detail-menu-set{
-    padding: 10px 0;
-    display: flex;
-    border-top: 1px solid  var(--pi-border-color);
-}
-
-.ws-detail-menu-text{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-
-.iconmenu-unfold{
-    height: 100%;
-}
-
-.ws-detail-iconMenu{
-    ul{
-        height: 93%;
-        width: 100%;
-        padding:1px 0;
-        li{
-            text-align: center;
-            line-height: 45px;
-            height: 45px;
-            margin: 20px 0 ;
-
-        }
-    }
-   height: 100%;
-}
-
-.detailmenu-unfold{
-    padding: 15px 0;
-    text-align: center;
-}
 
 
 .show-category:hover + .show-categorynav{

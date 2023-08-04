@@ -14,7 +14,6 @@ const { Sider, Content } = Layout;
 const SysManage = (props) => {
     const {settingMenu} = props;
 
-    const pluginStore = useSelector(store => store.pluginStore)
     const routers = props.route.routes
 
     const [selectKey,setSelectKey] = useState('/systemManagement/systemRole')
@@ -25,24 +24,7 @@ const SysManage = (props) => {
         //设置左侧导航哪个选中
         setSelectKey(window.location.hash.substr(1))
 
-        // let data = pluginStore.filter(item=>item.point==="settingMenu").filter(item => item.menuTitle);
-
-        // if(data.length > 0){
-        //     let newRouter;
-        //     data&&data.map(item => {
-        //         return newRouter = item.menuTitle.map((routerItem)=> {
-        //             return {
-        //                 title: routerItem.menuTitle,
-        //                 icon: 'laptop',
-        //                 key: '/'+routerItem.mount + routerItem.router
-        //             }
-        //         })
-        //     })
-        //
-        //     setMenuRouter(settingMenu.concat(newRouter));
-        // }else {
-            setMenuRouter(settingMenu);
-        // }
+        setMenuRouter(settingMenu);
     }, [])
 
 
