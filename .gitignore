@@ -9,4 +9,6 @@ plugin/
 es/
 dist/
 /lib
-package-lock.json
+
+# But keep package-lock.json in workspace
+!/package-lock.json
