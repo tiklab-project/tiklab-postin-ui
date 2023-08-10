@@ -9,3 +9,4 @@ plugin/
 es/
 dist/
 /lib
+package-lock.json

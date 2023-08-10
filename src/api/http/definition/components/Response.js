@@ -75,20 +75,22 @@ const Response = (props) =>{
                         </TabPane>
                     })
                 }
+                {
+                    apiResponseList && apiResponseList.length > 0
+                        ?null
+                        :<div className={"pi-none-process-box"}>
+                            <div style={{textAlign: "center"}}>
+                                <div>
+                                    <img width={200} height={200}  src={noneImg} alt={"noneImg"}/>
+                                </div>
+                                <span>暂无返回结果，请添加</span>
+                            </div>
+                        </div>
+                }
+
             </Tabs>
 
-            {
-                apiResponseList && apiResponseList.length > 0
-                    ?null
-                    :<div className={"pi-none-process-box"}>
-                        <div style={{textAlign: "center"}}>
-                            <div>
-                                <img width={200} height={200}  src={noneImg} alt={"noneImg"}/>
-                            </div>
-                            <span>暂无返回结果，请添加</span>
-                        </div>
-                     </div>
-            }
+
 
         </div>
     )

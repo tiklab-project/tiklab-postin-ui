@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {Avatar, Dropdown, Menu} from "antd";
 
-import {AppLink} from "tiklab-integration-ui"
+import {AppLink} from "tiklab-licence-ui"
 import {getUser} from "tiklab-core-ui";
 import HeaderMenu from "./HeaderMenu";
 import logo from "../../assets/img/postinlog.png";

@@ -88,7 +88,7 @@ class ApxMethodStore {
 	deleteApxMethod = async (id) => {
         const param = new FormData();
         param.append('id', id);
-		const res = await Axios.post("/apiRecent/deleteApix",param)
+		const res = await Axios.post("/apix/deleteApix",param)
         if( res.code === 0 ){
             return res
         }

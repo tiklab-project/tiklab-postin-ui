@@ -49,7 +49,7 @@ const MockEdit = (props) => {
                 findMockPage(apxMethodId)
             })
         }else{
-            values.enable=0
+            values.enable=1
             createMock(values).then(()=>{
                 findMockPage(apxMethodId)
             })

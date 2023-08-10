@@ -108,13 +108,6 @@ module.exports = merge(baseWebpackConfig, {
                     priority: 13,
                     reuseExistingChunk: true
                 },
-                tiklabIntegrationUI: {
-                    name: "chunk-tiklab-integration-ui",
-                    chunks: "all",
-                    test: /[\\/]node_modules[\\/]tiklab-integration-ui[\\/]/,
-                    priority: 13,
-                    reuseExistingChunk: true
-                },
                 tiklabLicenceUI: {
                     name: "chunk-tiklab-licence-ui",
                     chunks: "all",
