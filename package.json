@@ -22,7 +22,7 @@
   "author": "",
   "license": "ISC",
   "publishConfig": {
-    "registry": "http://172.13.1.24:8080/repository/npm-hosted/"
+    "registry": "http://172.13.1.24:8080/repository/npm-hosted"
   },
   "peerDependencies": {
     "i18next-http-backend": "^1.0.21",

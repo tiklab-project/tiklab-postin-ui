@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Button, Form, Input, Radio, Select, Space} from "antd"
-import {inject, observer} from "mobx-react";
-import Schema from "../../../../common/jsonSchema/Schema";
+import { observer} from "mobx-react";
 import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
 import apiResponseStore from "../store/ApiResponseStore";
-import jsonSchemaStore from "../../../../common/jsonSchema/JsonSchemaStore";
+import JsonSchemaTable from "../../../../common/JsonSchemaTable/JsonSchemaTable";
 const {Option} = Select
 /**
  * 定义
@@ -14,8 +13,8 @@ const {Option} = Select
 const ResponseResult = (props) =>{
     const {resultId,httpId} = props;
     const {findApiResponse,updateApiResponse,findApiResponseList} = apiResponseStore;
-    const {setSchemaData,schemaData} = jsonSchemaStore
 
+    const [schemaData, setSchemaData] = useState();
     const [form] = Form.useForm();
     const [rawText, setRawText] = useState();
     const [dataValue, setDataValue] = useState();
@@ -39,7 +38,6 @@ const ResponseResult = (props) =>{
         setDataValue(res)
     },[resultId])
 
-
     /**
      * 值改变，更新
      */
@@ -52,7 +50,6 @@ const ResponseResult = (props) =>{
         await findApiResponseList({httpId:httpId})
         setType(value.dataType)
     }
-
 
     /**
      * raw里面的数据改变，获取值
@@ -100,6 +97,18 @@ const ResponseResult = (props) =>{
         }
     }
 
+    /**
+     * jsonschemaTable组件使用的更新
+     */
+    const jsonSchemaUpdate = useCallback(async (updateValue)=>{
+        let param = {
+            id: resultId,
+            httpId:httpId,
+            jsonText:JSON.stringify(updateValue)
+        }
+        await updateApiResponse(param)
+    },[])
+
     const httpCodes = [200,201,403,404,410,422,500,502,503,504]
 
     return(
@@ -140,9 +149,9 @@ const ResponseResult = (props) =>{
             <div style={{margin:" 0 0 0 10px"}}>
                 {
                     type==="json"
-                        ?<Schema
-                            resultId={resultId}
-                            httpId={httpId}
+                        ? <JsonSchemaTable
+                            schema={schemaData}
+                            updateFn={jsonSchemaUpdate}
                         />
                         :<ReactMonacoEditor
                             editorChange={rawChange}

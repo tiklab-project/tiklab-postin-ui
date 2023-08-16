@@ -122,33 +122,38 @@ export const headerParamDictionary = [
 
 
 export const mockValueDictionary = [
-    '@id',
-    '@url',
-    '@guid',
+    '@ip',
+    '@name',
     '@integer',
-    '@word',
     '@first',
     '@last',
-    '@name',
-    '@cfirst',
-    '@clast',
-    '@domain',
+    '@city',
+    '@country',
     '@email',
-    '@ip',
-    '@boolean',
+    '@domain',
     '@date',
-    '@time',
-    '@color',
+    '@company',
+    '@title',
+    '@phone',
+    '@address',
+    '@sentence',
+    '@paragraph',
+    '@id',
+    '@url',
+    '@word',
+    '@words',
+    '@image',
+    '@timezone',
+    '@gender',
+
 ];
 
 export const dataTypeDictionary = [
     'string',
-    'int',
-    'object',
+    'integer',
     'boolean',
+    'object',
     'number',
-    'short',
-    'long',
     'null'
 ]
 

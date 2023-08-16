@@ -47,6 +47,7 @@ const DataStructureEdit = (props) => {
 
         if(props.type === "add" ){
             values.workspace={id:workspaceId}
+            values.dataType="json"
             createDataStructure(values).then(()=>{
                 findDataStructureList({workspaceId:workspaceId})
             });
@@ -101,16 +102,16 @@ const DataStructureEdit = (props) => {
                     >
                         <Input />
                     </Form.Item>
-                    <Form.Item
-                        label="类型"
-                        rules={[{ required: true}]}
-                        name="dataType"
-                    >
-                        <Radio.Group >
-                            <Radio value={"json" }>json</Radio>
+                    {/*<Form.Item*/}
+                    {/*    label="类型"*/}
+                    {/*    rules={[{ required: true}]}*/}
+                    {/*    name="dataType"*/}
+                    {/*>*/}
+                    {/*    <Radio.Group >*/}
+                    {/*        <Radio value={"json" }>json</Radio>*/}
 
-                        </Radio.Group>
-                    </Form.Item>
+                    {/*    </Radio.Group>*/}
+                    {/*</Form.Item>*/}
                 </Form>
             </Modal>
         </>

@@ -124,7 +124,7 @@ const column = (columns,handleSave) => {
 
 
 const ExTable = (props) => {
-    const {dataSource,columns,handleSave,rowSelection} = props;
+    const {dataSource,columns,handleSave,rowSelection,expandedRowKeys,onExpand} = props;
 
     // 覆盖默认的 table 元素
     const components = {
@@ -142,13 +142,14 @@ const ExTable = (props) => {
             ...col,
             onCell: (record) => ({
                 record,
-                editable: col.editable,
+                editable: record.id==="root"?false:col.editable,
                 dataIndex: col.dataIndex,
                 title: col.title,
                 handleSave: handleSave,
             }),
         };
     });
+
 
     return(
         <Table
@@ -158,7 +159,10 @@ const ExTable = (props) => {
             pagination={false}
             rowKey = {record => record.id}
             expandable={{
-                indentSize:20
+                indentSize: 5,
+                expandedRowKeys:expandedRowKeys,
+                // defaultExpandAllRows: true, // 设置默认展开所有
+                onExpand:onExpand
             }}
             dataSource={dataSource}
             columns={column}
@@ -166,7 +170,6 @@ const ExTable = (props) => {
         />
     )
 }
-
 
 
 export {

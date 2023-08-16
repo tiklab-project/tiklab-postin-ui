@@ -11,4 +11,4 @@ dist/
 /lib
 
 # But keep package-lock.json in workspace
-!/package-lock.json
+package-lock.json

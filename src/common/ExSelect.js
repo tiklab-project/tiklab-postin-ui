@@ -9,7 +9,7 @@ const {Option}=Select;
  */
 const ExSelect = (props) => {
 
-    const {dictionary,defaultValue,handleSave,rowData,dataIndex,setNewRowAction} = props;
+    const {dictionary,defaultValue,handleSave,rowData,dataIndex,setNewRowAction,disabled} = props;
 
     const [record,setRecord] = useState([]);
 
@@ -73,6 +73,7 @@ const ExSelect = (props) => {
             style={{ width:  "100%"}}
             value={record }
             bordered={false}
+            disabled={disabled}
         >
             {renderItem(dictionary)}
         </Select>

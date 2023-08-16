@@ -5,6 +5,7 @@ import FormParam from "./FormParam";
 import FormUrlencoded from "./FormUrlencoded";
 import RawParam from "./RawParam";
 import apiRequestStore from "../store/ApiRequestStore";
+import JsonParam from "./JsonParam";
 
 /**
  *接口定义中的请求体
@@ -29,7 +30,7 @@ const RequestBody  = (props) =>{
     let bodyTypeDictionary ={
         none:"none",
         formdata:"form-data",
-        formUrlencoded:"x-www-form-urlencoded",
+        formUrlencoded:"urlencoded",
         // json:"json",
         raw:"raw",
         // binary:"binary"
