@@ -6,6 +6,7 @@ import FormUrlencoded from "./FormUrlencoded";
 import RawParam from "./RawParam";
 import apiRequestStore from "../store/ApiRequestStore";
 import JsonParam from "./JsonParam";
+import {mediaTypeDir} from "../../../../common/dictionary/dictionary";
 
 /**
  *接口定义中的请求体
@@ -27,14 +28,6 @@ const RequestBody  = (props) =>{
         })
     },[bodyType])
 
-    let bodyTypeDictionary ={
-        none:"none",
-        formdata:"form-data",
-        formUrlencoded:"urlencoded",
-        // json:"json",
-        raw:"raw",
-        // binary:"binary"
-    }
 
     return(
         <RequestBodyCom
@@ -46,7 +39,7 @@ const RequestBody  = (props) =>{
             // json={<JsonParam />}
             raw={<RawParam />}
             binary={null}
-            bodyTypeDictionary={bodyTypeDictionary}
+            bodyTypeDictionary={mediaTypeDir}
         />
     )
 }

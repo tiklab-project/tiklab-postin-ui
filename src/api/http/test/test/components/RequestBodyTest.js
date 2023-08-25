@@ -1,9 +1,9 @@
 import React from "react";
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
 import FormParamTest from './TestFormParam';
 import FormUrlencodedTest from "./FormUrlencodedTest";
 import RawParamTest from "./TestRawParam";
-import {bodyTypeJsonDictionary as bodyTypeJson, mediaTypeDictionary} from "../../../../../common/dictionary/dictionary";
+import {mediaTypeDir} from "../../../../../common/dictionary/dictionary";
 import RequestNoBody from "../../../../../common/tableCommon/components/RequestNoBody";
 import requestBodyTestStore from "../store/RequestBodyTestStore";
 /**
@@ -19,7 +19,7 @@ const RequestBodyTest = (props)=>{
      * 展示不同的contentType 类型
      */
     const showBodyType = (type) =>{
-        let bodyKeyArr = Object.keys(mediaTypeDictionary)
+        let bodyKeyArr = Object.keys(mediaTypeDir)
 
         return bodyKeyArr.map(item=>{
             if(item===type){
@@ -27,7 +27,7 @@ const RequestBodyTest = (props)=>{
                 if(type==="raw"){
                     return <div className={"test-body-type-item"} key={item}>{mediaType}</div>
                 }else {
-                    return  <div className={"test-body-type-item"} key={item}>{mediaTypeDictionary[item]}</div>
+                    return  <div className={"test-body-type-item"} key={item}>{mediaTypeDir[item].mediaType}</div>
                 }
             }
         })
@@ -39,16 +39,14 @@ const RequestBodyTest = (props)=>{
      */
     const showItemComponent = (data)=>{
         switch(data) {
-            case bodyTypeJson.none:
+            case mediaTypeDir.none.title:
                 return <RequestNoBody/>
-            case bodyTypeJson.formdata:
+            case mediaTypeDir.formdata.title:
                 return <FormParamTest />
-            case bodyTypeJson.formUrlencoded:
+            case mediaTypeDir.formUrlencoded.title:
                 return <FormUrlencodedTest />
-            case bodyTypeJson.raw:
+            case mediaTypeDir.raw.title:
                 return <RawParamTest />
-            // case 'binary':
-            //     return ""
         }
     }
 

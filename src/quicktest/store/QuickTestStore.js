@@ -20,6 +20,7 @@ class QuickTestStore {
     @observable requestHeaderData;
     @observable methodType;
     @observable isResponseShow="false";
+    @observable responseData;
 
 
     /**
@@ -27,45 +28,33 @@ class QuickTestStore {
      */
     @action
     getRequestInfo = (data) => {
-        const {method,params,path} = data;
-        this.methodType = method;
+        const {methodType,query,header,url,body} = data;
+        this.methodType = methodType;
 
-        if(params&&Object.keys(params).length>0){
-            this.baseInfo = path+'?'+qs.stringify(data.params)
+        if(query&&Object.keys(query).length>0){
+            this.baseInfo = url+'?'+qs.stringify(query)
         }else {
-            this.baseInfo =path
+            this.baseInfo =url
         }
 
-        this.requestHeaderData = JSON.stringify(data.headers);
-        this.requestBodyData = data.bodys;
+        this.requestHeaderData = JSON.stringify(header);
+        this.requestBodyData = body;
     }
 
     /**
      * 获取响应参数
      */
     @action
-    getResponseInfo = async (data,assertData) => {
-
+    getResponseInfo = async (data,assertData,localData) => {
         if(data){
-            const {res,time} = data;
-            this.time=time;
+            const {time,statusCode,headers,size,body} = data;
 
-            this.status = res.status;
-
-            let requestHeaders= res?.config?.headers;
-            let requestBody =  res?.config?.data;
-
-            const headers = res.headers;
-            const body =res.data;
-
-            //大小
-            this.size = JSON.stringify(body).length;
 
             //断言处理
             let assertList = this.assertListProcess(assertData);
 
             const assertNeedData ={
-                "status":res.status,
+                "status":statusCode,
                 "header":headers,
                 "body":body,
                 "assertList":assertList
@@ -81,19 +70,10 @@ class QuickTestStore {
 
             //创建instance所需的参数
             return {
-                'statusCode': this.status,
+                'statusCode': statusCode,
                 'result': allAssertResult,
-                "time": this.time,
-                "size": this.size,
-                'requestInstance': {
-                    "url": this.baseInfo,
-                    "methodType": this.methodType,
-                    "mediaType": requestHeaders["Content-Type"],
-                    'headers': JSON.stringify(requestHeaders),
-                    'body': requestBody,
-                    "preScript": null,
-                    "afterScript": null
-                },
+                "time": time,
+                "size": size,
                 'responseInstance': {
                     'headers': headers ? JSON.stringify(headers) : "",
                     'body': body ? JSON.stringify(body) : ""
@@ -119,15 +99,6 @@ class QuickTestStore {
         return {
             "result":-1,
             "errorMessage":res.error,
-            "requestInstance":{
-                "url":this.baseInfo,
-                "methodType":this.methodType,
-                "headers":this.requestHeaderData,
-                "mediaType":JSON.parse(this.requestHeaderData)["content-type"],
-                "body":this.requestBodyData,
-                "preScript":null,
-                "afterScript":null
-            }
         }
     }
 
@@ -174,15 +145,24 @@ class QuickTestStore {
     }
 
     /**
+     * 保存为接口
+     */
+    @action
+    saveToApi = async (data) => await Axios.post("/quickTest/saveToApi",data);
+
+
+    /**
      * 响应 界面切换
      */
     @action
-    setResponseShow = () =>{
-        this.isResponseShow = true
+    setResponseShow = (value) =>{
+        this.isResponseShow = value
     }
 
     @action
-    saveToApi = async (data) => await Axios.post("/quickTest/saveToApi",data);
+    setResponseData = (data) =>{
+        this.responseData = data;
+    }
 
 }
 

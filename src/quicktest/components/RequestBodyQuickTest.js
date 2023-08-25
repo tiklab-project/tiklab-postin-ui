@@ -1,10 +1,11 @@
 import React from "react";
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
 import FormDataQuickTest from "./FormDataQuickTest";
 import FormUrlencodedQuickTest from "./FormUrlencodedQuickTest";
 import RawQuickTest from "./RawQuickTest";
 import RequestBodyCom from "../../common/tableCommon/components/RequestBodyCom";
 import tabQuickTestStore from "../store/TabQuickTestStore";
+import { mediaTypeDir} from "../../common/dictionary/dictionary";
 /**
  * 快捷测试
  * 请求体
@@ -14,14 +15,6 @@ const RequestBodyQuickTest  = (props) =>{
         updateBodyType,
         requestBodyType
     } = tabQuickTestStore;
-
-    let bodyTypeDictionary ={
-        none:"none",
-        formdata:"form-data",
-        formUrlencoded:"x-www-form-urlencoded",
-        raw:"raw",
-        // binary:"binary"
-    }
 
 
     return(
@@ -34,7 +27,7 @@ const RequestBodyQuickTest  = (props) =>{
             // json={<JsonQuickTest />}
             raw={<RawQuickTest />}
             binary={null}
-            bodyTypeDictionary={bodyTypeDictionary}
+            bodyTypeDictionary={mediaTypeDir}
         />
     )
 }

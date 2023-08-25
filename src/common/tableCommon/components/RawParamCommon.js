@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react';
-import { Button, Form, Select} from 'antd';
+import React, {useState, useRef} from 'react';
+import {Form, Select} from 'antd';
 import {rawTypeDictionary} from "../../dictionary/dictionary";
 import CodeMirror from "../../CodeMirror";
 
@@ -45,8 +45,11 @@ const RawParamCommon = (props) => {
 
     //渲染raw中的类型
     const showSelectItem = (data)=>{
-        return data&&data.map(item=>{
-            return  <Option value={item.value} key={item.value}>{item.value}</Option>
+        let arr = Object.keys(data);
+
+        return arr&&arr.map(item=>{
+            let obj = data[item]
+            return  <Option value={obj.value} key={obj.key}>{obj.value}</Option>
         })
     }
 

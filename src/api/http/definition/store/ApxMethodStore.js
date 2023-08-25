@@ -38,11 +38,11 @@ class ApxMethodStore {
      * 查询接口列表
      */
     @action
-    findApxMethodListByApix = async (id) => {
+    findApxMethodListByApix = async (value) => {
         let param ={
-            categoryId:id,
             protocolType:'http',
-            apiUid:null
+            apiUid:null,
+            ...value
         }
         const res = await Axios.post("/http/findHttpApiListByApix",param);
         if(res.code === 0 ) {

@@ -11,7 +11,7 @@ import workspaceRecentStore from "../workspace/store/WorkspaceRecentStore";
  */
 const LeftNav = (props) =>{
     const {workspaceStore,systemRoleStore} = props;
-    const {workspaceIcon,workspaceList,findWorkspaceList,findWorkspace } = workspaceStore;
+    const {workspaceIcon,workspaceList,findWorkspaceJoinList,findWorkspace } = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const menuData = [
         {
@@ -52,7 +52,7 @@ const LeftNav = (props) =>{
 
     useEffect(()=>{
         findWorkspace(workspaceId)
-        findWorkspaceList({userId:getUser().userId})
+        findWorkspaceJoinList({userId:getUser().userId})
 
         systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId)
     },[])

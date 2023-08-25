@@ -8,6 +8,7 @@ import {processAssert, processResHeader} from "./TestResponseFnCommon";
 import ResHeaderCommon from "./ResHeaderCommon";
 import AssertResponseCommon from "./AssertResponseCommon";
 import {AssertCommonStore} from "./AssertCommonStore";
+import {toJS} from "mobx";
 
 const { TabPane } = Tabs;
 
@@ -42,37 +43,24 @@ const TestResultCommon = (props) =>  {
 
     const showResponseBox = (response)=>{
         if (!response) return;
+        const {time,statusCode,headers,size,body} = response;
+
+        console.log(toJS(response))
 
 
-        let res = response.res;
-
-        let time = response.time;
-        let status = res.status;
-
-        let requestHeaders= res?.config?.headers;
-        let requestBody =  res?.config?.data;
-
-        let headers = res.headers;
-        let mediaType;
+        let mediaType = "text/plain";
         if(headers&&Object.keys(headers).length>0){
-            mediaType  = headers["content-type"] || headers["Content-Type"]
-        }else {
-            mediaType = "text/plain"
+            mediaType  = headers["Content-Type"] || headers["Content-Type"]
         }
-
-        let body = JSON.stringify(res.data);
-
-        //大小
-        let size = body.length;
 
         //assert
         let assertList=[];
         if(response.assertList&&response.assertList.length>0){
             assertList = processAssert(response.assertList);
             const assertNeedData ={
-                "status":status,
+                "status":statusCode,
                 "header":headers,
-                "body":JSON.stringify(res.data),
+                "body":JSON.stringify(body),
                 "assertList":assertList
             }
             //断言list，添加result 字段。用于测试结果中的断言回显
@@ -85,20 +73,17 @@ const TestResultCommon = (props) =>  {
                 defaultActiveKey="1"
                 tabBarExtraContent={
                     <ResponseInfo
-                        status={status}
+                        status={statusCode}
                         time={time}
                         size={size}
                     />
                 }
             >
                 <TabPane tab="响应体" key="1">
-                    <ResponseBodyCommon responseBodyData={res.data} mediaType={mediaType}/>
+                    <ResponseBodyCommon responseBodyData={body} mediaType={mediaType}/>
                 </TabPane>
                 <TabPane tab="响应头" key="2">
                     <ResHeaderCommon headers={processResHeader(JSON.stringify(headers))}/>
-                </TabPane>
-                <TabPane tab="请求头" key="3">
-                    <ResHeaderCommon headers={processResHeader(JSON.stringify((requestHeaders)))}/>
                 </TabPane>
                 <TabPane tab="断言" key="5">
                     {

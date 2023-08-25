@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import './workspace.scss';
 import {Input} from "antd";
 import {getUser} from "tiklab-core-ui";
@@ -16,10 +16,12 @@ const Workspace = (props) => {
     const {workspaceStore} = props;
     const {findWorkspaceFollowList} = workspaceFollowStore
 
-    const {findWorkspaceList,findWorkspaceJoinList,setWorkspaceSelect,workspaceSelect} = workspaceStore;
+    const {findWorkspaceList,findWorkspaceJoinList} = workspaceStore;
 
     const userId = getUser().userId;
     const [workspaceList, setWorkspaceList] = useState([]);
+    const [selectTab, setSelectTab] = useState("all");
+    
 
     //空间筛选列表
     const items = [
@@ -45,8 +47,8 @@ const Workspace = (props) => {
             return(
                 <div
                     key={item.key}
-                    className={`ws-header-menu-item  ${item.key === workspaceSelect ? "ws-header-menu-item-selected" : ""}`}
-                    onClick={()=>selectKeyFun(item)}
+                    className={`ws-header-menu-item  ${item.key === selectTab ? "ws-header-menu-item-selected" : ""}`}
+                    onClick={()=>findList({},item.key)}
                 >
                     <span> {item.title} </span>
 
@@ -60,30 +62,21 @@ const Workspace = (props) => {
     },[])
 
     /**
-     * 点击筛选项查找
-     */
-    const selectKeyFun = (item)=>{
-        setWorkspaceSelect(item.key)
-
-        findList({},item.key)
-    }
-
-    /**
      * 搜索空间
      */
     const onSearch = (e) =>{
         let name = {workspaceName:e.target.value}
 
-        findList(name)
+        findList(name,"all")
     }
 
     /**
      * 根据不同的筛选项查找
      */
-    const findList = (name,selectIndex)=>{
+    const findList = useCallback((name,selectIndex)=>{
         let uId = {userId:userId}
 
-        switch (selectIndex?selectIndex:workspaceSelect) {
+        switch (selectIndex||"all") {
             case "all":
                 let params= {
                     ...uId,
@@ -92,6 +85,8 @@ const Workspace = (props) => {
                 findWorkspaceJoinList(params).then(list=>{
                     setWorkspaceList(list)
                 })
+
+                setSelectTab("all");
                 break;
             case "create":
                 let param = {
@@ -101,15 +96,19 @@ const Workspace = (props) => {
                 findWorkspaceList(param).then(list=>{
                     setWorkspaceList(list)
                 })
+
+                setSelectTab("create");
                 break;
             case "follow":
                 findWorkspaceFollowList(uId).then(list=>{
                     setWorkspaceList(list)
                 })
-                break;
 
+                setSelectTab("follow");
+                break;
         }
-    }
+
+    },[])
 
     const toWorkspaceEdit = () =>{
         props.history.push("/workspace-edit")
@@ -164,7 +163,7 @@ const Workspace = (props) => {
                         {...props}
                         workspaceList={workspaceList}
                         findList={findList}
-                        selectItem={workspaceSelect}
+                        selectItem={selectTab}
                     />
                 </div>
             </div>

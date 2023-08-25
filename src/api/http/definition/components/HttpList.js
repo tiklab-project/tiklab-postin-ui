@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react';
-import { observer, inject } from "mobx-react";
+import { observer } from "mobx-react";
 import { Input, Popconfirm, Space, Table} from 'antd';
 import '../../../../category/components/category.scss';
 import ApxMethodEdit from './ApxMethodEdit';
@@ -14,7 +14,6 @@ import apxMethodStore from "../store/ApxMethodStore";
  * 点击左侧导航栏目录，查看的所在目录中的接口列表
  */
 const HttpList = (props) => {
-
     const {findCategoryList,apiRecent} = categoryStore;
     const {findApxMethodListByApix,apxMethodList,deleteApxMethod} = apxMethodStore;
 
@@ -75,15 +74,6 @@ const HttpList = (props) => {
         }
     ]
 
-    const [pageSize] = useState(10);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [params, setParams] = useState({
-        pageParam: {
-            pageSize: pageSize,
-            currentPage: currentPage
-        }
-    })
-
     //获取id
     const categoryId =  localStorage.getItem('categoryId');
     const workspaceId = localStorage.getItem('workspaceId');
@@ -91,57 +81,41 @@ const HttpList = (props) => {
     /**
      * 保存接口id，并跳往接口页面
      */
-    const setLocalStorage = (record) => {
+    const setLocalStorage = async (record) => {
         //设置最近打开的接口
         let params = {
             workspace:{id:workspaceId},
             user:{id:getUser().userId},
             apix:{id:record.id},
-            // protocolType:record.apiRecent.protocolType
         }
-        apiRecent(params)
-
+        await apiRecent(params)
 
         localStorage.setItem("apxMethodId",record.id)
         props.history.push('/workspace/apis/document')
     }
 
-    useEffect(()=>{
-        findApxMethodListByApix(categoryId);
-    },[categoryId,params])
+    useEffect(async ()=>{
+        await findApxMethodListByApix({categoryId:categoryId});
+    },[categoryId])
 
     /**
      * 删除接口
      */
     const deleteMethod = (id) =>{
-        deleteApxMethod(id).then(()=> {
-            findApxMethodListByApix(categoryId);
-            findCategoryList(workspaceId);
+        deleteApxMethod(id).then(async ()=> {
+            await findApxMethodListByApix({categoryId:categoryId});
+            await findCategoryList(workspaceId);
         })
     }
 
     /**
      * 搜索接口
      */
-    const onSearch = (e) => {
-        setCurrentPage(1)
-        let newParams = {
-            pageParam: {
-                pageSize: pageSize,
-                currentPage: 1
-            },
-        }
-        if (e.target.value) {
-            newParams = {
-                pageParam: {
-                    pageSize: pageSize,
-                    currentPage: 1
-                },
-                name:e.target.value,
-            }
-        }
-        setParams(newParams)
-
+    const onSearch = async (e) => {
+        await findApxMethodListByApix({
+            name:e.target.value,
+            categoryId:categoryId
+        });
     }
 
     return(
@@ -156,15 +130,12 @@ const HttpList = (props) => {
                         style={{width:240}}
                     />
                     <Space>
-                        <CategoryDocDrawer
-                            categoryId={categoryId}
-                        />
+                        <CategoryDocDrawer categoryId={categoryId}/>
                         <ApxMethodEdit
                             name="+添加接口"
                             type="add"
                             isBtn={'btn'}
                             {...props}
-                            // pagination={params}
                         />
                     </Space>
 

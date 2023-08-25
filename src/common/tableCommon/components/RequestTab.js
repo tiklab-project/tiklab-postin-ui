@@ -1,8 +1,8 @@
 import React from "react";
 import {Tabs} from "antd";
-import {requestTabDictionary} from "../../dictionary/dictionary";
 
 const { TabPane } = Tabs;
+
 
 /***
  * 请求中的tab，公共组件
@@ -69,6 +69,16 @@ const RequestTab = (props) =>{
             case "assert":
                 return props.assert
         }
+    }
+
+    //请求中tab的名称
+    const requestTabDictionary = {
+        "header":"请求头",
+        "query":"查询参数",
+        "body":"请求体",
+        "pre":"前置脚本",
+        "after":"后置脚本",
+        "assert":"断言"
     }
 
     return(

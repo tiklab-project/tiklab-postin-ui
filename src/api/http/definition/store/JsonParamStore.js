@@ -20,19 +20,8 @@ class JsonParamStore {
         const params = new FormData();
         params.append('id', id);
 
-        const res = await Axios.post("/jsonParam/findJsonParam",params)
-        if( res.code === 0){
-            this.jsonSchemaData = res.data;
-            return  res.data;
-        }
+        return await Axios.post("/jsonParam/findJsonParam",params)
     }
-
-    /**
-     * 创建json
-     */
-    @action
-    createJsonParam =async (params) => await Axios.post("/jsonParam/createJsonParam",params)
-
 
     /**
      * 更新json
@@ -45,5 +34,4 @@ class JsonParamStore {
 
 
 let jsonParamStore =  new JsonParamStore();
-
 export default jsonParamStore;

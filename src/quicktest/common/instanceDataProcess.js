@@ -1,5 +1,5 @@
 import {createID} from "../../common/utils/createId";
-import {bodyTypeJsonDictionary as bodyTypeJsonDic} from "../../common/dictionary/dictionary";
+import {mediaTypeDir} from "../../common/dictionary/dictionary";
 
 /**
  * header处理
@@ -98,21 +98,21 @@ export const getMediaType = (value) => {
 
     //设置body下的body类型
     switch (value){
-        case "none":
-            bodyType =bodyTypeJsonDic.none
+        case mediaTypeDir.none.mediaType:
+            bodyType = mediaTypeDir.none.title
             break;
-        case "multipart/form-data":
-            bodyType = bodyTypeJsonDic.formdata
+        case mediaTypeDir.formdata.mediaType:
+            bodyType = mediaTypeDir.formdata.title
             break;
-        case "application/x-www-form-urlencoded":
-            bodyType = bodyTypeJsonDic.formUrlencoded
+        case mediaTypeDir.formUrlencoded.mediaType:
+            bodyType = mediaTypeDir.formUrlencoded.title
             break;
         //如果是application/json，直接设置成raw中application/json
-        case "application/json":
-            bodyType = bodyTypeJsonDic.raw
+        case mediaTypeDir.raw.mediaType:
+            bodyType = mediaTypeDir.raw.title
             break;
         default :
-            bodyType = bodyTypeJsonDic.none
+            bodyType = mediaTypeDir.none.title
             break;
     }
 

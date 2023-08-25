@@ -1,5 +1,5 @@
 import {action, observable} from "mobx";
-import {initTabPane} from "../common/quickTestCommon";
+import {initTabPane} from "../common/quickTestData";
 
 
 class TabQuickTestStore {
@@ -94,6 +94,7 @@ class TabQuickTestStore {
      */
     @action
     updateBodyType = (data) => {
+        console.log(data)
         this.requestBodyType  = data.bodyType
         this.tabPaneInfo.tabList[this.activeKey].data.body.bodyType= this.requestBodyType
     }

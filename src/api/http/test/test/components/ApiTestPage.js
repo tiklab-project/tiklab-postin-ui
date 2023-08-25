@@ -14,7 +14,7 @@ const ApiTestPage =(props)=>{
     const sendTest = async (data) =>{
         let response ;
 
-        response= await localProxySendTest("/request",data)
+        response= await localProxySendTest(data)
         return response;
     }
 

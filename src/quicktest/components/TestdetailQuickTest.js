@@ -1,27 +1,28 @@
 import React, {useEffect, useState} from "react";
 import {Dropdown,Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./RequestTabQuickTest";
-import {inject, observer} from "mobx-react";
-import {sendTestDataProcess} from "../../common/request/sendTestCommon";
-
-import {methodJsonDictionary} from "../../common/dictionary/dictionary";
+import {observer} from "mobx-react";
+import {localDataProcess, mergeTestData} from "../../common/request/sendTestCommon";
+import {methodDictionary} from "../../common/dictionary/dictionary";
 import {getUser} from "tiklab-core-ui";
 import TestResultCommon from "../../api/http/test/common/TestResultCommon";
 import {execute} from "../../api/http/test/common/dtAction";
 import {DownOutlined} from "@ant-design/icons";
 import SaveToApi from "./saveToApi";
 import instanceStore from "../../api/http/test/instance/store/InstanceStore";
-const { Option } = Select;
 import quickTestStore from "../store/QuickTestStore";
 import tabQuickTestStore from "../store/TabQuickTestStore";
+
+const { Option } = Select;
+
 /**
  * 快捷测试页
  */
 const TestdetailQuickTest = (props) =>{
-    const {sendRequest} = props;
+    const {sendTest} = props;
 
     const {createInstance,findInstanceList} = instanceStore;
-    const { getRequestInfo, getResponseInfo, getResponseError } = quickTestStore;
+    const { getRequestInfo, getResponseInfo, getResponseError,setResponseShow,isResponseShow,setResponseData, responseData} = quickTestStore;
     const {
         updateBaseInfo,activeKey,baseInfo, headerList,queryList,requestBodyType,
         formList,formUrlList,rawInfo,preScript,afterScript,assertList
@@ -31,8 +32,7 @@ const TestdetailQuickTest = (props) =>{
 
     const userId = getUser().userId;
 
-    const [showResponse,setShowResponse] = useState(false);
-    const [testResponse, setTestResponse] = useState();
+
     const instanceId = localStorage.getItem("instanceId")
     const workspaceId = localStorage.getItem("workspaceId")
     const [afterScriptex, setAfterScript] = useState();
@@ -60,19 +60,19 @@ const TestdetailQuickTest = (props) =>{
         }
 
         const allSendData = {
-            "method":values.methodType,
-            "path":url,
+            "methodType":values.methodType,
+            "url":url,
             "headerList":headerList,
             "queryList":queryList,
             "bodyType":requestBodyType,
             "formDataList":formList,
-            "formUrlencoded":formUrlList,
-            "rawParam":rawInfo,
+            "formUrlList":formUrlList,
+            "raw":rawInfo,
             "assertList":assertList,
         }
 
-        //获取请求信息
-        getRequestInfo(allSendData)
+        //处理本地数据
+        let localData = localDataProcess(allSendData)
 
 
         //前置
@@ -87,30 +87,24 @@ const TestdetailQuickTest = (props) =>{
         }
 
 
-        //处理后的数据
-        const processData = sendTestDataProcess(allSendData,preObj)
+        //数据合并
+        const processData = mergeTestData(localData,preObj)
+        //获取请求信息
+        getRequestInfo(processData)
+
 
         //发送测试，返回结果
-        let response =await sendRequest(processData)
+        let response =await sendTest(processData)
 
         //获取响应结果
         if(response&&!response.error){
-            //获取响应结果
-            setTestResponse(response)
 
             response.assertList = assertList;
+            //获取响应结果
+            setResponseData(response)
 
             getResponseInfo(response,assertList).then(res=>{
-                res.httpCase = {"id":"quickTestInstanceId"}
-                res.workspaceId=workspaceId
-                createInstance(res).then(()=>{
-                    let params={
-                        "workspaceId":workspaceId,
-                        "httpCaseId":"quickTestInstanceId",
-                        "userId":userId,
-                    }
-                    findInstanceList(params)
-                })
+                saveInstance(res,localData)
             })
 
             //后置
@@ -119,26 +113,44 @@ const TestdetailQuickTest = (props) =>{
                 setAfterScript(data)
             }
 
-
             //点击测试按钮显示输出结果详情
-            setShowResponse(true);
+            setResponseShow(true);
         }else {
             getResponseError(response).then((res)=>{
-                res.httpCase = {"id":"quickTestInstanceId"}
-                res.workspaceId=workspaceId
-                createInstance(res).then(()=>{
-                    let params={
-                        "workspaceId":workspaceId,
-                        "httpCaseId":"quickTestInstanceId",
-                        "userId":userId,
-                    }
-                    findInstanceList(params)
-                })
+                saveInstance(res,localData)
             })
         }
     }
 
+    /**
+     * 保存历史
+     */
+    const saveInstance = (res,localData) =>{
+        res.httpCase = {"id":"quickTestInstanceId"}
+        res.workspaceId=workspaceId
+        res.requestInstance = {
+            "url":localData.url,
+            "methodType": localData.methodType,
+            "mediaType": localData.mediaType,
+            'headers':JSON.stringify(localData.header),
+            'body': JSON.stringify(localData.body)||localData.body,
+            "preScript": preScript.scriptex,
+            "afterScript": afterScript.scriptex
+        }
+        createInstance(res).then(async ()=>{
+            let params={
+                "workspaceId":workspaceId,
+                "httpCaseId":"quickTestInstanceId",
+                "userId":userId,
+            }
+            await findInstanceList(params)
+        })
+    }
 
+    /**
+     *
+     * @returns {Promise<void>}
+     */
     const changeInfo = async () =>{
         let value = await form.getFieldsValue()
         updateBaseInfo(value)
@@ -149,20 +161,19 @@ const TestdetailQuickTest = (props) =>{
         <Form.Item name="methodType" noStyle>
             <Select style={{width: 100}} onSelect={changeInfo}>
                 {
-                    Object.keys(methodJsonDictionary).map(item=>{
-                        return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
+                    methodDictionary.map(item=>{
+                        return <Option value={item}  key={item}>{item.toUpperCase()}</Option>
                     })
                 }
             </Select>
         </Form.Item>
     );
 
-    const items = [
-        {
+    //下拉，弹出 保存为接口
+    const items = [{
             label: (<SaveToApi />),
             key: '1',
-        },
-    ];
+        }];
 
     return(
         <div style={{height: "100%","overflow":"auto"}} className={"content-margin"}>
@@ -171,7 +182,7 @@ const TestdetailQuickTest = (props) =>{
                     <Form
                         form = {form}
                         className="test-header"
-                        // initialValues={{ methodType: "get" }}
+                        initialValues={{ methodType: "get" }}
                     >
                         <div className={"test-url"}>
                             <Form.Item
@@ -185,7 +196,11 @@ const TestdetailQuickTest = (props) =>{
                                 //     },
                                 // ]}
                             >
-                                <Input onChange={changeInfo} placeholder={"请输入请求地址"} addonBefore={prefixSelector}/>
+                                <Input
+                                    onChange={changeInfo}
+                                    placeholder={"请输入请求地址"}
+                                    addonBefore={prefixSelector}
+                                />
                             </Form.Item>
                         </div>
                         <div className={"test-base-item"}>
@@ -194,7 +209,7 @@ const TestdetailQuickTest = (props) =>{
                                     ?<Button type={"primary"} onClick={onFinish}>发送</Button>
                                     :<Dropdown.Button
                                         icon={<DownOutlined />}
-                                        menu={{items,}}
+                                        menu={{items}}
                                         onClick={onFinish}
                                         type={"primary"}
                                     >
@@ -216,8 +231,8 @@ const TestdetailQuickTest = (props) =>{
                 <div className='header-title ex-title'> 响应</div>
                 <div className={"white-bg-box"}>
                     <TestResultCommon
-                        testResponse={testResponse}
-                        showResponse={showResponse}
+                        testResponse={responseData}
+                        showResponse={isResponseShow}
                         afterScript={afterScriptex}
                     />
                 </div>

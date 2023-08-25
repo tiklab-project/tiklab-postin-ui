@@ -62,8 +62,11 @@ const RawParam = (props) => {
      * 下拉框展示
      */
     const showSelectItem = (data)=>{
-        return data&&data.map(item=>{
-            return  <Option value={item.value} key={item.key}>{item.value}</Option>
+        let arr = Object.keys(data);
+
+        return arr&&arr.map(item=>{
+            let obj = data[item]
+            return  <Option value={obj.title} key={obj.title}>{obj.mediaType}</Option>
         })
     }
 

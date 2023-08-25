@@ -9,7 +9,7 @@ const { merge } = require('webpack-merge');
 const path = require('path');
 const baseWebpackConfig = require('./webpack.base');
 
-const PORT = 3000;
+const PORT = 4000;
 
 module.exports = merge(baseWebpackConfig, {
     devtool: 'source-map',
@@ -61,7 +61,7 @@ module.exports = merge(baseWebpackConfig, {
         disableHostCheck: true,
         proxy:{
             "/request":{
-                target:"http://192.168.10.3:8090"
+                target:"http://192.168.10.12:8090"
             },
         }
     },

@@ -11,6 +11,7 @@ import {LogTemplate, LogType, MyLog} from "tiklab-security-ui";
 
 import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
+import Demo from "./Demo";
 
 //----内部组件----
 const PortalHeader = AsyncComponent(() => import("./common/header/PortalContent"));
@@ -86,6 +87,12 @@ const routers =  [
         path: '/',
         key:'poroute',
         routes:[
+            {
+                path: "/demo",
+                component: Demo,
+                exact: true,
+                key:'Home',
+            },
             {
                 path: "/home",
                 component: Home,

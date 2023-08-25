@@ -4,18 +4,13 @@ import {Axios} from "tiklab-core-ui";
 /**
  * @Description: 空间store
  * @Author: sunxiancheng
- * @LastEditTime: 2021-05-24 09:53:09
  */
 export class WorkspaceStore {
 	@observable workspaceList = [];
 	@observable workspaceIdList=[];
 	@observable workspaceIcon
-	@observable	totalRecord = "";
-	@observable params;
-	@observable pageParams;
-	@observable length;
 	@observable settingItemSelected;
-	@observable workspaceSelect="all"
+
 
 	/**
 	 * 获取带分页的空间列表
@@ -55,7 +50,11 @@ export class WorkspaceStore {
 	 * 查询我参数的空间列表
 	 */
 	@action
-	findWorkspaceJoinList = async (params) => {
+	findWorkspaceJoinList = async (value) => {
+		let params = {
+			orderParams:[{name:'workspaceName', orderType:'desc'}],
+			...value
+		}
 		const res = await Axios.post("/workspace/findWorkspaceJoinList",params)
 		if(res.code === 0 ) {
 			this.workspaceList = res.data;
@@ -122,16 +121,6 @@ export class WorkspaceStore {
 			return res.data;
 		}
 	}
-
-
-	/**
-	 * 获取空间页只中筛选项
-	 */
-	@action
-	setWorkspaceSelect = (select) =>{
-		this.workspaceSelect = select
-	}
-
 
 	/**
 	 * 空间设置中的导航的选中项

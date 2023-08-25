@@ -34,7 +34,7 @@ const ReactMonacoEditor = (props) =>{
     });
 
     const editorDidMount = (editor, monaco) => {
-        editor.focus();
+        // editor.focus();
     };
 
 

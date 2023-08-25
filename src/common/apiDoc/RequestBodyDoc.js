@@ -1,5 +1,5 @@
 import React from "react";
-import {bodyTypeJsonDictionary as bodyTypeJson} from "../dictionary/dictionary";
+import {mediaTypeDir} from "../dictionary/dictionary";
 import TableFormDoc from "./TableFormDoc";
 import TableFormUrlDoc from "./TableFormUrlDoc";
 import RawDoc from "./RawDoc";
@@ -15,13 +15,13 @@ const RequestBodyDoc = (props) =>{
      */
     const showItemComponent = (data)=>{
         switch(data?.request?.bodyType) {
-            case bodyTypeJson.none:
+            case mediaTypeDir.none.title:
                 return null
-            case bodyTypeJson.formdata:
+            case mediaTypeDir.formdata.title:
                 return <TableFormDoc dataSource={data?.formList}/>
-            case bodyTypeJson.formUrlencoded:
+            case mediaTypeDir.formUrlencoded.title:
                 return <TableFormUrlDoc dataSource={data?.urlencodedList} />
-            case bodyTypeJson.raw:
+            case mediaTypeDir.raw.title:
                 return <div><RawDoc dataSource={data?.rawParam} /></div>
         }
     }

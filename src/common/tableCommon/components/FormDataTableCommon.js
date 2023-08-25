@@ -28,7 +28,7 @@ const FormDataTableCommon = (props) =>{
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <FileTextSelect
-                    defaultValue={record.dataType}
+                    defaultValue={record.dataType||"text"}
                     handleSave={handleSave}
                     rowData={record}
                 />

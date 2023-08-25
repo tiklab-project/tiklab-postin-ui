@@ -11,7 +11,7 @@ import {
     processHeaderData,
     processQueryData
 } from "./instanceDataProcess";
-import {bodyTypeJsonDictionary as bodyTypeJsonDic} from "../../common/dictionary/dictionary";
+import {mediaTypeDir} from "../../common/dictionary/dictionary";
 import instanceStore from "../../api/http/test/instance/store/InstanceStore";
 import quickTestStore from "../store/QuickTestStore";
 import tabQuickTestStore from "../store/TabQuickTestStore";
@@ -21,7 +21,7 @@ import tabQuickTestStore from "../store/TabQuickTestStore";
  */
 const LeftNavListQuickTest =(props)=>{
     const {findInstanceList,instanceList,deleteAllInstance,deleteInstance,findInstance} = instanceStore;
-    const {setResponseShow} = quickTestStore;
+    const {setResponseShow,setResponseData} = quickTestStore;
     const {tabPaneInfo,setTabPaneInfo} = tabQuickTestStore
 
     const userId = getUser().userId;
@@ -71,23 +71,23 @@ const LeftNavListQuickTest =(props)=>{
                 }
             }
             switch (bodyType){
-                case bodyTypeJsonDic.none:
+                case mediaTypeDir.none.title:
                     break;
-                case bodyTypeJsonDic.formdata:
+                case mediaTypeDir.formdata.title:
                     bodyData = {
                         ...bodyData,
                         "bodyType":bodyType,
                         "form":processFormParamData(request.body)
                     }
                     break;
-                case bodyTypeJsonDic.formUrlencoded:
+                case mediaTypeDir.formUrlencoded.title:
                     bodyData = {
                         ...bodyData,
                         "bodyType":bodyType,
                         "formUrl":processFormUrlencodedData(request.body)
                     }
                     break;
-                case bodyTypeJsonDic.raw:
+                case mediaTypeDir.raw.title:
                     let rawInfo = {
                         raw:request?.body,
                         type:request?.mediaType
@@ -101,6 +101,7 @@ const LeftNavListQuickTest =(props)=>{
                 default:
                     break;
             }
+            setResponseData( res.responseInstance)
 
             instance = {
                 "id":res.id,
@@ -140,7 +141,7 @@ const LeftNavListQuickTest =(props)=>{
             setTabPaneInfo(newTabInfo)
         })
 
-        setResponseShow();
+        setResponseShow(true);
     }
 
 

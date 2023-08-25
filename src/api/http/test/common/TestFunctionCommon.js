@@ -3,67 +3,46 @@ import Mock from "mockjs";
 
 //用于定义的各个list，转换为对象
 export const testFunctionCommon ={
-    //数据转换
+    //数据转换  data格式 []
     transData :(data) =>{
+        if(!data) return null;
+
         let newData = {};
-        data&&data.map(item=>{
-            if(item.paramName!==undefined){
-                newData[item.paramName]=Mock.mock(item.value)
+        data?.forEach(({paramName, value})=>{
+            if(paramName!==undefined){
+                newData[paramName]=Mock.mock(value)
             }
         })
-        return newData
+        return Object.keys(newData).length > 0 ? newData : null;
     },
 
-    //header数据转换
-    headerData :(data)=>{
+    //header数据转换 data格式 []
+    headerData :(data) => {
+        if(!data) return null;
+
         let headers = {};
-        data&&data.map(item=>{
-            if(item.headerName!==undefined){
-                headers[item.headerName] = Mock.mock(item.value);
+
+        data?.forEach(({headerName, value}) => {
+            if(headerName) {
+                headers[headerName] = Mock.mock(value);
             }
-        })
-        return headers;
+        });
+
+        return Object.keys(headers).length > 0 ? headers : null;
     },
 
+    //特殊：data格式 {}
     formData:(data)=>{
         const param = new FormData();
-        data&&data.map(item => {
-            if(item.paramName!==undefined){
-                param.append(item.paramName, Mock.mock(item.value));
-            }
-        })
-        console.log(param)
+        for (const key of Object.keys(data)) {
+            param.append(key, data[key]);
+        }
         return param
     },
 
-    jsonData:(data) => {
-        let jsonResult =  {};
-        data&&data.map(item => {
-            if(item.paramName!==undefined){
-                jsonResult[item.paramName] = Mock.mock(item.value);
-            }
-            if(item.children && item.children.length> 0) {
-                loop( item.children, item.paramName, jsonResult );
-            }
-        })
-    }
-
 }
 
-//json 递归
-const loop = (bodys, key, result)=>{
-    let obj = {}
-    return bodys.forEach(item => {
-        if(item.paramName!==undefined){
-            obj[item.paramName] = Mock.mock(item.value);
-        }
-        if(item.children && item.children.length> 0) {
-            loop( item.children, item.paramName, obj );
-        }
-        result[key] = obj;
-        return result;
-    })
-};
+
 
 //保存用例公共方法
 export const saveTestcaseCommon ={

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Tabs} from "antd";
 import {inject, observer} from "mobx-react";
 import {TextMethodType} from "../../common/MethodType";
-import {initTabPane} from "./quickTestCommon";
+import {initTabPane} from "./quickTestData";
 import TestdetailQuickTest from "../components/TestdetailQuickTest";
 import tabQuickTestStore from "../store/TabQuickTestStore";
 const {TabPane} = Tabs;
@@ -103,7 +103,7 @@ const TabsQuickTest = (props) =>{
                             }
                             key={index}
                         >
-                            <TestdetailQuickTest {...props} sendRequest={props.sendRequest} />
+                            <TestdetailQuickTest {...props} sendTest={props.sendTest} />
                         </TabPane>
                     ))
 

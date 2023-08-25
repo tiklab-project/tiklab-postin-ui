@@ -9,102 +9,72 @@ export const dir = {
 
 }
 
-export const requestTabDictionary = {
-    "header":"请求头",
-    "query":"查询参数",
-    "body":"请求体",
-    "pre":"前置脚本",
-    "after":"后置脚本",
-    "assert":"断言"
-}
 
-
+//请求类型字典项
 export const methodDictionary = [
     "post",
     "get",
-    "head",
-    "put",
-    "delete",
-    "options",
-    "patch"
+    // "head",
+    // "put",
+    // "delete",
+    // "options",
+    // "patch"
 ]
 
-export const methodJsonDictionary = {
-    "get":"GET",
-    "post":"POST",
-    "head":"HEAD",
-    "put":"PUT",
-    "delete":"DELETE",
-    "options":"OPTIONS",
-    "patch":"PATCH",
+//请求中的字典项
+export const mediaTypeDir ={
+    none:{
+        title:"none",
+        mediaType:"none",
+        radioShow:"none"
+    },
+    formdata:{
+        title:"formdata",
+        mediaType:"multipart/form-data",
+        radioShow:"form-data"
+    },
+    formUrlencoded:{
+        title:"formUrlencoded",
+        mediaType:"application/x-www-form-urlencoded",
+        radioShow:"x-www-form-urlencoded"
+    },
+    // json:{
+    //     title:"json",
+    //     mediaType:"application/json",
+    //     radioShow:"json"
+    // },
+    raw:{
+        title:"raw",
+        mediaType:"raw",
+        radioShow:"raw"
+    }
 }
 
-export const mediaTypeDictionary={
-    none:"none",
-    formdata:"multipart/form-data",
-    formUrlencoded:"application/x-www-form-urlencode",
-    // json:"application/json",
-    raw:"raw",
-    // binary:"binary"
+//raw中的数据字典项
+export const rawTypeDictionary = {
+    json: {
+        "mediaType":"application/json",
+        "title":"json"
+    },
+    text: {
+        "mediaType":"text/plain",
+        "title":"text"
+    },
+    javascript: {
+        "mediaType":"application/javascript",
+        "title":"javascript"
+    },
+    xml: {
+        "mediaType":"text/xml",
+        "title":"xml"
+    },
+    html: {
+        "mediaType":"text/html",
+        "title":"html"
+    },
 }
 
-//body中radio渲染使用
-export const bodyTypeDictionary ={
-    none:"none",
-    formdata:"form-data",
-    formUrlencoded:"x-www-form-urlencoded",
-    json:"json",
-    raw:"raw",
-    // binary:"binary"
-}
-
-
-export const bodyTypeJsonDictionary = {
-    "none":"none",
-    "formdata":"formdata",
-    "formUrlencoded":"formUrlencoded",
-    "json":"json",
-    "raw":"raw"
-}
-
-
-export const rawTypeDictionary = [
-    {
-        "name":"Json(application/json)",
-        "value":"application/json",
-        "key":"json"
-    },
-    {
-        "name":"Text(text/plain)",
-        "value":"text/plain",
-        "key":"text"
-    },
-    {
-        "name":"Javascript(application/javascript)",
-        "value":"application/javascript",
-        "key":"javascript"
-    },
-    {
-        "name":"Xml(text/xml)",
-        "value":"text/xml",
-        "key":"xml"
-    },
-    {
-        "name":"Html(text/html)",
-        "value":"text/html",
-        "key":"html"
-    },
-]
-
-export const rawTypeJsonDictionary ={
-    "text":"text/plain",
-    "json":"application/json",
-    "javascript":"application/javascript",
-    "xml":"text/xml",
-    "html":"text/html"
-}
-
-
+//请求头的字典项
 export const headerParamDictionary = [
     'accept',
     'accept-charset',
@@ -114,13 +84,12 @@ export const headerParamDictionary = [
     'connection',
     'content-length',
     'cookie',
-    'from',
     'host',
     'referer',
     'user-agent',
 ];
 
-
+//mock选项
 export const mockValueDictionary = [
     '@ip',
     '@name',
@@ -145,9 +114,9 @@ export const mockValueDictionary = [
     '@image',
     '@timezone',
     '@gender',
-
 ];
 
+//数据类型选项
 export const dataTypeDictionary = [
     'string',
     'integer',

@@ -6,7 +6,7 @@ const ResponseBodyCommon = (props) => {
     const {responseBodyData,mediaType} = props;
 
 
-    const [language, setLanguage] = useState("json");
+    const [language, setLanguage] = useState('plaintext');
     const [precessValue, setPrecessValue] = useState();
 
     useEffect(()=>{
@@ -18,7 +18,11 @@ const ResponseBodyCommon = (props) => {
     const processData =(data)=>{
 
         //空值
-        if(!data) return
+        if(!data) return "";
+        if (data instanceof Object && Object.keys(data).length === 0) {
+            return JSON.stringify(responseBodyData);
+        }
+
 
         let language = getLanguageFromMIME(mediaType)
         setLanguage(language)

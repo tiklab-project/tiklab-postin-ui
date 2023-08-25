@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import {Radio} from "antd";
-import { bodyTypeJsonDictionary as bodyTypeJson} from "../../dictionary/dictionary";
+import {mediaTypeDir} from "../../dictionary/dictionary";
 import RequestNoBody from "./RequestNoBody";
 
 /**
@@ -19,15 +19,15 @@ const RequestBodyCom = (props) =>{
      */
     const showItemComponent = (data)=>{
         switch(data) {
-            case bodyTypeJson.none:
+            case mediaTypeDir.none.title:
                 return <RequestNoBody/>
-            case bodyTypeJson.formdata:
+            case mediaTypeDir.formdata.title:
                 return props.form
-            case bodyTypeJson.formUrlencoded:
+            case mediaTypeDir.formUrlencoded.title:
                 return props.formUrlencoded
-            case bodyTypeJson.json:
-                return props.json
-            case bodyTypeJson.raw:
+            // case mediaTypeDir.json:
+            //     return props.json
+            case mediaTypeDir.raw.title:
                 return props.raw
             // case 'binary':
             //     return ""
@@ -42,7 +42,7 @@ const RequestBodyCom = (props) =>{
         let arr = Object.keys(data)
 
         return arr.map(item=>{
-            return <Radio value={item} key={item}>{data[item]}</Radio>
+            return <Radio value={item} key={item}>{data[item].radioShow}</Radio>
         })
     }
 

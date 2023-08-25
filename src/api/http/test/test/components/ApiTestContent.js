@@ -3,8 +3,8 @@ import { observer, inject } from "mobx-react";
 import {Breadcrumb, Form, Input, Select, Space, Tooltip} from 'antd';
 import { TestRequest } from '../index';
 import './test.scss';
-import { sendTestDataProcess} from "../../../../../common/request/sendTestCommon";
-import { methodJsonDictionary} from "../../../../../common/dictionary/dictionary";
+import {localDataProcess, mergeTestData} from "../../../../../common/request/sendTestCommon";
+import {methodDictionary} from "../../../../../common/dictionary/dictionary";
 import {execute} from "../../common/dtAction";
 import TestResultCommon from "../../common/TestResultCommon";
 import IconBtn from "../../../../../common/iconBtn/IconBtn";
@@ -119,6 +119,25 @@ const ApiTestContent = (props) => {
     const onFinish =async ()=> {
         let values =await form.validateFields();
 
+        let preUrl = values.host?values.host:testEnvUrl
+
+        const allSendData = {
+            "methodType":values.methodType,
+            "url":preUrl+values.path,
+            "headerList":requestHeaderList,
+            "queryList":querySelectList,
+            "bodyType":bodyTypeInfo,
+            "formDataList":formSelectList,
+            "formUrlList":formUrlSelectList,
+            "raw":rawParamTestInfo,
+        }
+
+        const globalParam = {
+            header:globalHeaderList
+        }
+
+        //处理本地数据
+        let localData = localDataProcess(allSendData)
 
         //前置
         let preObj
@@ -132,24 +151,8 @@ const ApiTestContent = (props) => {
         }
 
 
-        const allSendData = {
-            "method":values.methodType,
-            "baseUrl":values.host?values.host:testEnvUrl,
-            "path":values.path,
-            "headerList":requestHeaderList,
-            "queryList":querySelectList,
-            "bodyType":bodyTypeInfo,
-            "formDataList":formSelectList,
-            "formUrlencoded":formUrlSelectList,
-            "rawParam":rawParamTestInfo,
-        }
-
-        const globalParam = {
-            header:globalHeaderList
-        }
-
         //处理后的数据
-        const processData = sendTestDataProcess(allSendData,preObj,globalParam)
+        const processData = mergeTestData(localData,preObj,globalParam)
 
 
         //发送测试，返回结果
@@ -158,7 +161,6 @@ const ApiTestContent = (props) => {
             if(assertParamTestList&&assertParamTestList.length>0){
                 response.assertList =[ ...assertParamTestList];
             }
-
 
             //后置
             if(afterParamTestInfo){
@@ -171,9 +173,6 @@ const ApiTestContent = (props) => {
 
             setShowResponse(true)
         }
-
-
-
     }
 
     /**
@@ -247,8 +246,8 @@ const ApiTestContent = (props) => {
                             <Form.Item name="methodType" noStyle>
                                 <Select style={{width: 100,height:40}} disabled={true} showArrow={false}>
                                     {
-                                        Object.keys(methodJsonDictionary).map(item=>{
-                                            return <Option value={item}  key={item}>{methodJsonDictionary[item]}</Option>
+                                        Object.keys(methodDictionary).map(item=>{
+                                            return <Option value={item}  key={item}>{item.toUpperCase()}</Option>
                                         })
                                     }
                                 </Select>
