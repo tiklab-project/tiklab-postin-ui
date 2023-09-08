@@ -91,7 +91,7 @@ const HttpList = (props) => {
         await apiRecent(params)
 
         localStorage.setItem("apxMethodId",record.id)
-        props.history.push('/workspace/apis/document')
+        props.history.push('/workspace/apis/content/document')
     }
 
     useEffect(async ()=>{

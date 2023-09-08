@@ -39,7 +39,7 @@ const ApiRecentHome = (props) =>{
 
         localStorage.setItem("workspaceId",workspaceId)
         localStorage.setItem("apxMethodId",apiId)
-        props.history.push('/workspace/apis/document');
+        props.history.push('/workspace/apis/content/document');
     }
 
 

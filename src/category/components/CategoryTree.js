@@ -49,7 +49,7 @@ const CategoryTree = (props) => {
         apiRecent(params)
 
         localStorage.setItem('apxMethodId',item.id);
-        props.history.push('/workspace/apis/document');
+        props.history.push('/workspace/apis/content/document');
     }
 
 

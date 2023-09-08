@@ -104,7 +104,7 @@ const Mock = (props) => {
      */
     const setLocalStorage = (mockId,id) => {
         localStorage.setItem(mockId,id)
-        props.history.push('/workspace/apis/mock-detail')
+        props.history.push('/workspace/apis/content/mock-detail')
     }
 
     /**
@@ -118,7 +118,7 @@ const Mock = (props) => {
      * 去往接口文档页
      */
     const goToDocPage = () =>{
-        props.history.push("/workspace/apis/document")
+        props.history.push("/workspace/apis/content/document")
     }
 
 
@@ -131,17 +131,8 @@ const Mock = (props) => {
     }
 
     return (
-        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+        <div className={"content-margin"} style={{height:" calc(100% - 48px)",padding:"0"}}>
             <div className="content-margin-box">
-                <div className={"pi-box-between"}>
-                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
-                        <Breadcrumb.Item onClick={goToListPage} className={"first-item"}>接口列表</Breadcrumb.Item>
-                        <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
-                        <Breadcrumb.Item>MOCK</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <EnvSelect {...props}/>
-                </div>
-
                 <div className='mock-header'>
                     <div style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}>
                         MOCK地址：

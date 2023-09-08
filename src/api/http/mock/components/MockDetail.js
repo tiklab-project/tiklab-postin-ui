@@ -67,14 +67,14 @@ const MockDetail = (props) =>{
      * 去往接口文档页
      */
     const goToDocPage = () =>{
-        props.history.push("/workspace/apis/document")
+        props.history.push("/workspace/apis/content/document")
     }
 
     /**
      * 去往mock列表页
      */
     const goToMockPage = () =>{
-        props.history.push("/workspace/apis/mock")
+        props.history.push("/workspace/apis/content/mock")
     }
 
 
@@ -110,17 +110,8 @@ const MockDetail = (props) =>{
     }
 
     return(
-        <div className={"content-margin"} style={{height:" calc(100% - 48px)"}}>
+        <div className={"content-margin"} style={{height:" calc(100% - 48px)",padding:"0"}}>
             <div className="content-margin-box">
-                <div className={"pi-box-between"}>
-                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
-                        <Breadcrumb.Item onClick={goToListPage} className={"first-item"}>接口列表</Breadcrumb.Item>
-                        <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
-                        <Breadcrumb.Item onClick={goToMockPage} className={"first-item"}>MOCK</Breadcrumb.Item>
-                        <Breadcrumb.Item>MOCK详情</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <EnvSelect {...props}/>
-                </div>
 
                 <div className={"mock-header-box"}>
                     <EdiText

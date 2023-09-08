@@ -1,0 +1,69 @@
+.backups{
+    height: 100%;
+
+    .backups-content{
+        max-width: 900px;
+        margin: auto;
+        padding: 15px;
+        height: 100%;
+        .backups-content-main{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+    }
+    .backups-center{
+        padding: 5px 0 15px;
+        .backups-info-item{
+            padding: 8px 0;
+            &>span:first-child{
+                display: inline-block;
+                width: 150px;
+            }
+            .backups-info-item-desc{
+                font-size: 13px;
+                color: #999999;
+            }
+            .backups-info-item-success{
+                color: var(--tiklab-blue);
+            }
+            .backups-info-item-error{
+                color: #ff0000;
+            }
+            .backups-info-item-run{
+                color: #43a890;
+            }
+        }
+        .backups-info-item-hint{
+            font-weight: bold;
+        }
+    }
+    .backups-log-title{
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .backups-log-content{
+        flex: 1;
+        height: 0;
+        overflow: auto;
+        padding: 10px;
+        background: #222222;
+        color: #FFFFFF;
+        border-radius: 4px;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+}
+
+.backups-loading{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .backups-loading-title{
+        padding-top: 10px;
+        font-size: 13px;
+        color: var(--tiklab-gray-500);
+    }
+}

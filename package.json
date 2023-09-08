@@ -10,9 +10,7 @@
     "start": "cross-env NODE_ENV=development API_ENV=local  webpack-dev-server --progress --config ./webpack.dev.js ",
     "prod": "cross-env NODE_ENV=production API_ENV=prod webpack --config webpack.prd.js",
     "build": "rimraf es/* && ./node_modules/.bin/babel src --copy-files  --extensions .js --out-dir es/components && ncp README.md es/README.md",
-
     "build:esm": "rimraf es && cross-env NODE_ENV=production BABEL_ENV=esm rollup -c",
-
     "build:prod": "npm run build:esm && npm run build:css",
     "build:css": "cd scripts && gulp compile",
     "build:dev:esm": "rimraf es && cross-env NODE_ENV=development BABEL_ENV=esm rollup -c",

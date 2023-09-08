@@ -19,17 +19,13 @@ const ResponseBodyCommon = (props) => {
 
         //空值
         if(!data) return "";
-        if (data instanceof Object && Object.keys(data).length === 0) {
+        if (data instanceof Object ) {
+            setLanguage("json")
             return JSON.stringify(responseBodyData);
         }
 
-
         let language = getLanguageFromMIME(mediaType)
         setLanguage(language)
-
-        if(language==="json"){
-            return JSON.stringify(responseBodyData)
-        }
 
         return  responseBodyData
     }

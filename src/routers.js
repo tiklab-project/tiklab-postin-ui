@@ -13,6 +13,7 @@ import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import Demo from "./Demo";
 
+
 //----内部组件----
 const PortalHeader = AsyncComponent(() => import("./common/header/PortalContent"));
 const Home = AsyncComponent(() => import('./home/Home'));
@@ -25,6 +26,7 @@ const LayoutApiContent = AsyncComponent(() => import( "./api/http/definition/com
 const LayoutQuickTest = AsyncComponent(() => import("./quicktest/common/LayoutQuickTest"));
 const WorkspaceDetailInitPage = AsyncComponent(() => import("./workspace/overview/WorkspaceOverViewPage"));
 const Category = AsyncComponent(() => import("./api/http/definition/components/HttpList"));
+const ApiContent  = AsyncComponent(() => import( "./api/http/common/ApiContent"));
 const ApxMethodDetail = AsyncComponent(() => import("./api/http/definition/components/ApxMethodEditPage"));
 const Mock = AsyncComponent(() => import("./api/http/mock/components/Mock"));
 const MockDetail = AsyncComponent(() => import("./api/http/mock/components/MockDetail"));
@@ -43,6 +45,10 @@ const ApiDocument = AsyncComponent(() => import("./api/http/definition/component
 const ApiInitPage = AsyncComponent(() => import("./workspace/common/ApiInitPage"));
 const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
 const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
+
+const Backups = AsyncComponent(() => import("./support/backupRecovery/component/Backups"));
+const Recovery = AsyncComponent(() => import("./support/backupRecovery/component/Recovery"));
+
 
 const routers =  [
     {
@@ -156,6 +162,16 @@ const routers =  [
                         key:'MessageType',
                         exact: true,
                         render:()=> <MessageNotice bgroup={"postin"}/>
+                    },
+                    {
+                        path: "/systemManagement/backups",
+                        exact: true,
+                        component: Backups
+                    },
+                    {
+                        path: "/systemManagement/recovery",
+                        exact: true,
+                        component: Recovery
                     },
                     // //代办
                     // {
@@ -306,31 +322,40 @@ const routers =  [
                                 key:'Category',
                                 component: Category,
                             },
+
                             {
-                                path:"/workspace/apis/document",
-                                exact: true,
-                                component: ApiDocument,
+                                path: "/workspace/apis/content",
+                                component: ApiContent,
+                                routes:[
+
+                                    {
+                                        path:"/workspace/apis/content/document",
+                                        exact: true,
+                                        component: ApiDocument,
+                                    },
+                                    {
+                                        path:"/workspace/apis/content/edit",
+                                        exact: true,
+                                        component: ApxMethodDetail,
+                                    },
+                                    {
+                                        path:"/workspace/apis/content/test",
+                                        exact: true,
+                                        component: TestBox,
+                                    },
+                                    {
+                                        path:'/workspace/apis/content/mock',
+                                        exact: true,
+                                        component: Mock
+                                    },
+                                    {
+                                        path:'/workspace/apis/content/mock-detail',
+                                        exact: true,
+                                        component:MockDetail
+                                    },
+                                ]
                             },
-                            {
-                                path:"/workspace/apis/edit",
-                                exact: true,
-                                component: ApxMethodDetail,
-                            },
-                            {
-                                path:"/workspace/apis/test",
-                                exact: true,
-                                component: TestBox,
-                            },
-                            {
-                                path:'/workspace/apis/mock',
-                                exact: true,
-                                component: Mock
-                            },
-                            {
-                                path:'/workspace/apis/mock-detail',
-                                exact: true,
-                                component:MockDetail
-                            },
+
                             {
                                 path:"/workspace/apis",
                                 exact: true,

@@ -55,6 +55,21 @@ const SystemContent = (props) =>{
             ],
         },
         {
+            title: "备份",
+            icon: 'lishi',
+            id: '/backups',
+            children: [
+                {
+                    title: "备份",
+                    id: '/systemManagement/backups',
+
+                },{
+                    title: "恢复",
+                    id: '/systemManagement/recovery',
+                },
+            ],
+        },
+        {
             title: '插件',
             icon: 'modular',
             id: '/systemManagement/plugin',

@@ -2,6 +2,7 @@
 
 import React, { useRef, useState} from 'react';
 import { renderRoutes } from "react-router-config";
+import {useHistory} from "react-router";
 
 /**
  * 可以拖拽
@@ -11,7 +12,6 @@ const RightContent = (props) => {
     const route = props.route.routes;
 
     const [leftBoxWidth, setLeftBoxWidth] = useState();
-
     const boxRef = useRef()
 
     const changeBox = () =>{
@@ -39,9 +39,6 @@ const RightContent = (props) => {
                     }else {
                         setLeftBoxWidth(width)
                     }
-
-
-
                     return false;
                 }
             }
@@ -55,7 +52,6 @@ const RightContent = (props) => {
             }
         }
     }
-
 
     return(
         <div className='wscontant'>
@@ -75,7 +71,6 @@ const RightContent = (props) => {
                     <div className={"middleBox-show"}> </div>
                 </div>
             </div>
-
             <div className='wscontant-contant'>
                 <div className={"wscontant-box"}>
                     {renderRoutes(route)}

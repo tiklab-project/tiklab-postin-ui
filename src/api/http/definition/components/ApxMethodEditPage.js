@@ -356,41 +356,22 @@ const ApxMethodEditPage = (props) => {
     }
 
     /**
-     * 去往列表页
-     */
-    const goToListPage = () =>{
-        props.history.push("/workspace/apis/category")
-    }
-
-    /**
      * 去往文档页
      */
     const goToDocPage = () =>{
-        props.history.push("/workspace/apis/document")
+        props.history.push("/workspace/apis/content/document")
     }
 
     /**
      * 去往测试页
      */
     const toTestPage = () =>{
-        props.history.push("/workspace/apis/test")
+        props.history.push("/workspace/apis/content/test")
     }
 
     return(
-        <div className={"content-margin"} style={{height:"100%"}}>
+        <div className={"content-margin"} style={{height:"100%",padding:"0"}}>
             <div className="content-margin-box">
-                <div className={"pi-box-between"}>
-                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
-                        <Breadcrumb.Item onClick={goToListPage} className={"first-item"}>接口列表</Breadcrumb.Item>
-                        <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
-                        <Breadcrumb.Item>接口编辑</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{display:"flex",alignItems:"center","justifyContent":"space-between",width: "260px"}}>
-                        <GlobalParamModal />
-                        <EnvSelect {...props}/>
-                    </div>
-
-                </div>
                 <div className={"white-bg-box"} style={{marginTop:0}}>
                     <div className="api-detail-base-box">
                         <div className={"api-base-info-box"}>
@@ -435,14 +416,6 @@ const ApxMethodEditPage = (props) => {
                                 name={"测试"}
                                 onClick={toTestPage}
                             />
-
-                            <IconBtn
-                                icon={"fanhui2"}
-                                className="pi-icon-btn-grey"
-                                name={"退出编辑"}
-                                onClick={goToDocPage}
-                            />
-
                         </Space>
 
                     </div>

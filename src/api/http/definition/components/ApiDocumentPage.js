@@ -26,46 +26,10 @@ const ApiDocumentPage = (props) =>{
         setApiDoc(res)
     },[apxMethodId])
 
-    /**
-     * 去往编辑页
-     */
-    const toEditPage = () =>{
-        props.history.push("/workspace/apis/edit")
-    }
-
-    /**
-     * 去往测试页
-     */
-    const toTestPage = () =>{
-        props.history.push("/workspace/apis/test")
-    }
-
-    /**
-     * 去往mock页
-     */
-    const toMockPage = () =>{
-        props.history.push("/workspace/apis/mock")
-    }
-
-    /**
-     * 去往列表页
-     */
-    const goBack = () =>{
-        props.history.push("/workspace/apis/category")
-    }
-
 
     return (
-        <div className={"content-margin"} style={{height:"100%"}}>
+        <div className={"content-margin"} style={{height:"100%",padding:"0"}}>
             <div className="content-margin-box">
-                <div className={"pi-box-between"}>
-                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
-                        <Breadcrumb.Item onClick={goBack} className={"first-item"}>接口列表</Breadcrumb.Item>
-                        <Breadcrumb.Item>接口文档</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <EnvSelect {...props}/>
-                </div>
-
                 <div className={"share-box-right-content-item"}  >
                     <div className={"pi-box-between"}>
                         <div className={"share-box-api-title"}>
@@ -73,26 +37,6 @@ const ApiDocumentPage = (props) =>{
                             <Tag color={apiDoc?.apix?.status?.color} style={{margin:"0 10px"}}>{apiDoc?.apix?.status?.name}</Tag>
                         </div>
 
-                        <Space>
-                            <IconBtn
-                                // icon={"bianji11"}
-                                className="pi-icon-btn-grey"
-                                name={"编辑"}
-                                onClick={toEditPage}
-                            />
-                            <IconBtn
-                                // icon={"fasong"}
-                                className="pi-icon-btn-grey"
-                                name={"测试"}
-                                onClick={toTestPage}
-                            />
-                            <IconBtn
-                                // icon={"gongdan"}
-                                className="pi-icon-btn-grey"
-                                name={"MOCK"}
-                                onClick={toMockPage}
-                            />
-                        </Space>
                     </div>
 
                     <div className={"share-box-right-content-item-detail"}>

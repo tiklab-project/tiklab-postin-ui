@@ -217,25 +217,12 @@ const ApiTestContent = (props) => {
      * 去往文档页
      */
     const goToDocPage = () =>{
-        props.history.push("/workspace/apis/document")
+        props.history.push("/workspace/apis/content/document")
     }
 
     return(
-        <div className={"content-margin"} >
+        <div className={"content-margin"} style={{padding:"0"}}>
             <div className="content-margin-box">
-                <div className={"pi-box-between"}>
-                    <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
-                        <Breadcrumb.Item onClick={goToListPage} className={"first-item"}>接口列表</Breadcrumb.Item>
-                        <Breadcrumb.Item onClick={goToDocPage} className={"first-item"}>接口文档</Breadcrumb.Item>
-                        <Breadcrumb.Item>接口测试</Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{display:"flex",alignItems:"center","justifyContent":"space-between",width: "260px"}}>
-                        <GlobalParamModal />
-                        <EnvSelect {...props}/>
-                    </div>
-                </div>
-
-
                 <div className={"test-base"}>
                     <Form
                         onFinish={onFinish}
@@ -264,19 +251,13 @@ const ApiTestContent = (props) => {
                             </Form.Item>
                         </div>
 
-                        <Space style={{height:40}}>
-                            <IconBtn
-                                className="important-btn"
-                                icon={"fasong-copy"}
-                                onClick={onFinish}
-                                name={"发送"}
-                            />
-                            <IconBtn
-                                className="pi-icon-btn-grey"
-                                name={"退出测试"}
-                                onClick={goToDocPage}
-                            />
-                        </Space>
+                        <IconBtn
+                            className="important-btn"
+                            icon={"fasong-copy"}
+                            onClick={onFinish}
+                            name={"发送"}
+                        />
+
                     </Form>
                 </div>
 
