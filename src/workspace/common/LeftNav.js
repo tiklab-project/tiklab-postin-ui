@@ -1,10 +1,12 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
-import {Space} from "antd";
+import {Dropdown, Space} from "antd";
 import {toWorkspaceDetail} from "../workspace/components/WorkspaceFn";
 import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 import workspaceRecentStore from "../workspace/store/WorkspaceRecentStore";
+import IconCommon from "../../common/IconCommon";
+import {useHistory} from "react-router";
 
 /**
  * 左侧导航展示
@@ -13,6 +15,7 @@ const LeftNav = (props) =>{
     const {workspaceStore,systemRoleStore} = props;
     const {workspaceIcon,workspaceList,findWorkspaceJoinList,findWorkspace } = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
+
     const menuData = [
         {
             "icon":"home",
@@ -47,6 +50,8 @@ const LeftNav = (props) =>{
             "router":"/workspace/setting"
         }
 
+    const history = useHistory()
+    const [visible, setVisible] = useState(false);
     const workspaceId = localStorage.getItem("workspaceId")
     const leftMenuSelect = localStorage.getItem("LEFT_MENU_SELECT")
 
@@ -67,7 +72,7 @@ const LeftNav = (props) =>{
         //点击左侧导航，设置选择项,用于刷新后还能选择。
         localStorage.setItem("LEFT_MENU_SELECT",data.key);
 
-        props.history.push(data.router)
+        history.push(data.router)
     }
 
 
@@ -109,18 +114,30 @@ const LeftNav = (props) =>{
     /**
      * 展示切换的空间
      */
-    const showWorkspaceList = (list) =>{
-        return list&&list.map(item=>{
-            return (
-                <div className={"ws-hover-item"} key={item.id} onClick={()=>toggleWorkspace(item.id)}>
-                    <Space>
-                        <img src={item.iconUrl} alt={"icon"} className={"workspace-icon"}/>
-                        {item.workspaceName}
-                    </Space>
+    const toggleWorkspaceView = (
+        <div className={"ws-hover-box"}>
+            <div style={{ padding: "10px"}}>
+                <div className={"ws-hover-box-title"}>切换仓库</div>
+                <div style={{height:"169px"}}>
+                    {
+                        workspaceList&&workspaceList.map((item,index)=> {
+                                if(index>3) return
+                                return <div className={"ws-hover-item"} key={item.id} onClick={() => toggleWorkspace(item.id)}>
+                                    <Space>
+                                        <img src={item.iconUrl} alt={"icon"} className={"repository-icon"} width={20}/>
+                                        {item.workspaceName}
+                                    </Space>
+                                </div>
+                            }
+                        )
+                    }
                 </div>
-            )
-        })
-    }
+            </div>
+
+
+            <a className={"ws-toggle-repository_more"} onClick={()=>history.push("/workspacePage")}>查看更多</a>
+        </div>
+    )
 
     /**
      * 切换空间
@@ -128,7 +145,9 @@ const LeftNav = (props) =>{
     const toggleWorkspace = (workspaceId)=>{
         toWorkspaceDetail(workspaceId,workspaceRecent)
 
-        props.history.push('/workspace');
+        props.history.push('/workspace/overview');
+
+        setVisible(false)
     }
 
     return(
@@ -136,25 +155,23 @@ const LeftNav = (props) =>{
             <ul className={"ws-detail-left-nav"}>
                 <div>
                     <li className={`ws-detail-left-nav-item-workspace `} >
-                        <div className={"ws-icon-box"}>
-
+                        <Dropdown
+                            overlay={toggleWorkspaceView}
+                            trigger={['click']}
+                            visible={visible}
+                            onOpenChange={()=>setVisible(!visible)}
+                        >
+                            <div className={"ws-icon-box"}>
                             <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
-                                 <img src={workspaceIcon} alt={"icon"} className={"workspace-icon"}/>
+                                 <img src={workspaceIcon} alt={"icon"} className={"repository-icon"} width={30}/>
                             </span>
-                            <svg className="ws-icon-box-toggle-icon" aria-hidden="true"  style={{"cursor":"pointer"}}>
-                                <use xlinkHref= {`#icon-xiala`} />
-                            </svg>
-
-                            <div className={"ws-hover-box"}>
-                                <div className={"ws-hover-box-title"}>
-                                    切换空间
-                                </div>
-                                {
-                                    showWorkspaceList(workspaceList)
-                                }
+                                <IconCommon
+                                    style={{"cursor":"pointer"}}
+                                    className={"icon-s"}
+                                    icon={"xiala"}
+                                />
                             </div>
-                        </div>
-
+                        </Dropdown>
                     </li>
                     {
                         showMenuItem(menuData)

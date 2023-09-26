@@ -7,7 +7,7 @@ import {Directory, Orga, UserGroup, User,} from "tiklab-user-ui";
 import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "tiklab-privilege-ui"
 
 import {ExcludeProductUser} from "tiklab-eam-ui";
-import {LogTemplate, LogType, MyLog} from "tiklab-security-ui";
+import {BackupRecovery, LogTemplate, LogType, MyLog} from "tiklab-security-ui";
 
 import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
@@ -45,7 +45,7 @@ const ApiDocument = AsyncComponent(() => import("./api/http/definition/component
 const ApiInitPage = AsyncComponent(() => import("./workspace/common/ApiInitPage"));
 const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
 const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
-
+const EnvironmentTable = AsyncComponent(()=>import ("./support/environment/components/EnvironmentTable"))
 const Backups = AsyncComponent(() => import("./support/backupRecovery/component/Backups"));
 const Recovery = AsyncComponent(() => import("./support/backupRecovery/component/Recovery"));
 
@@ -166,13 +166,9 @@ const routers =  [
                     {
                         path: "/systemManagement/backups",
                         exact: true,
-                        component: Backups
+                        render:()=> <BackupRecovery />
                     },
-                    {
-                        path: "/systemManagement/recovery",
-                        exact: true,
-                        component: Recovery
-                    },
+
                     // //代办
                     // {
                     //     path: "/systemManagement/myTodo",
@@ -395,24 +391,25 @@ const routers =  [
                         routes: [
                             {
                                 path: "/workspace/setting/detail",
-                                key:'role',
                                 exact: true,
                                 component: WorkspaceSetting,
                             },
                             {
+                                path: "/workspace/setting/env",
+                                exact: true,
+                                component: EnvironmentTable,
+                            },
+                            {
                                 path: "/workspace/setting/role",
-                                key:'role',
                                 exact: true,
                                 component: WorkspaceRole,
                             },
                             {
                                 path: "/workspace/setting/privilege",
-                                key:'privilege',
                                 exact: true,
                                 component: WorkspacePrivilege,
                             },{
                                 path:"/workspace/setting",
-                                key:'ridworkspaceSetting',
                                 exact: true,
                                 component: ()=><Redirect to='/workspace/setting/detail'/>,
                             },

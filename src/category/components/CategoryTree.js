@@ -160,7 +160,7 @@ const CategoryTree = (props) => {
                     <svg className="icon" aria-hidden="true">
                         <use xlinkHref={`#icon-${icon.icon}`}/>
                     </svg>
-                    {item.name}
+                    <span className={"category-name"}>{item.name}</span>
                 </span>
                 {
                     categoryAct(item.id)
@@ -182,7 +182,7 @@ const CategoryTree = (props) => {
                 >
                     <TextMethodType type={item.methodType}/>
 
-                    {item.name}
+                    <span className={"category-name"}>{item.name}</span>
                 </li>
             )
         })
@@ -228,7 +228,7 @@ const CategoryTree = (props) => {
                                 <svg className="icon" aria-hidden="true">
                                     <use xlinkHref="#icon-folder-close"/>
                                 </svg>
-                                {item.name}
+                                <span className={"category-name"}>{item.name}</span>
                             </span>
                             {
                                 categoryAct(item.id)

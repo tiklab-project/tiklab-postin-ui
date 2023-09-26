@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ShareTree from "./ShareTree";
 import {inject, observer} from "mobx-react";
-import DocContent from "../../../../common/apiDoc/DocContent";
+import DocContent from "../../common/apiDoc/DocContent";
 import noneImg from "../../../../assets/img/nonedoc.png";
 import shareStore from "../store/ShareStore";
 /**

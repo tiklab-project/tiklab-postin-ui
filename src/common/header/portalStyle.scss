@@ -1,39 +1,3 @@
-//headerMenu
-
-.header-right-item{
-    margin: 0 12px;
-    height: 22px;
-
-
-    .header-icon-item{
-        font-size: 22px;
-        color: white;
-        cursor: pointer;
-    }
-}
-
-
-.header-right-item:hover{
-    background: #e3e3e3;
-    border-radius: var(--pi-border-radius);
-}
-.header-right-item:hover .header-icon-item{
-    color: #385fb8;
-}
-
-
-.user-header-icon{
-    margin: 5px;
-}
-
-.user-header-icon-hover{
-    cursor: pointer;
-
-    .ant-avatar{
-        width: 22px;
-        height: 22px;
-    }
-}
 
 .toggle-hover{
     position: relative;
@@ -160,7 +124,6 @@
     justify-content: space-between;
     align-items: center;
     height: 48px;
-    border-bottom: 1px solid var(--pi-border-color);
 
     .frame-header-logo{
         height: 35px;
@@ -215,49 +178,40 @@
 
     .pi-header-left{
         display: flex;
-        flex-direction: row;
         align-items: center;
-        height: 100%;
     }
 
-    .pi-header-right{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-
-        .pi-header-right-item{
-            margin: 0 15px 0 0;
-        }
-    }
 
     .frame-header-right-box{
         display: flex;
-        justify-content: space-between;
+        margin:0 15px 0 0;
         align-items: center;
-        height: 100%;
-
-
-        .frame-header-right-detail{
-            display: flex;
-            margin:0 15px 0 0;
-        }
-
+        gap: 15px;
     }
 
-}
+    .recovery-item{
+        .licence_dropdown_block_item{
+            height: 32px;
+            display: flex;
+            align-items: center;
+        }
+    }
 
-.show {
-    max-height: 350px;
-    transition: max-height .3s ease-in;
-    transform-origin: 50% 0;
-    animation: slide-down 0.3s ease-in;
-    -webkit-animation: slide-down 0.3s ease-in;
-    padding: 20px;
-}
+    .header-right-item{
+        padding: 2px;
 
-.hidden {
-    max-height: 0;
-    overflow: auto;
-    transition: max-height .3s ease-out;
-}
+        .header-icon-item{
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+        }
+    }
 
+    .header-right-item:hover{
+        border-radius: 50%;
+        color: rgb(0, 82, 204);
+        background-color: rgba(222, 235, 255, 0.9);
+    }
+
+
+}

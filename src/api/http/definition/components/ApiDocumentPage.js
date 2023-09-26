@@ -2,13 +2,11 @@ import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
 import ProtocolType from "../../../../common/ProtocolType";
 import MethodType from "../../../../common/MethodType";
-import TableHeaderDoc from "../../../../common/apiDoc/TableHeaderDoc";
-import TableQueryDoc from "../../../../common/apiDoc/TableQueryDoc";
-import RequestBodyDoc from "../../../../common/apiDoc/RequestBodyDoc";
-import ResponseResultDoc from "../../../../common/apiDoc/ResponseResultDoc";
-import IconBtn from "../../../../common/iconBtn/IconBtn";
-import {Breadcrumb, Space, Tag} from "antd";
-import EnvSelect from "../../../../support/environment/components/EnvSelect";
+import TableHeaderDoc from "../../common/apiDoc/TableHeaderDoc";
+import TableQueryDoc from "../../common/apiDoc/TableQueryDoc";
+import RequestBodyDoc from "../../common/apiDoc/RequestBodyDoc";
+import ResponseResultDoc from "../../common/apiDoc/ResponseResultDoc";
+import {Tag} from "antd";
 import "../../document/components/shareStyle.scss"
 import apxMethodStore from "../store/ApxMethodStore";
 /**
@@ -28,7 +26,7 @@ const ApiDocumentPage = (props) =>{
 
 
     return (
-        <div className={"content-margin"} style={{height:"100%",padding:"0"}}>
+        <div className={"content-margin"} style={{padding:"0",  height: "calc(100% - 50px)"}}>
             <div className="content-margin-box">
                 <div className={"share-box-right-content-item"}  >
                     <div className={"pi-box-between"}>

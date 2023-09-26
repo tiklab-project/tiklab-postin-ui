@@ -25,8 +25,8 @@ const RequestBodyCom = (props) =>{
                 return props.form
             case mediaTypeDir.formUrlencoded.title:
                 return props.formUrlencoded
-            // case mediaTypeDir.json:
-            //     return props.json
+            case mediaTypeDir.json.title:
+                return props.json
             case mediaTypeDir.raw.title:
                 return props.raw
             // case 'binary':
@@ -42,6 +42,8 @@ const RequestBodyCom = (props) =>{
         let arr = Object.keys(data)
 
         return arr.map(item=>{
+            if(item==="json"&&!props.json) return null
+
             return <Radio value={item} key={item}>{data[item].radioShow}</Radio>
         })
     }

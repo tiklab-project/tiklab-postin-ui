@@ -1,10 +1,12 @@
-import React, {useState} from "react";
-import {inject, observer} from "mobx-react";
+import React, {useEffect, useState} from "react";
+import {useLocation} from "react-router";
 
 /**
  * 头部左侧导航
  */
 const HeaderMenu = (props) =>{
+
+    let pathname = useLocation().pathname;
 
     //导航项
     const items = [
@@ -19,6 +21,14 @@ const HeaderMenu = (props) =>{
     ]
 
     const [current, setCurrent] = useState('/home');
+
+    useEffect(()=>{
+        if(pathname==="home"){
+            setCurrent('/home')
+        }else if(pathname.includes("workspace")){
+            setCurrent('/workspacePage')
+        }
+    },[pathname])
 
     /**
      * 点击跳往

@@ -36,7 +36,7 @@ const RequestBody  = (props) =>{
             setRadioType={setRadioType}
             form={<FormParam  />}
             formUrlencoded={<FormUrlencoded />}
-            // json={<JsonParam />}
+            json={<JsonParam />}
             raw={<RawParam />}
             binary={null}
             bodyTypeDictionary={mediaTypeDir}

@@ -46,10 +46,12 @@ const EvnMana = (props) => {
     const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(()=> {
-        findEnvironmentList().then(res=>setDataSource(res));
+        findList()
     },[dataLength])
 
-
+    const findList = () =>{
+        findEnvironmentList({workspaceId:workspaceId}).then(list=>setDataSource(list));
+    }
     /**
      *  表格里的操作
      */
@@ -63,7 +65,9 @@ const EvnMana = (props) => {
                 }
                 <Popconfirm
                     title="确定删除？"
-                    onConfirm={() => deleteEnvironment(record.id)}
+                    onConfirm={() => {
+                        deleteEnvironment(record.id).then(()=>findList())
+                    }}
                     okText='确定'
                     cancelText='取消'
                 >
@@ -100,20 +104,23 @@ const EvnMana = (props) => {
      */
 
     const upData = (value) => {
-        updateEnvironment(value).then(res => setDataSource(res))
+        updateEnvironment(value).then(res => {
+            setDataSource(res)
+            findList()
+        })
     }
 
     /**
      * 添加
      */
-    const onCreated = (values) => {
-        if(Object.keys(values).length === 1&&!values.name){
-            return
-        }else {
+    const onCreated =  (values) => {
+        if(Object.keys(values).length > 1&&values.name){
             // 创建新行的时候自带一个id，所以删了，后台会自行创建id
             delete values.id;
             values.workspaceId=workspaceId;
-            createEnvironment(values)
+            createEnvironment(values).then(()=>{
+                findList()
+            })
         }
     }
 

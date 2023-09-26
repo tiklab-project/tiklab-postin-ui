@@ -12,22 +12,13 @@ const EnvSelect = (props) =>{
 
     const { findEnvironmentList, envSourceList,getTestEnvUrl,testEnvUrl } = environmentStore;
 
-    // let testEnv=localStorage.getItem("TEST_ENV")
-
-    // const [selectEnv, setSelectEnv] = useState(testEnv);
-
-    useEffect(()=>{
-        findEnvironmentList()
-    },[])
-
+    let workspaceId=localStorage.getItem("workspaceId")
 
     /**
      * 选择测试环境 input框呈现相应的地址
      */
     const onSelectChange = (value) => {
-        // setSelectEnv(value)
         getTestEnvUrl(value)
-
     }
 
     /**
@@ -44,6 +35,9 @@ const EnvSelect = (props) =>{
         })
     }
 
+    const onDropdownVisibleChange = async ()=>{
+        await findEnvironmentList({workspaceId:workspaceId})
+    }
 
     return(
         <Select
@@ -52,6 +46,7 @@ const EnvSelect = (props) =>{
             placeholder={"未设置环境"}
             onSelect={(value)=> onSelectChange(value)}
             defaultValue={testEnvUrl}
+            onDropdownVisibleChange={onDropdownVisibleChange}
             dropdownRender={item=>(
                 <>
                     <div style={{"overflow":"auto","height":"100px"}}>{item}</div>

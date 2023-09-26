@@ -13,11 +13,12 @@ export const localDataProcess = ({
          bodyType,
          formDataList,
          formUrlList,
+         json,
          raw,
          assertList
 })=>{
 
-    let header
+    let header = {}
     if(headerList&&headerList.length>0){
         header = testFunctionCommon.headerData(headerList);
     }
@@ -40,6 +41,10 @@ export const localDataProcess = ({
         case mediaTypeDir.formUrlencoded.title:
             body = testFunctionCommon.transData(formUrlList)
             mediaType = mediaTypeDir.formdata.mediaType;
+            break;
+        case mediaTypeDir.json.title:
+            body = json
+            mediaType = mediaTypeDir.json.mediaType;
             break;
         case mediaTypeDir.raw.title:
             body = raw
@@ -91,7 +96,7 @@ export const localDataProcess = ({
  * 合并数据
  */
 export const mergeTestData=(localData,preScriptInfo,globalParam)=>{
-    let {methodType,url,header={},query={},bodyType,mediaType} = localData
+    let {methodType,url,header,query={},bodyType,mediaType} = localData
 
     //header
     if(preScriptInfo&&preScriptInfo.header){
@@ -133,7 +138,8 @@ const setContentType = (localData,headers) =>{
     let {bodyType,body} = localData;
     switch (bodyType) {
         case mediaTypeDir.none.title:
-            return null;
+            headers['content-type']="application/json";
+            break
         case mediaTypeDir.formdata.title:
             headers['content-type']=mediaTypeDir.formdata.mediaType;
             //formData 数据特殊处理
@@ -142,8 +148,9 @@ const setContentType = (localData,headers) =>{
         case mediaTypeDir.formUrlencoded.title:
             headers['content-type']=mediaTypeDir.formUrlencoded.mediaType;
             return body;
-        // case bodyTypeJson.json:
-        //     return json(data.jsonList,headers)
+        case mediaTypeDir.json.title:
+            headers['content-type']=mediaTypeDir.json.mediaType;
+            return
         case mediaTypeDir.raw.title:
             switch (body.type){
                 case rawTypeDictionary.text.mediaType:

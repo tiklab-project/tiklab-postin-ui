@@ -1,8 +1,9 @@
 import React from "react";
-import {mediaTypeDir} from "../dictionary/dictionary";
+import {mediaTypeDir} from "../../../../common/dictionary/dictionary";
 import TableFormDoc from "./TableFormDoc";
 import TableFormUrlDoc from "./TableFormUrlDoc";
 import RawDoc from "./RawDoc";
+import JsonSchemaDoc from "./jsonParamDoc/JsonSchemaDoc";
 
 /**
  * 文档
@@ -21,6 +22,8 @@ const RequestBodyDoc = (props) =>{
                 return <TableFormDoc dataSource={data?.formList}/>
             case mediaTypeDir.formUrlencoded.title:
                 return <TableFormUrlDoc dataSource={data?.urlencodedList} />
+            case mediaTypeDir.json.title:
+                return <JsonSchemaDoc schemaStr={data?.jsonParam?.jsonText}/>
             case mediaTypeDir.raw.title:
                 return <div><RawDoc dataSource={data?.rawParam} /></div>
         }

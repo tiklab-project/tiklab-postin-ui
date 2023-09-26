@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import {useHistory, useLocation} from "react-router";
 import EnvSelect from "../../../support/environment/components/EnvSelect";
-import {Dropdown, Menu, Space} from "antd";
-import IconCommon from "../../../common/IconCommon";
+import { Menu, Space} from "antd";
 import {CaretDownOutlined} from "@ant-design/icons";
 
 const MenuSelect = () =>{
@@ -39,13 +38,6 @@ const MenuSelect = () =>{
         setSelectItem(item.key)
         history.push(item.key)
     }
-
-
-    const dropItem = (
-        <Menu>
-            <Menu.Item key={"default"}  onClick={()=>selectKeyFun(mock)}>MOCK</Menu.Item>
-        </Menu>
-    )
 
 
     const [mouseEnter, setMouseEnter] = useState(false);
@@ -88,32 +80,32 @@ const MenuSelect = () =>{
                         }`}
                     >
                         {
-                            "/workspace/apis/content/test" === selectItem
+                            "/workspace/apis/content/mock" === selectItem
                             ?<>
-                                <div onClick={()=>toggleTestMock(testItem)}>调试</div>
-                                <div
-                                    className={`header-toggle-hover_show ${mouseEnter?"postin-show":"postin-hide"}`}
-                                    onClick={()=>toggleTestMock(mock)}
-                                >
-                                    <div className={"header-menu-mock_title"}>MOCK</div>
-                                </div>
+                                    <div onClick={()=>toggleTestMock(mock)}>MOCK</div>
+                                    <div
+                                        className={`header-toggle-hover_show ${mouseEnter?"postin-show":"postin-hide"}`}
+                                        onClick={()=>toggleTestMock(testItem)}
+                                    >
+                                        <div className={"header-menu-mock_title"}>调试</div>
+                                    </div>
+
                             </>
 
                             : <>
-                                <div onClick={()=>toggleTestMock(mock)}>MOCK</div>
-                                <div
-                                    className={`header-toggle-hover_show ${mouseEnter?"postin-show":"postin-hide"}`}
-                                    onClick={()=>toggleTestMock(testItem)}
-                                >
-                                    <div className={"header-menu-mock_title"}>调试</div>
-                                </div>
+                                    <div onClick={()=>toggleTestMock(testItem)}>调试</div>
+                                    <div
+                                        className={`header-toggle-hover_show ${mouseEnter?"postin-show":"postin-hide"}`}
+                                        onClick={()=>toggleTestMock(mock)}
+                                    >
+                                        <div className={"header-menu-mock_title"}>MOCK</div>
+                                    </div>
                             </>
                         }
 
                     </div>
                     <CaretDownOutlined />
                 </Space>
-
             </div>
             <EnvSelect />
         </div>

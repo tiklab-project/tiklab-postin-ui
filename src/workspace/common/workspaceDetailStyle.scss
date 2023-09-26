@@ -202,19 +202,17 @@
     display: flex;
     align-items: center;
 
-    .ws-hover-box{
-        display: none;
-        width: 240px;
-        position: absolute;
-        top: -10px;
-        left: 72px;
-        padding: 10px;
-        box-shadow: var(--pi-box-shadow);
-        background: #fff;
-        z-index: 10;
-        min-height:285px;
-        overflow: auto;
-    }
+}
+.ws-hover-box{
+    //display: none;
+    width: 240px;
+    position: absolute;
+    top: -40px;
+    left: 72px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 22%);
+    background: #fff;
+    z-index: 10;
+    overflow: auto;
 
     .ws-hover-item{
         border-bottom: 1px solid var(--pi-border-color);
@@ -223,6 +221,7 @@
         margin: 2px 0 0 0;
         display: flex;
         align-items: center;
+        height: 42px;
     }
 
     .ws-hover-item:hover{
@@ -240,10 +239,15 @@
         width: var(--pi-icon-s);
         height: var(--pi-icon-s);
     }
-}
 
-.ws-detail-left-nav-item-workspace:hover .ws-hover-box{
-    display: block;
+    .ws-toggle-repository_more{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+        background: #f0f0f0;
+    }
+
 }
 
 

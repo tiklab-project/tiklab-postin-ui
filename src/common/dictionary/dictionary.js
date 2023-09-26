@@ -38,11 +38,11 @@ export const mediaTypeDir ={
         mediaType:"application/x-www-form-urlencoded",
         radioShow:"x-www-form-urlencoded"
     },
-    // json:{
-    //     title:"json",
-    //     mediaType:"application/json",
-    //     radioShow:"json"
-    // },
+    json:{
+        title:"json",
+        mediaType:"application/json",
+        radioShow:"json"
+    },
     raw:{
         title:"raw",
         mediaType:"raw",

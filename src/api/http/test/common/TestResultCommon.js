@@ -50,7 +50,7 @@ const TestResultCommon = (props) =>  {
 
         let mediaType = "text/plain";
         if(headers&&Object.keys(headers).length>0){
-            mediaType  = headers["Content-Type"] || headers["Content-Type"]
+            mediaType  = headers["Content-Type"] || headers["content-type"]
         }
 
         //assert

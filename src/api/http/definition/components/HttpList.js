@@ -47,6 +47,9 @@ const HttpList = (props) => {
             title: '执行人',
             dataIndex: ['apix','executor','nickname'],
             width: '15%',
+            render:(text) =>(
+                <span >{text||"未设置"}</span>
+            )
         },
         {
             title: '操作',
@@ -148,9 +151,7 @@ const HttpList = (props) => {
                         pagination={false}
                     />
                 </div>
-
             </div>
-
         </div>
     )
 }

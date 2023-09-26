@@ -31,6 +31,10 @@ const WorkspaceSettingMenu = (props) =>{
             key: '/workspace/setting/detail',
             // icon: 'icon-setting',
         },{
+            title: '环境设置',
+            key: '/workspace/setting/env',
+            // icon: 'icon-modular',
+        },{
             title: '成员',
             key: '/workspace/setting/role',
             // icon: 'icon-modular',
@@ -39,7 +43,6 @@ const WorkspaceSettingMenu = (props) =>{
             key: '/workspace/setting/privilege',
             // icon: 'icon-modular',
         },
-
     ]
 
 

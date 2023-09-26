@@ -8,8 +8,6 @@ import {methodDictionary} from "../../../../../common/dictionary/dictionary";
 import {execute} from "../../common/dtAction";
 import TestResultCommon from "../../common/TestResultCommon";
 import IconBtn from "../../../../../common/iconBtn/IconBtn";
-import EnvSelect from "../../../../../support/environment/components/EnvSelect";
-import GlobalParamModal from "../../../../../support/globalParam/globalParamModal";
 import apxMethodStore from "../../../definition/store/ApxMethodStore";
 import afterParamTestStore from "../store/AfterParamTestStore";
 import assertParamTestStore from "../store/AssertParamTestStore";
@@ -35,7 +33,7 @@ const ApiTestContent = (props) => {
 
     const {findApxMethod} = apxMethodStore;
     const {testEnvUrl} = environmentStore;
-    const { getResponseInfo, getResponseError } = testStore;
+    const { getJsonParam,jsonData,getResponseInfo, getResponseError } = testStore;
     const { requestHeaderList,getRequestHeaderTestList } = requestHeaderTestStore;
     const { querySelectList,getQueryParamTestList } = queryParamTestStore;
     const { bodyTypeInfo,getBodyType,getMediaType } = requestBodyTestStore;
@@ -93,6 +91,11 @@ const ApiTestContent = (props) => {
                         tabTipObj.body = true;
                     }
                     break;
+                case "json":
+                    getJsonParam(res.jsonParam.jsonText)
+                    if(res.jsonParam){
+                        tabTipObj.body = true;
+                    }
                 case "raw":
                     getRawInfo(res.rawParam);
                     getMediaType(res.rawParam.type);
@@ -129,6 +132,7 @@ const ApiTestContent = (props) => {
             "bodyType":bodyTypeInfo,
             "formDataList":formSelectList,
             "formUrlList":formUrlSelectList,
+            "json":jsonData,
             "raw":rawParamTestInfo,
         }
 
@@ -206,19 +210,6 @@ const ApiTestContent = (props) => {
         }
     }
 
-    /**
-     * 去往接口列表页
-     */
-    const goToListPage = () =>{
-        props.history.push("/workspace/apis/category")
-    }
-
-    /**
-     * 去往文档页
-     */
-    const goToDocPage = () =>{
-        props.history.push("/workspace/apis/content/document")
-    }
 
     return(
         <div className={"content-margin"} style={{padding:"0"}}>

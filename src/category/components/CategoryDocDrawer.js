@@ -4,7 +4,7 @@ import {inject, observer} from "mobx-react";
 import ShareModal from "../../api/http/document/components/ShareModal";
 import IconBtn from "../../common/iconBtn/IconBtn";
 import CategoryDocTree from "./CategoryDocTree";
-import DocContent from "../../common/apiDoc/DocContent";
+import DocContent from "../../api/http/common/apiDoc/DocContent";
 import noneImg from "../../assets/img/nonedoc.png"
 import categoryStore from "../store/CategoryStore";
 /**

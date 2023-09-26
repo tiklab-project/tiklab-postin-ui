@@ -18,7 +18,7 @@ export const testFunctionCommon ={
 
     //header数据转换 data格式 []
     headerData :(data) => {
-        if(!data) return null;
+        if(!data) return {};
 
         let headers = {};
 
@@ -28,7 +28,7 @@ export const testFunctionCommon ={
             }
         });
 
-        return Object.keys(headers).length > 0 ? headers : null;
+        return Object.keys(headers).length > 0 ? headers : {};
     },
 
     //特殊：data格式 {}
@@ -55,4 +55,27 @@ export const saveTestcaseCommon ={
 }
 
 
+/**
+ * jsonSchema转换成json
+ */
+export const jsonSchemaToJson = (schema) =>{
+    const result = {};
+
+    for (const key in schema.properties) {
+        const property = schema.properties[key];
+
+        if (property.type === 'object') {
+            result[key] = jsonSchemaToJson(property);
+        } else {
+            if(property.mock){
+                result[key] = property.mock.mock;
+            }else {
+
+                result[key] = "@"+property.type
+            }
+        }
+    }
+
+    return result;
+}
 

@@ -1,10 +1,10 @@
 import React from "react";
-import MethodType from "../MethodType";
+import MethodType from "../../../../common/MethodType";
 import TableHeaderDoc from "./TableHeaderDoc";
 import TableQueryDoc from "./TableQueryDoc";
 import RequestBodyDoc from "./RequestBodyDoc";
 import ResponseResultDoc from "./ResponseResultDoc";
-import ProtocolType from "../ProtocolType";
+import ProtocolType from "../../../../common/ProtocolType";
 
 /**
  * 接口文档公共组件
@@ -59,6 +59,10 @@ const DocContent = (props) =>{
         })
     }
 
+    const showRequest = () =>{
+
+
+    }
 
     return(
         <div style={style} id={"share-right-content"} >

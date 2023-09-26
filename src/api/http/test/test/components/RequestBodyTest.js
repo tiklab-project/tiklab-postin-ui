@@ -6,6 +6,7 @@ import RawParamTest from "./TestRawParam";
 import {mediaTypeDir} from "../../../../../common/dictionary/dictionary";
 import RequestNoBody from "../../../../../common/tableCommon/components/RequestNoBody";
 import requestBodyTestStore from "../store/RequestBodyTestStore";
+import JsonParamTest from "./JsonParamTest";
 /**
  * 测试页
  * 请求体
@@ -45,6 +46,8 @@ const RequestBodyTest = (props)=>{
                 return <FormParamTest />
             case mediaTypeDir.formUrlencoded.title:
                 return <FormUrlencodedTest />
+            case mediaTypeDir.json.title:
+                return <JsonParamTest />
             case mediaTypeDir.raw.title:
                 return <RawParamTest />
         }

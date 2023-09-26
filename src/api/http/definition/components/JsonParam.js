@@ -26,7 +26,7 @@ const JsonParam = () =>{
 
     return(
         <JsonSchemaTable
-            schemaData={schemaData}
+            schema={schemaData}
             updateFn={jsonSchemaUpdate}
         />
     )

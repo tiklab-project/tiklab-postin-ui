@@ -38,9 +38,10 @@ class EnvironmentStore {
 	 * 查询接口环境列表
 	 */
 	@action
-	findEnvironmentList= async ()=>{
+	findEnvironmentList= async (param)=>{
 		const params = {
 			orderParams:[{ name:'name', orderType:'asc'}],
+			...param
 		}
 
 		let newRow = [{id:"environmentInitRow"}]
@@ -66,36 +67,22 @@ class EnvironmentStore {
 	deleteEnvironment =async (id) => {
 		const param = new FormData();
 		param.append('id', id);
-		const res = await Axios.post("/environment/deleteEnvironment",param)
-
-		if(res.code === 0){
-			this.findEnvironmentList();
-		}
-
+		return await Axios.post("/environment/deleteEnvironment",param)
 	}
 
 	/**
 	 * 创建接口环境
 	 */
     @action
-	createEnvironment = async (values) => {
-		const res = await Axios.post("/environment/createEnvironment",values)
-		if(res.code === 0) {
-			return this.findEnvironmentList()
-		}
+	createEnvironment = async (values) => await Axios.post("/environment/createEnvironment",values)
 
-	}
 
 	/**
 	 * 更新接口环境
 	 */
 	@action
-	updateEnvironment = async (values) => {
-		const res = await Axios.post("/environment/updateEnvironment",values)
-		if(res.code === 0) {
-			return this.findEnvironmentList()
-		}
-	}
+	updateEnvironment = async (values) => await Axios.post("/environment/updateEnvironment",values)
+
 
 	/**
 	 * 通过id查询单个接口环境
@@ -105,8 +92,7 @@ class EnvironmentStore {
 		const param = new FormData();
 		param.append('id', id);
 
-		await Axios.post("/environment/findEnvironment",param)
-
+		return await Axios.post("/environment/findEnvironment",param)
 	}
 
 }

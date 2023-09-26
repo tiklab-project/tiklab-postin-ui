@@ -122,7 +122,7 @@ const ResponseTabEdit =(props)=>{
                         name="dataType"
                         rules={[{ required: true, message: '添加数据类型!' }]}
                     >
-                        <Radio.Group >
+                        <Radio.Group value={"json"}>
                             <Radio value={"json"}>json</Radio>
                             <Radio value={"raw"}>raw</Radio>
                         </Radio.Group>

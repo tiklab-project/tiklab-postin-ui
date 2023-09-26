@@ -2,7 +2,7 @@ import React from 'react';
 import {UserVerify} from "tiklab-eam-ui";
 import {connect} from 'tiklab-plugin-core-ui';
 import PageContent from "./PageContent";
-import {AppLink} from "tiklab-licence-ui"
+import {AppLink, AvatarLink, HelpLink} from "tiklab-licence-ui"
 
 /**
  * 用于个性化配置
@@ -12,6 +12,8 @@ const Page = (props)=>{
     return(
         <PageContent
             AppLink={<AppLink/>}
+            HelpLink={<HelpLink/>}
+            AvatarLink={<AvatarLink {...props}/>}
             {...props}
         />
     )

@@ -146,13 +146,15 @@ const ResponseResult = (props) =>{
                 }
 
             </div>
-            <div style={{margin:" 0 0 0 10px"}}>
+            <div >
                 {
                     type==="json"
-                        ? <JsonSchemaTable
-                            schema={schemaData}
-                            updateFn={jsonSchemaUpdate}
-                        />
+                        ? <div className={"tabPane-item-box"}>
+                            <JsonSchemaTable
+                                schema={schemaData}
+                                updateFn={jsonSchemaUpdate}
+                            />
+                        </div>
                         :<ReactMonacoEditor
                             editorChange={rawChange}
                             value={rawText}

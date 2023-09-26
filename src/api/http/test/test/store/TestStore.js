@@ -16,6 +16,11 @@ class TestStore {
     @observable requestBodyData;
     @observable requestHeaderData;
 
+    //定义中的jsonSchema
+    @observable jsonSchema
+    //处理后的json
+    @observable jsonData
+
 
     @action
     getRequestInfo = (data) => {
@@ -73,16 +78,24 @@ class TestStore {
         });
     }
 
+
+    /**
+     * 获取定义中的jsonschema
+     */
     @action
-    getTime = (value) => {
-        this.time= value;
+    getJsonParam = (jsonSchema) =>{
+        this.jsonSchema =jsonSchema
+    }
+
+    /**
+     * 获取处理好的json数据
+     */
+    @action
+    getJsonData = (value) =>{
+        this.jsonData = value
     }
 
 
-    @action
-    getProxySelect = (type) =>{
-        this.proxyItem = type
-    }
 }
 
 let testStore = new TestStore();

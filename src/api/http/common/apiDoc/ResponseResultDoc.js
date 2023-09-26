@@ -1,6 +1,7 @@
 import React from "react";
 import {Tabs, Tag} from "antd";
-import ReactMonacoEditor from "../monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
+import JsonSchemaDoc from "./jsonParamDoc/JsonSchemaDoc";
 const { TabPane } = Tabs;
 
 /**
@@ -20,13 +21,7 @@ const ResponseResultDoc = (props) =>{
                         <div style={{border:"1px solid var(--pi-border-color)"}}>
                             {
                                 item.dataType==="json"
-                                    ?<ReactMonacoEditor
-                                        value={item.jsonText}
-                                        language={"json"}
-                                        readOnly={true}
-                                        height={"200px"}
-                                        width={"100%"}
-                                    />
+                                    ?<JsonSchemaDoc schemaStr={item?.jsonText}/>
                                     :<ReactMonacoEditor
                                         value={item.rawText}
                                         language={"text"}

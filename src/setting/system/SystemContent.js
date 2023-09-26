@@ -55,21 +55,6 @@ const SystemContent = (props) =>{
             ],
         },
         {
-            title: "备份",
-            icon: 'lishi',
-            id: '/backups',
-            children: [
-                {
-                    title: "备份",
-                    id: '/systemManagement/backups',
-
-                },{
-                    title: "恢复",
-                    id: '/systemManagement/recovery',
-                },
-            ],
-        },
-        {
             title: '插件',
             icon: 'modular',
             id: '/systemManagement/plugin',
@@ -84,7 +69,11 @@ const SystemContent = (props) =>{
                     title: "操作日志",
                     id: '/systemManagement/log',
                     purviewCode: "log",
-                },
+                },{
+                    title: "备份与恢复",
+                    id: '/systemManagement/backups',
+
+                }
             ],
         },
         {

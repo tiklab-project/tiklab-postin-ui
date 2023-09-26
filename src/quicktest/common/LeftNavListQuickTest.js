@@ -50,6 +50,18 @@ const LeftNavListQuickTest =(props)=>{
 
         let instance = {}
         findInstance(item.id).then(res=>{
+
+
+            let resData = {
+                body:res.responseInstance?.body,
+                headers:JSON.parse(res.responseInstance?.headers),
+                size:res.size,
+                statusCode:res.statusCode,
+                time:res.time,
+                error:res.error
+            }
+            setResponseData(resData)
+
             let request = res.requestInstance;
             let header = processHeaderData(request.headers)
             if(header&&header.length===0){
@@ -101,7 +113,7 @@ const LeftNavListQuickTest =(props)=>{
                 default:
                     break;
             }
-            setResponseData( res.responseInstance)
+
 
             instance = {
                 "id":res.id,
