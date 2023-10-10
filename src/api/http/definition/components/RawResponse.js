@@ -22,10 +22,10 @@ const RawResponse = (props) => {
     const [form] = Form.useForm();
 
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
 
     useEffect(()=>{
-        findRawResponse(apxMethodId).then((res)=>{
+        findRawResponse(apiId).then((res)=>{
             if(!res) return
 
             rawDataRef.current=res
@@ -34,7 +34,7 @@ const RawResponse = (props) => {
                 type:res.type
             })
         })
-    },[apxMethodId])
+    },[apiId])
 
     /**
      * 失去焦点，获取更改raw中类型执行
@@ -56,7 +56,7 @@ const RawResponse = (props) => {
             createRawResponse(param).then((res)=>{
                 if(res.code!==0) return
 
-                findRawResponse(apxMethodId).then(res=>{
+                findRawResponse(apiId).then(res=>{
                     if(!res ) return
 
                     rawDataRef.current=res

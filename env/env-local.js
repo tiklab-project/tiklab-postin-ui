@@ -4,7 +4,7 @@
  * @LastEditTime: 2021-05-27 13:53:54
  */
 
-const base_url =  JSON.stringify('http://192.168.10.12:8090');
+const base_url =  JSON.stringify('http://192.168.10.14:8090');
 
 const plugin_base_url = JSON.stringify("/");
 

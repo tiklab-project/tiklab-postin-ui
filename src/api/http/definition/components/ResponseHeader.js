@@ -142,10 +142,10 @@ const ResponseHeader = (props) =>{
 
     const [dataSource,setDataSource] = useState([])
 
-    const apxMethodId =  localStorage.getItem('apxMethodId');
+    const apiId =  localStorage.getItem('apiId');
 
     useEffect( ()=>{
-        findResponseHeaderList(apxMethodId).then(res=>setDataSource(res))
+        findResponseHeaderList(apiId).then(res=>setDataSource(res))
     },[dataLength])
 
     /**

@@ -10,7 +10,7 @@ class ResponseHeaderStore {
     @observable responseHeaderList = [];
     @observable responseHeaderInfo;
     @observable responseHeaderDataSource = [];
-    @observable apxMethodId = '';
+    @observable apiId = '';
     @observable dataLength = '';
 
     /**
@@ -26,7 +26,7 @@ class ResponseHeaderStore {
      */
     @action
     findResponseHeaderList = async (id) => {
-        this.apxMethodId = id;
+        this.apiId = id;
         const params = {
             httpId: id,
             orderParams:[{ name:'headerName',  orderType:'asc'  }],
@@ -68,11 +68,11 @@ class ResponseHeaderStore {
      */
     @action
     createResponseHeader = async (values) => {
-        values.http = { id:this.apxMethodId }
+        values.http = { id:this.apiId }
 
         const res = await Axios.post("/responseHeader/createResponseHeader",values)
         if( res.code === 0){
-            return  this.findResponseHeaderList(this.apxMethodId);
+            return  this.findResponseHeaderList(this.apiId);
         }
     }
 
@@ -83,7 +83,7 @@ class ResponseHeaderStore {
 	updateResponseHeader = async (values) => {
 		const res = await Axios.post("/responseHeader/updateResponseHeader",values)
         if( res.code === 0){
-            return this.findResponseHeaderList(this.apxMethodId);
+            return this.findResponseHeaderList(this.apiId);
         }
     }
 
@@ -97,7 +97,7 @@ class ResponseHeaderStore {
 
 		const res = await Axios.post("/responseHeader/deleteResponseHeader",param)
         if( res.code === 0){
-            this.findResponseHeaderList(this.apxMethodId);
+            this.findResponseHeaderList(this.apiId);
         }
     }
 

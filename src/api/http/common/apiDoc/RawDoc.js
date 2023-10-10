@@ -39,7 +39,7 @@ const RawDoc = (props) =>{
             {
                 dataSource&&dataSource.raw
                     ? <div className={"share-request-item"}>
-                        <Space><div>Body参数</div><Tag>{dataSource.type}</Tag></Space>
+                        <Space><div>Body参数</div><Tag>RAW</Tag></Space>
                         <div className={"share-right-table"} style={{border:"1px solid var(--pi-border-color)"}}>
                             <ReactMonacoEditor
                                 value={dataSource.raw}

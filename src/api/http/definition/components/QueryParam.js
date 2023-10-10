@@ -22,10 +22,10 @@ const QueryParam = (props) =>{
     } = queryParamStore;
 
     const [dataSource,setDataSource] = useState([])
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
 
     useEffect( ()=>{
-        findQueryParamList(apxMethodId).then(res=>setDataSource(res))
+        findQueryParamList(apiId).then(res=>setDataSource(res))
     },[dataLength])
 
     let columns= [
@@ -185,7 +185,7 @@ const QueryParam = (props) =>{
      */
     const upData = (value) => {
         updateQueryParam(value).then(res=> {
-            findQueryParamList(apxMethodId).then(res=>setDataSource(res))
+            findQueryParamList(apiId).then(res=>setDataSource(res))
         })
     }
 

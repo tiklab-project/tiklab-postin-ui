@@ -12,15 +12,15 @@ const TestBinaryParam = (props) => {
     const {binaryParamStore} = props;
     const {findBinaryParamList,createBinaryParam,deleteBinaryParam,findBinaryParamByte} = binaryParamStore;
     const ticket = getUser().ticket;
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
     const [fileList,setFileList] = useState([])
 
     useEffect(()=>{
-        findBinaryParamByte(apxMethodId);
+        findBinaryParamByte(apiId);
     },[])
 
     useEffect(()=>{
-        findBinaryParamList(apxMethodId).then(res=>{
+        findBinaryParamList(apiId).then(res=>{
             setFileList(res)
         })
     },[]);
@@ -31,7 +31,7 @@ const TestBinaryParam = (props) => {
         if(info.file.status === 'done'){
             let fileName= info.file.response.data.fileName
             const param = {
-                http:{id:apxMethodId},
+                http:{id:apiId},
                 fileName:fileName
             }
             createBinaryParam(param).then(res=>setFileList(res));

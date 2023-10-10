@@ -15,7 +15,7 @@ const MockEdit = (props) => {
 
     const [form] = Form.useForm();
 
-    const apxMethodId =  localStorage.getItem('apxMethodId');
+    const apiId =  localStorage.getItem('apiId');
 
     /**
      * 展示弹框
@@ -41,17 +41,17 @@ const MockEdit = (props) => {
     const onFinish = async () => {
         let values = await form.validateFields();
 
-        values.http={id:apxMethodId}
+        values.http={id:apiId}
         if(props.type === 'edit') {
             values.id = props.mockId;
             values.enable = enable;
             updateMock(values).then(()=>{
-                findMockPage(apxMethodId)
+                findMockPage(apiId)
             })
         }else{
             values.enable=1
             createMock(values).then(()=>{
-                findMockPage(apxMethodId)
+                findMockPage(apiId)
             })
         }
 

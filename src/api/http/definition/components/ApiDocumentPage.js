@@ -17,12 +17,12 @@ const ApiDocumentPage = (props) =>{
     const [apiDoc, setApiDoc] = useState();
 
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
 
     useEffect(async ()=>{
-        let res = await findApxMethod(apxMethodId);
+        let res = await findApxMethod(apiId);
         setApiDoc(res)
-    },[apxMethodId])
+    },[apiId])
 
 
     return (

@@ -8,7 +8,7 @@ class ApxMethodStore {
 
     @observable apxMethodList = [];
     @observable versionList = [];
-    @observable apxMethodId = '';
+    @observable apiId = '';
     @observable categoryId= '';
     @observable versionId = '';
     @observable	totalRecord = "";
@@ -54,7 +54,7 @@ class ApxMethodStore {
     //根据接口ID查找接口
     @action
     findApxMethod = async (id) => {
-        this.apxMethodId = id;
+        this.apiId = id;
         const param = new FormData();
         param.append('id', id);
         const res = await Axios.post("/http/findHttpApi",param);

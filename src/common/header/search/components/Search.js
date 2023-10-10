@@ -51,9 +51,9 @@ const Search = (props) => {
     /**
      * 点击搜索到接口，跳到对应的接口
      */
-    const toMethod = (apxMethodId,workspaceId) => {
+    const toMethod = (apiId,workspaceId) => {
         localStorage.setItem('workspaceId',workspaceId);
-        localStorage.setItem('apxMethodId',apxMethodId);
+        localStorage.setItem('apiId',apiId);
         props.history.push('/workspace/apis');
         setToggleSearch('hide');
     }

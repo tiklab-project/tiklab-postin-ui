@@ -169,9 +169,9 @@ const FormUrlencoded = (props) =>{
 
     const [dataSource,setDataSoure] =useState([])
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
     useEffect( ()=>{
-        findFormUrlencodedList(apxMethodId).then(res => setDataSoure(res));
+        findFormUrlencodedList(apiId).then(res => setDataSoure(res));
     },[dataLength])
 
     /**
@@ -179,7 +179,7 @@ const FormUrlencoded = (props) =>{
      */
     const upData = (value) => {
         updateFormUrlencoded(value).then(()=>{
-            findFormUrlencodedList(apxMethodId).then(res => setDataSoure(res));
+            findFormUrlencodedList(apiId).then(res => setDataSoure(res));
         });
     }
 

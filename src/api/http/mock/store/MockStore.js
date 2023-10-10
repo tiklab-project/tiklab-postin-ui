@@ -6,7 +6,7 @@ import {Axios} from "tiklab-core-ui";
  */
 class MockStore {
     @observable mockList = [];
-    @observable apxMethodId='';
+    @observable apiId='';
     @observable mockInfo=[];
     @observable totalRecord = ''
 

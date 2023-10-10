@@ -35,7 +35,7 @@ const ApxMethodEdit = (props) => {
     const [visible,setVisible] = useState(false);
     const [form] = Form.useForm();
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
     const categoryId = localStorage.getItem("categoryId");
     const workspaceId = localStorage.getItem('workspaceId');
     const [cascaderCategoryId, setCascaderCategoryId] = useState(categoryItemId);
@@ -57,7 +57,7 @@ const ApxMethodEdit = (props) => {
      * 展示接口信息
      */
     const showApxMethodInfo = () => {
-        findApxMethod(httpId?httpId:apxMethodId).then((res)=>{
+        findApxMethod(httpId?httpId:apiId).then((res)=>{
             form.setFieldsValue({
                 name: res.apix.name,
                 methodType: res.methodType,
@@ -85,7 +85,9 @@ const ApxMethodEdit = (props) => {
             values.apix={
                 workspaceId:workspaceId,
                 name:values.name,
+                path:values.path,
                 methodType:values.methodType,
+                protocolType:"http",
                 desc:values.desc,
                 category:{id:cascaderCategoryId?cascaderCategoryId:categoryId},
             }
@@ -94,15 +96,16 @@ const ApxMethodEdit = (props) => {
                 findApxMethodListByApix(categoryId);
                 findCategoryList(workspaceId);
 
-                localStorage.setItem('apxMethodId',id);
-                props.history.push("/workspace/apis/content/edit");
+                localStorage.setItem('apiId',id);
+                props.history.push("/workspace/apis/http/edit");
             })
         }else{
             values.id=httpId;
             values.apix={
                 workspaceId:workspaceId,
                 id:httpId,
-                name:values.name
+                name:values.name,
+                path:values.path,
             }
             updateApxMethod(values).then(()=>{
                 findApxMethodListByApix(categoryId);

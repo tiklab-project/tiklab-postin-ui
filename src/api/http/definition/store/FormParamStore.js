@@ -11,7 +11,7 @@ export class FormParamStore {
     @observable formParamList = [];
     @observable formParamInfo = [];
     @observable formParamDataSource = [];
-    @observable apxMethodId = '';
+    @observable apiId = '';
     @observable dataLength = '';
 
     @action
@@ -24,7 +24,7 @@ export class FormParamStore {
      */
     @action
     findFormParamList = async (id) => {
-        this.apxMethodId = id;
+        this.apiId = id;
         const params = {
             httpId: id,
             orderParams:[{name:'paramName', orderType:'asc'}],
@@ -64,11 +64,11 @@ export class FormParamStore {
      */
     @action
     createFormParam = async (values) => {
-        values.http = {id: this.apxMethodId}
+        values.http = {id: this.apiId}
 
         const res = await Axios.post("/formParam/createFormParam",values);
         if( res.code === 0){
-            return  this.findFormParamList(this.apxMethodId);
+            return  this.findFormParamList(this.apiId);
         }
     }
 
@@ -79,7 +79,7 @@ export class FormParamStore {
 	updateFormParam = async (values) => {
 		const res = await Axios.post("/formParam/updateFormParam",values)
         if( res.code === 0){
-            return this.findFormParamList(this.apxMethodId);
+            return this.findFormParamList(this.apiId);
         }
     }
 
@@ -93,7 +93,7 @@ export class FormParamStore {
 
 		const res = await Axios.post("/formParam/deleteFormParam",param)
         if( res.code === 0){
-            this.findFormParamList(this.apxMethodId);
+            this.findFormParamList(this.apiId);
         }
     }
 

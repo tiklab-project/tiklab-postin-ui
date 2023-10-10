@@ -15,10 +15,10 @@ const AfterScript = (props) => {
     const rawDataRef = useRef(null);
     const [form] = Form.useForm();
 
-    const apxMethodId =localStorage.getItem('apxMethodId');
+    const apiId =localStorage.getItem('apiId');
 
     useEffect(()=>{
-        findApiRequest(apxMethodId).then((res)=>{
+        findApiRequest(apiId).then((res)=>{
             if(!res) return
 
             rawDataRef.current=res
@@ -26,7 +26,7 @@ const AfterScript = (props) => {
                 afterScript: res.afterScript,
             })
         })
-    },[apxMethodId])
+    },[apiId])
 
     /**
      * 保存脚本文本数据
@@ -45,7 +45,7 @@ const AfterScript = (props) => {
             createApiRequest(param).then((res)=>{
                 if(res.code!==0) return
 
-                findApiRequest(apxMethodId).then(res=>{
+                findApiRequest(apiId).then(res=>{
                     if(!res ) return
 
                     rawDataRef.current=res

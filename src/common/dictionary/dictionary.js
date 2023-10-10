@@ -123,7 +123,8 @@ export const dataTypeDictionary = [
     'boolean',
     'object',
     'number',
-    'null'
+    'null',
+    // 'array'
 ]
 
 

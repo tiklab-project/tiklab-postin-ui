@@ -78,7 +78,7 @@ const JsonSchemaTable = ({schema,updateFn}) => {
      * 操作项按钮显示
      */
     const showOperation = (record) => {
-        const buttons = [];
+        let buttons = [];
 
         if (record.id !== "root") {
             if (record.dataType === 'object') {
@@ -212,7 +212,18 @@ const JsonSchemaTable = ({schema,updateFn}) => {
             }];
 
             setExpandedRowKeys([...expandedRowKeys, row.id]);
-        } else {
+        } else if(row.dataType === 'array') {
+            // 如果切换到 array,生成子节点
+            row.children = [{
+                id: uuid(),
+                name: 'ITEMS',
+                dataType: 'string', // 默认数据类型
+                description: '',
+                required: false,
+            }];
+
+            setExpandedRowKeys([...expandedRowKeys, row.id]);
+        }else  {
             // 如果切换到非object,清空子节点
             row.children = undefined;
         }

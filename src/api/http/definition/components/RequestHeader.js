@@ -23,10 +23,10 @@ const RequestHeader = (props) =>{
     } = requestHeaderStore;
 
     const [dataSource,setDataSource] = useState([]);
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
 
     useEffect( ()=>{
-        findRequestHeaderList({httpId:apxMethodId}).then(res=>setDataSource(res));
+        findRequestHeaderList({httpId:apiId}).then(res=>setDataSource(res));
     },[dataLength])
 
     //表头
@@ -128,7 +128,7 @@ const RequestHeader = (props) =>{
                 <Popconfirm
                     title="确定删除？"
                     onConfirm={() => deleteRequestHeader(record.id).then(() => {
-                        findRequestHeaderList({httpId:apxMethodId}).then(res=>{
+                        findRequestHeaderList({httpId:apiId}).then(res=>{
                             setDataSource(res)
                         })
                     })}
@@ -179,10 +179,10 @@ const RequestHeader = (props) =>{
             // 创建新行的时候自带一个id，所以删了，后台会自行创建id
             delete values.id;
 
-            values.http = {id:apxMethodId}
+            values.http = {id:apiId}
 
             createRequestHeader(values).then(() => {
-                findRequestHeaderList({httpId:apxMethodId}).then(res=>{
+                findRequestHeaderList({httpId:apiId}).then(res=>{
                     setDataSource(res)
                 })
             })
@@ -196,7 +196,7 @@ const RequestHeader = (props) =>{
      */
     const upData = (value) => {
         updateRequestHeader(value).then(() => {
-            findRequestHeaderList({httpId:apxMethodId}).then(res=>{
+            findRequestHeaderList({httpId:apiId}).then(res=>{
                 setDataSource(res)
             })
         })

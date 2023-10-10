@@ -8,30 +8,30 @@ const MenuSelect = () =>{
 
     let pathname = useLocation().pathname
 
-    const [selectItem, setSelectItem] = useState(pathname||"/workspace/apis/content/document");
+    const [selectItem, setSelectItem] = useState(pathname||"/workspace/apis/http/document");
     let history = useHistory()
 
     //项目筛选列表
     const items = [
         {
             title: '文档',
-            key: `/workspace/apis/content/document`,
+            key: `/workspace/apis/http/document`,
         },
         {
             title: '设计',
-            key: `/workspace/apis/content/edit`,
+            key: `/workspace/apis/http/edit`,
         },
 
     ];
 
     let testItem =  {
         title: '调试',
-        key: `/workspace/apis/content/test`,
+        key: `/workspace/apis/http/test`,
     }
 
     let mock = {
         title: 'MOCK',
-        key: `/workspace/apis/content/mock`,
+        key: `/workspace/apis/http/mock`,
     }
 
     const selectKeyFun = (item) =>{
@@ -74,13 +74,13 @@ const MenuSelect = () =>{
                         className={`
                             ws-header-menu-item  
                         ${
-                            "/workspace/apis/content/test" === selectItem || "/workspace/apis/content/mock" === selectItem
+                            "/workspace/apis/http/test" === selectItem || "/workspace/apis/http/mock" === selectItem
                                 ? "ws-header-menu-item-selected"
                                 : ""
                         }`}
                     >
                         {
-                            "/workspace/apis/content/mock" === selectItem
+                            "/workspace/apis/http/mock" === selectItem
                             ?<>
                                     <div onClick={()=>toggleTestMock(mock)}>MOCK</div>
                                     <div

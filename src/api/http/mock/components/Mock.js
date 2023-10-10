@@ -67,7 +67,7 @@ const Mock = (props) => {
                     <MockEdit type="edit"  name={"编辑"}  {...props } mockId={record.id}/>
                     <Popconfirm
                         title="确定删除？"
-                        onConfirm={() =>deleteMock(record.id).then(()=>findMockPage(apxMethodId))}
+                        onConfirm={() =>deleteMock(record.id).then(()=>findMockPage(apiId))}
                         okText='确定'
                         cancelText='取消'
                     >
@@ -81,11 +81,11 @@ const Mock = (props) => {
     ]
 
     const workspaceId = localStorage.getItem("workspaceId")
-    const apxMethodId =  localStorage.getItem('apxMethodId');
+    const apiId =  localStorage.getItem('apiId');
 
     useEffect(()=>{
-        findMockPage(apxMethodId)
-    },[apxMethodId])
+        findMockPage(apiId)
+    },[apiId])
 
     /**
      * 列表中的是否可以切换
@@ -96,7 +96,7 @@ const Mock = (props) => {
         }else {
             record.enable=0;
         }
-        updateMock(record).then(()=>findMockPage(apxMethodId))
+        updateMock(record).then(()=>findMockPage(apiId))
     }
 
     /**
@@ -104,7 +104,7 @@ const Mock = (props) => {
      */
     const setLocalStorage = (mockId,id) => {
         localStorage.setItem(mockId,id)
-        props.history.push('/workspace/apis/content/mock-detail')
+        props.history.push('/workspace/apis/http/mock-detail')
     }
 
     /**
@@ -118,7 +118,7 @@ const Mock = (props) => {
      * 去往接口文档页
      */
     const goToDocPage = () =>{
-        props.history.push("/workspace/apis/content/document")
+        props.history.push("/workspace/apis/http/document")
     }
 
 

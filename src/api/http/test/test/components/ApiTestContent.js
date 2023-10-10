@@ -53,7 +53,7 @@ const ApiTestContent = (props) => {
     const [testResponse, setTestResponse] = useState();
     const [tabTip, setTabTip] = useState();
 
-    const methodId = localStorage.getItem('apxMethodId');
+    const methodId = localStorage.getItem('apiId');
 
     useEffect(()=>{
         findApxMethod(methodId).then(res=>{

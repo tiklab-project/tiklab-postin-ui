@@ -20,10 +20,10 @@ const RequestBody  = (props) =>{
 
     const [radioType, setRadioType] = useState("none");
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
 
     useEffect(()=>{
-        findApiRequest(apxMethodId).then(res=>{
+        findApiRequest(apiId).then(res=>{
             setRadioType(res.bodyType)
         })
     },[bodyType])

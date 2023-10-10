@@ -9,7 +9,7 @@ import {Axios} from "tiklab-core-ui";
 class RawResponseStore {
 
     @observable rawResponseInfo;
-    @observable apxMethodId = '';
+    @observable apiId = '';
     @observable rawResponseId = '';
 
     /**
@@ -17,7 +17,7 @@ class RawResponseStore {
      */
     @action
     findRawResponse = async (id) => {
-        this.apxMethodId = id;
+        this.apiId = id;
         this.rawResponseId = id;
 
         const param = new FormData();
@@ -34,7 +34,7 @@ class RawResponseStore {
      */
     @action
     createRawResponse = async (values) => {
-        values.http = {id: this.apxMethodId}
+        values.http = {id: this.apiId}
         values.id =  this.rawResponseId;
 
         return await Axios.post("/rawParam/createRawParam",values)
@@ -45,7 +45,7 @@ class RawResponseStore {
      */
     @action
 	updateRawResponse =async (values) => {
-        values.http = { id: this.apxMethodId}
+        values.http = { id: this.apiId}
         values.id =  this.rawResponseId;
 
 		return await Axios.post("/rawParam/updateRawParam",values)

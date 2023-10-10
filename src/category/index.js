@@ -1,4 +1,4 @@
-import Category from '../api/http/definition/components/HttpList';
+import Category from '../api/api/components/APIList';
 import CategoryEdit from './components/CategoryEdit';
 import CategoryNav from './components/CategoryTree';
 

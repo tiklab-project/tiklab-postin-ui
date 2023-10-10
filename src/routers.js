@@ -25,7 +25,7 @@ const WorkspaceDetailLayout = AsyncComponent(() => import("./workspace/common/Wo
 const LayoutApiContent = AsyncComponent(() => import( "./api/http/definition/components/LayoutApiContent"));
 const LayoutQuickTest = AsyncComponent(() => import("./quicktest/common/LayoutQuickTest"));
 const WorkspaceDetailInitPage = AsyncComponent(() => import("./workspace/overview/WorkspaceOverViewPage"));
-const Category = AsyncComponent(() => import("./api/http/definition/components/HttpList"));
+const Category = AsyncComponent(() => import("./api/api/components/APIList"));
 const ApiContent  = AsyncComponent(() => import( "./api/http/common/ApiContent"));
 const ApxMethodDetail = AsyncComponent(() => import("./api/http/definition/components/ApxMethodEditPage"));
 const Mock = AsyncComponent(() => import("./api/http/mock/components/Mock"));
@@ -46,8 +46,10 @@ const ApiInitPage = AsyncComponent(() => import("./workspace/common/ApiInitPage"
 const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
 const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
 const EnvironmentTable = AsyncComponent(()=>import ("./support/environment/components/EnvironmentTable"))
-const Backups = AsyncComponent(() => import("./support/backupRecovery/component/Backups"));
-const Recovery = AsyncComponent(() => import("./support/backupRecovery/component/Recovery"));
+
+const WsContent = AsyncComponent(()=>import ("./api/ws/common/WSContent"));
+const WSDocumentPage = AsyncComponent(()=>import ( "./api/ws/document/components/WSDocumentPage"));
+const WSDesignPage = AsyncComponent(()=>import ( "./api/ws/design/components/WSDesignPage"));
 
 
 const routers =  [
@@ -320,38 +322,53 @@ const routers =  [
                             },
 
                             {
-                                path: "/workspace/apis/content",
+                                path: "/workspace/apis/http",
                                 component: ApiContent,
                                 routes:[
 
                                     {
-                                        path:"/workspace/apis/content/document",
+                                        path:"/workspace/apis/http/document",
                                         exact: true,
                                         component: ApiDocument,
                                     },
                                     {
-                                        path:"/workspace/apis/content/edit",
+                                        path:"/workspace/apis/http/edit",
                                         exact: true,
                                         component: ApxMethodDetail,
                                     },
                                     {
-                                        path:"/workspace/apis/content/test",
+                                        path:"/workspace/apis/http/test",
                                         exact: true,
                                         component: TestBox,
                                     },
                                     {
-                                        path:'/workspace/apis/content/mock',
+                                        path:'/workspace/apis/http/mock',
                                         exact: true,
                                         component: Mock
                                     },
                                     {
-                                        path:'/workspace/apis/content/mock-detail',
+                                        path:'/workspace/apis/http/mock-detail',
                                         exact: true,
                                         component:MockDetail
                                     },
                                 ]
                             },
 
+                            {
+                                path: "/workspace/apis/ws",
+                                component: WsContent,
+                                routes:[
+                                    {
+                                        path:"/workspace/apis/ws/document",
+                                        exact: true,
+                                        component: WSDocumentPage,
+                                    },{
+                                        path:"/workspace/apis/ws/design",
+                                        exact: true,
+                                        component: WSDesignPage,
+                                    },
+                                ]
+                            },
                             {
                                 path:"/workspace/apis",
                                 exact: true,

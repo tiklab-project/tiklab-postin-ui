@@ -116,7 +116,7 @@ const SearchResult = (props) => {
      */
     const toMethod = (id,workspaceId) => {
         localStorage.setItem('workspaceId',workspaceId)
-        localStorage.setItem('apxMethodId',id)
+        localStorage.setItem('apiId',id)
         props.history.push('/workspace/apis')
     }
 

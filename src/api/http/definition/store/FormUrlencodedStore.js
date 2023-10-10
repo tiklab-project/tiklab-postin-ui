@@ -12,7 +12,7 @@ class FormUrlencodedStore {
     @observable formUrlencodedList = [];
     @observable formUrlencodedInfo;
     @observable formUrlencodedDataSource = [];
-    @observable apxMethodId;
+    @observable apiId;
     @observable dataLength;
 
     @action
@@ -25,7 +25,7 @@ class FormUrlencodedStore {
      */
     @action
     findFormUrlencodedList = async (id) => {
-        this.apxMethodId = id;
+        this.apiId = id;
         const params = {
             httpId: id,
             orderParams:[{name:'paramName', orderType:'asc'}],
@@ -64,11 +64,11 @@ class FormUrlencodedStore {
      */
     @action
     createFormUrlencoded = async (params) => {
-        params.http = {id: this.apxMethodId}
+        params.http = {id: this.apiId}
 
         const res = await Axios.post("/formUrlencoded/createFormUrlencoded",params)
         if( res.code === 0){
-            return this.findFormUrlencodedList(this.apxMethodId);
+            return this.findFormUrlencodedList(this.apiId);
         }
     }
 
@@ -79,7 +79,7 @@ class FormUrlencodedStore {
     updateFormUrlencoded = async (params) => {
         const res = await Axios.post("/formUrlencoded/updateFormUrlencoded",params)
         if( res.code === 0){
-            return this.findFormUrlencodedList(this.apxMethodId);
+            return this.findFormUrlencodedList(this.apiId);
         }
     }
 
@@ -92,7 +92,7 @@ class FormUrlencodedStore {
         params.append('id', id);
         const res = await Axios.post("/formUrlencoded/deleteFormUrlencoded",params)
         if( res.code === 0){
-            this.findFormUrlencodedList(this.apxMethodId);
+            this.findFormUrlencodedList(this.apiId);
         }
     }
 

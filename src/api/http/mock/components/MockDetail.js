@@ -24,7 +24,7 @@ const MockDetail = (props) =>{
     const [resData, setResData] = useState();
 
     const mockId =  localStorage.getItem('mockId');
-    const apxMethodId =  localStorage.getItem('apxMethodId');
+    const apiId =  localStorage.getItem('apiId');
     const [selectValue, setSelectValue] = useState();
     const [delayTime, setDelayTime] = useState();
 
@@ -49,7 +49,7 @@ const MockDetail = (props) =>{
      */
     const editName = (value) => {
         let param = {
-            http:{id:apxMethodId},
+            http:{id:apiId},
             id:mockId,
             name:value
         }
@@ -67,14 +67,14 @@ const MockDetail = (props) =>{
      * 去往接口文档页
      */
     const goToDocPage = () =>{
-        props.history.push("/workspace/apis/content/document")
+        props.history.push("/workspace/apis/http/document")
     }
 
     /**
      * 去往mock列表页
      */
     const goToMockPage = () =>{
-        props.history.push("/workspace/apis/content/mock")
+        props.history.push("/workspace/apis/http/mock")
     }
 
 

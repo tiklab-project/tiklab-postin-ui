@@ -20,7 +20,7 @@ const Response = (props) =>{
     } = apiResponseStore;
 
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
     const [activeKey, setActiveKey] = useState();
 
     useEffect( ()=> {
@@ -28,7 +28,7 @@ const Response = (props) =>{
     },[])
 
     const findList = async() =>{
-        let res = await findApiResponseList({httpId:apxMethodId})
+        let res = await findApiResponseList({httpId:apiId})
         setActiveKey(res[0].id)
     }
     
@@ -60,7 +60,7 @@ const Response = (props) =>{
                 style={{height: 365 }}
                 tabBarExtraContent={{
                     right:<ResponseTabEdit
-                    apxMethodId={apxMethodId}
+                    apiId={apiId}
                     setActiveKey={setActiveKey}
                     />
                 }}
@@ -71,7 +71,7 @@ const Response = (props) =>{
                             tab={pane.name+"("+pane.httpCode+")"}
                             key={pane.id}
                         >
-                            <ResponseResult httpId={apxMethodId} resultId={pane.id} />
+                            <ResponseResult httpId={apiId} resultId={pane.id} />
                         </TabPane>
                     })
                 }

@@ -35,7 +35,7 @@ const ApxMethodEditPage = (props) => {
     const {findApiStatusList,apiStatusSourceList} = apxMethodStatusStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
 
     const [showValidateStatus, setShowValidateStatus ] = useState()
     const [name, setName] = useState();
@@ -53,7 +53,7 @@ const ApxMethodEditPage = (props) => {
     const pluginStore = useSelector(store => store.pluginStore)
 
     useEffect(async ()=>{
-        let res = await findApxMethod(apxMethodId)
+        let res = await findApxMethod(apiId)
         setHttpId(res.id)
         setResData(res)
         setName(res.apix?.name)
@@ -102,7 +102,7 @@ const ApxMethodEditPage = (props) => {
         setTabTip(tabTipObj)
 
 
-    },[apxMethodId]);
+    },[apiId]);
 
     useEffect(()=>{
         findUserSelectPage(workspaceId)
@@ -186,7 +186,7 @@ const ApxMethodEditPage = (props) => {
 
             let res = await updateApxMethod(param)
             if(res.code===0){
-                findApxMethod(apxMethodId).then(res=> {
+                findApxMethod(apiId).then(res=> {
                     setResData(res)
 
                     //编辑完重新查询目录树
@@ -205,15 +205,15 @@ const ApxMethodEditPage = (props) => {
         if(path!==resData.path){
             let param = {
                 id:httpId,
-                path:path,
                 apix:{
                     ...resData?.apix,
+                    path:path,
                 }
             }
 
             updateApxMethod(param).then(res=>{
                 if(res.code===0){
-                    findApxMethod(apxMethodId).then(res=> {
+                    findApxMethod(apiId).then(res=> {
                         setResData(res)
 
                         //编辑完重新查询目录树
@@ -243,7 +243,7 @@ const ApxMethodEditPage = (props) => {
         updateApxMethod(param).then(res=>{
             setMethodType(methodType)
 
-            findApxMethod(apxMethodId).then(res=> {
+            findApxMethod(apiId).then(res=> {
                 //编辑完重新查询目录树
                 findCategoryList(workspaceId)
             })
@@ -359,14 +359,14 @@ const ApxMethodEditPage = (props) => {
      * 去往文档页
      */
     const goToDocPage = () =>{
-        props.history.push("/workspace/apis/content/document")
+        props.history.push("/workspace/apis/http/document")
     }
 
     /**
      * 去往测试页
      */
     const toTestPage = () =>{
-        props.history.push("/workspace/apis/content/test")
+        props.history.push("/workspace/apis/http/test")
     }
 
     return(

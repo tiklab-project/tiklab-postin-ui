@@ -6,9 +6,9 @@ const JsonParam = () =>{
     const {findJsonParam,updateJsonParam} = jsonParamStore;
     const [schemaData, setSchemaData] = useState();
 
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
     useEffect(async ()=>{
-        let res = await findJsonParam(apxMethodId)
+        let res = await findJsonParam(apiId)
         if( res.code === 0){
             setSchemaData(JSON.parse(res.data.jsonText))
         }
@@ -16,8 +16,8 @@ const JsonParam = () =>{
 
     const jsonSchemaUpdate = useCallback(async (updateValue)=>{
         let param = {
-            id:apxMethodId,
-            httpId:apxMethodId,
+            id:apiId,
+            httpId:apiId,
             jsonText:JSON.stringify(updateValue),
         }
 

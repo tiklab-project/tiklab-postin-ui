@@ -7,6 +7,7 @@ import CategoryEdit from './CategoryEdit';
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "tiklab-core-ui";
 import categoryStore from "../store/CategoryStore";
+import WSAdd from "../../api/ws/ws/components/WSAdd";
 /**
  *  目录树
  */
@@ -48,8 +49,13 @@ const CategoryTree = (props) => {
         }
         apiRecent(params)
 
-        localStorage.setItem('apxMethodId',item.id);
-        props.history.push('/workspace/apis/content/document');
+        localStorage.setItem('apiId',item.id);
+        if(item.protocolType==="http"){
+            props.history.push('/workspace/apis/http/document');
+        }else {
+            props.history.push('/workspace/apis/ws/document');
+        }
+
     }
 
 
@@ -88,8 +94,11 @@ const CategoryTree = (props) => {
      */
     const menu = (id)=>(
         <Menu>
-            <Menu.Item  key={2}>
+            <Menu.Item  key={1}>
                 <CategoryEdit name="添加目录"   type="add"  categoryId={id}/>
+            </Menu.Item>
+            <Menu.Item  key={2}>
+                <WSAdd name="添加WebSocket接口"    curCategoryId={id}/>
             </Menu.Item>
             <Menu.Item  key={3}>
                 <CategoryEdit  name="编辑"  type="edit"  categoryId={id}/>
@@ -180,9 +189,18 @@ const CategoryTree = (props) => {
                     className={`methodli categoryNav-li tree-childspan  ${item.id === clickKey? 'action-li':''}`}
                     onClick={()=>onMethod(item)}
                 >
-                    <TextMethodType type={item.methodType}/>
+                    {
+                        item.protocolType==="http"
+                            ?<>
+                                <TextMethodType type={item.methodType}/>
 
-                    <span className={"category-name"}>{item.name}</span>
+                                <span className={"category-name"}>{item.name}</span>
+                            </>
+                            :<>
+                                <span style={{color:"#0070ff"}} className={"requestType"}>{item.protocolType.toUpperCase()}</span>
+                                <span className={"category-name"}>{item.name}</span>
+                            </>
+                    }
                 </li>
             )
         })

@@ -22,10 +22,10 @@ const FormParam = (props) =>{
     } = formParamStore;
 
     const [dataSource,setDataSource] =useState([])
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
 
     useEffect( ()=>{
-        findFormParamList(apxMethodId).then(res => setDataSource(res));
+        findFormParamList(apiId).then(res => setDataSource(res));
     },[dataLength])
 
     //表头
@@ -178,7 +178,7 @@ const FormParam = (props) =>{
      */
     const upData = (value) => {
         updateFormParam(value).then(()=> {
-            findFormParamList(apxMethodId).then(res => setDataSource(res));
+            findFormParamList(apiId).then(res => setDataSource(res));
         });
     }
 

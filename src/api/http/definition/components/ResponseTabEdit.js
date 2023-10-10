@@ -13,7 +13,7 @@ const httpCodes = [200,201,403,404,410,422,500,502,503,504]
  * 响应中Tab添加
  */
 const ResponseTabEdit =(props)=>{
-    const { setActiveKey ,apxMethodId,apiResponseId} = props;
+    const { setActiveKey ,apiId,apiResponseId} = props;
     const {findApiResponseList, createApiResponse,findApiResponse, updateApiResponse} = apiResponseStore;
 
     const [visible, setVisible] = useState(false);
@@ -43,13 +43,13 @@ const ResponseTabEdit =(props)=>{
      */
     const onFinish = async () => {
         let values = await form.validateFields();
-        values.httpId =  apxMethodId
+        values.httpId =  apiId
 
         if(props.type==="edit"){
             values.id=allData.id;
 
             await updateApiResponse(values)
-            await findApiResponseList({httpId:apxMethodId})
+            await findApiResponseList({httpId:apiId})
         }else {
             if(values.dataType==="json"){
                 let jsonSchema =  {"type": "object","properties": {} }
@@ -58,7 +58,7 @@ const ResponseTabEdit =(props)=>{
 
             let res = await createApiResponse(values)
             setActiveKey(res.data)
-            await findApiResponseList({httpId:apxMethodId})
+            await findApiResponseList({httpId:apiId})
         }
 
 

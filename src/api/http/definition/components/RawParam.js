@@ -30,10 +30,10 @@ const RawParam = (props) => {
 
     const [form] = Form.useForm();
 
-    const  apxMethodId =localStorage.getItem('apxMethodId');
+    const  apiId =localStorage.getItem('apiId');
     useEffect(()=>{
 
-        findRawParam(apxMethodId).then((res)=>{
+        findRawParam(apiId).then((res)=>{
             if(res){
                 rawDataRef.current = res
                 typeRef.current=res.type
@@ -48,7 +48,7 @@ const RawParam = (props) => {
                     raw:""
                 }
                 createRawParam(param).then(()=>{
-                    findRawParam(apxMethodId).then((res)=>{
+                    findRawParam(apiId).then((res)=>{
                         if(!res) return
                         rawDataRef.current = res
                     })
@@ -56,7 +56,7 @@ const RawParam = (props) => {
             }
 
         })
-    },[apxMethodId])
+    },[apiId])
 
     /**
      * 下拉框展示
@@ -99,7 +99,7 @@ const RawParam = (props) => {
             if(!text) return
 
             createRawParam(param).then(res=>{
-                findRawParam(apxMethodId).then((res)=>{
+                findRawParam(apiId).then((res)=>{
                     if(!res) return
                     rawDataRef.current = res
                 })

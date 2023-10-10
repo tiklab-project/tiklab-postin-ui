@@ -13,11 +13,11 @@ import binaryParamStore from "../store/BinaryParamStore";
 const BinaryParam = (props) => {
     const {findBinaryParamList,createBinaryParam,deleteBinaryParam} = binaryParamStore;
     const ticket = getUser().ticket;
-    const apxMethodId = localStorage.getItem('apxMethodId');
+    const apiId = localStorage.getItem('apiId');
     const [fileList,setFileList] = useState([])
 
     useEffect(()=>{
-        findBinaryParamList(apxMethodId).then(res=>{
+        findBinaryParamList(apiId).then(res=>{
             setFileList(res)
         })
     },[]);
@@ -30,7 +30,7 @@ const BinaryParam = (props) => {
         if(info.file.status === 'done'){
             let fileName= info.file.response.data.fileName
             const param = {
-                method:{id:apxMethodId},
+                method:{id:apiId},
                 fileName:fileName
             }
             createBinaryParam(param).then(res=>setFileList(res));
