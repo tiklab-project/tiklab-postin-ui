@@ -3,9 +3,9 @@ import {observer} from "mobx-react";
 import RequestBodyCom from "../../../../common/tableCommon/components/RequestBodyCom";
 import FormParam from "./FormParam";
 import FormUrlencoded from "./FormUrlencoded";
-import RawParam from "./RawParam";
-import apiRequestStore from "../store/ApiRequestStore";
-import JsonParam from "./JsonParam";
+import RawParam from "../../../api/components/RawParam";
+import apiRequestStore from "../../../api/store/ApiRequestStore";
+import JsonParam from "../../../api/components/JsonParam";
 import {mediaTypeDir} from "../../../../common/dictionary/dictionary";
 
 /**

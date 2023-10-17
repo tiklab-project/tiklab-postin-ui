@@ -2,8 +2,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import { Button, Form, Select} from 'antd';
-import {rawTypeDictionary} from "../../../../common/dictionary/dictionary";
-import CodeMirror from "../../../../common/CodeMirror";
+import {rawTypeDictionary} from "../../../common/dictionary/dictionary";
+import CodeMirror from "../../../common/CodeMirror";
 import rawParamStore from "../store/RawParamStore";
 const { Option } = Select;
 

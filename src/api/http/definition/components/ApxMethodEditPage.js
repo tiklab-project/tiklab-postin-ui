@@ -57,7 +57,7 @@ const ApxMethodEditPage = (props) => {
         setHttpId(res.id)
         setResData(res)
         setName(res.apix?.name)
-        setPath(res.path)
+        setPath(res.apix?.path)
         setDescValue(res.apix?.desc)
         setMethodType(res.methodType);
         setStatus(res.apix.status?.id);

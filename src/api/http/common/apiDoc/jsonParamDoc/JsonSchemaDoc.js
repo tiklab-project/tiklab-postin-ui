@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import "./jsonSchemaDocStyle.scss"
-import {jsonSchemaToJson} from "../../../test/common/TestFunctionCommon";
+import {jsonSchemaToJson} from "../../../../common/TestFunctionCommon";
 import Mock from "mockjs";
 import ReactMonacoEditor from "../../../../../common/monacoEditor/ReactMonacoEditor";
 import IconCommon from "../../../../../common/IconCommon";

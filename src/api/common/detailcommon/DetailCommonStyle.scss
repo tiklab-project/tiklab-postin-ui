@@ -1,0 +1,75 @@
+
+.detail-box{
+    padding: 5px;
+
+    .detail-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 0 10px 0;
+        height: 41px;
+    }
+
+    .detail-bottom{
+
+        .detail-bottom-item{
+            margin: 0 80px 0 0;
+            color: #999;
+            max-width: 28%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+            white-space: nowrap;
+            text-indent: 0;
+            font-size: 13px;
+        }
+    }
+}
+
+
+
+.base-info-form{
+    .ant-form-item-label{
+        text-align: left;
+
+
+    }
+    .ant-form-item-label > label{
+        color: rgb(138 138 138 / 85%);
+        font-size: 13px;
+    }
+
+    .ant-input{
+        border: none;
+
+        &:hover{
+            background: #f4f4f4;
+        }
+    }
+
+    .ant-input[disabled]{
+        background: white;
+        cursor: auto;
+        color: #8a8a8a;
+        &:hover{
+            background: white;
+        }
+    }
+
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector{
+        border: none;
+
+        &:hover{
+            background: #f4f4f4;
+        }
+
+        &:hover +.ant-select-arrow{
+            display: block;
+        }
+    }
+
+    .ant-select-arrow{
+        display: none;
+    }
+
+}

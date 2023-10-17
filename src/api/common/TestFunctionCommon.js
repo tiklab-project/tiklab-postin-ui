@@ -8,7 +8,7 @@ export const testFunctionCommon ={
         if(!data) return null;
 
         let newData = {};
-        data?.forEach(({paramName, value})=>{
+        data.forEach(({paramName, value})=>{
             if(paramName!==undefined){
                 newData[paramName]=Mock.mock(value)
             }
@@ -21,8 +21,7 @@ export const testFunctionCommon ={
         if(!data) return {};
 
         let headers = {};
-
-        data?.forEach(({headerName, value}) => {
+        data.forEach(({headerName, value}) => {
             if(headerName) {
                 headers[headerName] = Mock.mock(value);
             }

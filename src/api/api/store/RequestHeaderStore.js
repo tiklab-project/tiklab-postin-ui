@@ -10,7 +10,6 @@ class RequestHeaderStore {
     @observable requestHeaderList = [];
     @observable requestHeaderInfo;
     @observable requestHeaderDataSource = [];
-    @observable httpId = '';
     @observable dataLength = '';
 
     /**
@@ -26,7 +25,6 @@ class RequestHeaderStore {
      */
     @action
     findRequestHeaderList = async (values) => {
-        this.httpId = values.id;
         const params = {
            ...values,
             orderParams:[{ name:'headerName', orderType:'asc'}],

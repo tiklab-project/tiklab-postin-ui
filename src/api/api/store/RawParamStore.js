@@ -36,7 +36,7 @@ class RawParamStore {
      */
     @action
     createRawParam = async (values) => {
-        values.http = {id:this.apiId}
+        values.apiId = this.apiId
         values.id =  this.rawParamId;
 
         await Axios.post("/rawParam/createRawParam",values);
@@ -47,7 +47,7 @@ class RawParamStore {
      */
     @action
 	updateRawParam = async (values) => {
-        values.http = {id: this.apiId}
+        values.apiId = this.apiId
         values.id= this.rawParamId;
 
 		await Axios.post("/rawParam/updateRawParam",values)

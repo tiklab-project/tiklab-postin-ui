@@ -46,7 +46,6 @@ const ReactMonacoEditor = (props) =>{
         editorChange(value)
     }
 
-
     return(
         <MonacoEditor
             width={width}

@@ -1,9 +1,8 @@
 import React, {useEffect,useState} from 'react';
 import { observer } from "mobx-react";
 import {Empty, Input, Popconfirm, Space, Table} from 'antd';
-import '../../../category/components/category.scss';
 import ApxMethodEdit from '../../http/definition/components/ApxMethodEdit';
-import MethodType, {TextMethodType} from "../../../common/MethodType";
+import MethodType from "../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
 import CategoryDocDrawer from "../../../category/components/CategoryDocDrawer";
 import {getUser} from "tiklab-core-ui";
@@ -11,6 +10,9 @@ import categoryStore from "../../../category/store/CategoryStore";
 import apiStore from "../store/APIStore";
 import emptyImg from "../../../assets/img/empty.png"
 import APIEdit from "./APIEdit";
+import "../../http/document/components/shareStyle.scss"
+import "../../http/definition/components/apxMethod.scss"
+import '../../../category/components/category.scss';
 
 /**
  * 点击左侧导航栏目录，查看的所在目录中的接口列表

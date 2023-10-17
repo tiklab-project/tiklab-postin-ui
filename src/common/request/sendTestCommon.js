@@ -1,4 +1,4 @@
-import {testFunctionCommon} from "../../api/http/test/common/TestFunctionCommon";
+import {testFunctionCommon} from "../../api/common/TestFunctionCommon";
 import {mediaTypeDir, rawTypeDictionary} from "../dictionary/dictionary";
 import axiosIns from "../utils/localrequest";
 import {getUser} from "tiklab-core-ui";

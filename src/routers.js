@@ -50,6 +50,7 @@ const EnvironmentTable = AsyncComponent(()=>import ("./support/environment/compo
 const WsContent = AsyncComponent(()=>import ("./api/ws/common/WSContent"));
 const WSDocumentPage = AsyncComponent(()=>import ( "./api/ws/document/components/WSDocumentPage"));
 const WSDesignPage = AsyncComponent(()=>import ( "./api/ws/design/components/WSDesignPage"));
+const WSTestPage = AsyncComponent(()=>import ("./api/ws/test/components/WSTestPage"));
 
 
 const routers =  [
@@ -366,7 +367,11 @@ const routers =  [
                                         path:"/workspace/apis/ws/design",
                                         exact: true,
                                         component: WSDesignPage,
-                                    },
+                                    },{
+                                        path:"/workspace/apis/ws/test",
+                                        exact: true,
+                                        component: WSTestPage,
+                                    }
                                 ]
                             },
                             {

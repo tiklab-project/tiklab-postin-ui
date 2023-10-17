@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {inject, observer} from "mobx-react";
+import { observer} from "mobx-react";
 import ProtocolType from "../../../../common/ProtocolType";
 import MethodType from "../../../../common/MethodType";
 import TableHeaderDoc from "../../common/apiDoc/TableHeaderDoc";
@@ -7,7 +7,6 @@ import TableQueryDoc from "../../common/apiDoc/TableQueryDoc";
 import RequestBodyDoc from "../../common/apiDoc/RequestBodyDoc";
 import ResponseResultDoc from "../../common/apiDoc/ResponseResultDoc";
 import {Tag} from "antd";
-import "../../document/components/shareStyle.scss"
 import apxMethodStore from "../store/ApxMethodStore";
 /**
  * 接口文档页面
@@ -51,7 +50,7 @@ const ApiDocumentPage = (props) =>{
                     <div className={"share-box-right-content-item-detail"}>
                         <ProtocolType type={apiDoc?.apix?.protocolType}/>
                         <MethodType type={apiDoc?.methodType} />
-                        <div>{apiDoc?.path}</div>
+                        <div>{apiDoc?.apix?.path}</div>
                     </div>
                     {/*<div className={"share-box-right-content-item-detail"}>*/}
                     {/*    <div className={"share-detail-title"}>状态:</div>*/}
@@ -80,7 +79,7 @@ const ApiDocumentPage = (props) =>{
                             ?<>
                                 <TableHeaderDoc dataSource={apiDoc?.headerList}/>
                                 <TableQueryDoc dataSource={apiDoc?.queryList}/>
-                                <RequestBodyDoc data={apiDoc}/>
+                                <RequestBodyDoc dataSource={apiDoc}/>
                             </>
                             :<div>暂无请求信息</div>
                     }

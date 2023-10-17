@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import { observer, inject } from 'mobx-react';
 import {Button, Form} from 'antd';
 import CodeMirror from "../../../../common/CodeMirror";
-import apiRequestStore from "../store/ApiRequestStore";
+import apiRequestStore from "../../../api/store/ApiRequestStore";
 /**
  * @Description: 接口定义 后置脚本
  * @Author: sunxiancheng

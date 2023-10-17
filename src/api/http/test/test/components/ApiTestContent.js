@@ -61,7 +61,7 @@ const ApiTestContent = (props) => {
             setApiData(res)
             form.setFieldsValue({
                 methodType: res.methodType,
-                path: res.path,
+                path: res.apix?.path,
             })
 
             let tabTipObj = {};

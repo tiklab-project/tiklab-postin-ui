@@ -11,7 +11,7 @@ class QueryParamStore {
     @observable queryParamList = [];
     @observable queryParamInfo = [];
     @observable queryParamDataSource = [];
-    @observable httpId = '';
+    @observable apiId = '';
     @observable dataLength = '';
 
     /**
@@ -27,9 +27,9 @@ class QueryParamStore {
      */
     @action
     findQueryParamList = async (id) => {
-        this.httpId = id;
+        this.apiId = id;
         const params = {
-            httpId: id,
+            apiId: id,
             orderParams:[{ name:'paramName',  orderType:'asc' }],
         }
 
@@ -54,13 +54,13 @@ class QueryParamStore {
      */
     @action
     findQueryParam = async (id) => {
-        const that =this;
+
         const param = new FormData();
         param.append('id', id)
 
         const res = await Axios.post("/queryParam/findQueryParam",param);
         if( res.code === 0){
-            that.queryParamInfo = res.data;
+            this.queryParamInfo = res.data;
             return res.data
         }
     }
@@ -70,11 +70,11 @@ class QueryParamStore {
      */
     @action
     createQueryParam = async (values) => {
-        values.http = {id:this.httpId}
+        values.apiId = this.apiId
 
         const res = await Axios.post("/queryParam/createQueryParam",values)
         if( res.code === 0){
-           return this.findQueryParamList(this.httpId);
+           return this.findQueryParamList(this.apiId);
         }
     }
 
@@ -85,7 +85,7 @@ class QueryParamStore {
 	updateQueryParam = async (values) => {
 		const res = await Axios.post("/queryParam/updateQueryParam",values)
         if( res.code === 0){
-            return this.findQueryParamList(this.httpId);
+            return this.findQueryParamList(this.apiId);
         }
     }
 
@@ -98,7 +98,7 @@ class QueryParamStore {
         param.append('id', id)
 		const res = await Axios.post("/queryParam/deleteQueryParam",param);
         if( res.code === 0){
-            this.findQueryParamList(this.httpId);
+            this.findQueryParamList(this.apiId);
         }
     }
 

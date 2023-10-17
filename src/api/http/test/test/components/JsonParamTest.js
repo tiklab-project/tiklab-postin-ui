@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import ReactMonacoEditor from "../../../../../common/monacoEditor/ReactMonacoEditor";
 import testStore from "../store/TestStore";
 import Mock from "mockjs"
-import {jsonSchemaToJson} from "../../common/TestFunctionCommon";
+import {jsonSchemaToJson} from "../../../../common/TestFunctionCommon";
 const JsonParamTest = () =>{
     const { jsonSchema,getJsonData} = testStore;
 

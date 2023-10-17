@@ -8,6 +8,8 @@ import React, { Fragment, useState } from 'react';
 import {observer} from 'mobx-react';
 import {Modal, Form, Input} from 'antd';
 import apiStore from "../../../api/store/APIStore";
+import wsStore from "../store/WSStore";
+import {useHistory} from "react-router";
 
 const {TextArea} = Input;
 
@@ -18,10 +20,11 @@ const {TextArea} = Input;
 const WSAdd = (props) => {
     const {curCategoryId} = props
 
-    const {createApi} = apiStore;
+    const {createWSApi} = wsStore;
 
     const [visible,setVisible] = useState(false);
     const [form] = Form.useForm();
+    const history = useHistory();
 
     const categoryId = localStorage.getItem("categoryId");
     const workspaceId = localStorage.getItem('workspaceId');
@@ -47,13 +50,22 @@ const WSAdd = (props) => {
     const onFinish =  async () => {
         let values =await form.validateFields()
 
-        values.workspaceId=workspaceId;
-        values.protocolType="ws";
-        values.category={id:curCategoryId?curCategoryId:categoryId},
+        let param = {
+            apix:{
+                workspaceId:workspaceId,
+                name:values.name,
+                path:values.path,
+                protocolType:"ws",
+                desc:values.desc,
+                category:{id:curCategoryId?curCategoryId:categoryId},
+            }
+        }
 
-        createApi(values).then((res)=>{
-            localStorage.setItem('apiId',res.data);
-            props.history.push("/workspace/apis/ws/design");
+        createWSApi(param).then((res)=>{
+            if(res.code===0){
+                localStorage.setItem('apiId',res.data);
+                history.push("/workspace/apis/ws/design");
+            }
         })
 
         setVisible(false);

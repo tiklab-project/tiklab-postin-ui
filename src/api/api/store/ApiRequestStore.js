@@ -10,14 +10,14 @@ class ApiRequestStore {
     @observable bodyType;
     @observable afterScript;
     @observable preScript;
-    @observable httpId;
+    @observable apiId;
 
     /**
      * 通过id查询
      */
     @action
     findApiRequest = async (id) =>{
-        this.httpId = id
+        this.apiId = id
 
         const params = new FormData();
         params.append('id', id);
@@ -37,8 +37,8 @@ class ApiRequestStore {
      */
     @action
     createApiRequest = async (params) => {
-        params.httpId = this.httpId;
-        params.id =  this.httpId;
+        params.apiId = this.apiId;
+        params.id =  this.apiId;
 
         return await Axios.post("/apiRequest/createApiRequest",params);
     }
@@ -48,8 +48,8 @@ class ApiRequestStore {
      */
     @action
     updateApiRequest = async (params) => {
-        params.httpId =  this.httpId;
-        params.id= this.httpId;
+        params.apiId =  this.apiId;
+        params.id= this.apiId;
 
         return await Axios.post("/apiRequest/updateApiRequest",params);
     }

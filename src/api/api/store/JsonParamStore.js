@@ -1,22 +1,16 @@
 import { observable,  action } from "mobx";
 import {Axios} from "tiklab-core-ui";
 
-
 /**
- * 定义
- * http
  * json store
  */
 class JsonParamStore {
-
-    @observable jsonSchemaData;
 
     /**
      * 通过id查询单个json
      */
     @action
     findJsonParam = async (id) => {
-        this.jsonParamId = id;
         const params = new FormData();
         params.append('id', id);
 

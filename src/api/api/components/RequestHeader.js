@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {inject, observer} from "mobx-react";
 import {Checkbox, Popconfirm, Space} from 'antd';
-import {headerParamDictionary} from '../../../../common/dictionary/dictionary';
-import ExSelect from "../../../../common/ExSelect";
-import {ExTable} from '../../../../common/EditTable';
-import IconCommon from "../../../../common/IconCommon";
+import {headerParamDictionary} from '../../../common/dictionary/dictionary';
+import ExSelect from "../../../common/ExSelect";
+import {ExTable} from '../../../common/EditTable';
+import IconCommon from "../../../common/IconCommon";
 import requestHeaderStore from "../store/RequestHeaderStore";
 /**
  * 定义
@@ -26,7 +26,7 @@ const RequestHeader = (props) =>{
     const apiId = localStorage.getItem('apiId');
 
     useEffect( ()=>{
-        findRequestHeaderList({httpId:apiId}).then(res=>setDataSource(res));
+        findRequestHeaderList({apiId:apiId}).then(res=>setDataSource(res));
     },[dataLength])
 
     //表头
@@ -128,7 +128,7 @@ const RequestHeader = (props) =>{
                 <Popconfirm
                     title="确定删除？"
                     onConfirm={() => deleteRequestHeader(record.id).then(() => {
-                        findRequestHeaderList({httpId:apiId}).then(res=>{
+                        findRequestHeaderList({apiId:apiId}).then(res=>{
                             setDataSource(res)
                         })
                     })}
@@ -179,10 +179,10 @@ const RequestHeader = (props) =>{
             // 创建新行的时候自带一个id，所以删了，后台会自行创建id
             delete values.id;
 
-            values.http = {id:apiId}
+            values.apiId = apiId
 
             createRequestHeader(values).then(() => {
-                findRequestHeaderList({httpId:apiId}).then(res=>{
+                findRequestHeaderList({apiId:apiId}).then(res=>{
                     setDataSource(res)
                 })
             })
@@ -196,7 +196,7 @@ const RequestHeader = (props) =>{
      */
     const upData = (value) => {
         updateRequestHeader(value).then(() => {
-            findRequestHeaderList({httpId:apiId}).then(res=>{
+            findRequestHeaderList({apiId:apiId}).then(res=>{
                 setDataSource(res)
             })
         })

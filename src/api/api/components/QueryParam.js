@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import {Space, Checkbox, Popconfirm} from 'antd';
-import { mockValueDictionary } from '../../../../common/dictionary/dictionary';
-import ExSelect from "../../../../common/ExSelect";
-import {ExTable} from '../../../../common/EditTable';
+import { mockValueDictionary } from '../../../common/dictionary/dictionary';
+import ExSelect from "../../../common/ExSelect";
+import {ExTable} from '../../../common/EditTable';
 import queryParamStore from "../store/QueryParamStore";
 /**
  * @Description: 请求参数中query可编辑表格

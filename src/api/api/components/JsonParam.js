@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from "react";
-import JsonSchemaTable from "../../../../common/JsonSchemaTable/JsonSchemaTable";
+import JsonSchemaTable from "../../../common/JsonSchemaTable/JsonSchemaTable";
 import jsonParamStore from "../store/JsonParamStore"
 
 const JsonParam = () =>{
@@ -17,7 +17,7 @@ const JsonParam = () =>{
     const jsonSchemaUpdate = useCallback(async (updateValue)=>{
         let param = {
             id:apiId,
-            httpId:apiId,
+            apiId:apiId,
             jsonText:JSON.stringify(updateValue),
         }
 
