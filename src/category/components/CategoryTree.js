@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { CaretRightOutlined, CaretDownOutlined } from '@ant-design/icons';
-import {Dropdown, Menu, Popconfirm, Tooltip} from "antd";
+import {Dropdown, Menu, Popconfirm} from "antd";
 import {ApxMethodEdit} from "../../api/http/definition";
 import CategoryEdit from './CategoryEdit';
 import {TextMethodType} from "../../common/MethodType";
@@ -14,14 +14,10 @@ import WSAdd from "../../api/ws/ws/components/WSAdd";
 const CategoryTree = (props) => {
     const { findCategoryList, deleteCategory,categoryList,apiRecent } = categoryStore;
 
-
-
     const [expandedTree, setExpandedTree] = useState([]);
     const [clickKey, setClickKey] = useState();
 
     const workspaceId = localStorage.getItem('workspaceId');
-
-
 
     /**
      * 保存分类id，跳往分类页
@@ -58,7 +54,6 @@ const CategoryTree = (props) => {
 
     }
 
-
     useEffect(() => {
         findCategoryList(workspaceId).then((list)=>{
             // onClick(list[0])
@@ -92,21 +87,15 @@ const CategoryTree = (props) => {
     /**
      * 目录悬浮的操作项
      */
-    const menu = (id)=>(
+    const moreMenu = (id)=>(
         <Menu>
             <Menu.Item  key={1}>
-                <CategoryEdit name="添加目录"   type="add"  categoryId={id}/>
-            </Menu.Item>
-            <Menu.Item  key={2}>
-                <WSAdd name="添加WebSocket接口"    curCategoryId={id}/>
-            </Menu.Item>
-            <Menu.Item  key={3}>
                 <CategoryEdit  name="编辑"  type="edit"  categoryId={id}/>
             </Menu.Item>
-            <Menu.Item  key={4}>
+            <Menu.Item  key={2}>
                 <Popconfirm
                     title="确定删除？"
-                    onConfirm={() =>delCategory(id)}
+                    onConfirm={() =>deleteCategory(id)}
                     okText='确定'
                     cancelText='取消'
                 >
@@ -117,12 +106,27 @@ const CategoryTree = (props) => {
     );
 
     /**
-     * 删除分组
+     * 目录悬浮的操作项
      */
-    const delCategory = (id)=>{
+    const addMenu = (id)=>(
+        <Menu>
+            <Menu.Item  key={1}>
+                <ApxMethodEdit
+                    name="新建接口"
+                    type="add"
+                    categoryItemId={id}
+                    {...props}
+                />
+            </Menu.Item>
+            <Menu.Item  key={2}>
+                <WSAdd name="新建WebSocket接口" curCategoryId={id}/>
+            </Menu.Item>
+            <Menu.Item  key={3}>
+                <CategoryEdit name="新建目录" type="add"  categoryId={id}/>
+            </Menu.Item>
+        </Menu>
+    );
 
-        deleteCategory(id)
-    }
 
     /**
      * 目录悬浮项
@@ -131,20 +135,12 @@ const CategoryTree = (props) => {
         return (
             <div className={'category-action'}>
                 <div  className={"category-action-right"}>
-                    <ApxMethodEdit
-                        name="添加"
-                        icon={
-                            <Tooltip title="新增接口"  placement="left">
-                                <svg className="icon-s edit-icon-nav" aria-hidden="true">
-                                    <use xlinkHref={`#icon-tianjia-`}/>
-                                </svg>
-                            </Tooltip>
-                        }
-                        type="add"
-                        categoryItemId={id}
-                        {...props}
-                    />
-                    <Dropdown overlay={()=>menu(id)} className={'category-action-more'}>
+                    <Dropdown overlay={()=>addMenu(id)} className={'category-action-more'}>
+                        <svg className="icon-s edit-icon-nav" aria-hidden="true">
+                            <use xlinkHref={`#icon-tianjia-`}/>
+                        </svg>
+                    </Dropdown>
+                    <Dropdown overlay={()=>moreMenu(id)} className={'category-action-more'}>
                         <svg className="icon-s category-nav-item-icon" aria-hidden="true">
                             <use xlinkHref={`#icon-more`}/>
                         </svg>

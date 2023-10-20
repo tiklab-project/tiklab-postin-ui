@@ -64,7 +64,7 @@ const WSDocumentPage = (props) =>{
                 </div>
                 <div className={"share-box-right-content-item"}>
                     {
-                        wsInfo?.headerList||wsInfo?.queryList||wsInfo?.request?.bodyType!=="none"
+                        wsInfo?.headerList||wsInfo?.queryList
                             ?<>
                                 <TableHeaderDoc dataSource={wsInfo?.headerList}/>
                                 <TableQueryDoc dataSource={wsInfo?.queryList}/>

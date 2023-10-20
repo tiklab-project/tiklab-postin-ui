@@ -7,9 +7,9 @@
 import React, { Fragment, useState } from 'react';
 import {observer} from 'mobx-react';
 import {Modal, Form, Input} from 'antd';
-import apiStore from "../../../api/store/APIStore";
 import wsStore from "../store/WSStore";
 import {useHistory} from "react-router";
+import categoryStore from "../../../../category/store/CategoryStore";
 
 const {TextArea} = Input;
 
@@ -19,8 +19,8 @@ const {TextArea} = Input;
  */
 const WSAdd = (props) => {
     const {curCategoryId} = props
-
     const {createWSApi} = wsStore;
+    const { findCategoryList } = categoryStore;
 
     const [visible,setVisible] = useState(false);
     const [form] = Form.useForm();
@@ -65,6 +65,7 @@ const WSAdd = (props) => {
             if(res.code===0){
                 localStorage.setItem('apiId',res.data);
                 history.push("/workspace/apis/ws/design");
+                findCategoryList(workspaceId);
             }
         })
 
