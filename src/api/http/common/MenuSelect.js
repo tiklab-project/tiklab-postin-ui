@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import {useHistory, useLocation} from "react-router";
 import EnvSelect from "../../../support/environment/components/EnvSelect";
-import { Menu, Space} from "antd";
-import {CaretDownOutlined} from "@ant-design/icons";
 
 const MenuSelect = () =>{
 
@@ -20,33 +18,21 @@ const MenuSelect = () =>{
         {
             title: '设计',
             key: `/workspace/apis/http/edit`,
-        },
-
+        }, {
+            title: '调试',
+            key: `/workspace/apis/http/test`,
+        }, {
+            title: 'MOCK',
+            key: `/workspace/apis/http/mock`,
+        }
     ];
 
-    let testItem =  {
-        title: '调试',
-        key: `/workspace/apis/http/test`,
-    }
-
-    let mock = {
-        title: 'MOCK',
-        key: `/workspace/apis/http/mock`,
-    }
 
     const selectKeyFun = (item) =>{
         setSelectItem(item.key)
         history.push(item.key)
     }
 
-
-    const [mouseEnter, setMouseEnter] = useState(false);
-
-    const toggleTestMock = (item) =>{
-        setSelectItem(item.key)
-        history.push(item.key)
-        setMouseEnter(false)
-    }
 
     return(
         <div className={"api-header-menu"}>
@@ -65,47 +51,6 @@ const MenuSelect = () =>{
                         )
                     })
                 }
-                <Space
-                    className={" header-toggle-testormock"}
-                    onMouseEnter={()=>setMouseEnter(true)}
-                    onMouseLeave={()=>setMouseEnter(false)}
-                >
-                    <div
-                        className={`
-                            ws-header-menu-item  
-                        ${
-                            "/workspace/apis/http/test" === selectItem || "/workspace/apis/http/mock" === selectItem
-                                ? "ws-header-menu-item-selected"
-                                : ""
-                        }`}
-                    >
-                        {
-                            "/workspace/apis/http/mock" === selectItem
-                            ?<>
-                                    <div onClick={()=>toggleTestMock(mock)}>MOCK</div>
-                                    <div
-                                        className={`header-toggle-hover_show ${mouseEnter?"postin-show":"postin-hide"}`}
-                                        onClick={()=>toggleTestMock(testItem)}
-                                    >
-                                        <div className={"header-menu-mock_title"}>调试</div>
-                                    </div>
-
-                            </>
-
-                            : <>
-                                    <div onClick={()=>toggleTestMock(testItem)}>调试</div>
-                                    <div
-                                        className={`header-toggle-hover_show ${mouseEnter?"postin-show":"postin-hide"}`}
-                                        onClick={()=>toggleTestMock(mock)}
-                                    >
-                                        <div className={"header-menu-mock_title"}>MOCK</div>
-                                    </div>
-                            </>
-                        }
-
-                    </div>
-                    <CaretDownOutlined />
-                </Space>
             </div>
             <EnvSelect />
         </div>

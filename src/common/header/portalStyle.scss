@@ -119,11 +119,11 @@
 
 .frame-header{
     padding: 0 10px 0 28px;
-    background: var(--pi-base-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 48px;
+    border-bottom: 2px solid #e4e4e4;
 
     .frame-header-logo{
         height: 35px;
@@ -146,16 +146,13 @@
 
 
         .header-menu-item{
-            color: #b4e1ff;
             padding: 10px 6px;
-            border-bottom: 4px solid #add9ff00;
-            width: 55px;
+            border-bottom: 3px solid rgba(255, 255, 255, 0);
             text-align: center;
         }
 
         .header-menu-item-action{
-            background: #6b99e3;
-            color: #fff;
+            border-bottom: 3px solid var(--pi-base-color);
         }
 
         div{
@@ -202,16 +199,18 @@
 
         .header-icon-item{
             font-size: 24px;
-            color: white;
+            //color: white;
             cursor: pointer;
+
+            &:hover{
+                color: rgb(0, 82, 204);
+                background-color: rgba(222, 235, 255, 0.9);
+            }
         }
     }
 
     .header-right-item:hover{
         border-radius: 50%;
-        color: rgb(0, 82, 204);
-        background-color: rgba(222, 235, 255, 0.9);
     }
-
 
 }

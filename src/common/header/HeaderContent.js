@@ -1,12 +1,8 @@
-import React, {useState} from 'react';
-import {useTranslation} from "react-i18next";
-import {Avatar, Dropdown, Menu, Tooltip} from "antd";
-
-import {getUser} from "tiklab-core-ui";
+import React from 'react';
 import HeaderMenu from "./HeaderMenu";
-import logo from "../../assets/img/postinlog.png";
+import logo from "../../assets/img/postinheader.png";
 import MessageDrawer from "../../setting/message/MessageDrawer";
-import {QuestionCircleOutlined, RightOutlined, SettingOutlined, UserOutlined} from "@ant-design/icons";
+import {SettingOutlined} from "@ant-design/icons";
 import Search from "./search/components/Search";
 
 

@@ -182,18 +182,12 @@ const ResponseHeader = (props) =>{
 
         //如果是新行 操作 显示操作按钮
         if(row.id==="InitNewRowId"){
-            newRowKeyDown()
+            document.addEventListener('keydown', (e) =>{
+                setNewRowAction(true)
+            });
         }
     };
 
-    /**
-     *  当新行按键按下的时候显示后面的操作按钮
-     */
-    const newRowKeyDown = () => {
-        document.addEventListener('keydown', (e) =>{
-            setNewRowAction(true)
-        });
-    };
 
     return (
         <>
