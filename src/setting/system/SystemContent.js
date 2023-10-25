@@ -9,7 +9,7 @@ const SystemContent = (props) =>{
     const settingMenu = [
         {
             title: "用户与部门",
-            icon: 'team',
+            icon: 'chengyuan',
             id: 'accountMember',
             children: [
                 {
@@ -34,7 +34,7 @@ const SystemContent = (props) =>{
         },
         {
             title: '权限',
-            icon: 'modular',
+            icon: 'jiaosequanxian',
             id: '/systemManagement/systemRole',
             // purviewCode: "systemPrivilege",
         },
@@ -56,12 +56,12 @@ const SystemContent = (props) =>{
         },
         {
             title: '插件',
-            icon: 'modular',
+            icon: 'plugin',
             id: '/systemManagement/plugin',
             purviewCode: "plugin",
         },{
             title: "安全",
-            icon: 'modular',
+            icon: 'anquan',
             id: '/systemManagement/log',
             purviewCode: "security",
             children: [
@@ -78,7 +78,7 @@ const SystemContent = (props) =>{
         },
         {
             title: '版本与许可证',
-            icon: 'modular',
+            icon: 'xukezheng',
             id: '/systemManagement/version'
 
         },

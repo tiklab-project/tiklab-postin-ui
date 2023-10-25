@@ -10,13 +10,13 @@
         .ant-select{
 
             .ant-select-selector{
-                border:1px solid #f0f0f0;
+                border:1px solid var(--pi-border-color);
             }
         }
 
 
         .ant-input{
-            border:1px solid #f0f0f0;
+            border:1px solid var(--pi-border-color);
         }
     }
 
@@ -69,7 +69,7 @@
 }
 .def-mode-text:hover  .def-mode-box{
     display: block;
-    background: var(--pi-bg-color);
+    background: var(--pi-bg-grey-100);
     border: 1px solid var(--pi-border-color);
     box-shadow: var(--pi-box-shadow);
 }

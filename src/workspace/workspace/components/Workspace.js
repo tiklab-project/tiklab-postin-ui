@@ -107,7 +107,6 @@ const Workspace = (props) => {
                 setSelectTab("follow");
                 break;
         }
-
     },[])
 
     const toWorkspaceEdit = () =>{

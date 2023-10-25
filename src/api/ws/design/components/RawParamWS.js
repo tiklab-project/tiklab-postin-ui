@@ -58,7 +58,7 @@ const RawParamWS = (props) => {
         <div className={"raw-box"}>
             <div className={"raw-box-header"}> </div>
             <div >
-                <div style={{border:"1px solid #f0f0f0"}}>
+                <div style={{border:"1px solid var(--pi-border-color)"}}>
                     <ReactMonacoEditor
                         editorChange={editChange}
                         value={dataSource?.raw}

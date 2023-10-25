@@ -2,7 +2,7 @@
 
 .wsAside{
     height: 100%;
-    background: #f8f8f8;
+    background: var(--pi-bg-grey-100);
 }
 
 
@@ -166,7 +166,7 @@
     }
 
     .tablelist  .ant-spin-nested-loading .ant-spin-container .ant-table-container .ant-table-tbody{
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid var(--pi-border-color);
     }
 
     .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{

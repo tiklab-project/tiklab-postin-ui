@@ -35,7 +35,7 @@
 
     /*----项目内定义----*/
     --pi-base-color:var(--tiklab-blue);  /*着重色*/
-    --pi-bg-grey-100:#f7f7f7;
+    --pi-bg-grey-100:#f8f8f8;
     --pi-bg-grey-200:#ededed;
     --pi-bg-color:var(--tiklab-white);
 
@@ -62,11 +62,10 @@
 
     --pi-calc-content:calc(100% - 48px);
 
-    --pi-greyf9-color: #f9f9f9; /*悬浮颜色*/
     --pi-border-color:#f0f0f0; /*边框颜色*/
     --pi-box-shadow: 0 3px 6px rgb(140 149 159 / 15%);  /*阴影*/
     --pi-border-radius:4px; /*边框圆角*/
-    --pi-input-border:1px solid var(--tiklab-gray-200);
+    --pi-input-border:2px solid var(--tiklab-gray-200);
 
     --pi-font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI, Roboto,Oxygen,
     Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica,Arial,sans-serif; /* 字体

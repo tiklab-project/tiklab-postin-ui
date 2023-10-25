@@ -133,7 +133,7 @@ const RawParam = (props) => {
                     </Form.Item>
                 </div>
 
-                <div style={{border:"1px solid #f0f0f0"}}>
+                <div style={{border:"1px solid var(--pi-border-color)"}}>
                     <Form.Item  name='raw'>
                         <CodeMirror
                             mediaType={typeValue}

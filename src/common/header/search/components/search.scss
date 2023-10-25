@@ -115,7 +115,7 @@
             border-bottom: 1px solid var(--pi-border-color)
         }
         .list:hover{
-            background-color: var(--pi-greyf9-color);
+            background-color: var(--pi-bg-grey-100);
         }
     }
     
@@ -142,7 +142,7 @@
     .item{
         margin: 5px;
         padding: 5px;
-        border: 1px solid var(--pi-greyf9-color);
+        border: 1px solid var(--pi-bg-grey-100);
         transition: 0.5s;
         border-radius: var(--pi-border-radius);
         cursor: pointer;

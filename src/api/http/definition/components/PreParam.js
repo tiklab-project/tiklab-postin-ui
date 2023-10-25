@@ -69,7 +69,7 @@ const PreParam = (props) => {
         <div className={"api-script-box"}>
             <div className={"api-script-pre-header"}> </div>
             <Form form={form} >
-                <div style={{border:"1px solid #f0f0f0"}}>
+                <div style={{border:"1px solid var(--pi-border-color)"}}>
                     <Form.Item name='preScript'>
                         <CodeMirror
                             mediaType={"application/javascript"}

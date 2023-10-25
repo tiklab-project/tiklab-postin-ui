@@ -8,7 +8,7 @@
         flex-grow: 2;
         height: 35px;
         line-height: 35px;
-        border: 1px solid #e3e3e3;
+        border: 1px solid var(--pi-border-color);
         padding: 0 10px;
         border-radius: 4px;
 
@@ -17,18 +17,18 @@
 }
 
 .ws-raw-box{
-    border:1px solid #f0f0f0;
+    border:1px solid var(--pi-border-color);
     margin:5px 0 0 0;
 
 }
 
 .ws-result-box{
     margin: 10px 0 0 0;
-    border: 1px solid #e4e4e4;
+    border: 1px solid var(--pi-border-color);
 
     .ws-result-header{
         padding: 5px;
-        border-bottom: 1px solid #e4e4e4 ;
+        border-bottom: 1px solid var(--pi-border-color);
     }
 
     .ws-result-list{

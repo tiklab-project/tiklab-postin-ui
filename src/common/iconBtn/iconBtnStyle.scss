@@ -8,8 +8,8 @@
     }
 
     .pi-icon-btn-grey{
-        background: #eee;
-        border: 1px solid #ffffff00;
+        background: var(--pi-bg-grey-100);
+        border: 1px solid var(--pi-border-color);
         border-radius: var(--pi-border-radius);
         font-size: 13px;
     }

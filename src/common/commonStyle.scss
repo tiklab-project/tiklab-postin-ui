@@ -65,7 +65,7 @@
 
 
 .ws-side-menu{
-    background: #f5f5f5;
+    background: var(--pi-bg-grey-100);
     border-right: 1px solid var(--pi-border-color)
 }
 
@@ -238,7 +238,7 @@
     .left-tree-content{
         height: 100%;
         width: 100%;
-        background: #fafafa;
+        background: var(--pi-bg-grey-100);
         border-right: 1px solid var(--pi-border-color);
     }
 

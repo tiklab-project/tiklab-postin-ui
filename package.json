@@ -184,7 +184,6 @@
     "tiklab-plugin-manager-ui": "^1.0.2",
     "tiklab-privilege-ui": "^1.0.2",
     "tiklab-security-ui": "^1.0.2",
-    "tiklab-todotask-ui": "^1.0.2",
     "tiklab-user-ui": "^1.0.2"
   }
 }

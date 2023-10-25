@@ -32,11 +32,11 @@
     }
 
     .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--pi-border-color);
     }
 
     .ant-tabs > .ant-tabs-nav .ant-tabs-nav-add, .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-add{
-        border-bottom: 1px solid #ddd!important;
+        border-bottom: 1px solid var(--pi-border-color)!important;
     }
 
     .quicktest-left{

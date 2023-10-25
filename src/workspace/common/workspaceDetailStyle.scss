@@ -29,7 +29,9 @@
         width: 80px;
         height: 100%;
         position:relative;
-        background: var(--tiklab-gray);
+        background: var(--pi-bg-grey-100);
+        box-shadow: 3px 0 3px -4px rgba(0, 0, 0, 0.3);
+        z-index: 10;
     }
 
     .ws-detail-right{
@@ -322,7 +324,7 @@
         justify-content: center;
     }
     .selectlink{
-        background-color: var(--pi-greyf9-color);
+        background-color: var(--pi-bg-grey-100);
     }
 }
 
@@ -476,3 +478,5 @@
     }
 
 }
+
+

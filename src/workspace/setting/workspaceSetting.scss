@@ -23,7 +23,7 @@
 .ws-nav-setting:hover .nav-setting-box{
     display: block;
     z-index: 10;
-    background: var(--pi-bg-color);
+    background: var(--pi-bg-grey-100);
 }
 
 .show-nav-setting{
@@ -58,7 +58,7 @@
         padding: 0 15px;
     }
     .nav-setting-item:hover{
-        background-color: var(--pi-greyf9-color);
+        background-color: var(--pi-bg-grey-100);
     }
 }
 

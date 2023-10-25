@@ -9,7 +9,7 @@
 }
 
 .api-status-add-box:hover{
-    background: var(--pi-bg-color);
+    background: var(--pi-bg-grey-100);
 }
 
 
@@ -65,7 +65,7 @@
 .status-color-box:hover .status-color-box-picker{
     display: block;
     z-index: 10;
-    background: var(--pi-bg-color);
+    background: var(--pi-bg-grey-100);
     transition: 1s;
     cursor: pointer;
 }

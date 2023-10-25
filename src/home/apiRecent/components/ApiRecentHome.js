@@ -63,7 +63,7 @@ const ApiRecentHome = (props) =>{
                         <div className={"home-list-item"}>
                             <IconCommon
                                 icon={"jiekou1"}
-                                className="ws-img-icon"
+                                style={{width:"30px",height:"30px"}}
                             />
                             <div>
                                 <div className={"home-list-item-title"}>

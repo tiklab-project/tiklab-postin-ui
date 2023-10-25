@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import DynamicWidget from "../../home/DynamicWidget";
+import DynamicWidget from "./DynamicWidget";
 /**
  * 空间概况
  */

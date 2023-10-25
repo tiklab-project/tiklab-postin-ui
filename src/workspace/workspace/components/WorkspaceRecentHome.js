@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {getUser} from "tiklab-core-ui";
 import {observer} from "mobx-react";
-import {toWorkspaceDetail} from "./WorkspaceFn";
+import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
 import {Empty} from "antd";
 import emptyImg from "../../../assets/img/empty.png";
 import workspaceRecentStore from "../store/WorkspaceRecentStore";
@@ -40,7 +40,7 @@ const WorkspaceRecentHome = (props) =>{
             return(
                 <div key={item.id} className={"home-recent-item"} onClick={()=>toDetail(item.id)}>
                     <div className={"home-recent-item-left"}>
-                        <img src={item.iconUrl} alt={"icon"} className={"ws-img-icon"}/>
+                        <ShowWorkspaceIcon iconUrl={item.iconUrl} className={"ws-img-icon"}/>
                         <div className={"home-recent-item-left-name"}>{item.workspaceName}</div>
                     </div>
                     <div style={{display:"flex","justifyContent":"space-between"}}>

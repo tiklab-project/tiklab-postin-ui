@@ -13,6 +13,7 @@ import APIEdit from "./APIEdit";
 import "../../http/document/components/shareStyle.scss"
 import "../../http/definition/components/apxMethod.scss"
 import '../../../category/components/category.scss';
+import PaginationCommon from "../../../common/pagination/Page";
 
 /**
  * 点击左侧导航栏目录，查看的所在目录中的接口列表
@@ -94,7 +95,7 @@ const APIList = (props) => {
     const categoryId =  localStorage.getItem('categoryId');
     const workspaceId = localStorage.getItem('workspaceId');
     const [apiList, setApiList] = useState([]);
-    const [totalRecord, setTotalRecord] = useState();
+    const [totalPage, setTotalPage] = useState();
     const [pageSize] = useState(12);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -112,7 +113,7 @@ const APIList = (props) => {
             ...params
         }
         findApiPage(param).then((res)=>{
-            setTotalRecord(res.totalRecord);
+            setTotalPage(res.totalPage);
             setApiList(res.dataList)
         })
     }
@@ -158,17 +159,17 @@ const APIList = (props) => {
     /**
      * 分页
      */
-    const onTableChange = (pagination) => {
-        setCurrentPage(pagination.current)
-
-        let param = {
+    const onTableChange = (current) => {
+        setCurrentPage(current)
+        const newParams = {
+            ...pageParam,
             pageParam: {
                 pageSize: pageSize,
-                currentPage:pagination.current
+                currentPage: current
             },
         }
 
-        findPage(param)
+        findPage(newParams)
     }
 
 
@@ -198,12 +199,7 @@ const APIList = (props) => {
                         dataSource={apiList}
                         columns={columns}
                         rowKey={record => record.id}
-                        pagination={{
-                            current:currentPage,
-                            pageSize:pageSize,
-                            total:totalRecord,
-                        }}
-                        onChange = {(pagination) => onTableChange(pagination)}
+                        pagination={false}
                         locale={{
                             emptyText: <Empty
                                 imageStyle={{height: 120}}
@@ -211,6 +207,11 @@ const APIList = (props) => {
                                 image={emptyImg}
                             />,
                         }}
+                    />
+                    <PaginationCommon
+                        currentPage={currentPage}
+                        totalPage={totalPage}
+                        changePage={onTableChange}
                     />
                 </div>
             </div>

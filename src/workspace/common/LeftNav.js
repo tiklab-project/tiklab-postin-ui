@@ -2,11 +2,14 @@ import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
 import {Dropdown, Space} from "antd";
-import {toWorkspaceDetail} from "../workspace/components/WorkspaceFn";
+import {ShowWorkspaceIcon, toWorkspaceDetail} from "../workspace/components/WorkspaceFn";
 import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 import workspaceRecentStore from "../workspace/store/WorkspaceRecentStore";
 import IconCommon from "../../common/IconCommon";
 import {useHistory} from "react-router";
+import "./workspaceDetailStyle.scss"
+import "../workspace/components/workspace.scss"
+import "../../common/commonStyle.scss"
 
 /**
  * 左侧导航展示
@@ -36,7 +39,7 @@ const LeftNav = (props) =>{
             "router":"/workspace/apis"
         },
         {
-            "icon":"jiekou",
+            "icon":"ico-",
             "name":"数据结构",
             "key":"dataStructure",
             "router":"/workspace/dataStructure"
@@ -163,7 +166,7 @@ const LeftNav = (props) =>{
                         >
                             <div className={"ws-icon-box"}>
                             <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
-                                 <img src={workspaceIcon} alt={"icon"} className={"repository-icon"} width={30}/>
+                                 <ShowWorkspaceIcon iconUrl={workspaceIcon} className={"repository-icon"}  width={30}/>
                             </span>
                                 <IconCommon
                                     style={{"cursor":"pointer"}}

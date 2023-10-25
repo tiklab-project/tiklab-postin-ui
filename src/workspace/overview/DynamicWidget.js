@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Empty, List, Skeleton} from "antd";
 import {Axios} from "tiklab-core-ui";
-import emptyImg from "../assets/img/empty.png";
+import emptyImg from "../../assets/img/empty.png";
 
 /**
  * 首页中动态

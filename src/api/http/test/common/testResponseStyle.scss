@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #f3f3f3;
+    border-bottom: 1px solid var(--pi-border-color);
 }
 
 .codemirror-box{
@@ -34,7 +34,7 @@
     justify-content: center;
     align-items: center;
     height: 400px;
-    border: 1px solid #f0f0f0
+    border: 1px solid var(--pi-border-color)
 }
 
 .test-response-before-img-box{

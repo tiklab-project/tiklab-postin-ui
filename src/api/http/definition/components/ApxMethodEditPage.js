@@ -13,8 +13,6 @@ import {CaretDownOutlined} from "@ant-design/icons";
 import ResponseHeader from "./ResponseHeader";
 import ProtocolType from "../../../../common/ProtocolType";
 import {getVersionInfo} from "tiklab-core-ui";
-import EnvSelect from "../../../../support/environment/components/EnvSelect";
-import GlobalParamModal from "../../../../support/globalParam/globalParamModal";
 import categoryStore from "../../../../category/store/CategoryStore";
 import apxMethodStore from "../store/ApxMethodStore";
 import apxMethodStatusStore from "../../../../support/apiStatus/store/ApxMethodStatusStore";
@@ -355,19 +353,6 @@ const ApxMethodEditPage = (props) => {
         props.history.push("/systemManagement/plugin")
     }
 
-    /**
-     * 去往文档页
-     */
-    const goToDocPage = () =>{
-        props.history.push("/workspace/apis/http/document")
-    }
-
-    /**
-     * 去往测试页
-     */
-    const toTestPage = () =>{
-        props.history.push("/workspace/apis/http/test")
-    }
 
     return(
         <div className={"content-margin"} style={{height:"100%",padding:"0"}}>
@@ -408,16 +393,6 @@ const ApxMethodEditPage = (props) => {
                                 />
                             </div>
                         </div>
-
-                        <Space >
-                            <IconBtn
-                                // icon={"fasong"}
-                                className="pi-icon-btn-grey"
-                                name={"测试"}
-                                onClick={toTestPage}
-                            />
-                        </Space>
-
                     </div>
                     <div className={"api-detail-base-box"}>
                         <div className={"api-base-info-two"}>
