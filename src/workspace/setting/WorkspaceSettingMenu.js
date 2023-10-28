@@ -83,7 +83,8 @@ const WorkspaceSettingMenu = (props) =>{
                     <ul className="ws-menu-ul">
                         <li style={{
                             padding: "10px 30px",
-                            fontSize: "16px"
+                            fontSize: "16px",
+                            borderBottom: "1px solid #e4e4e4"
                         }}
                         >空间设置</li>
                         {

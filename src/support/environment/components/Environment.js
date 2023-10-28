@@ -1,9 +1,10 @@
-
+import "./envStyle.scss"
 import React, {useEffect, useState} from 'react';
-import { observer, inject } from "mobx-react";
-import {Table, Space, Popconfirm, Drawer, Modal} from 'antd';
+import { observer } from "mobx-react";
+import { Space, Popconfirm, Modal} from 'antd';
 import {ExTable} from "../../../common/EditTable";
 import environmentStore from "../store/environmentStore";
+
 /**
  * 环境管理
  */
@@ -102,12 +103,8 @@ const EvnMana = (props) => {
     /**
      * 更新
      */
-
     const upData = (value) => {
-        updateEnvironment(value).then(res => {
-            setDataSource(res)
-            findList()
-        })
+        updateEnvironment(value).then(() => findList())
     }
 
     /**
@@ -127,7 +124,6 @@ const EvnMana = (props) => {
     /**
      * 单元格保存数据
      */
-
     const handleSave = (row) => {
         const newData = environmentList;
         const index = newData.findIndex((item) => row.id === item.id);
@@ -186,7 +182,7 @@ const EvnMana = (props) => {
                 footer={false}
                 width={800}
             >
-                <div  style={{padding:5}}>
+                <div  style={{padding:5}} className={"env-editable"}>
                     <ExTable
                         dataSource={environmentList}
                         columns={columns}

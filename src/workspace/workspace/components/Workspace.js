@@ -9,6 +9,8 @@ import {SearchOutlined} from "@ant-design/icons";
 import WorkspaceRecentHome from "./WorkspaceRecentHome";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import workspaceFollowStore from "../store/WorkspaceFollowStore";
+import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
+import EnvSelect from "../../../support/environment/components/EnvSelect";
 /**
  * 空间页
  */
@@ -21,41 +23,7 @@ const Workspace = (props) => {
     const userId = getUser().userId;
     const [workspaceList, setWorkspaceList] = useState([]);
     const [selectTab, setSelectTab] = useState("all");
-    
 
-    //空间筛选列表
-    const items = [
-        {
-            title: '所有空间',
-            key: `all`,
-        },
-        {
-            title: '我收藏的',
-            key: `follow`,
-        },
-        {
-            title: '我创建的',
-            key: `create`,
-        }
-    ];
-
-    /**
-     * 渲染筛选项
-     */
-    const showMenu = (data) =>{
-        return data&&data.map(item=>{
-            return(
-                <div
-                    key={item.key}
-                    className={`ws-header-menu-item  ${item.key === selectTab ? "ws-header-menu-item-selected" : ""}`}
-                    onClick={()=>findList({},item.key)}
-                >
-                    <span> {item.title} </span>
-
-                </div>
-            )
-        })
-    }
 
     useEffect(()=>{
         findList()
@@ -113,6 +81,29 @@ const Workspace = (props) => {
         props.history.push("/workspace-edit")
     }
 
+
+    //空间筛选列表
+    const items = [
+        {
+            title: '所有空间',
+            key: `all`,
+        },
+        {
+            title: '我收藏的',
+            key: `follow`,
+        },
+        {
+            title: '我创建的',
+            key: `create`,
+        }
+    ];
+
+    const selectMenu = (item) =>{
+        findList({},item.key)
+        setSelectTab(item.key)
+    }
+
+
     return(
         <div style={{"height":"var(--pi-calc-content)",overflow:"auto"}}>
             <div className='ws-layout'>
@@ -143,20 +134,19 @@ const Workspace = (props) => {
                     <div style={{margin:"10px 0 "}}>最近访问</div>
                     <WorkspaceRecentHome {...props}/>
                 </div>
-
-                <div className={"ws-header-menu"}>
-                    <div className={"ws-header-menu-left"}>
-                        {showMenu(items)}
-
-                    </div>
-                    <Input
-                        prefix={<SearchOutlined />}
-                        placeholder={`搜索空间`}
-                        onPressEnter={onSearch}
-                        className={"ws-header-menu-input"}
-                    />
-                </div>
-
+                <MenuSelectCommon
+                    items={items}
+                    selectItem={selectTab}
+                    right={
+                        <Input
+                            prefix={<SearchOutlined />}
+                            placeholder={`搜索空间`}
+                            onPressEnter={onSearch}
+                            className={"ws-header-menu-input"}
+                        />
+                    }
+                    selectKeyFun={selectMenu}
+                />
                 <div className='contant-box'>
                     <WorkspaceList
                         {...props}

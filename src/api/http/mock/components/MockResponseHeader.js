@@ -28,24 +28,20 @@ const MockResponseHeader = (props) => {
     const [dataSource,setDataSource] = useState([])
     const mockId = localStorage.getItem('mockId')
 
-    useEffect( ()=>{
-        findResponseHeaderMockList(mockId).then(res=>setDataSource(res));
+    useEffect( async ()=>{
+        await findList()
     },[dataLength])
+
+    const findList = () =>{
+        findResponseHeaderMockList(mockId).then(list=>setDataSource(list));
+    }
 
     let columns= [
         {
             title: '属性名称',
             dataIndex: 'headerName',
             width: '40%',
-            render: (text, record)=>(
-                <ExSelect
-                    dictionary={headerParamDictionary}
-                    defaultValue={record.headerName}
-                    handleSave={handleSave}
-                    rowData={record}
-                    dataIndex={'headerName'}
-                />
-            )
+            editable: true,
         },
         {
             title: '属性值',
@@ -66,7 +62,7 @@ const MockResponseHeader = (props) => {
      */
     const onCancel = () =>{
         let data = {
-            id:"InitNewRowId",
+            id:"InitNewResHeadRowId",
             "headerName":null,
             "value":null
         }
@@ -82,7 +78,7 @@ const MockResponseHeader = (props) => {
      * 表格里的操作列展示
      */
     const operation = (record,data) => {
-        if(record.id === 'InitNewRowId'){
+        if(record.id === 'InitNewResHeadRowId'){
             return <div className={`${newRowAction?"newRow-action-show":"newRow-action-hidden"}`}>
                 <Space>
                     <a onClick={() =>onCreated(record)}> 保存</a>
@@ -96,7 +92,7 @@ const MockResponseHeader = (props) => {
                 }
                 <Popconfirm
                     title="确定删除？"
-                    onConfirm={() => deleteResponseHeaderMock(record.id)}
+                    onConfirm={() => deleteResponseHeaderMock(record.id).then(() => findList())}
                     okText='确定'
                     cancelText='取消'
                 >
@@ -135,13 +131,14 @@ const MockResponseHeader = (props) => {
     /**
      * 添加
      */
-    const onCreated = (values) => {
+    const onCreated = async (values) => {
         if(Object.keys(values).length === 1){
             return null
         }else {
             // 创建新行的时候自带一个id，所以删了，后台会自行创建id
             delete values.id;
-            createResponseHeaderMock(values)
+            values.mock={id:mockId};
+            await createResponseHeaderMock(values).then(() => findList())
         }
 
         setNewRowAction(false)
@@ -151,14 +148,14 @@ const MockResponseHeader = (props) => {
      * 更新
      */
     const upData = (value) => {
-        updateResponseHeaderMock(value).then(res => setDataSource(res))
+        updateResponseHeaderMock(value).then(() => findList())
     }
 
     /**
      * 保存数据
      */
     const handleSave = (row) => {
-        const newData = mockResponseHeaderList;
+        const newData = [...mockResponseHeaderList];
         //获取当前行对应的下标
         let index = newData.findIndex((item) => row.id === item.id);
         //替换上一次录入的数据
@@ -167,18 +164,11 @@ const MockResponseHeader = (props) => {
         setList(newData);
 
         //如果是新行 操作 显示操作按钮
-        if(row.id==="InitNewRowId"){
-            newRowKeyDown()
+        if(row.id==="InitNewResHeadRowId"){
+            document.addEventListener('keydown', (e) =>{
+                setNewRowAction(true)
+            });
         }
-    };
-
-    /**
-     *  当新行按键按下的时候显示后面的操作按钮
-     */
-    const newRowKeyDown = () => {
-        document.addEventListener('keydown', (e) =>{
-            setNewRowAction(true)
-        });
     };
 
     return (

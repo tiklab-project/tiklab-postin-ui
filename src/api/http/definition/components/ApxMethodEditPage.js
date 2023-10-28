@@ -1,98 +1,81 @@
 import React, { useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../index';
-import {Breadcrumb, Button, Input, Popconfirm, Select, Space, Tabs, TreeSelect} from 'antd';
+import { Form, Popconfirm, Tabs} from 'antd';
 import './apxMethod.scss'
-import MethodType from "../../../../common/MethodType";
 import {RemoteComponent,useHasPointPlugin, useSelector} from 'tiklab-plugin-core-ui'
-import ApiStatusModal from "../../../../support/apiStatus/components/ApiStatusSelect";
-import IconCommon from "../../../../common/IconCommon";
-import {methodDictionary} from "../../../../common/dictionary/dictionary";
 import IconBtn from "../../../../common/iconBtn/IconBtn";
-import {CaretDownOutlined} from "@ant-design/icons";
 import ResponseHeader from "./ResponseHeader";
-import ProtocolType from "../../../../common/ProtocolType";
 import {getVersionInfo} from "tiklab-core-ui";
 import categoryStore from "../../../../category/store/CategoryStore";
 import apxMethodStore from "../store/ApxMethodStore";
-import apxMethodStatusStore from "../../../../support/apiStatus/store/ApxMethodStatusStore";
+import DetailCommon from "../../../common/detailcommon/DetailCommon";
 
-const {Option} = Select;
-const {TextArea} = Input
 const {TabPane} = Tabs;
-
 
 /**
  * 接口编辑页
  */
 const ApxMethodEditPage = (props) => {
-    const { userSelectStore ,pluginsStore} = props;
-    const {findCategoryList,findCategoryTreeList} = categoryStore;
+    const { pluginsStore} = props;
+    const {findCategoryList} = categoryStore;
     const { findApxMethod,updateApxMethod} = apxMethodStore;
-    const { findUserSelectPage,userSelectList } = userSelectStore;
-    const {findApiStatusList,apiStatusSourceList} = apxMethodStatusStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
     const apiId = localStorage.getItem('apiId');
 
-    const [showValidateStatus, setShowValidateStatus ] = useState()
-    const [name, setName] = useState();
-    const [path, setPath] = useState();
-    const [descValue, setDescValue] = useState();
     const [resData, setResData] = useState({});
-    const [httpId, setHttpId] = useState();
-    const [methodType,setMethodType] =useState();
-    const [status, setStatus] = useState();
-    const [executorId, setExecutorId] = useState();
-    const [categoryList, setCategoryList] = useState();
-    const [categoryId, setCategoryId] = useState();
     const [tabTip, setTabTip] = useState();
+    const [form] = Form.useForm()
 
     const pluginStore = useSelector(store => store.pluginStore)
 
     useEffect(async ()=>{
-        let res = await findApxMethod(apiId)
-        setHttpId(res.id)
-        setResData(res)
-        setName(res.apix?.name)
-        setPath(res.apix?.path)
-        setDescValue(res.apix?.desc)
-        setMethodType(res.methodType);
-        setStatus(res.apix.status?.id);
-        setExecutorId(res.apix.executor?.id)
-        setCategoryId(res.apix.category?.id)
+        let apiInfo = await findApxMethod(apiId)
+        setResData(apiInfo)
+
+        let apix  = apiInfo.apix
+        form.setFieldsValue({
+            name:apix.name,
+            path:apix.path,
+            category:apix.category?.id,
+            executor:apix.executor?.id,
+            desc:apix.desc,
+            methodType:apiInfo.methodType,
+        })
+
 
         let tabTipObj = {};
 
-        if(res.headerList){
+        if(apiInfo.headerList){
             tabTipObj.header = true;
         }
 
-        if(res.queryList){
+        if(apiInfo.queryList){
             tabTipObj.query = true;
         }
 
-        switch (res.request.bodyType) {
+        switch (apiInfo.request.bodyType) {
             case "none":
                 tabTipObj.body = false;
                 break
             case "formdata":
-                if(res.formList){
+                if(apiInfo.formList){
                     tabTipObj.body = true;
                 }
                 break
             case "formUrlencoded":
-                if(res.formList){
+                if(apiInfo.formList){
                     tabTipObj.body = true;
                 }
                 break
             case "json":
-                if(res.jsonList){
+                if(apiInfo.jsonList){
                     tabTipObj.body = true;
                 }
                 break
             case "raw":
-                if(res.rawParam){
+                if(apiInfo.rawParam){
                     tabTipObj.body = true;
                 }
                 break
@@ -102,209 +85,47 @@ const ApxMethodEditPage = (props) => {
 
     },[apiId]);
 
-    useEffect(()=>{
-        findUserSelectPage(workspaceId)
-    },[workspaceId])
 
-    useEffect(()=>{
-        findApiStatusList();
-    },[])
 
-    useEffect(()=>{
-        findCategoryTreeList(workspaceId).then(res=>{
-            setCategoryList(res)
-        })
-    },[])
-
-    /**
-     * 渲染执行者下拉框
-     */
-    const showExecutor = (data)=>{
-        return data&&data.map(item=>{
-            return <Option key={item.user.id} value={item.user.id}>{item.user.nickname}</Option>
-        })
-    }
-
-    /**
-     * 设置执行者
-     */
-    const selectExecutor = (executor) =>{
-        if(!executor) return
-
-        let param = {
-            id:httpId,
+    const updateFn = async (changedValues, allValues) =>{
+        let params = {
+            id:apiId,
             apix:{
-                ...resData?.apix,
-                executor:{id:executor}
-            }
+                ...resData.apix,
+                name:allValues.name,
+                path:allValues.path,
+                category:{id:allValues.category},
+                executor:{id:allValues.executor},
+                desc:allValues.desc
+            },
+            methodType:allValues.methodType,
+
         }
-
-        updateApxMethod(param).then((res)=>{
-            setExecutorId(executor)
-
+        await updateApxMethod(params).then(async (res)=>{
             //编辑完重新查询目录树
-            findCategoryList(workspaceId)
-
+            await findCategoryList(workspaceId)
         });
     }
+
 
     /**
      * 设置状态
      */
     const selectStatus = (statusId) =>{
         let param = {
-            id:httpId,
+            id:apiId,
             apix:{
                 ...resData?.apix,
                 status:{id:statusId}
             }
         }
 
-        updateApxMethod(param).then((res)=>{
-            setStatus(statusId)
-
+        updateApxMethod(param).then(async (res)=>{
             //编辑完重新查询目录树
-            findCategoryList(workspaceId)
+            await findCategoryList(workspaceId)
         });
     }
 
-    /**
-     * 编辑名称
-     */
-    const editName = async () => {
-
-        if(name!==resData.apix?.name) {
-            let param = {
-                ...resData?.apix,
-                apix:{
-                    id:httpId,
-                    name:name,
-                }
-            }
-
-            let res = await updateApxMethod(param)
-            if(res.code===0){
-                findApxMethod(apiId).then(res=> {
-                    setResData(res)
-
-                    //编辑完重新查询目录树
-                    findCategoryList(workspaceId)
-                })
-            }
-        }
-
-        setShowValidateStatus(null)
-    };
-
-    /**
-     * 编辑路径
-     */
-    const editPath = () => {
-        if(path!==resData.path){
-            let param = {
-                id:httpId,
-                apix:{
-                    ...resData?.apix,
-                    path:path,
-                }
-            }
-
-            updateApxMethod(param).then(res=>{
-                if(res.code===0){
-                    findApxMethod(apiId).then(res=> {
-                        setResData(res)
-
-                        //编辑完重新查询目录树
-                        findCategoryList(workspaceId)
-                    })
-                }
-            })
-        }
-
-        setShowValidateStatus(null)
-    };
-
-    /**
-     * 编辑请求类型
-     */
-    const selectMethodType = (methodType) =>{
-        let param = {
-            id:httpId,
-            apix:{
-                ...resData?.apix,
-                methodType:methodType
-            },
-            methodType:methodType
-        }
-
-
-        updateApxMethod(param).then(res=>{
-            setMethodType(methodType)
-
-            findApxMethod(apiId).then(res=> {
-                //编辑完重新查询目录树
-                findCategoryList(workspaceId)
-            })
-        })
-    }
-
-    /**
-     * 渲染 http 方法，如post，get
-     */
-    const showMethod = (data) =>{
-        return data&&data.map(item=>{
-            return(
-                <Option value={item} key={item}>
-                    <MethodType type={item} />
-                </Option>
-            )
-        })
-    }
-
-
-    const [showMore, setShowMore] = useState(false);
-    const [showDesc, setShowDesc] = useState(false);
-
-
-    /**
-     * 编辑详情
-     */
-    const onDescSave = () =>{
-        let param = {
-            id:httpId,
-            apix:{
-                ...resData?.apix,
-                desc:descValue
-            }
-        }
-
-        updateApxMethod(param)
-
-        setShowDesc(false)
-    }
-
-    /**
-     * 更改分组
-     */
-    const changeCategory = (categoryId) =>{
-        if(!categoryId) return
-
-        let param = {
-            id:httpId,
-            apix:{
-                ...resData?.apix,
-                category:{id:categoryId}
-            }
-        }
-
-        updateApxMethod(param).then((res)=>{
-            setCategoryId(categoryId)
-
-            //编辑完重新查询目录树
-            findCategoryList(workspaceId)
-
-        });
-    }
 
 
     //判断是否有版本插件，返回的是true或false
@@ -357,162 +178,14 @@ const ApxMethodEditPage = (props) => {
     return(
         <div className={"content-margin"} style={{height:"100%",padding:"0"}}>
             <div className="content-margin-box">
-                <div className={"white-bg-box"} style={{marginTop:0}}>
-                    <div className="api-detail-base-box">
-                        <div className={"api-base-info-box"}>
-                            <div style={{margin:"0 10px 0 0"}}>
-                                <ProtocolType type={resData?.apix?.protocolType}/>
-                            </div>
-                            <Select
-                                style={{width:75,height:32}}
-                                value={methodType}
-                                onChange={(e)=>selectMethodType(e)}
-                                showArrow={showValidateStatus === "methodType"}
-                                suffixIcon={showValidateStatus === "methodType"?<CaretDownOutlined />:null}
-                                onMouseEnter={()=>{setShowValidateStatus("methodType")}}
-                                onMouseLeave={()=>{setShowValidateStatus(null)}}
-                            >
-                                {
-                                    showMethod(methodDictionary)
-                                }
-                            </Select>
-
-                            <div className={"api-base-info-box-name"}>
-                                <Input
-                                    defaultValue={name}
-                                    onPressEnter={editName}
-                                    onBlur={editName}
-                                    onFocus={()=>setShowValidateStatus("editName")}
-                                    value={name}
-                                    onChange={(e)=>setName(e.target.value)}
-                                    suffix={
-                                        showValidateStatus === "editName"
-                                            ? <span></span>
-                                            :null
-                                    }
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className={"api-detail-base-box"}>
-                        <div className={"api-base-info-two"}>
-                            <ApiStatusModal
-                                selectStatus={selectStatus}
-                                status={status}
-                                {...props}
-                            />
-
-                            <div className={'api-base-edit-url-box'}>
-                                <Input
-                                    defaultValue={path}
-                                    onPressEnter={editPath}
-                                    onBlur={editPath}
-                                    onFocus={()=>setShowValidateStatus("editPath")}
-                                    value={path}
-                                    onChange={(e)=>setPath(e.target.value)}
-                                    suffix={
-                                        showValidateStatus === "editPath"
-                                            ? <span></span>
-                                            :null
-                                    }
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className={"method"}>
-                        <div  style={{display:"flex","justifyContent":"space-between","alignItems":"center"}}>
-                            <div className={"method-people-info"}>
-                                <span className={"people-item api-detail-base-box"}>
-                                    分组:
-                                        <TreeSelect
-                                            fieldNames={{ label: 'name', value: 'id', children: 'children' }}
-                                            style={{  width: '120px'}}
-                                            dropdownStyle={{
-                                                maxHeight: 400,
-                                                overflow: 'auto',
-                                            }}
-                                            value={categoryId?categoryId:null}
-                                            allowClear
-                                            treeDefaultExpandAll
-                                            onChange={(e)=>changeCategory(e)}
-                                            treeData={categoryList}
-                                            showArrow={showValidateStatus === "category"}
-                                            suffixIcon={showValidateStatus === "category"?<CaretDownOutlined />:null}
-                                            onMouseEnter={()=>{setShowValidateStatus("category")}}
-                                            onMouseLeave={()=>{setShowValidateStatus(null)}}
-                                        />
-                                </span>
-                                <span className={"people-item api-detail-base-box"}>
-                                    负责人: <Select
-                                            style={{width:100,height:32}}
-                                            value={executorId?executorId:null}
-                                            onChange={(e)=>selectExecutor(e)}
-                                            placeholder={"未设置"}
-                                            showArrow={showValidateStatus === "executor"}
-                                            suffixIcon={showValidateStatus === "executor"?<CaretDownOutlined />:null}
-                                            onMouseEnter={()=>{setShowValidateStatus("executor")}}
-                                            onMouseLeave={()=>{setShowValidateStatus("")}}
-                                        >
-                                            {showExecutor(userSelectList)}
-                                        </Select>
-                                </span>
-                                <span className={"people-item "}>更新人: {resData?.apix?.updateUser?.name}</span>
-                                <span className={"people-item "}>更新时间: {resData?.apix?.updateTime}</span>
-                                <div
-                                    className={"people-item"}
-                                    style={{display:"flex","alignItems":"center"}}
-                                    onClick={()=>{setShowMore(!showMore)}}
-                                >
-                                    更多:
-                                    {showMore ?
-                                        <IconCommon
-                                            icon={"zhankai"}
-                                            style={{margin: "0 0 0 5px", "cursor": "pointer"}}
-                                            className={"icon-s "}
-                                            // onClick={backToList}
-                                        />
-                                        :<IconCommon
-                                            icon={"jiantou-shang2"}
-                                            style={{margin: "0 0 0 5px", "cursor": "pointer"}}
-                                            className={"icon-s "}
-                                            // onClick={backToList}
-                                        />
-                                    }
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div className={`api-base-info-desc ${showMore?"pi-show":"pi-hide"}`}>
-                            <div style={{margin:"0 0 10px 0 "}}>描述:</div>
-                            {
-                                showDesc
-                                    ?
-                                    <div className={`api-base-info-desc-text `}>
-                                        <TextArea
-                                            defaultValue={descValue}
-                                            value={descValue}
-                                            autoSize={{ minRows: 4, maxRows: 10 }}
-                                            onBlur={(e)=>setDescValue(e.target.value)}
-                                            onChange={(e)=>setDescValue(e.target.value)}
-                                        />
-                                        <div style={{ padding:" 5px 0"}}>
-                                            <Button onClick={()=>setShowDesc(false)} style={{marginRight:"10px"}}>取消</Button>
-                                            <Button className={"important-btn"} onClick={onDescSave}>保存</Button>
-                                        </div>
-
-                                    </div>
-
-                                    :<div className={`api-base-info-desc-text api-base-info-desc-text-show`} onClick={()=>setShowDesc(true)}>
-                                        {descValue?descValue:"暂无描述"}
-                                    </div>
-                            }
-                        </div>
-
-                    </div>
-                </div>
-
+                <div className="header-title ex-title">基础信息</div>
+                <DetailCommon
+                    updateApi={updateFn}
+                    form={form}
+                    apiInfo={resData?.apix}
+                    updateStatus={selectStatus}
+                    methodType={true}
+                />
                 <div className="header-title ex-title">输入参数</div>
                 <div className={"white-bg-box"}>
                     <Request tabTip={tabTip} />

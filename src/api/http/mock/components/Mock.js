@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { observer } from 'mobx-react';
-import {Table, Space, Tooltip, Popconfirm, Switch, Breadcrumb} from 'antd';
+import {Table, Space, Tooltip, Popconfirm, Switch} from 'antd';
 import MockEdit from './MockEdit';
 import './mock.scss';
 import copyMockUrl from "../../../../common/copyLink";
-
-import EnvSelect from "../../../../support/environment/components/EnvSelect";
 import mockStore from "../store/MockStore";
+import apxMethodStore from "../../definition/store/ApxMethodStore";
 /**
  * 接口的Mock列表页
  */
 const Mock = (props) => {
     const { findMockPage, deleteMock,updateMock, mockList } = mockStore
+    const { findServerUrl } = apxMethodStore;
+
     const columns = [
         {
             title: 'Mock名称',
@@ -82,10 +83,16 @@ const Mock = (props) => {
 
     const workspaceId = localStorage.getItem("workspaceId")
     const apiId =  localStorage.getItem('apiId');
+    const [serverUrl, setServerUrl] = useState();
 
-    useEffect(()=>{
-        findMockPage(apiId)
+    useEffect(async ()=>{
+        await findMockPage(apiId)
     },[apiId])
+
+    useEffect(async ()=>{
+        let url = await findServerUrl()
+        setServerUrl(url)
+    },[])
 
     /**
      * 列表中的是否可以切换
@@ -107,28 +114,6 @@ const Mock = (props) => {
         props.history.push('/workspace/apis/http/mock-detail')
     }
 
-    /**
-     * 去往接口列表页
-     */
-    const goToListPage = () =>{
-        props.history.push("/workspace/apis/category")
-    }
-
-    /**
-     * 去往接口文档页
-     */
-    const goToDocPage = () =>{
-        props.history.push("/workspace/apis/http/document")
-    }
-
-
-    let mockUrl;
-
-    if(base_url==="/"){
-        mockUrl = `${window.location.origin}/mockx/`+workspaceId;
-    }else {
-        mockUrl = `${base_url}/mockx/`+workspaceId;
-    }
 
     return (
         <div className={"content-margin"} style={{height:" calc(100% - 48px)",padding:"0"}}>
@@ -141,7 +126,7 @@ const Mock = (props) => {
                                 id={"link"}
                                 onClick={()=>copyMockUrl("link")}
                             >
-                                {mockUrl}
+                                 {`${serverUrl}/mockx/`+workspaceId}
                             </span>
                         </Tooltip>
                     </div>

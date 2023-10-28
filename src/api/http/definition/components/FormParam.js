@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { observer, inject } from "mobx-react";
+import { observer } from "mobx-react";
 import {Space, Checkbox, Popconfirm} from 'antd';
 import {ExTable}from '../../../../common/EditTable';
 import FileTextSelect from "../../../../common/FileTextSelect";

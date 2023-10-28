@@ -197,11 +197,7 @@ const ApiTestContent = (props) => {
                     name="host"
                     className='formItem'
                     rules={[
-                        {
-                            required: true,
-                            pattern: new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/),
-                            message: '请输入http开头的完整URL'
-                        },
+                        { type: 'url', message: '请输入有效的 URL 地址' },
                     ]}
                 >
                     <Input placeholder={"请输入HTTP开头的完整URL"}  />

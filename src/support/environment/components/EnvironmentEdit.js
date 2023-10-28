@@ -21,15 +21,12 @@ const {TextArea} = Input;
 const EnvironmentEdit = (props) => {
     const {type,envData,findList} = props
     const {
-        findEnvironmentList,
-        deleteEnvironment,
         createEnvironment,
         updateEnvironment,
     } = environmentStore;
 
     const [visible,setVisible] = useState(false);
     const [form] = Form.useForm();
-
 
     const workspaceId = localStorage.getItem('workspaceId');
 
@@ -70,6 +67,8 @@ const EnvironmentEdit = (props) => {
             await updateEnvironment(param)
         }
 
+        await findList();
+
         setVisible(false);
     };
 
@@ -92,6 +91,7 @@ const EnvironmentEdit = (props) => {
             />
         }
     }
+
 
     return(
         <Fragment>
@@ -117,7 +117,7 @@ const EnvironmentEdit = (props) => {
                         name="name"
                         rules={[{
                             required: true,
-                            message: 'Please input your interfacename!'
+                            message: '添加环境名称'
                         }]}
                     >
                         <Input />
@@ -125,7 +125,10 @@ const EnvironmentEdit = (props) => {
                     <Form.Item
                         label="环境地址"
                         name="url"
-                        rules={[{ required: true, message: 'Please input your url!' }]}
+                        rules={[
+                            { required: true, message: '添加环境地址' },
+                            { type: 'url', message: '请输入有效的 URL 地址' }
+                        ]}
                     >
                         <Input />
                     </Form.Item>

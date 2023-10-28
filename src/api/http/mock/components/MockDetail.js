@@ -56,36 +56,13 @@ const MockDetail = (props) =>{
         updateMock(param)
     };
 
-    /**
-     * 去往接口列表页
-     */
-    const goToListPage = () =>{
-        props.history.push("/workspace/apis/category")
-    }
-
-    /**
-     * 去往接口文档页
-     */
-    const goToDocPage = () =>{
-        props.history.push("/workspace/apis/http/document")
-    }
-
-    /**
-     * 去往mock列表页
-     */
-    const goToMockPage = () =>{
-        props.history.push("/workspace/apis/http/mock")
-    }
-
-
-
-    const changeSelect = (value) => {
+    const changeSelect = async (value) => {
         setSelectValue(value);
 
         //匹配正确的状态码
         const regex = /^([1-5][0-9][0-9])$/;
         if(regex.test(value)){
-            updateResponseMock({httpCode : value})
+            await updateResponseMock({httpCode : value})
         }else {
             messageFn("error","请输入1xx, 2xx, 3xx, 4xx, 或 5xx 状态码")
         }
@@ -103,10 +80,10 @@ const MockDetail = (props) =>{
     };
 
 
-    const changeInputNumber = (value) =>{
+    const changeInputNumber = async (value) =>{
         setDelayTime(value)
 
-        updateResponseMock({time : value})
+        await updateResponseMock({time : value})
     }
 
     return(
@@ -133,11 +110,6 @@ const MockDetail = (props) =>{
                         hideIcons
                     />
 
-                    <IconBtn
-                        className="pi-icon-btn-grey"
-                        name={"退出"}
-                        onClick={goToMockPage}
-                    />
                 </div>
                 <div className='header-title ex-title'>期望参数</div>
                 <div className={"white-bg-box"}>

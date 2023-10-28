@@ -29,7 +29,7 @@ class MockResponseHeaderStore {
             mockId: id,
             orderParams:[{name:'headerName',orderType:'asc' }],
         }
-        const newRow =[{ id: 'InitNewRowId'}];
+        const newRow =[{ id: 'InitNewResHeadRowId'}];
         const res = await Axios.post("/responseHeaderMock/findResponseHeaderMockList",params);
         if( res.code === 0){
             this.dataLength = res.data.length
@@ -46,24 +46,15 @@ class MockResponseHeaderStore {
      * 创建响应头
      */
     @action
-    createResponseHeaderMock = async (values) => {
-        values.mock = {id: this.mockId}
-        const res = await Axios.post("/responseHeaderMock/createResponseHeaderMock",values)
-        if( res.code === 0){
-            this.findResponseHeaderMockList(this.mockId);
-        }
-    }
+    createResponseHeaderMock = async (values) => await Axios.post("/responseHeaderMock/createResponseHeaderMock",values)
+
 
     /**
      * 更新响应头
      */
     @action
-	updateResponseHeaderMock =async (values) => {
-		const res = await Axios.post("/responseHeaderMock/updateResponseHeaderMock",values)
-        if( res.code === 0){
-            return this.findResponseHeaderMockList(this.mockId);
-        }
-    }
+	updateResponseHeaderMock =async (values) => await Axios.post("/responseHeaderMock/updateResponseHeaderMock",values)
+
 
     /**
      * 删除响应头
@@ -72,10 +63,7 @@ class MockResponseHeaderStore {
     deleteResponseHeaderMock = async (id) => {
         const param = new FormData();
         param.append('id', id);
-        const res = await Axios.post("/responseHeaderMock/deleteResponseHeaderMock",param)
-        if( res.code === 0){
-            this.findResponseHeaderMockList(this.mockId);
-        }
+        await Axios.post("/responseHeaderMock/deleteResponseHeaderMock",param)
     }
     
 }

@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {inject, observer} from "mobx-react";
 import {Checkbox, Popconfirm, Space} from 'antd';
-import {headerParamDictionary} from '../../../common/dictionary/dictionary';
-import ExSelect from "../../../common/ExSelect";
 import {ExTable} from '../../../common/EditTable';
 import IconCommon from "../../../common/IconCommon";
 import requestHeaderStore from "../store/RequestHeaderStore";
@@ -35,16 +33,7 @@ const RequestHeader = (props) =>{
             title: '参数名称',
             dataIndex: 'headerName',
             width:  "20%",
-            render: (text, record)=>(
-                <ExSelect
-                    dictionary={headerParamDictionary}
-                    defaultValue={record.headerName}
-                    handleSave={handleSave}
-                    rowData={record}
-                    dataIndex={'headerName'}
-                    setNewRowAction={setNewRowAction}
-                />
-            )
+            editable: true,
         },{
             title: '示例值',
             width:  "20%",

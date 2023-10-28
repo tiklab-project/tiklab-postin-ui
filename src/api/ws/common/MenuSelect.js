@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useHistory, useLocation} from "react-router";
 import EnvSelect from "../../../support/environment/components/EnvSelect";
+import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
 
 const MenuSelect = () =>{
 
@@ -29,25 +30,12 @@ const MenuSelect = () =>{
     }
 
     return(
-        <div className={"api-header-menu"}>
-            <div className={"ws-header-menu-left"}>
-                {
-                    items.map(item=>{
-                        return(
-                            <div
-                                key={item.key}
-                                className={`ws-header-menu-item  ${item.key === selectItem ? "ws-header-menu-item-selected" : ""}`}
-                                onClick={()=>selectKeyFun(item)}
-                            >
-                                <span> {item.title} </span>
-
-                            </div>
-                        )
-                    })
-                }
-            </div>
-            {/*<EnvSelect />*/}
-        </div>
+        <MenuSelectCommon
+            items={items}
+            selectItem={selectItem}
+            right={<EnvSelect />}
+            selectKeyFun={selectKeyFun}
+        />
     )
 }
 

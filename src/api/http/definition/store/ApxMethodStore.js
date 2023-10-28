@@ -95,7 +95,13 @@ class ApxMethodStore {
     }
 
 
-
+    @action
+    findServerUrl = async () =>{
+        const res = await Axios.get("/http/findServerUrl")
+        if( res.code === 0 ){
+            return res.data
+        }
+    }
 
 }
 

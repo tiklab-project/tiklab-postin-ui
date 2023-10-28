@@ -6,26 +6,32 @@ import TableHeaderDoc from "../../common/apiDoc/TableHeaderDoc";
 import TableQueryDoc from "../../common/apiDoc/TableQueryDoc";
 import RequestBodyDoc from "../../common/apiDoc/RequestBodyDoc";
 import ResponseResultDoc from "../../common/apiDoc/ResponseResultDoc";
-import {Tag} from "antd";
+import {Tag, Tooltip} from "antd";
 import apxMethodStore from "../store/ApxMethodStore";
+import copyMockUrl from "../../../../common/copyLink";
 /**
  * 接口文档页面
  */
 const ApiDocumentPage = (props) =>{
-    const { findApxMethod } = apxMethodStore;
+    const { findApxMethod,findServerUrl } = apxMethodStore;
     const [apiDoc, setApiDoc] = useState();
 
-
+    const [serverUrl, setServerUrl] = useState();
     const apiId = localStorage.getItem('apiId');
+    const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(async ()=>{
         let res = await findApxMethod(apiId);
         setApiDoc(res)
     },[apiId])
 
+    useEffect(async ()=>{
+        let url = await findServerUrl()
+        setServerUrl(url)
+    },[])
 
     return (
-        <div className={"content-margin"} style={{padding:"0",  height: "calc(100% - 50px)"}}>
+        <div className={"content-margin"} style={{padding:"0",  height: "calc(100% - 54px)"}}>
             <div className="content-margin-box">
                 <div className={"share-box-right-content-item"}  >
                     <div className={"pi-box-between"}>
@@ -68,9 +74,7 @@ const ApiDocumentPage = (props) =>{
                         }
                     </div>
                 </div>
-                <div
-                    id="share-request-info"
-                    className="header-title ex-title">
+                <div className="header-title ex-title">
                     请求参数
                 </div>
                 <div className={"share-box-right-content-item"}>
@@ -85,7 +89,7 @@ const ApiDocumentPage = (props) =>{
                     }
 
                 </div>
-                <div  id={"share-response-info"} className="header-title ex-title">响应示例</div>
+                <div className="header-title ex-title">响应示例</div>
                 <div className={"share-box-right-content-item"}>
                     {
                         apiDoc?.responseHeaderList
@@ -94,12 +98,23 @@ const ApiDocumentPage = (props) =>{
                     }
                 </div>
                 <div className={"share-box-right-content-item"}>
-                {
-                    apiDoc?.responseResultList
-                        ? <ResponseResultDoc dataSource={ apiDoc?.responseResultList} />
-                        :<div>暂无响应示例</div>
-                }
-            </div>
+                    {
+                        apiDoc?.responseResultList
+                            ? <ResponseResultDoc dataSource={ apiDoc?.responseResultList} />
+                            :<div>暂无响应示例</div>
+                    }
+                </div>
+                <div className="header-title ex-title">MOCK 地址</div>
+                <div style={{margin: "5px 0 30px 0"}}>
+                    <Tooltip title="点击复制">
+                        <span
+                            id={"link"}
+                            onClick={()=>copyMockUrl("link")}
+                        >
+                            {`${serverUrl}/mockx/`+workspaceId}
+                        </span>
+                    </Tooltip>
+                </div>
             </div>
         </div>
     );

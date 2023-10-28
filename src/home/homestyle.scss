@@ -4,7 +4,7 @@
     overflow: auto;
     /*background-color:#f0f2f5;*/
     height: var(--pi-calc-content);
-    background: var(--pi-bg-grey-100);
+    //background: var(--pi-bg-grey-100);
 
     .home-content-box{
         margin: 0 auto;
@@ -16,10 +16,10 @@
         }
 
         .home-box-item{
-            border: 1px solid var(--pi-border-color);
+            //border: 1px solid var(--pi-border-color);
             margin-bottom: 10px;
             border-radius: var(--pi-border-radius);
-            background: var(--pi-bg-color);
+            //background: var(--pi-bg-color);
             overflow: hidden;
         }
 
@@ -47,7 +47,7 @@
 
         .home-box-item-dynamic{
             border-radius: var(--pi-border-radius);
-            border: 1px solid var(--pi-border-color);
+            //border: 1px solid var(--pi-border-color);
             background: #fff;
             margin: 0 0 10px 0;
 

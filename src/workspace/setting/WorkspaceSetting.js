@@ -148,8 +148,7 @@ const WorkspaceSetting = (props) =>{
                                 point="exportPdf"
                                 pluginStore={pluginStore}
                                 isModalType={true}
-                            /> 
-                            
+                            />
                         </div>
                         
                     </Panel>
