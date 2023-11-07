@@ -28,7 +28,7 @@ const APIList = (props) => {
             title: '名称',
             dataIndex: 'name',
             width: '25%',
-            render: (text,record) => (<a onClick={()=>toApiDetailPage(record)}>{record.name}</a> )
+            render: (text,record) => (<span className={"link-text"} onClick={()=>toApiDetailPage(record)}>{record.name}</span> )
         },
         {
             title: '协议/方法',
@@ -208,12 +208,12 @@ const APIList = (props) => {
                             />,
                         }}
                     />
-                    <PaginationCommon
-                        currentPage={currentPage}
-                        totalPage={totalPage}
-                        changePage={onTableChange}
-                    />
                 </div>
+                <PaginationCommon
+                    currentPage={currentPage}
+                    totalPage={totalPage}
+                    changePage={onTableChange}
+                />
             </div>
         </div>
     )

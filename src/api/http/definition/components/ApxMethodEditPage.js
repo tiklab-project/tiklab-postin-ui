@@ -153,7 +153,7 @@ const ApxMethodEditPage = (props) => {
         }else {
             return <Popconfirm
                     title="想要升级增强功能？"
-                    onConfirm={upgrade}
+                    onConfirm={()=>props.history.push("/systemManagement/plugin")}
                     okText='确定'
                     cancelText='取消'
                     placement="bottomRight"
@@ -164,15 +164,8 @@ const ApxMethodEditPage = (props) => {
                     />
                 </Popconfirm>
         }
-
     }
 
-    /**
-     * 想要升级跳转到插件市场
-     */
-    const upgrade=()=>{
-        props.history.push("/systemManagement/plugin")
-    }
 
 
     return(

@@ -207,8 +207,6 @@ table .icon{
 .workspace-icon{
     width:var(--pi-icon-x);
     height:var(--pi-icon-x);
-    background: white;
-    border-radius: 4px;
     padding: 3px;
 }
 
@@ -280,6 +278,7 @@ table .icon{
     .ant-list-items .ant-list-item{
         border: none;
     }
+
 }
 
 .wscontant-contant{
@@ -293,3 +292,18 @@ table .icon{
 .postin-hide{
     display: none;
 }
+
+.link-text{
+
+    &:hover{
+        color: var(--tiklab-blue);
+        cursor: pointer;
+    }
+}
+
+.icon-bg-border{
+    background: #0078d4;
+    //border: 1px solid #bfbfbf;
+    border-radius: 4px;
+}
+

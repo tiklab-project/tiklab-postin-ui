@@ -7,6 +7,7 @@ import {DeleteOutlined, EditOutlined, ExportOutlined} from "@ant-design/icons";
 import HtmlExport from "./export/HtmlExport";
 import {useSelector} from "tiklab-plugin-core-ui";
 import RemoteComponent from "tiklab-plugin-core-ui/es/plugin/RemoteComponent";
+import PluginCommon from "../../common/pluginCommon/PluginCommon";
 
 const { Panel } = Collapse;
 const {TextArea} = Input;
@@ -74,12 +75,6 @@ const WorkspaceSetting = (props) =>{
                         </div>
                     }
                 />
-                <div style={{
-                    "padding": "10px 15px",
-                    "border": "1px solid #d9d9d9",
-                    "borderBottom": "none",
-                    "background": "#f8f8f8"
-                }}>以下为功能配置 </div>
                 <Collapse  defaultActiveKey={['1']} expandIconPosition={"end"}>
                     <Panel header={<><EditOutlined/> <span style={{padding:"0 5px"}}>编辑空间</span></>} key="1"  >
                         <div>
@@ -144,11 +139,23 @@ const WorkspaceSetting = (props) =>{
                     <Panel header={<><ExportOutlined />  <span style={{padding:"0 5px"}}>导出项目</span> </>}  key="2" >
                         <div style={{"display":'flex',"gap":"10px"}}>
                             <HtmlExport />
-                            <RemoteComponent
+
+                            <PluginCommon
                                 point="exportPdf"
-                                pluginStore={pluginStore}
-                                isModalType={true}
+                                plugin={
+                                    <RemoteComponent
+                                        point="exportPdf"
+                                        pluginStore={pluginStore}
+                                        isModalType={true}
+                                    />
+                                }
+                                name={"导出"}
                             />
+                            {/*<RemoteComponent*/}
+                            {/*    point="exportPdf"*/}
+                            {/*    pluginStore={pluginStore}*/}
+                            {/*    isModalType={true}*/}
+                            {/*/>*/}
                         </div>
                         
                     </Panel>

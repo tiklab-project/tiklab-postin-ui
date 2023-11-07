@@ -2,7 +2,7 @@
 
 .home-content{
     overflow: auto;
-    /*background-color:#f0f2f5;*/
+    background: var(--pi-bg-grey-100);
     height: var(--pi-calc-content);
     //background: var(--pi-bg-grey-100);
 
@@ -19,7 +19,7 @@
             //border: 1px solid var(--pi-border-color);
             margin-bottom: 10px;
             border-radius: var(--pi-border-radius);
-            //background: var(--pi-bg-color);
+            background: white;
             overflow: hidden;
         }
 

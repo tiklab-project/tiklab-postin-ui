@@ -31,8 +31,8 @@ const WorkspaceList = (props) => {
             width:"50%",
             render: (text,record) =>(
                 <Space>
-                    <ShowWorkspaceIcon iconUrl={record.iconUrl} className={"workspace-icon"}/>
-                    <a onClick = {()=>setLocalStorage(record.id)}>{text}</a>
+                    <ShowWorkspaceIcon iconUrl={record.iconUrl} className={"workspace-icon icon-bg-border"}/>
+                    <span className={"link-text"} onClick = {()=>setLocalStorage(record.id)}>{text}</span>
                 </Space>
             )
         },

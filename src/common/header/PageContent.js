@@ -3,8 +3,14 @@ import HeaderContent from "./HeaderContent";
 import {renderRoutes} from "react-router-config";
 import {getUser} from "tiklab-core-ui";
 import './portalStyle.scss'
+import '../styles/base.scss';
+import '../styles/global.scss';
+import '../language/i18n';
+import "../../assets/iconfont/iconfont";
+import "../../assets/iconfont/iconfont.css";
 import {inject, observer} from "mobx-react";
 import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store';
+
 
 /**
  * 整个页面

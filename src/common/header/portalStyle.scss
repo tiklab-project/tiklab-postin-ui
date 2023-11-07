@@ -189,8 +189,15 @@
     .recovery-item{
         .licence_dropdown_block_item{
             height: 32px;
+            width: 32px;
             display: flex;
             align-items: center;
+            justify-content: center;
+
+
+            img{
+                margin-bottom: 5px;
+            }
         }
     }
 

@@ -8,9 +8,13 @@
 
     .ant-tabs-tab .ant-tabs-tab-active .ant-tabs-tab-btn {
         color:  var(--pi-base-color);
+    }
+    .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active, .ant-tabs-card.ant-tabs-top > div > .ant-tabs-nav .ant-tabs-tab-active{
 
-
-
+        border-top: 2px solid var(--pi-base-color);
+    }
+    .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab{
+        border-top: 2px solid #fff;
     }
 
     .ant-tabs-tab-btn{
@@ -31,12 +35,20 @@
         text-align: center;
     }
 
+    .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab{
+        background: #fff;
+    }
+
     .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
         border-bottom: 1px solid var(--pi-border-color);
     }
 
     .ant-tabs > .ant-tabs-nav .ant-tabs-nav-add, .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-add{
         border-bottom: 1px solid var(--pi-border-color)!important;
+    }
+
+    .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab{
+        margin: 0;
     }
 
     .quicktest-left{
@@ -54,14 +66,7 @@
 .quicktest-contant{
     display: flex;
     height: 100%;
-
-
-
 }
-
-
-
-
 
 .qt-left-header{
     padding: 10px;

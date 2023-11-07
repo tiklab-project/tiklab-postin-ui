@@ -40,7 +40,7 @@ const WorkspaceRecentHome = (props) =>{
             return(
                 <div key={item.id} className={"home-recent-item"} onClick={()=>toDetail(item.id)}>
                     <div className={"home-recent-item-left"}>
-                        <ShowWorkspaceIcon iconUrl={item.iconUrl} className={"ws-img-icon"}/>
+                        <ShowWorkspaceIcon iconUrl={item.iconUrl} className={"ws-img-icon icon-bg-border"}/>
                         <div className={"home-recent-item-left-name"}>{item.workspaceName}</div>
                     </div>
                     <div style={{display:"flex","justifyContent":"space-between"}}>

@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { renderRoutes  } from "react-router-config";
-
-import './common/styles/base.scss';
-import './common/styles/global.scss';
-import './common/language/i18n';
-import "./assets/iconfont/iconfont";
-import "./assets/iconfont/iconfont.css";
 import {useTranslation} from "react-i18next";
 import { PluginProvider,pluginLoader} from 'tiklab-plugin-core-ui';
 
 import resources from "./common/language/resource";
+import {Axios} from "tiklab-core-ui";
 
 const App = (props) => {
      const {routers} = props;
@@ -22,18 +17,17 @@ const App = (props) => {
          languageStore:[]
      });
 
-     useEffect(() => {
-         //type 默认是false，electron设置了type
-         if(!props.type){
-             pluginLoader( routers, resources,i18n,fetchMethod).then(res => {
-                 setPluginData(res)
-             })
-         }
 
-     }, []);
+    useEffect( async () => {
+        let res = await Axios.get("/http/findServerUrl")
+        let serverUrl=res.data
 
+        pluginLoader( routers, resources,i18n,fetchMethod,serverUrl).then(res => {
+            setPluginData(res)
+        })
+    }, []);
 
-     return(
+    return(
          <PluginProvider store={pluginData}>
              {
                  renderRoutes(pluginData.routes)

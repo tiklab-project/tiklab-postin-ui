@@ -166,7 +166,7 @@ const LeftNav = (props) =>{
                         >
                             <div className={"ws-icon-box"}>
                             <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
-                                 <ShowWorkspaceIcon iconUrl={workspaceIcon} className={"repository-icon"}  width={30}/>
+                                 <ShowWorkspaceIcon iconUrl={workspaceIcon} className={"workspace-icon icon-bg-border"}  width={30}/>
                             </span>
                                 <IconCommon
                                     style={{"cursor":"pointer"}}

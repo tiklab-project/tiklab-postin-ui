@@ -119,9 +119,6 @@
 
 //workspaceDetailInitPage
 
-.content-margin{
-    overflow: auto;
-}
 
 .ws-init-content{
     margin: 0 auto;
@@ -154,6 +151,9 @@
     .wd-total{
         background: #fff;
         padding: 0 10px 20px;
+        //border: 1px solid var(--pi-border-color);
+        border-radius: var(--pi-border-radius);
+        //box-shadow: 0 0 5px #8c959f21;
 
         .wd-total-box{
             display: flex;
@@ -185,6 +185,9 @@
         padding: 0 10px 20px;
         margin: 10px 0 0;
         background: #fff;
+        //border: 1px solid var(--pi-border-color);
+        border-radius: var(--pi-border-radius);
+        //box-shadow: 0 0 5px #8c959f21;
     }
 
 }

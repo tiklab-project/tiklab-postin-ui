@@ -84,9 +84,10 @@ const WorkspaceSettingMenu = (props) =>{
                         <li style={{
                             padding: "10px 30px",
                             fontSize: "16px",
-                            borderBottom: "1px solid #e4e4e4"
+                            borderBottom: "1px solid #e4e4e4",
+                            fontWeight: "bold",
                         }}
-                        >空间设置</li>
+                        >设置</li>
                         {
                             renderList(items)
                         }

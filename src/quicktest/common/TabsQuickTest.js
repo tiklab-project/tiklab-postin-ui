@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import {Tabs} from "antd";
+import {Button, Dropdown, Tabs} from "antd";
 import {inject, observer} from "mobx-react";
 import {TextMethodType} from "../../common/MethodType";
 import {initTabPane} from "./quickTestData";
 import TestdetailQuickTest from "../components/TestdetailQuickTest";
 import tabQuickTestStore from "../store/TabQuickTestStore";
+import IconCommon from "../../common/IconCommon";
 const {TabPane} = Tabs;
 
 /**
@@ -80,7 +81,45 @@ const TabsQuickTest = (props) =>{
     }
 
 
+    /**
+     * 关闭所有标签
+     */
+    const closeAllTab = () =>{
+        let newTabInfo = {
+            activeKey: "0",
+            tabList:  [initTabPane]
+        };
+        setTabPaneInfo(newTabInfo)
+        setAction(!action);
+    }
 
+    /**
+     * 关闭其他标签
+     */
+    const closeOtherTab = () =>{
+        let { tabList, activeKey } = tabPaneInfo;
+        let newList = [...tabList];
+        newList = newList.filter((item, idx) => idx === parseInt(activeKey)); // 过滤出指定下标的项
+
+        let newTabInfo = {
+            activeKey: "0",
+            tabList:  newList
+        };
+        setTabPaneInfo(newTabInfo)
+        setAction(!action);
+
+    }
+
+    const items = [
+        {
+            key: '1',
+            label: (<a onClick={closeAllTab}>关闭所有标签</a>),
+        },
+        {
+            key: '3',
+            label: (<a onClick={closeOtherTab}>关闭其他标签</a> ),
+        },
+    ];
     return (
         <div className={"qk-test-box"}>
             <Tabs
@@ -89,10 +128,33 @@ const TabsQuickTest = (props) =>{
                 activeKey={tabPaneInfo.activeKey}//字符串才生效
                 onEdit={onEdit}
                 onTabClick={changeTabPane}
-                style={{"backgroundColor":"var(--pi-bg-grey-100)"}}
+                // tabBarExtraContent={
+                //     <div style={{
+                //         marginRight:"25px",
+                //         borderLeft: "2px solid #e4e4e4",
+                //         padding: "10px 66px 10px 10px",
+                //         cursor: "pointer",
+                //         lineHeight: "15px"
+                //     }}>
+                //         <Dropdown
+                //             menu={{items}}
+                //             placement="bottomRight"
+                //             arrow
+                //             trigger={"click"}
+                //             overlayStyle={{width: 170}}
+                //         >
+                //             <div>
+                //                 <IconCommon
+                //                     icon={"more"}
+                //                     className={"icon-l edit-icon"}
+                //                 />
+                //             </div>
+                //         </Dropdown>
+                //     </div>
+                //
+                // }
             >
                 {
-
                     tabPaneInfo&&tabPaneInfo.tabList.map((item,index )=> (
                         <TabPane
                             tab={
@@ -106,7 +168,6 @@ const TabsQuickTest = (props) =>{
                             <TestdetailQuickTest {...props} sendTest={props.sendTest} />
                         </TabPane>
                     ))
-
                 }
             </Tabs>
         </div>
