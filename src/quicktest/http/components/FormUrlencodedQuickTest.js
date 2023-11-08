@@ -1,8 +1,8 @@
 
 import React, {useEffect} from 'react';
 import { observer, inject } from "mobx-react";
-import FormUrlencodedTableCommon from "../../common/tableCommon/components/FormUrlencodedTableCommon";
-import tabQuickTestStore from "../store/TabQuickTestStore";
+import FormUrlencodedTableCommon from "../../../common/tableCommon/components/FormUrlencodedTableCommon";
+import tabQuickTestStore from "../../store/TabQuickTestStore";
 /**
  * 快捷测试
  * formUrl

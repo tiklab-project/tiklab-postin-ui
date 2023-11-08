@@ -1,7 +1,7 @@
-//接口调试初始化的tabPane
+//接口调试初始化的tabPane http 协议的
 export let initTabPane = {
     "id": Date.now(),
-    "type": "api",
+    "protocol": "http",
     "data":{
         "baseInfo":{
             "path":null,
@@ -21,5 +21,23 @@ export let initTabPane = {
         "preScript":{"scriptex":null},
         "afterScript":{"scriptex":null},
         "assert":[{id: 'InitRowId'}],
+    }
+}
+
+export let initWSTabPane = {
+    "id": Date.now(),
+    "protocol": "ws",
+    "data":{
+        "baseInfo":{
+            "path":null,
+        },
+        "body":{
+            "raw":{
+                type:"text",
+                raw:""
+            },
+        },
+        "header":[{id: 'InitRowId'}],
+        "query":[{id: 'InitRowId'}]
     }
 }

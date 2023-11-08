@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Cascader, Form, Input, Modal} from "antd";
 import {inject, observer} from "mobx-react";
-import categoryStore from "../../category/store/CategoryStore";
+import categoryStore from "../../../category/store/CategoryStore";
 import quickTestStore from "../store/QuickTestStore";
-import tabQuickTestStore from "../store/TabQuickTestStore";
+import tabQuickTestStore from "../../store/TabQuickTestStore";
 
 const SaveToApi = (props) =>{
     const { findCategoryList,categoryList } = categoryStore;

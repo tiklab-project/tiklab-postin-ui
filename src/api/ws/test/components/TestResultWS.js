@@ -5,6 +5,7 @@ import IconBtn from "../../../../common/iconBtn/IconBtn";
 import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
 import {ArrowDownOutlined, ArrowUpOutlined, CheckCircleTwoTone, CloseSquareOutlined} from "@ant-design/icons";
 import webSocketFnStore from "../store/WebSocketFnStore";
+import "./WSTestStyle.scss"
 
 const { Panel } = Collapse;
 

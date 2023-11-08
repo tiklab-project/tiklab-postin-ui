@@ -10,6 +10,7 @@ import {useHistory} from "react-router";
 import "./workspaceDetailStyle.scss"
 import "../workspace/components/workspace.scss"
 import "../../common/commonStyle.scss"
+import "../../api/http/definition/components/apxMethod.scss"
 
 /**
  * 左侧导航展示

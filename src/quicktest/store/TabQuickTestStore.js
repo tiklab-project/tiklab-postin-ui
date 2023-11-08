@@ -1,5 +1,5 @@
-import {action, observable} from "mobx";
-import {initTabPane} from "../common/quickTestData";
+import {action, observable, toJS} from "mobx";
+import {initTabPane, initWSTabPane} from "../common/quickTestData";
 
 
 class TabQuickTestStore {
@@ -12,13 +12,16 @@ class TabQuickTestStore {
 
     @observable newHeaderRow=[{id: 'InitRowId'}];
     @observable currentTabInfo = this.tabPaneInfo.tabList[this.activeKey]
+    @observable protocol = this.tabPaneInfo.tabList[this.activeKey].protocol;
     @observable baseInfo = this.tabPaneInfo.tabList[this.activeKey].data.baseInfo;
     @observable headerList = this.tabPaneInfo.tabList[this.activeKey].data.header;
     @observable queryList = this.tabPaneInfo.tabList[this.activeKey].data.query;
+    @observable rawInfo = this.tabPaneInfo.tabList[this.activeKey].data.body.raw;
+
+    //http
     @observable requestBodyType = this.tabPaneInfo.tabList[this.activeKey].data.body.bodyType;
     @observable formList = this.tabPaneInfo.tabList[this.activeKey].data.body.form;
     @observable formUrlList = this.tabPaneInfo.tabList[this.activeKey].data.body.formUrl;
-    @observable rawInfo = this.tabPaneInfo.tabList[this.activeKey].data.body.raw;
     @observable preScript = this.tabPaneInfo.tabList[this.activeKey].data.preScript;
     @observable afterScript = this.tabPaneInfo.tabList[this.activeKey].data.afterScript;
     @observable assertList = this.tabPaneInfo.tabList[this.activeKey].data.assert;
@@ -32,18 +35,37 @@ class TabQuickTestStore {
         //拿到当前标签页下的数据
         let curTab = this.tabPaneInfo.tabList[this.activeKey]
 
-        let {baseInfo,header,query,body,preScript,afterScript,assert } =  curTab.data
+        let {baseInfo,header,query,body,preScript,afterScript,assert } =  curTab.data;
+        let {protocol} = curTab;
+        this.protocol = protocol;
         this.baseInfo = baseInfo
         this.headerList = header
         this.queryList = query
+        this.rawInfo = body.raw
+
         this.requestBodyType = body.bodyType
         this.formList = body.form
         this.formUrlList = body.formUrl
-        this.rawInfo = body.raw
         this.preScript = preScript
         this.afterScript = afterScript
         this.assertList = assert
     }
+
+    @action
+    updateProtocol= (protocol) =>{
+        this.protocol = protocol;
+
+        if(protocol==="http"){
+            this.tabPaneInfo.tabList[this.activeKey] = initTabPane
+        }
+
+        if(protocol==="ws"){
+            this.tabPaneInfo.tabList[this.activeKey]= initWSTabPane
+
+            console.log(toJS(this.tabPaneInfo))
+        }
+    }
+
 
     @action
     updateBaseInfo = (info) =>{

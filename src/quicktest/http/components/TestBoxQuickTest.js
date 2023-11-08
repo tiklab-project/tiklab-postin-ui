@@ -1,7 +1,7 @@
 import React from "react";
-import {localProxySendTest} from "../../common/request/sendTestCommon";
+import {localProxySendTest} from "../../../common/request/sendTestCommon";
 import {inject, observer} from "mobx-react";
-import TabsQuickTest from "../common/TabsQuickTest";
+import TabsQuickTest from "../../common/TabsQuickTest";
 import "./testCase.scss"
 /**
  * 快捷测试

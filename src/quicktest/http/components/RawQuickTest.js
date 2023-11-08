@@ -1,9 +1,9 @@
 
 import React, {useEffect, useState} from 'react';
 import { observer, inject } from 'mobx-react';
-import RawParamCommon from "../../common/tableCommon/components/RawParamCommon";
+import RawParamCommon from "../../../common/tableCommon/components/RawParamCommon";
 import {Form} from "antd";
-import tabQuickTestStore from "../store/TabQuickTestStore";
+import tabQuickTestStore from "../../store/TabQuickTestStore";
 /**
  * 快捷测试
  * 请求体中raw

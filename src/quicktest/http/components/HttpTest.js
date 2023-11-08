@@ -2,24 +2,24 @@ import React, {useEffect, useState} from "react";
 import {Dropdown,Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./RequestTabQuickTest";
 import {observer} from "mobx-react";
-import {localDataProcess, mergeTestData} from "../../common/request/sendTestCommon";
-import {methodDictionary} from "../../common/dictionary/dictionary";
+import {localDataProcess, mergeTestData} from "../../../common/request/sendTestCommon";
+import {methodDictionary} from "../../../common/dictionary/dictionary";
 import {getUser} from "tiklab-core-ui";
-import TestResultCommon from "../../api/http/test/common/TestResultCommon";
-import {execute} from "../../api/http/test/common/dtAction";
+import TestResultCommon from "../../../api/http/test/common/TestResultCommon";
+import {execute} from "../../../api/http/test/common/dtAction";
 import {DownOutlined} from "@ant-design/icons";
 import SaveToApi from "./saveToApi";
-import instanceStore from "../../api/http/test/instance/store/InstanceStore";
+import instanceStore from "../../../api/http/test/instance/store/InstanceStore";
 import quickTestStore from "../store/QuickTestStore";
-import tabQuickTestStore from "../store/TabQuickTestStore";
+import tabQuickTestStore from "../../store/TabQuickTestStore";
 
 const { Option } = Select;
 
 /**
  * 快捷测试页
  */
-const TestdetailQuickTest = (props) =>{
-    const {sendTest} = props;
+const HttpTest = (props) =>{
+    const {sendTest,toggleProtocol} = props;
 
     const {createInstance,findInstanceList} = instanceStore;
     const { getRequestInfo, getResponseInfo, getResponseError,setResponseShow,isResponseShow,setResponseData, responseData} = quickTestStore;
@@ -137,7 +137,7 @@ const TestdetailQuickTest = (props) =>{
             "preScript": preScript.scriptex,
             "afterScript": afterScript.scriptex
         }
-        createInstance(res).then(async ()=>{
+        createInstance(res).then( async ()=>{
             let params={
                 "workspaceId":workspaceId,
                 "httpCaseId":"quickTestInstanceId",
@@ -148,7 +148,6 @@ const TestdetailQuickTest = (props) =>{
     }
 
     /**
-     *
      * @returns {Promise<void>}
      */
     const changeInfo = async () =>{
@@ -184,17 +183,17 @@ const TestdetailQuickTest = (props) =>{
                         className="test-header"
                         initialValues={{ methodType: "get" }}
                     >
+                        {toggleProtocol()}
                         <div className={"test-url"}>
+
                             <Form.Item
                                 className='formItem'
                                 name="path"
-                                // rules={[
-                                //     {
-                                //         required: true,
-                                //         pattern: new RegExp(/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/),
-                                //         message: '请输入http开头的完整URL'
-                                //     },
-                                // ]}
+                                rules={[{
+                                    required: true,
+                                    message: '请输入http开头的完整URL',
+                                    type:"url"
+                                }]}
                             >
                                 <Input
                                     onChange={changeInfo}
@@ -205,9 +204,8 @@ const TestdetailQuickTest = (props) =>{
                         </div>
                         <div className={"test-base-item"}>
                             {
-                                client==="electron"
-                                    ?<Button type={"primary"} onClick={onFinish}>发送</Button>
-                                    :<Dropdown.Button
+                                client==="web"
+                                    ?<Dropdown.Button
                                         icon={<DownOutlined />}
                                         menu={{items}}
                                         onClick={onFinish}
@@ -215,8 +213,8 @@ const TestdetailQuickTest = (props) =>{
                                     >
                                         发送
                                     </Dropdown.Button>
+                                    :<Button type={"primary"} onClick={onFinish}>发送</Button>
                             }
-
 
                         </div>
                     </Form>
@@ -226,7 +224,6 @@ const TestdetailQuickTest = (props) =>{
                 <div className={"white-bg-box"}>
                     <RequestTabQuickTest instanceId={instanceId}/>
                 </div>
-
 
                 <div className='header-title ex-title'> 响应</div>
                 <div className={"white-bg-box"}>
@@ -242,4 +239,4 @@ const TestdetailQuickTest = (props) =>{
     )
 }
 
-export default observer(TestdetailQuickTest)
+export default observer(HttpTest)

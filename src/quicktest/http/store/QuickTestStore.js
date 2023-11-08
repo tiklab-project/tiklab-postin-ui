@@ -1,5 +1,5 @@
 import {action, observable} from "mobx";
-import {AssertCommonStore} from "../../api/http/test/common/AssertCommonStore";
+import {AssertCommonStore} from "../../../api/http/test/common/AssertCommonStore";
 import qs from "qs";
 import {Axios} from "tiklab-core-ui";
 

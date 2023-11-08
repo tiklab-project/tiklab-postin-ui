@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
-import {Empty, Input, Space, Tooltip} from "antd";
+import {Dropdown, Empty, Input, Menu, Space, Tooltip} from "antd";
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "tiklab-core-ui";
 import {SearchOutlined} from "@ant-design/icons";
@@ -13,8 +13,11 @@ import {
 } from "./instanceDataProcess";
 import {mediaTypeDir} from "../../common/dictionary/dictionary";
 import instanceStore from "../../api/http/test/instance/store/InstanceStore";
-import quickTestStore from "../store/QuickTestStore";
+import quickTestStore from "../http/store/QuickTestStore";
 import tabQuickTestStore from "../store/TabQuickTestStore";
+import IconCommon from "../../common/IconCommon";
+
+
 /**
  * 快捷测试
  * 左侧目录
@@ -39,9 +42,6 @@ const LeftNavListQuickTest =(props)=>{
         }
         findInstanceList(params)
     }
-
-
-
 
     /**
      * 点击打开不同的实例
@@ -156,7 +156,6 @@ const LeftNavListQuickTest =(props)=>{
         setResponseShow(true);
     }
 
-
     /**
      * 耗时渲染
      */
@@ -221,10 +220,21 @@ const LeftNavListQuickTest =(props)=>{
         deleteAllInstance(userId).then(()=>findList())
     }
 
-
     const onSearch = (e)=>{
         findList(e.target.value)
     }
+
+    const menu = (
+        <Menu>
+            <Menu.Item key={1}>
+
+            </Menu.Item>
+            <Menu.Item key={2}>
+
+            </Menu.Item>
+        </Menu>
+    );
+
 
     return(
         <>
@@ -240,6 +250,14 @@ const LeftNavListQuickTest =(props)=>{
                             <use xlinkHref="#icon-qingkong" />
                         </svg>
                     </Tooltip>
+                    {/*<Dropdown overlay={menu}  className="ws-left-tree-drop" >*/}
+                    {/*    <div>*/}
+                    {/*        <IconCommon*/}
+                    {/*            className={"icon-s"}*/}
+                    {/*            icon={"tianjia-"}*/}
+                    {/*        />*/}
+                    {/*    </div>*/}
+                    {/*</Dropdown>*/}
                 </div>
             </div>
             {

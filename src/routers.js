@@ -33,7 +33,7 @@ const MockDetail = AsyncComponent(() => import("./api/http/mock/components/MockD
 const SystemContent = AsyncComponent(() => import("./setting/system/SystemContent"));
 const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
 const WorkspaceSettingMenu = AsyncComponent(() => import("./workspace/setting/WorkspaceSettingMenu"));
-const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/components/TestBoxQuickTest"));
+const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/http/components/TestBoxQuickTest"));
 const TestBox = AsyncComponent(() => import( "./api/http/test/test/components/ApiTestPage"));
 const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
 const WorkspaceSetting = AsyncComponent(() => import("./workspace/setting/WorkspaceSetting"));

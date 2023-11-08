@@ -200,32 +200,6 @@
     align-items: center;
 }
 
-.tabPane-item-box{
-    min-height: 120px;
-    overflow: auto;
-
-    th{
-        background:  var(--pi-bg-color) !important;
-    }
-
-    .ant-table-thead>tr .ant-table-cell{
-        font-weight: var(--pi-font-weight-light);
-        padding: 7px;
-        font-size: 13px;
-    }
-
-    .newRow-action-hidden{
-        display: none;
-    }
-    .newRow-action-show{
-        display: block;
-    }
-
-    .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-        padding: 2px !important;
-    }
-}
-
 .column-name{
     width: 150px;
 }

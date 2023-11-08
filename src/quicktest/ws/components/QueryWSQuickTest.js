@@ -1,18 +1,17 @@
-import React, {useEffect} from 'react';
-import { observer, inject } from "mobx-react";
-import QueryTableCommon from "../../common/tableCommon/components/QueryTableCommon";
-import tabQuickTestStore from "../store/TabQuickTestStore";
+import React from 'react';
+import { observer } from "mobx-react";
+import QueryTableCommon from "../../../common/tableCommon/components/QueryTableCommon";
+import tabQuickTestStore from "../../store/TabQuickTestStore";
+
 /**
- * 快捷测试
  * 查询参数
  */
-const QueryQuickTest = (props) =>{
+const QueryWSQuickTest = (props) =>{
     const {
         queryList,
         saveQueryList,
         deleteQueryList,
     } = tabQuickTestStore;
-
 
     return (
         <>
@@ -23,8 +22,7 @@ const QueryQuickTest = (props) =>{
                 deleteList={deleteQueryList}
             />
         </>
-
     );
 }
 
-export default observer(QueryQuickTest);
+export default observer(QueryWSQuickTest);

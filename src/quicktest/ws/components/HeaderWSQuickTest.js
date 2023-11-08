@@ -1,15 +1,12 @@
-import React, {useEffect} from 'react';
-import { observer, inject } from "mobx-react";
-import HeaderTableCommon from "../../common/tableCommon/components/HeaderTableCommon";
-import tabQuickTestStore from "../store/TabQuickTestStore";
-/**
- * 快捷测试
- * 请求头
- */
-const HeaderQuickTest = (props) =>{
+import React from "react";
+import {observer} from "mobx-react";
+import HeaderTableCommon from "../../../common/tableCommon/components/HeaderTableCommon";
+import tabQuickTestStore from "../../store/TabQuickTestStore";
+
+const HeaderWSQuickTest = () =>{
     const {headerList,saveRequestHeaderList,deleteRequestHeaderList} = tabQuickTestStore
 
-    return (
+    return(
         <>
             <div style={{margin:"8px 0"}}><span  className={"ws-param-title"}>请求头参数</span></div>
             <HeaderTableCommon
@@ -18,8 +15,6 @@ const HeaderQuickTest = (props) =>{
                 deleteList={deleteRequestHeaderList}
             />
         </>
-
-    );
+    )
 }
-
-export default observer(HeaderQuickTest);
+export default observer(HeaderWSQuickTest)

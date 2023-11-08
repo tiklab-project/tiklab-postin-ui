@@ -1,19 +1,21 @@
 import React, {useState} from "react";
-import {Button, Dropdown, Tabs} from "antd";
-import {inject, observer} from "mobx-react";
+import {Select, Tabs} from "antd";
+import {observer} from "mobx-react";
 import {TextMethodType} from "../../common/MethodType";
 import {initTabPane} from "./quickTestData";
-import TestdetailQuickTest from "../components/TestdetailQuickTest";
 import tabQuickTestStore from "../store/TabQuickTestStore";
-import IconCommon from "../../common/IconCommon";
+import HttpTest from "../http/components/HttpTest";
+import WSTest from "../ws/components/WSTest";
+
 const {TabPane} = Tabs;
+const {Option} = Select;
 
 /**
  * 快捷测试
  * tab
  */
 const TabsQuickTest = (props) =>{
-    const {setTabPaneInfo,tabPaneInfo} = tabQuickTestStore;
+    const {setTabPaneInfo,tabPaneInfo,updateProtocol,protocol} = tabQuickTestStore;
 
     const [action, setAction] = useState(false);
 
@@ -80,6 +82,25 @@ const TabsQuickTest = (props) =>{
         setTabPaneInfo(newTabInfo)
     }
 
+    const changeTabPaneProtocol = (protocol) =>{
+        updateProtocol(protocol)
+    }
+
+    const toggleProtocol = () =>{
+        return <div style={{height:"40px"}}>
+            <Select
+                style={{width:"100px"}}
+                size={"large"}
+                value={protocol}
+                onSelect={changeTabPaneProtocol}
+            >
+                <Option value={"http"}>Http</Option>
+                <Option value={"ws"}>WS</Option>
+            </Select>
+        </div>
+    }
+
+
 
     /**
      * 关闭所有标签
@@ -107,7 +128,6 @@ const TabsQuickTest = (props) =>{
         };
         setTabPaneInfo(newTabInfo)
         setAction(!action);
-
     }
 
     const items = [
@@ -159,13 +179,29 @@ const TabsQuickTest = (props) =>{
                         <TabPane
                             tab={
                                 <>
-                                    <TextMethodType type={item.data.baseInfo.methodType} />
+                                    {
+                                        item.protocol==="http"
+                                            ?<TextMethodType type={item.data.baseInfo.methodType} />
+                                            :<span  style={{color:"rgb(46 167 255)"}} className={"requestType"}>WS</span>
+                                    }
+
                                     {item.data.baseInfo.path?item.data.baseInfo.path:"新标签"}
                                 </>
                             }
                             key={index}
                         >
-                            <TestdetailQuickTest {...props} sendTest={props.sendTest} />
+                            {
+                                protocol==="http"
+                                    ?<HttpTest
+                                        sendTest={props.sendTest}
+                                        toggleProtocol={toggleProtocol}
+                                        {...props}
+                                    />
+                                    :<WSTest
+                                        toggleProtocol={toggleProtocol}
+                                        {...props}
+                                    />
+                            }
                         </TabPane>
                     ))
                 }

@@ -4,7 +4,7 @@ import QueryQuickTest from "./QueryQuickTest";
 import PreQuickTest from "./PreQuickTest";
 import AfterQuickTest from "./AfterQuickTest";
 import AssertQuickTest from "./AssertQuickTest";
-import RequestTab from "../../common/tableCommon/components/RequestTab";
+import RequestTab from "../../../common/tableCommon/components/RequestTab";
 import RequestBodyQuickTest from "./RequestBodyQuickTest";
 
 /**

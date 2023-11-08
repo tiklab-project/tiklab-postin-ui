@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer, inject } from "mobx-react";
-import FormDataTableCommon from "../../common/tableCommon/components/FormDataTableCommon";
-import tabQuickTestStore from "../store/TabQuickTestStore";
+import FormDataTableCommon from "../../../common/tableCommon/components/FormDataTableCommon";
+import tabQuickTestStore from "../../store/TabQuickTestStore";
 /**
  * 快捷测试
  * formdata

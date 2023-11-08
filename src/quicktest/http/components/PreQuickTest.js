@@ -1,22 +1,21 @@
 
 import React, {useEffect} from 'react';
 import { observer, inject } from 'mobx-react';
-import ScriptCommon from "../../common/tableCommon/components/ScriptCommon";
+import ScriptCommon from "../../../common/tableCommon/components/ScriptCommon";
 import {Form} from "antd";
-import tabQuickTestStore from "../store/TabQuickTestStore";
+import tabQuickTestStore from "../../store/TabQuickTestStore";
 /**
  * 快捷测试
- * 后置
+ * 前置脚本
  */
-const AfterQuickTest = (props) => {
-    const {updateAfterScript,setAfterScript} = tabQuickTestStore;
+const PreQuickTest = (props) => {
+    const { updatePreScript,setPreScript } = tabQuickTestStore;
 
     const [form] = Form.useForm();
 
     useEffect(()=>{
-        setAfterScript().then(res=>{
+        setPreScript().then(res=>{
             if(!res) return
-
             form.setFieldsValue({
                 scriptex: res.scriptex,
             })
@@ -25,10 +24,11 @@ const AfterQuickTest = (props) => {
 
     return (
         <ScriptCommon
-            updateFn={updateAfterScript}
+            updateFn={updatePreScript}
             form={form}
         />
     )
+
 }
 
-export default observer(AfterQuickTest);
+export default observer(PreQuickTest);
