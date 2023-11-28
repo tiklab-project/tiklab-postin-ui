@@ -87,7 +87,7 @@ const MockDetail = (props) =>{
     }
 
     return(
-        <div className={"content-margin"} style={{height:" calc(100% - 48px)",padding:"0"}}>
+        <div className={"content-margin page-padding"} style={{height:" calc(100% - 48px)"}}>
             <div className="content-margin-box">
 
                 <div className={"mock-header-box"}>

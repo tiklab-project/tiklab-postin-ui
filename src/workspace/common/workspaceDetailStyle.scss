@@ -218,7 +218,6 @@
     overflow: auto;
 
     .ws-hover-item{
-        border-bottom: 1px solid var(--pi-border-color);
         border-radius: var(--pi-border-radius);
         padding: 5px;
         margin: 2px 0 0 0;
@@ -228,7 +227,12 @@
     }
 
     .ws-hover-item:hover{
-        background: #f6f6f6;
+        background: var(--pi-hover-color);
+        cursor: pointer;
+    }
+
+    .ws-toggle-ws-select{
+        background: var(--pi-hover-color);
         cursor: pointer;
     }
 
@@ -248,7 +252,7 @@
         text-align: center;
         width: 100%;
         padding: 5px;
-        background: #f0f0f0;
+        background: var(--pi-bg-grey-100);
     }
 
 }

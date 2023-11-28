@@ -208,7 +208,7 @@ const ApiTestContent = (props) => {
 
 
     return(
-        <div className={"content-margin"} style={{padding:"0"}}>
+        <div className={"content-margin page-padding"}>
             <div className="content-margin-box">
                 <div className={"test-base"}>
                     <Form

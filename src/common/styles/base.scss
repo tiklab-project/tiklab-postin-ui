@@ -333,3 +333,25 @@ table .icon{
         padding: 2px !important;
     }
 }
+
+.content-margin{
+    height: 100%;
+    overflow: auto;
+
+    .content-margin-box{
+        margin: 0 auto;
+        max-width: 1440px;
+    }
+
+    .ant-tabs-top > .ant-tabs-nav::before, .ant-tabs-bottom > .ant-tabs-nav::before, .ant-tabs-top > div > .ant-tabs-nav::before, .ant-tabs-bottom > div > .ant-tabs-nav::before{
+        content: none;
+    }
+}
+
+.page-padding{
+    padding:0 15px
+}
+
+.component-box{
+    margin-bottom: 30px;
+}

@@ -33,7 +33,7 @@ const APIList = (props) => {
         {
             title: '协议/方法',
             dataIndex: 'type',
-            width: '8%',
+            width: '10%',
             render: (text,record) => (
                 <>
                     {
@@ -174,7 +174,7 @@ const APIList = (props) => {
 
 
     return(
-        <div className={"content-margin"}>
+        <div className={"content-margin page-padding"}>
             <div className='content-margin-box list-content-center'>
                 <div className={'category-search'}>
                     <Input

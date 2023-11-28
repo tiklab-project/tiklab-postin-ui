@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { observer, inject } from 'mobx-react';
-import { Tabs} from 'antd';
+import {Divider, Select, Space, Tabs} from 'antd';
 import ResponseResult from "./ResponseResult";
 import ResponseTabEdit from "./ResponseTabEdit";
 import noneImg from "../../../../assets/img/none.png";
 import apiResponseStore from "../store/ApiResponseStore";
+import EvnMana from "../../../../support/environment/components/Environment";
 const { TabPane } = Tabs;
+const { Option } = Select;
 
 /**
  * 定义
@@ -23,75 +25,66 @@ const Response = (props) =>{
     const apiId = localStorage.getItem('apiId');
     const [activeKey, setActiveKey] = useState();
 
+
     useEffect( ()=> {
         findList()
     },[])
 
     const findList = async() =>{
-        let res = await findApiResponseList({httpId:apiId})
-        setActiveKey(res[0].id)
+        let list = await findApiResponseList({httpId:apiId})
+        setActiveKey(list[0].id)
     }
-    
-    // tab页切换
-    const onChange = e => {
-        setActiveKey(e)
-    };
 
-    // tab页添加删除
-    const onEdit = async (targetKey, action) => {
+    const select=(value)=>{
+        setActiveKey(value)
+    }
 
-        if (action === 'remove') {
-            await deleteApiResponse(targetKey);
+    const deleteResult = (id) =>{
+        return(
+            <a
+                onClick={async () => {
+                    await deleteApiResponse(id)
+                    await findList()
+                }}
+            >
+                删除
+            </a>
+        )
+    }
 
-            await findList()
-        }
+    const selectResult=(
+        <Select
+            style={{width:"150px",margin:"0 10px 0 0"}}
+            onSelect={select}
+            value={activeKey}
+            dropdownRender={item=>(
+                <>
+                    <div style={{"overflow":"auto","height":"100px"}}>{item}</div>
 
-    };
-
+                    <Divider style={{ margin: '3px 0' }} />
+                    <ResponseTabEdit
+                        apiId={apiId}
+                       setActiveKey={setActiveKey}
+                   />
+                </>
+            )}
+        >
+            {
+                apiResponseList && apiResponseList.map(item=>{
+                    return<Option key={item.id}>{item.name+"("+item.httpCode+")"}</Option>
+                })
+            }
+        </Select>
+    )
 
     return(
         <div className={'api-result-box'}>
-            <Tabs
-                hideAdd
-                onChange={onChange}
-                activeKey={activeKey}
-                onEdit={onEdit}
-                type="editable-card"
-                style={{height: 365 }}
-                tabBarExtraContent={{
-                    right:<ResponseTabEdit
-                    apiId={apiId}
-                    setActiveKey={setActiveKey}
-                    />
-                }}
-            >
-                {
-                    apiResponseList && apiResponseList.map(pane=>{
-                        return <TabPane
-                            tab={pane.name+"("+pane.httpCode+")"}
-                            key={pane.id}
-                        >
-                            <ResponseResult httpId={apiId} resultId={pane.id} />
-                        </TabPane>
-                    })
-                }
-                {
-                    apiResponseList && apiResponseList.length > 0
-                        ?null
-                        :<div className={"pi-none-process-box"}>
-                            <div style={{textAlign: "center"}}>
-                                <div>
-                                    <img width={200} height={200}  src={noneImg} alt={"noneImg"}/>
-                                </div>
-                                <span>暂无返回结果，请添加</span>
-                            </div>
-                        </div>
-                }
-
-            </Tabs>
-
-
-
+            <ResponseResult
+                selectResult={selectResult}
+                httpId={apiId}
+                resultId={activeKey}
+                deleteResult={deleteResult}
+            />
         </div>
     )
 }

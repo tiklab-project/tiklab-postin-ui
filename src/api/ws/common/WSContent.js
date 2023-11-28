@@ -6,7 +6,7 @@ const WSContent = (props) =>{
 
     return(
         <>
-            <div className={"content-margin"} style={{overflow:"hidden"}}>
+            <div className={"content-margin page-padding"} style={{overflow:"hidden"}}>
                 <div className={"content-margin-box"} style={{borderBottom:"1px solid #e4e4e4"}}>
                     <div style={{fontWeight:"bold",padding:"0 3px 10px"}}>接口详情</div>
                     <MenuSelect />

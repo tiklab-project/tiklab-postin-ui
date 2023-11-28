@@ -21,7 +21,7 @@ const WSDocumentPage = (props) =>{
 
 
     return (
-        <div className={"content-margin"} style={{padding:"0",  height: "calc(100% - 50px)"}}>
+        <div className={"content-margin page-padding"} style={{height: "calc(100% - 50px)"}}>
             <div className="content-margin-box">
                 <div className={"share-box-right-content-item"}  >
                     <div className={"pi-box-between"}>

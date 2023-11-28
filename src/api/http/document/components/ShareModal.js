@@ -13,7 +13,7 @@ const {Option} = Select;
  * 分享的弹框组件
  */
 const ShareModal  = (props) =>{
-    const {targetId,targetType} = props;
+    const {targetId,targetType,targetName} = props;
     const {findShare,createShare,updateShare} =shareStore
 
     const [code, setCode] = useState();
@@ -41,7 +41,7 @@ const ShareModal  = (props) =>{
                 password:null,
             }
 
-             createShare(param)
+             await createShare(param)
         }else {
             let data = res.data
             setVisibility(data.visibility);
@@ -57,7 +57,7 @@ const ShareModal  = (props) =>{
     /**
      * 参数改变保存数据库
      */
-    const changeType = (type) =>{
+    const changeType =async (type) =>{
         setVisibility(type);
 
         let param = {
@@ -78,7 +78,7 @@ const ShareModal  = (props) =>{
         }
 
 
-        updateShare(param)
+        await updateShare(param)
 
     }
 
@@ -141,7 +141,6 @@ const ShareModal  = (props) =>{
         }else {
             return <a onClick={showModal}>分享</a>
         }
-
     }
 
 
@@ -160,7 +159,7 @@ const ShareModal  = (props) =>{
             >
                 <div className={"share-modal"}>
                     <div className={"share-modal-item share-modal-top"}>
-                        <div>{props.targetName}</div>
+                        <div>{targetName}</div>
                         <Tag  color="#55acee"> {showTargetName(targetType)}</Tag>
 
                     </div>

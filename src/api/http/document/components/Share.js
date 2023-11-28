@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import logo from "../../../../assets/img/postinlog.png";
 import "./shareStyle.scss"
 import {renderRoutes} from "react-router-config";
+import "../../../../category/components/category.scss"
 
 /**
  * 分享的文档页

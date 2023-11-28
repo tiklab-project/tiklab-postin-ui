@@ -175,7 +175,10 @@ const HttpTest = (props) =>{
         }];
 
     return(
-        <div style={{height: "100%","overflow":"auto"}} className={"content-margin"}>
+        <div
+            style={{height: "100%","overflow":"auto"}}
+            className={"content-margin page-padding"}
+        >
             <div className={"content-margin-box"}>
                 <div className={"test-base"}>
                     <Form

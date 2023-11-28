@@ -19,10 +19,10 @@ const App = (props) => {
 
 
     useEffect( async () => {
-        let res = await Axios.get("/http/findServerUrl")
-        let serverUrl=res.data
+        // let res = await Axios.get("/http/findServerUrl")
+        // let serverUrl=res.data
 
-        pluginLoader( routers, resources,i18n,fetchMethod,serverUrl).then(res => {
+        pluginLoader( routers, resources,i18n,fetchMethod).then(res => {
             setPluginData(res)
         })
     }, []);

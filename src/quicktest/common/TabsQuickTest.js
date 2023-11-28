@@ -89,12 +89,16 @@ const TabsQuickTest = (props) =>{
     const toggleProtocol = () =>{
         return <div style={{height:"40px"}}>
             <Select
-                style={{width:"100px"}}
+                style={{
+                    width:"80px",
+                    marginRight: "-1px",
+                    zIndex: 10
+                }}
                 size={"large"}
                 value={protocol}
                 onSelect={changeTabPaneProtocol}
             >
-                <Option value={"http"}>Http</Option>
+                <Option value={"http"}>HTTP</Option>
                 <Option value={"ws"}>WS</Option>
             </Select>
         </div>
@@ -173,6 +177,7 @@ const TabsQuickTest = (props) =>{
                 //     </div>
                 //
                 // }
+                style={{background: "var(--pi-bg-grey-100)"}}
             >
                 {
                     tabPaneInfo&&tabPaneInfo.tabList.map((item,index )=> (
@@ -189,6 +194,7 @@ const TabsQuickTest = (props) =>{
                                 </>
                             }
                             key={index}
+                            style={{background:"white"}}
                         >
                             {
                                 protocol==="http"

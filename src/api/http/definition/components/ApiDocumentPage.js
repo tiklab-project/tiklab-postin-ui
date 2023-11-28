@@ -31,7 +31,7 @@ const ApiDocumentPage = (props) =>{
     },[])
 
     return (
-        <div className={"content-margin"} style={{padding:"0",  height: "calc(100% - 54px)"}}>
+        <div className={"content-margin page-padding"} style={{height: "calc(100% - 54px)"}}>
             <div className="content-margin-box">
                 <div className={"share-box-right-content-item"}  >
                     <div className={"pi-box-between"}>
@@ -41,7 +41,6 @@ const ApiDocumentPage = (props) =>{
                         </div>
 
                     </div>
-
                     <div className={"share-box-right-content-item-detail"}>
                         <div>
                             <span className={"share-detail-title"}>负责人: {apiDoc?.apix?.executor?.name||"未设置"}</span>
@@ -51,7 +50,6 @@ const ApiDocumentPage = (props) =>{
                         </div>
                     </div>
                 </div>
-
                 <div className={"share-box-right-content-item"}>
                     <div className={"share-box-right-content-item-detail"}>
                         <ProtocolType type={apiDoc?.apix?.protocolType}/>
@@ -74,35 +72,37 @@ const ApiDocumentPage = (props) =>{
                         }
                     </div>
                 </div>
-                <div className="header-title ex-title">
-                    请求参数
-                </div>
-                <div className={"share-box-right-content-item"}>
-                    {
-                        apiDoc?.headerList||apiDoc?.queryList||apiDoc?.request?.bodyType!=="none"
-                            ?<>
-                                <TableHeaderDoc dataSource={apiDoc?.headerList}/>
-                                <TableQueryDoc dataSource={apiDoc?.queryList}/>
-                                <RequestBodyDoc dataSource={apiDoc}/>
-                            </>
-                            :<div>暂无请求信息</div>
-                    }
 
+                <div className={"component-box"}>
+                    <div className="header-title ex-title">
+                        请求参数
+                    </div>
+                    <div className={"share-box-right-content-item"}>
+                        {
+                            apiDoc?.headerList||apiDoc?.queryList||apiDoc?.request?.bodyType!=="none"
+                                ?<>
+                                    <TableHeaderDoc dataSource={apiDoc?.headerList}/>
+                                    <TableQueryDoc dataSource={apiDoc?.queryList}/>
+                                    <RequestBodyDoc dataSource={apiDoc}/>
+                                </>
+                                :<div>暂无请求信息</div>
+                        }
+
+                    </div>
                 </div>
-                <div className="header-title ex-title">响应示例</div>
-                <div className={"share-box-right-content-item"}>
+                <div className={"component-box"}>
+                    <div className="header-title ex-title">响应示例</div>
                     {
                         apiDoc?.responseHeaderList
-                            ? <TableHeaderDoc isResponse={true} dataSource={apiDoc?.responseHeaderList} />
+                            ? <div className={"share-box-right-content-item"}><TableHeaderDoc isResponse={true} dataSource={apiDoc?.responseHeaderList} /></div>
                             :null
                     }
-                </div>
-                <div className={"share-box-right-content-item"}>
                     {
                         apiDoc?.responseResultList
-                            ? <ResponseResultDoc dataSource={ apiDoc?.responseResultList} />
+                            ?  <div className={"share-box-right-content-item"}><ResponseResultDoc dataSource={ apiDoc?.responseResultList} /> </div>
                             :<div>暂无响应示例</div>
                     }
+
                 </div>
                 <div className="header-title ex-title">MOCK 地址</div>
                 <div style={{margin: "5px 0 30px 0"}}>

@@ -23,7 +23,7 @@ const ResponseTabEdit =(props)=>{
     /**
      * 弹框展示
      */
-    const showModal = async () => {
+    const showModal = async (e) => {
         if(props.type==="edit"){
             let res = await findApiResponse(apiResponseId)
             setAllData(res)
@@ -73,12 +73,9 @@ const ResponseTabEdit =(props)=>{
         if(props.type==="edit"){
             return <span onClick={showModal}>编辑</span>
         }else {
-            return <Button
-                style={{border: "none", height: "40px",color:"rgb(25 145 255)"}}
-                onClick={showModal}
-            >
+            return <div onClick={showModal} style={{width:"100%",padding:"0 10px",cursor:"pointer"}}>
                 添加
-            </Button>
+            </div>
         }
 
     }
@@ -101,6 +98,7 @@ const ResponseTabEdit =(props)=>{
                         label="HTTP 状态码"
                         name="httpCode"
                         rules={[{ required: true, message: '添加HTTP 状态码!' }]}
+                        initialValue={{dataType:"json"}}
                     >
                         <Select showSearch>
                             {

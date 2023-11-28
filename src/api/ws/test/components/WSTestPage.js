@@ -52,7 +52,7 @@ const WSTestPage = () =>{
     }
 
     return(
-        <div className={"content-margin"} style={{height: "calc(100% - 50px)"}}>
+        <div className={"content-margin page-padding"} style={{height: "calc(100% - 50px)"}}>
             <div className="content-margin-box">
                 <div className={"ws-base-box"}>
                     <div className={"ws-base-url"}>

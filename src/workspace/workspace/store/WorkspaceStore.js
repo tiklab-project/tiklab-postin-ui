@@ -104,6 +104,7 @@ export class WorkspaceStore {
 		const res = await Axios.post("/workspace/findWorkspace",param);
 		if(res.code === 0){
 			this.workspaceIcon = res.data.iconUrl
+			this.workspaceName = res.data.workspaceName
 			return res.data;
 		}
 	}

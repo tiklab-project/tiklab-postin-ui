@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {getUser} from "tiklab-core-ui";
-import {Dropdown, Space} from "antd";
+import {Dropdown, Space, Tooltip} from "antd";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "../workspace/components/WorkspaceFn";
 import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 import workspaceRecentStore from "../workspace/store/WorkspaceRecentStore";
@@ -17,8 +17,8 @@ import "../../api/http/definition/components/apxMethod.scss"
  */
 const LeftNav = (props) =>{
     const {workspaceStore,systemRoleStore} = props;
-    const {workspaceIcon,workspaceList,findWorkspaceJoinList,findWorkspace } = workspaceStore;
-    const {workspaceRecent}=workspaceRecentStore;
+    const {workspaceIcon,workspaceName,findWorkspace } = workspaceStore;
+    const {workspaceRecent,findWorkspaceRecentList}=workspaceRecentStore;
 
     const menuData = [
         {
@@ -58,13 +58,13 @@ const LeftNav = (props) =>{
     const [visible, setVisible] = useState(false);
     const workspaceId = localStorage.getItem("workspaceId")
     const leftMenuSelect = localStorage.getItem("LEFT_MENU_SELECT")
+    const [recentList, setRecentList] = useState([]);
 
     useEffect(()=>{
         findWorkspace(workspaceId)
-        findWorkspaceJoinList({userId:getUser().userId})
 
         systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId)
-    },[])
+    },[workspaceId])
 
     /**
      * 点击左侧导航事件
@@ -78,7 +78,6 @@ const LeftNav = (props) =>{
 
         history.push(data.router)
     }
-
 
     /**
      * 点击快捷测试初始化的tap
@@ -115,6 +114,13 @@ const LeftNav = (props) =>{
         })
     }
 
+
+    const openToggleWorkspace = async () =>{
+        setVisible(!visible)
+        let list = await findWorkspaceRecentList()
+        setRecentList(list)
+    }
+
     /**
      * 展示切换的空间
      */
@@ -124,14 +130,20 @@ const LeftNav = (props) =>{
                 <div className={"ws-hover-box-title"}>切换仓库</div>
                 <div style={{height:"169px"}}>
                     {
-                        workspaceList&&workspaceList.map((item,index)=> {
+                        recentList&&recentList.map((item,index)=> {
                                 if(index>3) return
-                                return <div className={"ws-hover-item"} key={item.id} onClick={() => toggleWorkspace(item.id)}>
-                                    <Space>
-                                        <img src={item.iconUrl} alt={"icon"} className={"repository-icon"} width={20}/>
-                                        {item.workspaceName}
-                                    </Space>
-                                </div>
+                                return (
+                                    <div
+                                        className={`ws-hover-item ${item.id===workspaceId?"ws-toggle-ws-select":""}`}
+                                        key={item.id}
+                                        onClick={() => toggleWorkspace(item.id)}
+                                    >
+                                        <Space>
+                                            <ShowWorkspaceIcon iconUrl={item.iconUrl} className={"workspace-icon icon-bg-border"}  width={30}/>
+                                            {item.workspaceName}
+                                        </Space>
+                                    </div>
+                                )
                             }
                         )
                     }
@@ -159,24 +171,27 @@ const LeftNav = (props) =>{
             <ul className={"ws-detail-left-nav"}>
                 <div>
                     <li className={`ws-detail-left-nav-item-workspace `} >
-                        <Dropdown
-                            overlay={toggleWorkspaceView}
-                            trigger={['click']}
-                            visible={visible}
-                            onOpenChange={()=>setVisible(!visible)}
-                        >
-                            <div className={"ws-icon-box"}>
-                            <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
-                                 <ShowWorkspaceIcon iconUrl={workspaceIcon} className={"workspace-icon icon-bg-border"}  width={30}/>
-                            </span>
-                                <IconCommon
-                                    style={{"cursor":"pointer"}}
-                                    className={"icon-s"}
-                                    icon={"xiala"}
-                                />
-                            </div>
-                        </Dropdown>
+                        <Tooltip placement="right" title={workspaceName}>
+                            <Dropdown
+                                overlay={toggleWorkspaceView}
+                                trigger={['click']}
+                                visible={visible}
+                                onOpenChange={openToggleWorkspace}
+                            >
+                                <div className={"ws-icon-box"}>
+                                    <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
+                                         <ShowWorkspaceIcon iconUrl={workspaceIcon} className={"workspace-icon icon-bg-border"}  width={30}/>
+                                    </span>
+                                    <IconCommon
+                                        style={{"cursor":"pointer"}}
+                                        className={"icon-s"}
+                                        icon={"xiala"}
+                                    />
+                                </div>
+                            </Dropdown>
+                        </Tooltip>
                     </li>
+
                     {
                         showMenuItem(menuData)
                     }

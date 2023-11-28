@@ -11,7 +11,7 @@ const {Option} = Select
  * 响应结果
  */
 const ResponseResult = (props) =>{
-    const {resultId,httpId} = props;
+    const {resultId,httpId,selectResult,deleteResult,length} = props;
     const {findApiResponse,updateApiResponse,findApiResponseList} = apiResponseStore;
 
     const [schemaData, setSchemaData] = useState();
@@ -114,9 +114,14 @@ const ResponseResult = (props) =>{
     return(
         <div className={"api-res-result"}>
             <div className={"api-res-result-top-box"}>
-                <Form form={form}   layout={"inline"}  style={{margin:" 0 0 10px 0"}}>
+                <Form form={form} layout={"inline"} style={{margin:" 0 0 10px 0"}}>
+                    <Form.Item label="切换">
+                        {selectResult&&selectResult}
+                    </Form.Item>
+
                     <Form.Item
                         name="name"
+                        label="结果详情"
                     >
                         <Input  onBlur={onChange}/>
                     </Form.Item>
@@ -140,11 +145,17 @@ const ResponseResult = (props) =>{
                             <Radio value={"raw"}>raw</Radio>
                         </Radio.Group>
                     </Form.Item>
+                    <Form.Item label="删除">
+                        {
+                            deleteResult&&deleteResult(resultId)
+                        }
+                    </Form.Item>
+
+
                 </Form>
                 {
                     showSaveView()
                 }
-
             </div>
             <div >
                 {

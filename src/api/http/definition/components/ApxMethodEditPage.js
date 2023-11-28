@@ -169,7 +169,7 @@ const ApxMethodEditPage = (props) => {
 
 
     return(
-        <div className={"content-margin"} style={{height:"100%",padding:"0"}}>
+        <div className={"content-margin page-padding"} style={{height:"100%"}}>
             <div className="content-margin-box">
                 <div className="header-title ex-title">基础信息</div>
                 <DetailCommon
