@@ -6,13 +6,18 @@ import ShareModal from "../document/components/ShareModal";
 import apxMethodStore from "../definition/store/ApxMethodStore";
 import apiStore from "../../api/store/APIStore";
 import IconBtn from "../../../common/iconBtn/IconBtn";
+import {useHistory} from "react-router";
+import categoryStore from "../../../category/store/CategoryStore";
 
 const ApiContent = (props) =>{
     const { findApxMethod } = apxMethodStore;
     const {deleteApi} = apiStore;
+    const {findCategoryList} = categoryStore;
 
-    let apiId = localStorage.getItem("apiId")
+    const workspaceId = localStorage.getItem('workspaceId');
+    const apiId = localStorage.getItem("apiId")
     const [apiDoc, setApiDoc] = useState();
+    const history = useHistory()
 
     useEffect(async ()=>{
         let res = await findApxMethod(apiId);
@@ -37,7 +42,11 @@ const ApiContent = (props) =>{
                                     icon={"shanchu3"}
                                     className="pi-icon-btn-grey"
                                     name={"删除"}
-                                    onClick={()=>deleteApi(apiId)}
+                                    onClick={async ()=> {
+                                        await deleteApi(apiId)
+                                        await findCategoryList(workspaceId);
+                                        history.push("/workspace/apis/category")
+                                    }}
                                 />
 
                             </Space>
@@ -46,8 +55,11 @@ const ApiContent = (props) =>{
                         <MenuSelect />
                     </div>
                 </div>
-
-                {renderRoutes(props.route.routes)}
+                <div className={"content-margin page-padding"} style={{height:"calc(100% - 70px)"}}>
+                    <div className="content-margin-box">
+                        {renderRoutes(props.route.routes)}
+                    </div>
+                </div>
             </div>
         </>
     )

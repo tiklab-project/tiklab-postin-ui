@@ -56,7 +56,7 @@ const WorkspaceOverViewPage = (props) =>{
     }
 
     return(
-        <div className={"content-margin page-padding"} style={{ background:"var(--pi-bg-grey-100)"}}>
+        <div className={"ws-init-box"}>
             <div className={" ws-init-content"}>
                 <div className={"wd-total"}>
                     <div className={"wd-title"}> 概要</div>

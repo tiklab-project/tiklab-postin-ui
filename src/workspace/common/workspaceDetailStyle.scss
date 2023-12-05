@@ -74,7 +74,7 @@
         .ws-left-nav-item-box{
             padding: 6px 0;
             cursor: pointer;
-            border-left: 3px solid var(--pi-bg-grey-200);
+            border-left: 3px solid var(--pi-bg-grey-100);
         }
         .ws-left-nav-item-box:hover{
             background-color: var(--pi-hover-color);
@@ -119,13 +119,19 @@
 
 //workspaceDetailInitPage
 
+.ws-init-box{
+    height: 100%;
+    overflow: auto;
+    background:var(--pi-bg-grey-100);
+
+}
 
 .ws-init-content{
     margin: 0 auto;
     border-radius: var(--pi-border-radius);
     max-width: 1440px;
     min-width: 860px;
-    padding: 0 10px 10px;
+    padding: 20px 30px;
 
 
     .content-margin-box-header{
@@ -166,8 +172,11 @@
         }
 
         &-item{
-            width: 100px;
+            width: 200px;
             text-align: center;
+            background: var(--pi-bg-grey-100);
+            border-radius: 5px;
+
 
             &-title{
                 padding: 5px;

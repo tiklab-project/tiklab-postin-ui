@@ -14,20 +14,20 @@ const SystemContent = (props) =>{
             children: [
                 {
                     title: '部门',
-                    id: '/systemManagement/org',
+                    id: '/setting/org',
                     purviewCode: "orga",
                 },{
                     title: '用户',
-                    id: '/systemManagement/user',
+                    id: '/setting/user',
                     purviewCode: "user",
 
                 },{
                     title: '用户目录',
-                    id: '/systemManagement/authConfig',
+                    id: '/setting/authConfig',
                     purviewCode: "user_dir",
                 },{
                     title: '用户组',
-                    id: '/systemManagement/userGroup',
+                    id: '/setting/userGroup',
                     // purviewCode: "userGroup",
                 },
             ]
@@ -35,21 +35,21 @@ const SystemContent = (props) =>{
         {
             title: '权限',
             icon: 'jiaosequanxian',
-            id: '/systemManagement/systemRole',
+            id: '/setting/systemRole',
             // purviewCode: "systemPrivilege",
         },
         {
             title: "消息",
             icon: 'xiaoxi',
-            id: '/systemManagement',
+            id: '/setting',
             children: [
                 {
                     title: "消息发送方式",
-                    id: '/systemManagement/messageSendType',
+                    id: '/setting/messageSendType',
                     purviewCode: "MSG_SendType",
                 },{
                     title: "消息通知方案",
-                    id: '/systemManagement/message-notice',
+                    id: '/setting/message-notice',
                     purviewCode: "MSG_Notice",
                 },
             ],
@@ -57,30 +57,39 @@ const SystemContent = (props) =>{
         {
             title: '插件',
             icon: 'plugin',
-            id: '/systemManagement/plugin',
+            id: '/setting/plugin',
             purviewCode: "plugin",
         },{
             title: "安全",
             icon: 'anquan',
-            id: '/systemManagement/log',
+            id: '/setting/log',
             purviewCode: "security",
             children: [
                 {
                     title: "操作日志",
-                    id: '/systemManagement/log',
+                    id: '/setting/log',
                     purviewCode: "log",
                 },{
                     title: "备份与恢复",
-                    id: '/systemManagement/backups',
+                    id: '/setting/backups',
 
                 }
             ],
         },
         {
-            title: '版本与许可证',
+            title: '应用',
             icon: 'xukezheng',
-            id: '/systemManagement/version'
+            id: '/setting/version',
+            children: [
+                {
+                    title: "版本与许可证",
+                    id: '/setting/version',
+                },{
+                    title: "应用访问权限",
+                    id: '/setting/product-auth',
 
+                }
+            ],
         },
     ]
 
@@ -92,33 +101,33 @@ const SystemContent = (props) =>{
             children: [
                 {
                     title: '系统功能管理',
-                    id: '/systemManagement/systemFeature',
+                    id: '/setting/systemFeature',
                 },{
                     title: '系统权限',
-                    id: '/systemManagement/baseSystemRole',
+                    id: '/setting/baseSystemRole',
                 },{
                     title: '项目功能管理',
-                    id: '/systemManagement/privilege',
+                    id: '/setting/privilege',
                 }, {
                     title: '项目权限',
-                    id: '/systemManagement/role',
+                    id: '/setting/role',
                 },{
                     title: "消息发送方式",
-                    id: '/systemManagement/messageSendTypeBase',
+                    id: '/setting/messageSendTypeBase',
                 },
                 {
                     title: "消息通知方案",
-                    id: '/systemManagement/message-notice-base',
+                    id: '/setting/message-notice-base',
                 },
                 {
                     title: '消息类型管理',
-                    id: '/systemManagement/messageType',
+                    id: '/setting/messageType',
                 },{
                     title: '日志模板',
-                    id: '/systemManagement/logTemplate',
+                    id: '/setting/logTemplate',
                 },{
                     title: '日志类型',
-                    id: '/systemManagement/logType',
+                    id: '/setting/logType',
                 },
 
             ],

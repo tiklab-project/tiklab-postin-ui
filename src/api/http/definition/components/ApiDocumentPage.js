@@ -31,92 +31,91 @@ const ApiDocumentPage = (props) =>{
     },[])
 
     return (
-        <div className={"content-margin page-padding"} style={{height: "calc(100% - 54px)"}}>
-            <div className="content-margin-box">
-                <div className={"share-box-right-content-item"}  >
-                    <div className={"pi-box-between"}>
-                        <div className={"share-box-api-title"}>
-                            {apiDoc?.apix?.name}
-                            <Tag color={apiDoc?.apix?.status?.color} style={{margin:"0 10px"}}>{apiDoc?.apix?.status?.name}</Tag>
-                        </div>
-
+        <>
+            <div className={"share-box-right-content-item"}  >
+                <div className={"pi-box-between"}>
+                    <div className={"share-box-api-title"}>
+                        {apiDoc?.apix?.name}
+                        <Tag color={apiDoc?.apix?.status?.color} style={{margin:"0 10px"}}>{apiDoc?.apix?.status?.name}</Tag>
                     </div>
-                    <div className={"share-box-right-content-item-detail"}>
-                        <div>
-                            <span className={"share-detail-title"}>负责人: {apiDoc?.apix?.executor?.name||"未设置"}</span>
-                        </div>
-                        <div>
-                            <span className={"share-detail-title"}>更新时间: {apiDoc?.apix?.updateTime}</span>
-                        </div>
-                    </div>
-                </div>
-                <div className={"share-box-right-content-item"}>
-                    <div className={"share-box-right-content-item-detail"}>
-                        <ProtocolType type={apiDoc?.apix?.protocolType}/>
-                        <MethodType type={apiDoc?.methodType} />
-                        <div>{apiDoc?.apix?.path}</div>
-                    </div>
-                    {/*<div className={"share-box-right-content-item-detail"}>*/}
-                    {/*    <div className={"share-detail-title"}>状态:</div>*/}
-                    {/*    <div style={{color:` ${apiDoc?.apiRecent?.status?.color}`}}>{apiDoc?.apiRecent?.status?.name}</div>*/}
-                    {/*</div>*/}
-                    <div className={"share-box-right-content-item-detail"}>
-                        {
-                            apiDoc?.apix?.desc
-                                ?
-                                <>
-                                    <div className={"share-detail-title"}>说明:</div>
-                                    <div >{apiDoc?.apix?.desc}</div>
-                                </>
-                                : null
-                        }
-                    </div>
-                </div>
-
-                <div className={"component-box"}>
-                    <div className="header-title ex-title">
-                        请求参数
-                    </div>
-                    <div className={"share-box-right-content-item"}>
-                        {
-                            apiDoc?.headerList||apiDoc?.queryList||apiDoc?.request?.bodyType!=="none"
-                                ?<>
-                                    <TableHeaderDoc dataSource={apiDoc?.headerList}/>
-                                    <TableQueryDoc dataSource={apiDoc?.queryList}/>
-                                    <RequestBodyDoc dataSource={apiDoc}/>
-                                </>
-                                :<div>暂无请求信息</div>
-                        }
-
-                    </div>
-                </div>
-                <div className={"component-box"}>
-                    <div className="header-title ex-title">响应示例</div>
-                    {
-                        apiDoc?.responseHeaderList
-                            ? <div className={"share-box-right-content-item"}><TableHeaderDoc isResponse={true} dataSource={apiDoc?.responseHeaderList} /></div>
-                            :null
-                    }
-                    {
-                        apiDoc?.responseResultList
-                            ?  <div className={"share-box-right-content-item"}><ResponseResultDoc dataSource={ apiDoc?.responseResultList} /> </div>
-                            :<div>暂无响应示例</div>
-                    }
 
                 </div>
-                <div className="header-title ex-title">MOCK 地址</div>
-                <div style={{margin: "5px 0 30px 0"}}>
-                    <Tooltip title="点击复制">
-                        <span
-                            id={"link"}
-                            onClick={()=>copyMockUrl("link")}
-                        >
-                            {`${serverUrl}/mockx/`+workspaceId}
-                        </span>
-                    </Tooltip>
+                <div className={"share-box-right-content-item-detail"}>
+                    <div>
+                        <span className={"share-detail-title"}>负责人: {apiDoc?.apix?.executor?.name||"未设置"}</span>
+                    </div>
+                    <div>
+                        <span className={"share-detail-title"}>更新时间: {apiDoc?.apix?.updateTime}</span>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div className={"share-box-right-content-item"}>
+                <div className={"share-box-right-content-item-detail"}>
+                    <ProtocolType type={apiDoc?.apix?.protocolType}/>
+                    <MethodType type={apiDoc?.methodType} />
+                    <div>{apiDoc?.apix?.path}</div>
+                </div>
+                {/*<div className={"share-box-right-content-item-detail"}>*/}
+                {/*    <div className={"share-detail-title"}>状态:</div>*/}
+                {/*    <div style={{color:` ${apiDoc?.apiRecent?.status?.color}`}}>{apiDoc?.apiRecent?.status?.name}</div>*/}
+                {/*</div>*/}
+                <div className={"share-box-right-content-item-detail"}>
+                    {
+                        apiDoc?.apix?.desc
+                            ?
+                            <>
+                                <div className={"share-detail-title"}>说明:</div>
+                                <div >{apiDoc?.apix?.desc}</div>
+                            </>
+                            : null
+                    }
+                </div>
+            </div>
+
+            <div className={"component-box"}>
+                <div className="header-title ex-title">
+                    请求参数
+                </div>
+                <div className={"share-box-right-content-item"}>
+                    {
+                        apiDoc?.headerList||apiDoc?.queryList||apiDoc?.request?.bodyType!=="none"
+                            ?<>
+                                <TableHeaderDoc dataSource={apiDoc?.headerList}/>
+                                <TableQueryDoc dataSource={apiDoc?.queryList}/>
+                                <RequestBodyDoc dataSource={apiDoc}/>
+                            </>
+                            :<div>暂无请求信息</div>
+                    }
+
+                </div>
+            </div>
+            <div className={"component-box"}>
+                <div className="header-title ex-title">响应示例</div>
+                {
+                    apiDoc?.responseHeaderList
+                        ? <div className={"share-box-right-content-item"}><TableHeaderDoc isResponse={true} dataSource={apiDoc?.responseHeaderList} /></div>
+                        :null
+                }
+                {
+                    apiDoc?.responseResultList
+                        ?  <div className={"share-box-right-content-item"}><ResponseResultDoc dataSource={ apiDoc?.responseResultList} /> </div>
+                        :<div>暂无响应示例</div>
+                }
+
+            </div>
+            <div className="header-title ex-title">MOCK 地址</div>
+            <div style={{margin: "5px 0 30px 0"}}>
+                <Tooltip title="点击复制">
+                    <span
+                        id={"link"}
+                        onClick={()=>copyMockUrl("link")}
+                    >
+                        {`${serverUrl}/mockx/`+workspaceId}
+                    </span>
+                </Tooltip>
+            </div>
+
+        </>
     );
 
 }

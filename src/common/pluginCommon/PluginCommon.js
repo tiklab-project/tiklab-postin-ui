@@ -27,7 +27,7 @@ const PluginCommon =({plugin,name,point})=>{
         }else {
             return <Popconfirm
                 title="想要升级增强功能？"
-                onConfirm={()=>history.push("/systemManagement/plugin")}
+                onConfirm={()=>history.push("/setting/plugin")}
                 okText='确定'
                 cancelText='取消'
                 placement="bottomRight"

@@ -35,13 +35,14 @@ const APIList = (props) => {
             dataIndex: 'type',
             width: '10%',
             render: (text,record) => (
-                <>
-                    {
-                        record.protocolType==="http"
-                            ?<MethodType type={record.methodType}/>
-                            :<span style={{color:"white",background: "rgb(46 167 255)"}} className={"requestType"}>{record.protocolType.toUpperCase()}</span>
+                <Space>
+                    {record.protocolType==="ws" &&
+                        <span style={{color:"white",background: "rgb(46 167 255)"}} className={"requestType"}>
+                            {record?.protocolType?.toUpperCase()}
+                        </span>
                     }
-                </>
+                    {record.protocolType==="http"&&<MethodType type={record.methodType}/>}
+                </Space>
             )
         },
         {

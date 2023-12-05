@@ -15,7 +15,7 @@ const HeaderContent = props => {
      * 去往系统设置页
      */
     const toSystem = () =>{
-        props.history.push("/systemManagement")
+        props.history.push("/setting")
     }
 
     return(

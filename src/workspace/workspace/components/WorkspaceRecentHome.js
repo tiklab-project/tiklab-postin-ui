@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {getUser} from "tiklab-core-ui";
 import {observer} from "mobx-react";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
-import {Empty} from "antd";
+import {Empty, Space} from "antd";
 import emptyImg from "../../../assets/img/empty.png";
 import workspaceRecentStore from "../store/WorkspaceRecentStore";
 
@@ -65,13 +65,12 @@ const WorkspaceRecentHome = (props) =>{
         <div className={"home-recent-box"}>
             {
                 dataList&&dataList.length>0
-                    ?showRecent(dataList)
+                    ?<Space size={"large"}>{showRecent(dataList)}</Space>
                     : <Empty
                         description={<span>暂无访问</span>}
                         image={emptyImg}
                     />
             }
-
         </div>
     )
 }

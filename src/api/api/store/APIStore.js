@@ -16,7 +16,7 @@ class APIStore {
             ...values
         }
 
-        const res = await Axios.post("/apix/findApixPage",params);
+        const res = await Axios.post("/apx/findApixPage",params);
         if(res.code === 0 ) {
             return  res.data;
         }
@@ -30,7 +30,7 @@ class APIStore {
         const param = new FormData();
         param.append('id', id);
 
-        const res = await Axios.post("/apix/findApix",param);
+        const res = await Axios.post("/apx/findApix",param);
         if( res.code === 0 ){
             return res.data;
         }
@@ -40,14 +40,14 @@ class APIStore {
      * 创建接口
      */
     @action
-    createApi = async (values) => await Axios.post("/apix/createApix",values)
+    createApi = async (values) => await Axios.post("/apx/createApix",values)
 
 
     /**
      * 更新接口
      */
     @action
-    updateApi = async (values) =>  await Axios.post("/apix/updateApix",values)
+    updateApi = async (values) =>  await Axios.post("/apx/updateApix",values)
 
 
     /**
@@ -57,7 +57,7 @@ class APIStore {
     deleteApi = async (id) => {
         const param = new FormData();
         param.append('id', id);
-        return  await Axios.post("/apix/deleteApix",param)
+        return  await Axios.post("/apx/deleteApix",param)
     }
 
 

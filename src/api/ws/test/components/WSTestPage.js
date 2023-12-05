@@ -52,24 +52,21 @@ const WSTestPage = () =>{
     }
 
     return(
-        <div className={"content-margin page-padding"} style={{height: "calc(100% - 50px)"}}>
-            <div className="content-margin-box">
-                <div className={"ws-base-box"}>
-                    <div className={"ws-base-url"}>
-                        <span style={{color:"white",background: "rgb(46 167 255)"}} className={"requestType"}>{wsInfo?.apix?.protocolType.toUpperCase()}</span>
-                        <span style={{margin: "0 10px"}}>{wsInfo?.apix?.path}</span>
-                    </div>
-                    {
-                        isConnectView()
-                    }
-                    <Button className={"important-btn"} onClick={send}>发送</Button>
+        <>
+            <div className={"ws-base-box"}>
+                <div className={"ws-base-url"}>
+                    <span style={{color:"white",background: "rgb(46 167 255)"}} className={"requestType"}>{wsInfo?.apix?.protocolType.toUpperCase()}</span>
+                    <span style={{margin: "0 10px"}}>{wsInfo?.apix?.path}</span>
                 </div>
-                <RequestTestWS />
-                <div style={{margin:"10px 0 "}}>报文列表</div>
-                <TestResultWS />
+                {
+                    isConnectView()
+                }
+                <Button className={"important-btn"} onClick={send}>发送</Button>
             </div>
-
-        </div>
+            <RequestTestWS />
+            <div style={{margin:"10px 0 "}}>报文列表</div>
+            <TestResultWS />
+        </>
     )
 }
 

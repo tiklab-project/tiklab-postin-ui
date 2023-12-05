@@ -186,14 +186,14 @@ const CategoryTree = (props) => {
                     onClick={()=>onMethod(item)}
                 >
                     {
-                        item.protocolType==="http"
+                        item?.protocolType==="http"
                             ?<>
                                 <TextMethodType type={item.methodType}/>
 
                                 <span className={"category-name"}>{item.name}</span>
                             </>
                             :<>
-                                <span style={{color:"#0070ff"}} className={"requestType"}>{item.protocolType.toUpperCase()}</span>
+                                <span style={{color:"#0070ff"}} className={"requestType"}>{item?.protocolType?.toUpperCase()}</span>
                                 <span className={"category-name"}>{item.name}</span>
                             </>
                     }

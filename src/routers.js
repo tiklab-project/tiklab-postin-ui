@@ -7,11 +7,12 @@ import {Directory, Orga, UserGroup, User,} from "tiklab-user-ui";
 import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "tiklab-privilege-ui"
 
 import {ExcludeProductUser} from "tiklab-eam-ui";
-import {BackupRecovery, LogTemplate, LogType, MyLog} from "tiklab-security-ui";
+import {BackupRestore, LogTemplate, LogType, MyLog} from "tiklab-security-ui";
 
 import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import Demo from "./Demo";
+import {ProductAuth} from "tiklab-licence-ui";
 
 
 //----内部组件----
@@ -119,88 +120,92 @@ const routers =  [
                 key:'workspace-edit',
             },
             {
-                path:'/systemManagement',
+                path:'/setting',
                 key:'systemManagement',
                 component:SystemContent,
                 routes:[
                     //成员与部门
                     {
-                        path: "/systemManagement/org",
+                        path: "/setting/org",
                         key:'org',
                         exact: true,
                         render:(props)=> <Orga {...props} bgroup={'postin'}/>
                     },{
-                        path: "/systemManagement/user",
+                        path: "/setting/user",
                         key:'user',
                         exact: true,
                         render:(props)=>{
                             return <User {...props} bgroup={'postin'}/>
                         }
                     },{
-                        path: "/systemManagement/authConfig",
+                        path: "/setting/authConfig",
                         key:'authConfig',
                         exact: true,
                         render: () => <Directory isPortal={false}/>,
                     },{
-                        path: "/systemManagement/userGroup",
+                        path: "/setting/userGroup",
                         key:'authConfig',
                         exact: true,
                         render: () => <UserGroup />,
                     },
                     //权限
                     {
-                        path: "/systemManagement/systemRole",
+                        path: "/setting/systemRole",
                         key:'SystemRole',
                         render: () => <SystemRole group={'system'} bgroup={"postin"}/>,
                     },
                     //消息
                     {
-                        path: "/systemManagement/messageSendType",
+                        path: "/setting/messageSendType",
                         key:'MessageSendType',
                         exact: true,
                         render:()=> <MessageSendType bgroup={"postin"} />
                     },
                     {
-                        path: "/systemManagement/message-notice",
+                        path: "/setting/message-notice",
                         key:'MessageType',
                         exact: true,
                         render:()=> <MessageNotice bgroup={"postin"}/>
                     },
                     {
-                        path: "/systemManagement/backups",
+                        path: "/setting/backups",
                         exact: true,
-                        render:()=> <BackupRecovery />
+                        render:()=> <BackupRestore />
+                    },{
+                        path: "/setting/product-auth",
+                        exact: true,
+                        render:()=> <ProductAuth  />
                     },
 
                     // //代办
                     // {
-                    //     path: "/systemManagement/myTodo",
+                    //     path: "/setting/myTodo",
                     //     key:'myTodo',
                     //     exact: true,
                     //     render:(props)=> <MyTodoTask {...props} bgroup={"postin"}/>
                     // },
                     //插件
                     {
-                        path: "/systemManagement/plugin",
+                        path: "/setting/plugin",
                         key:'plugin',
-                        render:(props)=> <Plugin {...props}  detailRouter={"/systemManagement/plugindetail"}/>,
+                        render:(props)=> <Plugin {...props}  detailRouter={"/setting/plugindetail"}/>,
                     },
                     {
-                        path: "/systemManagement/plugindetail",
+                        path: "/setting/plugindetail",
                         key:'plugindetail',
                         exact: true,
-                        render:()=> <PluginDetail  pluginsRoute={"/systemManagement/plugin"}/>,
+                        render:()=> <PluginDetail  pluginsRoute={"/setting/plugin"}/>,
                     },
                     //日志
                     {
-                        path: "/systemManagement/log",
+                        path: "/setting/log",
                         key:'log',
                         exact: true,
                         render:(props)=>  <MyLog {...props} bgroup={"postin"}/>,
                     },
                     //版本
                     {
-                        path: "/systemManagement/version",
+                        path: "/setting/version",
                         key:'version',
                         exact: true,
                         component:Version
@@ -208,7 +213,7 @@ const routers =  [
                     },
                     //产品授权
                     // {
-                    //     path: "/systemManagement/product",
+                    //     path: "/setting/product",
                     //     key:'version',
                     //     exact: true,
                     //     render:(props)=><ProductAuth />
@@ -216,74 +221,74 @@ const routers =  [
 
 
                     {
-                        path: "/systemManagement/baseSystemRole",
+                        path: "/setting/baseSystemRole",
                         exact: true,
                         render: () => <SystemRole isBase={true} group={'system'} bgroup={"postin"}/>,
                     },
                     {
-                        path: "/systemManagement/systemFeature",
+                        path: "/setting/systemFeature",
                         key:'SystemFeature',
                         exact: true,
                         render: () => <SystemFeature isBase={true} bgroup={"postin"}/>,
                     },
                     {
-                        path: "/systemManagement/privilege",
+                        path: "/setting/privilege",
                         key:'ProjectFeature',
                         exact: true,
                         render: (props) => <ProjectFeature isBase={true} {...props} bgroup={"postin"}/>,
                     },
                     {
-                        path: "/systemManagement/role",
+                        path: "/setting/role",
                         key:'ProjectRole',
                         exact: true,
                         render: (props) => <ProjectRole isBase={true} {...props} bgroup={"postin"}/>,
                     },
                     {
-                        path: "/systemManagement/messageSendTypeBase",
+                        path: "/setting/messageSendTypeBase",
                         key:'messageSendTypeBase',
                         exact: true,
                         render:()=> <MessageSendType bgroup={"postin"} isBase={true}/>
                     },
                     {
-                        path: "/systemManagement/message-notice-base",
+                        path: "/setting/message-notice-base",
                         key:'MessageType',
                         exact: true,
                         render:()=> <MessageNotice bgroup={"postin"} isBase={true}/>
                     },
                     {
-                        path: "/systemManagement/messageType",
+                        path: "/setting/messageType",
                         key:'MessageType',
                         exact: true,
                         render:()=> <MessageType bgroup={"postin"}  isBase={true}/>
 
                     },
                     {
-                        path: "/systemManagement/logTemplate",
+                        path: "/setting/logTemplate",
                         key:'logTemplate',
                         exact: true,
                         render:(props)=>  <LogTemplate {...props} bgroup={"postin"}/>,
                     },{
-                        path: "/systemManagement/logType",
+                        path: "/setting/logType",
                         key:'logTemplate',
                         exact: true,
                         render:()=>  <LogType bgroup={"postin"}/>,
                     },
                     // {
-                    //     path: "/systemManagement/taskList",
+                    //     path: "/setting/taskList",
                     //     key:'todo',
                     //     exact: true,
                     //     render:(props)=> <TaskList {...props} bgroup={"postin"}/>,
                     // },{
-                    //     path: "/systemManagement/todoTemp",
+                    //     path: "/setting/todoTemp",
                     //     key:'todoTemp',
                     //     exact: true,
                     //     render:(props)=> <TodoTempList {...props} bgroup={"postin"}/>,
                     // },
                     {
-                        path: "/systemManagement",
+                        path: "/setting",
                         key:'sysEnvMana',
                         exact: true,
-                        render: () => <Redirect to={"/systemManagement/systemRole"}/>,
+                        render: () => <Redirect to={"/setting/systemRole"}/>,
                     },
                 ]
             },

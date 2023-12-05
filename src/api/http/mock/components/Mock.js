@@ -116,32 +116,31 @@ const Mock = (props) => {
 
 
     return (
-        <div className={"content-margin page-padding"} style={{height:" calc(100% - 48px)"}}>
-            <div className="content-margin-box">
-                <div className='mock-header'>
-                    <div style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}>
-                        MOCK地址：
-                        <Tooltip title="点击复制">
-                            <span
-                                id={"link"}
-                                onClick={()=>copyMockUrl("link")}
-                            >
-                                 {`${serverUrl}/mockx/`+workspaceId}
-                            </span>
-                        </Tooltip>
-                    </div>
-                    <MockEdit btn="btn"  name={"+添加MOCK"} {...props }/>
+        <>
+            <div className='mock-header'>
+                <div style={{display:"flex",justifyContent:"space-between",cursor:"pointer"}}>
+                    MOCK地址：
+                    <Tooltip title="点击复制">
+                        <span
+                            id={"link"}
+                            onClick={()=>copyMockUrl("link")}
+                        >
+                             {`${serverUrl}/mockx/`+workspaceId}
+                        </span>
+                    </Tooltip>
                 </div>
-                <div className={"pi-list-box"}>
-                    <Table
-                        columns={columns}
-                        dataSource={mockList}
-                        rowKey = {record => record.id}
-                        pagination={false}
-                    />
-                </div>
+                <MockEdit btn="btn"  name={"+添加MOCK"} {...props }/>
             </div>
-        </div>
+            <div className={"pi-list-box"}>
+                <Table
+                    columns={columns}
+                    dataSource={mockList}
+                    rowKey = {record => record.id}
+                    pagination={false}
+                />
+            </div>
+        </>
+
     )
 }
 

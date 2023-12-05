@@ -208,61 +208,61 @@ const ApiTestContent = (props) => {
 
 
     return(
-        <div className={"content-margin page-padding"}>
-            <div className="content-margin-box">
-                <div className={"test-base"}>
-                    <Form
-                        onFinish={onFinish}
-                        form = {form}
-                        className="test-header"
-                    >
-                        <div className={"test-url"}>
-                            <Form.Item name="methodType" noStyle>
-                                <Select style={{width: 100,height:40}} disabled={true} showArrow={false}>
-                                    {
-                                        Object.keys(methodDictionary).map(item=>{
-                                            return <Option value={item}  key={item}>{item.toUpperCase()}</Option>
-                                        })
-                                    }
-                                </Select>
-                            </Form.Item>
-                            {
-                                showHost()
-                            }
-                            <Form.Item
-                                className='formItem'
-                                name="path"
-                                rules={[{required: true,message: '接口的路径'}]}
-                            >
-                                <Input disabled/>
-                            </Form.Item>
-                        </div>
 
-                        <IconBtn
-                            className="important-btn"
-                            icon={"fasong-copy"}
-                            onClick={onFinish}
-                            name={"发送"}
-                        />
+        <>
+            <div className={"test-base"}>
+                <Form
+                    onFinish={onFinish}
+                    form = {form}
+                    className="test-header"
+                >
+                    <div className={"test-url"}>
+                        <Form.Item name="methodType" noStyle>
+                            <Select style={{width: 100,height:40}} disabled={true} showArrow={false}>
+                                {
+                                    Object.keys(methodDictionary).map(item=>{
+                                        return <Option value={item}  key={item}>{item.toUpperCase()}</Option>
+                                    })
+                                }
+                            </Select>
+                        </Form.Item>
+                        {
+                            showHost()
+                        }
+                        <Form.Item
+                            className='formItem'
+                            name="path"
+                            rules={[{required: true,message: '接口的路径'}]}
+                        >
+                            <Input disabled/>
+                        </Form.Item>
+                    </div>
 
-                    </Form>
-                </div>
-
-                <div className='header-title ex-title'>请求</div>
-                <div className={"white-bg-box"}>
-                    <TestRequest tabTip={tabTip}/>
-                </div>
-
-                <div className='header-title ex-title'>响应</div>
-                <div className={"white-bg-box "}>
-                    <TestResultCommon
-                        testResponse={testResponse}
-                        showResponse={showResponse}
-                        afterScript={afterScript}
+                    <IconBtn
+                        className="important-btn"
+                        icon={"fasong-copy"}
+                        onClick={onFinish}
+                        name={"发送"}
                     />
-                </div>
+
+                </Form>
             </div>
-        </div>
+
+            <div className='header-title ex-title'>请求</div>
+            <div className={"white-bg-box"}>
+                <TestRequest tabTip={tabTip}/>
+            </div>
+
+            <div className='header-title ex-title'>响应</div>
+            <div className={"white-bg-box "}>
+                <TestResultCommon
+                    testResponse={testResponse}
+                    showResponse={showResponse}
+                    afterScript={afterScript}
+                />
+            </div>
+
+        </>
     )
 }
 

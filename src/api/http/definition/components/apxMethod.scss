@@ -445,7 +445,8 @@
         align-items: center;
         justify-content: space-between;
         padding: 12px;
-        border-bottom: 1px solid var(--pi-border-color);
+        border: 1px solid var(--pi-border-color);
+        border-bottom:none;
 
         .ant-form-item-label > label{
             color: rgb(151 151 151 / 85%);
@@ -475,7 +476,6 @@
 }
 
 .api-result-box{
-    border: 1px solid var(--pi-border-color);
     min-height: 365px;
 
     .api-result-box-tab-item-title{

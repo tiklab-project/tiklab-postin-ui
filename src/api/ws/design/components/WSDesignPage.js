@@ -51,19 +51,17 @@ const WSDesignPage = (props) => {
 
  
     return(
-        <div className={"content-margin page-padding"} style={{height:"100%"}}>
-            <div className="content-margin-box">
-                <div className="header-title ex-title">基础信息</div>
-                <DetailCommon
-                    updateApi={updateFn}
-                    form={form}
-                    apiInfo={apiInfo}
-                    updateStatus={updateStatus}
-                />
-                <div className="header-title ex-title">请求信息</div>
-                <RequestWS />
-            </div>
-        </div>
+        <>
+            <div className="header-title ex-title">基础信息</div>
+            <DetailCommon
+                updateApi={updateFn}
+                form={form}
+                apiInfo={apiInfo}
+                updateStatus={updateStatus}
+            />
+            <div className="header-title ex-title">请求信息</div>
+            <RequestWS />
+        </>
     )
 }
 

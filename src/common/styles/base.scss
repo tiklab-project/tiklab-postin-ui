@@ -222,9 +222,9 @@ table .icon{
 
         .home-recent-item{
             height: 100px;
-            width: 210px;
+            width: 235px;
             border-radius: var(--pi-border-radius) ;
-            margin: 0 20px 10px 0;
+            margin: 0 3px 0 0;
             background: var(--pi-bg-grey-100);
             padding: 10px;
             cursor: pointer;
@@ -247,7 +247,7 @@ table .icon{
 
 
             &-num{
-                padding: 10px;
+                padding: 20px 0 0 0;
                 display: flex;
                 align-items: center;
 

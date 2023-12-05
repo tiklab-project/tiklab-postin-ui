@@ -16,7 +16,7 @@ const SysManage = (props) => {
 
     const routers = props.route.routes
 
-    const [selectKey,setSelectKey] = useState('/systemManagement/systemRole')
+    const [selectKey,setSelectKey] = useState('/setting/systemRole')
 
     const [menuRouter,setMenuRouter] = useState();
 
@@ -35,7 +35,7 @@ const SysManage = (props) => {
     /**
      * 树的展开与闭合
      */
-    const [expandedTree, setExpandedTree] = useState(["/systemManagement/system"])
+    const [expandedTree, setExpandedTree] = useState(["/setting/system"])
 
     const isExpandedTree = (key) => {
         return expandedTree.some(item => item ===key)
@@ -198,7 +198,7 @@ const SysManage = (props) => {
             expandedTree={expandedTree} // 树的展开和闭合(非必传)
             setExpandedTree={setExpandedTree} // 树的展开和闭合(非必传)
             applicationRouters={menuRouter} // 菜单
-            outerPath={"/systemManagement"} // 系统设置Layout路径
+            outerPath={"/setting"} // 系统设置Layout路径
         >
             <Layout className = 'sysmana-layout'>
                 <Sider

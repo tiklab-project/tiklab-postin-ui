@@ -153,7 +153,7 @@ const ApxMethodEditPage = (props) => {
         }else {
             return <Popconfirm
                     title="想要升级增强功能？"
-                    onConfirm={()=>props.history.push("/systemManagement/plugin")}
+                    onConfirm={()=>props.history.push("/setting/plugin")}
                     okText='确定'
                     cancelText='取消'
                     placement="bottomRight"
@@ -169,34 +169,33 @@ const ApxMethodEditPage = (props) => {
 
 
     return(
-        <div className={"content-margin page-padding"} style={{height:"100%"}}>
-            <div className="content-margin-box">
-                <div className="header-title ex-title">基础信息</div>
-                <DetailCommon
-                    updateApi={updateFn}
-                    form={form}
-                    apiInfo={resData?.apix}
-                    updateStatus={selectStatus}
-                    methodType={true}
-                />
-                <div className="header-title ex-title">输入参数</div>
-                <div className={"white-bg-box"}>
-                    <Request tabTip={tabTip} />
-                </div>
-
-                <div className="header-title ex-title">输出结果</div>
-                <Tabs defaultActiveKey={"resResult"}>
-                    <TabPane tab="返回头" key="resHeader">
-                        <div className={"tabPane-item-box"} style={{margin:"10px 0 0 0"}}><ResponseHeader /></div>
-                    </TabPane>
-                    <TabPane tab="返回结果" key="resResult">
-                        <div style={{margin:"10px 0 0 0"}} ><Response  /></div>
-                    </TabPane>
-
-                </Tabs>
-
+        <>
+            <div className="header-title ex-title">基础信息</div>
+            <DetailCommon
+                updateApi={updateFn}
+                form={form}
+                apiInfo={resData?.apix}
+                updateStatus={selectStatus}
+                methodType={true}
+            />
+            <div className="header-title ex-title">输入参数</div>
+            <div className={"white-bg-box"}>
+                <Request tabTip={tabTip} />
             </div>
-        </div>
+
+            <div className="header-title ex-title">输出结果</div>
+            <Tabs defaultActiveKey={"resResult"}>
+                <TabPane tab="返回头" key="resHeader">
+                    <div className={"tabPane-item-box"} style={{margin:"10px 0 0 0"}}><ResponseHeader /></div>
+                </TabPane>
+                <TabPane tab="返回结果" key="resResult">
+                    <div style={{margin:"10px 0 0 0"}} ><Response  /></div>
+                </TabPane>
+
+            </Tabs>
+
+        </>
+
     )
 }
 

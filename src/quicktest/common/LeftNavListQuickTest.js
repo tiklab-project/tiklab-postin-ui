@@ -118,6 +118,7 @@ const LeftNavListQuickTest =(props)=>{
             instance = {
                 "id":res.id,
                 "type":"api",
+                "protocol": "http",
                 "data":{
                     "baseInfo":{
                         "path":request.url,

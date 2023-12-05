@@ -107,28 +107,32 @@ const Workspace = (props) => {
     return(
         <div style={{"height":"var(--pi-calc-content)",overflow:"auto"}}>
             <div className='ws-layout'>
-                <DetailHeader
-                    left={
-                        <div style={{
-                            display:"flex",
-                            alignItems:"center",
-                            justifyContent:"space-between",
-                            width: 55
-                        }}>
-                            <svg className={"icon-m"} aria-hidden="true" >
-                                <use xlinkHref= {`#icon-home`} />
-                            </svg>
-                            <span>空间</span>
-                        </div>
-                    }
-                    right={
-                        <IconBtn
-                            className="important-btn"
-                            onClick={toWorkspaceEdit}
-                            name={"添加空间"}
-                        />
-                    }
-                />
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "0 0 0 10px"
+                    }}
+                >
+                    <div style={{
+                        display:"flex",
+                        alignItems:"center",
+                        justifyContent:"space-between",
+                        width: 55
+                    }}>
+                        <svg className={"icon-m"} aria-hidden="true" >
+                            <use xlinkHref= {`#icon-home`} />
+                        </svg>
+                        <span>空间</span>
+                    </div>
+
+                    <IconBtn
+                        className="important-btn"
+                        onClick={toWorkspaceEdit}
+                        name={"添加空间"}
+                    />
+                </div>
 
                 <div className={"home-box-item-detail"}>
                     <div style={{margin:"10px 0 "}}>最近访问</div>

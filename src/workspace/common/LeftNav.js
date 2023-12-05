@@ -117,7 +117,7 @@ const LeftNav = (props) =>{
 
     const openToggleWorkspace = async () =>{
         setVisible(!visible)
-        let list = await findWorkspaceRecentList()
+        let list = await findWorkspaceRecentList({userId:getUser().userId})
         setRecentList(list)
     }
 
@@ -127,11 +127,11 @@ const LeftNav = (props) =>{
     const toggleWorkspaceView = (
         <div className={"ws-hover-box"}>
             <div style={{ padding: "10px"}}>
-                <div className={"ws-hover-box-title"}>切换仓库</div>
-                <div style={{height:"169px"}}>
+                <div className={"ws-hover-box-title"}>切换空间</div>
+                <div style={{height:"210px"}}>
                     {
                         recentList&&recentList.map((item,index)=> {
-                                if(index>3) return
+                                if(index>4) return
                                 return (
                                     <div
                                         className={`ws-hover-item ${item.id===workspaceId?"ws-toggle-ws-select":""}`}
@@ -149,7 +149,6 @@ const LeftNav = (props) =>{
                     }
                 </div>
             </div>
-
 
             <a className={"ws-toggle-repository_more"} onClick={()=>history.push("/workspacePage")}>查看更多</a>
         </div>

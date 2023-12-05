@@ -87,64 +87,63 @@ const MockDetail = (props) =>{
     }
 
     return(
-        <div className={"content-margin page-padding"} style={{height:" calc(100% - 48px)"}}>
-            <div className="content-margin-box">
+        <>
 
-                <div className={"mock-header-box"}>
-                    <EdiText
-                        value={resData?.name}
-                        tabIndex={2}
-                        onSave={editName}
-                        startEditingOnFocus
-                        submitOnUnfocus
-                        showButtonsOnHover
-                        viewProps={{ className: 'edit-api-title' }}
-                        editButtonClassName="ediText-edit"
-                        saveButtonClassName="ediText-save"
-                        cancelButtonClassName="ediText-cancel"
-                        editButtonContent={
-                            <svg className="icon" aria-hidden="true">
-                                <use xlinkHref= {`#icon-bianji1`} />
-                            </svg>
+            <div className={"mock-header-box"}>
+                <EdiText
+                    value={resData?.name}
+                    tabIndex={2}
+                    onSave={editName}
+                    startEditingOnFocus
+                    submitOnUnfocus
+                    showButtonsOnHover
+                    viewProps={{ className: 'edit-api-title' }}
+                    editButtonClassName="ediText-edit"
+                    saveButtonClassName="ediText-save"
+                    cancelButtonClassName="ediText-cancel"
+                    editButtonContent={
+                        <svg className="icon" aria-hidden="true">
+                            <use xlinkHref= {`#icon-bianji1`} />
+                        </svg>
+                    }
+                    hideIcons
+                />
+
+            </div>
+            <div className='header-title ex-title'>期望参数</div>
+            <div className={"white-bg-box"}>
+                <MockRequest {...props} />
+            </div>
+
+            <div className='header-title  ex-title'>返回结果</div>
+            <div className={"white-bg-box mock-resp-code"}>
+            <Form form={form} layout={"inline"}>
+                <Form.Item label="响应状态码">
+                    <Select
+                        allowClear
+                        showSearch
+                        placeholder="HTTP CODE"
+                        onChange={changeSelect}
+                        onSearch={searchSelect}
+                        onBlur={blurSelect}
+                        style={{width: 170}}
+                        value={selectValue}
+                    >
+                        {
+                            dir.httpCode.map(item=>{
+                                return <Option value={item} key={item}>{item}</Option>
+                            })
                         }
-                        hideIcons
-                    />
-
-                </div>
-                <div className='header-title ex-title'>期望参数</div>
-                <div className={"white-bg-box"}>
-                    <MockRequest {...props} />
-                </div>
-
-                <div className='header-title  ex-title'>返回结果</div>
-                <div className={"white-bg-box mock-resp-code"}>
-                <Form form={form} layout={"inline"}>
-                    <Form.Item label="响应状态码">
-                        <Select
-                            allowClear
-                            showSearch
-                            placeholder="HTTP CODE"
-                            onChange={changeSelect}
-                            onSearch={searchSelect}
-                            onBlur={blurSelect}
-                            style={{width: 170}}
-                            value={selectValue}
-                        >
-                            {
-                                dir.httpCode.map(item=>{
-                                    return <Option value={item} key={item}>{item}</Option>
-                                })
-                            }
-                        </Select>
-                    </Form.Item>
-                    <Form.Item label="响应延迟时间(/ms)">
-                        <InputNumber min={0} max={100000} value={delayTime}  onChange={changeInputNumber} />
-                    </Form.Item>
-                </Form>
-                <MockResponse  {...props}/>
+                    </Select>
+                </Form.Item>
+                <Form.Item label="响应延迟时间(/ms)">
+                    <InputNumber min={0} max={100000} value={delayTime}  onChange={changeInputNumber} />
+                </Form.Item>
+            </Form>
+            <MockResponse  {...props}/>
             </div>
-            </div>
-        </div>
+        </>
+
     )
 
 

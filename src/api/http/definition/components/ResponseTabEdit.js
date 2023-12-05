@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { observer, inject } from "mobx-react";
 import {Modal, Form, Input, Select, Radio, Button} from 'antd';
 import apiResponseStore from "../store/ApiResponseStore";
+import IconCommon from "../../../../common/IconCommon";
 
 const {Option} = Select
 
@@ -13,7 +14,7 @@ const httpCodes = [200,201,403,404,410,422,500,502,503,504]
  * 响应中Tab添加
  */
 const ResponseTabEdit =(props)=>{
-    const { setActiveKey ,apiId,apiResponseId} = props;
+    const { setActiveKey ,apiId,apiResponseId, setDropdownVisible} = props;
     const {findApiResponseList, createApiResponse,findApiResponse, updateApiResponse} = apiResponseStore;
 
     const [visible, setVisible] = useState(false);
@@ -31,6 +32,7 @@ const ResponseTabEdit =(props)=>{
         }
 
         setVisible(true)
+        setDropdownVisible(false);
     }
 
     /**
@@ -71,7 +73,11 @@ const ResponseTabEdit =(props)=>{
      */
     const showView = () =>{
         if(props.type==="edit"){
-            return <span onClick={showModal}>编辑</span>
+            return <IconCommon
+                icon={"bianji11"}
+                className={"icon-s edit-icon"}
+                onClick={showModal}
+            />
         }else {
             return <div onClick={showModal} style={{width:"100%",padding:"0 10px",cursor:"pointer"}}>
                 添加
