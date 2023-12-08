@@ -67,7 +67,7 @@ const WorkspaceOverViewPage = (props) =>{
                     </div>
                 </div>
                 <div className={"wd-dynamic-box"}>
-                    <div className={"wd-title"} >动态详情</div>
+                    <div className={"wd-title"} >最近动态</div>
                     <div style={{margin: "0 10px"}}>
                         <DynamicWidget screen={{"workspaceId": workspaceId}}/>
                     </div>

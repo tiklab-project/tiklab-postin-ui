@@ -25,7 +25,7 @@ class CategoryStore{
             orderParams:[{name:'name', orderType:'asc'}],
         }
 
-        let res = await Axios.post("/category/likeFindCategoryListTree",params)
+        let res = await Axios.post("/category/findCategoryListTree",params)
         if(res.code === 0) {
             this.categoryList = res.data;
             return res.data;

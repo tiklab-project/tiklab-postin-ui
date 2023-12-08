@@ -31,7 +31,7 @@ const DeleteWorkspaceModal = (props) =>{
      */
     const deleteFn = () =>{
         deleteWorkspace(workspaceId).then(()=>{
-            props.history.push("/workspacePage")
+            props.history.push("/workspaces")
         })
     }
 

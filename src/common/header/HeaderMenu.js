@@ -16,7 +16,7 @@ const HeaderMenu = (props) =>{
         },
         {
             label: '空间',
-            key: '/workspacePage',
+            key: '/workspaces',
         }
     ]
 
@@ -26,7 +26,7 @@ const HeaderMenu = (props) =>{
         if(pathname==="home"){
             setCurrent('/home')
         }else if(pathname.includes("workspace")){
-            setCurrent('/workspacePage')
+            setCurrent('/workspaces')
         }
     },[pathname])
 

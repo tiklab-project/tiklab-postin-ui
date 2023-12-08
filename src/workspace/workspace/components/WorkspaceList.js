@@ -116,7 +116,7 @@ const WorkspaceList = (props) => {
     const setLocalStorage = (workspaceId) => {
         toWorkspaceDetail(workspaceId,workspaceRecent)
 
-        props.history.push('/workspace/quickTest/detail/api');
+        props.history.push('/workspace/quick/test');
     }
 
 

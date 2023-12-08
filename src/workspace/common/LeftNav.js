@@ -17,7 +17,7 @@ import "../../api/http/definition/components/apxMethod.scss"
  */
 const LeftNav = (props) =>{
     const {workspaceStore,systemRoleStore} = props;
-    const {workspaceIcon,workspaceName,findWorkspace } = workspaceStore;
+    const {workspaceIcon,workspaceName,findWorkspace,findWorkspaceJoinList } = workspaceStore;
     const {workspaceRecent,findWorkspaceRecentList}=workspaceRecentStore;
 
     const menuData = [
@@ -31,7 +31,7 @@ const LeftNav = (props) =>{
             "icon":"kuaijieyingyon",
             "name":"接口调试",
             "key":"quickTest",
-            "router":"/workspace/quickTest/detail/api"
+            "router":"/workspace/quick/test"
         },
         {
             "icon":"jiekou",
@@ -83,7 +83,7 @@ const LeftNav = (props) =>{
      * 点击快捷测试初始化的tap
      */
     const addQuickTestTabInfo = (router) =>{
-        if(router==="/workspace/quickTest"){
+        if(router==="/workspace/quick"){
             localStorage.setItem("instanceId","-1")
         }
     }
@@ -117,8 +117,22 @@ const LeftNav = (props) =>{
 
     const openToggleWorkspace = async () =>{
         setVisible(!visible)
-        let list = await findWorkspaceRecentList({userId:getUser().userId})
-        setRecentList(list)
+        let userId = getUser().userId
+        let recentList = await findWorkspaceRecentList({userId:userId})
+
+        // 如果不足 5 个，补充，并去重
+        if (recentList.length < 5) {
+            let additionalList = await findWorkspaceJoinList({userId:userId})
+
+            // 去重
+            additionalList = additionalList.filter(item => !recentList.some(existingItem => existingItem.id === item.id));
+
+            // 将不足的项目添加到最近项目列表
+            recentList = recentList.concat(additionalList.slice(0, 5 - recentList.length));
+        }
+        // 如果超过 5 个，保留最新的 5 个项目
+        recentList = recentList.slice(-5);
+        setRecentList(recentList)
     }
 
     /**
@@ -150,7 +164,7 @@ const LeftNav = (props) =>{
                 </div>
             </div>
 
-            <a className={"ws-toggle-repository_more"} onClick={()=>history.push("/workspacePage")}>查看更多</a>
+            <a className={"ws-toggle-repository_more"} onClick={()=>history.push("/workspaces")}>查看更多</a>
         </div>
     )
 

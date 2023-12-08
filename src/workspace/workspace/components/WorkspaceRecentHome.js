@@ -29,7 +29,7 @@ const WorkspaceRecentHome = (props) =>{
     const toDetail = (workspaceId) => {
 
         toWorkspaceDetail(workspaceId,workspaceRecent)
-        props.history.push('/workspace/quickTest/detail/api');
+        props.history.push('/workspace/quick/test');
     }
 
     /**

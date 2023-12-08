@@ -148,7 +148,7 @@ class QuickTestStore {
      * 保存为接口
      */
     @action
-    saveToApi = async (data) => await Axios.post("/quickTest/saveToApi",data);
+    saveToApi = async (data) => await Axios.post("/quick/saveToApi",data);
 
 
     /**

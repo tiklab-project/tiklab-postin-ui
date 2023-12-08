@@ -57,7 +57,7 @@ const WorkspaceEdit = (props) => {
         createWorkspace(values).then((res)=> {
             toWorkspaceDetail(res.data,workspaceRecent)
 
-            props.history.push('/workspace/quickTest/detail');
+            props.history.push('/workspace/quick/test');
         });
     };
 
@@ -111,7 +111,7 @@ const WorkspaceEdit = (props) => {
     * 关闭
     */
     const onCancel = () => {
-        props.history.push("/workspacePage")
+        props.history.push("/workspaces")
     };
 
     return (

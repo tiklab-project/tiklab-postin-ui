@@ -110,7 +110,7 @@ const routers =  [
                 key:'Home',
             },
             {
-                path: "/workspacePage",
+                path: "/workspaces",
                 component: Workspace,
                 key:'workspacePage',
             },
@@ -211,13 +211,7 @@ const routers =  [
                         component:Version
 
                     },
-                    //产品授权
-                    // {
-                    //     path: "/setting/product",
-                    //     key:'version',
-                    //     exact: true,
-                    //     render:(props)=><ProductAuth />
-                    // },
+
 
 
                     {
@@ -388,13 +382,13 @@ const routers =  [
                         ]
                     },
                     {
-                        path: "/workspace/quickTest",
+                        path: "/workspace/quick",
                         component: LayoutQuickTest,
                         cacheKey: 'quickTest',
                         cache: true,// 缓存 组件
                         routes:[
                             {
-                                path: "/workspace/quickTest/detail",
+                                path: "/workspace/quick/test",
                                 cacheKey: 'TabsQuickTest',
                                 component: TestBoxQuickTest,
                                 cache: true,// 缓存 组件

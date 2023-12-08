@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Empty, List, Skeleton} from "antd";
 import {Axios} from "tiklab-core-ui";
 import emptyImg from "../../assets/img/empty.png";
+import logImg from "../../assets/img/logimg.png";
 
 /**
  * 首页中动态
@@ -71,10 +72,11 @@ const DynamicWidget = (props) =>{
             renderItem={(item) => (
                 <List.Item >
                     <Skeleton avatar title={false} loading={item.loading} active>
+                        <img src={logImg} alt={"icon"} width={24}/>
                         <List.Item.Meta
                             description={<div  dangerouslySetInnerHTML={{__html: item.data}} />}
                         />
-                        <div>{item.timestamp}</div>
+                        <div>{item.createTime}</div>
                     </Skeleton>
                 </List.Item>
             )}
