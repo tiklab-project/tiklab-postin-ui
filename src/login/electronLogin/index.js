@@ -5,7 +5,7 @@
  * @description index
  */
 import React, {useEffect, useState} from 'react';
-import {setCookie, saveUser, urlQuery, LOCALSTORAGE_KEY, disableFunction, Axios, getVersionInfo} from 'tiklab-core-ui'
+import {setCookie, saveUser, urlQuery, LOCALSTORAGE_KEY, disableFunction, Axios, getVersionInfo} from 'thoughtware-core-ui'
 
 import {inject, observer} from 'mobx-react';
 import { Button, Layout} from 'antd';
@@ -14,7 +14,7 @@ import LocalLogin from "./components/localLogin";
 import AccountLogin from "./components/accountLogin";
 
 import './style/login.scss'
-import {useHasPointPlugin} from "tiklab-plugin-core-ui";
+import {useHasPointPlugin} from "thoughtware-plugin-core-ui";
 
 const { Content, Footer } = Layout;
 

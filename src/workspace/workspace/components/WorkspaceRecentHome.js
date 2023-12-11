@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import {observer} from "mobx-react";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
 import {Empty, Space} from "antd";
@@ -17,10 +17,16 @@ const WorkspaceRecentHome = (props) =>{
 
 
     useEffect( async ()=>{
-        let list = await findWorkspaceRecentList({userId:userId})
-        let newList = list.slice(0,4);
+        let params = {
+            pageParam: {
+                pageSize: 4,
+                currentPage:1
+            },
+            userId:userId
+        }
+        let list = await findWorkspaceRecentList(params)
 
-        setDataList(newList)
+        setDataList(list)
     },[userId])
 
     /**

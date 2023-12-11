@@ -1,5 +1,5 @@
 import { observable,  action } from "mobx";
-import {Axios} from "tiklab-core-ui";
+import {Axios} from "thoughtware-core-ui";
 
 /**
  * 最近访问的接口 store
@@ -26,14 +26,18 @@ class ApiRecentStore {
 	findApiRecentList = async (value) => {
 		this.params = {
 			...value,
+			pageParam: {
+				pageSize: 8,
+				currentPage:1
+			},
 			orderParams:[{name:'updateTime', orderType:'desc'}],
 		}
-		const res = await Axios.post("/apiRecent/findApiRecentList",this.params)
+		const res = await Axios.post("/apiRecent/findApiRecentPage",this.params)
 
 		if(res.code === 0 ) {
-			this.recentList = res.data;
+			this.recentList = res.data.dataList;
 
-			return res.data;
+			return res.data.dataList;
 		}
 	}
 }

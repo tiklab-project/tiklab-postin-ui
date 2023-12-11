@@ -1,7 +1,7 @@
 import {action, observable} from "mobx";
 import {AssertCommonStore} from "../../../api/http/test/common/AssertCommonStore";
 import qs from "qs";
-import {Axios} from "tiklab-core-ui";
+import {Axios} from "thoughtware-core-ui";
 
 let assertCommonStore = new AssertCommonStore();
 

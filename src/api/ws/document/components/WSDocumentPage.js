@@ -23,14 +23,10 @@ const WSDocumentPage = (props) =>{
     return (
         <>
             <div className={"share-box-right-content-item"}  >
-                <div className={"pi-box-between"}>
-                    <div className={"share-box-api-title"}>
-                        {wsInfo?.apix?.name}
-                        <Tag color={wsInfo?.apix?.status?.color} style={{margin:"0 10px"}}>{wsInfo?.apix?.status?.name}</Tag>
-                    </div>
-
+                <div className={"share-box-right-content-item-detail"}>
+                    <span style={{color:"white",background: "rgb(46 167 255)"}} className={"requestType"}>{wsInfo?.apix?.protocolType.toUpperCase()}</span>
+                    <div>{wsInfo?.apix?.path}</div>
                 </div>
-
                 <div className={"share-box-right-content-item-detail"}>
                     <div>
                         <span className={"share-detail-title"}>负责人: {wsInfo?.apix?.executor?.name||"未设置"}</span>
@@ -40,12 +36,8 @@ const WSDocumentPage = (props) =>{
                     </div>
                 </div>
             </div>
-
             <div className={"share-box-right-content-item"}>
-                <div className={"share-box-right-content-item-detail"}>
-                    <span style={{color:"white",background: "rgb(46 167 255)"}} className={"requestType"}>{wsInfo?.apix?.protocolType.toUpperCase()}</span>
-                    <div>{wsInfo?.apix?.path}</div>
-                </div>
+
                 <div className={"share-box-right-content-item-detail"}>
                     {
                         wsInfo?.apix?.desc

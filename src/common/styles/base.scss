@@ -296,7 +296,7 @@ table .icon{
 .link-text{
 
     &:hover{
-        color: var(--tiklab-blue);
+        color: var(--thoughtware-blue);
         cursor: pointer;
     }
 }
@@ -348,9 +348,15 @@ table .icon{
     }
 }
 
-.page-padding{
-    padding:0 15px
+.padding-left-right{
+    padding-right:30px;
+    padding-left: 30px;
 }
+.padding-top-bottom{
+    padding-top:20px;
+    padding-bottom: 20px;
+}
+
 
 .component-box{
     margin-bottom: 30px;

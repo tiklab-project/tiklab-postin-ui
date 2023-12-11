@@ -1,8 +1,8 @@
 import React from 'react';
-import {UserVerify} from "tiklab-eam-ui";
-import {connect} from 'tiklab-plugin-core-ui';
+import {UserVerify} from "thoughtware-eam-ui";
+import {connect} from 'thoughtware-plugin-core-ui';
 import PageContent from "./PageContent";
-import {AppLink, AvatarLink, HelpLink} from "tiklab-licence-ui"
+import {AppLink, AvatarLink, HelpLink} from "thoughtware-licence-ui"
 
 /**
  * 用于个性化配置

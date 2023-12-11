@@ -9,11 +9,11 @@
 
     //checkbox
     .ant-checkbox-checked .ant-checkbox-inner{
-        border-color: var(--tiklab-gray-500);
-        background-color: var(--tiklab-gray-500);
+        border-color: var(--thoughtware-gray-500);
+        background-color: var(--thoughtware-gray-500);
     }
     .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner{
-        border-color: var(--tiklab-gray-500);
+        border-color: var(--thoughtware-gray-500);
     }
 
     .ant-tabs-left > .ant-tabs-content-holder > .ant-tabs-content > .ant-tabs-tabpane, .ant-tabs-left > div > .ant-tabs-content-holder > .ant-tabs-content > .ant-tabs-tabpane{

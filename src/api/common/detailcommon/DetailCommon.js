@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Form, Row, Col, TreeSelect, Select,Input} from "antd";
 import {observer} from "mobx-react";
-import {Axios} from "tiklab-core-ui";
+import {Axios} from "thoughtware-core-ui";
 import categoryStore from "../../../category/store/CategoryStore";
 import "./DetailCommonStyle.scss"
 import ApiStatusModal from "../../../support/apiStatus/components/ApiStatusSelect";

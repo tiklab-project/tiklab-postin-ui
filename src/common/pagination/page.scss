@@ -5,15 +5,15 @@
     height: 47px;
     .pagination-box-ban{
         cursor:not-allowed;
-        color: var(--tiklab-gray-500);
+        color: var(--thoughtware-gray-500);
     }
     .pagination-box-allow{
         cursor: pointer;
         &:hover{
-          color: var(--tiklab-blue);
+          color: var(--thoughtware-blue);
         }
     }
     .pagination-box-current{
-        color: var(--tiklab-blue);
+        color: var(--thoughtware-blue);
     }
 }

@@ -1,71 +1,71 @@
 :root{
     /*-----公共定义-----*/
    
-    --tiklab-white: #fff;  /*主色调白*/
-    --tiklab-black: #000;  /* 主色调黑*/
-    --tiklab-blue: #0078d4;  /* 主色调蓝*/
-    --tiklab-gray-200: #ececec;  /* border 的边线*/
-    --tiklab-gray-300: #EDF0F5;  /* hover颜色*/
-    --tiklab-gray-400: #e3e8f0;  /* 左侧导航 选中颜色*/
-    --tiklab-gray-500: #999; /* 文字次级颜色灰色调*/
-    --tiklab-gray: #efefef; /* 主色调灰 左侧导航*/
+    --thoughtware-white: #fff;  /*主色调白*/
+    --thoughtware-black: #000;  /* 主色调黑*/
+    --thoughtware-blue: #0078d4;  /* 主色调蓝*/
+    --thoughtware-gray-200: #ececec;  /* border 的边线*/
+    --thoughtware-gray-300: #EDF0F5;  /* hover颜色*/
+    --thoughtware-gray-400: #e3e8f0;  /* 左侧导航 选中颜色*/
+    --thoughtware-gray-500: #999; /* 文字次级颜色灰色调*/
+    --thoughtware-gray: #efefef; /* 主色调灰 左侧导航*/
 
     /* 边距*/
-    --tiklab-padding: 20px; /*页面边距*/
-    --tiklab-padding-resove: -20px; /*页面边距*/
-    --tiklab-padding-item: 15px; /*元素间隔边距*/
-    --tiklab-padding-resove-item:-15px; /*元素间隔边距*/
+    --thoughtware-padding: 20px; /*页面边距*/
+    --thoughtware-padding-resove: -20px; /*页面边距*/
+    --thoughtware-padding-item: 15px; /*元素间隔边距*/
+    --thoughtware-padding-resove-item:-15px; /*元素间隔边距*/
 
     /* 标题*/
-    --tiklab-font-12: 12px; /* 图文排需要的文字*/
-    --tiklab-font-13: 13px;  /* 描述文字*/
-    --tiklab-font-14: 14px; /* 正文*/
-    --tiklab-font-15: 15px; /* 2级标题*/
-    --tiklab-font-16: 16px; /* 标题*/
+    --thoughtware-font-12: 12px; /* 图文排需要的文字*/
+    --thoughtware-font-13: 13px;  /* 描述文字*/
+    --thoughtware-font-14: 14px; /* 正文*/
+    --thoughtware-font-15: 15px; /* 2级标题*/
+    --thoughtware-font-16: 16px; /* 标题*/
 
     /* 图标大小*/
-    --tiklab-icon-size-16: 16px;
-    --tiklab-icon-size-20: 20px;
-    --tiklab-icon-size-22: 22px;
-    --tiklab-icon-size-32: 32px;
+    --thoughtware-icon-size-16: 16px;
+    --thoughtware-icon-size-20: 20px;
+    --thoughtware-icon-size-22: 22px;
+    --thoughtware-icon-size-32: 32px;
 
     /* 字重*/
-    --tiklab-font-weight-bold: bold; /* 标题字重*/
+    --thoughtware-font-weight-bold: bold; /* 标题字重*/
 
 
     /*----项目内定义----*/
-    --pi-base-color:var(--tiklab-blue);  /*着重色*/
+    --pi-base-color:var(--thoughtware-blue);  /*着重色*/
     --pi-bg-grey-100:#f8f8f8;
     --pi-bg-grey-200:#ededed;
-    --pi-bg-color:var(--tiklab-white);
+    --pi-bg-color:var(--thoughtware-white);
 
-    --pi-hover-color:var(--tiklab-gray-300); /*hover颜色*/
-    --pi-action-color:var(--tiklab-gray-400); /*选中*/
+    --pi-hover-color:var(--thoughtware-gray-300); /*hover颜色*/
+    --pi-action-color:var(--thoughtware-gray-400); /*选中*/
 
 
     --pi-background-color:#f6f8fa;
 
-    --pi-font-size-16:var(--tiklab-font-16);
-    --pi-font-size-14:var(--tiklab-font-14);
-    --pi-font-size-13:var(--tiklab-font-13);
-    --pi-font-size-12:var(--tiklab-font-12);
+    --pi-font-size-16:var(--thoughtware-font-16);
+    --pi-font-size-14:var(--thoughtware-font-14);
+    --pi-font-size-13:var(--thoughtware-font-13);
+    --pi-font-size-12:var(--thoughtware-font-12);
 
-    --pi-page-padding:var(--tiklab-padding-item); /*页面边距*/
-    --pi-font-weight-title:var(--tiklab-font-weight-bold); /*加粗*/
+    --pi-page-padding:var(--thoughtware-padding-item); /*页面边距*/
+    --pi-font-weight-title:var(--thoughtware-font-weight-bold); /*加粗*/
     --pi-font-weight-light:400;
 
 
-    --pi-icon-s:var(--tiklab-icon-size-16);
-    --pi-icon-m:var(--tiklab-icon-size-20);
-    --pi-icon-l:var(--tiklab-icon-size-22);
-    --pi-icon-x:var(--tiklab-icon-size-32);
+    --pi-icon-s:var(--thoughtware-icon-size-16);
+    --pi-icon-m:var(--thoughtware-icon-size-20);
+    --pi-icon-l:var(--thoughtware-icon-size-22);
+    --pi-icon-x:var(--thoughtware-icon-size-32);
 
     --pi-calc-content:calc(100% - 48px);
 
     --pi-border-color:#f0f0f0; /*边框颜色*/
     --pi-box-shadow: 0 3px 6px rgb(140 149 159 / 15%);  /*阴影*/
     --pi-border-radius:4px; /*边框圆角*/
-    --pi-input-border:2px solid var(--tiklab-gray-200);
+    --pi-input-border:2px solid var(--thoughtware-gray-200);
 
     --pi-font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI, Roboto,Oxygen,
     Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica,Arial,sans-serif; /* 字体

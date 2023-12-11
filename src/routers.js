@@ -3,16 +3,16 @@ import {Redirect} from "react-router";
 import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----
 
-import {Directory, Orga, UserGroup, User,} from "tiklab-user-ui";
-import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "tiklab-privilege-ui"
+import {Directory, Orga, UserGroup, User,} from "thoughtware-user-ui";
+import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "thoughtware-privilege-ui"
 
-import {ExcludeProductUser} from "tiklab-eam-ui";
-import {BackupRestore, LogTemplate, LogType, MyLog} from "tiklab-security-ui";
+import {ExcludeProductUser} from "thoughtware-eam-ui";
+import {BackupRestore, LogTemplate, LogType, MyLog} from "thoughtware-security-ui";
 
-import {PluginDetail, Plugin} from "tiklab-plugin-manager-ui";
-import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
+import {PluginDetail, Plugin} from "thoughtware-plugin-manager-ui";
+import {MessageNotice, MessageSendType, MessageType} from "thoughtware-message-ui";
 import Demo from "./Demo";
-import {ProductAuth} from "tiklab-licence-ui";
+import {ProductAuth} from "thoughtware-licence-ui";
 
 
 //----内部组件----

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { CaretRightOutlined, CaretDownOutlined } from '@ant-design/icons';
 import {TextMethodType} from "../../../../common/MethodType";
 import {inject, observer} from "mobx-react";
-import {Axios} from "tiklab-core-ui";
+import {Axios} from "thoughtware-core-ui";
 
 /**
  * 分享页中 目录导航

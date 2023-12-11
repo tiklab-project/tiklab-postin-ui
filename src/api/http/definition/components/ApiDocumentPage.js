@@ -32,14 +32,16 @@ const ApiDocumentPage = (props) =>{
 
     return (
         <>
-            <div className={"share-box-right-content-item"}  >
-                <div className={"pi-box-between"}>
-                    <div className={"share-box-api-title"}>
-                        {apiDoc?.apix?.name}
-                        <Tag color={apiDoc?.apix?.status?.color} style={{margin:"0 10px"}}>{apiDoc?.apix?.status?.name}</Tag>
-                    </div>
-
+            <div className={"share-box-right-content-item"}>
+                <div className={"share-box-right-content-item-detail"}>
+                    <ProtocolType type={apiDoc?.apix?.protocolType}/>
+                    <MethodType type={apiDoc?.methodType} />
+                    <div>{apiDoc?.apix?.path}</div>
                 </div>
+
+            </div>
+
+            <div className={"share-box-right-content-item"}  >
                 <div className={"share-box-right-content-item-detail"}>
                     <div>
                         <span className={"share-detail-title"}>负责人: {apiDoc?.apix?.executor?.name||"未设置"}</span>
@@ -48,17 +50,6 @@ const ApiDocumentPage = (props) =>{
                         <span className={"share-detail-title"}>更新时间: {apiDoc?.apix?.updateTime}</span>
                     </div>
                 </div>
-            </div>
-            <div className={"share-box-right-content-item"}>
-                <div className={"share-box-right-content-item-detail"}>
-                    <ProtocolType type={apiDoc?.apix?.protocolType}/>
-                    <MethodType type={apiDoc?.methodType} />
-                    <div>{apiDoc?.apix?.path}</div>
-                </div>
-                {/*<div className={"share-box-right-content-item-detail"}>*/}
-                {/*    <div className={"share-detail-title"}>状态:</div>*/}
-                {/*    <div style={{color:` ${apiDoc?.apiRecent?.status?.color}`}}>{apiDoc?.apiRecent?.status?.name}</div>*/}
-                {/*</div>*/}
                 <div className={"share-box-right-content-item-detail"}>
                     {
                         apiDoc?.apix?.desc
@@ -104,7 +95,7 @@ const ApiDocumentPage = (props) =>{
 
             </div>
             <div className="header-title ex-title">MOCK 地址</div>
-            <div style={{margin: "5px 0 30px 0"}}>
+            <div style={{margin: "5px 0 20px 0"}}>
                 <Tooltip title="点击复制">
                     <span
                         id={"link"}

@@ -59,7 +59,7 @@ const WSTest = (props) => {
     }
 
     return(
-        <div className={"content-margin page-padding"}>
+        <div className={"content-margin padding-left-right"}>
             <div className={"content-margin-box"}>
                 <div className={"test-base"}>
                     <Form

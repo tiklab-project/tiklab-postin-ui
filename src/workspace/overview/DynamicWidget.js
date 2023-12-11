@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Empty, List, Skeleton} from "antd";
-import {Axios} from "tiklab-core-ui";
+import {Axios} from "thoughtware-core-ui";
 import emptyImg from "../../assets/img/empty.png";
 import logImg from "../../assets/img/logimg.png";
 

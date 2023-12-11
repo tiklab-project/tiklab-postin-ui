@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import {Button, message, Upload} from "antd";
 import {UploadOutlined} from "@ant-design/icons";
 

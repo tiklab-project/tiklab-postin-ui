@@ -3,10 +3,10 @@ import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../index';
 import { Form, Popconfirm, Tabs} from 'antd';
 import './apxMethod.scss'
-import {RemoteComponent,useHasPointPlugin, useSelector} from 'tiklab-plugin-core-ui'
+import {RemoteComponent,useHasPointPlugin, useSelector} from 'thoughtware-plugin-core-ui'
 import IconBtn from "../../../../common/iconBtn/IconBtn";
 import ResponseHeader from "./ResponseHeader";
-import {getVersionInfo} from "tiklab-core-ui";
+import {getVersionInfo} from "thoughtware-core-ui";
 import categoryStore from "../../../../category/store/CategoryStore";
 import apxMethodStore from "../store/ApxMethodStore";
 import DetailCommon from "../../../common/detailcommon/DetailCommon";

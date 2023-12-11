@@ -1,5 +1,5 @@
 import React from "react";
-import { DomainRole } from 'tiklab-privilege-ui';
+import { DomainRole } from 'thoughtware-privilege-ui';
 
 /**
  * 包装权限

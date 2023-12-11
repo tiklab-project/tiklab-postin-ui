@@ -1,7 +1,7 @@
 /**
  * 点击空间，初始化的一些数据，并跳往空间详情
  */
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import React from "react";
 import pi1 from "../../../assets/img/pi1.png"
 import pi2 from "../../../assets/img/pi2.png"

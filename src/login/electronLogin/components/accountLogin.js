@@ -8,7 +8,7 @@
 import React, {useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {Button, Input, Form,} from 'antd';
-import {parseUserSearchParams} from "tiklab-core-ui";
+import {parseUserSearchParams} from "thoughtware-core-ui";
 
 const validUserProductAuthService = async (userId) => {
     const formData = new FormData();

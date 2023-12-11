@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import './workspace.scss';
 import {Input} from "antd";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import {inject, observer} from "mobx-react";
 import WorkspaceList from "./WorkspaceList";
 import DetailHeader from "../../../common/DetailHeader";

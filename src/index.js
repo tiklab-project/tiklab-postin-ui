@@ -8,11 +8,11 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'mobx-react';
-import { orgStores } from 'tiklab-user-ui/es/store';
-import { privilegeStores } from 'tiklab-privilege-ui/es/store';
+import { orgStores } from 'thoughtware-user-ui/es/store';
+import { privilegeStores } from 'thoughtware-privilege-ui/es/store';
 import { stores } from './stores';
 import routers from './routers';
-import {enableAxiosCE} from "tiklab-core-ui"
+import {enableAxiosCE} from "thoughtware-core-ui"
 import App from "./app";
 import "./assets/index"
 

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/tiklab-postin-ui.iml" filepath="$PROJECT_DIR$/.idea/tiklab-postin-ui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/thoughtware-postin-ui.iml" filepath="$PROJECT_DIR$/.idea/thoughtware-postin-ui.iml" />
     </modules>
   </component>
 </project>

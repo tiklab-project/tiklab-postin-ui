@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import InstanceDetail from "./InstanceDetail";
 import {inject, observer} from "mobx-react";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import instanceStore from "../store/InstanceStore";
 
 

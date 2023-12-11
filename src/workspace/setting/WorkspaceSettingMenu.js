@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {renderRoutes} from "react-router-config";
 import "./workspaceSetting.scss"
 import {inject, observer} from "mobx-react";
-import {ProjectNav} from "tiklab-privilege-ui"
+import {ProjectNav} from "thoughtware-privilege-ui"
 /**
  * 空间设置页中的左侧导航
  */
@@ -95,7 +95,7 @@ const WorkspaceSettingMenu = (props) =>{
 
                 </div>
 
-                <div className={"workspace-setting-right"}>
+                <div className={"workspace-setting-right padding-left-right padding-top-bottom"}>
                     {
                         renderRoutes(routes)
                     }

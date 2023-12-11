@@ -1,4 +1,4 @@
-import {Axios as service} from "tiklab-core-ui";
+import {Axios as service} from "thoughtware-core-ui";
 
 export function searchForTop(data){
     return service.request({

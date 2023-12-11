@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import {inject, observer} from "mobx-react";
 import {Empty, List, Skeleton, Tag} from "antd";
 import emptyImg from "../../../assets/img/empty.png";
@@ -63,15 +63,14 @@ const ApiRecentHome = (props) =>{
                     <Skeleton avatar title={false} loading={item.loading} active>
                         <div className={"home-list-item"}>
                             <IconCommon
-                                icon={"jiekou1"}
-                                style={{width:"30px",height:"30px"}}
+                                icon={"api1"}
+                                style={{width:"24px",height:"24px"}}
                             />
                             <div>
                                 <div className={"home-list-item-title"}>
                                     {item.apix?.name}
                                 </div>
                                 <div className={"home-list-item-other"} >
-                                    <div className={"home-list-item-other-text"} >空间 :  </div>
                                     <div  className={"home-list-item-other-text"}> {item.workspace.workspaceName}</div>
                                 </div>
                             </div>

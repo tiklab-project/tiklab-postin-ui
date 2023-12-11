@@ -5,7 +5,7 @@ import ApxMethodEdit from '../../http/definition/components/ApxMethodEdit';
 import MethodType from "../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
 import CategoryDocDrawer from "../../../category/components/CategoryDocDrawer";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import categoryStore from "../../../category/store/CategoryStore";
 import apiStore from "../store/APIStore";
 import emptyImg from "../../../assets/img/empty.png"
@@ -175,7 +175,7 @@ const APIList = (props) => {
 
 
     return(
-        <div className={"content-margin page-padding"}>
+        <div className={"content-margin padding-left-right padding-top-bottom"} >
             <div className='content-margin-box list-content-center'>
                 <div className={'category-search'}>
                     <Input

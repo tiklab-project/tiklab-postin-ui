@@ -5,7 +5,7 @@ import {Dropdown, Menu, Popconfirm} from "antd";
 import {ApxMethodEdit} from "../../api/http/definition";
 import CategoryEdit from './CategoryEdit';
 import {TextMethodType} from "../../common/MethodType";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import categoryStore from "../store/CategoryStore";
 import WSAdd from "../../api/ws/ws/components/WSAdd";
 /**

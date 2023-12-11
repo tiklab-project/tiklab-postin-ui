@@ -2,8 +2,8 @@ import React, { useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
 import { DownOutlined,UpOutlined} from '@ant-design/icons';
-import { PrivilegeButton,SystemNav } from "tiklab-privilege-ui";
-import {useSelector} from 'tiklab-plugin-core-ui'
+import { PrivilegeButton,SystemNav } from "thoughtware-privilege-ui";
+import {useSelector} from 'thoughtware-plugin-core-ui'
 import './sysMana.scss'
 
 const { Sider, Content } = Layout;
@@ -206,7 +206,7 @@ const SysManage = (props) => {
                     width={240}
                     theme={'light'}
                 >
-                    <div className="tiklab-orga-aside">
+                    <div className="thoughtware-orga-aside">
                         <ul style={{padding: 0}} >
                             {
                                 showUlView(menuRouter)

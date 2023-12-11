@@ -1,5 +1,5 @@
 import { observable,  action } from "mobx";
-import {Axios} from "tiklab-core-ui";
+import {Axios} from "thoughtware-core-ui";
 
 /**
  * 最近访问的空间 store
@@ -34,12 +34,12 @@ class WorkspaceRecentStore {
 			...value,
 			orderParams:[{name:'updateTime', orderType:'desc'}],
 		}
-		const res = await Axios.post("/workspaceRecent/findWorkspaceRecentList",this.params)
+		const res = await Axios.post("/workspaceRecent/findWorkspaceRecentPage",this.params)
 
 		if(res.code === 0 ) {
-			this.recentList = res.data;
+			this.recentList = res.data.dataList;
 
-			return res.data;
+			return res.data.dataList;
 		}
 	}
 

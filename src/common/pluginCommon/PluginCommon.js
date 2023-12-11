@@ -1,8 +1,8 @@
 import React from "react";
-import {useHasPointPlugin} from "tiklab-plugin-core-ui";
+import {useHasPointPlugin} from "thoughtware-plugin-core-ui";
 import {Popconfirm} from "antd";
 import IconBtn from "../iconBtn/IconBtn";
-import {getVersionInfo} from "tiklab-core-ui";
+import {getVersionInfo} from "thoughtware-core-ui";
 import {useHistory} from "react-router";
 
 const PluginCommon =({plugin,name,point})=>{

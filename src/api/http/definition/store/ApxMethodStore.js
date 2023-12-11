@@ -1,11 +1,12 @@
 import {observable, action} from "mobx";
-import {Axios} from "tiklab-core-ui";
+import {Axios} from "thoughtware-core-ui";
 
 /**
  * 接口store
  */
 class ApxMethodStore {
 
+    @observable apiInfo = {};
     @observable apxMethodList = [];
     @observable versionList = [];
     @observable apiId = '';
@@ -59,6 +60,7 @@ class ApxMethodStore {
         param.append('id', id);
         const res = await Axios.post("/http/findHttpApi",param);
         if( res.code === 0 ){
+            this.apiInfo=res.data
             return res.data;
         }
     }

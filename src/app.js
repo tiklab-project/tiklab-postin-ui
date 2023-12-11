@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { renderRoutes  } from "react-router-config";
 import {useTranslation} from "react-i18next";
-import { PluginProvider,pluginLoader} from 'tiklab-plugin-core-ui';
+import { PluginProvider,pluginLoader} from 'thoughtware-plugin-core-ui';
 
 import resources from "./common/language/resource";
-import {Axios} from "tiklab-core-ui";
+import {Axios} from "thoughtware-core-ui";
 
 const App = (props) => {
      const {routers} = props;

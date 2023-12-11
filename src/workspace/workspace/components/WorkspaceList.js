@@ -3,7 +3,7 @@ import React from 'react';
 import { observer, inject } from "mobx-react";
 import {Table, Space, Empty, Tooltip} from 'antd';
 import  { useTranslation } from 'react-i18next'
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
 import emptyImg  from "../../../assets/img/empty.png"
 import Avatar from "../../../common/avatar/avatar";

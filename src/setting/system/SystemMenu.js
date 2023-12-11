@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router";
-import { PrivilegeButton,SystemNav } from "tiklab-privilege-ui";
+import { PrivilegeButton,SystemNav } from "thoughtware-privilege-ui";
 import {Layout, Menu} from "antd";
 import {renderRoutes} from "react-router-config";
 import {Content} from "antd/es/layout/layout";
@@ -51,7 +51,7 @@ const SystemMenu = (props) =>{
                     width={240}
                     theme={'light'}
                 >
-                    <div className="tiklab-orga-aside">
+                    <div className="thoughtware-orga-aside">
                         <Menu
                             style={{background: "#f9f9f9"}}
                             mode="inline"

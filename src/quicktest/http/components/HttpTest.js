@@ -4,7 +4,7 @@ import RequestTabQuickTest from "./RequestTabQuickTest";
 import {observer} from "mobx-react";
 import {localDataProcess, mergeTestData} from "../../../common/request/sendTestCommon";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import TestResultCommon from "../../../api/http/test/common/TestResultCommon";
 import {execute} from "../../../api/http/test/common/dtAction";
 import {DownOutlined} from "@ant-design/icons";
@@ -177,7 +177,7 @@ const HttpTest = (props) =>{
     return(
         <div
             style={{height: "100%","overflow":"auto"}}
-            className={"content-margin page-padding"}
+            className={"content-margin padding-left-right"}
         >
             <div className={"content-margin-box"}>
                 <div className={"test-base"}>

@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
 import {Dropdown, Empty, Input, Menu, Space, Tooltip} from "antd";
 import {TextMethodType} from "../../common/MethodType";
-import {getUser} from "tiklab-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import {SearchOutlined} from "@ant-design/icons";
 import {
     getMediaType,
