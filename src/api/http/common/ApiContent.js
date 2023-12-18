@@ -1,11 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import MenuSelect from "./MenuSelect";
 import {renderRoutes} from "react-router-config";
-import {Space, Tag} from "antd";
+import {Dropdown, Menu, Space, Tag} from "antd";
 import ShareModal from "../document/components/ShareModal";
 import apxMethodStore from "../definition/store/ApxMethodStore";
 import apiStore from "../../api/store/APIStore";
-import IconBtn from "../../../common/iconBtn/IconBtn";
 import {useHistory} from "react-router";
 import categoryStore from "../../../category/store/CategoryStore";
 import {observer} from "mobx-react";
@@ -24,6 +23,22 @@ const ApiContent = (props) =>{
         await findApxMethod(apiId);
     },[apiId])
 
+    const moreMenu = (
+        <Menu>
+            <Menu.Item>
+                <a
+                    onClick={async ()=> {
+                        await deleteApi(apiId)
+                        await findCategoryList(workspaceId);
+                        history.push("/workspace/apis/category")
+                    }}
+                >
+                    删除
+                </a>
+            </Menu.Item>
+        </Menu>
+    )
+
     return(
         <>
             <div className={"content-margin"} style={{overflow:"hidden",padding:"20px 0 0 "}}>
@@ -39,18 +54,13 @@ const ApiContent = (props) =>{
                                     targetId={apiId}
                                     targetType={"api"}
                                     targetName={apiInfo?.apix?.name}
-                                    btn={true}
+                                    icon={true}
                                 />
-                                <IconBtn
-                                    icon={"shanchu3"}
-                                    className="pi-icon-btn-grey"
-                                    name={"删除"}
-                                    onClick={async ()=> {
-                                        await deleteApi(apiId)
-                                        await findCategoryList(workspaceId);
-                                        history.push("/workspace/apis/category")
-                                    }}
-                                />
+                                <Dropdown overlay={moreMenu} overlayStyle={{width:"150px",height:"10px"}}>
+                                    <svg className="icon-s" aria-hidden="true" style={{cursor:"pointer"}}>
+                                        <use xlinkHref={`#icon-more`}/>
+                                    </svg>
+                                </Dropdown>
 
                             </Space>
                         </div>

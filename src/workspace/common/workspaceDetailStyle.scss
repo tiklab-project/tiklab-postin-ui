@@ -132,6 +132,7 @@
     max-width: 1440px;
     min-width: 860px;
     padding: 20px 30px;
+    height: 100%;
 
 
     .content-margin-box-header{
@@ -197,6 +198,7 @@
         //border: 1px solid var(--pi-border-color);
         border-radius: var(--pi-border-radius);
         //box-shadow: 0 0 5px #8c959f21;
+        min-height: 450px;
     }
 
 }

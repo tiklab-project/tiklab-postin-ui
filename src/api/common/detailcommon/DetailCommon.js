@@ -7,6 +7,7 @@ import "./DetailCommonStyle.scss"
 import ApiStatusModal from "../../../support/apiStatus/components/ApiStatusSelect";
 import MethodType from "../../../common/MethodType";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
+import IconCommon from "../../../common/IconCommon";
 
 const {Option} = Select
 const {TextArea} = Input
@@ -22,6 +23,8 @@ const DetailCommon = (props) =>{
     const {findCategoryTreeList} = categoryStore;
     const [userList, setUserList] = useState([]);
     const [categoryList, setCategoryList] = useState([]);
+    const [visible, setVisible] = useState(false);
+
     const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(async ()=>{
@@ -39,6 +42,9 @@ const DetailCommon = (props) =>{
         }
     },[])
 
+    const showMore = () =>{
+        setVisible(!visible)
+    }
 
     return(
         <div className={"detail-box"}>
@@ -50,14 +56,14 @@ const DetailCommon = (props) =>{
                 {...tailLayout}
             >
                 <Row gutter={[0,10]}>
-                    <Col span={10}>
+                    <Col span={11}>
                         <Form.Item label={"名称"} name="name">
                             <Input placeholder={"名称"} />
                         </Form.Item>
                     </Col>
                     {
                         methodType
-                            ?<Col span={5}>
+                            ?<Col span={10}>
                                 <Form.Item label={"类型"} name="methodType" >
                                     <Select>
                                         {
@@ -72,9 +78,14 @@ const DetailCommon = (props) =>{
                                     </Select>
                                 </Form.Item>
                             </Col>
-                            : null
+                            : <Col span={10} />
                     }
-                    <Col span={5}>
+                    <Col span={11}>
+                        <Form.Item label={"路径"} name="path" >
+                            <Input placeholder={"无"} />
+                        </Form.Item>
+                    </Col>
+                    <Col span={10}>
                         <Form.Item label={"状态"} name="status" >
                             <ApiStatusModal
                                 selectStatus={updateStatus}
@@ -82,12 +93,7 @@ const DetailCommon = (props) =>{
                             />
                         </Form.Item>
                     </Col>
-                    <Col span={20}>
-                        <Form.Item label={"路径"} name="path" labelCol={{span: 2}}>
-                            <Input placeholder={"无"} />
-                        </Form.Item>
-                    </Col>
-                    <Col span={10}>
+                    <Col span={11}>
                         <Form.Item label={"分组"} name="category" >
                             <TreeSelect
                                 fieldNames={{ label: 'name', value: 'id', children: 'children' }}
@@ -115,11 +121,26 @@ const DetailCommon = (props) =>{
                             </Select>
                         </Form.Item>
                     </Col>
-                    <Col span={20}>
-                        <Form.Item label={"描述"} name="desc" labelCol={{span: 2}}>
-                            <TextArea   autoSize={{minRows: 3, maxRows: 5,}}   />
+                    <Col span={3}>
+                        <Form.Item  labelCol={10}>
+                            <IconCommon
+                                icon={`${visible?"zhankai":"jiantou-shang2"}`}
+                                onClick={()=>setVisible(!visible)}
+                                className={"icon-s"}
+                                style={{cursor:"pointer"}}
+                            />
                         </Form.Item>
                     </Col>
+                    {
+                        visible
+                        ?<Col span={22}>
+                            <Form.Item label={"描述"} name="desc" labelCol={{span: 2}}>
+                                <TextArea   autoSize={{minRows: 3, maxRows: 5,}}   />
+                            </Form.Item>
+                        </Col>
+                        :null
+                    }
+
                 </Row>
             </Form>
         </div>

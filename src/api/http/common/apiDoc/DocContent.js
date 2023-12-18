@@ -84,7 +84,7 @@ const DocContent = (props) =>{
                         <div className={"share-box-right-content-item-detail"}>
                             <ProtocolType type={apiDoc?.apix?.protocolType}/>
                             <MethodType type={apiDoc?.methodType} />
-                            <div>{apiDoc?.path}</div>
+                            <div>{apiDoc?.apix?.path}</div>
                         </div>
                         <div className={"share-box-right-content-item-detail"}>
                             <div className={"share-detail-title"}>状态:</div>

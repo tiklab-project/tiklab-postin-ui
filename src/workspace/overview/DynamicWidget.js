@@ -3,6 +3,7 @@ import {Empty, List, Skeleton} from "antd";
 import {Axios} from "thoughtware-core-ui";
 import emptyImg from "../../assets/img/empty.png";
 import logImg from "../../assets/img/logimg.png";
+import DynamicList from "../../common/templateList/TemplateList";
 
 /**
  * 首页中动态
@@ -10,12 +11,11 @@ import logImg from "../../assets/img/logimg.png";
 const DynamicWidget = (props) =>{
     const {screen} = props;
 
-    const [initLoading, setInitLoading] = useState(true);
     const [list, setList] = useState([]);
 
     useEffect(async () => {
         let params = {
-            content:screen,
+            data:screen,
             pageParam: {
                 pageSize: 8,
                 currentPage:1
@@ -23,7 +23,6 @@ const DynamicWidget = (props) =>{
         }
         findList(params).then(res=>{
             setList(res);
-            setInitLoading(false);
         })
     }, []);
 
@@ -57,30 +56,7 @@ const DynamicWidget = (props) =>{
     };
 
     return (
-        <List
-            className="demo-loadmore-list"
-            loading={initLoading}
-            itemLayout="horizontal"
-            dataSource={list}
-            locale={{
-                emptyText: <Empty
-                    imageStyle={{ height: 120 }}
-                    description={<span>暂无动态</span>}
-                    image={emptyImg}
-                />,
-            }}
-            renderItem={(item) => (
-                <List.Item >
-                    <Skeleton avatar title={false} loading={item.loading} active>
-                        <img src={logImg} alt={"icon"} width={24}/>
-                        <List.Item.Meta
-                            description={<div  dangerouslySetInnerHTML={{__html: item.data}} />}
-                        />
-                        <div>{item.createTime}</div>
-                    </Skeleton>
-                </List.Item>
-            )}
-        />
+        <DynamicList dynamicList={list}/>
     );
 }
 

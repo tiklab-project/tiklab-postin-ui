@@ -3,8 +3,7 @@ import MenuSelect from "./MenuSelect";
 import {renderRoutes} from "react-router-config";
 import wsStore from "../ws/store/WSStore";
 import {observer} from "mobx-react";
-import {Space, Tag} from "antd";
-import IconBtn from "../../../common/iconBtn/IconBtn";
+import {Dropdown, Menu, Space, Tag} from "antd";
 import apiStore from "../../api/store/APIStore";
 import categoryStore from "../../../category/store/CategoryStore";
 import {useHistory} from "react-router";
@@ -26,6 +25,22 @@ const WSContent = (props) =>{
         setWsInfo(info)
     },[apiId])
 
+    const moreMenu = (
+        <Menu>
+            <Menu.Item>
+                <a
+                    onClick={async ()=> {
+                        await deleteApi(apiId)
+                        await findCategoryList(workspaceId);
+                        history.push("/workspace/apis/category")
+                    }}
+                >
+                    删除
+                </a>
+            </Menu.Item>
+        </Menu>
+    )
+
 
     return(
         <>
@@ -37,16 +52,13 @@ const WSContent = (props) =>{
                                 <span style={{fontWeight:"bold"}}>{wsInfo?.apix?.name}</span>
                                 <Tag color={wsInfo?.apix?.status?.color} >{wsInfo?.apix?.status?.name}</Tag>
                             </Space>
-                            <IconBtn
-                                icon={"shanchu3"}
-                                className="pi-icon-btn-grey"
-                                name={"删除"}
-                                onClick={async ()=> {
-                                    await deleteApi(apiId)
-                                    await findCategoryList(workspaceId);
-                                    history.push("/workspace/apis/category")
-                                }}
-                            />
+
+                            <Dropdown overlay={moreMenu}>
+                                <svg className="icon-s" aria-hidden="true" style={{cursor:"pointer"}}>
+                                    <use xlinkHref={`#icon-more`}/>
+                                </svg>
+                            </Dropdown>
+
 
                         </div>
 

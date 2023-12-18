@@ -3,6 +3,7 @@ import {Badge, Drawer} from "antd";
 import {BellOutlined} from "@ant-design/icons";
 import {Axios, getUser} from "thoughtware-core-ui";
 import "./messageStyle.scss"
+import TemplateList from "../../common/templateList/TemplateList";
 
 /**
  * 消息抽屉
@@ -101,7 +102,6 @@ const MessageDrawer = (props) =>{
         }
     }
 
-
     /**
      * 是否展示 加载更多
      */
@@ -118,38 +118,6 @@ const MessageDrawer = (props) =>{
                 <a onClick={onLoadMore}>加载更多</a>
             </div>
         ) : null;
-    }
-
-
-    /**
-     *  list item 渲染
-     */
-    const showListItem = (list) =>{
-        if(!list) return null;
-
-        return list.map(item=>{
-            return(
-                <div key={item.id} className={"message-item"}>
-                    <div className={"message-item-left"} onClick={()=>readFn(item)}>
-                        <div className={"message-item-left-detail"}>
-                            <div className={"message-item-left-detail-margin"}>
-                                <div className={"message-item-left-detail-title"}>{item?.messageTemplate?.title}</div>
-                                <div className={"message-item-left-time"}>{item?.receiveTime}</div>
-                            </div>
-                            <div  dangerouslySetInnerHTML={{ __html: item.content }}/>
-                        </div>
-                    </div>
-                    <div className={"message-item-right"}>
-                        {
-                            item.status===0
-                                ? <div className={`message-item-right-content message-item-right-unread`}>未读</div>
-                                :  <div className={`message-item-right-content message-item-right-read`}>已读</div>
-                        }
-                    </div>
-
-                </div>
-            )
-        })
     }
 
 
@@ -261,10 +229,7 @@ const MessageDrawer = (props) =>{
                 }
             >
 
-
-                {
-                    showListItem(list)
-                }
+                <TemplateList dynamicList={list} type={"message"} readFn={readFn}/>
                 {
                     loadMore()
                 }

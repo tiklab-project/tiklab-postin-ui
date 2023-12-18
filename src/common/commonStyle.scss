@@ -229,11 +229,12 @@
         .middleBox-show{
             width: 2px;
             height: 100%;
+            transition: 0.3s;
         }
     }
 
     .middleBox:hover .middleBox-show{
-        background: var(--pi-base-color);
+        background: #dedede;
     }
 }
 

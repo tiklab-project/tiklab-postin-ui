@@ -17,7 +17,7 @@ import "../../api/http/definition/components/apxMethod.scss"
  */
 const LeftNav = (props) =>{
     const {workspaceStore,systemRoleStore} = props;
-    const {workspaceIcon,workspaceName,findWorkspace,findWorkspaceJoinList } = workspaceStore;
+    const {workspaceIcon,findWorkspace,findWorkspaceJoinList } = workspaceStore;
     const {workspaceRecent,findWorkspaceRecentList}=workspaceRecentStore;
 
     const menuData = [
@@ -59,9 +59,11 @@ const LeftNav = (props) =>{
     const workspaceId = localStorage.getItem("workspaceId")
     const leftMenuSelect = localStorage.getItem("LEFT_MENU_SELECT")
     const [recentList, setRecentList] = useState([]);
+    const [workspaceName, setWorkspaceName] = useState();
 
-    useEffect(()=>{
-        findWorkspace(workspaceId)
+    useEffect(async ()=>{
+        let info = await findWorkspace(workspaceId)
+        setWorkspaceName(info.workspaceName)
 
         systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId)
     },[workspaceId])
@@ -76,7 +78,11 @@ const LeftNav = (props) =>{
         //点击左侧导航，设置选择项,用于刷新后还能选择。
         localStorage.setItem("LEFT_MENU_SELECT",data.key);
 
-        history.push(data.router)
+        if(data.key==="overview"){
+            history.push(`/workspace/overview/${workspaceId}`)
+        }else {
+            history.push(data.router)
+        }
     }
 
     /**
@@ -181,7 +187,7 @@ const LeftNav = (props) =>{
     const toggleWorkspace = (workspaceId)=>{
         toWorkspaceDetail(workspaceId,workspaceRecent)
 
-        props.history.push('/workspace/overview');
+        props.history.push('/workspace/overview/'+workspaceId);
 
         setVisible(false)
     }

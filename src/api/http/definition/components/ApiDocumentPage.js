@@ -9,6 +9,7 @@ import ResponseResultDoc from "../../common/apiDoc/ResponseResultDoc";
 import {Tag, Tooltip} from "antd";
 import apxMethodStore from "../store/ApxMethodStore";
 import copyMockUrl from "../../../../common/copyLink";
+import IconCommon from "../../../../common/IconCommon";
 /**
  * 接口文档页面
  */
@@ -19,6 +20,7 @@ const ApiDocumentPage = (props) =>{
     const [serverUrl, setServerUrl] = useState();
     const apiId = localStorage.getItem('apiId');
     const workspaceId = localStorage.getItem("workspaceId")
+    const [visible, setVisible] = useState(false);
 
     useEffect(async ()=>{
         let res = await findApxMethod(apiId);
@@ -46,13 +48,27 @@ const ApiDocumentPage = (props) =>{
                     <div>
                         <span className={"share-detail-title"}>负责人: {apiDoc?.apix?.executor?.name||"未设置"}</span>
                     </div>
-                    <div>
+                    <div style={{margin:"0 50px"}}>
                         <span className={"share-detail-title"}>更新时间: {apiDoc?.apix?.updateTime}</span>
                     </div>
-                </div>
-                <div className={"share-box-right-content-item-detail"}>
                     {
                         apiDoc?.apix?.desc
+                            ?<span className={"share-detail-title"} style={{display:"flex",alignItems:"center"}}>
+                             <IconCommon
+                                 icon={`${visible?"zhankai":"jiantou-shang2"}`}
+                                 onClick={()=>setVisible(!visible)}
+                                 className={"icon-s"}
+                                 style={{cursor:"pointer"}}
+                             />
+                        </span>
+                            :null
+                    }
+
+                </div>
+
+                <div className={"share-box-right-content-item-detail"}>
+                    {
+                        apiDoc?.apix?.desc&&visible
                             ?
                             <>
                                 <div className={"share-detail-title"}>说明:</div>

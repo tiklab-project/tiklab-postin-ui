@@ -90,7 +90,7 @@ const TabsQuickTest = (props) =>{
         return <div style={{height:"40px"}}>
             <Select
                 style={{
-                    width:"80px",
+                    width:"85px",
                     marginRight: "-1px",
                     zIndex: 10
                 }}

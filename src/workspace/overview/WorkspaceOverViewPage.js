@@ -57,7 +57,7 @@ const WorkspaceOverViewPage = (props) =>{
 
     return(
         <div className={"ws-init-box"}>
-            <div className={" ws-init-content"}>
+            <div className={"ws-init-content"}>
                 <div className={"wd-total"}>
                     <div className={"wd-title"}> 概要</div>
                     <div className={"wd-total-box"}>

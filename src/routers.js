@@ -299,7 +299,7 @@ const routers =  [
                 key:'DetailIndex',
                 routes:[
                     {
-                        path: "/workspace/overview",
+                        path: "/workspace/overview/:id",
                         exact: true,
                         key:'Category',
                         component: WorkspaceDetailInitPage,

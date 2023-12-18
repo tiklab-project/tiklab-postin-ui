@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Input, Modal, Select, Tag} from "antd";
+import {Button, Input, Modal, Select, Tag, Tooltip} from "antd";
 import IconCommon from "../../../../common/IconCommon";
 import {uuid} from "../../../../common/utils/createId";
 import {inject, observer} from "mobx-react";
@@ -131,18 +131,21 @@ const ShareModal  = (props) =>{
 
         if(props.icon){
             return(
-                <IconCommon
-                    icon={"fenxiang"}
-                    style={{margin:"0 10px 0 0"}}
-                    className={"icon-s"}
-                    onClick={showModal}
-                />
+                <Tooltip placement="bottom" title={"分享"}>
+                    <span>
+                       <IconCommon
+                           icon={"fenxiang"}
+                           style={{margin:"0 10px 0 0",cursor:"pointer"}}
+                           className={"icon-s"}
+                           onClick={showModal}
+                       />
+                    </span>
+                </Tooltip>
             )
         }else {
             return <a onClick={showModal}>分享</a>
         }
     }
-
 
     return(
         <>
