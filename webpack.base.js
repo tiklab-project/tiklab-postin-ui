@@ -161,7 +161,6 @@ module.exports = {
             },
         ]
     },
-
     plugins: [
         new HtmlWebpackPlugin({
             alwaysWriteToDisk: true,
