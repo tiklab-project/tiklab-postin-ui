@@ -43,10 +43,13 @@ const WorkspaceRecentHome = (props) =>{
      */
     const showRecent=(list)=>{
         return list&&list.map(item=>{
+
+            let iconurl =item.iconUrl
+
             return(
                 <div key={item.id} className={"home-recent-item"} onClick={()=>toDetail(item.id)}>
                     <div className={"home-recent-item-left"}>
-                        <ShowWorkspaceIcon iconUrl={item.iconUrl} className={"ws-img-icon icon-bg-border"}/>
+                        <ShowWorkspaceIcon url={iconurl} className={"ws-img-icon icon-bg-border"}/>
                         <div className={"home-recent-item-left-name"}>{item.workspaceName}</div>
                     </div>
                     <div style={{display:"flex","justifyContent":"space-between"}}>

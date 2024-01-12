@@ -72,14 +72,20 @@ module.exports = merge(baseWebpackConfig, {
             automaticNameDelimiter: '--',
             name:false,
             cacheGroups: {
-
-                // tiklabPrivilegeUI: {
-                //     name: 'chunk-tiklab-privilege-ui',
-                //     chunks: 'all',
-                //     test: /[\\/]node_modules[\\/]tiklab-privilege-ui[\\/]/,
-                //     priority: 9,
-                //     reuseExistingChunk: true
-                // },
+                tiklabPrivilegeUI: {
+                    name: 'chunk-tiklab-Privilege-ui',
+                    chunks: 'all',
+                    test: /[\\/]node_modules[\\/]tiklab-privilege-ui[\\/]/,
+                    priority: 13,
+                    reuseExistingChunk: true
+                },
+                tiklabSecurityUI: {
+                    name: 'chunk-tiklab-Security-ui',
+                    chunks: 'all',
+                    test: /[\\/]node_modules[\\/]tiklab-security-ui[\\/]/,
+                    priority: 13,
+                    reuseExistingChunk: true
+                },
                 tiklabPluginUI: {
                     name: 'chunk-tiklab-plugin-ui',
                     chunks: 'all',
@@ -120,7 +126,7 @@ module.exports = merge(baseWebpackConfig, {
                     name: "rcomponent",
                     chunks: "all",
                     test: /rc-[a-zA-Z]/,
-                    priority: 14,
+                    priority: 13,
                     reuseExistingChunk: true
                 },
                 // antIcon: {
@@ -134,7 +140,7 @@ module.exports = merge(baseWebpackConfig, {
                     name: 'antd-ui',
                     chunks: 'all',
                     test: /[\\/]node_modules[\\/]antd[\\/]/,
-                    priority: 14,
+                    priority: 13,
                     reuseExistingChunk: true
                 },
                 moment: {

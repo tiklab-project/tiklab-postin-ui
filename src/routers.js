@@ -1,17 +1,14 @@
-import React,{lazy} from 'react'
+import React from 'react'
 import {Redirect} from "react-router";
 import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----
 
 import {Directory, Orga, UserGroup, User,} from "thoughtware-user-ui";
-import { NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "thoughtware-privilege-ui"
-
+import {NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "thoughtware-privilege-ui"
 import {ExcludeProductUser} from "thoughtware-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "thoughtware-security-ui";
-
 import {PluginDetail, Plugin} from "thoughtware-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "thoughtware-message-ui";
-import Demo from "./Demo";
 import {ProductAuth} from "thoughtware-licence-ui";
 
 
@@ -97,12 +94,6 @@ const routers =  [
         path: '/',
         key:'poroute',
         routes:[
-            {
-                path: "/demo",
-                component: Demo,
-                exact: true,
-                key:'Home',
-            },
             {
                 path: "/home",
                 component: Home,

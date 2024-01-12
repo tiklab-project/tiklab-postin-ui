@@ -28,7 +28,7 @@ export const toWorkspaceDetail = (workspaceId,workspaceRecent,leftMenuSelect) =>
 
 
 export const ShowWorkspaceIcon = (props) => {
-    const {iconUrl,className} = props
+    const {url,className} = props
 
     const iconMap = {
         "pi1.png": pi1,
@@ -40,7 +40,7 @@ export const ShowWorkspaceIcon = (props) => {
 
     const showIcon = ()=>{
         for (const key in iconMap) {
-            if (iconUrl?.includes(key)) {
+            if (url?.includes(key)) {
                 return <img src={iconMap[key]} alt={"icon"} className={className} {...props}/>;
             }
         }

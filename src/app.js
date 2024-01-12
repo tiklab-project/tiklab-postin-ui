@@ -4,33 +4,28 @@ import {useTranslation} from "react-i18next";
 import { PluginProvider,pluginLoader} from 'thoughtware-plugin-core-ui';
 
 import resources from "./common/language/resource";
-import {Axios} from "thoughtware-core-ui";
 
 const App = (props) => {
      const {routers} = props;
 
      const {i18n} = useTranslation();
 
-     const [pluginData,setPluginData] = useState({
-         routes:routers,
-         pluginStore:[],
-         languageStore:[]
-     });
-
+    const [initPluginData,setPluginData] = useState({
+        routers,
+        pluginStore:[],
+        languageStore:[]
+    })
 
     useEffect( async () => {
-        // let res = await Axios.get("/http/findServerUrl")
-        // let serverUrl=res.data
-
-        pluginLoader( routers, resources,i18n,fetchMethod).then(res => {
+        pluginLoader( routers, resources,i18n,"post").then(res => {
             setPluginData(res)
         })
     }, []);
 
     return(
-         <PluginProvider store={pluginData}>
+         <PluginProvider store={initPluginData}>
              {
-                 renderRoutes(pluginData.routes)
+                 renderRoutes(initPluginData.routes)
              }
          </PluginProvider>
     )

@@ -6,7 +6,7 @@ import {useLocation} from "react-router";
  */
 const HeaderMenu = (props) =>{
 
-    let pathname = useLocation().pathname;
+    // let pathname = useLocation().pathname;
 
     //导航项
     const items = [
@@ -22,13 +22,13 @@ const HeaderMenu = (props) =>{
 
     const [current, setCurrent] = useState('/home');
 
-    useEffect(()=>{
-        if(pathname==="home"){
-            setCurrent('/home')
-        }else if(pathname.includes("workspace")){
-            setCurrent('/workspaces')
-        }
-    },[pathname])
+    // useEffect(()=>{
+    //     if(pathname==="home"){
+    //         setCurrent('/home')
+    //     }else if(pathname.includes("workspace")){
+    //         setCurrent('/workspaces')
+    //     }
+    // },[pathname])
 
     /**
      * 点击跳往

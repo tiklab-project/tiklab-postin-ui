@@ -166,7 +166,7 @@ const LeftNav = (props) =>{
                                         onClick={() => toggleWorkspace(item.id)}
                                     >
                                         <Space>
-                                            <ShowWorkspaceIcon iconUrl={item.iconUrl} className={"workspace-icon icon-bg-border"}  width={30}/>
+                                            <ShowWorkspaceIcon url={item.iconUrl} className={"workspace-icon icon-bg-border"}  width={30}/>
                                             {item.workspaceName}
                                         </Space>
                                     </div>
@@ -206,7 +206,7 @@ const LeftNav = (props) =>{
                             >
                                 <div className={"ws-icon-box"}>
                                     <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
-                                         <ShowWorkspaceIcon iconUrl={workspaceIcon} className={"workspace-icon icon-bg-border"}  width={30}/>
+                                         <ShowWorkspaceIcon url={workspaceIcon} className={"workspace-icon icon-bg-border"}  width={30}/>
                                     </span>
                                     <IconCommon
                                         style={{"cursor":"pointer"}}

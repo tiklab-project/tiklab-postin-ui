@@ -11,12 +11,6 @@ import Search from "./search/components/Search";
  */
 const HeaderContent = props => {
 
-    /**
-     * 去往系统设置页
-     */
-    const toSystem = () =>{
-        props.history.push("/setting")
-    }
 
     return(
         <div className="frame-header">
@@ -36,7 +30,7 @@ const HeaderContent = props => {
                 </div>
                 <div className={'frame-header-right-box'}>
                     <div className={"header-right-item"}  data-title-bottom={"设置"}>
-                        <SettingOutlined className={"header-icon-item"} onClick={toSystem}/>
+                        <SettingOutlined className={"header-icon-item"} onClick={()=>props.history.push("/setting")}/>
                     </div>
                     <div className={"header-right-item"} data-title-bottom={"消息"}>
                         <MessageDrawer />

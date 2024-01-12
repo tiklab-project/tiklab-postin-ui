@@ -4,16 +4,15 @@
  * @LastEditTime: 2021-05-27 13:53:54
  */
 
-const base_url =  JSON.stringify('http://192.168.10.21:8090');
+const base_url =  JSON.stringify('http://192.168.10.34:8090');
 
+let plugin_url  =  JSON.stringify("http://192.168.10.34:8090/pluginConfig/getPluginConfig");
+let pluginAddressUrl = JSON.stringify('"http://127.0.0.1:3000/plugin.json');
+const fetchMethod = JSON.stringify("get");
 
-// const plugin_base_url = JSON.stringify("/");
-// let plugin_url  =  JSON.stringify("http://127.0.0.1:3000/plugin.json");
-// const fetchMethod = JSON.stringify("get");
-
-const plugin_base_url = JSON.stringify("http://192.168.10.21:8090");
-let pluginAddressUrl = JSON.stringify('/pluginConfig/getPluginConfig');
-const fetchMethod = JSON.stringify("post");
+// const plugin_url = JSON.stringify("http://192.168.10.34:8090");
+// let pluginAddressUrl = JSON.stringify('/pluginConfig/getPluginConfig');
+// const fetchMethod = JSON.stringify("post");
 
 //判断是否是用户环境，公司内部切为false用于调试
 const userProduction = true;
@@ -28,9 +27,8 @@ const IS_DEV = true;
 
 module.exports = {
     base_url,
-    // plugin_url ,
+    plugin_url ,
     pluginAddressUrl,
-    plugin_base_url,
     fetchMethod,
     userProduction,
     appKey,

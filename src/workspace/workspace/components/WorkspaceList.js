@@ -2,7 +2,6 @@
 import React from 'react';
 import { observer, inject } from "mobx-react";
 import {Table, Space, Empty, Tooltip} from 'antd';
-import  { useTranslation } from 'react-i18next'
 import {getUser} from "thoughtware-core-ui";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
 import emptyImg  from "../../../assets/img/empty.png"
@@ -20,18 +19,18 @@ const WorkspaceList = (props) => {
     const {createWorkspaceFollow,deleteWorkspaceFollow} = workspaceFollowStore;
 
     const userId = getUser().userId;
-    const { t } = useTranslation();
+
 
     //空间列表头
     const columns = [
         {
-            title:` ${t('wsName')}`,
+            title:`名称`,
             dataIndex: "workspaceName",
             key: "workspaceName",
             width:"50%",
             render: (text,record) =>(
                 <Space>
-                    <ShowWorkspaceIcon iconUrl={record.iconUrl} className={"workspace-icon icon-bg-border"}/>
+                    <ShowWorkspaceIcon url={record.iconUrl} className={"workspace-icon icon-bg-border"}/>
                     <span className={"link-text"} onClick = {()=>setLocalStorage(record.id)}>{text}</span>
                 </Space>
             )
@@ -67,7 +66,7 @@ const WorkspaceList = (props) => {
             )
         },
         {
-            title: ` ${t('operation')}`,
+            title: ` 操作`,
             key: "action",
             width:"10%",
             // align:"center",
