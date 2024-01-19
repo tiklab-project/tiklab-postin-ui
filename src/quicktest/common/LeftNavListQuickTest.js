@@ -12,10 +12,8 @@ import {
     processQueryData
 } from "./instanceDataProcess";
 import {mediaTypeDir} from "../../common/dictionary/dictionary";
-import instanceStore from "../../api/http/test/instance/store/InstanceStore";
 import quickTestStore from "../http/store/QuickTestStore";
 import tabQuickTestStore from "../store/TabQuickTestStore";
-import IconCommon from "../../common/IconCommon";
 
 
 /**
@@ -23,6 +21,7 @@ import IconCommon from "../../common/IconCommon";
  * 左侧目录
  */
 const LeftNavListQuickTest =(props)=>{
+    const {instanceStore} = props;
     const {findInstanceList,instanceList,deleteAllInstance,deleteInstance,findInstance} = instanceStore;
     const {setResponseShow,setResponseData} = quickTestStore;
     const {tabPaneInfo,setTabPaneInfo} = tabQuickTestStore
@@ -280,4 +279,4 @@ const LeftNavListQuickTest =(props)=>{
 
 }
 
-export default observer(LeftNavListQuickTest);
+export default inject("instanceStore")(observer(LeftNavListQuickTest));

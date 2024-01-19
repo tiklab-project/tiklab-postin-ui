@@ -6,6 +6,8 @@ import {initTabPane} from "./quickTestData";
 import tabQuickTestStore from "../store/TabQuickTestStore";
 import HttpTest from "../http/components/HttpTest";
 import WSTest from "../ws/components/WSTest";
+import "../http/components/testCase.scss"
+import "../http/components/quickTestStyle.scss"
 
 const {TabPane} = Tabs;
 const {Option} = Select;

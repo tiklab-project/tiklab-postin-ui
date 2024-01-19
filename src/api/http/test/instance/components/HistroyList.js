@@ -1,17 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {inject, observer} from "mobx-react";
-import {Drawer, Dropdown, Menu, Space} from "antd";
+import {Drawer,  Space} from "antd";
 import InstanceDetail from "./InstanceDetail";
-import {DownOutlined} from "@ant-design/icons";
 import {getUser} from "thoughtware-core-ui";
 import {TextMethodType} from "../../../../../common/MethodType";
 import "./instanceStyle.scss"
 import IconCommon from "../../../../../common/IconCommon";
-import instanceStore from "../store/InstanceStore";
+
 
 
 const HistoryList = (props) =>{
-    const {testcaseId} = props;
+    const {testcaseId,instanceStore} = props;
     const {findInstanceList,instanceList,deleteInstance} = instanceStore;
 
     const userId = getUser().userId;

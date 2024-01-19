@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Dropdown,Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./RequestTabQuickTest";
-import {observer} from "mobx-react";
+import {inject, observer} from "mobx-react";
 import {localDataProcess, mergeTestData} from "../../../common/request/sendTestCommon";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
 import {getUser} from "thoughtware-core-ui";
@@ -9,7 +9,6 @@ import TestResultCommon from "../../../api/http/test/common/TestResultCommon";
 import {execute} from "../../../api/http/test/common/dtAction";
 import {DownOutlined} from "@ant-design/icons";
 import SaveToApi from "./saveToApi";
-import instanceStore from "../../../api/http/test/instance/store/InstanceStore";
 import quickTestStore from "../store/QuickTestStore";
 import tabQuickTestStore from "../../store/TabQuickTestStore";
 
@@ -19,7 +18,7 @@ const { Option } = Select;
  * 快捷测试页
  */
 const HttpTest = (props) =>{
-    const {sendTest,toggleProtocol} = props;
+    const {sendTest,toggleProtocol,instanceStore} = props;
 
     const {createInstance,findInstanceList} = instanceStore;
     const { getRequestInfo, getResponseInfo, getResponseError,setResponseShow,isResponseShow,setResponseData, responseData} = quickTestStore;
@@ -50,14 +49,7 @@ const HttpTest = (props) =>{
         let values =await form.getFieldsValue();
 
         //如果没有输入协议开头，默认给一个http
-        let url;
-        let protocol = values.path.substr(0,4);
-
-        if(protocol==="http"){
-            url=values.path
-        }else {
-            url="http://"+values.path
-        }
+        let url = values.path.startsWith("http") ? values.path : "http://" + values.path;
 
         const allSendData = {
             "methodType":values.methodType,
@@ -73,7 +65,6 @@ const HttpTest = (props) =>{
 
         //处理本地数据
         let localData = localDataProcess(allSendData)
-
 
         //前置
         let preObj
@@ -113,13 +104,14 @@ const HttpTest = (props) =>{
                 setAfterScript(data)
             }
 
-            //点击测试按钮显示输出结果详情
-            setResponseShow(true);
+
         }else {
             getResponseError(response).then((res)=>{
                 saveInstance(res,localData)
             })
         }
+        //点击测试按钮显示输出结果详情
+        setResponseShow(true);
     }
 
     /**
@@ -192,11 +184,15 @@ const HttpTest = (props) =>{
                             <Form.Item
                                 className='formItem'
                                 name="path"
-                                rules={[{
-                                    required: true,
-                                    message: '请输入http开头的完整URL',
-                                    type:"url"
-                                }]}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: '请输入有效的URL',
+                                    },{
+                                        pattern: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+|(\d{1,3}\.){3}\d{1,3}(:\d+)?(\/[^\s]*)?)$/,
+                                        message: '请输入有效的URL',
+                                    },
+                                ]}
                             >
                                 <Input
                                     onChange={changeInfo}
@@ -242,4 +238,4 @@ const HttpTest = (props) =>{
     )
 }
 
-export default observer(HttpTest)
+export default inject("instanceStore")(observer(HttpTest))

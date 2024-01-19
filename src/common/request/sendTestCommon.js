@@ -3,6 +3,7 @@ import {mediaTypeDir, rawTypeDictionary} from "../dictionary/dictionary";
 import axiosIns from "../utils/localrequest";
 import {getUser} from "thoughtware-core-ui";
 import React from "react";
+import querystring from "querystring";
 
 //处理本地数据
 export const localDataProcess = ({
@@ -37,36 +38,44 @@ export const localDataProcess = ({
         case mediaTypeDir.formdata.title:
             body = testFunctionCommon.transData(formDataList)
             mediaType = mediaTypeDir.formdata.mediaType;
+            header['content-type']=mediaTypeDir.formdata.mediaType;
             break;
         case mediaTypeDir.formUrlencoded.title:
             body = testFunctionCommon.transData(formUrlList)
             mediaType = mediaTypeDir.formdata.mediaType;
+            header['content-type']=mediaTypeDir.formUrlencoded.mediaType;
             break;
         case mediaTypeDir.json.title:
             body = json
             mediaType = mediaTypeDir.json.mediaType;
+            header['content-type']=mediaTypeDir.json.mediaType;
             break;
         case mediaTypeDir.raw.title:
             body = raw
             switch (raw.type){
                 case rawTypeDictionary.text.mediaType:
                     mediaType = rawTypeDictionary.text.mediaType;
+                    header['content-type']=rawTypeDictionary.text.mediaType;
                     break;
 
                 case rawTypeDictionary.json.mediaType:
                     mediaType = rawTypeDictionary.json.mediaType;
+                    header['content-type']= rawTypeDictionary.json.mediaType;
                     break;
 
                 case rawTypeDictionary.javascript.mediaType:
                     mediaType = rawTypeDictionary.javascript.mediaType;
+                    header['content-type']= rawTypeDictionary.javascript.mediaType;
                     break;
 
                 case rawTypeDictionary.xml.mediaType:
                     mediaType = rawTypeDictionary.xml.mediaType;
+                    header['content-type']=rawTypeDictionary.xml.mediaType;
                     break;
 
                 case rawTypeDictionary.html.mediaType:
                     mediaType = rawTypeDictionary.html.mediaType;
+                    header['content-type']=rawTypeDictionary.html.mediaType;
                     break;
             }
             break;
@@ -96,7 +105,7 @@ export const localDataProcess = ({
  * 合并数据
  */
 export const mergeTestData=(localData,preScriptInfo,globalParam)=>{
-    let {methodType,url,header,query={},bodyType,mediaType} = localData
+    let {methodType,url,header,query={},body,mediaType} = localData
 
     //header
     if(preScriptInfo&&preScriptInfo.header){
@@ -117,9 +126,6 @@ export const mergeTestData=(localData,preScriptInfo,globalParam)=>{
         query=Object.assign({},query,preScriptInfo.query)
     }
 
-    //设置请求类型
-     let processBody = setContentType(localData,header)
-
     //请求参数
     return {
         "methodType": methodType,
@@ -127,53 +133,8 @@ export const mergeTestData=(localData,preScriptInfo,globalParam)=>{
         "header": header,
         "query": query,
         "mediaType": mediaType,
-        "body": processBody,
+        "body": body,
     };
-}
-
-/**
- * 获取相应的请求体数据
- */
-const setContentType = (localData,headers) =>{
-    let {bodyType,body} = localData;
-    switch (bodyType) {
-        case mediaTypeDir.none.title:
-            headers['content-type']="application/json";
-            break
-        case mediaTypeDir.formdata.title:
-            headers['content-type']=mediaTypeDir.formdata.mediaType;
-            //formData 数据特殊处理
-            let formData = testFunctionCommon.formData(body);
-            return formData;
-        case mediaTypeDir.formUrlencoded.title:
-            headers['content-type']=mediaTypeDir.formUrlencoded.mediaType;
-            return body;
-        case mediaTypeDir.json.title:
-            headers['content-type']=mediaTypeDir.json.mediaType;
-            return
-        case mediaTypeDir.raw.title:
-            switch (body.type){
-                case rawTypeDictionary.text.mediaType:
-                    headers['content-type']=rawTypeDictionary.text.mediaType;
-                    return body.raw;
-
-                case rawTypeDictionary.json.mediaType:
-                    headers['content-type']=rawTypeDictionary.json.mediaType;
-                    return body.raw;
-
-                case rawTypeDictionary.javascript.mediaType:
-                    headers['content-type']=rawTypeDictionary.javascript.mediaType;
-                    return body.raw;
-
-                case rawTypeDictionary.xml.mediaType:
-                    headers['content-type']=rawTypeDictionary.xml.mediaType;
-                    return body.raw;
-
-                case rawTypeDictionary.html.mediaType:
-                    headers['content-type']=rawTypeDictionary.html.mediaType;
-                    return body.raw;
-            }
-    }
 }
 
 
@@ -184,11 +145,10 @@ const setContentType = (localData,headers) =>{
  * Proxy send test
  */
 export const localProxySendTest=async (data)=>{
-    const {bodys=data.body,headers=data.header,method=data.methodType,url} = data;
+    const {body=data.body,headers=data.header,method=data.methodType,url} = data;
 
     //当前执行的请求的接口参数
     let queryHeader=Object.assign({}, {"User-Agent":"PostIn/1.0.0"}, {...headers})
-
 
     //request接口 请求头
     let axiosHeaders = {};
@@ -221,6 +181,9 @@ export const localProxySendTest=async (data)=>{
         fetchUrl = `${baseUrl}/request?${axiosQuery}`;
     }
 
+    //处理body
+    let bodys = processBody(body,headers["content-type"])
+
     //请求
    let res =  axiosIns.post(
        fetchUrl,
@@ -234,6 +197,36 @@ export const localProxySendTest=async (data)=>{
 
     return res
 }
+
+/**
+ * 处理body
+ */
+const processBody = (body,method) =>{
+    switch (method) {
+        case mediaTypeDir.none.mediaType:
+            break
+        case mediaTypeDir.formdata.mediaType:
+            let formData = testFunctionCommon.formData(body);
+            return formData;
+        case mediaTypeDir.formUrlencoded.mediaType:
+            let data =querystring.stringify(body)
+            return data;
+
+        default:
+            switch (body.type){
+                case rawTypeDictionary.text.mediaType:
+                case rawTypeDictionary.json.mediaType:
+                case rawTypeDictionary.javascript.mediaType:
+                case rawTypeDictionary.xml.mediaType:
+                case rawTypeDictionary.html.mediaType:
+                    return body.raw;
+            }
+
+    }
+}
+
+
+
 
 /**
  * 处理响应数据

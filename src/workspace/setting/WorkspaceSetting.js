@@ -147,6 +147,9 @@ const WorkspaceSetting = (props) =>{
                                         point="exportPdf"
                                         pluginStore={pluginStore}
                                         isModalType={true}
+                                        electronUrl={localStorage.getItem("ELECTRON_LOGIN_URL")||base_url}
+                                        version={version} //插件传参
+                                        preUrl={localStorage.getItem("ELECTRON_LOGIN_URL")||base_url}//插件传参
                                     />
                                 }
                                 name={"导出"}

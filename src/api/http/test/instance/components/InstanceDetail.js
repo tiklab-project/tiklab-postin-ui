@@ -7,12 +7,11 @@ import RequestBodyInstance from "./RequestBodyInstance";
 import RequestHeaderInstance from "./RequestHeaderInstance";
 import AssertInstance from "./AssertInstance";
 import {TextMethodType} from "../../../../../common/MethodType";
-import instanceStore from "../store/InstanceStore";
 
 const { TabPane } = Tabs;
 
 const InstanceDetail = (props) => {
-    const {  instanceId } = props;
+    const {  instanceId,instanceStore } = props;
     const { findInstance } = instanceStore;
 
     const [visible, setVisible] = useState(false);

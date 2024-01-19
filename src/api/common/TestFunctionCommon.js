@@ -1,5 +1,6 @@
 import React from "react";
 import Mock from "mockjs";
+import querystring from "querystring"
 
 //用于定义的各个list，转换为对象
 export const testFunctionCommon ={

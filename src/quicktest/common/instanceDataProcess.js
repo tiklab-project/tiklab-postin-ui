@@ -90,9 +90,6 @@ export const processFormUrlencodedData = (data) =>{
 }
 
 
-
-
-
 export const getMediaType = (value) => {
     let bodyType
 
@@ -107,12 +104,8 @@ export const getMediaType = (value) => {
         case mediaTypeDir.formUrlencoded.mediaType:
             bodyType = mediaTypeDir.formUrlencoded.title
             break;
-        //如果是application/json，直接设置成raw中application/json
-        case mediaTypeDir.raw.mediaType:
-            bodyType = mediaTypeDir.raw.title
-            break;
         default :
-            bodyType = mediaTypeDir.none.title
+            bodyType = mediaTypeDir.raw.title
             break;
     }
 

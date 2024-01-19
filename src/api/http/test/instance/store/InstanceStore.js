@@ -4,7 +4,7 @@ import {Axios} from "thoughtware-core-ui";
 /**
  * 历史实例 store
  */
-class InstanceStore {
+export class InstanceStore {
 
     @observable instanceList = [];
     @observable instanceId = '';
@@ -110,6 +110,6 @@ class InstanceStore {
 
 }
 
-
-let instanceStore = new InstanceStore()
-export default instanceStore;
+export const INSTANCE_STORE = 'instanceStore';
+// let instanceStore = new InstanceStore()
+// export default instanceStore;

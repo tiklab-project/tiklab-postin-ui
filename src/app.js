@@ -16,8 +16,15 @@ const App = (props) => {
         languageStore:[]
     })
 
+
     useEffect( async () => {
-        pluginLoader( routers, resources,i18n,"post").then(res => {
+        pluginLoader(
+            routers,
+            resources,
+            i18n,
+            "post",
+            localStorage.getItem("ELECTRON_LOGIN_URL")||base_url
+        ).then(res => {
             setPluginData(res)
         })
     }, []);

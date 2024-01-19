@@ -26,7 +26,7 @@ const FormUrlencodedTableCommon = (props) =>{
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <DataTypeSelect
-                    defaultValue={record.dataType}
+                    defaultValue={record.dataType||"string"}
                     handleSave={handleSave}
                     rowData={record}
                 />
