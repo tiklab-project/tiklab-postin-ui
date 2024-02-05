@@ -34,6 +34,7 @@ export const localDataProcess = ({
     switch (bodyType){
         case mediaTypeDir.none.title:
             body = null;
+            header['content-type']=rawTypeDictionary.json.mediaType;
             break;
         case mediaTypeDir.formdata.title:
             body = testFunctionCommon.transData(formDataList)
@@ -80,6 +81,7 @@ export const localDataProcess = ({
             }
             break;
         default:
+
             break;
     }
 
@@ -213,14 +215,17 @@ const processBody = (body,method) =>{
             return data;
 
         default:
-            switch (body.type){
-                case rawTypeDictionary.text.mediaType:
-                case rawTypeDictionary.json.mediaType:
-                case rawTypeDictionary.javascript.mediaType:
-                case rawTypeDictionary.xml.mediaType:
-                case rawTypeDictionary.html.mediaType:
-                    return body.raw;
+            if(body&&body.type){
+                switch (body.type){
+                    case rawTypeDictionary.text.mediaType:
+                    case rawTypeDictionary.json.mediaType:
+                    case rawTypeDictionary.javascript.mediaType:
+                    case rawTypeDictionary.xml.mediaType:
+                    case rawTypeDictionary.html.mediaType:
+                        return body.raw;
+                }
             }
+
 
     }
 }

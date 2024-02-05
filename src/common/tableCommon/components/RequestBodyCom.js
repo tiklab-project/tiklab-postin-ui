@@ -11,7 +11,7 @@ const RequestBodyCom = (props) =>{
 
     const onChange = (type) => {
         updateFn({bodyType: type})
-        // setRadioType(type)
+        setRadioType&&setRadioType(type)
     }
 
     /**
