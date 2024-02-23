@@ -220,17 +220,17 @@ const DataStructure = (props) => {
     /**
      * 点击筛选
      */
-    const clickSelect=(type)=>{
-        let params = {
-            dataType:type,
-            workspaceId:workspaceId,
-            orderParams:[{
-                name:sortBy.name,
-                orderType:sortBy.sort
-            }]
-        }
-        findDataStructureList(params)
-    }
+    // const clickSelect=(type)=>{
+    //     let params = {
+    //         dataType:type,
+    //         workspaceId:workspaceId,
+    //         orderParams:[{
+    //             name:sortBy.name,
+    //             orderType:sortBy.sort
+    //         }]
+    //     }
+    //     findDataStructureList(params)
+    // }
 
 
     return(
@@ -255,24 +255,24 @@ const DataStructure = (props) => {
 
             <div className={"flex-box"}>
                 <div className={"flex-box structure-header-box"}>
-                    <Select
-                        // defaultValue={null}
-                        placeholder={"数据类型"}
-                        className={"structure-box-select"}
-                        onChange={clickSelect}
-                        options={[
-                            {
-                                value: null,
-                                label: '所有',
-                            },{
-                                value: 'enum',
-                                label: 'enum',
-                            },{
-                                value: 'json',
-                                label: 'json',
-                            },
-                        ]}
-                    />
+                    {/*<Select*/}
+                    {/*    // defaultValue={null}*/}
+                    {/*    placeholder={"数据类型"}*/}
+                    {/*    className={"structure-box-select"}*/}
+                    {/*    onChange={clickSelect}*/}
+                    {/*    options={[*/}
+                    {/*        {*/}
+                    {/*            value: null,*/}
+                    {/*            label: '所有',*/}
+                    {/*        },{*/}
+                    {/*            value: 'enum',*/}
+                    {/*            label: 'enum',*/}
+                    {/*        },{*/}
+                    {/*            value: 'json',*/}
+                    {/*            label: 'json',*/}
+                    {/*        },*/}
+                    {/*    ]}*/}
+                    {/*/>*/}
                     <Input
                         prefix={<SearchOutlined />}
                         placeholder={`搜索名称`}

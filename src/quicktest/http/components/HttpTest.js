@@ -189,7 +189,7 @@ const HttpTest = (props) =>{
                                         required: true,
                                         message: '请输入有效的URL',
                                     },{
-                                        pattern: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+|(\d{1,3}\.){3}\d{1,3}(:\d+)?(\/[^\s]*)?)$/,
+                                        pattern: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(:\d+)?(\/[^\s]*)?$/,
                                         message: '请输入有效的URL',
                                     },
                                 ]}
