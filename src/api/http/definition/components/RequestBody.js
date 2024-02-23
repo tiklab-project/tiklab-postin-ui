@@ -28,7 +28,6 @@ const RequestBody  = (props) =>{
         })
     },[bodyType])
 
-
     return(
         <RequestBodyCom
             radioValue={radioType}
