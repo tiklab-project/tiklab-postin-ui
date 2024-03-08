@@ -1,5 +1,7 @@
 import React from 'react';
-import { Table } from 'antd';
+import {Select, Table} from 'antd';
+import {assertCompare} from "../../../../common/dictionary/dictionary";
+const {Option} = Select;
 
 const AssertResponseCommon = (props) =>{
     const {assertList} = props;
@@ -23,7 +25,22 @@ const AssertResponseCommon = (props) =>{
             width: '15%',
             dataIndex: 'comparator',
             // align:'center',
-            render:()=>(<span>=</span>)
+            render:(text,record) =>  (
+                <Select
+                    defaultValue={record.comparator}
+                    allowClear
+                    bordered={false}
+                    style={{'width':"100%"}}
+                    disabled={true}
+                    suffixIcon={null}
+                >
+                    <Option value={assertCompare.EQUAL}> = </Option>
+                    <Option value={assertCompare.GREATER_THAN}> &gt; </Option>
+                    <Option value={assertCompare.LESS_THAN}> &lt; </Option>
+                    <Option value={assertCompare.GREATER_THAN_EQUAL}> &gt;= </Option>
+                    <Option value={assertCompare.LESS_THAN_EQUAL}> &lt;= </Option>
+                </Select>
+            )
         },
         {
             title: '值',

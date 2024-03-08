@@ -4,6 +4,7 @@ import {ExTable} from "../../EditTable";
 import {toJS} from "mobx";
 import {uuid} from "../../utils/createId";
 import IconCommon from "../../IconCommon";
+import {assertCompare} from "../../dictionary/dictionary";
 
 const {Option} = Select;
 
@@ -42,7 +43,21 @@ const AssertTableCommon = (props)=>{
             title: '比较符',
             width: '10%',
             dataIndex: 'comparator',
-            render:()=>(<span>=</span>)
+            render:(text,record) =>  (
+                <Select
+                    defaultValue={record.comparator}
+                    allowClear
+                    bordered={false}
+                    style={{'width':"100%"}}
+                    onSelect= {(e) => onSelectCompare(e,record)}
+                >
+                    <Option value={assertCompare.EQUAL}> = </Option>
+                    <Option value={assertCompare.GREATER_THAN}> &gt; </Option>
+                    <Option value={assertCompare.LESS_THAN}> &lt; </Option>
+                    <Option value={assertCompare.GREATER_THAN_EQUAL}> &gt;= </Option>
+                    <Option value={assertCompare.LESS_THAN_EQUAL}> &lt;= </Option>
+                </Select>
+            )
         },
         {
             title: '参数值',
@@ -80,6 +95,17 @@ const AssertTableCommon = (props)=>{
         const data = {
             ...row,
             source: value
+        }
+        handleSave(data);
+    }
+
+    /**
+     * compare
+     */
+    const onSelectCompare = (value, row) => {
+        const data = {
+            ...row,
+            comparator: value
         }
         handleSave(data);
     }

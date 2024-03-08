@@ -18,7 +18,7 @@ const {TabPane} = Tabs;
  */
 const ApxMethodEditPage = (props) => {
     const { pluginsStore} = props;
-    const {findCategoryList} = categoryStore;
+    const {findNodeTree} = categoryStore;
     const { findApxMethod,updateApxMethod} = apxMethodStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
@@ -35,8 +35,9 @@ const ApxMethodEditPage = (props) => {
         setResData(apiInfo)
 
         let apix  = apiInfo.apix
+        let node =apiInfo.node
         form.setFieldsValue({
-            name:apix.name,
+            name:node.name,
             path:apix.path,
             category:apix.category?.id,
             executor:apix.executor?.id,
@@ -92,18 +93,22 @@ const ApxMethodEditPage = (props) => {
             id:apiId,
             apix:{
                 ...resData.apix,
-                name:allValues.name,
-                path:allValues.path,
-                category:{id:allValues.category},
+                categoryId:allValues.category,
                 executor:{id:allValues.executor},
-                desc:allValues.desc
+                desc:allValues.desc,
+                node:{
+                    ...resData.node,
+                    name:allValues.name,
+                    path:allValues.path,
+                },
             },
+
             methodType:allValues.methodType,
 
         }
         await updateApxMethod(params).then(async (res)=>{
             //编辑完重新查询目录树
-            await findCategoryList(workspaceId)
+            await findNodeTree({workspaceId:workspaceId});
         });
     }
 
@@ -122,7 +127,7 @@ const ApxMethodEditPage = (props) => {
 
         updateApxMethod(param).then(async (res)=>{
             //编辑完重新查询目录树
-            await findCategoryList(workspaceId)
+            await findNodeTree({workspaceId:workspaceId});
         });
     }
 

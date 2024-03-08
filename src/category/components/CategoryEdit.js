@@ -7,11 +7,12 @@ import categoryStore from "../store/CategoryStore";
  */
 const CategoryEdit =(props)=>{
     const {type } = props;
-    const {findCategory, createCategory, updateCategory, categoryId} = categoryStore;
+    const {findCategory, createCategory, updateCategory, categoryId,findNodeTree} = categoryStore;
 
     const [visible, setVisible] = useState(false);
 
     const [form] = Form.useForm();
+    const [categoryInfo, setCategoryInfo] = useState();
 
     const workspaceId = localStorage.getItem('workspaceId');
 
@@ -22,8 +23,9 @@ const CategoryEdit =(props)=>{
         if(type === "edit"){
             let res = await findCategory(props.categoryId?props.categoryId:categoryId)
             form.setFieldsValue({
-                name: res.name,
+                name: res.node.name,
             })
+            setCategoryInfo(res)
         }
 
         setVisible(true);
@@ -40,17 +42,27 @@ const CategoryEdit =(props)=>{
      */
     const onFinish = async () => {
         let values = await form.validateFields();
-        values.workspace = {id:workspaceId}
 
         if(type === 'edit'){
-            updateCategory(values);
+            let param= {
+                id:categoryInfo.id,
+                node:{
+                    ...categoryInfo.node,
+                    ...values
+                }
+            }
+            await updateCategory(param);
         }else{
-            values.parent = {
-                id:values.parent?values.parent:props.categoryId,
+            values.node = {
+                name:values.name,
+                workspaceId:workspaceId,
+                parentId:values.parent?values.parent:props.categoryId,
             }
 
-            createCategory(values);
+            await createCategory(values);
         }
+
+        await findNodeTree({workspaceId:workspaceId})
 
         setVisible(false)
     };

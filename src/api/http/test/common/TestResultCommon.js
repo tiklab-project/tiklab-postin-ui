@@ -19,16 +19,16 @@ const TestResultCommon = (props) =>  {
     const {showResponse,testResponse,afterScript} = props;
 
 
-    const isErrorTest = (response)=>{
+    const showTestResponse = (response)=>{
 
-        if(response&&response.error){
+        if(response&&response.errorMessage){
             return (
                 <div className="test-response-error">
                     <div>
                         <div  className={"test-response-before-img-box"}>
                             <img  className={"test-response-before-img"} src={errorImg} alt={"errorImg"}/>
                         </div>
-                        <span>Error : {response.error}</span>
+                        <span>{response.errorMessage}</span>
                     </div>
                 </div>
             )
@@ -83,7 +83,7 @@ const TestResultCommon = (props) =>  {
                     <ResponseBodyCommon responseBodyData={body} mediaType={mediaType}/>
                 </TabPane>
                 <TabPane tab="响应头" key="2">
-                    <ResHeaderCommon headers={processResHeader(JSON.stringify(headers))}/>
+                    <ResHeaderCommon headers={processResHeader(headers&&JSON.stringify(headers))}/>
                 </TabPane>
                 <TabPane tab="断言" key="5">
                     {
@@ -114,7 +114,7 @@ const TestResultCommon = (props) =>  {
                 </div>
             </div>
             <div className={`test-response-after  ${showResponse === true? 'test-response-show':'test-response-hide'}`} >
-                {isErrorTest(testResponse)}
+                {showTestResponse(testResponse)}
             </div>
         </div>
     )

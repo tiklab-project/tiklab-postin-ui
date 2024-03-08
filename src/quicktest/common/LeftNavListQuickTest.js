@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {inject, observer} from "mobx-react";
-import {Dropdown, Empty, Input, Menu, Space, Tooltip} from "antd";
+import {Empty, Input, Space, Tooltip} from "antd";
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "thoughtware-core-ui";
 import {SearchOutlined} from "@ant-design/icons";
@@ -11,7 +11,7 @@ import {
     processHeaderData,
     processQueryData
 } from "./instanceDataProcess";
-import {mediaTypeDir} from "../../common/dictionary/dictionary";
+import {mediaTypeDir, rawTypeDictionary} from "../../common/dictionary/dictionary";
 import quickTestStore from "../http/store/QuickTestStore";
 import tabQuickTestStore from "../store/TabQuickTestStore";
 
@@ -23,7 +23,7 @@ import tabQuickTestStore from "../store/TabQuickTestStore";
 const LeftNavListQuickTest =(props)=>{
     const {instanceStore} = props;
     const {findInstanceList,instanceList,deleteAllInstance,deleteInstance,findInstance} = instanceStore;
-    const {setResponseShow,setResponseData} = quickTestStore;
+    const {setResponseShow} = quickTestStore;
     const {tabPaneInfo,setTabPaneInfo} = tabQuickTestStore
 
     const userId = getUser().userId;
@@ -42,79 +42,21 @@ const LeftNavListQuickTest =(props)=>{
         findInstanceList(params)
     }
 
+
     /**
      * 点击打开不同的实例
      */
     const onClick= (item)=>{
 
-        let instance = {}
         findInstance(item.id).then(res=>{
-
-
-            let resData = {
-                body:res.responseInstance?.body,
-                headers:JSON.parse(res.responseInstance?.headers),
-                size:res.size,
-                statusCode:res.statusCode,
-                time:res.time,
-                error:res.error
-            }
-            setResponseData(resData)
-
             let request = res.requestInstance;
-            let header = processHeaderData(request.headers)
-            if(header&&header.length===0){
-                header = [{id: 'InitRowId'}]
-            }
-            let query = processQueryData(request.url)
-            if(query&&query.length===0){
-                query = [{id: 'InitRowId'}]
-            }
+            let headerList = processHeaderData(request.headers)
+            let queryList = processQueryData(request.url)
+            let bodyData = getBodyData(request)
 
-            let bodyType = getMediaType(request?.mediaType);
-            let bodyData = {
-                "bodyType":"none",
-                "form":[{id: 'InitRowId'}],
-                "formUrl":[{id: 'InitRowId'}],
-                "raw":{
-                    "type":"application/json",
-                    "raw":null
-                }
-            }
-            switch (bodyType){
-                case mediaTypeDir.none.title:
-                    break;
-                case mediaTypeDir.formdata.title:
-                    bodyData = {
-                        ...bodyData,
-                        "bodyType":bodyType,
-                        "form":processFormParamData(request.body)
-                    }
-                    break;
-                case mediaTypeDir.formUrlencoded.title:
-                    bodyData = {
-                        ...bodyData,
-                        "bodyType":bodyType,
-                        "formUrl":processFormUrlencodedData(request.body)
-                    }
-                    break;
-                case mediaTypeDir.raw.title:
-                    let rawInfo = {
-                        raw:request?.body,
-                        type:request?.mediaType
-                    }
-                    bodyData = {
-                        ...bodyData,
-                        "bodyType":bodyType,
-                        "raw":rawInfo
-                    }
-                    break;
-                default:
-                    break;
-            }
+            let responseHeaders = res.responseInstance?.headers?JSON.parse(res.responseInstance?.headers):null;
 
-
-            instance = {
+            let instance = {
                 "id":res.id,
                 "type":"api",
                 "protocol": "http",
@@ -123,12 +65,22 @@ const LeftNavListQuickTest =(props)=>{
                         "path":request.url,
                         "methodType":request.methodType,
                     },
-                    "header":header,
-                    "query":query,
+                    "header":headerList,
+                    "query":queryList,
                     "body":bodyData,
-                    "preScript":{"scriptex":null},
-                    "afterScript":{"scriptex":null},
+                    "preScript":{"scriptex":request?.preScript},
+                    "afterScript":{"scriptex":request?.afterScript},
                     "assert":[{id: 'InitRowId'}],
+
+                    response: {
+                        body:res.responseInstance?.body,
+                        headers:responseHeaders,
+                        size:res.size,
+                        statusCode:res.statusCode,
+                        time:res.time,
+                        errorMessage:res.errorMessage,
+                        assertList:res.assertInstanceList
+                    }
                 }
             }
 
@@ -140,14 +92,11 @@ const LeftNavListQuickTest =(props)=>{
             //替换上一次录入的数据
             if(index===-1){
                 tabList = [...tabList, instance];
-
                 activeKey = JSON.stringify(tabList.length - 1);
             }else {
                 tabList.splice(index, 1, { ...tabList[index], instance});
-
                 activeKey = JSON.stringify(index);
             }
-
             let newTabInfo = { activeKey:activeKey, tabList: tabList };
 
             setTabPaneInfo(newTabInfo)
@@ -155,6 +104,74 @@ const LeftNavListQuickTest =(props)=>{
 
         setResponseShow(true);
     }
+
+    //获取请求体数据
+    const getBodyData = (request,) =>{
+        let bodyType = getMediaType(request?.mediaType);
+
+        //初始
+        let bodyData = {
+            "bodyType":"none",
+            "form":[{id: 'InitRowId'}],
+            "formUrl":[{id: 'InitRowId'}],
+            "raw":{
+                "type":"application/json",
+                "raw":null
+            }
+        }
+
+        // 获取不同类型的请求体
+        switch (bodyType){
+            case mediaTypeDir.none.title:
+                break;
+            case mediaTypeDir.formdata.title:
+                bodyData = {
+                    ...bodyData,
+                    "bodyType":bodyType,
+                    "form":processFormParamData(request.body)
+                }
+                break;
+            case mediaTypeDir.formUrlencoded.title:
+                bodyData = {
+                    ...bodyData,
+                    "bodyType":bodyType,
+                    "formUrl":processFormUrlencodedData(request.body)
+                }
+                break;
+            case mediaTypeDir.raw.title:
+                let rawInfo;
+                switch (request?.mediaType){
+                    case rawTypeDictionary.text.mediaType:
+                    case rawTypeDictionary.javascript.mediaType:
+                    case rawTypeDictionary.xml.mediaType:
+                    case rawTypeDictionary.html.mediaType:
+                        rawInfo = {
+                            raw:request?.body,
+                            type:request?.mediaType
+                        }
+                        break;
+                    case rawTypeDictionary.json.mediaType:
+                        rawInfo = {
+                            raw:JSON.parse(request?.body),
+                            type:request?.mediaType
+                        }
+                        break;
+                }
+                bodyData = {
+                    ...bodyData,
+                    "bodyType":bodyType,
+                    "raw":rawInfo
+                }
+                break;
+            default:
+                break;
+
+        }
+
+        return bodyData
+
+    }
+
 
     /**
      * 耗时渲染
@@ -198,9 +215,14 @@ const LeftNavListQuickTest =(props)=>{
                         </div>
 
                         <Space>
-                            <span className={"qt-left-list-li-status"} >{item.statusCode}</span>
-                            <span style={{fontSize:13}}>{showTime(item.time)}</span>
-                            <span style={{fontSize:13,margin:"0 0 0 10px"}}>{showSize(item.size)}</span>
+                            {
+                                item.statusCode
+                                    ?<span className={"qt-left-list-li-status"} >{item.statusCode}</span>
+                                    :null
+                            }
+
+                            <span style={{fontSize:13,margin:"0 0 0 10px"}}>{showTime(item.time)||"0ms"}</span>
+                            <span style={{fontSize:13,margin:"0 0 0 10px"}}>{showSize(item.size)||"0b"}</span>
                         </Space>
 
                     </div>
@@ -212,29 +234,16 @@ const LeftNavListQuickTest =(props)=>{
         })
     }
 
-
     /**
      * 清空所有实例
      */
     const deleteAllInstanceFn = ()=>{
-        deleteAllInstance(userId).then(()=>findList())
+        deleteAllInstance(workspaceId).then(()=>findList())
     }
 
     const onSearch = (e)=>{
         findList(e.target.value)
     }
-
-    const menu = (
-        <Menu>
-            <Menu.Item key={1}>
-
-            </Menu.Item>
-            <Menu.Item key={2}>
-
-            </Menu.Item>
-        </Menu>
-    );
-
 
     return(
         <>
@@ -250,14 +259,6 @@ const LeftNavListQuickTest =(props)=>{
                             <use xlinkHref="#icon-qingkong" />
                         </svg>
                     </Tooltip>
-                    {/*<Dropdown overlay={menu}  className="ws-left-tree-drop" >*/}
-                    {/*    <div>*/}
-                    {/*        <IconCommon*/}
-                    {/*            className={"icon-s"}*/}
-                    {/*            icon={"tianjia-"}*/}
-                    {/*        />*/}
-                    {/*    </div>*/}
-                    {/*</Dropdown>*/}
                 </div>
             </div>
             {

@@ -9,7 +9,6 @@ export const dir = {
 
 }
 
-
 //请求类型字典项
 export const methodDictionary = [
     "post",
@@ -127,6 +126,16 @@ export const dataTypeDictionary = [
     // 'array'
 ]
 
+//断言大小对比
+export const assertCompare = {
+    EQUAL:"equal",
+    GREATER_THAN:"greater_than",
+    LESS_THAN:"less_than",
+    GREATER_THAN_EQUAL:"greater_than_equal",
+    LESS_THAN_EQUAL:"less_than_equal"
+}
+
+
 
 export const MOCK_SOURCE= [
         { name: '字符串', mock: '@string' },
@@ -177,3 +186,5 @@ export const MOCK_SOURCE= [
         { name: '打乱数组', mock: '@shuffle' },
         { name: '协议', mock: '@protocol' }
     ]
+
+

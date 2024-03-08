@@ -21,6 +21,15 @@ export let initTabPane = {
         "preScript":{"scriptex":null},
         "afterScript":{"scriptex":null},
         "assert":[{id: 'InitRowId'}],
+
+        response:{
+            body:null,
+            headers:null,
+            size:null,
+            statusCode:null,
+            time:null,
+            errorMessage:null
+        }
     }
 }
 

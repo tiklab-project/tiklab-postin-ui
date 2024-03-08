@@ -19,16 +19,16 @@ import PaginationCommon from "../../../common/pagination/Page";
  * 点击左侧导航栏目录，查看的所在目录中的接口列表
  */
 const APIList = (props) => {
-    const {findCategoryList,apiRecent} = categoryStore;
-    const {findApiPage,deleteApi} = apiStore;
+    const {findNodeTree,apiRecent,deleteNode} = categoryStore;
+    const {findApiPage} = apiStore;
 
     //接口列表头
     const columns = [
         {
             title: '名称',
-            dataIndex: 'name',
+            dataIndex: ["node","name"],
             width: '25%',
-            render: (text,record) => (<span className={"link-text"} onClick={()=>toApiDetailPage(record)}>{record.name}</span> )
+            render: (text,record) => (<span className={"link-text"} onClick={()=>toApiDetailPage(record)}>{record.node?.name}</span> )
         },
         {
             title: '协议/方法',
@@ -41,7 +41,7 @@ const APIList = (props) => {
                             {record?.protocolType?.toUpperCase()}
                         </span>
                     }
-                    {record.protocolType==="http"&&<MethodType type={record.methodType}/>}
+                    {record.protocolType==="http"&&<MethodType type={record.node?.methodType}/>}
                 </Space>
             )
         },
@@ -143,9 +143,9 @@ const APIList = (props) => {
      * 删除接口
      */
     const deleteMethod = (id) =>{
-        deleteApi(id).then(async ()=> {
+        deleteNode(id).then(async ()=> {
             await findPage();
-            await findCategoryList(workspaceId);
+            await findNodeTree({workspaceId:workspaceId});
         })
     }
 

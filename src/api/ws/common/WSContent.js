@@ -4,15 +4,13 @@ import {renderRoutes} from "react-router-config";
 import wsStore from "../ws/store/WSStore";
 import {observer} from "mobx-react";
 import {Dropdown, Menu, Space, Tag} from "antd";
-import apiStore from "../../api/store/APIStore";
 import categoryStore from "../../../category/store/CategoryStore";
 import {useHistory} from "react-router";
 
 const WSContent = (props) =>{
     const {findWSApi} = wsStore
-    const {deleteApi} = apiStore;
-    const {findCategoryList} = categoryStore;
 
+    const {deleteNode,findNodeTree} = categoryStore;
 
     const [wsInfo, setWsInfo] = useState();
     const workspaceId = localStorage.getItem('workspaceId');
@@ -30,8 +28,8 @@ const WSContent = (props) =>{
             <Menu.Item>
                 <a
                     onClick={async ()=> {
-                        await deleteApi(apiId)
-                        await findCategoryList(workspaceId);
+                        await deleteNode(apiId)
+                        await findNodeTree({workspaceId:workspaceId});
                         history.push("/workspace/apis/category")
                     }}
                 >
@@ -49,7 +47,7 @@ const WSContent = (props) =>{
                     <div className={"content-margin-box"} style={{borderBottom:"1px solid #e4e4e4"}}>
                         <div style={{display:"flex",justifyContent:"space-between"}}>
                             <Space>
-                                <span style={{fontWeight:"bold"}}>{wsInfo?.apix?.name}</span>
+                                <span style={{fontWeight:"bold"}}>{wsInfo?.node?.name}</span>
                                 <Tag color={wsInfo?.apix?.status?.color} >{wsInfo?.apix?.status?.name}</Tag>
                             </Space>
 

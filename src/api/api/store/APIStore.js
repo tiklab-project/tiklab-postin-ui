@@ -50,16 +50,6 @@ class APIStore {
     updateApi = async (values) =>  await Axios.post("/apx/updateApix",values)
 
 
-    /**
-     * 删除接口
-     */
-    @action
-    deleteApi = async (id) => {
-        const param = new FormData();
-        param.append('id', id);
-        return  await Axios.post("/apx/deleteApix",param)
-    }
-
 
 }
 

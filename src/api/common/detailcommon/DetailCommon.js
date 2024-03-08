@@ -20,7 +20,7 @@ const tailLayout = {
  */
 const DetailCommon = (props) =>{
     const {updateApi,form,apiInfo,updateStatus,methodType} = props;
-    const {findCategoryTreeList} = categoryStore;
+    const {findCategoryTree} = categoryStore;
     const [userList, setUserList] = useState([]);
     const [categoryList, setCategoryList] = useState([]);
     const [visible, setVisible] = useState(false);
@@ -28,7 +28,9 @@ const DetailCommon = (props) =>{
     const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(async ()=>{
-        let list = await findCategoryTreeList(workspaceId);
+        let list = await findCategoryTree({
+            workspaceId:workspaceId,
+        });
         setCategoryList(list)
     },[])
 

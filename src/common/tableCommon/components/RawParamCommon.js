@@ -49,7 +49,7 @@ const RawParamCommon = (props) => {
 
         return arr&&arr.map(item=>{
             let obj = data[item]
-            return  <Option value={obj.value} key={obj.key}>{obj.value}</Option>
+            return  <Option value={obj.mediaType} key={obj.mediaType}>{obj.mediaType}</Option>
         })
     }
 

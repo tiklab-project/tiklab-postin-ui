@@ -5,14 +5,15 @@
  */
 
 import React, { Fragment, useState } from 'react';
-import {observer, inject} from 'mobx-react';
-import {Modal, Form, Input, Button, Select, Cascader} from 'antd';
+import {observer} from 'mobx-react';
+import {Modal, Form, Input, Select, Cascader} from 'antd';
 import {methodDictionary} from "../../../../common/dictionary/dictionary";
 import {TextMethodType} from "../../../../common/MethodType";
 import IconBtn from "../../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../../common/IconCommon";
 import categoryStore from "../../../../category/store/CategoryStore";
 import apxMethodStore from "../store/ApxMethodStore";
+import apiStore from "../../../api/store/APIStore";
 
 const {Option} = Select;
 const {TextArea} = Input;
@@ -28,9 +29,9 @@ const ApxMethodEdit = (props) => {
         httpId,
         categoryItemId
     } =props;
-    const {findApxMethod,updateApxMethod,createApxMethod,findApxMethodListByApix} = apxMethodStore;
-
-    const { findCategoryList,categoryList } = categoryStore;
+    const {findApxMethod,updateApxMethod,createApxMethod} = apxMethodStore;
+    const { findNodeTree,categoryList } = categoryStore;
+    const {findApiPage} = apiStore;
 
     const [visible,setVisible] = useState(false);
     const [form] = Form.useForm();
@@ -43,8 +44,8 @@ const ApxMethodEdit = (props) => {
     /**
      * 展示弹框
      */
-    const showModal = () => {
-        findCategoryList(workspaceId);
+    const showModal = async () => {
+        await findNodeTree({workspaceId:workspaceId});
 
         if(props.type === "edit"){
             showApxMethodInfo();
@@ -59,10 +60,10 @@ const ApxMethodEdit = (props) => {
     const showApxMethodInfo = () => {
         findApxMethod(httpId?httpId:apiId).then((res)=>{
             form.setFieldsValue({
-                name: res.apix.name,
-                methodType: res.methodType,
+                name: res.node.name,
                 path: res.path,
-                desc: res.apix.desc,
+                methodType: res.node.methodType,
+                desc: res.desc,
             })
         })
     }
@@ -83,18 +84,25 @@ const ApxMethodEdit = (props) => {
 
         if(props.type === 'add'){
             values.apix={
-                workspaceId:workspaceId,
-                name:values.name,
                 path:values.path,
-                methodType:values.methodType,
-                protocolType:"http",
                 desc:values.desc,
-                category:{id:cascaderCategoryId?cascaderCategoryId:categoryId},
+                categoryId:cascaderCategoryId?cascaderCategoryId:categoryId,
             }
-
+            values.node={
+                name:values.name,
+                workspaceId:workspaceId,
+                parentId:cascaderCategoryId?cascaderCategoryId:categoryId,
+            }
             createApxMethod(values).then((id)=>{
-                findApxMethodListByApix(categoryId);
-                findCategoryList(workspaceId);
+                let param = {
+                    pageParam: {
+                        pageSize: 20,
+                        currentPage:1
+                    },
+                    categoryId:categoryId,
+                }
+                findApiPage(param);
+                findNodeTree({workspaceId:workspaceId});
 
                 localStorage.setItem('apiId',id);
                 props.history.push("/workspace/apis/http/edit");
@@ -102,14 +110,24 @@ const ApxMethodEdit = (props) => {
         }else{
             values.id=httpId;
             values.apix={
-                workspaceId:workspaceId,
                 id:httpId,
-                name:values.name,
                 path:values.path,
+                node:{
+                    id:httpId,
+                    name:values.name,
+                }
             }
             updateApxMethod(values).then(()=>{
-                findApxMethodListByApix(categoryId);
-                findCategoryList(workspaceId)
+                let param = {
+                    pageParam: {
+                        pageSize: 20,
+                        currentPage:1
+                    },
+                    categoryId:categoryId,
+                }
+                findApiPage(param);
+                findNodeTree({workspaceId:workspaceId});
+
                 setEdit?setEdit(true):null
             });
         }

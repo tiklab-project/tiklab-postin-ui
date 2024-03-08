@@ -5,7 +5,7 @@ import {mediaTypeDir} from "../../common/dictionary/dictionary";
  * header处理
  */
 export const processHeaderData = (data) =>{
-    if(!!data) return []
+    if(!data) return [{ "id":createID()}]
 
     let json = JSON.parse(data);
 
@@ -25,12 +25,12 @@ export const processHeaderData = (data) =>{
  * Query处理
  */
 export const processQueryData = (url) =>{
-    if(!!url) return []
+    if(!url) return [{ "id":createID()}]
     let arr = [];
 
     //如果没有url后参数直接return
     if(url.indexOf('?')===-1){
-        return
+        return [{ "id":createID()}]
     }
 
     // 先把字符 ? 后面的字符截取出来
@@ -55,8 +55,9 @@ export const processQueryData = (url) =>{
  * formData处理
  */
 export const processFormParamData = (data) =>{
-    let json = JSON.parse(data);
+    if(!data) return [{ "id":createID()}]
 
+    let json = JSON.parse(data);
     let arr = [];
 
     for (let key in json){
@@ -74,8 +75,9 @@ export const processFormParamData = (data) =>{
  * FormUrlencoded处理
  */
 export const processFormUrlencodedData = (data) =>{
-    let json = JSON.parse(data);
+    if(!data) return [{ "id":createID()}]
 
+    let json = JSON.parse(data);
     let arr = [];
 
     for (let key in json){

@@ -4,15 +4,13 @@ import {renderRoutes} from "react-router-config";
 import {Dropdown, Menu, Space, Tag} from "antd";
 import ShareModal from "../document/components/ShareModal";
 import apxMethodStore from "../definition/store/ApxMethodStore";
-import apiStore from "../../api/store/APIStore";
 import {useHistory} from "react-router";
 import categoryStore from "../../../category/store/CategoryStore";
 import {observer} from "mobx-react";
 
 const ApiContent = (props) =>{
     const { findApxMethod,apiInfo } = apxMethodStore;
-    const {deleteApi} = apiStore;
-    const {findCategoryList} = categoryStore;
+    const {findNodeTree,deleteNode} = categoryStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
     const apiId = localStorage.getItem("apiId")
@@ -28,8 +26,8 @@ const ApiContent = (props) =>{
             <Menu.Item>
                 <a
                     onClick={async ()=> {
-                        await deleteApi(apiId)
-                        await findCategoryList(workspaceId);
+                        await deleteNode(apiId)
+                        await findNodeTree({workspaceId:workspaceId});
                         history.push("/workspace/apis/category")
                     }}
                 >
@@ -46,14 +44,14 @@ const ApiContent = (props) =>{
                     <div className={"content-margin-box"} style={{borderBottom:"1px solid #e4e4e4"}}>
                         <div style={{display:"flex",justifyContent:"space-between"}}>
                             <Space>
-                                <span style={{fontWeight:"bold"}}>{apiInfo?.apix?.name}</span>
+                                <span style={{fontWeight:"bold"}}>{apiInfo?.node?.name}</span>
                                 <Tag color={apiInfo?.apix?.status?.color} style={{margin:"0 10px"}}>{apiInfo?.apix?.status?.name}</Tag>
                             </Space>
                             <Space>
                                 <ShareModal
                                     targetId={apiId}
                                     targetType={"api"}
-                                    targetName={apiInfo?.apix?.name}
+                                    targetName={apiInfo?.node?.name}
                                     icon={true}
                                 />
                                 <Dropdown overlay={moreMenu} overlayStyle={{width:"150px",height:"10px"}}>

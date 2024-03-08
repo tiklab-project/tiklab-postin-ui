@@ -40,6 +40,20 @@ export const testFunctionCommon ={
         return param
     },
 
+    assertData:(data) =>{
+        if(!data) return null;
+
+        let newData = {};
+        data.forEach((item)=>{
+            let {source,propertyName,comparator,value} = item
+            if(source!==undefined){
+                newData[source]=value
+            }
+        })
+        return Object.keys(newData).length > 0 ? newData : null;
+    },
+
+
 }
 
 
@@ -78,4 +92,38 @@ export const jsonSchemaToJson = (schema) =>{
 
     return result;
 }
+
+
+const treeData = [
+    {
+        id: '1',
+        name: 'Node 1',
+        type: 'category', // 目录类型
+        children: [
+            { id: '1-1', name: 'Node 1-1', type: 'http', methodType:"post" },
+            { id: '1-2', name: 'Node 1-2', type: 'http', methodType:"post" },
+            { id: '1-3', name: 'Node 1-3', type: 'ws'},
+            { id: '1-4', name: 'Node 1-4', type: 'ws'},
+        ],
+    },
+    {
+        id: '2',
+        name: 'Node 2',
+        type: 'category', // 目录类型
+        children: [
+            {
+                id: '2-1',
+                title: 'Node 2-1',
+                type: 'category', // 目录类型
+                children: [
+                    { id: '2-1-1', name: 'Node 2-1-1', type: 'http', methodType:"get" },
+                    { id: '2-1-2', name: 'Node 1-2', type: 'http', methodType:"post" },
+                ],
+            },
+            { id: '2-2', name: 'Node 2-2', type: 'ws'},
+            { id: '2-3', name: 'Node 2-3', type: 'http', methodType:"get" },
+        ],
+    },
+];
+
 

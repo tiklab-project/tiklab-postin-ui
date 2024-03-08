@@ -25,7 +25,7 @@ const APIEdit = (props) => {
     const {apiId,findPage} = props
     const {updateApxMethod} = apxMethodStore;
     const {findApi,updateApi} = apiStore;
-    const {findCategoryList} = categoryStore;
+    const {findNodeTree} = categoryStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
     const [visible,setVisible] = useState(false);
@@ -39,9 +39,9 @@ const APIEdit = (props) => {
         findApi(apiId).then((res)=>{
             setApiInfo(res)
             form.setFieldsValue({
-                name: res.name,
+                name: res.node.name,
                 path: res.path,
-                methodType: res.methodType,
+                methodType: res.node.methodType,
                 desc: res.desc,
             })
         })
@@ -67,16 +67,23 @@ const APIEdit = (props) => {
         if(apiInfo?.protocolType==="http"){
             values.apix={
                 id:apiId,
-                name:values.name,
                 path:values.path,
+                node:{
+                    id:apiId,
+                    name:values.name,
+                }
             }
             await updateApxMethod(values)
         }else {
+            values.node={
+                id:apiId,
+                name:values.name,
+            }
             await updateApi(values)
         }
 
         await findPage();
-        await findCategoryList(workspaceId);
+        await findNodeTree({workspaceId:workspaceId});
 
         setVisible(false);
     };

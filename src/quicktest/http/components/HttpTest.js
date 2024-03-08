@@ -21,21 +21,31 @@ const HttpTest = (props) =>{
     const {sendTest,toggleProtocol,instanceStore} = props;
 
     const {createInstance,findInstanceList} = instanceStore;
-    const { getRequestInfo, getResponseInfo, getResponseError,setResponseShow,isResponseShow,setResponseData, responseData} = quickTestStore;
+    const { getRequestInfo, getResponseInfo, setResponseShow,isResponseShow} = quickTestStore;
     const {
-        updateBaseInfo,activeKey,baseInfo, headerList,queryList,requestBodyType,
-        formList,formUrlList,rawInfo,preScript,afterScript,assertList
+        updateBaseInfo,activeKey,
+        baseInfo,
+        headerList,
+        queryList,
+        requestBodyType,
+        formList,
+        formUrlList,
+        rawInfo,
+        preScript,
+        afterScript,
+        assertList,
+        setResponseData,
+        responseData
     } = tabQuickTestStore
 
     const [ form ] = Form.useForm();
 
     const userId = getUser().userId;
 
-
     const instanceId = localStorage.getItem("instanceId")
     const workspaceId = localStorage.getItem("workspaceId")
     const [afterScriptex, setAfterScript] = useState();
-
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         form.setFieldsValue(baseInfo)
@@ -46,6 +56,7 @@ const HttpTest = (props) =>{
      *  点击测试
      */
     const onFinish = async ()=> {
+        setLoading(true)
         let values =await form.getFieldsValue();
 
         //如果没有输入协议开头，默认给一个http
@@ -77,41 +88,42 @@ const HttpTest = (props) =>{
             preObj ={}
         }
 
-
         //数据合并
         const processData = mergeTestData(localData,preObj)
         //获取请求信息
         getRequestInfo(processData)
 
-
         //发送测试，返回结果
         let response =await sendTest(processData)
 
+        response.assertList =assertList;
         //获取响应结果
-        if(response&&!response.error){
+        setResponseData(response)
 
-            response.assertList = assertList;
-            //获取响应结果
-            setResponseData(response)
-
-            getResponseInfo(response,assertList).then(res=>{
-                saveInstance(res,localData)
-            })
-
-            //后置
-            if(afterScript&&afterScript.scriptex){
-                let data =execute(afterScript.scriptex,response)
-                setAfterScript(data)
+        //获取响应结果
+        if(response&&!response.errorMessage){
+            try {
+                //后置
+                if (afterScript && afterScript.scriptex) {
+                    let data = execute(afterScript.scriptex, response)
+                    setAfterScript(data)
+                }
+            }catch{
+                setAfterScript("后置脚本执行失败")
             }
 
-
-        }else {
-            getResponseError(response).then((res)=>{
+            //保存实列
+            getResponseInfo(response).then(res=>{
                 saveInstance(res,localData)
             })
+
+        }else {
+            saveInstance(response,localData)
         }
+
         //点击测试按钮显示输出结果详情
         setResponseShow(true);
+        setLoading(false)
     }
 
     /**
@@ -125,9 +137,10 @@ const HttpTest = (props) =>{
             "methodType": localData.methodType,
             "mediaType": localData.mediaType,
             'headers':JSON.stringify(localData.header),
-            'body': JSON.stringify(localData.body)||localData.body,
+            'body': localData.body?JSON.stringify(localData.body):null,
             "preScript": preScript.scriptex,
-            "afterScript": afterScript.scriptex
+            "afterScript": afterScript.scriptex,
+            "asserts":localData.asserts
         }
         createInstance(res).then( async ()=>{
             let params={
@@ -184,15 +197,6 @@ const HttpTest = (props) =>{
                             <Form.Item
                                 className='formItem'
                                 name="path"
-                                rules={[
-                                    {
-                                        required: true,
-                                        message: '请输入有效的URL',
-                                    },{
-                                        pattern: /^(https?:\/\/)?([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(:\d+)?(\/[^\s]*)?$/,
-                                        message: '请输入有效的URL',
-                                    },
-                                ]}
                             >
                                 <Input
                                     onChange={changeInfo}
@@ -209,10 +213,11 @@ const HttpTest = (props) =>{
                                         menu={{items}}
                                         onClick={onFinish}
                                         type={"primary"}
+                                        loading={loading}
                                     >
                                         发送
                                     </Dropdown.Button>
-                                    :<Button type={"primary"} onClick={onFinish}>发送</Button>
+                                    :<Button type={"primary"} onClick={onFinish} loading={loading}>发送</Button>
                             }
 
                         </div>

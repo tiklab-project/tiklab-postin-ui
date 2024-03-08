@@ -52,7 +52,7 @@ export const localDataProcess = ({
             header['content-type']=mediaTypeDir.json.mediaType;
             break;
         case mediaTypeDir.raw.title:
-            body = raw
+            body = raw.raw
             switch (raw.type){
                 case rawTypeDictionary.text.mediaType:
                     mediaType = rawTypeDictionary.text.mediaType;
@@ -81,7 +81,6 @@ export const localDataProcess = ({
             }
             break;
         default:
-
             break;
     }
 
@@ -98,7 +97,7 @@ export const localDataProcess = ({
         bodyType:bodyType,
         mediaType:mediaType,
         body:body,
-        assert:assert
+        asserts:assert
     }
 }
 
@@ -215,18 +214,9 @@ const processBody = (body,method) =>{
             return data;
 
         default:
-            if(body&&body.type){
-                switch (body.type){
-                    case rawTypeDictionary.text.mediaType:
-                    case rawTypeDictionary.json.mediaType:
-                    case rawTypeDictionary.javascript.mediaType:
-                    case rawTypeDictionary.xml.mediaType:
-                    case rawTypeDictionary.html.mediaType:
-                        return body.raw;
-                }
+            if(body){
+                return body
             }
-
-
     }
 }
 
@@ -240,6 +230,26 @@ const processResponse = (res) =>{
     let responseData ={}
 
     if(Object.keys(res.headers).length>0){
+
+        //判断是否有错误
+        if(res.headers["pi-error"]){
+            // if(res.headers["pi-error"].includes("UnknownHostException")){
+            //     return {
+            //         result:-1,
+            //         errorMessage:" 请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析"
+            //     }
+            // }else {
+            //     return {
+            //         result:-1,
+            //         errorMessage:" 请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析"
+            //     }
+            // }
+            return {
+                result:-1,
+                errorMessage:" 请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析"
+            }
+        }
+
 
         //解析 基础信息 statusCode,statusText,times
         let base = res.headers["pi-base"]
@@ -268,14 +278,19 @@ const processResponse = (res) =>{
 
             responseData = Object.assign({},responseData,{headers:headerObj})
         }
+
+        responseData = Object.assign({},responseData,{body:res.data})
+
+        return responseData;
+    }else {
+
+        responseData = Object.assign({},{
+            error:res.error
+        })
+
+        return responseData
     }
 
-    responseData = Object.assign({},responseData,{
-        body:res.data,
-        error:res.error
-    })
-
-    return responseData
 }
 
 /**

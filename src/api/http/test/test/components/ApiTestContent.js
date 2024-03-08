@@ -33,7 +33,7 @@ const ApiTestContent = (props) => {
 
     const {findApxMethod} = apxMethodStore;
     const {testEnvUrl} = environmentStore;
-    const { getJsonParam,jsonData,getResponseInfo, getResponseError } = testStore;
+    const { getJsonParam,jsonData } = testStore;
     const { requestHeaderList,getRequestHeaderTestList } = requestHeaderTestStore;
     const { querySelectList,getQueryParamTestList } = queryParamTestStore;
     const { bodyTypeInfo,getBodyType,getMediaType } = requestBodyTestStore;

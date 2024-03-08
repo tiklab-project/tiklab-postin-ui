@@ -45,19 +45,19 @@ class QuickTestStore {
      * 获取响应参数
      */
     @action
-    getResponseInfo = async (data,assertData,localData) => {
+    getResponseInfo = async (data) => {
         if(data){
-            const {time,statusCode,headers,size,body} = data;
+            const {time,statusCode,headers,size,body,assertList} = data;
 
 
             //断言处理
-            let assertList = this.assertListProcess(assertData);
+             let processAssertList = this.assertListProcess(assertList);
 
             const assertNeedData ={
                 "status":statusCode,
                 "header":headers,
                 "body":body,
-                "assertList":assertList
+                "assertList":processAssertList
             }
 
             //断言list，添加result 字段。用于测试结果中的断言回显
@@ -78,27 +78,8 @@ class QuickTestStore {
                     'headers': headers ? JSON.stringify(headers) : "",
                     'body': body ? JSON.stringify(body) : ""
                 },
-                'assertInstanceList': assertData
+                'assertInstanceList': processAssertList
             }
-        }
-    }
-
-    /**
-     * 获取响应错误参数
-     */
-    @action
-    getResponseError= async (res)=>{
-        this.time=null;
-        this.status=null;
-
-        this.error ={
-            errorMessage:res.error,
-            showError:false
-        }
-
-        return {
-            "result":-1,
-            "errorMessage":res.error,
         }
     }
 
@@ -150,7 +131,6 @@ class QuickTestStore {
     @action
     saveToApi = async (data) => await Axios.post("/quick/saveToApi",data);
 
-
     /**
      * 响应 界面切换
      */
@@ -159,10 +139,6 @@ class QuickTestStore {
         this.isResponseShow = value
     }
 
-    @action
-    setResponseData = (data) =>{
-        this.responseData = data;
-    }
 
 }
 

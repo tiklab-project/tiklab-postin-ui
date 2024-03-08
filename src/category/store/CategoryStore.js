@@ -109,21 +109,6 @@ class CategoryStore{
     }
 
     /**
-     * 删除目录
-     */
-    @action
-    deleteCategory = async (categoryId) => {
-        const param = new FormData();
-        param.append('id', categoryId)
-        const res = await Axios.post("/category/deleteCategory",param)
-
-        if(res.code === 0){
-            await this.findCategoryList(this.workspaceId);
-        }
-    }
-
-
-    /**
      * 设置最近访问的接口
      */
     @action
@@ -133,6 +118,45 @@ class CategoryStore{
             return res.data;
         }
     }
+
+    @action
+    findCategoryTree = async (param) => {
+        const params = {
+            type:"category",
+            orderParams:[{name:'createTime', orderType:'desc'}],
+            ...param
+        }
+
+        let res = await Axios.post("/node/findNodeTree",params)
+        if(res.code === 0) {
+            return res.data;
+        }
+    }
+
+    @action
+    findNodeTree = async (param) => {
+        const params = {
+            orderParams:[{name:'createTime', orderType:'desc'}],
+            ...param
+        }
+
+        let res = await Axios.post("/node/findNodeTree",params)
+        if(res.code === 0) {
+            this.categoryList = res.data;
+            return res.data;
+        }
+    }
+
+
+    @action
+    deleteNode = async (id) => {
+        const param = new FormData();
+        param.append('id', id)
+        await Axios.post("/node/deleteNode",param)
+    }
+
+
+
 
 }
 

@@ -6,9 +6,8 @@ import { PluginProvider,pluginLoader} from 'thoughtware-plugin-core-ui';
 import resources from "./common/language/resource";
 
 const App = (props) => {
-     const {routers} = props;
-
-     const {i18n} = useTranslation();
+    const {routers} = props;
+    const {i18n} = useTranslation();
 
     const [initPluginData,setPluginData] = useState({
         routers,

@@ -1,5 +1,6 @@
 import {action} from "mobx";
 import jsonPath from "../../../../common/utils/jsonPath";
+import {assertCompare} from "../../../../common/dictionary/dictionary";
 
 export class AssertCommonStore{
 
@@ -60,7 +61,7 @@ export class AssertCommonStore{
 
     //比较两个值是否相同
     @action
-    assertCompareCommon=(value,itemValue)=>{
+    compareEqual=(value,itemValue)=>{
         if(String(value) === itemValue){
             return 1
         }else{
@@ -68,11 +69,67 @@ export class AssertCommonStore{
         }
     }
 
+    // 大于
+    @action
+    compareGreaterThan=(value,itemValue)=>{
+        if(String(value) > itemValue){
+            return 1
+        }else{
+            return -1
+        }
+    }
+
+    // 小于
+    @action
+    compareLessThan=(value,itemValue)=>{
+        if(String(value) < itemValue){
+            return 1
+        }else{
+            return -1
+        }
+    }
+
+    // 大于等于
+    @action
+    compareGreaterThanEqual=(value,itemValue)=>{
+        if(String(value) >= itemValue){
+            return 1
+        }else{
+            return -1
+        }
+    }
+
+    // 小于等于
+    @action
+    compareLessThanEqual=(value,itemValue)=>{
+        if(String(value) <= itemValue){
+            return 1
+        }else{
+            return -1
+        }
+    }
+
+
+
     @action
     assertStatusCommon=(status,item)=>{
 
         if(item.propertyName==="status"){
-            return this.assertCompareCommon(status,item.value);
+            switch (item.comparator) {
+                case assertCompare.EQUAL:
+                    return this.compareEqual(status,item.value);
+                case assertCompare.GREATER_THAN:
+                    return this.compareGreaterThan(status,item.value)
+                case assertCompare.LESS_THAN:
+                    return this.compareLessThan(status,item.value)
+                case assertCompare.GREATER_THAN_EQUAL:
+                    return this.compareGreaterThanEqual(status,item.value)
+                case assertCompare.LESS_THAN_EQUAL:
+                    return this.compareLessThanEqual(status,item.value)
+                default:
+                    return -1
+            }
+
         }else {
             return -1
         }
@@ -83,7 +140,7 @@ export class AssertCommonStore{
     assertHeaderCompare = (header,item)=>{
         if(header.hasOwnProperty(item.propertyName)){
             let headersValue = header[item.propertyName];
-            return this.assertCompareCommon(headersValue,item.value);
+            return this.compareEqual(headersValue,item.value);
         }else{
             return -1
         }
@@ -97,7 +154,7 @@ export class AssertCommonStore{
         if(badyValue === 'false'){
             return -1
         }else{
-            return this.assertCompareCommon(badyValue,item.value);
+            return this.compareEqual(badyValue,item.value);
         }
     }
 }

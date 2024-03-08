@@ -21,7 +21,7 @@ const WSDesignPage = (props) => {
         let info =  await findApi(apiId)
         setAPIInfo(info)
         form.setFieldsValue({
-            name:info.name,
+            name:info.node.name,
             path:info.path,
             category:info.category?.id,
             executor:info.executor?.id,
@@ -32,11 +32,15 @@ const WSDesignPage = (props) => {
     const updateFn = async (changedValues, allValues) =>{
         let params = {
             ...apiInfo,
-            name:allValues.name,
             path:allValues.path,
-            category:{id:allValues.category},
+            categoryId:allValues.category,
             executor:{id:allValues.executor},
-            desc:allValues.desc
+            desc:allValues.desc,
+            node:{
+                ...apiInfo.node,
+                name:allValues.name,
+                path:allValues.path,
+            },
         }
         await updateApi(params)
     }

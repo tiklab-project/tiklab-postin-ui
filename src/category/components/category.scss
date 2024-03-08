@@ -176,3 +176,41 @@
         content: none;
     }
 }
+
+
+//treeNode
+.ant-tree .ant-tree-treenode{
+    width: 100%;
+}
+
+.ant-tree .ant-tree-node-content-wrapper{
+    width: 100%;
+}
+
+.ant-tree-title{
+    display: inline-block;
+    width: 90%
+}
+
+.ant-tree .ant-tree-node-content-wrapper{
+    display: flex;
+}
+
+.ant-tree .ant-tree-node-content-wrapper:hover .category-action{
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    height: 100%;
+}
+
+.ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle{
+    min-width: 24px;
+    width: unset;
+}
+
+.node-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

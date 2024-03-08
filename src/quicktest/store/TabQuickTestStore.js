@@ -18,13 +18,14 @@ class TabQuickTestStore {
     @observable queryList = this.tabPaneInfo.tabList[this.activeKey].data.query;
     @observable rawInfo = this.tabPaneInfo.tabList[this.activeKey].data.body.raw;
 
-    //http
     @observable requestBodyType = this.tabPaneInfo.tabList[this.activeKey].data.body.bodyType;
     @observable formList = this.tabPaneInfo.tabList[this.activeKey].data.body.form;
     @observable formUrlList = this.tabPaneInfo.tabList[this.activeKey].data.body.formUrl;
     @observable preScript = this.tabPaneInfo.tabList[this.activeKey].data.preScript;
     @observable afterScript = this.tabPaneInfo.tabList[this.activeKey].data.afterScript;
     @observable assertList = this.tabPaneInfo.tabList[this.activeKey].data.assert;
+
+    @observable responseData = this.tabPaneInfo.tabList[this.activeKey].data.response
 
     @action
     setTabPaneInfo = (data) =>{
@@ -35,7 +36,7 @@ class TabQuickTestStore {
         //拿到当前标签页下的数据
         let curTab = this.tabPaneInfo.tabList[this.activeKey]
 
-        let {baseInfo,header,query,body,preScript,afterScript,assert } =  curTab.data;
+        let {baseInfo,header,query,body,preScript,afterScript,assert,response } =  curTab.data;
         let {protocol} = curTab;
         this.protocol = protocol;
         this.baseInfo = baseInfo
@@ -49,6 +50,8 @@ class TabQuickTestStore {
         this.preScript = preScript
         this.afterScript = afterScript
         this.assertList = assert
+
+        this.responseData = response
     }
 
     @action
@@ -182,7 +185,8 @@ class TabQuickTestStore {
      */
     @action
     updatePreScript = (value)=>{
-        this.preScript = {...this.preScript,...value};
+        this.preScript.scriptex =value;
+
         this.tabPaneInfo.tabList[this.activeKey].data.preScript=this.preScript
     }
 
@@ -199,7 +203,8 @@ class TabQuickTestStore {
      */
     @action
     updateAfterScript = (value)=>{
-        this.afterScript = {...this.afterScript,...value};
+        this.afterScript.scriptex =value;
+
         this.tabPaneInfo.tabList[this.activeKey].data.afterScript=this.afterScript
     }
 
@@ -229,7 +234,10 @@ class TabQuickTestStore {
         this.tabPaneInfo.tabList[this.activeKey].data.assert=this.assertList
     }
 
-
+    @action
+    setResponseData = (data) =>{
+        this.responseData = data;
+    }
 
     @action
     deleteFn = (id,list)=>{

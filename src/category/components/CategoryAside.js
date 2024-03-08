@@ -1,26 +1,32 @@
-import React, {useEffect} from 'react';
-import { observer, inject } from "mobx-react";
-import {CategoryEdit,CategoryNav} from '../index'
-import { Input, Button, Dropdown, Menu} from 'antd';
+import React from 'react';
+import { observer } from "mobx-react";
+
+import { Input, Dropdown, Menu} from 'antd';
 import {SearchOutlined} from "@ant-design/icons";
 import IconCommon from "../../common/IconCommon";
 import Import from "../../support/imexport/components/Import";
 import categoryStore from "../store/CategoryStore";
+import NodeTree from "./NodeTree";
+import CategoryEdit from "./CategoryEdit";
+import "./category.scss"
+
 /**
  * @Description: 空间详情左侧导航栏
  * @Author: sunxiancheng
  */
-
 const CategoryAside = (props) => {
-    const { findCategoryList } = categoryStore;
+    const { findNodeTree } = categoryStore;
 
     const workspaceId = localStorage.getItem('workspaceId');
 
     /**
      * 搜索目录
      */
-    const onSearch=(e)=> {
-        findCategoryList(workspaceId,e.target.value);
+    const onSearch= async (e)=> {
+        await findNodeTree({
+            workspaceId:workspaceId,
+            name:e.target.value
+        });
     }
 
     const menu = (
@@ -54,7 +60,7 @@ const CategoryAside = (props) => {
                         </Dropdown>
                     </div>
                     <div className='ws-detail-menu-ul-box'>
-                        <CategoryNav className='ws-detail-menu-ul' {...props}/>
+                        <NodeTree />
                     </div>
                 </div>
             </div>

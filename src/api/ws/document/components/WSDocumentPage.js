@@ -34,7 +34,7 @@ const WSDocumentPage = (props) =>{
                         <span className={"share-detail-title"}>负责人: {wsInfo?.apix?.executor?.name||"未设置"}</span>
                     </div>
                     <div style={{margin:"0 50px"}}>
-                        <span className={"share-detail-title"}>更新时间: {wsInfo?.apix?.updateTime}</span>
+                        <span className={"share-detail-title"}>更新时间: {wsInfo?.node?.updateTime}</span>
                     </div>
                     {
                         wsInfo?.apix?.desc

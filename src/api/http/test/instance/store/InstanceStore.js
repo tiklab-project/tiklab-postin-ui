@@ -40,12 +40,12 @@ export class InstanceStore {
      */
     @action
     findInstanceList = async (values) =>{
-        this.param = {
+            let params = {
             orderParams:[{name:'createTime', orderType:'asc' }],
             ...values
         }
 
-        const res = await Axios.post("/testInstance/findTestInstanceList",this.param);
+        const res = await Axios.post("/testInstance/findTestInstanceList",params);
         if(res.code===0){
             this.instanceList = res.data;
             return res.data;
@@ -61,20 +61,6 @@ export class InstanceStore {
 
         const res = await Axios.post("/testInstance/findTestInstance",param)
         if(res.code === 0){
-            let requestInstance = res.data.requestInstance;
-
-
-            if(res.data.errorMessage===null){
-                let responseInstance = res.data.responseInstance;
-                this.responseBodyData = JSON.parse(responseInstance.body);
-                this.responseHeaderData = responseInstance.headers;
-            }
-
-            this.requestBodyData = requestInstance.body;
-            this.requestHeaderData = requestInstance.headers;
-
-            this.assertList = res.data.assertInstanceList;
-
             return res.data;
         }
     }
@@ -100,9 +86,9 @@ export class InstanceStore {
     }
 
     @action
-    deleteAllInstance = async (id) => {
+    deleteAllInstance = async (workspaceId) => {
         const param = new FormData();
-        param.append('userId', id);
+        param.append('workspaceId', workspaceId);
 
         await Axios.post("/testInstance/deleteAllTestInstance",param)
     }

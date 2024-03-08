@@ -20,7 +20,7 @@ const {TextArea} = Input;
 const WSAdd = (props) => {
     const {curCategoryId} = props
     const {createWSApi} = wsStore;
-    const { findCategoryList } = categoryStore;
+    const { findNodeTree } = categoryStore;
 
     const [visible,setVisible] = useState(false);
     const [form] = Form.useForm();
@@ -52,12 +52,15 @@ const WSAdd = (props) => {
 
         let param = {
             apix:{
-                workspaceId:workspaceId,
-                name:values.name,
                 path:values.path,
-                protocolType:"ws",
                 desc:values.desc,
-                category:{id:curCategoryId?curCategoryId:categoryId},
+                categoryId:curCategoryId?curCategoryId:categoryId
+            },
+
+            node:{
+                name:values.name,
+                workspaceId:workspaceId,
+                parentId:curCategoryId?curCategoryId:categoryId
             }
         }
 
@@ -65,7 +68,7 @@ const WSAdd = (props) => {
             if(res.code===0){
                 localStorage.setItem('apiId',res.data);
                 history.push("/workspace/apis/ws/design");
-                findCategoryList(workspaceId);
+                findNodeTree({workspaceId:workspaceId});
             }
         })
 
