@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Dropdown, Menu, Popconfirm, Tree} from 'antd';
 import {FolderOutlined, FolderOpenOutlined} from '@ant-design/icons';
 import {useEffect} from "react";
@@ -20,10 +20,15 @@ const NodeTree = (props) => {
 
     let history = useHistory()
     const workspaceId = localStorage.getItem('workspaceId');
+    const [expandedKeys, setExpandedKeys] = useState([]);
+
+
+
     useEffect(async ()=>{
         await findNodeTree({workspaceId:workspaceId})
 
     },[workspaceId])
+
 
     /**
      * 保存分类id，跳往分类页
@@ -32,6 +37,14 @@ const NodeTree = (props) => {
 
         switch (item.type){
             case 'category':
+                //点击目录展开收缩
+                let key = item.id
+                const nextExpandedKeys = expandedKeys.includes(key)
+                    ? expandedKeys.filter(k => k !== key)
+                    : [...expandedKeys, key];
+                setExpandedKeys(nextExpandedKeys);
+
+
                 localStorage.setItem('categoryId',item.id);
                 history.push('/workspace/apis/category');
                 break;
@@ -177,8 +190,13 @@ const NodeTree = (props) => {
         }
     };
 
+
     return(
-        <Tree showIcon>
+        <Tree
+            showIcon
+            expandedKeys={expandedKeys}
+            onExpand={setExpandedKeys}
+        >
             {renderTreeNodes(categoryList)}
         </Tree
     >)

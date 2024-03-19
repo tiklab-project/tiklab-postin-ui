@@ -48,7 +48,7 @@ const HttpTest = (props) =>{
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
-        form.setFieldsValue(baseInfo)
+        form.setFieldsValue(baseInfo )
     },[activeKey])
 
 
@@ -59,8 +59,11 @@ const HttpTest = (props) =>{
         setLoading(true)
         let values =await form.getFieldsValue();
 
-        //如果没有输入协议开头，默认给一个http
-        let url = values.path.startsWith("http") ? values.path : "http://" + values.path;
+        // 获取路径并去除两端空格
+        const path = values.path.trim();
+
+        // 添加默认的协议前缀
+        const url = path.startsWith("http") ? path : `http://${path}`;
 
         const allSendData = {
             "methodType":values.methodType,

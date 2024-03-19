@@ -214,3 +214,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
+    background: var(--pi-action-color);
+}

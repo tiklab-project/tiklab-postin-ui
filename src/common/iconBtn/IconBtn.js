@@ -11,7 +11,7 @@ const IconBtn = (props) =>{
 
     return(
         <div className={"pi-icon-btn-box"}>
-            <Button className={`${className}`} style={{padding:"4px 10px"}} onClick={onClick}>
+            <Button className={`${className}`} style={{padding:"4px 10px"}} onClick={onClick} >
                 <div className={`pi-icon-btn`} >
                     {
                         icon

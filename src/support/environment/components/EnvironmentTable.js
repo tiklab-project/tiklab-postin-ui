@@ -6,6 +6,7 @@ import EnvironmentEdit from "./EnvironmentEdit";
 import DetailHeader from "../../../common/DetailHeader";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import IconCommon from "../../../common/IconCommon";
+import HideDelete from "../../../api/common/hideDelete/HideDelete";
 
 /**
  * 点击左侧导航栏目录，查看的所在目录中的接口列表
@@ -47,17 +48,9 @@ const EnvironmentTable = (props) => {
                 <Space  >
                     <EnvironmentEdit envData={record} findList={findList}/>
 
-                    <Popconfirm
-                        title="确定删除？"
-                        onConfirm={() =>deleteEnvironment(record.id).then(()=>findList())}
-                        okText='确定'
-                        cancelText='取消'
-                    >
-                        <IconCommon
-                            icon={"shanchu3"}
-                            className="icon-s table-edit-icon"
-                        />
-                    </Popconfirm>
+                    <HideDelete
+                        deleteFn={() =>deleteEnvironment(record.id).then(()=>findList())}
+                    />
                 </Space>
             )
         }

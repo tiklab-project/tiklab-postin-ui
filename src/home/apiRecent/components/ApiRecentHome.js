@@ -68,7 +68,7 @@ const ApiRecentHome = (props) =>{
                             />
                             <div>
                                 <div className={"home-list-item-title"}>
-                                    {item.apix?.name}
+                                    {item.apix?.node?.name}
                                 </div>
                                 <div className={"home-list-item-other"} >
                                     <div  className={"home-list-item-other-text"}> {item.workspace.workspaceName}</div>

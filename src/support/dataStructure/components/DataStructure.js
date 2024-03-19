@@ -1,12 +1,13 @@
 import React, {useEffect,useState} from 'react'
-import {Input, Popconfirm, Select, Space, Table} from "antd";
+import {Input, Popconfirm, Space, Table} from "antd";
 import DataStructureEdit from "./DataStructureEdit";
-import {inject, observer} from "mobx-react";
+import { observer} from "mobx-react";
 import "./structureStyle.scss"
 import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
 import IconCommon from "../../../common/IconCommon";
 import dataStructureStore from "../store/DataStructureStore";
+import HideDelete from "../../../api/common/hideDelete/HideDelete";
 
 /**
  * @description：数据结构页
@@ -54,17 +55,10 @@ const DataStructure = (props) => {
                         icon={true}
                         dataStructureId={record.id}
                     />
-                    <Popconfirm
-                        title="确定删除？"
-                        onConfirm={() =>deleteFn(record.id)}
-                        okText='确定'
-                        cancelText='取消'
-                    >
-                        <IconCommon
-                            icon={"shanchu3"}
-                            className={"icon-s edit-icon"}
-                        />
-                    </Popconfirm>
+
+                    <HideDelete
+                        deleteFn={() =>deleteFn(record.id)}
+                    />
                 </Space>
             ),
         },

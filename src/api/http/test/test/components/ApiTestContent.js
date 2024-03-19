@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
-import {Breadcrumb, Form, Input, Select, Space, Tooltip} from 'antd';
+import {Breadcrumb, Button, Form, Input, Select, Space, Tooltip} from 'antd';
 import { TestRequest } from '../index';
 import './test.scss';
 import {localDataProcess, mergeTestData} from "../../../../../common/request/sendTestCommon";
@@ -48,6 +48,7 @@ const ApiTestContent = (props) => {
 
     const [ form ] = Form.useForm();
 
+    const [loading, setLoading] = useState(false);
     const [apiData, setApiData] = useState();
     const [showResponse,setShowResponse]= useState(false);
     const [testResponse, setTestResponse] = useState();
@@ -120,6 +121,7 @@ const ApiTestContent = (props) => {
      * 点击测试
      */
     const onFinish =async ()=> {
+        setLoading(true)
         let values =await form.validateFields();
 
         let preUrl = values.host?values.host:testEnvUrl
@@ -177,6 +179,8 @@ const ApiTestContent = (props) => {
 
             setShowResponse(true)
         }
+
+        setLoading(false)
     }
 
     /**
@@ -238,13 +242,14 @@ const ApiTestContent = (props) => {
                         </Form.Item>
                     </div>
 
-                    <IconBtn
-                        className="important-btn"
-                        icon={"fasong-copy"}
-                        onClick={onFinish}
-                        name={"发送"}
-                    />
 
+                    <Button
+                        className="important-btn"
+                        onClick={onFinish}
+                        loading={loading}
+                    >
+                        发送
+                    </Button>
                 </Form>
             </div>
 

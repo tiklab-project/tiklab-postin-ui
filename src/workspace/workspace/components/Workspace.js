@@ -1,16 +1,14 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './workspace.scss';
 import {Input} from "antd";
 import {getUser} from "thoughtware-core-ui";
 import {inject, observer} from "mobx-react";
 import WorkspaceList from "./WorkspaceList";
-import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
 import WorkspaceRecentHome from "./WorkspaceRecentHome";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import workspaceFollowStore from "../store/WorkspaceFollowStore";
 import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
-import EnvSelect from "../../../support/environment/components/EnvSelect";
 /**
  * 空间页
  */

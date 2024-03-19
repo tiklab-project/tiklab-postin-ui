@@ -14,6 +14,7 @@ import "../../http/document/components/shareStyle.scss"
 import "../../http/definition/components/apxMethod.scss"
 import '../../../category/components/category.scss';
 import PaginationCommon from "../../../common/pagination/Page";
+import HideDelete from "../../common/hideDelete/HideDelete";
 
 /**
  * 点击左侧导航栏目录，查看的所在目录中的接口列表
@@ -77,16 +78,9 @@ const APIList = (props) => {
                         apiId={record.id}
                         findPage={findPage}
                     />
-                    <Popconfirm
-                        title="确定删除？"
-                        onConfirm={() =>deleteMethod(record.id)}
-                        okText='确定'
-                        cancelText='取消'
-                    >
-                        <svg className="icon-s edit-icon" aria-hidden="true">
-                            <use xlinkHref= {`#icon-shanchu3`} />
-                        </svg>
-                    </Popconfirm>
+                    <HideDelete
+                        deleteFn={() =>deleteMethod(record.id)}
+                    />
                 </Space>
             )
         }
