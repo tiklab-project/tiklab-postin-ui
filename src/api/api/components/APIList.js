@@ -4,13 +4,13 @@ import {Empty, Input, Popconfirm, Space, Table} from 'antd';
 import ApxMethodEdit from '../../http/definition/components/ApxMethodEdit';
 import MethodType from "../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
-import CategoryDocDrawer from "../../../category/components/CategoryDocDrawer";
+import CategoryDocDrawer from "../../../support/share/components/CategoryDocDrawer";
 import {getUser} from "thoughtware-core-ui";
 import categoryStore from "../../../category/store/CategoryStore";
 import apiStore from "../store/APIStore";
 import emptyImg from "../../../assets/img/empty.png"
 import APIEdit from "./APIEdit";
-import "../../http/document/components/shareStyle.scss"
+import "../../../support/share/components/shareStyle.scss"
 import "../../http/definition/components/apxMethod.scss"
 import '../../../category/components/category.scss';
 import PaginationCommon from "../../../common/pagination/Page";

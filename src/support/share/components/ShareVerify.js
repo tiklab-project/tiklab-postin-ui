@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, Input, Space} from "antd";
 import {Axios} from "thoughtware-core-ui";
-import verifyImg from "../../../../assets/img/verify.png"
+import verifyImg from "../../../assets/img/verify.png"
 
 /**
  * 分享的验证页

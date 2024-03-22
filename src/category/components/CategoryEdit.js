@@ -71,28 +71,32 @@ const CategoryEdit =(props)=>{
         <Fragment>
             <a onClick={showModal}>{props.name}</a>
             <Modal
-                title={type==="edit"?"编辑":"添加"}
+                title={type==="edit"?"编辑":"添加目录"}
                 visible={visible}
                 onCancel={hideModal}
                 destroyOnClose={true}
                 onOk={onFinish}
                 okText="提交"
                 cancelText="取消"
+                width={500}
                 centered
             >
-                <Form
-                    form={form}
-                    preserve={false}
-                    layout={"vertical"}
-                >
-                    <Form.Item
-                        label="目录名称"
-                        name="name"
-                        rules={[{ required: true, message: '添加目录名称!' }]}
+                <div style={{padding:"20px 0"}}>
+                    <Form
+                        form={form}
+                        preserve={false}
+                        layout={"vertical"}
                     >
-                        <Input />
-                    </Form.Item>
-                </Form>
+                        <Form.Item
+                            label="名称"
+                            name="name"
+                            rules={[{ required: true, message: '添加目录名称!' }]}
+                        >
+                            <Input />
+                        </Form.Item>
+                    </Form>
+                </div>
+
             </Modal>
         </Fragment>
     )

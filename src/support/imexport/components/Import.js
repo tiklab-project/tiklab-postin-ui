@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
 import {Form, Modal, Upload} from "antd";
 import {InboxOutlined} from '@ant-design/icons';
 import Ajv from 'ajv';

@@ -94,7 +94,7 @@ table .icon{
 
 .important-btn{
     background: var(--pi-base-color)!important;
-    color: #f0f0f0!important;
+    color: #fff!important;
     border-radius: var(--pi-border-radius);
     font-size: var(--pi-font-size-13);
 }
@@ -115,8 +115,14 @@ table .icon{
     padding: 5px 20px;
 
     .ant-form-item{
-        margin-bottom: 10px;
+        margin: 20px 0;
     }
+}
+
+.ant-form-item-label{
+    font-weight: 600;
+    font-size: 12px;
+    color: #1d1d1d;
 }
 
 .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
@@ -302,7 +308,6 @@ table .icon{
 }
 
 .icon-bg-border{
-    background: #0078d4;
     //border: 1px solid #bfbfbf;
     border-radius: 4px;
 }
@@ -352,6 +357,7 @@ table .icon{
     padding-right:30px;
     padding-left: 30px;
 }
+
 .padding-top-bottom{
     padding-top:20px;
     padding-bottom: 20px;
@@ -360,4 +366,13 @@ table .icon{
 
 .component-box{
     margin-bottom: 30px;
+}
+
+.title-font-weight-500{
+    font-weight: 600;
+}
+
+.ant-form-vertical .ant-form-item-label > label{
+    color: #6e6e6e;
+    font-size: 12px;
 }

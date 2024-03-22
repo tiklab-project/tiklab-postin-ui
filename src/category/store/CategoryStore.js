@@ -119,6 +119,7 @@ class CategoryStore{
         }
     }
 
+
     @action
     findCategoryTree = async (param) => {
         const params = {
@@ -155,6 +156,12 @@ class CategoryStore{
         await Axios.post("/node/deleteNode",param)
     }
 
+    @action
+    findNode = async (id)=>{
+        const param = new FormData();
+        param.append('id', id)
+        return await  Axios.post("/node/findNode",param)
+    }
 
 
 

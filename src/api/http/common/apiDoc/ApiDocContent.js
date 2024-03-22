@@ -9,8 +9,8 @@ import ProtocolType from "../../../../common/ProtocolType";
 /**
  * 接口文档公共组件
  */
-const DocContent = (props) =>{
-    const {apiDoc,style} = props;
+const ApiDocContent = (props) =>{
+    const {apiData,style} = props;
 
     /**
      * 点击锚点
@@ -69,34 +69,34 @@ const DocContent = (props) =>{
             <div className={"share-box-right-detail-content"}  id="share-base-info" style={{padding:"0 10px 0 0"}} >
                 <div style={{width:"860px"}}>
                     <div className={"share-box-right-content-item"}  >
-                        <div className={"share-box-api-title"}>{apiDoc?.apix?.name}</div>
+                        <div className={"share-box-api-title"}>{apiData?.node?.name}</div>
                         <div className={"share-box-right-content-item-detail"}>
                             <div>
-                                <span className={"share-detail-title"}>负责人: {apiDoc?.apix?.executor?.name||"未设置"}</span>
+                                <span className={"share-detail-title"}>负责人: {apiData?.apix?.executor?.name||"未设置"}</span>
                             </div>
                             <div>
-                                <span className={"share-detail-title"}>更新时间: {apiDoc?.apix?.updateTime}</span>
+                                <span className={"share-detail-title"}>更新时间: {apiData?.apix?.updateTime}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className={"share-box-right-content-item"}>
                         <div className={"share-box-right-content-item-detail"}>
-                            <ProtocolType type={apiDoc?.apix?.protocolType}/>
-                            <MethodType type={apiDoc?.methodType} />
-                            <div>{apiDoc?.apix?.path}</div>
+                            <ProtocolType type={apiData?.apix?.protocolType}/>
+                            <MethodType type={apiData?.methodType} />
+                            <div>{apiData?.apix?.path}</div>
                         </div>
                         <div className={"share-box-right-content-item-detail"}>
                             <div className={"share-detail-title"}>状态:</div>
-                            <div style={{color:` ${apiDoc?.apix?.status?.color}`}}>{apiDoc?.apix?.status?.name}</div>
+                            <div style={{color:` ${apiData?.apix?.status?.color}`}}>{apiData?.apix?.status?.name}</div>
                         </div>
                         <div className={"share-box-right-content-item-detail"}>
                             {
-                                apiDoc?.apix?.desc
+                                apiData?.apix?.desc
                                     ?
                                     <>
                                         <div className={"share-detail-title"}>说明:</div>
-                                        <div >{apiDoc?.apix?.desc}</div>
+                                        <div >{apiData?.apix?.desc}</div>
                                     </>
                                     : null
                             }
@@ -109,11 +109,11 @@ const DocContent = (props) =>{
                     </div>
                     <div className={"share-box-right-content-item"}>
                         {
-                            apiDoc?.headerList||apiDoc?.queryList||apiDoc?.request?.bodyType!=="none"
+                            apiData?.headerList||apiData?.queryList||apiData?.request?.bodyType!=="none"
                                 ?<>
-                                    <TableHeaderDoc dataSource={apiDoc?.headerList}/>
-                                    <TableQueryDoc dataSource={apiDoc?.queryList}/>
-                                    <RequestBodyDoc data={apiDoc}/>
+                                    <TableHeaderDoc dataSource={apiData?.headerList}/>
+                                    <TableQueryDoc dataSource={apiData?.queryList}/>
+                                    <RequestBodyDoc dataSource={apiData}/>
                                 </>
                                 :<div>暂无请求信息</div>
                         }
@@ -122,15 +122,15 @@ const DocContent = (props) =>{
                     <div  id={"share-response-info"} className="header-title ex-title">响应示例</div>
                     <div className={"share-box-right-content-item"}>
                         {
-                            apiDoc?.responseHeaderList
-                                ? <TableHeaderDoc isResponse={true} dataSource={apiDoc?.responseHeaderList} />
+                            apiData?.responseHeaderList
+                                ? <TableHeaderDoc isResponse={true} dataSource={apiData?.responseHeaderList} />
                                 :null
                         }
                     </div>
                     <div className={"share-box-right-content-item"}>
                         {
-                            apiDoc?.responseResultList
-                                ? <ResponseResultDoc dataSource={ apiDoc?.responseResultList} />
+                            apiData?.responseResultList
+                                ? <ResponseResultDoc dataSource={ apiData?.responseResultList} />
                                 :<div>暂无响应示例</div>
                         }
                     </div>
@@ -147,4 +147,4 @@ const DocContent = (props) =>{
     )
 }
 
-export default DocContent;
+export default ApiDocContent;

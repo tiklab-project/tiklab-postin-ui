@@ -217,6 +217,7 @@ const HttpTest = (props) =>{
                                         onClick={onFinish}
                                         type={"primary"}
                                         loading={loading}
+                                        className={"important-btn"}
                                     >
                                         发送
                                     </Dropdown.Button>

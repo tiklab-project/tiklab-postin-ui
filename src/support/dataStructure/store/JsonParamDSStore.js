@@ -8,7 +8,7 @@ import {Axios} from "thoughtware-core-ui";
 class JsonParamDSStore {
 
     @observable jsonParamDSList = [];
-    @observable jsonParamDSInfo = [];
+    @observable jsonParamDSInfo = {};
 
     @observable schemaData={};
 

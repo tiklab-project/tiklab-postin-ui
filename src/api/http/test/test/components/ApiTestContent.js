@@ -53,7 +53,7 @@ const ApiTestContent = (props) => {
     const [showResponse,setShowResponse]= useState(false);
     const [testResponse, setTestResponse] = useState();
     const [tabTip, setTabTip] = useState();
-
+    const [afterScript, setAfterScript] = useState();
     const methodId = localStorage.getItem('apiId');
 
     useEffect(()=>{
@@ -115,7 +115,6 @@ const ApiTestContent = (props) => {
         })
     },[methodId])
 
-    const [afterScript, setAfterScript] = useState();
 
     /**
      * 点击测试

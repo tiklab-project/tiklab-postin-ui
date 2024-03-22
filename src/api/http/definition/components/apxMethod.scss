@@ -75,26 +75,6 @@
 }
 
 
-.out-table-box{
-    th{
-        background:  white !important;
-    }
-    .ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan]):before{
-        position: inherit;
-    }
-
-    .ant-table-thead>tr .ant-table-cell{
-        font-weight: 500;
-        font-size: 14px;
-    }
-
-    .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
-        padding: 8px;
-    }
-
-
-}
-
 
 .api-script-box{
 
@@ -418,6 +398,15 @@
         padding: 5px;
     }
 }
+.raw-type{
+    position: absolute;
+    right: 10px;
+    height: 30px;
+    top: 3px;
+    z-index: 1;
+}
+
+
 
 .textArea-focus{
     display: block;
@@ -449,7 +438,7 @@
 
         .ant-form-item-label > label{
             color: rgb(151 151 151 / 85%);
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .ant-form-item-control-input .ant-select .ant-select-selector{

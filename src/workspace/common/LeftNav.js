@@ -11,7 +11,7 @@ import "./workspaceDetailStyle.scss"
 import "../workspace/components/workspace.scss"
 import "../../common/commonStyle.scss"
 import "../../api/http/definition/components/apxMethod.scss"
-import "../../api/http/document/components/shareStyle.scss"
+import "../../support/share/components/shareStyle.scss"
 
 /**
  * 左侧导航展示

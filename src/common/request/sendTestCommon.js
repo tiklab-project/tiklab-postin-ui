@@ -34,7 +34,7 @@ export const localDataProcess = ({
     switch (bodyType){
         case mediaTypeDir.none.title:
             body = null;
-            header['content-type']=rawTypeDictionary.json.mediaType;
+
             break;
         case mediaTypeDir.formdata.title:
             body = testFunctionCommon.transData(formDataList)

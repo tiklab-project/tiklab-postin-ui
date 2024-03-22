@@ -18,6 +18,11 @@ export const processHeaderData = (data) =>{
             "id":createID(),
         })
     }
+
+    if(arr.length===0){
+        arr = [{ "id":createID()}]
+    }
+
     return arr;
 }
 
@@ -92,24 +97,18 @@ export const processFormUrlencodedData = (data) =>{
 }
 
 
-export const getMediaType = (value) => {
-    let bodyType
-
-    //设置body下的body类型
-    switch (value){
-        case mediaTypeDir.none.mediaType:
-            bodyType = mediaTypeDir.none.title
-            break;
-        case mediaTypeDir.formdata.mediaType:
-            bodyType = mediaTypeDir.formdata.title
-            break;
-        case mediaTypeDir.formUrlencoded.mediaType:
-            bodyType = mediaTypeDir.formUrlencoded.title
-            break;
-        default :
-            bodyType = mediaTypeDir.raw.title
-            break;
+export const getMediaType = (type) => {
+    if(!type){
+        return mediaTypeDir.none.title
     }
 
-    return bodyType
+    //设置body下的body类型
+    switch (type){
+        case mediaTypeDir.formdata.mediaType:
+            return mediaTypeDir.formdata.title
+        case mediaTypeDir.formUrlencoded.mediaType:
+            return mediaTypeDir.formUrlencoded.title
+        default :
+            return mediaTypeDir.raw.title
+    }
 }

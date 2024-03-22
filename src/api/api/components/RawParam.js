@@ -119,11 +119,10 @@ const RawParam = (props) => {
         <div className={"raw-box"}>
             <Form form={form} initialValues={{"type":"application/json"}}>
                 <div className='raw-box-header'>
-                    <Form.Item name='type'>
+                    <Form.Item name='type' className={"raw-type"}>
                         <Select
-                            style={{ width: 180 ,color:"#0095ff"}}
+                            style={{ width: 180}}
                             onChange={changeType}
-                            bordered={false}
                             suffixIcon={null}
                         >
                             {

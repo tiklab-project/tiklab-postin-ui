@@ -1,13 +1,18 @@
 import { Modal } from 'antd';
 import React, { useState } from 'react';
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
 import dataStructureStore from "../store/DataStructureStore";
+import jsonParamDSStore from "../store/JsonParamDSStore";
+import {schemaToTable} from "../../../common/JsonSchemaTable/JsonSchemaFn";
+import "./structureStyle.scss"
+
 
 const ModeModal = (props) => {
-    const {changeType,preKey} = props;
+    const {selectModel} = props
     const {findDataStructureList,dataStructureList} = dataStructureStore;
+    const {findJsonParamDS} = jsonParamDSStore
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
 
     let workspaceId = localStorage.getItem('workspaceId')
@@ -15,31 +20,29 @@ const ModeModal = (props) => {
     const showModal = () => {
         findDataStructureList({workspaceId: workspaceId})
 
-        setIsModalOpen(true);
+        setOpen(true);
     };
 
     const handleOk = () => {
-        setIsModalOpen(false);
+        setOpen(false);
     };
 
     const handleCancel = () => {
-        setIsModalOpen(false);
+        setOpen(false);
     };
 
-    const selectModel = (data) =>{
-        let mode = {
-                properties: data.name,
-                isModel:true,
-                id:data.id
-            }
+    const selectFn =async (data) =>{
+        const jsonSchemaInfo = await findJsonParamDS(data.id)
+        const jsonScheme=JSON.parse(jsonSchemaInfo.jsonText)
 
+        let modelData = {
+            name:data.name,
+            jsonScheme:schemaToTable(jsonScheme.properties,jsonScheme.required),
+            model:true
+        }
+        selectModel(modelData)
 
-        console.log(mode)
-
-
-        changeType("object",preKey,mode)
-
-        setIsModalOpen(false);
+        setOpen(false)
     }
 
     return (
@@ -47,7 +50,7 @@ const ModeModal = (props) => {
             <div className={"def-mode-btn"} onClick={showModal}>模型</div>
             <Modal
                 title="数据模型"
-                open={isModalOpen}
+                open={open}
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={false}
@@ -59,7 +62,7 @@ const ModeModal = (props) => {
                             <li
                                 className={"def-mode-li"}
                                 key={item.id}
-                                onClick={()=>selectModel(item)}
+                                onClick={()=>selectFn(item)}
                             >
                                 {item.name}
                             </li>
@@ -67,7 +70,6 @@ const ModeModal = (props) => {
                     }
 
                 </ul>
-
             </Modal>
         </>
     );

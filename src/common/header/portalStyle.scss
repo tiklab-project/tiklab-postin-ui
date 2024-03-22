@@ -122,7 +122,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 48px;
+    height: 56px;
     border-bottom: 1px solid var(--pi-border-color);
 
     .frame-header-logo{
@@ -149,6 +149,34 @@
             padding: 10px 6px;
             border-bottom: 3px solid rgba(255, 255, 255, 0);
             text-align: center;
+        }
+
+        .header-menu-item-label{
+            padding:  6px;
+            border-radius: var(--pi-border-radius);
+        }
+
+        .header-menu-item-label:hover{
+            background: #091e4224;
+        }
+
+        .header-menu-item-label:active{
+            background: #85b8ff;
+            color: white;
+        }
+
+        .header-menu-item-label-action{
+            color: var(--pi-base-color);
+        }
+
+        .header-menu-item-action{
+            border-bottom: 3px solid var(--pi-base-color);
+        }
+
+
+
+        .header-menu-item-label-action{
+            color: var(--pi-base-color);
         }
 
         .header-menu-item-action{

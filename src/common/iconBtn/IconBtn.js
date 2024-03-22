@@ -15,13 +15,13 @@ const IconBtn = (props) =>{
                 <div className={`pi-icon-btn`} >
                     {
                         icon
-                            ?<svg className={"icon-s"} aria-hidden="true">
+                            ?<svg className={"icon-s"} aria-hidden="true" style={{margin:"0 5px 0 0 "}}>
                                 <use xlinkHref= {`#icon-${icon}`} />
                             </svg>
                             :null
                     }
 
-                    <span style={{margin:"0 0 0 5px"}}>{name}</span>
+                    <span>{name}</span>
                 </div>
             </Button>
 

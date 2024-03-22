@@ -5,7 +5,6 @@ import { observer} from "mobx-react";
 import "./structureStyle.scss"
 import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
-import IconCommon from "../../../common/IconCommon";
 import dataStructureStore from "../store/DataStructureStore";
 import HideDelete from "../../../api/common/hideDelete/HideDelete";
 
@@ -21,17 +20,20 @@ const DataStructure = (props) => {
             title:`名称`,
             dataIndex: "name",
             key: "name",
+            width: '25%',
             render:(text,record)=> <a onClick = {()=>toModeDetail(record.id)}>{text}</a>
         },
         {
             title: `类型`,
             dataIndex: "dataType",
             key: "dataType",
+            width: '20%',
         },
         {
             title: `创建人`,
             dataIndex: "createUser",
             key: "user",
+            width: '20%',
             render: (text, record) => (
                 <div className={"ws-user-item"}>
                     {/*<Profile userInfo={record.createUser}/>*/}
@@ -43,10 +45,12 @@ const DataStructure = (props) => {
             title: `创建时间`,
             dataIndex: "createTime",
             key: "time",
+            width: '20%',
         },
         {
             title: `操作`,
             key: "action",
+            width: '15%',
             render: (text, record) => (
                 <Space size="middle">
                     <DataStructureEdit

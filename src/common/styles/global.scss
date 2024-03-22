@@ -3,10 +3,10 @@
    
     --thoughtware-white: #fff;  /*主色调白*/
     --thoughtware-black: #000;  /* 主色调黑*/
-    --thoughtware-blue: #0078d4;  /* 主色调蓝*/
+    --thoughtware-blue: #0c66e4;  /* 主色调蓝*/
     --thoughtware-gray-200: #ececec;  /* border 的边线*/
-    --thoughtware-gray-300: #EDF0F5;  /* hover颜色*/
-    --thoughtware-gray-400: #e3e8f0;  /* 左侧导航 选中颜色*/
+    --thoughtware-gray-300: #091e420f;  /* hover颜色*/
+    --thoughtware-gray-400: #e9f2ff;  /* 左侧导航 选中颜色*/
     --thoughtware-gray-500: #999; /* 文字次级颜色灰色调*/
     --thoughtware-gray: #efefef; /* 主色调灰 左侧导航*/
 
@@ -35,7 +35,7 @@
 
     /*----项目内定义----*/
     --pi-base-color:var(--thoughtware-blue);  /*着重色*/
-    --pi-bg-grey-100:#f8f8f8;
+    --pi-bg-grey-100:#f7f8f9;
     --pi-bg-grey-200:#ededed;
     --pi-bg-color:var(--thoughtware-white);
 
@@ -62,7 +62,7 @@
 
     --pi-calc-content:calc(100% - 48px);
 
-    --pi-border-color:#f0f0f0; /*边框颜色*/
+    --pi-border-color:#091e4224; /*边框颜色*/
     --pi-box-shadow: 0 3px 6px rgb(140 149 159 / 15%);  /*阴影*/
     --pi-border-radius:4px; /*边框圆角*/
     --pi-input-border:2px solid var(--thoughtware-gray-200);

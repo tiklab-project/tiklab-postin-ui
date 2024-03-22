@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Axios} from "thoughtware-core-ui";
 import ShareVerify from "./ShareVerify";
-import ApiDoc from "./ApiDoc";
+import ApiDoc from "./DocPage";
 
 /**
  * 分享的文档是否需要密码验证

@@ -158,6 +158,8 @@
 
     .ant-table-thead > tr > th{
         background:var(--pi-bg-color);
+        font-weight: 600;
+        font-size: 12px;
     }
 
     .ant-table-tbody > tr > td{
@@ -215,6 +217,14 @@
     justify-content: space-between;
 }
 
-.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
-    background: var(--pi-action-color);
+.ant-tree-switcher{
+    padding: 5px;
 }
+
+.ant-tree .ant-tree-node-content-wrapper{
+    padding: 5px;
+}
+
+.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
+     background: var(--pi-action-color);
+ }

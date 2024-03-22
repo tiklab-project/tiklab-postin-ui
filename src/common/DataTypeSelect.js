@@ -1,6 +1,7 @@
 import React from "react";
 import {Select} from "antd";
 import {dataTypeDictionary} from "./dictionary/dictionary";
+import ModeModal from "../support/dataStructure/components/modeModal";
 
 const {Option} = Select;
 
@@ -15,11 +16,25 @@ const DataTypeSelect = (props) =>{
      * 选择
      */
     const onSelect = (value) => {
-        const data = {
-            ...rowData,
-            dataType: value
+        let data;
+        if(value.model){
+            data = {
+                ...rowData,
+                name:value.name,
+                dataType: "object",
+                children: value.jsonScheme,
+                model:true
+            }
+            handleSave(data)
         }
-        handleSave(data)
+
+        if(!value.model&&value!=="model"){
+             data = {
+                ...rowData,
+                dataType: value
+            }
+            handleSave(data)
+        }
 
         setNewRowAction&&setNewRowAction(true)
     }
@@ -40,6 +55,11 @@ const DataTypeSelect = (props) =>{
             allowClear
         >
             {renderItem(dataTypeDictionary)}
+            <Option key={"model"}>
+                <ModeModal
+                    selectModel={onSelect}
+                />
+            </Option>
         </Select>
     )
 }

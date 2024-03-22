@@ -39,6 +39,27 @@
     .ant-table-tbody > tr > td{
         padding: 8px;
     }
+}
+
+
+.out-table-box{
+    th{
+        background:  white !important;
+
+    }
+    .ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan]):before{
+        position: inherit;
+    }
+
+    .ant-table-thead>tr .ant-table-cell{
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+        padding: 8px;
+    }
+
 
 }
 
@@ -56,3 +77,4 @@
     padding: 0 0 0 10px;
     cursor: pointer;
 }
+

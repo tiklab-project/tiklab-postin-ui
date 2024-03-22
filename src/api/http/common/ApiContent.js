@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import MenuSelect from "./MenuSelect";
 import {renderRoutes} from "react-router-config";
 import {Dropdown, Menu, Space, Tag} from "antd";
-import ShareModal from "../document/components/ShareModal";
+import ShareModal from "../../../support/share/components/ShareModal";
 import apxMethodStore from "../definition/store/ApxMethodStore";
 import {useHistory} from "react-router";
 import categoryStore from "../../../category/store/CategoryStore";

@@ -148,7 +148,10 @@ const NodeTree = (props) => {
                         title={
                             <div
                                 className="node-title"
-                                onClick={() => onClick(item)}
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    onClick(item)
+                                }}
                             >
                                 {item.name}
                                 {categoryAct(item)}
@@ -167,7 +170,10 @@ const NodeTree = (props) => {
                     title={
                         <div
                             className={"node-title"}
-                            onClick={() => onClick(item)}
+                            onClick={(e) => {
+                                e.stopPropagation()
+                                onClick(item)
+                            }}
                         >
                             {item.name}
                             {categoryAct(item)}
@@ -198,8 +204,8 @@ const NodeTree = (props) => {
             onExpand={setExpandedKeys}
         >
             {renderTreeNodes(categoryList)}
-        </Tree
-    >)
+        </Tree>
+    )
 }
 
 

@@ -1,11 +1,7 @@
 
 import React, {useCallback, useEffect, useState} from 'react';
 import { observer, inject } from "mobx-react";
-import { Space, Table, Empty, Popconfirm} from 'antd';
 
-import emptyImg from "../../../assets/img/empty.png";
-import JsonStructureEdit from "./JsonStructureEdit";
-import ToggleSchema from "../../../common/jsonSchema/ToggleSchema";
 import jsonParamDSStore from "../store/JsonParamDSStore";
 import JsonSchemaTable from "../../../common/JsonSchemaTable/JsonSchemaTable";
 /**

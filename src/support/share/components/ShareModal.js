@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import {Button, Input, Modal, Select, Tag, Tooltip} from "antd";
-import IconCommon from "../../../../common/IconCommon";
-import {uuid} from "../../../../common/utils/createId";
+import IconCommon from "../../../common/IconCommon";
+import {uuid} from "../../../common/utils/createId";
 import {inject, observer} from "mobx-react";
 import md5 from "js-md5"
-import IconBtn from "../../../../common/iconBtn/IconBtn";
-import copyMockUrl from "../../../../common/copyLink";
+import IconBtn from "../../../common/iconBtn/IconBtn";
+import copyMockUrl from "../../../common/copyLink";
 import shareStore from "../store/ShareStore";
 const {Option} = Select;
 
