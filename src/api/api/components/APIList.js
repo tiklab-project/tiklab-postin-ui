@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react';
 import { observer } from "mobx-react";
-import {Empty, Input, Popconfirm, Space, Table} from 'antd';
+import {Empty, Input, Space, Table} from 'antd';
 import ApxMethodEdit from '../../http/definition/components/ApxMethodEdit';
 import MethodType from "../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
@@ -27,9 +27,9 @@ const APIList = (props) => {
     const columns = [
         {
             title: '名称',
-            dataIndex: ["node","name"],
+            dataIndex: "name",
             width: '25%',
-            render: (text,record) => (<span className={"link-text"} onClick={()=>toApiDetailPage(record)}>{record.node?.name}</span> )
+            render: (text,record) => (<span className={"link-text"} onClick={()=>toApiDetailPage(record)}>{text}</span> )
         },
         {
             title: '协议/方法',
@@ -42,7 +42,7 @@ const APIList = (props) => {
                             {record?.protocolType?.toUpperCase()}
                         </span>
                     }
-                    {record.protocolType==="http"&&<MethodType type={record.node?.methodType}/>}
+                    {record.protocolType==="http"&&<MethodType type={record.methodType}/>}
                 </Space>
             )
         },

@@ -3,8 +3,8 @@ import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
 import { DownOutlined,UpOutlined} from '@ant-design/icons';
 import { PrivilegeButton,SystemNav } from "thoughtware-privilege-ui";
-import {useSelector} from 'thoughtware-plugin-core-ui'
 import './sysMana.scss'
+import {getUser} from "thoughtware-core-ui";
 
 const { Sider, Content } = Layout;
 
@@ -13,25 +13,44 @@ const { Sider, Content } = Layout;
  */
 const SysManage = (props) => {
     const {settingMenu} = props;
-
     const routers = props.route.routes
-
     const [selectKey,setSelectKey] = useState('/setting/systemRole')
-
     const [menuRouter,setMenuRouter] = useState();
+    const authConfig = JSON.parse(localStorage.getItem("authConfig"))
+    const curRouter =  window.location.hash.substr(1)
 
     useEffect(() => {
         //设置左侧导航哪个选中
-        setSelectKey(window.location.hash.substr(1))
-
+        setSelectKey(curRouter)
         setMenuRouter(settingMenu);
-    }, [])
+    }, [curRouter])
 
 
-    const select = (key)=>{
-        setSelectKey(key)
-        props.history.push(key)
-    }
+    const select = (key) => {
+        if (!authConfig.authType) {
+            const specialKeys = [
+                "/setting/orga",
+                "/setting/user",
+                "/setting/dir",
+                "/setting/userGroup"
+            ];
+
+            if (specialKeys.includes(key)) {
+                let authServiceUrl = authConfig.authServiceUrl
+                let ticket = getUser().ticket
+                let url = authServiceUrl +"#"+key+"?ticket="+ticket
+
+                window.open(url, "_blank");
+                return;
+            }
+        }
+
+        // 其他情况，直接进行页面导航
+        props.history.push(key);
+        setSelectKey(key);
+    };
+
+
     /**
      * 树的展开与闭合
      */
@@ -182,7 +201,6 @@ const SysManage = (props) => {
 
 
     }
-
 
     const showUlView = (data)=>{
         return data && data.map(firstItem => {

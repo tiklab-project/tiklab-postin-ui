@@ -17,7 +17,7 @@
 
         .home-box-item{
             //border: 1px solid var(--pi-border-color);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             border-radius: var(--pi-border-radius);
             background: white;
             overflow: hidden;
@@ -80,10 +80,9 @@
 }
 
 .home-list-api{
-
     cursor:pointer;
     border-radius:5px;
-    padding: 10px!important;
+    padding: 5px!important;
     margin: 0 0 5px 0;
 }
 

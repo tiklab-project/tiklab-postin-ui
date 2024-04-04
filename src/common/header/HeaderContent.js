@@ -1,6 +1,6 @@
 import React from 'react';
 import HeaderMenu from "./HeaderMenu";
-import logo from "../../assets/img/postinheader.png";
+import logo from "../../assets/img/postin.png";
 import MessageDrawer from "../../setting/message/MessageDrawer";
 import {SettingOutlined} from "@ant-design/icons";
 import Search from "./search/components/Search";
@@ -21,6 +21,7 @@ const HeaderContent = props => {
                 <div className={'frame-header-logo'}>
                     {logo && <img src={logo} alt='logo' />}
                 </div>
+                <div className={"productName"}>PostIn</div>
                 <HeaderMenu {...props}/>
             </div>
 
@@ -30,7 +31,7 @@ const HeaderContent = props => {
                 </div>
                 <div className={'frame-header-right-box'}>
                     <div className={"header-right-item"}  data-title-bottom={"设置"}>
-                        <SettingOutlined className={"header-icon-item"} onClick={()=>props.history.push("/setting")}/>
+                        <SettingOutlined className={"header-icon-item"} onClick={()=>props.history.push("/setting/home")}/>
                     </div>
                     <div className={"header-right-item"} data-title-bottom={"消息"}>
                         <MessageDrawer />

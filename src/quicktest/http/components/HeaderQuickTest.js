@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { observer, inject } from "mobx-react";
+import React from 'react';
+import { observer } from "mobx-react";
 import HeaderTableCommon from "../../../common/tableCommon/components/HeaderTableCommon";
 import tabQuickTestStore from "../../store/TabQuickTestStore";
 /**
@@ -18,7 +18,6 @@ const HeaderQuickTest = (props) =>{
                 deleteList={deleteRequestHeaderList}
             />
         </>
-
     );
 }
 

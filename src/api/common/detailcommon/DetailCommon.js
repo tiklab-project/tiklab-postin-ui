@@ -44,10 +44,6 @@ const DetailCommon = (props) =>{
         }
     },[])
 
-    const showMore = () =>{
-        setVisible(!visible)
-    }
-
     return(
         <div className={"detail-box"}>
             <Form

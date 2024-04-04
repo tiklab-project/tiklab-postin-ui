@@ -64,7 +64,7 @@ const ApiRecentHome = (props) =>{
                         <div className={"home-list-item"}>
                             <IconCommon
                                 icon={"api1"}
-                                style={{width:"24px",height:"24px"}}
+                                style={{width:"32px",height:"32px"}}
                             />
                             <div>
                                 <div className={"home-list-item-title"}>

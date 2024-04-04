@@ -39,9 +39,7 @@ const HttpTest = (props) =>{
     } = tabQuickTestStore
 
     const [ form ] = Form.useForm();
-
     const userId = getUser().userId;
-
     const instanceId = localStorage.getItem("instanceId")
     const workspaceId = localStorage.getItem("workspaceId")
     const [afterScriptex, setAfterScript] = useState();
@@ -101,7 +99,7 @@ const HttpTest = (props) =>{
 
         response.assertList =assertList;
         //获取响应结果
-        setResponseData(response)
+        setResponseData(response,activeKey)
 
         //获取响应结果
         if(response&&!response.errorMessage){

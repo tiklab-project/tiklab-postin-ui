@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { observer, inject } from "mobx-react";
+import React from 'react';
+import { observer } from "mobx-react";
 import QueryTableCommon from "../../../common/tableCommon/components/QueryTableCommon";
 import tabQuickTestStore from "../../store/TabQuickTestStore";
 /**

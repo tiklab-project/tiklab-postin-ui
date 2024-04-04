@@ -45,13 +45,11 @@ const TabsQuickTest = (props) =>{
      */
     const add = ()=>{
         let { tabList } = tabPaneInfo;
-
         let newTabList = [...tabList, initTabPane];
         let activeKey = JSON.stringify(newTabList.length - 1);
         let newTabInfo = { activeKey:activeKey, tabList: newTabList };
 
         setTabPaneInfo(newTabInfo)
-
         setAction(!action);
     }
 
@@ -62,11 +60,10 @@ const TabsQuickTest = (props) =>{
         let { tabList, activeKey } = tabPaneInfo;
         let newList = [...tabList];
         newList.splice(targetKey, 1);
-
         let newActiveKey = activeKey < tabList.length - 1 ? activeKey : JSON.stringify(newList.length - 1);
+
         //如果删除所有的标签后 newActiveKey 会等于 -1，把它重新设置为0
         let updatedActiveKey = newActiveKey < 0 ? "0" : newActiveKey;
-
         let newTabInfo = {
             activeKey: updatedActiveKey,
             tabList: newList.length ? newList : [initTabPane]
@@ -146,6 +143,7 @@ const TabsQuickTest = (props) =>{
             label: (<a onClick={closeOtherTab}>关闭其他标签</a> ),
         },
     ];
+
     return (
         <div className={"qk-test-box"}>
             <Tabs
@@ -154,31 +152,6 @@ const TabsQuickTest = (props) =>{
                 activeKey={tabPaneInfo.activeKey}//字符串才生效
                 onEdit={onEdit}
                 onTabClick={changeTabPane}
-                // tabBarExtraContent={
-                //     <div style={{
-                //         marginRight:"25px",
-                //         borderLeft: "2px solid #e4e4e4",
-                //         padding: "10px 66px 10px 10px",
-                //         cursor: "pointer",
-                //         lineHeight: "15px"
-                //     }}>
-                //         <Dropdown
-                //             menu={{items}}
-                //             placement="bottomRight"
-                //             arrow
-                //             trigger={"click"}
-                //             overlayStyle={{width: 170}}
-                //         >
-                //             <div>
-                //                 <IconCommon
-                //                     icon={"more"}
-                //                     className={"icon-l edit-icon"}
-                //                 />
-                //             </div>
-                //         </Dropdown>
-                //     </div>
-                //
-                // }
                 style={{background: "var(--pi-bg-grey-100)"}}
             >
                 {

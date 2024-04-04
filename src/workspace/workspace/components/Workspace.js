@@ -149,7 +149,7 @@ const Workspace = (props) => {
                     }
                     selectKeyFun={selectMenu}
                 />
-                <div className='contant-box'>
+                <div className='contant-box' style={{margin:"10px 0 0 0"}}>
                     <WorkspaceList
                         {...props}
                         workspaceList={workspaceList}

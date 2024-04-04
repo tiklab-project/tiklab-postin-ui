@@ -1,6 +1,6 @@
 import React from "react";
 import {localProxySendTest} from "../../../common/request/sendTestCommon";
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
 import TabsQuickTest from "../../common/TabsQuickTest";
 import "./testCase.scss"
 /**

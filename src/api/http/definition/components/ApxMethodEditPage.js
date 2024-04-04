@@ -191,7 +191,9 @@ const ApxMethodEditPage = (props) => {
             <div className="header-title ex-title">输出结果</div>
             <Tabs defaultActiveKey={"resResult"}>
                 <TabPane tab="返回头" key="resHeader">
-                    <div className={"tabPane-item-box"} style={{margin:"10px 0 0 0"}}><ResponseHeader /></div>
+                    <div className={"tabPane-item-box"} style={{margin:"10px 0 0 0"}}>
+                        <ResponseHeader />
+                    </div>
                 </TabPane>
                 <TabPane tab="返回结果" key="resResult">
                     <div style={{margin:"10px 0 0 0"}} ><Response  /></div>

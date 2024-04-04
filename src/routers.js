@@ -28,6 +28,8 @@ const ApiContent  = AsyncComponent(() => import( "./api/http/common/ApiContent")
 const ApxMethodDetail = AsyncComponent(() => import("./api/http/definition/components/ApxMethodEditPage"));
 const Mock = AsyncComponent(() => import("./api/http/mock/components/Mock"));
 const MockDetail = AsyncComponent(() => import("./api/http/mock/components/MockDetail"));
+
+const SystemHome = AsyncComponent(() => import("./setting/system/SystemHome"));
 const SystemContent = AsyncComponent(() => import("./setting/system/SystemContent"));
 const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
 const WorkspaceSettingMenu = AsyncComponent(() => import("./workspace/setting/WorkspaceSettingMenu"));
@@ -115,9 +117,14 @@ const routers =  [
                 key:'systemManagement',
                 component:SystemContent,
                 routes:[
+                    {
+                        path:'/setting/home',
+                        exact: true,
+                        component:SystemHome,
+                    },
                     //成员与部门
                     {
-                        path: "/setting/org",
+                        path: "/setting/orga",
                         key:'org',
                         exact: true,
                         render:(props)=> <Orga {...props} bgroup={'postin'}/>
@@ -129,7 +136,7 @@ const routers =  [
                             return <User {...props} bgroup={'postin'}/>
                         }
                     },{
-                        path: "/setting/authConfig",
+                        path: "/setting/dir",
                         key:'authConfig',
                         exact: true,
                         render: () => <Directory isPortal={false}/>,
@@ -273,7 +280,7 @@ const routers =  [
                         path: "/setting",
                         key:'sysEnvMana',
                         exact: true,
-                        render: () => <Redirect to={"/setting/systemRole"}/>,
+                        render: () => <Redirect to={"/setting/home"}/>,
                     },
                 ]
             },

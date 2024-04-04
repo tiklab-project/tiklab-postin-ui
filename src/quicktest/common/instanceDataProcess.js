@@ -112,3 +112,27 @@ export const getMediaType = (type) => {
             return mediaTypeDir.raw.title
     }
 }
+
+const processBody = (data) => {
+    if (!data) return '';
+
+    return JSON.parse(data)
+};
+
+
+
+//响应
+export const processResponse = (res) =>{
+    let responseHeaders = res.responseInstance?.headers?JSON.parse(res.responseInstance?.headers):null;
+    let body = processBody(res.responseInstance?.body)
+
+    return {
+        body:body,
+        headers:responseHeaders,
+        size:res.size,
+        statusCode:res.statusCode,
+        time:res.time,
+        errorMessage:res.errorMessage,
+        assertList:res.assertInstanceList
+    }
+}

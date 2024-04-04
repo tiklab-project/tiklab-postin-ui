@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Dropdown, Menu, Popconfirm, Tree} from 'antd';
+import {Dropdown, Menu, Popconfirm, Space, Tree} from 'antd';
 import {FolderOutlined, FolderOpenOutlined} from '@ant-design/icons';
 import {useEffect} from "react";
 import categoryStore from "../store/CategoryStore";
@@ -35,6 +35,7 @@ const NodeTree = (props) => {
      */
     const onClick = (item) =>{
 
+        console.log("click----",item.type)
         switch (item.type){
             case 'category':
                 //点击目录展开收缩
@@ -94,7 +95,7 @@ const NodeTree = (props) => {
      */
     const addMenu = (id)=>(
         <Menu>
-            <Menu.Item  key={1}>
+            <Menu.Item  key={1} >
                 <ApxMethodEdit
                     name="新建接口"
                     type="add"
@@ -119,7 +120,7 @@ const NodeTree = (props) => {
             return (
                 <div className={'category-action'}>
                     <div  className={"category-action-right"}>
-                        <Dropdown overlay={()=>addMenu(id)} className={'category-action-more'}>
+                        <Dropdown overlay={(e)=>addMenu(id)} className={'category-action-more'}>
                         <span>
                             <svg className="icon-s edit-icon-nav" aria-hidden="true">
                                 <use xlinkHref={`#icon-tianjia-`}/>
@@ -136,6 +137,8 @@ const NodeTree = (props) => {
                     </div>
                 </div>
             )
+        }else {
+           return <span/>
         }
     }
 
@@ -146,14 +149,13 @@ const NodeTree = (props) => {
                     <TreeNode
                         key={item.id}
                         title={
-                            <div
-                                className="node-title"
-                                onClick={(e) => {
-                                    e.stopPropagation()
-                                    onClick(item)
-                                }}
-                            >
-                                {item.name}
+                            <div className="node-title">
+                                <div
+                                    className={"cate-node-name"}
+                                    onClick={(e) => onClick(item)}
+                                >
+                                    {item.name}
+                                </div>
                                 {categoryAct(item)}
                             </div>
                         }
@@ -168,18 +170,17 @@ const NodeTree = (props) => {
                 <TreeNode
                     key={item.id}
                     title={
-                        <div
-                            className={"node-title"}
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                onClick(item)
-                            }}
-                        >
-                            {item.name}
+                        <div className={"node-title"}>
+                            <div
+                                style={{display:"flex"}}
+                                onClick={(e) => onClick(item)}
+                            >
+                                {getIcon(item.type, item.methodType)}
+                                <div className={"cate-node-name"} >{item.name}</div>
+                            </div>
                             {categoryAct(item)}
                         </div>
                     }
-                    icon={getIcon(item.type, item.methodType)}
                     dataRef={item}
                 />
             );

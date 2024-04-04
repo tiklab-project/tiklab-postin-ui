@@ -8,36 +8,36 @@ const SystemContent = (props) =>{
 
     const settingMenu = [
         {
-            title: "用户与部门",
+            title: "用户与权限",
             icon: 'chengyuan',
             id: 'accountMember',
             children: [
                 {
                     title: '部门',
-                    id: '/setting/org',
+                    id: '/setting/orga',
                     purviewCode: "orga",
                 },{
                     title: '用户',
                     id: '/setting/user',
                     purviewCode: "user",
-
                 },{
                     title: '用户目录',
-                    id: '/setting/authConfig',
+                    id: '/setting/dir',
                     purviewCode: "user_dir",
                 },{
                     title: '用户组',
                     id: '/setting/userGroup',
                     // purviewCode: "userGroup",
                 },
+                {
+                    title: '权限',
+                    icon: 'jiaosequanxian',
+                    id: '/setting/systemRole',
+                    // purviewCode: "systemPrivilege",
+                },
             ]
         },
-        {
-            title: '权限',
-            icon: 'jiaosequanxian',
-            id: '/setting/systemRole',
-            // purviewCode: "systemPrivilege",
-        },
+
         {
             title: "消息",
             icon: 'xiaoxi',

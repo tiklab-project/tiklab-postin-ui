@@ -81,7 +81,7 @@ const CategoryEdit =(props)=>{
                 width={500}
                 centered
             >
-                <div style={{padding:"20px 0"}}>
+                <div style={{padding:"0 0 10px 0"}}>
                     <Form
                         form={form}
                         preserve={false}

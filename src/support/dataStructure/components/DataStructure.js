@@ -68,7 +68,6 @@ const DataStructure = (props) => {
         },
     ]
 
-
     const [toggleSort, setToggleSort] = useState(false);
     const [sortBy, setSortBy] = useState({name:"name",sort:"asc"});
     let workspaceId= localStorage.getItem("workspaceId")

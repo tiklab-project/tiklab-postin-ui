@@ -220,14 +220,14 @@ table .icon{
 
 .home-box-item-detail{
     padding: 10px;
-    min-height: 130px;
+    min-height: 140px;
 
     .home-recent-box{
         display: flex;
         align-items: center;
 
         .home-recent-item{
-            height: 100px;
+            height: 95px;
             width: 235px;
             border-radius: var(--pi-border-radius) ;
             margin: 0 3px 0 0;
@@ -253,12 +253,12 @@ table .icon{
 
 
             &-num{
-                padding: 20px 0 0 0;
+                padding: 12px 0 0 0;
                 display: flex;
                 align-items: center;
+                font-size: 12px;
 
                 &-title{
-                    font-size: 13px;
                     color: #9b9b9b;
                     margin: 0 10px 0 0;
                 }
@@ -315,7 +315,7 @@ table .icon{
 
 .tabPane-item-box{
     min-height: 120px;
-    overflow: auto;
+    //overflow: auto;
 
     th{
         background:  var(--pi-bg-color) !important;
@@ -375,4 +375,9 @@ table .icon{
 .ant-form-vertical .ant-form-item-label > label{
     color: #6e6e6e;
     font-size: 12px;
+}
+
+.header-title{
+    font-weight: var(--pi-font-weight-title);
+    font-size: var(--pi-font-size-13);
 }

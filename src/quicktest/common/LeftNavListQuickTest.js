@@ -9,7 +9,7 @@ import {
     processFormParamData,
     processFormUrlencodedData,
     processHeaderData,
-    processQueryData
+    processQueryData, processResponse
 } from "./instanceDataProcess";
 import {mediaTypeDir, rawTypeDictionary} from "../../common/dictionary/dictionary";
 import quickTestStore from "../http/store/QuickTestStore";
@@ -47,14 +47,13 @@ const LeftNavListQuickTest =(props)=>{
      * 点击打开不同的实例
      */
     const onClick= (item)=>{
-
         findInstance(item.id).then(res=>{
             let request = res.requestInstance;
             let headerList = processHeaderData(request.headers)
             let queryList = processQueryData(request.url)
             let bodyData = getBodyData(request)
 
-            let responseHeaders = res.responseInstance?.headers?JSON.parse(res.responseInstance?.headers):null;
+            let responseData = processResponse(res)
 
             let instance = {
                 "id":res.id,
@@ -72,15 +71,7 @@ const LeftNavListQuickTest =(props)=>{
                     "afterScript":{"scriptex":request?.afterScript},
                     "assert":[{id: 'InitRowId'}],
 
-                    response: {
-                        body:res.responseInstance?.body,
-                        headers:responseHeaders,
-                        size:res.size,
-                        statusCode:res.statusCode,
-                        time:res.time,
-                        errorMessage:res.errorMessage,
-                        assertList:res.assertInstanceList
-                    }
+                    response:responseData
                 }
             }
 
@@ -106,7 +97,7 @@ const LeftNavListQuickTest =(props)=>{
     }
 
     //获取请求体数据
-    const getBodyData = (request,) =>{
+    const getBodyData = (request) =>{
         let bodyType = getMediaType(request?.mediaType);
 
         //初始
@@ -169,7 +160,6 @@ const LeftNavListQuickTest =(props)=>{
         }
 
         return bodyData
-
     }
 
 

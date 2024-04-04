@@ -22,16 +22,8 @@ const ResponseBodyCommon = (props) => {
             return JSON.stringify(data, null, 2);
         } else if (mime && mime.includes('html')) {
             setLanguage('html');
-            return data; // Assuming HTML is provided as is
+            return data;
         } else if (mime && mime.includes('image')) {
-            // const binaryDataWithoutQuotes = data.slice(1, data.length - 1);
-            //
-            // const bytes = new Uint8Array(binaryDataWithoutQuotes.length);
-            // for (let i = 0; i < binaryDataWithoutQuotes.length; i++) {
-            //     bytes[i] = binaryDataWithoutQuotes.charCodeAt(i);
-            // }
-            // const base64String = btoa(String.fromCharCode.apply(null, bytes));
-            // setImageData(`data:${mime};base64,${base64String}`)
             return data;
         } else if (mime && mime.includes('javascript')) {
             return data;
@@ -41,46 +33,6 @@ const ResponseBodyCommon = (props) => {
         }
     };
 
-
-    //数据处理
-    // const processData =(data)=>{
-    //
-    //     //空值
-    //     if(!data) return "";
-    //     if (data instanceof Object ) {
-    //         setLanguage("json")
-    //         return JSON.stringify(responseBodyData);
-    //     }
-    //
-    //     let language = getLanguageFromMIME(mediaType)
-    //     setLanguage(language)
-    //
-    //     return  responseBodyData
-    // }
-    //
-    // /**
-    //  * 根据mediaType，获取monaco-editor响应的language
-    //  */
-    // const getLanguageFromMIME = (mime) => {
-    //     if(!mime) return 'plaintext'
-    //
-    //     let mimeObj = {
-    //         "html":"html",
-    //         "javascript":"javascript",
-    //         "json":"json",
-    //         "text":"plaintext"
-    //     }
-    //
-    //     //如果包含某个key，就会返回对应的key
-    //     const matchingMime = Object.keys(mimeObj).find((key) => mime.includes(key));
-    //
-    //     //通过key获取相应的language
-    //     if (matchingMime) {
-    //         return mimeObj[matchingMime];
-    //     } else {
-    //         return 'plaintext';
-    //     }
-    // }
 
     return(
         <div className={"codemirror-box"}>

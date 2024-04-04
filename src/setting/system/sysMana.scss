@@ -127,3 +127,45 @@
         font-weight: var(--pi-font-weight-title);
     }
 }
+
+.system-home{
+    width: 1024px;
+    padding: 20px;
+    margin: 0 auto;
+
+    .system-content{
+        padding:10px;
+    }
+
+    .system-menu-box{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 0;
+        margin: 5px 0 20px 0;
+
+        .system-menu-item{
+            background: var(--pi-bg-grey-100);
+            width: 195px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #e8e8e8;
+
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+
+
+
+
+

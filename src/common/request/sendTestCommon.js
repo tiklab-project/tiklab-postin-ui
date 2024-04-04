@@ -139,19 +139,17 @@ export const mergeTestData=(localData,preScriptInfo,globalParam)=>{
 }
 
 
-
-
 /**
  * request接口代理发送测试
  * Proxy send test
  */
 export const localProxySendTest=async (data)=>{
-    const {body=data.body,headers=data.header,method=data.methodType,url} = data;
+    const {body,headers=data.header,method=data.methodType,url} = data;
 
     //当前执行的请求的接口参数
     let queryHeader=Object.assign({}, {"User-Agent":"PostIn/1.0.0"}, {...headers})
 
-    //request接口 请求头
+    //request接口的请求头
     let axiosHeaders = {};
     //ce版本不需要tenant租户
     if(version==="cloud"){
@@ -169,7 +167,7 @@ export const localProxySendTest=async (data)=>{
         axiosHeaders=Object.assign({},axiosHeaders,{"User-Agent":"PostIn/1.0.0"})
     }
 
-    //处理后的查询参数
+    // request接口中pi-header
     let axiosQuery =processPiHeader(queryHeader,data)
 
     //request接口 请求地址
@@ -185,13 +183,13 @@ export const localProxySendTest=async (data)=>{
     //处理body
     let bodys = processBody(body,headers["content-type"])
 
-    //请求
-   let res =  axiosIns.post(
-       fetchUrl,
-       bodys,
-       { headers:axiosHeaders}
-   ).then(res=>{
-       return processResponse(res)
+    // 通过/request接口请求
+    let res =  axiosIns.post(
+        fetchUrl,
+        bodys,
+        { headers:axiosHeaders}
+    ).then(res=>{
+        return processResponse(res)
     }).catch(error=>{
         console.log(error.message)
     })
@@ -233,23 +231,12 @@ const processResponse = (res) =>{
 
         //判断是否有错误
         if(res.headers["pi-error"]){
-            // if(res.headers["pi-error"].includes("UnknownHostException")){
-            //     return {
-            //         result:-1,
-            //         errorMessage:" 请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析"
-            //     }
-            // }else {
-            //     return {
-            //         result:-1,
-            //         errorMessage:" 请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析"
-            //     }
-            // }
+
             return {
                 result:-1,
                 errorMessage:" 请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析"
             }
         }
-
 
         //解析 基础信息 statusCode,statusText,times
         let base = res.headers["pi-base"]
@@ -299,14 +286,32 @@ const processResponse = (res) =>{
 const processPiHeader = (queryHeader,data) =>{
     let {query,url,methodType} = data
 
-    //头部
+    // pi-url
+    const newQueryString = mergeQueryParams(url, query);
+    const newUrl = url.split('?')[0] + (newQueryString ? `?${newQueryString}` : '');
+
+    // pi-header
     let queryHeaderStr = Object.entries(queryHeader).map(([key, value]) => `${key}:${value}`).join(",");
 
-    const queryString = buildQueryString(query);
-
-    let queryHeaderObj=  {"pi-header":queryHeaderStr,"pi-url":`${queryString?`${url}?${queryString}`:url}`,"pi-method":methodType}
+    let queryHeaderObj=  {"pi-header":queryHeaderStr,"pi-url":newUrl,"pi-method":methodType}
 
     return Object.keys(queryHeaderObj).map(key => key + '=' + queryHeaderObj[key]).join('&');
+}
+
+/**
+ * 合并url？后参数与query中的参数
+ * @param url
+ * @param query
+ * @returns {string|*}
+ */
+function mergeQueryParams(url, query) {
+    const params = new URLSearchParams(new URL(url).search);
+    const paramsObj = {};
+    for (const [key, value] of params) {
+        paramsObj[key] = value;
+    }
+    const allQuery = { ...paramsObj, ...query };
+    return buildQueryString(allQuery);
 }
 
 /**
@@ -315,10 +320,18 @@ const processPiHeader = (queryHeader,data) =>{
 function buildQueryString(query) {
     if (!query) return '';
 
-    return Object.entries(query)?.map(([key, value]) => {
-        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-    }).join('&');
+    return Object.entries(query)
+        .map(([key, value]) => {
+            // 如果参数值已经被编码过了，则不再进行二次编码
+            const encodedValue = encodeURIComponent(value);
+            const encodedValueCheck = encodeURIComponent(decodeURIComponent(value));
+            const finalValue = encodedValue === encodedValueCheck ? encodedValue : value;
+
+            return `${encodeURIComponent(key)}=${finalValue}`;
+        })
+        .join('&');
 }
+
 
 /**
  * 解析响应头里的pi-header

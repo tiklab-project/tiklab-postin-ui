@@ -5,6 +5,7 @@ import dataStructureStore from "../store/DataStructureStore";
 import jsonParamDSStore from "../store/JsonParamDSStore";
 import {schemaToTable} from "../../../common/JsonSchemaTable/JsonSchemaFn";
 import "./structureStyle.scss"
+import IconCommon from "../../../common/IconCommon";
 
 
 const ModeModal = (props) => {
@@ -54,9 +55,9 @@ const ModeModal = (props) => {
                 onOk={handleOk}
                 onCancel={handleCancel}
                 footer={false}
-                width={600}
+                width={500}
             >
-                <ul style={{minHeight: "400px",maxHeight: "400px"}}>
+                <ul style={{minHeight: "300px",maxHeight: "300px",padding:"10px 0"}}>
                     {
                         dataStructureList&&dataStructureList.map(item=> (
                             <li
@@ -64,11 +65,19 @@ const ModeModal = (props) => {
                                 key={item.id}
                                 onClick={()=>selectFn(item)}
                             >
-                                {item.name}
+                                <div className={"def-mode-li-title"}>
+                                    <IconCommon
+                                        icon={"changjing"}
+                                        className="icon-s"
+                                    />
+                                    {item.name}
+                                </div>
+                                <div>
+                                    Object
+                                </div>
                             </li>
                         ))
                     }
-
                 </ul>
             </Modal>
         </>

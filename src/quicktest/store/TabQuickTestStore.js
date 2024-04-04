@@ -235,8 +235,9 @@ class TabQuickTestStore {
     }
 
     @action
-    setResponseData = (data) =>{
-        this.responseData = data;
+    setResponseData = (data,activeKey) =>{
+        this.tabPaneInfo.tabList[activeKey].data.response=data
+        this.responseData= this.tabPaneInfo.tabList[activeKey].data.response
     }
 
     @action

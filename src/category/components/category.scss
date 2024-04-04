@@ -68,17 +68,11 @@
     height: 35px;
     padding-left: 25px;
     line-height: 35px;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: middle;
-    white-space: nowrap;
-
 }
 
 .category-action{
     display: none;
-    width: 42px;
+    width: 55px;
     font-size: 24px;
 
     .category-action-more{
@@ -100,11 +94,6 @@
 }
 
 
-
-.cate-li{
-    position: relative;
-}
-
 .category-action-right{
     display: flex;
     align-items: center;
@@ -114,11 +103,17 @@
 
 .cate-li:hover .category-action{
     display: block;
-    position: absolute;
-    right: 10px;
-    top: 0;
     height: 100%;
 }
+
+.cate-node-name{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+}
+
 
 .ws-left-tree-drop{
     width: 32px;
@@ -145,8 +140,7 @@
     text-overflow: ellipsis;
     vertical-align: middle;
     white-space: nowrap;
-    display: inline-block;
-    width: 65%;
+    width: 82%;
 }
 
 .pi-list-box{
@@ -200,10 +194,6 @@
 
 .ant-tree .ant-tree-node-content-wrapper:hover .category-action{
     display: block;
-    position: absolute;
-    right: 10px;
-    top: 0;
-    height: 100%;
 }
 
 .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle{
@@ -218,11 +208,16 @@
 }
 
 .ant-tree-switcher{
-    padding: 5px;
+    padding: 5px 0;
+    width: 22px;
 }
 
 .ant-tree .ant-tree-node-content-wrapper{
-    padding: 5px;
+    padding: 5px 0;
+    margin: 0 6px 0 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{

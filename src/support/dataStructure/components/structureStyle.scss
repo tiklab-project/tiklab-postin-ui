@@ -67,7 +67,20 @@
     padding: 10px;
     border-bottom: 1px solid var(--pi-border-color);
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+    .def-mode-li-title{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 }
+
+
 
 .def-mode-li:hover{
     background: var(--pi-hover-color);

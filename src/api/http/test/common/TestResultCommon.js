@@ -90,7 +90,6 @@ const TestResultCommon = (props) =>  {
                         afterScript
                             ?<div style={{"padding":"10px",background: "#f9f9f9"}}>
                                 <div>后置 statusCode: {afterScript}</div>
-
                             </div>
                             :null
                     }
