@@ -251,7 +251,13 @@ const ApxMethodEdit = (props) => {
                     <Form.Item
                         label="接口路径"
                         name="path"
-                        rules={[{ required: true, message: 'Please input your url!' }]}
+                        rules={[
+                            {
+                                required: true,
+                                message: '接口路径格式不正确！',
+                                pattern: /^\/.*/
+                            },
+                        ]}
                     >
                         <Input />
                     </Form.Item>

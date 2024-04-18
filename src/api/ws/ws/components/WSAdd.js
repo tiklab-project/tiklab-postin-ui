@@ -102,9 +102,13 @@ const WSAdd = (props) => {
                         <Input />
                     </Form.Item>
                     <Form.Item
-                        label="接口路径"
+                        label="接口路径(ws://...)"
                         name="path"
-                        rules={[{ required: true, message: '输入接口路径!' }]}
+                        rules={[{
+                            required: true,
+                            message: '输入正确的接口路径!' ,
+                            pattern: "^wss?:\/\/.*"
+                        }]}
                     >
                         <Input />
                     </Form.Item>

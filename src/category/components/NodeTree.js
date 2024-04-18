@@ -10,6 +10,7 @@ import WSAdd from "../../api/ws/ws/components/WSAdd";
 import {getUser} from "thoughtware-core-ui";
 import {useHistory} from "react-router";
 import {observer} from "mobx-react";
+import APIEdit from "../../api/api/components/APIEdit";
 
 const { TreeNode } = Tree;
 
@@ -17,18 +18,17 @@ const { TreeNode } = Tree;
 const NodeTree = (props) => {
     const { findNodeTree,apiRecent,categoryList,deleteNode } = categoryStore;
 
-
     let history = useHistory()
     const workspaceId = localStorage.getItem('workspaceId');
     const [expandedKeys, setExpandedKeys] = useState([]);
 
-
-
     useEffect(async ()=>{
-        await findNodeTree({workspaceId:workspaceId})
-
+        await findTree()
     },[workspaceId])
 
+    const findTree = async ()=>{
+        await findNodeTree({workspaceId:workspaceId})
+    }
 
     /**
      * 保存分类id，跳往分类页
@@ -72,7 +72,7 @@ const NodeTree = (props) => {
     /**
      * 目录悬浮的操作项
      */
-    const moreMenu = (id)=>(
+    const categoryMoreMenu = (id)=>(
         <Menu>
             <Menu.Item  key={1}>
                 <CategoryEdit  name="编辑"  type="edit"  categoryId={id}/>
@@ -80,7 +80,7 @@ const NodeTree = (props) => {
             <Menu.Item  key={2}>
                 <Popconfirm
                     title="确定删除？"
-                    onConfirm={() =>deleteNode(id).then(()=> findNodeTree({workspaceId:workspaceId}))}
+                    onConfirm={() =>deleteNode(id).then(()=> findTree())}
                     okText='确定'
                     cancelText='取消'
                 >
@@ -112,22 +112,47 @@ const NodeTree = (props) => {
         </Menu>
     );
 
+    /**
+     * 目录悬浮的操作项
+     */
+    const apiMoreMenu = (id)=>(
+        <Menu>
+            <Menu.Item  key={1}>
+                <APIEdit
+                    name="编辑"
+                    apiId={id}
+                    findPage={findTree}
+                />
+            </Menu.Item>
+            <Menu.Item  key={2}>
+                <Popconfirm
+                    title="确定删除？"
+                    onConfirm={() =>deleteNode(id).then(()=> findTree())}
+                    okText='确定'
+                    cancelText='取消'
+                >
+                    <a>删除</a>
+                </Popconfirm>
+            </Menu.Item>
+        </Menu>
+    );
+
+
     const categoryAct = (item) => {
+        let id = item.id
 
         if(item.type==="category"){
-            let id = item.id
-
             return (
-                <div className={'category-action'}>
-                    <div  className={"category-action-right"}>
-                        <Dropdown overlay={(e)=>addMenu(id)} className={'category-action-more'}>
+                <div className={'node-box'}>
+                    <div  className={"node-box-right"}>
+                        <Dropdown overlayStyle={{width:"100px"}} overlay={(e)=>addMenu(id)} className={'node-box-more'}>
                         <span>
                             <svg className="icon-s edit-icon-nav" aria-hidden="true">
                                 <use xlinkHref={`#icon-tianjia-`}/>
                             </svg>
                         </span>
                         </Dropdown>
-                        <Dropdown overlay={()=>moreMenu(id)} className={'category-action-more'}>
+                        <Dropdown overlayStyle={{width:"100px"}} overlay={()=>categoryMoreMenu(id)} className={'node-box-more'}>
                         <span>
                             <svg className="icon-s category-nav-item-icon" aria-hidden="true">
                                 <use xlinkHref={`#icon-more`}/>
@@ -138,7 +163,17 @@ const NodeTree = (props) => {
                 </div>
             )
         }else {
-           return <span/>
+           return  <div className={'node-box'}>
+               <div  className={"node-box-right"}>
+                   <Dropdown overlayStyle={{width:"100px"}} overlay={()=>apiMoreMenu(id)} className={'node-box-more'}>
+                        <span>
+                            <svg className="icon-s category-nav-item-icon" aria-hidden="true">
+                                <use xlinkHref={`#icon-more`}/>
+                            </svg>
+                        </span>
+                   </Dropdown>
+               </div>
+           </div>
         }
     }
 
@@ -156,6 +191,7 @@ const NodeTree = (props) => {
                                 >
                                     {item.name}
                                 </div>
+                                <div className={"node-box-bg"}/>
                                 {categoryAct(item)}
                             </div>
                         }
@@ -170,14 +206,19 @@ const NodeTree = (props) => {
                 <TreeNode
                     key={item.id}
                     title={
-                        <div className={"node-title"}>
+                        <div className={"node-title"} style={{width:"110%"}}>
                             <div
-                                style={{display:"flex"}}
+                                style={{display:"flex",width:"100%",alignItems: "center"}}
+                                // className={"cate-node-name"}
                                 onClick={(e) => onClick(item)}
                             >
-                                {getIcon(item.type, item.methodType)}
+                                <div style={{margin: "0 5px",textAlign:"center"}}>
+                                    {getIcon(item.type, item.methodType)}
+                                </div>
                                 <div className={"cate-node-name"} >{item.name}</div>
+                                <div className={"node-box-bg"}/>
                             </div>
+
                             {categoryAct(item)}
                         </div>
                     }

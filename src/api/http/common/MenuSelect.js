@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useHistory, useLocation} from "react-router";
 import EnvSelect from "../../../support/environment/components/EnvSelect";
 import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
@@ -9,6 +9,10 @@ const MenuSelect = () =>{
 
     const [selectItem, setSelectItem] = useState(pathname||"/workspace/apis/http/document");
     let history = useHistory()
+
+    useEffect(()=>{
+        setSelectItem(pathname)
+    },[pathname])
 
     //项目筛选列表
     const items = [

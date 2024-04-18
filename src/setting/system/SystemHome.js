@@ -15,15 +15,16 @@ const InfoBox = React.memo(({ title, data, onClick }) => (
                 >
                     {
                         item.count === 0||item.count > 0
-                            ?<div>{item.count}</div>
+                            ?<div>{item.count||0}</div>
                             :null
-                        }
+                    }
                     <div>{item.title}</div>
                 </div>
             ))}
         </div>
     </div>
 ));
+
 
 const SystemHome = () => {
     const history = useHistory();
@@ -80,7 +81,7 @@ const SystemHome = () => {
         { title: '消息通知方案', key: '/setting/message-notice', count: countInfo?.msgNoticeCount },
     ];
 
-    const plugin = [{ title: '插件', key: '/setting/plugin' }];
+    const plugin = [{ title: '插件', key: '/setting/plugin'}];
 
     const security = [
         { title: '操作日志', key: '/setting/log' },
@@ -88,7 +89,7 @@ const SystemHome = () => {
     ];
 
     const application = [
-        { title: '版本与许可证', key: '/setting/version' },
+        { title: '版本与许可证', key: '/setting/version'  },
         { title: '应用访问权限', key: '/setting/product-auth' },
     ];
 
@@ -102,7 +103,7 @@ const SystemHome = () => {
                 }
                 <InfoBox title="消息" data={message} onClick={handleClick} />
                 <InfoBox title="插件" data={plugin} onClick={handleClick} />
-                <InfoBox title="安全" data={security} onClick={handleClick} />
+                <InfoBox title="安全" data={security} onClick={handleClick} type={"security"} />
                 <InfoBox title="应用" data={application} onClick={handleClick} />
             </div>
         </div>

@@ -5,6 +5,7 @@ import { DownOutlined,UpOutlined} from '@ant-design/icons';
 import { PrivilegeButton,SystemNav } from "thoughtware-privilege-ui";
 import './sysMana.scss'
 import {getUser} from "thoughtware-core-ui";
+import IconCommon from "../../common/IconCommon";
 
 const { Sider, Content } = Layout;
 
@@ -26,15 +27,16 @@ const SysManage = (props) => {
     }, [curRouter])
 
 
+
+    const specialKeys = [
+        "/setting/orga",
+        "/setting/user",
+        "/setting/dir",
+        "/setting/userGroup"
+    ];
+
     const select = (key) => {
         if (!authConfig.authType) {
-            const specialKeys = [
-                "/setting/orga",
-                "/setting/user",
-                "/setting/dir",
-                "/setting/userGroup"
-            ];
-
             if (specialKeys.includes(key)) {
                 let authServiceUrl = authConfig.authServiceUrl
                 let ticket = getUser().ticket
@@ -49,6 +51,14 @@ const SysManage = (props) => {
         props.history.push(key);
         setSelectKey(key);
     };
+
+    const showOpenNewPage = (key) => {
+        if (!authConfig.authType) {
+            if (specialKeys.includes(key)) {
+                return <IconCommon icon={"dakaixinyemian"}  className="icon-s"/>
+            }
+        }
+    }
 
 
     /**
@@ -82,16 +92,20 @@ const SysManage = (props) => {
                         style={{paddingLeft:`${deep*20}px`}}
                     >
                         <div className={'aside-li'} >
+                            <div>
+                                {
+                                    isFirst
+                                        ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
+                                            <use xlinkHref= {`#icon-${data.icon}`} />
+                                        </svg>
+                                        :null
+                                }
+                                {data.title}
+                            </div>
                             {
-                                isFirst
-                                    ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
-                                        <use xlinkHref= {`#icon-${data.icon}`} />
-                                    </svg>
-                                    :null
+                                showOpenNewPage(data.id)
                             }
 
-
-                            {data.title}
                         </div>
                     </li>
                 </PrivilegeButton>
@@ -104,15 +118,19 @@ const SysManage = (props) => {
                 style={{paddingLeft:`${deep*20}px`}}
             >
                 <div className={'aside-li'} >
+                    <div>
+                        {
+                            isFirst
+                                ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
+                                    <use xlinkHref= {`#icon-${data.icon}`} />
+                                </svg>
+                                :null
+                        }
+                        {data.title}
+                    </div>
                     {
-                        isFirst
-                            ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
-                                <use xlinkHref= {`#icon-${data.icon}`} />
-                            </svg>
-                            :null
+                        showOpenNewPage(data.id)
                     }
-
-                    {data.title}
                 </div>
             </li>
         }
@@ -198,8 +216,6 @@ const SysManage = (props) => {
                 </li>
             )
         }
-
-
     }
 
     const showUlView = (data)=>{
@@ -217,6 +233,7 @@ const SysManage = (props) => {
             setExpandedTree={setExpandedTree} // 树的展开和闭合(非必传)
             applicationRouters={menuRouter} // 菜单
             outerPath={"/setting"} // 系统设置Layout路径
+            notFoundPath={"/noaccess"}
         >
             <Layout className = 'sysmana-layout'>
                 <Sider

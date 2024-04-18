@@ -5,6 +5,8 @@ import { Button, Form, Select} from 'antd';
 import {rawTypeDictionary} from "../../../common/dictionary/dictionary";
 import CodeMirror from "../../../common/CodeMirror";
 import rawParamStore from "../store/RawParamStore";
+import beautify from "js-beautify";
+import IconCommon from "../../../common/IconCommon";
 const { Option } = Select;
 
 /**
@@ -115,21 +117,45 @@ const RawParam = (props) => {
         setShowBtn(true)
     }
 
+    let beautifyCode =async () => {
+        let text = ediTextRef.current.editor.getValue()
+
+        let beautifyCode = beautify(text, {
+            indent_size: 2,//缩进两个空格
+            space_in_empty_paren: true,
+        })
+
+        let value = form.getFieldsValue()
+        form.setFieldsValue({
+            raw: beautifyCode,
+            type:value.type
+        })
+    };
+
     return (
         <div className={"raw-box"}>
             <Form form={form} initialValues={{"type":"application/json"}}>
                 <div className='raw-box-header'>
-                    <Form.Item name='type' className={"raw-type"}>
-                        <Select
-                            style={{ width: 180}}
-                            onChange={changeType}
-                            suffixIcon={null}
-                        >
-                            {
-                                showSelectItem(rawTypeDictionary)
-                            }
-                        </Select>
-                    </Form.Item>
+                    <div className={"raw-type"}>
+                        <div onClick={beautifyCode} className={"raw-beautify"}>
+                            <IconCommon
+                                icon={"meihua"}
+                                style={{width:"13px",height:"13px"}}
+                            />
+                            美化
+                        </div>
+                        <Form.Item name='type'>
+                            <Select
+                                style={{ width: 180}}
+                                onChange={changeType}
+                                suffixIcon={null}
+                            >
+                                {
+                                    showSelectItem(rawTypeDictionary)
+                                }
+                            </Select>
+                        </Form.Item>
+                    </div>
                 </div>
 
                 <div style={{border:"1px solid var(--pi-border-color)"}}>

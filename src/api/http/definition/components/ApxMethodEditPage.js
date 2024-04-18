@@ -13,21 +13,19 @@ import DetailCommon from "../../../common/detailcommon/DetailCommon";
 
 const {TabPane} = Tabs;
 
+const {findNodeTree} = categoryStore;
+const { findApxMethod,updateApxMethod} = apxMethodStore;
+
 /**
  * 接口编辑页
  */
 const ApxMethodEditPage = (props) => {
     const { pluginsStore} = props;
-    const {findNodeTree} = categoryStore;
-    const { findApxMethod,updateApxMethod} = apxMethodStore;
-
     const workspaceId = localStorage.getItem('workspaceId');
     const apiId = localStorage.getItem('apiId');
-
     const [resData, setResData] = useState({});
     const [tabTip, setTabTip] = useState();
     const [form] = Form.useForm()
-
     const pluginStore = useSelector(store => store.pluginStore)
 
     useEffect(async ()=>{
@@ -39,10 +37,10 @@ const ApxMethodEditPage = (props) => {
         form.setFieldsValue({
             name:node.name,
             path:apix.path,
-            category:apix.category?.id,
+            category:apix.categoryId,
             executor:apix.executor?.id,
             desc:apix.desc,
-            methodType:apiInfo.methodType,
+            methodType:node.methodType,
         })
 
 
@@ -86,9 +84,8 @@ const ApxMethodEditPage = (props) => {
 
     },[apiId]);
 
-
-
     const updateFn = async (changedValues, allValues) =>{
+        console.log(changedValues, allValues)
         let params = {
             id:apiId,
             apix:{
@@ -96,22 +93,21 @@ const ApxMethodEditPage = (props) => {
                 categoryId:allValues.category,
                 executor:{id:allValues.executor},
                 desc:allValues.desc,
+                path:allValues.path,
                 node:{
                     ...resData.node,
                     name:allValues.name,
-                    path:allValues.path,
+                    methodType:allValues.methodType
                 },
             },
-
-            methodType:allValues.methodType,
-
         }
         await updateApxMethod(params).then(async (res)=>{
             //编辑完重新查询目录树
             await findNodeTree({workspaceId:workspaceId});
+            let apiInfo = await findApxMethod(apiId)
+            setResData(apiInfo)
         });
     }
-
 
     /**
      * 设置状态
@@ -128,16 +124,14 @@ const ApxMethodEditPage = (props) => {
         updateApxMethod(param).then(async (res)=>{
             //编辑完重新查询目录树
             await findNodeTree({workspaceId:workspaceId});
+            let apiInfo = await findApxMethod(apiId)
+            setResData(apiInfo)
         });
     }
 
-
-
     //判断是否有版本插件，返回的是true或false
     let hasVersionPlugin = useHasPointPlugin('version');
-
     let version = getVersionInfo()
-
 
     /**
      * 展示插件
@@ -172,7 +166,6 @@ const ApxMethodEditPage = (props) => {
     }
 
 
-
     return(
         <>
             <div className="header-title ex-title">基础信息</div>
@@ -198,9 +191,7 @@ const ApxMethodEditPage = (props) => {
                 <TabPane tab="返回结果" key="resResult">
                     <div style={{margin:"10px 0 0 0"}} ><Response  /></div>
                 </TabPane>
-
             </Tabs>
-
         </>
 
     )

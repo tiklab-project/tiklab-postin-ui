@@ -70,13 +70,18 @@
     line-height: 35px;
 }
 
-.category-action{
+.node-box-bg{
     display: none;
-    width: 55px;
+    margin: 0 25px;
+}
+
+.node-box{
+    display: none;
+    position: absolute;
+    right: 0;
     font-size: 24px;
 
-    .category-action-more{
-        width: 60px;
+    .node-box-more{
         display: flex;
         justify-content: space-around;
 
@@ -91,20 +96,32 @@
         cursor: pointer;
         margin: 4px 0 0;
     }
+
 }
-
-
-.category-action-right{
+.node-box-right{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
+    gap: 10px;
     height: 100%;
+    padding:0 10px;
 }
 
-.cate-li:hover .category-action{
+
+.ant-tree .ant-tree-node-content-wrapper:hover .node-box{
     display: block;
-    height: 100%;
 }
+.ant-tree .ant-tree-node-content-wrapper:hover .node-box-bg{
+    display: block;
+}
+
+//.cate-li:hover .node-box{
+//    display: block;
+//    height: 100%;
+//}
+
+
+
 
 .cate-node-name{
     overflow: hidden;
@@ -179,21 +196,14 @@
     width: 100%;
 }
 
-.ant-tree .ant-tree-node-content-wrapper{
-    width: 100%;
-}
-
 .ant-tree-title{
     display: inline-block;
     width: 90%
 }
 
 .ant-tree .ant-tree-node-content-wrapper{
+    width: 100%;
     display: flex;
-}
-
-.ant-tree .ant-tree-node-content-wrapper:hover .category-action{
-    display: block;
 }
 
 .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle{

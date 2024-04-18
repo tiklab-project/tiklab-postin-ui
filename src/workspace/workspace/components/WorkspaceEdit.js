@@ -86,7 +86,7 @@ const WorkspaceEdit = (props) => {
         return  list&&list.map((item) => {
             return<Option key={item.id} value={item.id}>
                 <div className={"ws-edit-box-select"}>
-                    {item.name}
+                    {item.nickname}
                 </div>
             </Option>
         })
@@ -98,9 +98,9 @@ const WorkspaceEdit = (props) => {
     const selectChange = (memberList) =>{
         if(memberList&&memberList.length>0){
             let newList=memberList.map(item=>({
-                    id:item,
-                    adminRole:item === "111111"
-                }))
+                userId:item,
+                roleType:0
+            }))
             setMemberSelectList(newList)
         }
 

@@ -6,7 +6,7 @@ import quickTestStore from "../store/QuickTestStore";
 import tabQuickTestStore from "../../store/TabQuickTestStore";
 
 const SaveToApi = (props) =>{
-    const { findCategoryList,categoryList } = categoryStore;
+    const { findCategoryTree } = categoryStore;
     const { baseInfo,headerList,queryList,requestBodyType,formList,formUrlList,rawInfo,preScript,afterScript } = tabQuickTestStore
     const { saveToApi } = quickTestStore
 
@@ -15,10 +15,11 @@ const SaveToApi = (props) =>{
     const [form] = Form.useForm();
     const workspaceId = localStorage.getItem('workspaceId');
     const [cascaderCategoryId, setCascaderCategoryId] = useState();
+    const [categoryList, setCategoryList] = useState([]);
 
     const showModal = async () => {
-        await findCategoryList(workspaceId);
-
+        let categoryList = await findCategoryTree({workspaceId:workspaceId});
+        setCategoryList(categoryList)
         setIsModalOpen(true);
     };
     const handleOk = async () => {

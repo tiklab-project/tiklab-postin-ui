@@ -4,8 +4,8 @@ import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----
 
 import {Directory, Orga, UserGroup, User,} from "thoughtware-user-ui";
-import {NotFound, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "thoughtware-privilege-ui"
-import {ExcludeProductUser} from "thoughtware-eam-ui";
+import {NoAccess, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "thoughtware-privilege-ui"
+import {ExcludeProductUser, NotFound} from "thoughtware-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "thoughtware-security-ui";
 import {PluginDetail, Plugin} from "thoughtware-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "thoughtware-message-ui";
@@ -79,10 +79,14 @@ const routers =  [
         key:'logout',
     },
     {
-        path:"/index/404",
-        render:(props)=>{
-            return <NotFound {...props}/>
-        }
+        exact: true,
+        path: '/404',
+        render: props => <NotFound {...props} homePath={'/'}/>
+    },
+    {
+        exact: true,
+        path: '/noaccess',
+        render: props => <NoAccess {...props} homePath={'/'} />
     },
     {
         path:"/no-auth",
@@ -441,6 +445,10 @@ const routers =  [
                 key:'tohome',
                 exact: true,
                 render: () => <Redirect to={"/home"}/>,
+            },
+            {
+                path: "*",
+                render: () => <Redirect to={"/404"}/>,
             },
         ]
     },

@@ -6,9 +6,11 @@ import RequestTestWS from "./RequestTestWS";
 import webSocketFnStore from "../store/WebSocketFnStore";
 import {observer} from "mobx-react";
 import TestResultWS from "./TestResultWS";
+import {jsonSchemaToJson} from "../../../common/TestFunctionCommon";
+import Mock from "mockjs";
 
 const WSTestPage = () =>{
-    const {findWSApi,messageData,setUrl,querySourceList} = wsStore;
+    const {findWSApi,messageData,setUrl,querySourceList,setMessage,} = wsStore;
     const {
         connectWebSocket,
         disconnectWebSocket,
@@ -18,11 +20,27 @@ const WSTestPage = () =>{
 
     const apiId = localStorage.getItem("apiId")
     const [wsInfo, setWsInfo] = useState();
+    const [type, setType] = useState("text");
 
     useEffect(async ()=>{
         let info = await findWSApi(apiId)
         setWsInfo(info)
-    },[])
+
+        const {request,rawParam,jsonParam} = info
+        switch (request.bodyType) {
+            case "raw":
+                setType("text")
+                setMessage(rawParam?.raw);
+                break;
+            case "json":
+                setType("json")
+                let processJson =jsonSchemaToJson(JSON.parse(jsonParam?.jsonText));
+                let json =  JSON.stringify(Mock.mock(processJson));
+                setMessage(json);
+                break;
+        }
+
+    },[apiId])
 
     const connectFn = () =>{
         let url = setUrl(wsInfo?.apix?.path,querySourceList)
@@ -63,7 +81,7 @@ const WSTestPage = () =>{
                 }
                 <Button className={"important-btn"} onClick={send}>发送</Button>
             </div>
-            <RequestTestWS />
+            <RequestTestWS type={type} />
             <div style={{margin:"10px 0 "}}>报文列表</div>
             <TestResultWS />
         </>

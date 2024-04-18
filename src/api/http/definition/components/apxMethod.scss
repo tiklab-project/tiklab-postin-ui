@@ -395,15 +395,33 @@
         display: flex;
         background: var(--pi-greyf9-color);
         align-items: center;
-        padding: 5px;
     }
 }
 .raw-type{
     position: absolute;
     right: 10px;
     height: 30px;
-    top: 3px;
+    top: 7px;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.raw-beautify{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    padding: 6px;
+    border: 1px solid var(--pi-greyf9-color);
+}
+
+.raw-beautify:hover{
+    background: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #e3e3e3;
+    cursor: pointer;
 }
 
 
@@ -418,7 +436,8 @@
 
 
 .request-radio{
-    margin:8px 0 ;
+    padding:10px;
+    background: #f7f7f7;
 }
 
 .binary-box{

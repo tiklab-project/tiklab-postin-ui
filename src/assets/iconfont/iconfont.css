@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2517386 */
-  src: url('iconfont.woff2?t=1702263178747') format('woff2'),
-       url('iconfont.woff?t=1702263178747') format('woff'),
-       url('iconfont.ttf?t=1702263178747') format('truetype');
+  src: url('iconfont.woff2?t=1713432094857') format('woff2'),
+       url('iconfont.woff?t=1713432094857') format('woff'),
+       url('iconfont.ttf?t=1713432094857') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,38 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-meihua:before {
+  content: "\e646";
+}
+
+.icon-dakaixinyemian:before {
+  content: "\e637";
+}
+
+.icon-riqi:before {
+  content: "\e617";
+}
+
+.icon-liaotian:before {
+  content: "\e615";
+}
+
+.icon-user1:before {
+  content: "\ed68";
+}
+
+.icon-cloud:before {
+  content: "\ed6a";
+}
+
+.icon-hospital:before {
+  content: "\ed6c";
+}
+
+.icon-game:before {
+  content: "\ed6d";
 }
 
 .icon-api1:before {
@@ -297,18 +329,6 @@
   content: "\e622";
 }
 
-.icon-jiedianapp:before {
-  content: "\e6f1";
-}
-
-.icon-app1:before {
-  content: "\e6f2";
-}
-
-.icon-web:before {
-  content: "\e6fa";
-}
-
 .icon-fenzu:before {
   content: "\e629";
 }
@@ -323,14 +343,6 @@
 
 .icon-dingshi:before {
   content: "\e645";
-}
-
-.icon-tianjiadaofenzu:before {
-  content: "\e6dd";
-}
-
-.icon-web1:before {
-  content: "\eab3";
 }
 
 .icon-fanhui:before {
@@ -381,16 +393,8 @@
   content: "\e63b";
 }
 
-.icon-folder-close:before {
-  content: "\e671";
-}
-
 .icon-home:before {
   content: "\e674";
-}
-
-.icon-file-open:before {
-  content: "\e670";
 }
 
 .icon-modular:before {

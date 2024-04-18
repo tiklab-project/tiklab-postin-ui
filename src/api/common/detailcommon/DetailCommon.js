@@ -28,9 +28,7 @@ const DetailCommon = (props) =>{
     const workspaceId = localStorage.getItem("workspaceId")
 
     useEffect(async ()=>{
-        let list = await findCategoryTree({
-            workspaceId:workspaceId,
-        });
+        let list = await findCategoryTree({workspaceId:workspaceId});
         setCategoryList(list)
     },[])
 

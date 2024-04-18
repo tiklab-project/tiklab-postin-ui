@@ -129,7 +129,6 @@ export class AssertCommonStore{
                 default:
                     return -1
             }
-
         }else {
             return -1
         }

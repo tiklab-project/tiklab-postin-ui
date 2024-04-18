@@ -19,7 +19,7 @@ const RequestTestWS = (props) => {
                 {
                     label: `请求体`,
                     key: '1',
-                    children: <RawTestWS />
+                    children: <RawTestWS {...props}/>
                 },
                 {
                     label: `请求头`,

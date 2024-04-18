@@ -6,7 +6,7 @@ import TableHeaderDoc from "../../common/apiDoc/TableHeaderDoc";
 import TableQueryDoc from "../../common/apiDoc/TableQueryDoc";
 import RequestBodyDoc from "../../common/apiDoc/RequestBodyDoc";
 import ResponseResultDoc from "../../common/apiDoc/ResponseResultDoc";
-import {Tag, Tooltip} from "antd";
+import {Tooltip} from "antd";
 import apxMethodStore from "../store/ApxMethodStore";
 import copyMockUrl from "../../../../common/copyLink";
 import IconCommon from "../../../../common/IconCommon";
@@ -37,7 +37,7 @@ const ApiDocumentPage = (props) =>{
             <div className={"share-box-right-content-item"}>
                 <div className={"share-box-right-content-item-detail"}>
                     <ProtocolType type={apiDoc?.apix?.protocolType}/>
-                    <MethodType type={apiDoc?.methodType} />
+                    <MethodType type={apiDoc?.node?.methodType} />
                     <div>{apiDoc?.apix?.path}</div>
                 </div>
 

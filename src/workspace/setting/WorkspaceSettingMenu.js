@@ -18,29 +18,29 @@ const WorkspaceSettingMenu = (props) =>{
 
     /**
      * 点击左侧菜单，设置路由地址
-     * @param {*} key
+     * @param {*} id
      */
-    const selectKeyFun = (key)=>{
-        setSelected(key)
-        props.history.push(key);
+    const selectKeyFun = (id)=>{
+        setSelected(id)
+        props.history.push(id);
     }
 
     const items=[
         {
             title: '空间信息',
-            key: '/workspace/setting/detail',
+            id: '/workspace/setting/detail',
             // icon: 'icon-setting',
         },{
             title: '环境设置',
-            key: '/workspace/setting/env',
+            id: '/workspace/setting/env',
             // icon: 'icon-modular',
         },{
             title: '成员',
-            key: '/workspace/setting/role',
+            id: '/workspace/setting/role',
             // icon: 'icon-modular',
         },{
             title: '权限',
-            key: '/workspace/setting/privilege',
+            id: '/workspace/setting/privilege',
             // icon: 'icon-modular',
         },
     ]
@@ -52,10 +52,10 @@ const WorkspaceSettingMenu = (props) =>{
     const renderList = (data) => {
         return  data && data.map(Item=> {
             return (
-                <li key={Item.key} style={{  margin:"0 auto"}} >
-                    <div className={`ws-menu-li ${Item.key === selected ? "ws-menu-li-action" : null}`}
-                         key={Item.key}
-                         onClick={()=>selectKeyFun(Item.key)}
+                <li key={Item.id} style={{  margin:"0 auto"}} >
+                    <div className={`ws-menu-li ${Item.id === selected ? "ws-menu-li-action" : null}`}
+                         key={Item.id}
+                         onClick={()=>selectKeyFun(Item.id)}
                     >
                         <svg className="icon" aria-hidden="true">
                             <use xlinkHref= {`#${Item.icon}`} />

@@ -188,7 +188,8 @@ const MessageDrawer = (props) =>{
         const updateParams = {
             id:item.id,
             message:{  id: item.message.id  },
-            status:1
+            status:1,
+            bgroup: "postin"
         }
         const res =  await Axios.post('/message/messageItem/updateMessageItem', updateParams);
         if(res.code===0){

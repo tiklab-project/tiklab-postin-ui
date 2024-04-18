@@ -77,6 +77,7 @@ const APIList = (props) => {
                         name="编辑"
                         apiId={record.id}
                         findPage={findPage}
+                        icon={true}
                     />
                     <HideDelete
                         deleteFn={() =>deleteMethod(record.id)}

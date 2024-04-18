@@ -2,6 +2,8 @@ import React, {useState, useRef} from 'react';
 import {Form, Select} from 'antd';
 import {rawTypeDictionary} from "../../dictionary/dictionary";
 import CodeMirror from "../../CodeMirror";
+import beautify from "js-beautify";
+import IconCommon from "../../IconCommon";
 
 const { Option } = Select;
 
@@ -53,29 +55,52 @@ const RawParamCommon = (props) => {
         })
     }
 
+    let beautifyCode =async (form) => {
+        let text = ediTextRef.current.editor.getValue()
+
+        let beautifyCode = beautify(text, {
+            indent_size: 2,//缩进两个空格
+            space_in_empty_paren: true,
+        })
+
+        let value = form.getFieldsValue()
+        form.setFieldsValue({
+            raw: beautifyCode,
+            type:value.type
+        })
+    };
+
     return (
         <div className={"raw-box"}>
             <Form form={form} initialValues={{"type":"application/json"}}>
 
-                {
-                    props.use==="quick"
-                        ?<div className='raw-box-header'>
-                            <Form.Item name='type' className={"raw-type"}>
-                                <Select
-                                    style={{ width: 180}}
-                                    onChange={changeType}
-                                    // bordered={false}
-                                    suffixIcon={null}
-                                >
-                                    {
-                                        showSelectItem(rawTypeDictionary)
-                                    }
-                                </Select>
-                            </Form.Item>
+                <div className='raw-box-header'>
+                    <div className={"raw-type"}>
+                        <div onClick={()=>beautifyCode(form)} className={"raw-beautify"}>
+                            <IconCommon
+                                icon={"meihua"}
+                                style={{width:"13px",height:"13px"}}
+                            />
+                            美化
                         </div>
-                        :null
-                }
-
+                        {
+                            props.use==="quick"
+                                ?<Form.Item name='type' >
+                                    <Select
+                                        style={{ width: 180}}
+                                        onChange={changeType}
+                                        // bordered={false}
+                                        suffixIcon={null}
+                                    >
+                                        {
+                                            showSelectItem(rawTypeDictionary)
+                                        }
+                                    </Select>
+                                </Form.Item>
+                                :null
+                        }
+                    </div>
+                </div>
                 <Form.Item  name='raw'>
                     <CodeMirror
                         mediaType={typeValue}

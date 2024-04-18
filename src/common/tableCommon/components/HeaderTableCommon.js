@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import ExSelect from "../../ExSelect";
-import {headerParamDictionary} from "../../dictionary/dictionary";
 import {uuid} from "../../utils/createId";
 import {ExTable} from "../../EditTable";
 import IconCommon from "../../IconCommon";
@@ -17,15 +15,7 @@ const {dataList, saveList, deleteList} = props;
             title: '参数名称',
             dataIndex: 'headerName',
             width: '40%',
-            render: (text, record)=>(
-                <ExSelect
-                    dictionary={headerParamDictionary}
-                    defaultValue={record.headerName}
-                    handleSave={handleSave}
-                    rowData={record}
-                    dataIndex={'headerName'}
-                />
-            )
+            editable: true,
         },{
             title: '参数值',
             width: '40%',

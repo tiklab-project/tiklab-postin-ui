@@ -69,9 +69,16 @@ const WSDocumentPage = (props) =>{
                 请求参数
             </div>
             <div className={"share-box-right-content-item"}>
-                <TableHeaderDoc dataSource={wsInfo?.headerList}/>
-                <TableQueryDoc dataSource={wsInfo?.queryList}/>
-                <RequestBodyDoc dataSource={wsInfo} protocolType={wsInfo?.apix?.protocolType}/>
+                {
+                    wsInfo?.headerList||wsInfo?.queryList||wsInfo?.jsonParam?.jsonText||wsInfo?.rawParam?.rawText
+                        ?<>
+                            <TableHeaderDoc dataSource={wsInfo?.headerList}/>
+                            <TableQueryDoc dataSource={wsInfo?.queryList}/>
+                            <RequestBodyDoc dataSource={wsInfo} protocolType={wsInfo?.apix?.protocolType}/>
+                        </>
+                        :<div style={{margin:"10px 0"}}>暂无请求信息</div>
+                }
+
             </div>
 
 

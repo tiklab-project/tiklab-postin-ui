@@ -1,27 +1,12 @@
 import React, {useEffect, useState} from "react";
 import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
 import wsStore from "../../ws/store/WSStore";
-import {jsonSchemaToJson} from "../../../common/TestFunctionCommon";
-import Mock from "mockjs";
+import {observer} from "mobx-react";
 
 const RawTestWS = (props) =>{
-    const {bodyType,rawText,jsonText,messageData,setMessage} = wsStore
-    const [type, setType] = useState("text");
+    const {type} = props;
 
-    useEffect(()=>{
-        switch (bodyType) {
-            case "raw":
-                setType("text")
-                setMessage(rawText);
-                break;
-            case "json":
-                setType("json")
-                let processJson =jsonSchemaToJson(JSON.parse(jsonText));
-                let json =  JSON.stringify(Mock.mock(processJson));
-                setMessage(json);
-                break;
-        }
-    },[messageData])
+    const {messageData,setMessage} = wsStore
 
     const editChange = (value) =>{
         setMessage(value)
@@ -40,4 +25,4 @@ const RawTestWS = (props) =>{
     )
 }
 
-export default RawTestWS;
+export default observer(RawTestWS);

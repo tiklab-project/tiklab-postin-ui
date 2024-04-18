@@ -23,7 +23,7 @@ const WSDesignPage = (props) => {
         form.setFieldsValue({
             name:info.node.name,
             path:info.path,
-            category:info.category?.id,
+            category:info.categoryId,
             executor:info.executor?.id,
             desc:info.desc,
         })

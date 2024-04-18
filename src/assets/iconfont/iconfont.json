@@ -6,6 +6,62 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "17543830",
+      "name": "美化",
+      "font_class": "meihua",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "32740762",
+      "name": "打开新页面",
+      "font_class": "dakaixinyemian",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "35471740",
+      "name": "日期",
+      "font_class": "riqi",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "35471737",
+      "name": "icon-kfckfc",
+      "font_class": "liaotian",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "27400967",
+      "name": "用户",
+      "font_class": "user1",
+      "unicode": "ed68",
+      "unicode_decimal": 60776
+    },
+    {
+      "icon_id": "27400970",
+      "name": "云端",
+      "font_class": "cloud",
+      "unicode": "ed6a",
+      "unicode_decimal": 60778
+    },
+    {
+      "icon_id": "27400976",
+      "name": "医疗",
+      "font_class": "hospital",
+      "unicode": "ed6c",
+      "unicode_decimal": 60780
+    },
+    {
+      "icon_id": "27400977",
+      "name": "游戏",
+      "font_class": "game",
+      "unicode": "ed6d",
+      "unicode_decimal": 60781
+    },
+    {
       "icon_id": "1601491",
       "name": "api",
       "font_class": "api1",
@@ -503,27 +559,6 @@
       "unicode_decimal": 58914
     },
     {
-      "icon_id": "431543",
-      "name": "节点-APP",
-      "font_class": "jiedianapp",
-      "unicode": "e6f1",
-      "unicode_decimal": 59121
-    },
-    {
-      "icon_id": "826062",
-      "name": "app1",
-      "font_class": "app1",
-      "unicode": "e6f2",
-      "unicode_decimal": 59122
-    },
-    {
-      "icon_id": "826073",
-      "name": "web",
-      "font_class": "web",
-      "unicode": "e6fa",
-      "unicode_decimal": 59130
-    },
-    {
       "icon_id": "1817758",
       "name": "分组",
       "font_class": "fenzu",
@@ -550,20 +585,6 @@
       "font_class": "dingshi",
       "unicode": "e645",
       "unicode_decimal": 58949
-    },
-    {
-      "icon_id": "9874532",
-      "name": "KHCFDC_添加到分组",
-      "font_class": "tianjiadaofenzu",
-      "unicode": "e6dd",
-      "unicode_decimal": 59101
-    },
-    {
-      "icon_id": "27290873",
-      "name": "web",
-      "font_class": "web1",
-      "unicode": "eab3",
-      "unicode_decimal": 60083
     },
     {
       "icon_id": "2742625",
@@ -650,25 +671,11 @@
       "unicode_decimal": 58939
     },
     {
-      "icon_id": "15838481",
-      "name": "folder-close",
-      "font_class": "folder-close",
-      "unicode": "e671",
-      "unicode_decimal": 58993
-    },
-    {
       "icon_id": "15838485",
       "name": "home",
       "font_class": "home",
       "unicode": "e674",
       "unicode_decimal": 58996
-    },
-    {
-      "icon_id": "15838487",
-      "name": "file-open",
-      "font_class": "file-open",
-      "unicode": "e670",
-      "unicode_decimal": 58992
     },
     {
       "icon_id": "15838505",

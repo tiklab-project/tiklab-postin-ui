@@ -5,12 +5,12 @@ import {mediaTypeDir} from "../../common/dictionary/dictionary";
  * header处理
  */
 export const processHeaderData = (data) =>{
-    if(!data) return [{ "id":createID()}]
+    let initRow = { "id":createID()}
+
+    if(!data) return [initRow]
 
     let json = JSON.parse(data);
-
     let arr = [];
-
     for (let key in json){
         arr.push({
             "headerName":key,
@@ -19,11 +19,7 @@ export const processHeaderData = (data) =>{
         })
     }
 
-    if(arr.length===0){
-        arr = [{ "id":createID()}]
-    }
-
-    return arr;
+    return [...arr,initRow];
 }
 
 /**

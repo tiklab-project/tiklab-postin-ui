@@ -22,7 +22,7 @@ const {TextArea} = Input;
  * 新增 编辑 弹框
  */
 const APIEdit = (props) => {
-    const {apiId,findPage} = props
+    const {apiId,findPage,icon} = props
     const {updateApxMethod} = apxMethodStore;
     const {findApi,updateApi} = apiStore;
     const {findNodeTree} = categoryStore;
@@ -99,11 +99,16 @@ const APIEdit = (props) => {
     
     return(
         <Fragment>
-            <IconCommon
-                icon={"bianji11"}
-                className={"icon-s edit-icon"}
-                onClick={showModal}
-            />
+            {
+                icon
+                    ?<IconCommon
+                        icon={"bianji11"}
+                        className={"icon-s edit-icon"}
+                        onClick={showModal}
+                    />
+                    :<a onClick={showModal}>编辑</a>
+            }
+
             <Modal
                 destroyOnClose={true}
                 title={props.type==="edit"?"编辑":"添加"}

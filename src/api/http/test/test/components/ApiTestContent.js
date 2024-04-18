@@ -20,6 +20,7 @@ import requestBodyTestStore from "../store/RequestBodyTestStore";
 import requestHeaderTestStore from "../store/RequestHeaderTestStore";
 import testStore from "../store/TestStore";
 import environmentStore from "../../../../../support/environment/store/environmentStore";
+import {messageFn} from "../../../../../common/messageCommon/MessageCommon";
 
 const { Option } = Select;
 /**
@@ -61,7 +62,7 @@ const ApiTestContent = (props) => {
             // debugger
             setApiData(res)
             form.setFieldsValue({
-                methodType: res.methodType,
+                methodType: res.node?.methodType,
                 path: res.apix?.path,
             })
 
@@ -120,10 +121,14 @@ const ApiTestContent = (props) => {
      * 点击测试
      */
     const onFinish =async ()=> {
-        setLoading(true)
         let values =await form.validateFields();
-
         let preUrl = values.host?values.host:testEnvUrl
+        if(!values.host&&!testEnvUrl){
+            messageFn("error","请输入请求地址")
+            return;
+        }
+
+        setLoading(true)
 
         const allSendData = {
             "methodType":values.methodType,

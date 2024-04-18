@@ -12,11 +12,11 @@ import { orgStores } from 'thoughtware-user-ui/es/store';
 import { privilegeStores } from 'thoughtware-privilege-ui/es/store';
 import { stores } from './stores';
 import routers from './routers';
-import {enableAxiosCE} from "thoughtware-core-ui"
+import {enableAxios} from "thoughtware-core-ui"
 import App from "./app";
 import "./assets/index"
 
-enableAxiosCE();
+enableAxios();
 
 export const Entry = (props) => {
 
