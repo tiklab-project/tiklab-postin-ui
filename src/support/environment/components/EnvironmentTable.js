@@ -1,11 +1,9 @@
 import React, {useEffect,useState} from 'react';
 import { observer } from "mobx-react";
-import {  Popconfirm, Space, Table} from 'antd';
+import {Col, Row, Space, Table} from 'antd';
 import environmentStore from "../store/environmentStore";
 import EnvironmentEdit from "./EnvironmentEdit";
 import DetailHeader from "../../../common/DetailHeader";
-import IconBtn from "../../../common/iconBtn/IconBtn";
-import IconCommon from "../../../common/IconCommon";
 import HideDelete from "../../../api/common/hideDelete/HideDelete";
 
 /**
@@ -15,8 +13,6 @@ const EnvironmentTable = (props) => {
     const {
         findEnvironmentList,
         deleteEnvironment,
-        createEnvironment,
-        updateEnvironment,
     } = environmentStore;
 
 
@@ -69,34 +65,41 @@ const EnvironmentTable = (props) => {
 
 
     return(
-        <div className={"ws-setting-flex"}>
-            <div className={"ws-setting-box"}>
-                <DetailHeader
-                    left={
-                        <div style={{
-                            display:"flex",
-                            alignItems:"center",
-                            justifyContent:"space-between",
-                        }}>
-                            <span>环境设置</span>
-                        </div>
-                    }
-                    right={
-                        <EnvironmentEdit type={"add"} findList={findList}/>
-                    }
-                />
-                <div className={"pi-list-box"}>
-                    <Table
-                        dataSource={envList}
-                        columns={columns}
-                        rowKey={record => record.id}
-                        pagination={false}
+        <Row>
+            <Col
+                xs={{ span: "24" }}
+                sm={{ span: "24" }}
+                md={{ span: "24" }}
+                lg={{ span: "24" }}
+                xl={{ span: "20", offset: "1" }}
+                xxl={{ span: "18", offset: "3" }}
+            >
+                <div className={"ws-setting-flex"}>
+                    <DetailHeader
+                        left={
+                            <div style={{
+                                display:"flex",
+                                alignItems:"center",
+                                justifyContent:"space-between",
+                            }}>
+                                <span>环境设置</span>
+                            </div>
+                        }
+                        right={
+                            <EnvironmentEdit type={"add"} findList={findList}/>
+                        }
                     />
+                    <div className={"pi-list-box"}>
+                        <Table
+                            dataSource={envList}
+                            columns={columns}
+                            rowKey={record => record.id}
+                            pagination={false}
+                        />
+                    </div>
                 </div>
-
-            </div>
-        </div>
-
+            </Col>
+        </Row>
     )
 }
 

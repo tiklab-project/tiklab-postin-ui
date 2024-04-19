@@ -198,12 +198,8 @@
 
 .ant-tree-title{
     display: inline-block;
-    width: 90%
-}
-
-.ant-tree .ant-tree-node-content-wrapper{
-    width: 100%;
-    display: flex;
+    width: 90%;
+    padding: 5px 0;
 }
 
 .ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle{
@@ -223,11 +219,13 @@
 }
 
 .ant-tree .ant-tree-node-content-wrapper{
-    padding: 5px 0;
+    width: 100%;
+    display: flex;
     margin: 0 6px 0 0;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    align-items: center;
 }
 
 .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{

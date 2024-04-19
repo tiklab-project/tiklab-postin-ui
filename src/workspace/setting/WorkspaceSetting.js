@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Button, Collapse, Form, Input} from "antd";
+import {Button, Col,Row, Collapse, Form, Input} from "antd";
 import {inject, observer} from "mobx-react";
 import DetailHeader from "../../common/DetailHeader";
 import DeleteWorkspaceModal from "./DeleteWorkspaceModal";
@@ -58,130 +58,140 @@ const WorkspaceSetting = (props) =>{
     const pluginStore = useSelector(state => state.pluginStore)
 
     return(
-        <div className={"ws-setting-flex"}>
-            <div className={"ws-setting-box"}>
-                <DetailHeader
-                    left={
-                        <div style={{
-                            display:"flex",
-                            alignItems:"center",
-                            justifyContent:"space-between",
-                            width: 90
-                        }}>
-                            <svg style={{width:20,height:20}} aria-hidden="true" >
-                                <use xlinkHref= {`#icon-setting`} />
-                            </svg>
-                            <span>空间信息</span>
-                        </div>
-                    }
-                />
-                <Collapse expandIconPosition={"end"}>
-                    <Panel header={<><EditOutlined/> <span style={{padding:"0 5px"}}>编辑空间</span></>} key="1"  >
-                        <div>
-                            <Form
-                                className='ws-edit-modal-form'
-                                form={form}
-                                preserve={false}
-                                layout={"vertical"}
-                                onFinish={onFinish}
-                                labelCol={{ span: 4 }}
-                                wrapperCol={{ span: 20 }}
-                            >
-                                <Form.Item
-                                    label="应用名称"
-                                    rules={[{ required: true, message: '添加目录名称!' }]}
-                                    name="workspaceName"
-                                >
-                                    <Input style={{height:40}}/>
-                                </Form.Item>
-                                <Form.Item
-                                    label="可见范围"
-                                    name="visibility"
-                                >
-                                    <div className={"ws-setting-edit-visibility"}>
-                                        <div className={`ws-edit-visibility-item ${visibility===0?"ws-edit-visibility-action":null}`} onClick={()=>setVisibility(0)}>
-                                            <div style={{"display":"flex","alignItems":"center"}}>
-                                                <svg style={{width:20,height:20}} aria-hidden="true">
-                                                    <use xlinkHref= {`#icon-suoding`} />
-                                                </svg>
-                                                <span>公共</span>
-                                            </div>
-                                            <div className={"ws-edit-visibility-item-desc"}>公共项目，全部成员可见</div>
-                                        </div>
-
-                                        <div className={`ws-edit-visibility-item  ${visibility===1?"ws-edit-visibility-action":null}`}  onClick={()=>setVisibility(1)}>
-                                            <div style={{"display":"flex","alignItems":"center"}} >
-                                                <svg style={{width:20,height:20}} aria-hidden="true">
-                                                    <use xlinkHref= {`#icon-jiesuo`} />
-                                                </svg>
-                                                <span>私密</span>
-                                            </div>
-                                            <div className={"ws-edit-visibility-item-desc"}>私密项目，只有项目成员可见</div>
-                                        </div>
-
-                                    </div>
-                                </Form.Item>
-                                <Form.Item
-                                    label="描述"
-                                    name="desc"
-                                >
-                                    <TextArea rows={4} />
-                                </Form.Item>
-                                <Form.Item {...formItemLayout}>
-                                    <Button type="primary" htmlType="submit" style={{ width: 100,height: 36}}>  保存 </Button>
-                                </Form.Item>
-                            </Form>
-
-
-                        </div>
-
-                    </Panel>
-                    <Panel header={<><ExportOutlined />  <span style={{padding:"0 5px"}}>导出项目</span> </>}  key="2" >
-                        <div style={{"display":'flex',"gap":"10px"}}>
-                            <HtmlExport />
-
-                            <PluginCommon
-                                point="exportPdf"
-                                plugin={
-                                    <RemoteComponent
-                                        point="exportPdf"
-                                        pluginStore={pluginStore}
-                                        isModalType={true}
-                                        electronUrl={localStorage.getItem("ELECTRON_LOGIN_URL")||base_url}
-                                        version={version} //插件传参
-                                        preUrl={localStorage.getItem("ELECTRON_LOGIN_URL")||base_url}//插件传参
-                                    />
-                                }
-                                name={"导出"}
-                            />
-                            {/*<RemoteComponent*/}
-                            {/*    point="exportPdf"*/}
-                            {/*    pluginStore={pluginStore}*/}
-                            {/*    isModalType={true}*/}
-                            {/*/>*/}
-                        </div>
-                        
-                    </Panel>
-                    <Panel header={<><DeleteOutlined />  <span style={{padding:"0 5px"}}>删除空间</span> </>}  key="3" >
-                        <div >
-                            <div style={{display:"flex",alignItems:"center",margin:"0 0 10px 0"}}>
-                                <div  style={{fontWeight:"bold"}}>删除此空间</div>
-                                <div className={"ws-setting-delete"}>(删除存储库后,将无法返回,请确定)</div>
+        <Row>
+            <Col
+                xs={{ span: "24" }}
+                sm={{ span: "24" }}
+                md={{ span: "24" }}
+                lg={{ span: "24" }}
+                xl={{ span: "20", offset: "1" }}
+                xxl={{ span: "18", offset: "3" }}
+            >
+                <div className={"ws-setting-flex"}>
+                    <DetailHeader
+                        left={
+                            <div style={{
+                                display:"flex",
+                                alignItems:"center",
+                                justifyContent:"space-between",
+                                width: 90
+                            }}>
+                                <svg style={{width:20,height:20}} aria-hidden="true" >
+                                    <use xlinkHref= {`#icon-setting`} />
+                                </svg>
+                                <span>空间信息</span>
                             </div>
+                        }
+                    />
+                    <div style={{padding:"5px 12px"}}>
+                        <Collapse expandIconPosition={"end"}>
+                            <Panel header={<><EditOutlined/> <span style={{padding:"0 5px"}}>编辑空间</span></>} key="1"  >
+                                <div>
+                                    <Form
+                                        className='ws-edit-modal-form'
+                                        form={form}
+                                        preserve={false}
+                                        layout={"vertical"}
+                                        onFinish={onFinish}
+                                        labelCol={{ span: 4 }}
+                                        wrapperCol={{ span: 20 }}
+                                    >
+                                        <Form.Item
+                                            label="应用名称"
+                                            rules={[{ required: true, message: '添加目录名称!' }]}
+                                            name="workspaceName"
+                                        >
+                                            <Input style={{height:40}}/>
+                                        </Form.Item>
+                                        <Form.Item
+                                            label="可见范围"
+                                            name="visibility"
+                                        >
+                                            <div className={"ws-setting-edit-visibility"}>
+                                                <div className={`ws-edit-visibility-item ${visibility===0?"ws-edit-visibility-action":null}`} onClick={()=>setVisibility(0)}>
+                                                    <div style={{"display":"flex","alignItems":"center"}}>
+                                                        <svg style={{width:20,height:20}} aria-hidden="true">
+                                                            <use xlinkHref= {`#icon-suoding`} />
+                                                        </svg>
+                                                        <span>公共</span>
+                                                    </div>
+                                                    <div className={"ws-edit-visibility-item-desc"}>公共项目，全部成员可见</div>
+                                                </div>
 
-                            <DeleteWorkspaceModal
-                                workspaceStore={workspaceStore}
-                                workspaceName={workspaceName}
-                                {...props}
-                            />
-                        </div>
+                                                <div className={`ws-edit-visibility-item  ${visibility===1?"ws-edit-visibility-action":null}`}  onClick={()=>setVisibility(1)}>
+                                                    <div style={{"display":"flex","alignItems":"center"}} >
+                                                        <svg style={{width:20,height:20}} aria-hidden="true">
+                                                            <use xlinkHref= {`#icon-jiesuo`} />
+                                                        </svg>
+                                                        <span>私密</span>
+                                                    </div>
+                                                    <div className={"ws-edit-visibility-item-desc"}>私密项目，只有项目成员可见</div>
+                                                </div>
 
-                    </Panel>
-                </Collapse>
-            </div>
+                                            </div>
+                                        </Form.Item>
+                                        <Form.Item
+                                            label="描述"
+                                            name="desc"
+                                        >
+                                            <TextArea rows={4} />
+                                        </Form.Item>
+                                        <Form.Item {...formItemLayout}>
+                                            <Button type="primary" htmlType="submit" style={{ width: 100,height: 36}}>  保存 </Button>
+                                        </Form.Item>
+                                    </Form>
 
-        </div>
 
+                                </div>
+
+                            </Panel>
+                            <Panel header={<><ExportOutlined />  <span style={{padding:"0 5px"}}>导出项目</span> </>}  key="2" >
+                                <div style={{"display":'flex',"gap":"10px"}}>
+                                    <HtmlExport />
+
+                                    <PluginCommon
+                                        point="exportPdf"
+                                        plugin={
+                                            <RemoteComponent
+                                                point="exportPdf"
+                                                pluginStore={pluginStore}
+                                                isModalType={true}
+                                                electronUrl={localStorage.getItem("ELECTRON_LOGIN_URL")||base_url}
+                                                version={version} //插件传参
+                                                preUrl={localStorage.getItem("ELECTRON_LOGIN_URL")||base_url}//插件传参
+                                            />
+                                        }
+                                        name={"导出"}
+                                    />
+                                    {/*<RemoteComponent*/}
+                                    {/*    point="exportPdf"*/}
+                                    {/*    pluginStore={pluginStore}*/}
+                                    {/*    isModalType={true}*/}
+                                    {/*/>*/}
+                                </div>
+
+                            </Panel>
+                            <Panel header={<><DeleteOutlined />  <span style={{padding:"0 5px"}}>删除空间</span> </>}  key="3" >
+                                <div >
+                                    <div style={{display:"flex",alignItems:"center",margin:"0 0 10px 0"}}>
+                                        <div  style={{fontWeight:"bold"}}>删除此空间</div>
+                                        <div className={"ws-setting-delete"}>(删除存储库后,将无法返回,请确定)</div>
+                                    </div>
+
+                                    <DeleteWorkspaceModal
+                                        workspaceStore={workspaceStore}
+                                        workspaceName={workspaceName}
+                                        {...props}
+                                    />
+                                </div>
+
+                            </Panel>
+                        </Collapse>
+                    </div>
+
+                </div>
+            </Col>
+        </Row>
     )
 }
 
