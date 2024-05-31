@@ -3,7 +3,7 @@ import { message_cn } from 'thoughtware-message-ui/es/utils';
 import { user_cn } from 'thoughtware-user-ui/es/utils';
 import oplog_cn from 'thoughtware-security-ui/es/utils/language';
 import zhCnTrans from "./cn/zhCnTrans.json";
-import pluginManage_cn from 'thoughtware-plugin-manager-ui/es/utils/language'
+
 import {privilege_cn} from "thoughtware-privilege-ui/es/utils";
 const resources= {
     zh:{
@@ -13,7 +13,6 @@ const resources= {
             ...eam_cn,
             ...message_cn,
             ...oplog_cn,
-            ...pluginManage_cn,
             ...privilege_cn
         },
     },

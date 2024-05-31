@@ -43,7 +43,7 @@ const WorkspaceList = (props) => {
             render: (text, record) => (
                 <div className={"ws-user-item"}>
                     <Space>
-                        <Avatar isBig={true} name={record.user.nickname}/>
+                        <Avatar isBig={true} name={record.user?.nickname}/>
                         <span>{record.user.nickname} </span>
                     </Space>
                 </div>

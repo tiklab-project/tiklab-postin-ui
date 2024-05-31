@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2517386 */
-  src: url('iconfont.woff2?t=1713432094857') format('woff2'),
-       url('iconfont.woff?t=1713432094857') format('woff'),
-       url('iconfont.ttf?t=1713432094857') format('truetype');
+  src: url('iconfont.woff2?t=1717123008787') format('woff2'),
+       url('iconfont.woff?t=1717123008787') format('woff'),
+       url('iconfont.ttf?t=1717123008787') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-version-ee:before {
+  content: "\e784";
 }
 
 .icon-meihua:before {
@@ -131,10 +135,6 @@
 
 .icon-arrow-down:before {
   content: "\e606";
-}
-
-.icon-W-03:before {
-  content: "\e60c";
 }
 
 .icon-zhankai:before {

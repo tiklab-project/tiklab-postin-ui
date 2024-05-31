@@ -14,7 +14,7 @@ import { stores } from './stores';
 import routers from './routers';
 import {enableAxios} from "thoughtware-core-ui"
 import App from "./app";
-import "./assets/index"
+
 
 enableAxios();
 

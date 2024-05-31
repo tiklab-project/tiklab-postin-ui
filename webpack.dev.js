@@ -63,6 +63,9 @@ module.exports = merge(baseWebpackConfig, {
             "/request":{
                 target:"http://192.168.10.34:8090"
             },
+            "/exportPdf":{
+                target:"http://192.168.10.34:8091"
+            }
         }
     },
     plugins: [

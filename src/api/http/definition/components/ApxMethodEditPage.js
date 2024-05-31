@@ -1,12 +1,9 @@
 import React, { useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../index';
-import { Form, Popconfirm, Tabs} from 'antd';
+import { Form,  Tabs} from 'antd';
 import './apxMethod.scss'
-import {RemoteComponent,useHasPointPlugin, useSelector} from 'thoughtware-plugin-core-ui'
-import IconBtn from "../../../../common/iconBtn/IconBtn";
 import ResponseHeader from "./ResponseHeader";
-import {getVersionInfo} from "thoughtware-core-ui";
 import categoryStore from "../../../../category/store/CategoryStore";
 import apxMethodStore from "../store/ApxMethodStore";
 import DetailCommon from "../../../common/detailcommon/DetailCommon";
@@ -20,13 +17,11 @@ const { findApxMethod,updateApxMethod} = apxMethodStore;
  * 接口编辑页
  */
 const ApxMethodEditPage = (props) => {
-    const { pluginsStore} = props;
     const workspaceId = localStorage.getItem('workspaceId');
     const apiId = localStorage.getItem('apiId');
     const [resData, setResData] = useState({});
     const [tabTip, setTabTip] = useState();
     const [form] = Form.useForm()
-    const pluginStore = useSelector(store => store.pluginStore)
 
     useEffect(async ()=>{
         let apiInfo = await findApxMethod(apiId)
@@ -128,43 +123,6 @@ const ApxMethodEditPage = (props) => {
             setResData(apiInfo)
         });
     }
-
-    //判断是否有版本插件，返回的是true或false
-    let hasVersionPlugin = useHasPointPlugin('version');
-    let version = getVersionInfo()
-
-    /**
-     * 展示插件
-     *
-     *  {
-        "release": 1:ce, 2:ee,3:saas
-        "expired": true //过期 true，没过期false
-        }
-     */
-    const showPluginView = () =>{
-        //如果版本不为ce，没有过期，并且有插件就显示
-        if(version.release!==1&&version.expired===false&&hasVersionPlugin){
-            return <RemoteComponent
-                    point='version'
-                    pluginStore={pluginStore}
-                    extraProps={{ history: props.history}}
-                />
-        }else {
-            return <Popconfirm
-                    title="想要升级增强功能？"
-                    onConfirm={()=>props.history.push("/setting/plugin")}
-                    okText='确定'
-                    cancelText='取消'
-                    placement="bottomRight"
-                >
-                    <IconBtn
-                        className="pi-icon-btn-grey"
-                        name={"版本"}
-                    />
-                </Popconfirm>
-        }
-    }
-
 
     return(
         <>

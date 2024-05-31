@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3435341",
+      "name": "企业版套餐钻石 ",
+      "font_class": "version-ee",
+      "unicode": "e784",
+      "unicode_decimal": 59268
+    },
+    {
       "icon_id": "17543830",
       "name": "美化",
       "font_class": "meihua",
@@ -214,13 +221,6 @@
       "font_class": "arrow-down",
       "unicode": "e606",
       "unicode_decimal": 58886
-    },
-    {
-      "icon_id": "32334532",
-      "name": "箭头-右",
-      "font_class": "W-03",
-      "unicode": "e60c",
-      "unicode_decimal": 58892
     },
     {
       "icon_id": "32474465",

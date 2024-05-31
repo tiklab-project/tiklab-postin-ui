@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Dropdown, Menu, Popconfirm, Space, Tree} from 'antd';
-import {FolderOutlined, FolderOpenOutlined} from '@ant-design/icons';
+import {FolderOutlined, FolderOpenOutlined, DownOutlined} from '@ant-design/icons';
 import {useEffect} from "react";
 import categoryStore from "../store/CategoryStore";
 import {TextMethodType} from "../../common/MethodType";
@@ -104,7 +104,7 @@ const NodeTree = (props) => {
                 />
             </Menu.Item>
             <Menu.Item  key={2}>
-                <WSAdd name="新建WebSocket接口" curCategoryId={id}/>
+                <WSAdd name="新建WebSocket" curCategoryId={id}/>
             </Menu.Item>
             <Menu.Item  key={3}>
                 <CategoryEdit name="新建目录" type="add"  categoryId={id}/>
@@ -145,7 +145,7 @@ const NodeTree = (props) => {
             return (
                 <div className={'node-box'}>
                     <div  className={"node-box-right"}>
-                        <Dropdown overlayStyle={{width:"100px"}} overlay={(e)=>addMenu(id)} className={'node-box-more'}>
+                        <Dropdown overlayStyle={{width:"130px"}} overlay={(e)=>addMenu(id)} className={'node-box-more'}>
                         <span>
                             <svg className="icon-s edit-icon-nav" aria-hidden="true">
                                 <use xlinkHref={`#icon-tianjia-`}/>
@@ -165,7 +165,7 @@ const NodeTree = (props) => {
         }else {
            return  <div className={'node-box'}>
                <div  className={"node-box-right"}>
-                   <Dropdown overlayStyle={{width:"100px"}} overlay={()=>apiMoreMenu(id)} className={'node-box-more'}>
+                   <Dropdown overlayStyle={{width:"130px"}} overlay={()=>apiMoreMenu(id)} className={'node-box-more'}>
                         <span>
                             <svg className="icon-s category-nav-item-icon" aria-hidden="true">
                                 <use xlinkHref={`#icon-more`}/>
@@ -241,6 +241,7 @@ const NodeTree = (props) => {
 
     return(
         <Tree
+            switcherIcon={<DownOutlined />}
             showIcon
             expandedKeys={expandedKeys}
             onExpand={setExpandedKeys}

@@ -91,8 +91,11 @@ const ApxMethodEdit = (props) => {
             values.node={
                 name:values.name,
                 workspaceId:workspaceId,
+                methodType:values.methodType,
                 parentId:cascaderCategoryId?cascaderCategoryId:categoryId,
             }
+
+            delete values.methodType
             createApxMethod(values).then((id)=>{
                 let param = {
                     pageParam: {

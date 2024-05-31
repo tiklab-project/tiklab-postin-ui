@@ -96,7 +96,7 @@ const DataStructureEdit = (props) => {
                     layout={"vertical"}
                 >
                     <Form.Item
-                        label="属性名"
+                        label="名称"
                         rules={[{ required: true }]}
                         name="name"
                     >

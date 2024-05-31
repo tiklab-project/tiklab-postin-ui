@@ -214,13 +214,14 @@
 }
 
 .ant-tree-switcher{
-    padding: 5px 0;
-    width: 22px;
+    padding: 5px;
+    width: 18px;
 }
 
 .ant-tree .ant-tree-node-content-wrapper{
     width: 100%;
     display: flex;
+    padding: unset;
     margin: 0 6px 0 0;
     text-overflow: ellipsis;
     overflow: hidden;

@@ -5,13 +5,9 @@ import DetailHeader from "../../common/DetailHeader";
 import DeleteWorkspaceModal from "./DeleteWorkspaceModal";
 import {DeleteOutlined, EditOutlined, ExportOutlined} from "@ant-design/icons";
 import HtmlExport from "./export/HtmlExport";
-import {useSelector} from "thoughtware-plugin-core-ui";
-import RemoteComponent from "thoughtware-plugin-core-ui/es/plugin/RemoteComponent";
-import PluginCommon from "../../common/pluginCommon/PluginCommon";
-
+import ExtensionCommon from "../../common/ExtensionCommon";
 const { Panel } = Collapse;
 const {TextArea} = Input;
-
 
 const formItemLayout = {
     labelCol: { span: 0 },
@@ -22,8 +18,8 @@ const formItemLayout = {
  * 空间设置
  */
 const WorkspaceSetting = (props) =>{
-    const {workspaceStore} = props;
-    const {updateWorkspace,findWorkspace,deleteWorkspace} = workspaceStore;
+    const {workspaceStore,ExportPdf} = props;
+    const {updateWorkspace,findWorkspace} = workspaceStore;
 
     let workspaceId = localStorage.getItem("workspaceId");
     const [form] = Form.useForm();
@@ -55,7 +51,6 @@ const WorkspaceSetting = (props) =>{
         updateWorkspace(param);
     }
 
-    const pluginStore = useSelector(state => state.pluginStore)
 
     return(
         <Row>
@@ -149,25 +144,11 @@ const WorkspaceSetting = (props) =>{
                                 <div style={{"display":'flex',"gap":"10px"}}>
                                     <HtmlExport />
 
-                                    <PluginCommon
-                                        point="exportPdf"
-                                        plugin={
-                                            <RemoteComponent
-                                                point="exportPdf"
-                                                pluginStore={pluginStore}
-                                                isModalType={true}
-                                                electronUrl={localStorage.getItem("ELECTRON_LOGIN_URL")||base_url}
-                                                version={version} //插件传参
-                                                preUrl={localStorage.getItem("ELECTRON_LOGIN_URL")||base_url}//插件传参
-                                            />
-                                        }
-                                        name={"导出"}
+                                    <ExtensionCommon
+                                        extension={ExportPdf&&<ExportPdf />}
+                                        name={"PDF导出"}
+                                        isBtn={true}
                                     />
-                                    {/*<RemoteComponent*/}
-                                    {/*    point="exportPdf"*/}
-                                    {/*    pluginStore={pluginStore}*/}
-                                    {/*    isModalType={true}*/}
-                                    {/*/>*/}
                                 </div>
 
                             </Panel>

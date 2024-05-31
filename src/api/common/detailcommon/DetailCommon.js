@@ -111,7 +111,7 @@ const DetailCommon = (props) =>{
                             <Select placeholder={"无"}>
                                 {
                                     userList&&userList.map(item=>{
-                                        return <Option key={item.user.id} value={item.user.id}>{item.user.nickname}</Option>
+                                        return <Option key={item.user?.id} value={item.user?.id}>{item.user.nickname}</Option>
                                     })
                                 }
                             </Select>

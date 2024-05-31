@@ -37,8 +37,6 @@ const ReactMonacoEditor = (props) =>{
         // editor.focus();
     };
 
-
-
     const handleEditorBlur = (editor, event) => {
         // 获取 Monaco 编辑器中的值
         const value = editor.getValue();

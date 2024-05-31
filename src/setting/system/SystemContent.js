@@ -53,12 +53,6 @@ const SystemContent = (props) =>{
                     purviewCode: "MSG_Notice",
                 },
             ],
-        },
-        {
-            title: '插件',
-            icon: 'plugin',
-            id: '/setting/plugin',
-            purviewCode: "plugin",
         },{
             title: "安全",
             icon: 'anquan',

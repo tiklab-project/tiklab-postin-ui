@@ -14,12 +14,9 @@ const fetchMethod = JSON.stringify("get");
 // let pluginAddressUrl = JSON.stringify('/pluginConfig/getPluginConfig');
 // const fetchMethod = JSON.stringify("post");
 
-//判断是否是用户环境，公司内部切为false用于调试
-const userProduction = true;
-
 const appKey = JSON.stringify('appkey');
 const appSecret = JSON.stringify('appsecret');
-const version = JSON.stringify('ce');
+const version = JSON.stringify('ee');
 const client = JSON.stringify('web');
 
 //发送请求有用到
@@ -30,7 +27,6 @@ module.exports = {
     plugin_url ,
     pluginAddressUrl,
     fetchMethod,
-    userProduction,
     appKey,
     appSecret,
     version,

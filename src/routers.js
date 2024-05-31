@@ -2,55 +2,56 @@ import React from 'react'
 import {Redirect} from "react-router";
 import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----
-
 import {Directory, Orga, UserGroup, User,} from "thoughtware-user-ui";
-import {NoAccess, ProjectFeature, ProjectRole, SystemFeature, SystemRole} from "thoughtware-privilege-ui"
+import {NoAccess, ProjectFeature, ProjectRole, SystemFeature, SystemRole,ProjectVirtualRole} from "thoughtware-privilege-ui"
 import {ExcludeProductUser, NotFound} from "thoughtware-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "thoughtware-security-ui";
-import {PluginDetail, Plugin} from "thoughtware-plugin-manager-ui";
 import {MessageNotice, MessageSendType, MessageType} from "thoughtware-message-ui";
 import {ProductAuth} from "thoughtware-licence-ui";
 
-
 //----内部组件----
+const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
+const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
 const PortalHeader = AsyncComponent(() => import("./common/header/PortalContent"));
 const Home = AsyncComponent(() => import('./home/Home'));
 const SearchResult = AsyncComponent(() => import('./common/header/search'));
-const WorkspaceRole = AsyncComponent(() => import('./workspace/setting/WorkspaceRole'));
-const WorkspacePrivilege = AsyncComponent(() => import('./workspace/setting/WorkspacePrivilege'));
 const Workspace = AsyncComponent(() => import('./workspace/workspace/components/Workspace'));
+const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
 const WorkspaceDetailLayout = AsyncComponent(() => import("./workspace/common/WorkspaceDetailLayout"));
-const LayoutApiContent = AsyncComponent(() => import( "./api/http/definition/components/LayoutApiContent"));
-const LayoutQuickTest = AsyncComponent(() => import("./quicktest/common/LayoutQuickTest"));
 const WorkspaceDetailInitPage = AsyncComponent(() => import("./workspace/overview/WorkspaceOverViewPage"));
 const Category = AsyncComponent(() => import("./api/api/components/APIList"));
+const ApiInitPage = AsyncComponent(() => import("./workspace/common/ApiInitPage"));
+
+const LayoutApiContent = AsyncComponent(() => import( "./api/http/definition/components/LayoutApiContent"));
+const ApiDocument = AsyncComponent(() => import("./api/http/definition/components/ApiDocumentPage"));
 const ApiContent  = AsyncComponent(() => import( "./api/http/common/ApiContent"));
 const ApxMethodDetail = AsyncComponent(() => import("./api/http/definition/components/ApxMethodEditPage"));
 const Mock = AsyncComponent(() => import("./api/http/mock/components/Mock"));
 const MockDetail = AsyncComponent(() => import("./api/http/mock/components/MockDetail"));
-
-const SystemHome = AsyncComponent(() => import("./setting/system/SystemHome"));
-const SystemContent = AsyncComponent(() => import("./setting/system/SystemContent"));
-const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
-const WorkspaceSettingMenu = AsyncComponent(() => import("./workspace/setting/WorkspaceSettingMenu"));
-const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/http/components/TestBoxQuickTest"));
 const TestBox = AsyncComponent(() => import( "./api/http/test/test/components/ApiTestPage"));
-const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
-const WorkspaceSetting = AsyncComponent(() => import("./workspace/setting/WorkspaceSetting"));
-const Version = AsyncComponent(() => import("./setting/version/Version"));
-const StructureDetail = AsyncComponent(() => import("./support/dataStructure/components/StructureDetail"));
-const Share = AsyncComponent(() => import("./support/share/components/Share"));
-const ShareMain = AsyncComponent(() => import("./support/share/components/ShareMain"));
-const ApiDocument = AsyncComponent(() => import("./api/http/definition/components/ApiDocumentPage"));
-const ApiInitPage = AsyncComponent(() => import("./workspace/common/ApiInitPage"));
-const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
-const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
-const EnvironmentTable = AsyncComponent(()=>import ("./support/environment/components/EnvironmentTable"))
 
 const WsContent = AsyncComponent(()=>import ("./api/ws/common/WSContent"));
 const WSDocumentPage = AsyncComponent(()=>import ( "./api/ws/document/components/WSDocumentPage"));
 const WSDesignPage = AsyncComponent(()=>import ( "./api/ws/design/components/WSDesignPage"));
 const WSTestPage = AsyncComponent(()=>import ("./api/ws/test/components/WSTestPage"));
+
+const LayoutQuickTest = AsyncComponent(() => import("./quicktest/common/LayoutQuickTest"));
+const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/http/components/TestBoxQuickTest"));
+
+const WorkspaceRole = AsyncComponent(() => import('./workspace/setting/WorkspaceRole'));
+const WorkspacePrivilege = AsyncComponent(() => import('./workspace/setting/WorkspacePrivilege'));
+const WorkspaceSettingMenu = AsyncComponent(() => import("./workspace/setting/WorkspaceSettingMenu"));
+const WorkspaceSetting = AsyncComponent(() => import("./workspace/setting/WorkspaceSetting"));
+
+const StructureDetail = AsyncComponent(() => import("./support/dataStructure/components/StructureDetail"));
+const Share = AsyncComponent(() => import("./support/share/components/Share"));
+const ShareMain = AsyncComponent(() => import("./support/share/components/ShareMain"));
+const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
+const EnvironmentTable = AsyncComponent(()=>import ("./support/environment/components/EnvironmentTable"))
+
+const SystemHome = AsyncComponent(() => import("./setting/system/SystemHome"));
+const SystemContent = AsyncComponent(() => import("./setting/system/SystemContent"));
+const Version = AsyncComponent(() => import("./setting/version/Version"));
 
 
 const routers =  [
@@ -143,7 +144,7 @@ const routers =  [
                         path: "/setting/dir",
                         key:'authConfig',
                         exact: true,
-                        render: () => <Directory isPortal={false}/>,
+                        render: () => <Directory isPortal={false}  bgroup={"postin"}/>,
                     },{
                         path: "/setting/userGroup",
                         key:'authConfig',
@@ -179,25 +180,7 @@ const routers =  [
                         render:()=> <ProductAuth  />
                     },
 
-                    // //代办
-                    // {
-                    //     path: "/setting/myTodo",
-                    //     key:'myTodo',
-                    //     exact: true,
-                    //     render:(props)=> <MyTodoTask {...props} bgroup={"postin"}/>
-                    // },
-                    //插件
-                    {
-                        path: "/setting/plugin",
-                        key:'plugin',
-                        render:(props)=> <Plugin {...props}  detailRouter={"/setting/plugindetail"}/>,
-                    },
-                    {
-                        path: "/setting/plugindetail",
-                        key:'plugindetail',
-                        exact: true,
-                        render:()=> <PluginDetail  pluginsRoute={"/setting/plugin"}/>,
-                    },
+
                     //日志
                     {
                         path: "/setting/log",
@@ -232,6 +215,12 @@ const routers =  [
                         key:'ProjectFeature',
                         exact: true,
                         render: (props) => <ProjectFeature isBase={true} {...props} bgroup={"postin"}/>,
+                    },
+                    {
+                        path: "/setting/virtual-role",
+                        key:'ProjectRole',
+                        exact: true,
+                        render: (props) => <ProjectVirtualRole {...props}/>,
                     },
                     {
                         path: "/setting/role",

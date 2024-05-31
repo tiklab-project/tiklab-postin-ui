@@ -207,21 +207,33 @@ const HttpTest = (props) =>{
                             </Form.Item>
                         </div>
                         <div className={"test-base-item"}>
-                            {
-                                client==="web"
-                                    ?<Dropdown.Button
-                                        icon={<DownOutlined />}
-                                        menu={{items}}
-                                        onClick={onFinish}
-                                        type={"primary"}
-                                        loading={loading}
-                                        className={"important-btn"}
-                                    >
-                                        发送
-                                    </Dropdown.Button>
-                                    :<Button type={"primary"} onClick={onFinish} loading={loading}>发送</Button>
-                            }
-
+                            {/*{*/}
+                            {/*    client==="web"*/}
+                            {/*        ?<Dropdown.Button*/}
+                            {/*            icon={<DownOutlined />}*/}
+                            {/*            menu={{items}}*/}
+                            {/*            onClick={onFinish}*/}
+                            {/*            type={"primary"}*/}
+                            {/*            loading={loading}*/}
+                            {/*            className={"important-btn"}*/}
+                            {/*        >*/}
+                            {/*            发送*/}
+                            {/*        </Dropdown.Button>*/}
+                            {/*        :<Button */}
+                            {/*            className={"important-btn"} */}
+                            {/*            onClick={onFinish} */}
+                            {/*            loading={loading}*/}
+                            {/*        >*/}
+                            {/*            发送*/}
+                            {/*        </Button>*/}
+                            {/*}*/}
+                            <Button
+                                className={"important-btn"}
+                                onClick={onFinish}
+                                loading={loading}
+                            >
+                                发送
+                            </Button>
                         </div>
                     </Form>
                 </div>
