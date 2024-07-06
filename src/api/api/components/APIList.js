@@ -5,7 +5,6 @@ import ApxMethodEdit from '../../http/definition/components/ApxMethodEdit';
 import MethodType from "../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
 import CategoryDocDrawer from "../../../support/share/components/CategoryDocDrawer";
-import {getUser} from "thoughtware-core-ui";
 import categoryStore from "../../../category/store/CategoryStore";
 import apiStore from "../store/APIStore";
 import emptyImg from "../../../assets/img/empty.png"
@@ -121,7 +120,6 @@ const APIList = (props) => {
         //设置最近打开的接口
         let params = {
             workspace:{id:workspaceId},
-            user:{id:getUser().userId},
             apix:{id:record.id},
         }
         await apiRecent(params)

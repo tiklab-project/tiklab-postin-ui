@@ -127,7 +127,6 @@ const Import = (props) => {
             >
                 <Form
                     {...layout}
-                    className='ws-edit-modal-form'
                     form={form}
                     onFinish={onFinish}
                     preserve={false}

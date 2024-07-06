@@ -54,7 +54,6 @@ const NodeTree = (props) => {
                 //设置最近打开的接口
                 let params = {
                     workspace:{id:workspaceId},
-                    user:{id:getUser().userId},
                     apix:{id:item.id},
                 }
                 apiRecent(params)

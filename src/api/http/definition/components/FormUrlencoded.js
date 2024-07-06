@@ -62,7 +62,7 @@ const FormUrlencoded = (props) =>{
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <DataTypeSelect
-                    defaultValue={text}
+                    defaultValue={text||"text"}
                     handleSave={handleSave}
                     rowData={record}
                 />
@@ -108,7 +108,7 @@ const FormUrlencoded = (props) =>{
             "paramName":null,
             "value":null,
             "required":1,
-            "dataType":null,
+            "dataType":"text",
             "desc":null
         }
 

@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 import { Space, Popconfirm, Modal} from 'antd';
 import {ExTable} from "../../../common/EditTable";
 import environmentStore from "../store/environmentStore";
+import IconCommon from "../../../common/IconCommon";
 
 /**
  * 环境管理
@@ -58,7 +59,11 @@ const EvnMana = (props) => {
      */
     const operation = (record,data) => {
         if(record.id === 'environmentInitRow'){
-            return <a onClick={() =>onCreated(record)} >保存</a>
+            return <IconCommon
+                icon={"btn_confirm"}
+                className="icon-s table-edit-icon"
+                onClick={() => onCreated(record)}
+            />
         }else{
             return <Space key={record.id}>
                 {
@@ -92,7 +97,11 @@ const EvnMana = (props) => {
                             item.name === record.name
                             && item.url === record.url
                                 ? null
-                                : <a onClick={() => upData(record)}>更新</a>
+                                :  <IconCommon
+                                    icon={"btn_confirm"}
+                                    className="icon-s table-edit-icon"
+                                    onClick={() => upData(record)}
+                                />
                         }
                     </>
                     :null

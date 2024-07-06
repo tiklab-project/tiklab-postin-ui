@@ -35,11 +35,11 @@ const ApiTestContent = (props) => {
     const {findApxMethod} = apxMethodStore;
     const {testEnvUrl} = environmentStore;
     const { getJsonParam,jsonData } = testStore;
-    const { requestHeaderList,getRequestHeaderTestList } = requestHeaderTestStore;
-    const { querySelectList,getQueryParamTestList } = queryParamTestStore;
+    const { requestHeaderTestList,getRequestHeaderTestList } = requestHeaderTestStore;
+    const { queryParamTestList,getQueryParamTestList } = queryParamTestStore;
     const { bodyTypeInfo,getBodyType,getMediaType } = requestBodyTestStore;
-    const { formSelectList,getFormParamTestList } = formParamTestStore;
-    const { formUrlSelectList,getFormUrlencodedTestList } = formUrlencodedTestStore;
+    const { formParamTestList,getFormParamTestList } = formParamTestStore;
+    const { formUrlencodedTestList,getFormUrlencodedTestList } = formUrlencodedTestStore;
     const { rawParamTestInfo,getRawInfo } = rawParamTestStore;
     const { preParamTestInfo,getPreInfo } = preParamTestStore;
     const { afterParamTestInfo,getAfterInfo } = afterParamTestStore;
@@ -133,11 +133,11 @@ const ApiTestContent = (props) => {
         const allSendData = {
             "methodType":values.methodType,
             "url":preUrl+values.path,
-            "headerList":requestHeaderList,
-            "queryList":querySelectList,
+            "headerList":requestHeaderTestList,
+            "queryList":queryParamTestList,
             "bodyType":bodyTypeInfo,
-            "formDataList":formSelectList,
-            "formUrlList":formUrlSelectList,
+            "formDataList":formParamTestList,
+            "formUrlList":formUrlencodedTestList,
             "json":jsonData,
             "raw":rawParamTestInfo,
         }
@@ -175,6 +175,8 @@ const ApiTestContent = (props) => {
             //后置
             if(afterParamTestInfo){
                 let data =execute(afterParamTestInfo,response)
+
+                console.log("after-----",data)
                 setAfterScript(data)
             }
 

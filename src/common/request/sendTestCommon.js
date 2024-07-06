@@ -230,11 +230,28 @@ const processResponse = (res) =>{
     if(Object.keys(res.headers).length>0){
 
         //判断是否有错误
-        if(res.headers["pi-error"]){
+        const ERROR_MESSAGES = {
+            TIMEOUT: "Error : Read timed out.  请求超时!",
+            CONNECTION_REFUSED: "请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析",
+            UNKNOWN: "请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析"
+        };
 
-            return {
-                result:-1,
-                errorMessage:" 请求错误：Couldn't resolve host。请检查接口域名是否能够正常解析"
+        if (res.headers["pi-error"]) {
+            const errorMsg = res.headers["pi-error"];
+
+            if (errorMsg) {
+                let errorMessage = ERROR_MESSAGES.UNKNOWN;
+
+                if (errorMsg.includes("timed out")) {
+                    errorMessage = ERROR_MESSAGES.TIMEOUT;
+                } else if (errorMsg.includes("Connection refused")) {
+                    errorMessage = ERROR_MESSAGES.CONNECTION_REFUSED;
+                }
+
+                return {
+                    result: -1,
+                    errorMessage: errorMessage
+                };
             }
         }
 

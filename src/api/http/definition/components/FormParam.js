@@ -57,7 +57,7 @@ const FormParam = (props) =>{
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <FileTextSelect
-                    defaultValue={text}
+                    defaultValue={text||"text"}
                     handleSave={handleSave}
                     rowData={record}
                 />
@@ -185,12 +185,13 @@ const FormParam = (props) =>{
     /**
      * 添加
      */
-    const onCreated = (values) => {
+    const onCreated = async (values) => {
         if(Object.keys(values).length === 1){
             return null
         }else {
             delete values.id;
-            createFormParam(values)
+            values.dataType = values.dataType || "text" ;
+            await createFormParam(values)
         }
 
         setNewRowAction(false)

@@ -10,8 +10,8 @@ const ResponseBodyCommon = (props) => {
     const [precessValue, setPrecessValue] = useState("");
 
     useEffect(()=>{
-        setPrecessValue(processData(responseBodyData, mediaType));
-
+        let data = processData(responseBodyData, mediaType);
+        setPrecessValue(data);
     },[responseBodyData])
 
     const processData = (data, mime) => {
@@ -19,17 +19,23 @@ const ResponseBodyCommon = (props) => {
 
         if (mime && mime.includes('json')) {
             setLanguage('json');
-            return JSON.stringify(data, null, 2);
+            try {
+                return JSON.stringify(typeof data === 'string' ? JSON.parse(data) : data, null, 2);
+            } catch (e) {
+                return data;
+            }
         } else if (mime && mime.includes('html')) {
             setLanguage('html');
             return data;
         } else if (mime && mime.includes('image')) {
-            return data;
+            setLanguage('image');
+            return data
         } else if (mime && mime.includes('javascript')) {
+            setLanguage('javascript');
             return data;
         } else {
             setLanguage('plaintext');
-            return data.toString();
+            return typeof data === 'object' ? JSON.stringify(data, null, 2) : String(data);
         }
     };
 

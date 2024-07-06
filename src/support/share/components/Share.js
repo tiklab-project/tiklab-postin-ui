@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import logo from "../../../assets/img/postinheader.png";
+import logo from "../../../assets/img/postin.png";
 import "./shareStyle.scss"
 import {renderRoutes} from "react-router-config";
 import "../../../category/components/category.scss"
@@ -26,10 +26,11 @@ const Share = (props) =>{
                     justifyContent: "space-between",
                     alignItems: "center"
                 }} >
-                    <div className={"pi-header-right"}>
+                    <div className={"pi-header-left"}>
                         <div className={'frame-header-logo'}>
                             {logo && <img src={logo} alt='logo' />}
                         </div>
+                        <div className={"productName"}>PostIn</div>
                     </div>
                     <div>帮助</div>
                 </div>

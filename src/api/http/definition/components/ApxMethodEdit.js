@@ -14,6 +14,7 @@ import IconCommon from "../../../../common/IconCommon";
 import categoryStore from "../../../../category/store/CategoryStore";
 import apxMethodStore from "../store/ApxMethodStore";
 import apiStore from "../../../api/store/APIStore";
+import {useHistory} from "react-router";
 
 const {Option} = Select;
 const {TextArea} = Input;
@@ -35,6 +36,7 @@ const ApxMethodEdit = (props) => {
 
     const [visible,setVisible] = useState(false);
     const [form] = Form.useForm();
+    const history = useHistory()
 
     const apiId = localStorage.getItem('apiId');
     const categoryId = localStorage.getItem("categoryId");
@@ -108,7 +110,7 @@ const ApxMethodEdit = (props) => {
                 findNodeTree({workspaceId:workspaceId});
 
                 localStorage.setItem('apiId',id);
-                props.history.push("/workspace/apis/http/edit");
+                history.push("/workspace/apis/http/edit");
             })
         }else{
             values.id=httpId;

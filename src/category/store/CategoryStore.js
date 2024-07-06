@@ -113,7 +113,7 @@ class CategoryStore{
      */
     @action
     apiRecent = async (values) => {
-        const res = await Axios.post("/apiRecent/apiRecent",values);
+        const res = await Axios.post("/apiRecent/createApiRecent",values);
         if(res.code === 0 ) {
             return res.data;
         }

@@ -122,7 +122,7 @@ const Workspace = (props) => {
                         <svg className={"icon-m"} aria-hidden="true" >
                             <use xlinkHref= {`#icon-home`} />
                         </svg>
-                        <span>空间</span>
+                        <span style={{fontWeight:"bold"}}>空间</span>
                     </div>
 
                     <IconBtn

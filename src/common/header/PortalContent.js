@@ -6,7 +6,7 @@ import {AppLink, AvatarLink, HelpLink} from "thoughtware-licence-ui"
 /**
  * 用于个性化配置
  */
-const Page = (props)=>{
+export const Page = (props)=>{
 
     return(
         <PageContent

@@ -148,7 +148,7 @@ export class AssertCommonStore{
     //请求体比较
     @action
     assertBodyCompare = (body,item) =>{
-        let badyValue = jsonPath(body, `$.${item.propertyName}`) .toString();
+        let badyValue = jsonPath(JSON.parse(body), `$.${item.propertyName}`) .toString();
 
         if(badyValue === 'false'){
             return -1

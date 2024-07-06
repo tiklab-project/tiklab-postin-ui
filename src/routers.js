@@ -12,7 +12,7 @@ import {ProductAuth} from "thoughtware-licence-ui";
 //----内部组件----
 const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
 const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
-const PortalHeader = AsyncComponent(() => import("./common/header/PortalContent"));
+const PortalContent = AsyncComponent(() => import("./common/header/PortalContent"));
 const Home = AsyncComponent(() => import('./home/Home'));
 const SearchResult = AsyncComponent(() => import('./common/header/search'));
 const Workspace = AsyncComponent(() => import('./workspace/workspace/components/Workspace'));
@@ -97,7 +97,7 @@ const routers =  [
         }
     },
     {
-        component: PortalHeader,
+        component: PortalContent,
         path: '/',
         key:'poroute',
         routes:[

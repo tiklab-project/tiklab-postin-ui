@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
-import { observer, inject } from "mobx-react";
-import ExSelect from "../../../../../common/ExSelect";
-import {headerParamDictionary} from "../../../../../common/dictionary/dictionary";
+import React from 'react';
+import { observer } from "mobx-react";
 import {uuid} from "../../../../../common/utils/createId";
 import IconCommon from "../../../../../common/IconCommon";
 import {ExTable} from "../../../../../common/EditTable";
@@ -10,7 +8,7 @@ import requestHeaderTestStore from "../store/RequestHeaderTestStore";
  * 测试页
  * 请求头
  */
-const RequestHeader = (props) =>{
+const TestRequestHeader = (props) =>{
 
     const {
         saveList,
@@ -25,15 +23,7 @@ const RequestHeader = (props) =>{
             title: '参数名称',
             dataIndex: 'headerName',
             width: '40%',
-            render: (text, record)=>(
-                <ExSelect
-                    dictionary={headerParamDictionary}
-                    defaultValue={record.headerName}
-                    handleSave={handleSave}
-                    rowData={record}
-                    dataIndex={'headerName'}
-                />
-            )
+            editable: true,
         },{
             title: '参数值',
             width: '40%',
@@ -88,11 +78,11 @@ const RequestHeader = (props) =>{
         selectHeaderList(list)
     };
 
-    const rowSelection = {
-        defaultSelectedRowKeys:selectKeys,
-        onChange: onSelectChange,
-    };
-
+    // const rowSelection = {
+    //     defaultSelectedRowKeys:selectKeys,
+    //     onChange: onSelectChange,
+    // };
+    //
 
     return (
         <>
@@ -101,11 +91,11 @@ const RequestHeader = (props) =>{
                 columns={columns}
                 dataSource={requestHeaderTestList}
                 handleSave={handleSave}
-                rowSelection={rowSelection}
+                // rowSelection={rowSelection}
             />
         </>
 
     );
 }
 
-export default observer(RequestHeader);
+export default observer(TestRequestHeader);

@@ -129,7 +129,6 @@ const WorkspaceEdit = (props) => {
                         </div>
 
                         <Form
-                            className='ws-edit-modal-form'
                             form={form}
                             preserve={false}
                             layout={"vertical"}

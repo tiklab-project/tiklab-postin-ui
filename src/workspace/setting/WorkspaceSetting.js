@@ -83,7 +83,6 @@ const WorkspaceSetting = (props) =>{
                             <Panel header={<><EditOutlined/> <span style={{padding:"0 5px"}}>编辑空间</span></>} key="1"  >
                                 <div>
                                     <Form
-                                        className='ws-edit-modal-form'
                                         form={form}
                                         preserve={false}
                                         layout={"vertical"}
