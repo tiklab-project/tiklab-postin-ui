@@ -150,8 +150,8 @@ table .icon{
 
 
 .icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     vertical-align: -0.15em;
     fill: currentColor;
     overflow: hidden;
@@ -380,4 +380,25 @@ table .icon{
 .header-title{
     font-weight: var(--pi-font-weight-title);
     font-size: var(--pi-font-size-13);
+}
+
+
+.ws-detail-main-content{
+    height: calc(100% - 48px);
+    display: flex;
+}
+.ws-detail-contant{
+    height: 100%;
+    display: flex;
+}
+.ws-detail-left{
+    width: 80px;
+    height: 100%;
+    position:relative;
+    background: var(--pi-bg-grey-100);
+    box-shadow: 3px 0 5px -5px rgb(0 0 0 / 30%);
+}
+
+.ws-detail-right{
+    width: 100%;
 }

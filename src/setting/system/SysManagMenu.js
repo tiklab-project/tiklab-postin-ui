@@ -93,13 +93,13 @@ const SysManage = (props) => {
                     >
                         <div className={'aside-li'} >
                             <div>
-                                {
-                                    isFirst
-                                        ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
-                                            <use xlinkHref= {`#icon-${data.icon}`} />
-                                        </svg>
-                                        :null
-                                }
+                                {/*{*/}
+                                {/*    isFirst*/}
+                                {/*        ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">*/}
+                                {/*            <use xlinkHref= {`#icon-${data.icon}`} />*/}
+                                {/*        </svg>*/}
+                                {/*        :null*/}
+                                {/*}*/}
                                 {data.title}
                             </div>
                             {
@@ -119,13 +119,13 @@ const SysManage = (props) => {
             >
                 <div className={'aside-li'} >
                     <div>
-                        {
-                            isFirst
-                                ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
-                                    <use xlinkHref= {`#icon-${data.icon}`} />
-                                </svg>
-                                :null
-                        }
+                        {/*{*/}
+                        {/*    isFirst*/}
+                        {/*        ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">*/}
+                        {/*            <use xlinkHref= {`#icon-${data.icon}`} />*/}
+                        {/*        </svg>*/}
+                        {/*        :null*/}
+                        {/*}*/}
                         {data.title}
                     </div>
                     {
@@ -150,9 +150,9 @@ const SysManage = (props) => {
                              style={{paddingLeft:`${deep*20}px`}}
                         >
                             <div className={"menu-name-icon"}>
-                                <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
-                                    <use xlinkHref= {`#icon-${icon}`} />
-                                </svg>
+                                {/*<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">*/}
+                                {/*    <use xlinkHref= {`#icon-${icon}`} />*/}
+                                {/*</svg>*/}
                                 <span key={id}> {title}</span>
                             </div>
                             <div className="orga-aside-item-icon">
@@ -187,9 +187,9 @@ const SysManage = (props) => {
                          style={{paddingLeft:`${deep*20}px`}}
                     >
                         <div className={"menu-name-icon"}>
-                            <svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">
-                                <use xlinkHref= {`#icon-${icon}`} />
-                            </svg>
+                            {/*<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">*/}
+                            {/*    <use xlinkHref= {`#icon-${icon}`} />*/}
+                            {/*</svg>*/}
                             <span key={id}>{title}</span>
                         </div>
                         <div className="orga-aside-item-icon">
@@ -243,6 +243,12 @@ const SysManage = (props) => {
                 >
                     <div className="thoughtware-orga-aside">
                         <ul style={{padding: 0}} >
+                            <li style={{
+                                borderBottom:"1px solid #e4e4e4",
+                                padding:"10px 28px",
+                                fontWeight:"bold",
+                            }}
+                            >系统设置</li>
                             {
                                 showUlView(menuRouter)
                             }

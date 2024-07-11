@@ -62,7 +62,6 @@ module.exports = {
         alias: {
             "react-dom": "@hot-loader/react-dom",
             "@src": path.join(__dirname, "./src"),
-            "@stores": path.join(__dirname, "./src/stepAssertCommon"),
         },
     },
     target: "web",

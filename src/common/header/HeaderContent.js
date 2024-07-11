@@ -1,9 +1,7 @@
 import React from 'react';
-import HeaderMenu from "./HeaderMenu";
-import logo from "../../assets/img/postin.png";
 import MessageDrawer from "../../setting/message/MessageDrawer";
-import {SettingOutlined} from "@ant-design/icons";
 import Search from "./search/components/Search";
+import {productImg, productTitle} from "thoughtware-core-ui";
 
 
 /**
@@ -11,6 +9,12 @@ import Search from "./search/components/Search";
  */
 const HeaderContent = props => {
 
+    //去往主页
+    const goHome = () =>{
+        props.history.push("/home")
+        //点击左侧导航，设置选择项,用于刷新后还能选择。
+        localStorage.setItem("LEFT_MENU_SELECT","/home");
+    }
 
     return(
         <div className="frame-header">
@@ -18,31 +22,23 @@ const HeaderContent = props => {
                 <div  className={"recovery-item"}>
                     {props.AppLink}
                 </div>
-                <div className={'frame-header-logo'}>
-                    {logo && <img src={logo} alt='logo' />}
+                <div className={'frame-header-logo'} onClick={goHome} style={{cursor:"pointer"}}>
+                    <img src={productImg.postin} alt='logo' />
                 </div>
-                <div className={"productName"}>PostIn</div>
-                <HeaderMenu {...props}/>
+                <div className={"productName"} onClick={goHome} style={{cursor:"pointer"}}>{productTitle.postin}</div>
             </div>
-
+            <div className={"header-right-search"}>
+                <Search {...props}/>
+            </div>
             <div className={'frame-header-right-box'}>
-                <div className={"header-right-search"}>
-                    <Search {...props}/>
-                </div>
+
                 <div className={'frame-header-right-box'}>
-                    <div className={"header-right-item"}  data-title-bottom={"设置"}>
-                        <SettingOutlined className={"header-icon-item"} onClick={()=>props.history.push("/setting/home")}/>
-                    </div>
                     <div className={"header-right-item"} data-title-bottom={"消息"}>
                         <MessageDrawer />
-                    </div>
-                    <div className={"recovery-item"}>
-                        {props.HelpLink}
                     </div>
                     <div >
                         {props.AvatarLink}
                     </div>
-
                 </div>
             </div>
         </div>

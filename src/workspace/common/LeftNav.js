@@ -12,6 +12,8 @@ import "../workspace/components/workspace.scss"
 import "../../common/commonStyle.scss"
 import "../../api/http/definition/components/apxMethod.scss"
 import "../../support/share/components/shareStyle.scss"
+import LeftNavCommon from "../../common/leftMenu/LeftNavCommon";
+import {LeftCircleOutlined} from "@ant-design/icons";
 
 /**
  * 左侧导航展示
@@ -48,17 +50,10 @@ const LeftNav = (props) =>{
         },
     ]
 
-    const setting= {
-            "icon":"setting",
-            "name":"空间设置",
-            "key":"workspaceSetting",
-            "router":"/workspace/setting"
-        }
 
     const history = useHistory()
     const [visible, setVisible] = useState(false);
     const workspaceId = localStorage.getItem("workspaceId")
-    const leftMenuSelect = localStorage.getItem("LEFT_MENU_SELECT")
     const [recentList, setRecentList] = useState([]);
     const [workspaceName, setWorkspaceName] = useState();
 
@@ -77,7 +72,7 @@ const LeftNav = (props) =>{
         addQuickTestTabInfo(data.router);
 
         //点击左侧导航，设置选择项,用于刷新后还能选择。
-        localStorage.setItem("LEFT_MENU_SELECT",data.key);
+        localStorage.setItem("LEFT_MENU_SELECT",data.router);
 
         if(data.key==="overview"){
             history.push(`/workspace/overview/${workspaceId}`)
@@ -95,31 +90,52 @@ const LeftNav = (props) =>{
         }
     }
 
-    /**
-     * 左侧导航
-     */
-    const showMenuItem = (data) =>{
-        return data&&data.map(item=>{
-            return(
-                <li
-                    key={item.key}
-                    className={`ws-left-nav-item `}
-                    onClick={()=>clickAddRouter(item)}
-                >
-                    <div className={`ws-left-nav-item-box ${leftMenuSelect===item.key?"selectlink":null}`}>
-                        <div className={"ws-left-nav-item-detail"}>
-                            <svg className="icon" aria-hidden="true">
-                                <use xlinkHref= {`#icon-${item.icon}`} />
-                            </svg>
+
+    const showToggleRepository = ()=> (
+        <>
+           <li className={`ws-detail-left-nav-item-workspace `} >
+                <Tooltip placement="right" title={workspaceName}>
+                <Dropdown
+                        overlay={toggleWorkspaceView}
+                        trigger={['click']}
+                        visible={visible}
+                        onOpenChange={openToggleWorkspace}
+                    >
+                        <div className={"ws-icon-box"}>
+                            <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
+                                 <ShowWorkspaceIcon url={workspaceIcon} className={"workspace-icon icon-bg-border"}  width={30}/>
+                            </span>
+                            <IconCommon
+                                style={{"cursor":"pointer"}}
+                                className={"icon-s"}
+                                icon={"xiala"}
+                            />
                         </div>
-                        <div  className={"ws-left-nav-item-detail"}>
-                            {item.name}
-                        </div>
+                    </Dropdown>
+                </Tooltip>
+            </li>
+            <li
+                className={`ws-detail-left-nav-item `}
+                style={{
+                    borderBottom: "1px solid #e4e4e4",
+                    margin: "0 0 20px 0"
+                }}
+                onClick={()=> {
+                    history.push("/home")
+                    localStorage.setItem("LEFT_MENU_SELECT","/home");
+                }}
+            >
+                <div className={`ws-detail-left-nav-item-box`}>
+                    <div className={"ws-detail-left-nav-item-detail"}>
+                        <LeftCircleOutlined style={{fontSize:"16px"}}/>
                     </div>
-                </li>
-            )
-        })
-    }
+                    <div  className={"ws-detail-left-nav-item-detail"}>
+                        返回主页
+                    </div>
+                </div>
+            </li>
+        </>
+    )
 
 
     const openToggleWorkspace = async () =>{
@@ -193,50 +209,25 @@ const LeftNav = (props) =>{
         setVisible(false)
     }
 
-    return(
-        <>
-            <ul className={"ws-detail-left-nav"}>
-                <div>
-                    <li className={`ws-detail-left-nav-item-workspace `} >
-                        <Tooltip placement="right" title={workspaceName}>
-                            <Dropdown
-                                overlay={toggleWorkspaceView}
-                                trigger={['click']}
-                                visible={visible}
-                                onOpenChange={openToggleWorkspace}
-                            >
-                                <div className={"ws-icon-box"}>
-                                    <span style={{"cursor":"pointer",margin:" 0 0 0 16px"}}>
-                                         <ShowWorkspaceIcon url={workspaceIcon} className={"workspace-icon icon-bg-border"}  width={30}/>
-                                    </span>
-                                    <IconCommon
-                                        style={{"cursor":"pointer"}}
-                                        className={"icon-s"}
-                                        icon={"xiala"}
-                                    />
-                                </div>
-                            </Dropdown>
-                        </Tooltip>
-                    </li>
 
-                    {
-                        showMenuItem(menuData)
-                    }
-                </div>
-                <div>
-                    <div className={`ws-detail-left-nav-item`} onClick={()=>clickAddRouter(setting)}>
-                        <div className={`ws-detail-left-nav-item-box  ws-detail-left-nav-item-setting`}>
-                            <div className={"ws-detail-left-nav-item-detail"}>
-                                <svg className="icon" aria-hidden="true">
-                                    <use xlinkHref= {`#icon-setting`}/>
-                                </svg>
-                            </div>
-                            <div  className={"ws-detail-left-nav-item-detail"} >  设置 </div>
-                        </div>
-                    </div>
-                </div>
-            </ul>
-        </>
+
+    /**
+     * 点击设置
+     */
+    const clickSetting = ()=>{
+        //点击左侧导航，设置选择项,用于刷新后还能选择。
+        localStorage.setItem("LEFT_MENU_SELECT","setting");
+
+        props.history.push("/workspace/setting");
+    }
+
+    return(
+        <LeftNavCommon
+            menuData={menuData}
+            clickAddRouter={clickAddRouter}
+            clickSetting={clickSetting}
+            diffHeader={showToggleRepository}
+        />
     )
 }
 

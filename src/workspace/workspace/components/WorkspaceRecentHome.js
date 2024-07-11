@@ -34,7 +34,7 @@ const WorkspaceRecentHome = (props) =>{
      */
     const toDetail = (workspaceId) => {
 
-        toWorkspaceDetail(workspaceId,workspaceRecent)
+        toWorkspaceDetail(workspaceId,workspaceRecent,'/workspace/quick/test')
         props.history.push('/workspace/quick/test');
     }
 

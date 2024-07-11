@@ -16,16 +16,6 @@
 
 
 
-.ws-nav-setting{
-    position: relative;
-}
-
-.ws-nav-setting:hover .nav-setting-box{
-    display: block;
-    z-index: 10;
-    background: var(--pi-bg-grey-100);
-}
-
 .show-nav-setting{
     display: block;
 }

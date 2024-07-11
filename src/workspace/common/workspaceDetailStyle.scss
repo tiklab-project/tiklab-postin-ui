@@ -1,7 +1,5 @@
 //workspaceDetailLayout
 .ws-detail-contant{
-    height: var(--pi-calc-content);
-    display: flex;
 
     .ant-tabs-bottom>.ant-tabs-nav, .ant-tabs-bottom>div>.ant-tabs-nav, .ant-tabs-top>.ant-tabs-nav, .ant-tabs-top>div>.ant-tabs-nav{
         margin: 0;
@@ -35,8 +33,7 @@
     }
 
     .ws-detail-right{
-        width: calc(100% - 80px);
-        //
+
 
         .wscontant{
             display: flex;
@@ -325,26 +322,6 @@
     }
 }
 
-.ws-detail-left-nav-item{
-    padding: 6px;
-
-    .ws-detail-left-nav-item-box{
-        padding: 6px 0;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .ws-detail-left-nav-item-box:hover{
-        background-color: var(--pi-bg-grey-200);
-    }
-
-    .ws-detail-left-nav-item-detail{
-        display: flex;
-        justify-content: center;
-    }
-    .selectlink{
-        background-color: var(--pi-bg-grey-100);
-    }
-}
 
 .ws-detail-menu-ul-box{
     overflow: auto;
@@ -415,9 +392,5 @@
     height: 100%;
 }
 
-
-.iconmenu-unfold{
-    height: 100%;
-}
 
 

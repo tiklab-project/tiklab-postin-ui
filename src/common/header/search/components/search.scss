@@ -7,7 +7,6 @@
     width: 400px;
     min-height: 100px;
     position: absolute;
-    left: -50px;
     background-color: #fff;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
     margin: 5px 0 0 0;
@@ -56,7 +55,7 @@
 
     .ant-input-affix-wrapper{
         transition: 0s;
-        width:200px;
+        width:300px;
         border-radius: var(--pi-border-radius);
         border: var(--pi-input-border);
         margin: 0 20px 0 0;
@@ -64,7 +63,7 @@
 
 
     .ant-input-affix-wrapper:focus-within{
-        width:300px;
+        width:400px;
         transition: 0s;
     }
 

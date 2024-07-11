@@ -113,9 +113,9 @@ const routers =  [
                 key:'workspacePage',
             },
             {
-                path: "/workspace-edit",
+                path: "/workspaces-edit",
                 component: WorkspaceEdit,
-                key:'workspace-edit',
+                key:'workspaces-edit',
             },
             {
                 path:'/setting',

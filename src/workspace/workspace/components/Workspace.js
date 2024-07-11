@@ -51,7 +51,6 @@ const Workspace = (props) => {
                 findWorkspaceJoinList(params).then(list=>{
                     setWorkspaceList(list)
                 })
-
                 setSelectTab("all");
                 break;
             case "create":
@@ -65,6 +64,7 @@ const Workspace = (props) => {
 
                 setSelectTab("create");
                 break;
+
             case "follow":
                 findWorkspaceFollowList(uId).then(list=>{
                     setWorkspaceList(list)
@@ -76,7 +76,7 @@ const Workspace = (props) => {
     },[])
 
     const toWorkspaceEdit = () =>{
-        props.history.push("/workspace-edit")
+        props.history.push("/workspaces-edit")
     }
 
 

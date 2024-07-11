@@ -58,17 +58,6 @@ const Search = (props) => {
         setToggleSearch('hide');
     }
 
-    /**
-     * 搜索框回车跳到详细搜索页
-     */
-    const toSearchResult = (e) => {
-        props.history.push("/searchResult");
-        setToggleSearch('hide');
-        searchForCount(e.target.value);
-        setKeyword(e.target.value);
-    }
-
-
 
     const showWorkspaceItem = (data)=>{
         return data&&data.map(item=>{

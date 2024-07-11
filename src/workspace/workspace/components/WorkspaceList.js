@@ -103,9 +103,7 @@ const WorkspaceList = (props) => {
     const toWorkspaceUser = (workspaceId)=>{
         toWorkspaceDetail(workspaceId,workspaceRecent,"setting");
 
-
         settingMenuSelected("/workspace/setting/role");
-
         props.history.push('/workspace/setting/role');
     }
 
@@ -113,7 +111,7 @@ const WorkspaceList = (props) => {
      *  保存空间id到缓存
      */
     const setLocalStorage = (workspaceId) => {
-        toWorkspaceDetail(workspaceId,workspaceRecent)
+        toWorkspaceDetail(workspaceId,workspaceRecent,"/workspace/quick/test")
 
         props.history.push('/workspace/quick/test');
     }
