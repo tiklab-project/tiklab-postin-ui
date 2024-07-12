@@ -21,7 +21,7 @@ import {LeftCircleOutlined} from "@ant-design/icons";
 const LeftNav = (props) =>{
     const {workspaceStore,systemRoleStore} = props;
     const {workspaceIcon,findWorkspace,findWorkspaceJoinList } = workspaceStore;
-    const {workspaceRecent,findWorkspaceRecentList}=workspaceRecentStore;
+    const {workspaceRecent,findWorkspaceRecentPage}=workspaceRecentStore;
 
     const menuData = [
         {
@@ -93,7 +93,7 @@ const LeftNav = (props) =>{
 
     const showToggleRepository = ()=> (
         <>
-           <li className={`ws-detail-left-nav-item-workspace `} >
+            <li className={`ws-detail-left-nav-item-workspace `} >
                 <Tooltip placement="right" title={workspaceName}>
                 <Dropdown
                         overlay={toggleWorkspaceView}
@@ -118,7 +118,7 @@ const LeftNav = (props) =>{
                 className={`ws-detail-left-nav-item `}
                 style={{
                     borderBottom: "1px solid #e4e4e4",
-                    margin: "0 0 20px 0"
+                    margin: "0 0 10px 0"
                 }}
                 onClick={()=> {
                     history.push("/home")
@@ -148,7 +148,7 @@ const LeftNav = (props) =>{
             },
             userId:userId
         }
-        let recentList = await findWorkspaceRecentList(params)
+        let recentList = await findWorkspaceRecentPage(params)
 
         // 如果不足 5 个，补充，并去重
         if (recentList.length < 5) {

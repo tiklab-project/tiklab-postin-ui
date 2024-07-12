@@ -397,6 +397,7 @@ table .icon{
     position:relative;
     background: var(--pi-bg-grey-100);
     box-shadow: 3px 0 5px -5px rgb(0 0 0 / 30%);
+    z-index: 1;
 }
 
 .ws-detail-right{

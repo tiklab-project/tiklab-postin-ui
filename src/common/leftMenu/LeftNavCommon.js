@@ -54,7 +54,6 @@ const LeftNavCommon = (props) =>{
 
             <div className={"ws-nav-setting"}>
                 {props.HelpLink}
-
                 {
                     props?.clickSetting&&<div className={`ws-detail-left-nav-item`} onClick={clickSetting}>
                         <Tooltip title="设置"  placement="right" >

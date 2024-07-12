@@ -12,29 +12,28 @@
     margin: 5px 0 0 0;
     border-radius: var(--pi-border-radius);
     z-index: 1;
-    padding: 10px ;
+    padding: 5px 10px;
 
     .same-result{
-        //border: 1px solid var(--pi-border-color);
         border-radius:var(--pi-border-radius);
         margin: 5px 0 10px 0;
     }
 
     .search-title{
-        //border-bottom: 1px solid var(--pi-border-color);
-        padding: 5px 0 5px 7px
+        padding:10px 5px;
+        color: #b0b0b0;
+        font-size: 12px;
     }
 
-    .list{
+    .list-item{
         cursor: pointer;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         height: 30px;
         transition: 0.5s;
-        border-bottom: 1px solid var(--pi-border-color)
     }
-    .list:hover{
+    .list-item:hover{
         background-color: #f5f5f5;
     }
 }
@@ -55,16 +54,10 @@
 
     .ant-input-affix-wrapper{
         transition: 0s;
-        width:300px;
+        width:400px;
         border-radius: var(--pi-border-radius);
         border: var(--pi-input-border);
         margin: 0 20px 0 0;
-    }
-
-
-    .ant-input-affix-wrapper:focus-within{
-        width:400px;
-        transition: 0s;
     }
 
 }

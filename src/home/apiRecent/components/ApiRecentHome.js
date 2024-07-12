@@ -9,13 +9,13 @@ import apiRecentStore from "../store/ApiRecentStore";
  * 最近访问的空间
  */
 const ApiRecentHome = (props) =>{
-    const {findApiRecentList,apiRecent}=apiRecentStore;
+    const {findApiRecentPage,apiRecent}=apiRecentStore;
 
     const userId = getUser().userId;
     const [dataList, setDataList] = useState([]);
 
     useEffect( async ()=>{
-        let list = await findApiRecentList({userId:userId})
+        let list = await findApiRecentPage()
         if(list==null) return
         let newList = list.slice(0,8);
 
@@ -32,7 +32,6 @@ const ApiRecentHome = (props) =>{
         //设置最近打开的接口
         let params = {
             workspace:{id:workspaceId},
-            user:{id:getUser().userId},
             apix:{id:apiId},
             // protocolType:item.apiRecent.protocolType
         }

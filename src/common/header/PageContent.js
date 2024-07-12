@@ -84,7 +84,7 @@ const PageContent =(props)=> {
     const showMainMenu = ()=>{
         let pathname =  history.location.pathname;
         if(pathname.startsWith("/home")||pathname.startsWith("/workspaces")||pathname.startsWith("/setting")){
-            return<div className={"ws-detail-left"} style={{padding:"20px 0 0"}}>
+            return<div className={"ws-detail-left"} style={{padding:"10px 0"}}>
                 <LeftNavCommon
                     menuData={menuData}
                     clickAddRouter={clickAddRouter}

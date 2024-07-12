@@ -10,11 +10,10 @@ import workspaceRecentStore from "../store/WorkspaceRecentStore";
  * 最近访问的空间
  */
 const WorkspaceRecentHome = (props) =>{
-    const {findWorkspaceRecentList,workspaceRecent}=workspaceRecentStore;
+    const {findWorkspaceRecentPage,workspaceRecent}=workspaceRecentStore;
 
     const userId = getUser().userId;
     const [dataList, setDataList] = useState([]);
-
 
     useEffect( async ()=>{
         let params = {
@@ -22,9 +21,9 @@ const WorkspaceRecentHome = (props) =>{
                 pageSize: 4,
                 currentPage:1
             },
-            userId:userId
+            // userId:userId
         }
-        let list = await findWorkspaceRecentList(params)
+        let list = await findWorkspaceRecentPage(params)
 
         setDataList(list)
     },[userId])
@@ -44,13 +43,14 @@ const WorkspaceRecentHome = (props) =>{
     const showRecent=(list)=>{
         return list&&list.map(item=>{
 
-            let iconurl =item.iconUrl
+            let workspace =  item?.workspace
+            let iconurl =workspace?.iconUrl
 
             return(
-                <div key={item.id} className={"home-recent-item"} onClick={()=>toDetail(item.id)}>
+                <div key={workspace.id} className={"home-recent-item"} onClick={()=>toDetail(workspace.id)}>
                     <div className={"home-recent-item-left"}>
                         <ShowWorkspaceIcon url={iconurl} className={"ws-img-icon icon-bg-border"}/>
-                        <div className={"home-recent-item-left-name"}>{item.workspaceName}</div>
+                        <div className={"home-recent-item-left-name"}>{workspace.workspaceName}</div>
                     </div>
                     <div style={{display:"flex","justifyContent":"space-between"}}>
                         <div className={"home-recent-item-num"}>

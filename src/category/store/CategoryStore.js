@@ -163,6 +163,15 @@ class CategoryStore{
         return await  Axios.post("/node/findNode",param)
     }
 
+    @action
+    findNodePage = async (param) => {
+        const params = {
+            orderParams:[{name:'createTime', orderType:'desc'}],
+            ...param
+        }
+
+        return await Axios.post("/node/findNodePage",params)
+    }
 
 
 }

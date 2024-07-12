@@ -13,7 +13,7 @@ class ApiRecentStore {
 	 */
 	@action
 	apiRecent = async (values) => {
-		const res = await Axios.post("/apiRecent/apiRecent",values);
+		const res = await Axios.post("/apiRecent/createApiRecent",values);
 		if(res.code === 0 ) {
 			return res.data;
 		}
@@ -23,14 +23,14 @@ class ApiRecentStore {
 	 * 查询最近访问的接口列表
 	 */
 	@action
-	findApiRecentList = async (value) => {
+	findApiRecentPage = async (value) => {
 		this.params = {
-			...value,
 			pageParam: {
 				pageSize: 8,
 				currentPage:1
 			},
 			orderParams:[{name:'updateTime', orderType:'desc'}],
+			...value,
 		}
 		const res = await Axios.post("/apiRecent/findApiRecentPage",this.params)
 

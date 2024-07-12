@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './workspace.scss';
 import {Input} from "antd";
-import {getUser} from "thoughtware-core-ui";
 import {inject, observer} from "mobx-react";
 import WorkspaceList from "./WorkspaceList";
 import {SearchOutlined} from "@ant-design/icons";
@@ -18,7 +17,6 @@ const Workspace = (props) => {
 
     const {findWorkspaceList,findWorkspaceJoinList} = workspaceStore;
 
-    const userId = getUser().userId;
     const [workspaceList, setWorkspaceList] = useState([]);
     const [selectTab, setSelectTab] = useState("all");
 
@@ -40,36 +38,23 @@ const Workspace = (props) => {
      * 根据不同的筛选项查找
      */
     const findList = useCallback((name,selectIndex)=>{
-        let uId = {userId:userId}
-
         switch (selectIndex||"all") {
             case "all":
-                let params= {
-                    ...uId,
-                    ...name
-                }
-                findWorkspaceJoinList(params).then(list=>{
+                findWorkspaceJoinList(name).then(list=>{
                     setWorkspaceList(list)
                 })
                 setSelectTab("all");
                 break;
             case "create":
-                let param = {
-                    ...uId,
-                    ...name
-                }
-                findWorkspaceList(param).then(list=>{
+                findWorkspaceList(name).then(list=>{
                     setWorkspaceList(list)
                 })
-
                 setSelectTab("create");
                 break;
-
             case "follow":
-                findWorkspaceFollowList(uId).then(list=>{
+                findWorkspaceFollowList().then(list=>{
                     setWorkspaceList(list)
                 })
-
                 setSelectTab("follow");
                 break;
         }
@@ -103,7 +88,7 @@ const Workspace = (props) => {
 
 
     return(
-        <div style={{"height":"var(--pi-calc-content)",overflow:"auto"}}>
+        <div style={{"height":"100%",overflow:"auto"}}>
             <div className='ws-layout'>
                 <div
                     style={{

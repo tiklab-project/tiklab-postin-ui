@@ -13,8 +13,6 @@ class WorkspaceRecentStore {
 	 */
 	@action
 	workspaceRecent = async (values) => {
-
-
 		let params = {
 			orderParams:[{name:'updateTime', orderType:'desc'}],
 			...values
@@ -29,10 +27,14 @@ class WorkspaceRecentStore {
 	 * 查询最近访问的空间列表
 	 */
 	@action
-	findWorkspaceRecentList = async (value) => {
+	findWorkspaceRecentPage = async (value) => {
 		this.params = {
-			...value,
+			pageParam: {
+				pageSize: 4,
+				currentPage:1
+			},
 			orderParams:[{name:'updateTime', orderType:'desc'}],
+			...value,
 		}
 		const res = await Axios.post("/workspaceRecent/findWorkspaceRecentPage",this.params)
 

@@ -55,6 +55,8 @@ export const TextMethodType = (props) =>{
                 return <span className={"requestType requestType-options-text"}>OPTS</span>
             case "patch":
                 return <span className={"requestType requestType-patch-text"}>PATCH</span>
+            case "ws":
+                return <span className={"requestType protocol-ws-text"}>WS</span>
         }
     }
 
