@@ -6,7 +6,7 @@ import {localDataProcess, mergeTestData} from "../../../common/request/sendTestC
 import {methodDictionary} from "../../../common/dictionary/dictionary";
 import {getUser} from "thoughtware-core-ui";
 import TestResultCommon from "../../../api/http/test/common/TestResultCommon";
-import {execute} from "../../../api/http/test/common/dtAction";
+import {execute} from "../../../api/http/test/common/preAfterScript";
 import {DownOutlined} from "@ant-design/icons";
 import SaveToApi from "./saveToApi";
 import quickTestStore from "../store/QuickTestStore";

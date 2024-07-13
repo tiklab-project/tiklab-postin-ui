@@ -13,7 +13,7 @@ class ApiRecentStore {
 	 */
 	@action
 	apiRecent = async (values) => {
-		const res = await Axios.post("/apiRecent/createApiRecent",values);
+		const res = await Axios.post("/apiRecent//apiRecent",values);
 		if(res.code === 0 ) {
 			return res.data;
 		}

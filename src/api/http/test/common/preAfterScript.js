@@ -63,7 +63,7 @@ const pi =  {
             return  resData
         },
         getStatusCode: ()=>{
-            return  resData.res.status
+            return  resData.statusCode
         }
     }
 }

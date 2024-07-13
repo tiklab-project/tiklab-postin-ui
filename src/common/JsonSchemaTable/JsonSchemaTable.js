@@ -1,6 +1,6 @@
 
 import React, {useEffect, useState} from 'react';
-import {Checkbox, Tooltip} from "antd";
+import {Checkbox, Tag, Tooltip} from "antd";
 import ExSelect from "../ExSelect";
 import {mockValueDictionary} from "../dictionary/dictionary";
 import {ExTable} from "../EditTable";
@@ -21,6 +21,7 @@ const JsonSchemaTable = ({schema,updateFn}) => {
             dataIndex: 'name',
             width: "20%",
             editable: true,
+            render:(text,record) =>  (showName(record))
         },{
             title: '必须',
             dataIndex: 'required',
@@ -38,7 +39,7 @@ const JsonSchemaTable = ({schema,updateFn}) => {
             dataIndex: 'dataType',
             render: (text, record)=>(
                 <DataTypeSelect
-                    defaultValue={text}
+                    defaultValue={record.dataType}
                     handleSave={toggleSelect}
                     rowData={record}
                 />
@@ -75,11 +76,27 @@ const JsonSchemaTable = ({schema,updateFn}) => {
         }
     ]
 
+    const showName = (record)=>{
+        if(record.id==="root"){
+            return <Tag color={"blue"} >根目录</Tag>
+        }
+
+        if(record.name==="ITEMS"){
+            return <Tag color={"blue"}>ITEMS</Tag>
+        }
+
+        return record.name;
+    }
+
     /**
      * 操作项按钮显示
      */
     const showOperation = (record) => {
         let buttons = [];
+
+        if(record.name==="ITEMS"){
+            return ;
+        }
 
         if (record.id !== "root") {
             if (record.dataType === 'object') {

@@ -1,7 +1,8 @@
 import React from "react";
-import {Select} from "antd";
+import {Divider, Select} from "antd";
 import {dataTypeDictionary} from "./dictionary/dictionary";
 import ModeModal from "../support/dataStructure/components/modeModal";
+import EvnMana from "../support/environment/components/Environment";
 
 const {Option} = Select;
 
@@ -20,7 +21,7 @@ const DataTypeSelect = (props) =>{
         if(value.model){
             data = {
                 ...rowData,
-                name:value.name,
+                name:rowData.id==="root"?"root":value.name,
                 dataType: "object",
                 children: value.jsonScheme,
                 model:true

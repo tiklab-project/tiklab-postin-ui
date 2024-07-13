@@ -9,16 +9,9 @@ class JsonParamDSStore {
 
     @observable jsonParamDSList = [];
     @observable jsonParamDSInfo = {};
+    @observable jsonText;
 
     @observable schemaData={};
-
-    /**
-     * 获取schema值
-     */
-    @action
-    getSchemaData = (data) =>{
-        this.schemaData = data;
-    }
 
     /**
      * 获取schema值
@@ -64,6 +57,7 @@ class JsonParamDSStore {
 
         let res = await Axios.post("/jsonParamDS/findJsonParamDS",param)
         if(res.code ===0){
+            this.jsonText = res.data.jsonText
             return res.data
         }
     }

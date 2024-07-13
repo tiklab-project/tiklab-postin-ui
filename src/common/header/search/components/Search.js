@@ -14,8 +14,8 @@ import categoryStore from "../../../../category/store/CategoryStore";
 const Search = (props) => {
     const {workspaceStore} = props;
     const {findWorkspaceJoinList} = workspaceStore
-    const {findWorkspaceRecentPage,workspaceRecent}=workspaceRecentStore;
-    const {findApiRecentPage,apiRecent}=apiRecentStore;
+    const {findWorkspaceRecentPage}=workspaceRecentStore;
+    const {findApiRecentPage}=apiRecentStore;
     const {findNodePage} = categoryStore
 
 

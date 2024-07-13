@@ -5,7 +5,7 @@ import { TestRequest } from '../index';
 import './test.scss';
 import {localDataProcess, mergeTestData} from "../../../../../common/request/sendTestCommon";
 import {methodDictionary} from "../../../../../common/dictionary/dictionary";
-import {execute} from "../../common/dtAction";
+import {execute} from "../../common/preAfterScript";
 import TestResultCommon from "../../common/TestResultCommon";
 import IconBtn from "../../../../../common/iconBtn/IconBtn";
 import apxMethodStore from "../../../definition/store/ApxMethodStore";

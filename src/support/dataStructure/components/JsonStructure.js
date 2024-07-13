@@ -11,6 +11,7 @@ const JsonStructure = (props) => {
     const {
         findJsonParamDS,
         updateJsonParamDS,
+        jsonText
     } = jsonParamDSStore;
 
     const [schema, setSchema] = useState();
@@ -20,20 +21,19 @@ const JsonStructure = (props) => {
         findJsonParamDS(dataStructureId).then(res=>{
             setSchema(JSON.parse(res.jsonText))
         })
-
-    },[])
+    },[jsonText])
 
 
     /**
      * jsonschemaTable组件使用的更新
      */
-    const jsonSchemaUpdate = useCallback(async (updateValue)=>{
+    const jsonSchemaUpdate = async (updateValue)=>{
         let param = {
             id: dataStructureId,
             jsonText:JSON.stringify(updateValue)
         }
         await updateJsonParamDS(param)
-    },[])
+    }
 
 
     return (

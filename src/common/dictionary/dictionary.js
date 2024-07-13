@@ -123,7 +123,7 @@ export const dataTypeDictionary = [
     'object',
     'number',
     'null',
-    // 'array'
+    'array'
 ]
 
 //断言大小对比

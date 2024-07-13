@@ -6,6 +6,7 @@ import {ShowWorkspaceIcon, toWorkspaceDetail} from "../../../../workspace/worksp
 import {TextMethodType} from "../../../MethodType";
 import {Space} from "antd";
 import {useHistory} from "react-router";
+import apiRecentStore from "../../../../home/apiRecent/store/ApiRecentStore";
 
 const ShowSearchResult = (props)=>{
     const {
@@ -15,7 +16,7 @@ const ShowSearchResult = (props)=>{
         setToggleSearch
     } = props;
     const {workspaceRecent}=workspaceRecentStore;
-    const {apiRecent}=categoryStore;
+    const {apiRecent}=apiRecentStore;
 
     const history = useHistory()
 

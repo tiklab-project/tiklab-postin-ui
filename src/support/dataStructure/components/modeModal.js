@@ -17,9 +17,13 @@ const ModeModal = (props) => {
 
 
     let workspaceId = localStorage.getItem('workspaceId')
+    let dataStructureId = localStorage.getItem("dataStructureId")
+    const showModal =async () => {
 
-    const showModal = () => {
-        findDataStructureList({workspaceId: workspaceId})
+       await findDataStructureList({
+           workspaceId: workspaceId,
+           isNotIncludeId:dataStructureId
+       })
 
         setOpen(true);
     };

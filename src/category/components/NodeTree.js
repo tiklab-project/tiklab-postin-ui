@@ -11,12 +11,14 @@ import {getUser} from "thoughtware-core-ui";
 import {useHistory} from "react-router";
 import {observer} from "mobx-react";
 import APIEdit from "../../api/api/components/APIEdit";
+import apiRecentStore from "../../home/apiRecent/store/ApiRecentStore";
 
 const { TreeNode } = Tree;
 
 
 const NodeTree = (props) => {
-    const { findNodeTree,apiRecent,categoryList,deleteNode } = categoryStore;
+    const { findNodeTree,categoryList,deleteNode } = categoryStore;
+    const {apiRecent} = apiRecentStore
 
     let history = useHistory()
     const workspaceId = localStorage.getItem('workspaceId');

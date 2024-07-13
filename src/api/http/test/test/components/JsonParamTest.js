@@ -10,6 +10,8 @@ const JsonParamTest = () =>{
 
     useEffect(()=>{
         let processJson = jsonSchemaToJson(JSON.parse(jsonSchema))
+
+
         let jsonData =JSON.stringify(Mock.mock(processJson))
         setJson(jsonData)
         getJsonData(jsonData)

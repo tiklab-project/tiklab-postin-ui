@@ -142,7 +142,7 @@ const ExTable = (props) => {
             ...col,
             onCell: (record) => ({
                 record,
-                editable: record.id==="root"?false:col.editable,
+                editable: record.id==="root"||record.name==="ITEMS"?false:col.editable,
                 dataIndex: col.dataIndex,
                 title: col.title,
                 handleSave: handleSave,

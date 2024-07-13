@@ -12,18 +12,24 @@ export const convertTableDataToJsonSchema = (data) => {
             schema[item.name] = {
                 type: 'object',
                 properties: childSchema,
-                ...(item.required && { required: [item.name] }), // 添加 required 属性，仅当 required 存在时
-                ...(item.mock && { mock: { mock: item.mock } }), // 添加 mock 属性，仅当 mock 存在时
-                ...(item.description && { description: item.description }) // 添加 description 属性，仅当 description 存在时
+                required: item.children?.some(child => child.required) ? item.children.filter(child => child.required).map(child => child.name) : undefined,
+                mock: item.mock ? { mock: item.mock } : undefined,
+                description: item.description ?? undefined,
             };
-            if (item.children.some(child => child.required)) {
-                schema[item.name].required = item.children.filter(child => child.required).map(child => child.name);
-            }
-        } else if (item.dataType) {
+        } else if (item.dataType==="array") {
+            const arraySchema = convertTableDataToJsonSchema(item.children);
+            schema[item.name] = {
+                type: 'array',
+                properties: arraySchema,
+                required: item.children?.some(child => child.required) ? item.children.filter(child => child.required).map(child => child.name) : undefined,
+                mock: item.mock ? { mock: item.mock } : undefined,
+                description: item.description ?? undefined,
+            };
+        }else {
             schema[item.name] = {
                 type: item.dataType,
-                ...(item.mock && { mock: { mock: item.mock } }), // 添加 mock 属性，仅当 mock 存在时
-                ...(item.description && { description: item.description }) // 添加 description 属性，仅当 description 存在时
+                mock: item.mock ? { mock: item.mock } : undefined,
+                description: item.description ?? undefined,
             };
         }
     }
@@ -40,13 +46,11 @@ export const schemaToTable = (properties,  requiredFields = []) => {
         return {
             id: uuid(),
             name: subKey,
-            dataType:subProperty.type,
+            dataType: subProperty.type,
             mock: subProperty.mock?.mock,
-            required: requiredFields.includes(subKey), // 根据 requiredFields 判断是否设置为 true
-            description:subProperty.description,
-            children: subProperty.properties
-                ? schemaToTable(subProperty.properties,  subProperty.required || []) // 递归传入当前属性的 required 数组
-                : undefined,
+            required: requiredFields.includes(subKey),
+            description: subProperty.description,
+            children: subProperty.properties ? schemaToTable(subProperty.properties, subProperty.required ?? []) : undefined,
         };
     });
 };

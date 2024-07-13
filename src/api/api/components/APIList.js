@@ -14,12 +14,14 @@ import "../../http/definition/components/apxMethod.scss"
 import '../../../category/components/category.scss';
 import PaginationCommon from "../../../common/pagination/Page";
 import HideDelete from "../../common/hideDelete/HideDelete";
+import apiRecentStore from "../../../home/apiRecent/store/ApiRecentStore";
 
 /**
  * 点击左侧导航栏目录，查看的所在目录中的接口列表
  */
 const APIList = (props) => {
-    const {findNodeTree,apiRecent,deleteNode} = categoryStore;
+    const {findNodeTree,deleteNode} = categoryStore;
+    const {apiRecent} = apiRecentStore
     const {findApiPage} = apiStore;
 
     //接口列表头
