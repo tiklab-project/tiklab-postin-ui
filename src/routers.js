@@ -8,6 +8,7 @@ import {ExcludeProductUser, NotFound} from "thoughtware-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "thoughtware-security-ui";
 import {MessageNotice, MessageSendType, MessageType} from "thoughtware-message-ui";
 import {ProductAuth} from "thoughtware-licence-ui";
+import NewCreatePage from "./home/newCreatePage/NewCreatePage";
 
 //----内部组件----
 const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
@@ -105,18 +106,21 @@ const routers =  [
                 path: "/home",
                 component: Home,
                 exact: true,
-                key:'Home',
             },
             {
                 path: "/workspaces",
                 component: Workspace,
-                key:'workspacePage',
             },
             {
                 path: "/workspaces-edit",
                 component: WorkspaceEdit,
-                key:'workspaces-edit',
             },
+            {
+                path: "/new-create",
+                component: NewCreatePage,
+            },
+
+
             {
                 path:'/setting',
                 key:'systemManagement',

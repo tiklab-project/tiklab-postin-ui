@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "11855580",
+      "name": "新建",
+      "font_class": "xinjian",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
       "icon_id": "3435341",
       "name": "企业版套餐钻石 ",
       "font_class": "version-ee",

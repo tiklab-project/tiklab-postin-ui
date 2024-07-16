@@ -1,0 +1,36 @@
+.new-create-main{
+  height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  .create-item-box{
+    display: flex;
+    gap: 50px;
+
+    .create-item{
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-direction: column;
+      height: 240px;
+      width: 180px;
+      border: 1px solid #e3e3e3;
+      border-radius: 5px;
+      box-shadow: var(--pi-box-shadow);
+
+
+      .create-item-title{
+        font-size: 18px;
+        font-weight: 500;
+
+      }
+
+      &:hover{
+        border: 1px solid var(--pi-base-color);
+      }
+    }
+  }
+}
