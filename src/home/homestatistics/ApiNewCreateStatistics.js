@@ -73,12 +73,12 @@ const ApiNewCreateStatistics = (props) =>{
         series: [
             {
                 name: 'HTTP',
-                type: 'line', // 你可以选择 'bar' 或其他类型
+                type: 'line',
                 data: httpCounts
             },
             {
                 name: 'WS',
-                type: 'line', // 你可以选择 'bar' 或其他类型
+                type: 'line',
                 data: wsCounts
             }
         ]

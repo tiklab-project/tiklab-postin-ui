@@ -1,8 +1,8 @@
 import React from 'react';
 import './homestyle.scss';
 import WorkspaceRecentHome from "../workspace/workspace/components/WorkspaceRecentHome";
-import ApiStatusStatistics from "./ApiStatusStatistics";
-import ApiNewCreateStatistics from "./ApiNewCreateStatistics";
+import ApiStatusStatistics from "./homestatistics/ApiStatusStatistics";
+import ApiNewCreateStatistics from "./homestatistics/ApiNewCreateStatistics";
 import {Space} from "antd";
 
 /**
