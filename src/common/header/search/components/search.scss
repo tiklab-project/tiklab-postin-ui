@@ -54,12 +54,20 @@
 
     .ant-input-affix-wrapper{
         transition: 0s;
-        width:400px;
-        border-radius: var(--pi-border-radius);
-        border: var(--pi-input-border);
-        margin: 0 20px 0 0;
+        width:32px;
+        padding: 2px 8px;
+        border-radius: 50%;
     }
 
+    //.ant-input-affix-wrapper:focus-within{
+    //
+    //}
+
+    .search-action-width{
+        width:400px;
+        transition: 0s;
+        border-radius: 5px;
+    }
 }
 
 .search-result{

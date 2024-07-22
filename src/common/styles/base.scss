@@ -218,64 +218,63 @@ table .icon{
 
 
 
-.home-box-item-detail{
-    padding: 10px;
-    min-height: 140px;
-
-    .home-recent-box{
-        display: flex;
-        align-items: center;
-
-        .home-recent-item{
-            height: 95px;
-            width: 235px;
-            border-radius: var(--pi-border-radius) ;
-            margin: 0 3px 0 0;
-            background: var(--pi-bg-grey-100);
-            padding: 10px;
-            cursor: pointer;
-            border-bottom: 2px solid #ffffff00;
 
 
-            &-left{
-                display: flex;
-                align-items: center;
+.home-recent-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:15px 0;
 
-                &-name{
-                    margin: 0 0 0 10px;
-                    font-size: var(--pi-font-size-16);
-                    font-weight: bold;
-                    width: 100%;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-            }
+    .home-recent-item{
+        height: 95px;
+        width: 235px;
+        border-radius: var(--pi-border-radius) ;
+        margin: 0 3px 0 0;
+        background: var(--pi-bg-grey-100);
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 2px solid #ffffff00;
 
 
-            &-num{
-                padding: 12px 0 0 0;
-                display: flex;
-                align-items: center;
-                font-size: 12px;
+        &-left{
+            display: flex;
+            align-items: center;
 
-                &-title{
-                    color: #9b9b9b;
-                    margin: 0 10px 0 0;
-                }
+            &-name{
+                margin: 0 0 0 10px;
+                font-size: var(--pi-font-size-16);
+                font-weight: bold;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
-        .home-recent-item:hover{
-            border-radius: var(--pi-border-radius) var(--pi-border-radius) 0 0;
-            border-bottom: 2px solid var(--pi-base-color);
-            transition: 1s;
-        }
 
-        .ant-empty{
-            margin: 0 auto;
-        }
+        &-num{
+            padding: 12px 0 0 0;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
 
+            &-title{
+                color: #9b9b9b;
+                margin: 0 10px 0 0;
+            }
+        }
     }
+
+    .home-recent-item:hover{
+        border-radius: var(--pi-border-radius) var(--pi-border-radius) 0 0;
+        border-bottom: 2px solid var(--pi-base-color);
+        transition: 1s;
+    }
+
+    .ant-empty{
+        margin: 0 auto;
+    }
+
 }
 
 .demo-loadmore-list {

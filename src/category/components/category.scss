@@ -134,13 +134,14 @@
 
 .ws-left-tree-drop{
     width: 32px;
-    height: 32px;
+    height: 30px;
+    background: #f0f0f0;
+    /* padding: 0px; */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3px;
-    border-radius: var(--pi-border-radius);
-    margin: 0 0 0 5px;
+    margin: 2px 0 0 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
 

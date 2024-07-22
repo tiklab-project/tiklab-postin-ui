@@ -22,24 +22,8 @@ const Home =(props)=> {
                             <span>常用空间</span>
                         </div>
                     </div>
-                    <div className={"home-box-item-detail"}>
-                        <WorkspaceRecentHome {...props}/>
-                    </div>
+                    <WorkspaceRecentHome {...props}/>
                 </div>
-                {/*<div className={"home-box-item-dynamic"}>*/}
-                {/*    <div className={"home-item-title-box"}>*/}
-                {/*        <div className={"home-item-title"}>*/}
-                {/*            <svg className="icon-m home-item-title-icon" aria-hidden="true">*/}
-                {/*                <use xlinkHref= {`#icon-rizhijilu`} />*/}
-                {/*            </svg>*/}
-                {/*            <span>常用接口</span>*/}
-                {/*        </div>*/}
-                {/*    </div>*/}
-                {/*    <div style={{"padding":" 0 20px"}}>*/}
-                {/*        <ApiRecentHome {...props}/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-
                 <div className={"home-box-item-dynamic"}>
                     <div className={"home-item-title-box"}>
                         <div className={"home-item-title"}>

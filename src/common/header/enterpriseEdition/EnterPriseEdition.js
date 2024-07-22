@@ -817,7 +817,7 @@ const EnterPriseEdition = props =>{
             >
                 <div className='application-feature-modal'>
                     {featureHtml(featureType===''?'ce':'cloud-free')}
-                    {featureHtml(featureType==='ee'?'ee':'cloud-free')}
+                    {featureHtml(featureType==='ee'?'ee':'cloud-pay')}
                 </div>
             </BaseModal>
         </HeaderDropdown>

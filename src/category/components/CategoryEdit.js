@@ -55,7 +55,7 @@ const CategoryEdit =(props)=>{
         }else{
             values.node = {
                 name:values.name,
-                workspaceId:workspaceId,
+                workspace: {id:workspaceId},
                 parentId:values.parent?values.parent:props.categoryId,
             }
 

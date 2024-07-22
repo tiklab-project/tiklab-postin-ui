@@ -12,11 +12,14 @@ import {inject, observer} from "mobx-react";
 import {SYSTEM_ROLE_STORE} from 'thoughtware-privilege-ui/es/store';
 import LeftNavCommon from "../leftMenu/LeftNavCommon";
 import {useHistory} from "react-router";
+import WorkspaceAddModal from "../../workspace/workspace/components/WorkspaceAddModal";
 
 /**
  * 整个页面
  */
 const PageContent =(props)=> {
+    const {workspaceStore} = props;
+    const {visible,setNewCreateWorkspaceModal} = workspaceStore
 
     const router = props.route.routes;
     const user = getUser();
@@ -68,8 +71,12 @@ const PageContent =(props)=> {
     ]
 
     const clickAddRouter = (item) => {
-        props.history.push(item.router)
+        if(item.router === "/new-create"){
+            setNewCreateWorkspaceModal(true)
+            return
+        }
 
+        props.history.push(item.router)
         //点击左侧导航，设置选择项,用于刷新后还能选择。
         localStorage.setItem("LEFT_MENU_SELECT",item.router);
     };
@@ -121,9 +128,10 @@ const PageContent =(props)=> {
                     {renderRoutes(router)}
                 </div>
             </div>
+            <WorkspaceAddModal />
         </div>
 
     )
 }
 
-export default inject(SYSTEM_ROLE_STORE)(observer(PageContent))
+export default inject(SYSTEM_ROLE_STORE,"workspaceStore")(observer(PageContent))

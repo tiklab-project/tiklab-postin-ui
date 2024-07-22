@@ -38,9 +38,10 @@ const SysManage = (props) => {
     const select = (key) => {
         if (!authConfig.authType) {
             if (specialKeys.includes(key)) {
+                let value = key.substring(8);
                 let authServiceUrl = authConfig.authServiceUrl
                 let ticket = getUser().ticket
-                let url = authServiceUrl +"#"+key+"?ticket="+ticket
+                let url = `${authServiceUrl}#/user${value}?ticket=${ticket}`;
 
                 window.open(url, "_blank");
                 return;

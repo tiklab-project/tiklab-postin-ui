@@ -8,6 +8,8 @@ import WorkspaceRecentHome from "./WorkspaceRecentHome";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import workspaceFollowStore from "../store/WorkspaceFollowStore";
 import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
+import {getUser} from "thoughtware-core-ui";
+import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
 /**
  * 空间页
  */
@@ -16,7 +18,7 @@ const Workspace = (props) => {
     const {findWorkspaceFollowList} = workspaceFollowStore
 
     const {findWorkspaceList,findWorkspaceJoinList} = workspaceStore;
-
+    const userId = getUser().userId;
     const [workspaceList, setWorkspaceList] = useState([]);
     const [selectTab, setSelectTab] = useState("all");
 
@@ -38,26 +40,40 @@ const Workspace = (props) => {
      * 根据不同的筛选项查找
      */
     const findList = useCallback((name,selectIndex)=>{
+        let uId = {userId:userId}
+
         switch (selectIndex||"all") {
             case "all":
-                findWorkspaceJoinList(name).then(list=>{
+                let params= {
+                    ...uId,
+                    ...name
+                }
+                findWorkspaceJoinList(params).then(list=>{
                     setWorkspaceList(list)
                 })
+
                 setSelectTab("all");
                 break;
             case "create":
-                findWorkspaceList(name).then(list=>{
+                let param = {
+                    ...uId,
+                    ...name
+                }
+                findWorkspaceList(param).then(list=>{
                     setWorkspaceList(list)
                 })
+
                 setSelectTab("create");
                 break;
             case "follow":
-                findWorkspaceFollowList().then(list=>{
+                findWorkspaceFollowList(uId).then(list=>{
                     setWorkspaceList(list)
                 })
+
                 setSelectTab("follow");
                 break;
         }
+
     },[])
 
     const toWorkspaceEdit = () =>{
@@ -130,6 +146,8 @@ const Workspace = (props) => {
                             placeholder={`搜索空间`}
                             onPressEnter={onSearch}
                             className={"ws-header-menu-input"}
+                            onChange={debounce(onSearch,500)}
+                            allowClear
                         />
                     }
                     selectKeyFun={selectMenu}

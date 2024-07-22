@@ -7,6 +7,7 @@ import DetailHeader from "../../../common/DetailHeader";
 import {SearchOutlined} from "@ant-design/icons";
 import dataStructureStore from "../store/DataStructureStore";
 import HideDelete from "../../../api/common/hideDelete/HideDelete";
+import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
 
 /**
  * @description：数据结构页
@@ -274,6 +275,8 @@ const DataStructure = (props) => {
                         prefix={<SearchOutlined />}
                         placeholder={`搜索名称`}
                         onPressEnter={onSearch}
+                        onChange={debounce(onSearch,500) }
+                        allowClear
                         style={{width:200,margin:"10px 0"}}
                     />
                 </div>

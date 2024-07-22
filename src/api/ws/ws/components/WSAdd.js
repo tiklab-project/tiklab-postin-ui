@@ -59,7 +59,7 @@ const WSAdd = (props) => {
 
             node:{
                 name:values.name,
-                workspaceId:workspaceId,
+                workspace: {id:workspaceId},
                 parentId:curCategoryId?curCategoryId:categoryId
             }
         }

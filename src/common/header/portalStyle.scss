@@ -114,9 +114,6 @@
 }
 
 
-
-
-
 .frame-header{
     padding: 0 10px 0 28px;
     display: flex;
@@ -242,11 +239,17 @@
                 color: rgb(0, 82, 204);
             }
         }
+
+        .ant-input-affix-wrapper:hover{
+            border-right-width:unset;
+            border-color: #ececec;
+        }
     }
 
     .header-right-item:hover{
-        background-color: rgba(222, 235, 255, 0.9);
+        //background-color: rgba(222, 235, 255, 0.9);
         border-radius: 50%;
+
     }
 
 }

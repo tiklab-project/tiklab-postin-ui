@@ -6,7 +6,7 @@ import {Radio} from "antd";
 const ApiNewCreateStatistics = (props) =>{
     const chartRef = useRef(null);
     const chartInstanceRef = useRef(null);
-    const [selectedDays, setSelectedDays] = useState(7);
+    const [selectedDays, setSelectedDays] = useState(30);
 
     useEffect(() => {
         chartInstanceRef.current = echarts.init(chartRef.current);
@@ -63,9 +63,9 @@ const ApiNewCreateStatistics = (props) =>{
         xAxis: {
             type: 'category',
             data: dates,
-            axisLabel: {
-                rotate: 45
-            }
+            // axisLabel: {
+            //     rotate: 45
+            // }
         },
         yAxis: {
             type: 'value',

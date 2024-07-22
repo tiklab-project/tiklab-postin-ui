@@ -74,7 +74,7 @@ const WorkspaceRecentHome = (props) =>{
         <div className={"home-recent-box"}>
             {
                 dataList&&dataList.length>0
-                    ?<Space size={"large"}>{showRecent(dataList)}</Space>
+                    ?<>{showRecent(dataList)}</>
                     : <Empty
                         description={<span>暂无访问</span>}
                         image={emptyImg}

@@ -1,58 +1,13 @@
-import { observable,  action, toJS  } from "mobx";
-import { 
-    searchForTop,
-    searchForCount,
-    searchForPage
-} from '../api/searchApi';
+import { observable,  action  } from "mobx";
 
 export class SearchStore {
-    @observable searchList = [];
-    @observable countList = [];
-    @observable keyword = '';
-    @observable pageList = [];
-    @observable totalRecord = '';
-  
+    @observable showSearch = false;
 
     @action
-    setKeyword = (value) => {
-        this.keyword = value;
-    }
-
-    @action
-    searchForTop = async (value) => {
-        const params = new FormData();
-        params.append('keyword', value );
-
-        const res = await searchForTop(params)
-        if( res.code === 0) {
-
-            this.searchList = res.data.responseList;
-            return res.data
-        }
-    }
-
-    @action
-    searchForCount = async (value) => {
-        const params = new FormData();
-        params.append('keyword', value );
-
-        const res = await searchForCount(params);
-        if(res.code === 0) {
-            this.countList = res.data.responseList;
-            return res.data;
-        }
-    }
-
-    @action
-    searchForPage = async (params) => {
-        const res = await searchForPage(params);
-        if(res.code === 0) {
-            this.pageList = res.data.dataList;
-            this.totalRecord = res.data.totalRecord;
-            return res.data;
-        }
+    setShowSearch = (value) => {
+        this.showSearch = value;
     }
 
 }
-
-export const SEARCHSTORE = 'searchStore';
+let searchStore =new SearchStore();
+export default searchStore;

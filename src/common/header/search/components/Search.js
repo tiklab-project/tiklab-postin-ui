@@ -7,6 +7,8 @@ import ShowSearchResult from "./ShowSearchResult";
 import workspaceRecentStore from "../../../../workspace/workspace/store/WorkspaceRecentStore";
 import apiRecentStore from "../../../../home/apiRecent/store/ApiRecentStore";
 import categoryStore from "../../../../category/store/CategoryStore";
+import {debounce} from "../../../commonUtilsFn/CommonUtilsFn";
+import {getUser} from "thoughtware-core-ui";
 
 /**
  * 头部搜索
@@ -19,20 +21,6 @@ const Search = (props) => {
     const {findNodePage} = categoryStore
 
 
-    //头部搜索，防抖
-    const debounce = (fn, ms)=> {
-        let timer;
-        return function (e) {
-            e.persist();//不加这个取不到e.target.value 的值
-            if(timer){
-                clearTimeout(timer);
-            }
-            timer = setTimeout(() => {
-                fn.apply(this, arguments)
-            }, ms)
-        }
-    }
-
     const [workspaceRecentList, setWorkspaceRecentList] = useState([]);
     const [apiRecentList, setApiRecentList] = useState([]);
     const [workspaceSearchList, setWorkspaceSearchList] = useState([]);
@@ -44,6 +32,9 @@ const Search = (props) => {
 
 
     useEffect(() => {
+
+
+
         const handleOutsideClick = (event) => {
             // 检查点击的目标是否在下拉框内
             if (elementRef.current && !elementRef.current.contains(event.target)) {
@@ -70,7 +61,8 @@ const Search = (props) => {
         }
 
         let params = {
-            workspaceName:value
+            workspaceName:value,
+            userId:getUser().userId
         }
         let workspaceList = await findWorkspaceJoinList(params)
         setWorkspaceSearchList(workspaceList)
@@ -103,13 +95,13 @@ const Search = (props) => {
         <div ref={elementRef}>
             <div className={"header-search-input"}>
                 <Input
+                    width={400}
                     prefix={<SearchOutlined />}
                     placeholder="搜索空间、接口"
                     onChange={debounce(changeValue,500) }
-                    // onPressEnter={toSearchResult}
-                    // onBlur={onBlur}
                     onFocus={onFocus}
-                    className={`${toggleSearch?"search-action-width":"search-action-width-back"}`}
+                    allowClear
+                    className={`${toggleSearch?"search-action-width": null}`}
                 />
             </div>
 

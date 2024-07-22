@@ -77,8 +77,15 @@
     align-content: center;
 
     .qt-left-heaer-clear{
-        margin: 0 0 0 5px;
-        line-height: 32px;
+        width: 30px;
+        height: 30px;
+        background: #f0f0f0;
+        /* padding: 0px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2px 0 0 10px;
+        border-radius: 5px;
         cursor: pointer;
     }
 }
@@ -94,7 +101,7 @@
         overflow: hidden;
         text-overflow:ellipsis;
         white-space: nowrap;
-        border-bottom: 1px solid var(--pi-border-color);
+        //border-bottom: 1px solid var(--pi-border-color);
         position: relative;
 
         .qt-left-list-box-ellipsis{

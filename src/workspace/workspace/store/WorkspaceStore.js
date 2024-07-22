@@ -10,6 +10,8 @@ export class WorkspaceStore {
 	@observable workspaceIdList=[];
 	@observable workspaceIcon
 	@observable settingItemSelected;
+	//左侧导航中的新建是否显示
+	@observable visible = false;
 
 
 	/**
@@ -129,6 +131,11 @@ export class WorkspaceStore {
 	@action
 	settingMenuSelected = (selected)=>{
 		this.settingItemSelected = selected;
+	}
+
+	@action
+	setNewCreateWorkspaceModal = (visible)=>{
+		this.visible = visible;
 	}
 
 }

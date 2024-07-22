@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MessageDrawer from "../../setting/message/MessageDrawer";
 import Search from "./search/components/Search";
-import {productImg, productTitle} from "thoughtware-core-ui";
+import {productWhiteImg, productTitle} from "thoughtware-core-ui";
 import EnterPriseEdition from "./enterpriseEdition/EnterPriseEdition";
-
+import {observer} from "mobx-react";
 
 /**
  * 页面头部
@@ -17,6 +17,7 @@ const HeaderContent = props => {
         localStorage.setItem("LEFT_MENU_SELECT","/home");
     }
 
+
     return(
         <div className="frame-header">
             <div className={"pi-header-left"}>
@@ -24,16 +25,15 @@ const HeaderContent = props => {
                     {props.AppLink}
                 </div>
                 <div className={'frame-header-logo'} onClick={goHome} style={{cursor:"pointer"}}>
-                    <img src={productImg.postin} alt='logo' />
+                    <img src={productWhiteImg.postin} alt='logo' />
                 </div>
                 <div className={"productName"} onClick={goHome} style={{cursor:"pointer"}}>{productTitle.postin}</div>
             </div>
-            <div className={"header-right-search"}>
-                <Search {...props}/>
-            </div>
             <div className={'frame-header-right-box'}>
-
                 <div className={'frame-header-right-box'}>
+                    <div  className={`header-right-item `}>
+                        <Search {...props}/>
+                    </div>
                     <div className={"header-right-item"} data-title-bottom={"消息"}>
                         <MessageDrawer />
                     </div>
@@ -41,7 +41,7 @@ const HeaderContent = props => {
                         {props.HelpLink}
                     </div>
                     <div className={"recovery-item"}>
-                        <EnterPriseEdition />
+                        <EnterPriseEdition featureType={props.featureType}/>
                     </div>
 
                     <div >
@@ -52,4 +52,4 @@ const HeaderContent = props => {
         </div>
     )
 }
-export default HeaderContent;
+export default observer(HeaderContent);

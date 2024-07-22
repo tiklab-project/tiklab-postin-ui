@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
 import {Empty, Input, Space, Tooltip} from "antd";
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "thoughtware-core-ui";
-import {SearchOutlined} from "@ant-design/icons";
+import {CloseOutlined, SearchOutlined} from "@ant-design/icons";
 import {
     getMediaType,
     processFormParamData,
@@ -14,6 +14,7 @@ import {
 import {mediaTypeDir, rawTypeDictionary} from "../../common/dictionary/dictionary";
 import quickTestStore from "../http/store/QuickTestStore";
 import tabQuickTestStore from "../store/TabQuickTestStore";
+import {debounce} from "../../common/commonUtilsFn/CommonUtilsFn";
 
 
 /**
@@ -28,6 +29,7 @@ const LeftNavListQuickTest =(props)=>{
 
     const userId = getUser().userId;
     const workspaceId = localStorage.getItem("workspaceId")
+    const [visible, setVisible] = useState(false);
 
     useEffect(()=>{
         findList()
@@ -232,7 +234,8 @@ const LeftNavListQuickTest =(props)=>{
     }
 
     const onSearch = (e)=>{
-        findList(e.target.value)
+        let value = e.target.value
+        findList(value)
     }
 
     return(
@@ -241,7 +244,9 @@ const LeftNavListQuickTest =(props)=>{
                 <Input
                     prefix={<SearchOutlined />}
                     placeholder={"搜索"}
+                    onChange={debounce(onSearch,500)}
                     onPressEnter={onSearch}
+                    allowClear
                 />
                 <div className={"qt-left-heaer-clear"}>
                     <Tooltip placement="right" title={"清空"}>

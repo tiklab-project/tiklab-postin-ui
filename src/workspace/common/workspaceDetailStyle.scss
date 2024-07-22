@@ -119,14 +119,13 @@
 .ws-init-box{
     height: 100%;
     overflow: auto;
-    background:var(--pi-bg-grey-100);
 
 }
 
 .ws-init-content{
     margin: 0 auto;
     border-radius: var(--pi-border-radius);
-    max-width: 1440px;
+    max-width: 1180px;
     min-width: 860px;
     padding: 20px 30px;
     height: 100%;
@@ -155,26 +154,21 @@
     .wd-total{
         background: #fff;
         padding: 0 10px 20px;
-        //border: 1px solid var(--pi-border-color);
         border-radius: var(--pi-border-radius);
-        //box-shadow: 0 0 5px #8c959f21;
 
         .wd-total-box{
             display: flex;
             justify-content: space-between;
-            //border: 1px solid var(--pi-border-color);
-            padding: 20px;
-            //border-radius: var(--pi-border-radius);
             background: #fff;
             margin: 0 10px;
         }
 
         &-item{
-            width: 200px;
+            width: 240px;
             text-align: center;
             background: var(--pi-bg-grey-100);
             border-radius: 5px;
-
+            border: 1px solid #e8e8e8;
 
             &-title{
                 padding: 5px;

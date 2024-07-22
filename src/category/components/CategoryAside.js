@@ -9,6 +9,7 @@ import categoryStore from "../store/CategoryStore";
 import NodeTree from "./NodeTree";
 import CategoryEdit from "./CategoryEdit";
 import "./category.scss"
+import {debounce} from "../../common/commonUtilsFn/CommonUtilsFn";
 
 /**
  * @Description: 空间详情左侧导航栏
@@ -49,6 +50,8 @@ const CategoryAside = (props) => {
                             prefix={<SearchOutlined />}
                             placeholder="搜索"
                             onPressEnter={onSearch}
+                            onChange={debounce(onSearch,500)}
+                            allowClear
                         />
                         <Dropdown overlay={menu}  className="ws-left-tree-drop" >
                             <div>

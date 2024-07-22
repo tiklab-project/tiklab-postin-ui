@@ -92,7 +92,7 @@ const ApxMethodEdit = (props) => {
             }
             values.node={
                 name:values.name,
-                workspaceId:workspaceId,
+                workspace: {id:workspaceId},
                 methodType:values.methodType,
                 parentId:cascaderCategoryId?cascaderCategoryId:categoryId,
             }
