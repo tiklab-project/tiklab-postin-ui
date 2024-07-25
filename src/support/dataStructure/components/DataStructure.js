@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import {Input, Popconfirm, Space, Table} from "antd";
+import {Input, Space, Table} from "antd";
 import DataStructureEdit from "./DataStructureEdit";
 import { observer} from "mobx-react";
 import "./structureStyle.scss"
@@ -8,6 +8,7 @@ import {SearchOutlined} from "@ant-design/icons";
 import dataStructureStore from "../store/DataStructureStore";
 import HideDelete from "../../../api/common/hideDelete/HideDelete";
 import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
+import PageCenter from "../../../common/pageCenter/PageCenter";
 
 /**
  * @description：数据结构页
@@ -232,82 +233,53 @@ const DataStructure = (props) => {
 
 
     return(
-        <div className={"page-center"}>
-            <DetailHeader
-                left={
-                    <div style={{
-                        display:"flex",
-                        alignItems:"center",
-                        justifyContent:"space-between",
-                        width: 90
-                    }}>
-                        <svg style={{width:20,height:20}} aria-hidden="true" >
-                            <use xlinkHref= {`#icon-changjing`} />
-                        </svg>
-                        <span>数据结构</span>
+        <PageCenter>
+            <div className={"page-center"}>
+                <DetailHeader
+                    left={<span>数据结构</span>}
+                    right={ <DataStructureEdit type={"add"} name={'+添加数据结构'}  /> }
+                />
+
+
+                <div className={"flex-box"}>
+                    <div className={"flex-box structure-header-box"}>
+                        <Input
+                            prefix={<SearchOutlined />}
+                            placeholder={`搜索名称`}
+                            onPressEnter={onSearch}
+                            onChange={debounce(onSearch,500) }
+                            allowClear
+                            style={{width:200,margin:"10px 0"}}
+                        />
                     </div>
-                }
-                right={ <DataStructureEdit type={"add"} name={'+添加数据结构'}  /> }
-            />
 
 
-            <div className={"flex-box"}>
-                <div className={"flex-box structure-header-box"}>
-                    {/*<Select*/}
-                    {/*    // defaultValue={null}*/}
-                    {/*    placeholder={"数据类型"}*/}
-                    {/*    className={"structure-box-select"}*/}
-                    {/*    onChange={clickSelect}*/}
-                    {/*    options={[*/}
-                    {/*        {*/}
-                    {/*            value: null,*/}
-                    {/*            label: '所有',*/}
-                    {/*        },{*/}
-                    {/*            value: 'enum',*/}
-                    {/*            label: 'enum',*/}
-                    {/*        },{*/}
-                    {/*            value: 'json',*/}
-                    {/*            label: 'json',*/}
-                    {/*        },*/}
-                    {/*    ]}*/}
-                    {/*/>*/}
-                    <Input
-                        prefix={<SearchOutlined />}
-                        placeholder={`搜索名称`}
-                        onPressEnter={onSearch}
-                        onChange={debounce(onSearch,500) }
-                        allowClear
-                        style={{width:200,margin:"10px 0"}}
+                    <div className={"sort-box"}>
+                        <div className={'sort-box-title'}>
+                            <svg className={"icon-s"} aria-hidden="true"  >
+                                <use xlinkHref= {`#icon-icon-`} />
+                            </svg>
+                            <span>排序</span>
+                        </div>
+
+                        <div  className={`sort-show-box`}>
+                            {
+                                showSortItem(sortItem)
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div className={"out-table-box"}>
+                    <Table
+                        columns={columns}
+                        dataSource={dataStructureList}
+                        rowKey={record => record.id}
+                        pagination={false}
                     />
                 </div>
-
-
-                <div className={"sort-box"}>
-                    <div className={'sort-box-title'}>
-                        <svg className={"icon-s"} aria-hidden="true"  >
-                            <use xlinkHref= {`#icon-icon-`} />
-                        </svg>
-                        <span>排序</span>
-                    </div>
-
-                    <div  className={`sort-show-box`}>
-                        {
-                            showSortItem(sortItem)
-                        }
-                    </div>
-                </div>
             </div>
-
-            <div className={"out-table-box"}>
-                <Table
-                    columns={columns}
-                    dataSource={dataStructureList}
-                    rowKey={record => record.id}
-                    pagination={false}
-                />
-            </div>
-        </div>
-
+        </PageCenter>
     )
 }
 

@@ -25,6 +25,7 @@ class WorkspaceFollowStore {
 			let newList = [];
 			if(list&&list.length>0){
 				list.map(item=>{
+					item.workspace.user=item.user
 					newList.push(item.workspace)
 				})
 			}

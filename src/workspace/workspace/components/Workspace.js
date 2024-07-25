@@ -10,6 +10,7 @@ import workspaceFollowStore from "../store/WorkspaceFollowStore";
 import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
 import {getUser} from "thoughtware-core-ui";
 import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
+import PageCenter from "../../../common/pageCenter/PageCenter";
 /**
  * 空间页
  */
@@ -105,62 +106,53 @@ const Workspace = (props) => {
 
     return(
         <div style={{"height":"100%",overflow:"auto"}}>
-            <div className='ws-layout'>
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        padding: "0 0 0 10px"
-                    }}
-                >
-                    <div style={{
-                        display:"flex",
-                        alignItems:"center",
-                        justifyContent:"space-between",
-                        width: 55
-                    }}>
-                        <svg className={"icon-m"} aria-hidden="true" >
-                            <use xlinkHref= {`#icon-home`} />
-                        </svg>
-                        <span style={{fontWeight:"bold"}}>空间</span>
-                    </div>
+            <PageCenter>
+                <div className='ws-layout'>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                            }}
+                        >
+                            <span style={{fontWeight:"bold",fontSize:"16px"}}>空间</span>
 
-                    <IconBtn
-                        className="important-btn"
-                        onClick={toWorkspaceEdit}
-                        name={"添加空间"}
-                    />
-                </div>
+                            <IconBtn
+                                className="important-btn"
+                                onClick={toWorkspaceEdit}
+                                name={"添加空间"}
+                            />
+                        </div>
 
-                <div className={"home-box-item-detail"}>
-                    <div style={{margin:"10px 0 "}}>最近访问</div>
-                    <WorkspaceRecentHome {...props}/>
-                </div>
-                <MenuSelectCommon
-                    items={items}
-                    selectItem={selectTab}
-                    right={
-                        <Input
-                            prefix={<SearchOutlined />}
-                            placeholder={`搜索空间`}
-                            onPressEnter={onSearch}
-                            className={"ws-header-menu-input"}
-                            onChange={debounce(onSearch,500)}
-                            allowClear
+                        <div className={"home-box-item-detail"}>
+                            <div style={{margin:"10px 0 "}}>最近访问</div>
+                            <WorkspaceRecentHome {...props}/>
+                        </div>
+                        <MenuSelectCommon
+                            items={items}
+                            selectItem={selectTab}
+                            right={
+                                <Input
+                                    prefix={<SearchOutlined />}
+                                    placeholder={`搜索空间`}
+                                    onPressEnter={onSearch}
+                                    className={"ws-header-menu-input"}
+                                    onChange={debounce(onSearch,500)}
+                                    allowClear
+                                />
+                            }
+                            selectKeyFun={selectMenu}
                         />
-                    }
-                    selectKeyFun={selectMenu}
-                />
-                <div className='contant-box' style={{margin:"10px 0 0 0"}}>
-                    <WorkspaceList
-                        {...props}
-                        workspaceList={workspaceList}
-                        findList={findList}
-                        selectItem={selectTab}
-                    />
-                </div>
-            </div>
+                        <div className='contant-box' style={{margin:"10px 0 0 0"}}>
+                            <WorkspaceList
+                                {...props}
+                                workspaceList={workspaceList}
+                                findList={findList}
+                                selectItem={selectTab}
+                            />
+                        </div>
+                    </div>
+            </PageCenter>
         </div>
     )
 }

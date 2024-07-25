@@ -164,11 +164,12 @@
         }
 
         &-item{
-            width: 240px;
+            width: 100%;
             text-align: center;
             background: var(--pi-bg-grey-100);
             border-radius: 5px;
             border: 1px solid #e8e8e8;
+            height: 100px;
 
             &-title{
                 padding: 5px;
@@ -196,7 +197,7 @@
 
 
 .page-center{
-    width: 1190px;
+    max-width: 1190px;
     padding: 10px 30px;
     margin: 0 auto;
 

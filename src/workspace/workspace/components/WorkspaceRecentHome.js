@@ -21,7 +21,7 @@ const WorkspaceRecentHome = (props) =>{
                 pageSize: 4,
                 currentPage:1
             },
-            // userId:userId
+            userId:userId
         }
         let list = await findWorkspaceRecentPage(params)
 
@@ -32,7 +32,6 @@ const WorkspaceRecentHome = (props) =>{
      * 去往详情页
      */
     const toDetail = (workspaceId) => {
-
         toWorkspaceDetail(workspaceId,workspaceRecent,'/workspace/quick/test')
         props.history.push('/workspace/quick/test');
     }
@@ -50,7 +49,7 @@ const WorkspaceRecentHome = (props) =>{
                 <div key={workspace.id} className={"home-recent-item"} onClick={()=>toDetail(workspace.id)}>
                     <div className={"home-recent-item-left"}>
                         <ShowWorkspaceIcon url={iconurl} className={"ws-img-icon icon-bg-border"}/>
-                        <div className={"home-recent-item-left-name"}>{workspace.workspaceName}</div>
+                        <div className={"home-recent-item-left-name text-ellipsis"}>{workspace.workspaceName}</div>
                     </div>
                     <div style={{display:"flex","justifyContent":"space-between"}}>
                         <div className={"home-recent-item-num"}>
@@ -62,7 +61,6 @@ const WorkspaceRecentHome = (props) =>{
                             <div>{item.apiNum}</div>
                         </div>
                     </div>
-
                 </div>
             )
         })

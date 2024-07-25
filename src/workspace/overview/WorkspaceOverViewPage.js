@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
 import DynamicWidget from "./DynamicWidget";
+import {Row,Col} from "antd";
 /**
  * 空间概况
  */
@@ -47,10 +48,12 @@ const WorkspaceOverViewPage = (props) =>{
     const showDetailView = (data) =>{
         return data.map((item,index)=>{
             return(
-                <div className={"wd-total-item"} key={index}>
-                    <div className={"wd-total-item-title"}>{item.value}</div>
-                    <div className={"wd-total-item-name"}>{item.title}</div>
-                </div>
+                <Col span={6}>
+                    <div className={"wd-total-item"} key={index}>
+                        <div className={"wd-total-item-title"}>{item.value}</div>
+                        <div className={"wd-total-item-name"}>{item.title}</div>
+                    </div>
+                </Col>
             )
         })
     }
@@ -61,9 +64,11 @@ const WorkspaceOverViewPage = (props) =>{
                 <div className={"wd-total"}>
                     <div className={"wd-title"}> 概要</div>
                     <div className={"wd-total-box"}>
+                        <Row gutter={30} style={{width:"100%"}}>
                         {
                             showDetailView(items)
                         }
+                        </Row>
                     </div>
                 </div>
                 <div className={"wd-dynamic-box"}>

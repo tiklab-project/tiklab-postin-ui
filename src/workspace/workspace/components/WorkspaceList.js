@@ -44,7 +44,7 @@ const WorkspaceList = (props) => {
                 <div className={"ws-user-item"}>
                     <Space>
                         <Avatar isBig={true} name={record.user?.nickname}/>
-                        <span>{record.user.nickname} </span>
+                        <span>{record?.user?.nickname} </span>
                     </Space>
                 </div>
 

@@ -9,23 +9,20 @@
     .home-content-box{
         margin: 0 auto;
         padding: 20px ;
-        width: 1080px;
+        max-width: 1020px;
 
         .ant-list-item-meta{
             align-items: center;
         }
 
         .home-box-item{
-            //border: 1px solid var(--pi-border-color);
-            margin-bottom: 15px;
             border-radius: var(--pi-border-radius);
             background: white;
             overflow: hidden;
         }
 
         .home-item-title-box{
-            padding: 10px;
-            margin: 0 0 5px;
+            margin: 0 0 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,9 +37,6 @@
             .home-item-title-icon{
                 margin: 0 5px 0 0;
             }
-
-
-
         }
 
         .home-box-item-dynamic{
@@ -54,9 +48,9 @@
         }
 
         .home-statistics-box{
-            width: 510px;
+            width: 476px;
             padding: 10px;
-            border: 1px solid #e3e3e3;
+            background: #f7f8f9;
             border-radius: 5px;
             position: relative;
 

@@ -3,7 +3,7 @@ import './homestyle.scss';
 import WorkspaceRecentHome from "../workspace/workspace/components/WorkspaceRecentHome";
 import ApiStatusStatistics from "./homestatistics/ApiStatusStatistics";
 import ApiNewCreateStatistics from "./homestatistics/ApiNewCreateStatistics";
-import {Space} from "antd";
+import PageCenter from "../common/pageCenter/PageCenter";
 
 /**
  * 首页
@@ -12,7 +12,8 @@ const Home =(props)=> {
 
     return(
         <div className={"home-content"}>
-            <div className={"home-content-box"}>
+            <PageCenter>
+                <div className={"home-content-box"}>
                 <div className={"home-box-item"}>
                     <div className={"home-item-title-box"}>
                         <div className={"home-item-title"}>
@@ -33,17 +34,18 @@ const Home =(props)=> {
                             <span>接口统计</span>
                         </div>
                     </div>
-                    <Space size={"large"}>
+                    <div style={{width:"100%",display:'flex',gap:"20px"}}>
                         <div className={"home-statistics-box"}>
                             <ApiStatusStatistics />
                         </div>
                         <div className={"home-statistics-box"}>
                             <ApiNewCreateStatistics />
                         </div>
-                    </Space>
+                    </div>
 
                 </div>
             </div>
+            </PageCenter>
         </div>
     )
 }

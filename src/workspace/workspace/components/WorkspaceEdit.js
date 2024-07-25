@@ -5,6 +5,7 @@ import {Form, Button, Input, Row, Col, Select} from 'antd';
 import {Axios} from "thoughtware-core-ui";
 import {toWorkspaceDetail} from "./WorkspaceFn";
 import workspaceRecentStore from "../store/WorkspaceRecentStore";
+import "./workspace.scss"
 
 const {TextArea} = Input
 const {Option} = Select;

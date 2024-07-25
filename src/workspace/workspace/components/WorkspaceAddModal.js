@@ -6,6 +6,7 @@ import {Axios} from "thoughtware-core-ui";
 import {toWorkspaceDetail} from "./WorkspaceFn";
 import workspaceRecentStore from "../store/WorkspaceRecentStore";
 import {useHistory} from "react-router";
+import "./workspace.scss"
 
 const {TextArea} = Input
 const {Option} = Select;
@@ -126,6 +127,7 @@ const WorkspaceAddModal = (props) => {
             onOk={onFinish}
             onCancel={onCancel}
             width={600}
+            centered
             okText="确定"
             cancelText="取消"
         >

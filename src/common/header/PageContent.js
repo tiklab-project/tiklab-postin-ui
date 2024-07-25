@@ -64,7 +64,7 @@ const PageContent =(props)=> {
         },
         {
             name: "新建",
-            icon: "xinjian",
+            icon: "chuangjiantianjiapiliangtianjia",
             key: "create",
             router:"/new-create"
         }
