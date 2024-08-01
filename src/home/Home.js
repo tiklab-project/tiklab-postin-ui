@@ -1,10 +1,10 @@
 import React from 'react';
 import './homestyle.scss';
 import WorkspaceRecentHome from "../workspace/workspace/components/WorkspaceRecentHome";
-import ApiStatusStatistics from "./homestatistics/ApiStatusStatistics";
-import ApiNewCreateStatistics from "./homestatistics/ApiNewCreateStatistics";
-import PageCenter from "../common/pageCenter/PageCenter";
-
+import ApiStatusStatistics from "../support/statistics/ApiStatusStatistics";
+import StatusNumberStatistics from "../support/statistics/StatusNumberStatistics";
+import StatisticsTrend from "../support/statistics/StatisticsTrend";
+import {Col, Row} from "antd"
 /**
  * 首页
  */
@@ -12,40 +12,37 @@ const Home =(props)=> {
 
     return(
         <div className={"home-content"}>
-            <PageCenter>
+            <Row style={{height:"100%"}}>
+                <Col
+                    md={{ span: 24, offset: 0 }}
+                    lg={{ span: 20, offset: 2 }}
+                    xl={{ span: 18, offset: 3 }}
+                    xll={{ span: 16, offset: 4 }}
+                >
                 <div className={"home-content-box"}>
-                <div className={"home-box-item"}>
-                    <div className={"home-item-title-box"}>
-                        <div className={"home-item-title"}>
-                            {/*<svg className="icon-m home-item-title-icon" aria-hidden="true">*/}
-                            {/*    <use xlinkHref= {`#icon-zuijinfangwen-`} />*/}
-                            {/*</svg>*/}
-                            <span>常用空间</span>
+                    <div className={"home-box-item"}>
+                        <div className={"home-item-title-box"}>
+                            <div className={"home-item-title"}>
+                                <span>常用空间</span>
+                            </div>
                         </div>
+                        <WorkspaceRecentHome {...props}/>
                     </div>
-                    <WorkspaceRecentHome {...props}/>
-                </div>
-                <div className={"home-box-item-dynamic"}>
-                    <div className={"home-item-title-box"}>
-                        <div className={"home-item-title"}>
-                            {/*<svg className="icon-m home-item-title-icon" aria-hidden="true">*/}
-                            {/*    <use xlinkHref= {`#icon-rizhijilu`} />*/}
-                            {/*</svg>*/}
-                            <span>接口统计</span>
+                    <div className={"home-box-item-dynamic"}>
+                        <div className={"home-item-title-box"}>
+                            <div className={"home-item-title"}>
+                                <span>接口统计</span>
+                            </div>
                         </div>
-                    </div>
-                    <div style={{width:"100%",display:'flex',gap:"20px"}}>
-                        <div className={"home-statistics-box"}>
+                        <StatusNumberStatistics />
+                        <Row gutter={20}>
+                            <StatisticsTrend/>
                             <ApiStatusStatistics />
-                        </div>
-                        <div className={"home-statistics-box"}>
-                            <ApiNewCreateStatistics />
-                        </div>
+                        </Row>
                     </div>
-
                 </div>
-            </div>
-            </PageCenter>
+                </Col>
+            </Row>
         </div>
     )
 }

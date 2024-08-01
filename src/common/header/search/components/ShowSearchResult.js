@@ -63,7 +63,7 @@ const ShowSearchResult = (props)=>{
                     <div className="list-item" onClick={()=>toWorkspace(item.id)}>
                         <Space>
                             <ShowWorkspaceIcon url={item.iconUrl} className={"workspace-icon icon-bg-border"}/>
-                            <span>{item.workspaceName}</span>
+                            <div style={{width:"240px"}} className={"text-ellipsis"}>{item.workspaceName}</div>
                         </Space>
                         {/*<span style={{fontSize: "12px", color: "#b0b0b0"}}>{item.updateTime}</span>*/}
                     </div>
@@ -82,9 +82,9 @@ const ShowSearchResult = (props)=>{
                     <div className="list-item" onClick={()=>toWorkspace(workspace.id)}>
                         <Space>
                             <ShowWorkspaceIcon url={workspace.iconUrl} className={"workspace-icon icon-bg-border"}/>
-                            <span>{workspace.workspaceName}</span>
+                            <div style={{width:"180px"}} className={"text-ellipsis"}>{workspace.workspaceName}</div>
                         </Space>
-                        <span style={{fontSize: "12px", color: "#b0b0b0"}}>{item.updateTime}</span>
+                        <div style={{fontSize: "12px", color: "#b0b0b0",width:"70px"}} >{item.updateTime}</div>
                     </div>
                 </div>
             )
@@ -105,9 +105,9 @@ const ShowSearchResult = (props)=>{
                                         : <TextMethodType type={item.methodType}/>
                                 }
                             </div>
-                            <span>{item.name}</span>
+                            <div style={{width:"180px"}} className={"text-ellipsis"}>{item.name}</div>
                         </Space>
-                        <span style={{fontSize: "12px", color: "#b0b0b0"}}>{item?.workspace?.workspaceName}</span>
+                        <div style={{fontSize: "12px", color: "#b0b0b0",width:"70px"}} className={"text-ellipsis"}>{item?.workspace?.workspaceName}</div>
                     </div>
                 </div>
             )
@@ -130,9 +130,9 @@ const ShowSearchResult = (props)=>{
                                         : <TextMethodType type={apix?.node?.methodType}/>
                                 }
                             </div>
-                            <span>{apix?.node?.name}</span>
+                            <div  style={{width:"180px"}} className={"text-ellipsis"}>{apix?.node?.name}</div>
                         </Space>
-                        <span style={{fontSize: "12px", color: "#b0b0b0"}}>{item?.workspace?.workspaceName}</span>
+                        <div style={{fontSize: "12px", color: "#b0b0b0",width:"70px"}}  className={"text-ellipsis"}>{item?.workspace?.workspaceName}</div>
                     </div>
                 </div>
             )

@@ -95,7 +95,7 @@ const WorkspaceSetting = (props) =>{
                                             rules={[{ required: true, message: '添加目录名称!' }]}
                                             name="workspaceName"
                                         >
-                                            <Input style={{height:40}}/>
+                                            <Input style={{height:40}} placeholder={"请输入名称"}/>
                                         </Form.Item>
                                         <Form.Item
                                             label="可见范围"

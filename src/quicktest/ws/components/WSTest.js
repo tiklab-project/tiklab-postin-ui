@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Button, Form, Input} from "antd";
+import {Button, Form, Input, Space} from "antd";
 import TestResultWS from "../../../api/ws/test/components/TestResultWS";
 import RequestWSQuickTest from "./RequestWSQuickTest";
 import webSocketFnStore from "../../../api/ws/test/store/WebSocketFnStore";
@@ -42,13 +42,13 @@ const WSTest = (props) => {
     const isConnectView = () =>{
 
         switch (readyState) {
-            case 1:return <Button className={"important-btn"} onClick={closeWs}>断开</Button>
+            case 1:return <Button className={"important-btn"} type="primary" onClick={closeWs}>断开</Button>
             case 0:
             case 2:
             case 3:
-                return <Button className={"important-btn"} onClick={connectFn}>连接</Button>
+                return <Button className={"important-btn"} type="primary" onClick={connectFn}>连接</Button>
             default:
-                return <Button className={"important-btn"} onClick={connectFn}>连接</Button>
+                return <Button className={"important-btn"} type="primary" onClick={connectFn}>连接</Button>
         }
 
     }
@@ -85,10 +85,13 @@ const WSTest = (props) => {
                                 />
                             </Form.Item>
                         </div>
-                        {
-                            isConnectView()
-                        }
-                        <Button className={"important-btn"} onClick={send}>发送</Button>
+                        <Space>
+                            {
+                                isConnectView()
+                            }
+                            <Button className={"important-btn"} type="primary" onClick={send}>发送</Button>
+                        </Space>
+
                     </Form>
                 </div>
                 <div className={"white-bg-box"}>

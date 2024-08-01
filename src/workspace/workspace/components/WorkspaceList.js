@@ -142,7 +142,6 @@ const WorkspaceList = (props) => {
     return(
         <div className={"pi-list-box"}>
             <Table
-                className="tablelist"
                 columns={columns}
                 dataSource={workspaceList}
                 rowKey={record => record.id}
@@ -150,11 +149,8 @@ const WorkspaceList = (props) => {
                 // showHeader={false}
                 locale={{
                     emptyText: <Empty
-                        imageStyle={{
-                            height: 120,
-                        }}
+                        imageStyle={{height: 100}}
                         description={<span>暂无空间</span>}
-                        image={emptyImg}
                     />,
                 }}
             />

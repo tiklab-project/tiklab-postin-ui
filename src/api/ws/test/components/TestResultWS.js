@@ -65,7 +65,6 @@ const TestResultWS = (props) =>{
         <div className={"ws-result-box"}>
             <div className={"ws-result-header"}>
                 <IconBtn
-                    icon={"shanchu3"}
                     className="pi-icon-btn-grey"
                     name={"清空列表"}
                     onClick={clearAll}

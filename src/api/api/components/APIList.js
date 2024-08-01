@@ -1,13 +1,12 @@
 import React, {useEffect,useState} from 'react';
 import { observer } from "mobx-react";
-import {Empty, Input, Space, Table} from 'antd';
+import {Empty, Input, Space, Table, Tag} from 'antd';
 import ApxMethodEdit from '../../http/definition/components/ApxMethodEdit';
 import MethodType from "../../../common/MethodType";
 import {SearchOutlined} from "@ant-design/icons";
 import CategoryDocDrawer from "../../../support/share/components/CategoryDocDrawer";
 import categoryStore from "../../../category/store/CategoryStore";
 import apiStore from "../store/APIStore";
-import emptyImg from "../../../assets/img/empty.png"
 import APIEdit from "./APIEdit";
 import "../../../support/share/components/shareStyle.scss"
 import "../../http/definition/components/apxMethod.scss"
@@ -55,15 +54,22 @@ const APIList = (props) => {
         {
             title: '状态',
             dataIndex: ['status','name'],
-            width: '15%',
+            width: '10%',
             render:(text,record) =>(
-                <span style={{color:`${record.status.color}`}}>{text}</span>
+                <div style={{
+                    background: "#f8f8f8",
+                    border: "1px solid #e8e8e8",
+                    padding: "2px 5px",
+                    borderRadius: "5px",
+                    textAlign: "center",
+                    width:"55px"
+                }} >{text}</div>
             )
         },
         {
             title: '执行人',
             dataIndex: ['executor','nickname'],
-            width: '15%',
+            width: '12%',
             render:(text) =>(
                 <span >{text||"未设置"}</span>
             )
@@ -91,8 +97,10 @@ const APIList = (props) => {
     //获取id
     const categoryId =  localStorage.getItem('categoryId');
     const workspaceId = localStorage.getItem('workspaceId');
+    const [tableLoading,setTableLoading] = useState(true);
     const [apiList, setApiList] = useState([]);
     const [totalPage, setTotalPage] = useState();
+    const [totalRecord, setTotalRecord] = useState();
     const [pageSize] = useState(12);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -101,6 +109,7 @@ const APIList = (props) => {
     },[categoryId])
 
     const findPage = (params) =>{
+        setTableLoading(true)
         let param = {
             pageParam: {
                 pageSize: pageSize,
@@ -111,7 +120,9 @@ const APIList = (props) => {
         }
         findApiPage(param).then((res)=>{
             setTotalPage(res.totalPage);
+            setTotalRecord(res.totalRecord)
             setApiList(res.dataList)
+            setTableLoading(false)
         })
     }
 
@@ -174,11 +185,11 @@ const APIList = (props) => {
             <div className='content-margin-box list-content-center'>
                 <div className={'category-search'}>
                     <Input
-                        prefix={<SearchOutlined />}
+                        prefix={<SearchOutlined style={{fontSize:"16px"}} />}
                         placeholder={'搜索接口'}
                         onPressEnter={onSearch}
                         className='search-input'
-                        style={{width:240}}
+                        style={{width:200}}
                     />
                     <Space>
                         <CategoryDocDrawer categoryId={categoryId}/>
@@ -190,17 +201,17 @@ const APIList = (props) => {
                         />
                     </Space>
                 </div>
-                <div className={"pi-list-box"}>
+                <div className={"pi-list-box"} style={{margin:"20px 0 0"}}>
                     <Table
                         dataSource={apiList}
                         columns={columns}
+                        loading={tableLoading}
                         rowKey={record => record.id}
                         pagination={false}
                         locale={{
                             emptyText: <Empty
-                                imageStyle={{height: 120}}
+                                imageStyle={{height: 100}}
                                 description={<span>暂无接口</span>}
-                                image={emptyImg}
                             />,
                         }}
                     />
@@ -209,6 +220,8 @@ const APIList = (props) => {
                     currentPage={currentPage}
                     totalPage={totalPage}
                     changePage={onTableChange}
+                    totalRecord={totalRecord}
+                    findPage={findPage}
                 />
             </div>
         </div>

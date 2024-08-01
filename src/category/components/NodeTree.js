@@ -155,8 +155,8 @@ const NodeTree = (props) => {
                         </Dropdown>
                         <Dropdown overlayStyle={{width:"100px"}} overlay={()=>categoryMoreMenu(id)} className={'node-box-more'}>
                         <span>
-                            <svg className="icon-s category-nav-item-icon" aria-hidden="true">
-                                <use xlinkHref={`#icon-more`}/>
+                            <svg className="icon-m category-nav-item-icon" aria-hidden="true">
+                                <use xlinkHref={`#icon-gengduo`}/>
                             </svg>
                         </span>
                         </Dropdown>
@@ -168,8 +168,8 @@ const NodeTree = (props) => {
                <div  className={"node-box-right"}>
                    <Dropdown overlayStyle={{width:"130px"}} overlay={()=>apiMoreMenu(id)} className={'node-box-more'}>
                         <span>
-                            <svg className="icon-s category-nav-item-icon" aria-hidden="true">
-                                <use xlinkHref={`#icon-more`}/>
+                            <svg className="icon-m category-nav-item-icon" aria-hidden="true">
+                                <use xlinkHref={`#icon-gengduo`}/>
                             </svg>
                         </span>
                    </Dropdown>

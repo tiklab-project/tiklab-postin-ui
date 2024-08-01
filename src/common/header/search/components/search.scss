@@ -4,7 +4,7 @@
 }
 
 .search-list{
-    width: 400px;
+    width: 320px;
     min-height: 100px;
     position: absolute;
     background-color: #fff;
@@ -46,27 +46,33 @@
     display: block;
 }
 
-
-// searchResult
-
 .header-search-input{
-
-
     .ant-input-affix-wrapper{
         transition: 0s;
-        width:150px;
-        padding: 2px 8px;
+        width:30px;
+        padding: 2px 5px;
         border-radius: 5px;
+        border: 0;
+        cursor: pointer;
+
+        .ant-input-prefix{
+            .anticon-search{
+                font-size: 24px;
+            }
+        }
     }
 
-    //.ant-input-affix-wrapper:focus-within{
-    //
-    //}
-
     .search-action-width{
-        width:400px;
-        transition: 0s;
+        width:320px;
+        //transition: width 0.3s;
         border-radius: 5px;
+        border: var(--pi-input-border);
+
+        .ant-input-prefix{
+            .anticon-search{
+                font-size: 16px;
+            }
+        }
     }
 }
 

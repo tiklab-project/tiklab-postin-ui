@@ -6,12 +6,12 @@ import {Button} from "antd";
  * 按钮 可带icon
  */
 const IconBtn = (props) =>{
-    const {name,className,onClick,icon,} = props;
+    const {name,className,onClick,icon,type} = props;
 
 
     return(
         <div className={"pi-icon-btn-box"}>
-            <Button className={`${className}`} style={{padding:"4px 10px"}} onClick={onClick} >
+            <Button className={`${className}`} type={type} style={{padding:"4px 10px"}} onClick={onClick} >
                 <div className={`pi-icon-btn`} >
                     {
                         icon

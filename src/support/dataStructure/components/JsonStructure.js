@@ -37,10 +37,12 @@ const JsonStructure = (props) => {
 
 
     return (
-        <JsonSchemaTable
-            schema={schema}
-            updateFn={jsonSchemaUpdate}
-        />
+        <div className={"tabPane-item-box"}>
+            <JsonSchemaTable
+                schema={schema}
+                updateFn={jsonSchemaUpdate}
+            />
+        </div>
     );
 }
 

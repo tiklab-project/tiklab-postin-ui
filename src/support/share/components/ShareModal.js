@@ -123,7 +123,6 @@ const ShareModal  = (props) =>{
         if(props.btn){
             return <IconBtn
                 className="pi-icon-btn-grey"
-                icon={"fenxiang"}
                 onClick={showModal}
                 name={"分享"}
             />
@@ -189,7 +188,7 @@ const ShareModal  = (props) =>{
                         <div className={"share-modal-link"} id={"share-link"}>
                             {shareUrl}
                         </div>
-                        <Button className={"important-btn"} onClick={()=>copyMockUrl("share-link")}>复制链接</Button>
+                        <Button className={"important-btn"} type="primary" onClick={()=>copyMockUrl("share-link")}>复制链接</Button>
                     </div>
 
                 </div>

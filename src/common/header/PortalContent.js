@@ -10,9 +10,9 @@ export const Page = (props)=>{
 
     return(
         <PageContent
-            AppLink={<AppLink/>}
-            HelpLink={<HelpLink/>}
-            AvatarLink={<AvatarLink {...props}/>}
+            AppLink={AppLink}
+            HelpLink={HelpLink}
+            AvatarLink={AvatarLink }
             {...props}
         />
     )

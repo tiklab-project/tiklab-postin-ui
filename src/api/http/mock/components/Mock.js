@@ -20,7 +20,7 @@ const Mock = (props) => {
             key: 'name',
             width:'20%',
             render:(text,record)=>(
-                <a onClick = {()=>setLocalStorage('mockId',record.id)}>{text}</a>
+                <span className={"link-text"} onClick = {()=>setLocalStorage('mockId',record.id)}>{text}</span>
             )
         },
         {

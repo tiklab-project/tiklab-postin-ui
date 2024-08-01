@@ -71,6 +71,7 @@ const MockEdit = (props) => {
                     className="important-btn"
                     onClick={showModal}
                     name={"添加MOCK"}
+                    type="primary"
                 />
                 : <IconCommon
                     icon={"bianji11"}
@@ -98,14 +99,14 @@ const MockEdit = (props) => {
                     name="name"
                     rules={[{  required: true,  message: '添加Mock名称!' }]}
                 >
-                    <Input />
+                    <Input placeholder={"请输入名称"}/>
                 </Form.Item>
 
                 <Form.Item
                     name="desc"
                     label="描述"
                 >
-                    <Input />
+                    <Input placeholder={"描述"}/>
                 </Form.Item>
             </Form>
         </Modal>

@@ -253,6 +253,7 @@ const ApiTestContent = (props) => {
                         className="important-btn"
                         onClick={onFinish}
                         loading={loading}
+                        type="primary"
                     >
                         发送
                     </Button>

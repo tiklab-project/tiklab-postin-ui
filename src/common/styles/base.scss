@@ -93,36 +93,26 @@ table .icon{
 }
 
 .important-btn{
-    background: var(--pi-base-color)!important;
-    color: #fff!important;
+    color: #f0f0f0!important;
     border-radius: var(--pi-border-radius);
     font-size: var(--pi-font-size-13);
 }
-
-
-.ant-modal-header{
-    padding: 20px 23px 0;
-    border: none;
+.ant-btn-primary{
+    background: var(--pi-base-color)!important;
+    font-weight: bold!important;
+}
+.ant-btn-default{
+    background: var(--pi-bg-grey-100)!important;
+    font-weight: bold!important;
+    color:#888!important;
 }
 
-.ant-modal-footer{
-    border: none;
 
 
-}
-
-.ant-modal-body{
-    padding: 5px 20px;
-
-    .ant-form-item{
-        margin: 20px 0;
-    }
-}
-
-.ant-form-item-label{
+.ant-form-item-label > label{
     font-weight: 600;
-    font-size: 12px;
-    color: #1d1d1d;
+    //font-size: 12px;
+    color: var(--pi-font-color-grey);
 }
 
 .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
@@ -312,32 +302,6 @@ table .icon{
 }
 
 
-.tabPane-item-box{
-    min-height: 120px;
-    //overflow: auto;
-
-    th{
-        background:  var(--pi-bg-color) !important;
-    }
-
-    .ant-table-thead>tr .ant-table-cell{
-        font-weight: var(--pi-font-weight-light);
-        padding: 7px;
-        font-size: 13px;
-    }
-
-    .newRow-action-hidden{
-        display: none;
-    }
-    .newRow-action-show{
-        display: block;
-    }
-
-    .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-        padding: 2px !important;
-    }
-}
-
 .content-margin{
     height: 100%;
     overflow: auto;
@@ -371,27 +335,22 @@ table .icon{
     font-weight: 600;
 }
 
-.ant-form-vertical .ant-form-item-label > label{
-    color: #6e6e6e;
-    font-size: 12px;
-}
-
 .header-title{
     font-weight: var(--pi-font-weight-title);
     font-size: var(--pi-font-size-13);
 }
 
 
-.ws-detail-main-content{
-    height: calc(100% - 48px);
+.main-content{
+    height: 100%;
     display: flex;
 }
+
 .ws-detail-contant{
     height: 100%;
     display: flex;
 }
 .ws-detail-left{
-    width: 80px;
     height: 100%;
     position:relative;
     background: var(--pi-bg-grey-100);
@@ -408,4 +367,118 @@ table .icon{
     text-overflow: ellipsis;
     vertical-align: middle;
     white-space: nowrap;
+}
+
+
+//去除对话框中的横线
+.ant-modal-content {
+    .ant-modal-body{
+        padding: 10px 24px;
+
+        .ant-form-item{
+            margin: 0 0 15px 0;
+        }
+    }
+    .ant-modal-header{
+        border: none;
+    }
+
+    .ant-modal-footer{
+        border: none;
+        padding:  10px 24px;
+    }
+}
+
+
+.tabPane-item-box{
+    min-height: 120px;
+    //overflow: auto;
+
+    th{
+        background:  var(--pi-bg-color) !important;
+    }
+
+    .ant-table-thead>tr .ant-table-cell{
+        font-weight: var(--pi-font-weight-light);
+        padding: 7px;
+        font-size: 13px;
+    }
+
+    .newRow-action-hidden{
+        display: none;
+    }
+    .newRow-action-show{
+        display: block;
+    }
+
+    .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
+        padding: 2px !important;
+    }
+
+    .ant-table-tbody > tr > td{
+        border-bottom: 1px solid var(--pi-border-color);
+    }
+
+    .ant-table-tbody > tr:last-child > td{
+        border-bottom:0;
+    }
+}
+
+
+
+.pi-list-box{
+    //border-bottom: 1px solid var(--pi-border-color);
+}
+
+.ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
+    padding: 8px;
+}
+
+.ant-table table{
+    border-bottom: 1px solid var(--pi-border-color);
+}
+
+.ant-table-thead > tr > th{
+    background: var(--pi-bg-color);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--pi-font-color-grey);
+}
+
+.ant-table-tbody > tr > td{
+    border-bottom: 0;
+}
+
+
+
+.ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
+    padding: 8px ;
+}
+
+.ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before{
+    content: none;
+}
+
+//空状态
+.ant-empty{
+    margin: 20px;
+}
+
+
+.product-logo-box{
+    display: flex;
+    align-items: center;
+    padding: 15px 24px;
+    gap: 10px;
+    cursor:pointer;
+
+    .product-logo{
+        width: var(--pi-icon-x);
+        height: var(--pi-icon-x);
+    }
+
+    .productName{
+        font-size: 20px;
+        font-weight: 600;
+    }
 }

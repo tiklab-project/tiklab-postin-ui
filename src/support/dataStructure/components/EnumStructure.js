@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { observer, inject } from "mobx-react";
 import {Space,  Popconfirm, Table, Empty} from 'antd';
-import emptyImg from "../../../assets/img/empty.png";
 import EnumStructureEdit from "./EnumStructureEdit";
 import enumParamDSStore from "../store/EnumParamDSStore";
 /**
@@ -95,9 +94,8 @@ const EnumStructure = (props) =>{
                 pagination={false}
                 locale={{
                     emptyText: <Empty
-                        imageStyle={{ height: 120 }}
+                        imageStyle={{ height: 100 }}
                         description={<span>暂无模型</span>}
-                        image={emptyImg}
                     />,
                 }}
             />

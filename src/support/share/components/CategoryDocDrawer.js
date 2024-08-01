@@ -93,7 +93,6 @@ const CategoryDocDrawer = (props) =>{
         <>
             <IconBtn
                 className="pi-icon-btn-grey"
-                icon={"rizhijilu"}
                 onClick={showDrawer}
                 name={"文档"}
             />
@@ -101,7 +100,7 @@ const CategoryDocDrawer = (props) =>{
                 title="文档预览"
                 placement="right"
                 onClose={onClose}
-                width={1230}
+                width={"80%"}
                 visible={open}
                 extra={
                     <ShareModal

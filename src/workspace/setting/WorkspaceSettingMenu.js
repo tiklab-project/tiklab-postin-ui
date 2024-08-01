@@ -57,9 +57,6 @@ const WorkspaceSettingMenu = (props) =>{
                          key={Item.id}
                          onClick={()=>selectKeyFun(Item.id)}
                     >
-                        <svg className="icon" aria-hidden="true">
-                            <use xlinkHref= {`#${Item.icon}`} />
-                        </svg>
                         <span >
                             {Item.title}
                         </span>
@@ -82,7 +79,7 @@ const WorkspaceSettingMenu = (props) =>{
                 <div className={"ws-side-menu"}>
                     <ul className="ws-menu-ul">
                         <li style={{
-                            padding: "10px 30px",
+                            padding: "10px 25px",
                             fontSize: "16px",
                             borderBottom: "1px solid #e4e4e4",
                             fontWeight: "bold",

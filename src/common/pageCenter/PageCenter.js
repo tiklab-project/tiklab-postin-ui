@@ -8,8 +8,8 @@ const PageCenter = (props) =>{
             <Col
                 md={{ span: 24, offset: 0 }}
                 lg={{ span: 20, offset: 2 }}
-                xl={{ span: 18, offset: 3 }}
-                xll={{ span: 16, offset: 4 }}
+                xl={{ span: 20, offset: 2 }}
+                xll={{ span: 18, offset: 3 }}
             >
                 {props.children}
             </Col>

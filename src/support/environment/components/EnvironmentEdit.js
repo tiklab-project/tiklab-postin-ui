@@ -80,6 +80,7 @@ const EnvironmentEdit = (props) => {
             return <Button
                 className={"important-btn"}
                 onClick={showModal}
+                type="primary"
             >
                 添加
             </Button>
@@ -120,7 +121,7 @@ const EnvironmentEdit = (props) => {
                             message: '添加环境名称'
                         }]}
                     >
-                        <Input />
+                        <Input placeholder={"请输入名称"}/>
                     </Form.Item>
                     <Form.Item
                         label="环境地址"

@@ -99,7 +99,7 @@ const WSAdd = (props) => {
                         name="name"
                         rules={[{ required: true, message: '输入接口名称!' }]}
                     >
-                        <Input />
+                        <Input placeholder="请输入接口名称"/>
                     </Form.Item>
                     <Form.Item
                         label="接口路径(ws://...)"
@@ -110,7 +110,7 @@ const WSAdd = (props) => {
                             pattern: "^wss?:\/\/.*"
                         }]}
                     >
-                        <Input />
+                        <Input placeholder="请输入接口路径"/>
                     </Form.Item>
                     <Form.Item
                         label="描述"

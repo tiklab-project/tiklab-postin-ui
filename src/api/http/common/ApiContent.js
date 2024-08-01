@@ -55,8 +55,8 @@ const ApiContent = (props) =>{
                                     icon={true}
                                 />
                                 <Dropdown overlay={moreMenu} overlayStyle={{width:"150px",height:"10px"}}>
-                                    <svg className="icon-s" aria-hidden="true" style={{cursor:"pointer"}}>
-                                        <use xlinkHref={`#icon-more`}/>
+                                    <svg className="icon-m" aria-hidden="true" style={{cursor:"pointer"}}>
+                                        <use xlinkHref={`#icon-gengduo`}/>
                                     </svg>
                                 </Dropdown>
 

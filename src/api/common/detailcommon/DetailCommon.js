@@ -78,7 +78,7 @@ const DetailCommon = (props) =>{
                     }
                     <Col span={11}>
                         <Form.Item label={"路径"} name="path" >
-                            <Input placeholder={"无"} />
+                            <Input placeholder={"未设置"} />
                         </Form.Item>
                     </Col>
                     <Col span={10}>

@@ -52,8 +52,8 @@ const WSContent = (props) =>{
                             </Space>
 
                             <Dropdown overlay={moreMenu}>
-                                <svg className="icon-s" aria-hidden="true" style={{cursor:"pointer"}}>
-                                    <use xlinkHref={`#icon-more`}/>
+                                <svg className="icon-m" aria-hidden="true" style={{cursor:"pointer"}}>
+                                    <use xlinkHref={`#icon-gengduo`}/>
                                 </svg>
                             </Dropdown>
 

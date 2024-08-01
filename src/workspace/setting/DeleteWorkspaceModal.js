@@ -56,7 +56,7 @@ const DeleteWorkspaceModal = (props) =>{
                     </div>
                     <div className={"ws-delete-input-title"}>请输入  <span className={"ws-delete-text-bold"}>{workspaceName}</span>  进行确认。</div>
 
-                    <Input onChange={onFinish} />
+                    <Input onChange={onFinish} placeholder={"请输入名称"}/>
                     <Button
                         type="primary"
                         danger

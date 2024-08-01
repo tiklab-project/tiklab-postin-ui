@@ -1,0 +1,209 @@
+.menu-box{
+    position:relative;
+    height: 100%;
+    background: var(--pi-bg-grey-100);
+    box-shadow: 3px 0 5px -5px rgb(0 0 0 / 30%);
+
+    .menu-box-flex{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: calc(100% - 70px);
+    }
+
+    .menu-box-nav{
+        width: 100%;
+        //height: 100%;
+
+        .menu-box-nav-item{
+            margin: 0 0 5px;
+        }
+
+        .menu-box-nav-item-box{
+            cursor: pointer;
+            border-left: 3px solid var(--pi-bg-grey-100);
+        }
+
+        .menu-box-nav-item-isExpanded{
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-box-nav-item-not-isExpanded{
+            padding: 10px ;
+        }
+
+        .menu-box-nav-item-box:hover{
+            background-color: var(--pi-hover-color);
+        }
+
+        .menu-box-nav-item-detail{
+            display: flex;
+            justify-content: center;
+        }
+        .selectlink{
+            background-color: var(--pi-action-color);
+            border-left: 3px solid var(--pi-base-color);
+        }
+
+        .ws-detail-left-nav-icon{
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    .menu-box-bottom{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+        .licence_dropdown{width: 100%}
+
+        .menu-box-bottom-item{
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 30px;
+            cursor: pointer;
+            width: 100%;
+
+
+            &:hover{
+                background: var(--pi-hover-color);
+            }
+        }
+
+        .menu-box-bottom-item-avatar{
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 24px;
+            cursor: pointer;
+            width: 100%;
+
+            &:hover{
+                background: var(--pi-hover-color);
+            }
+        }
+    }
+
+
+    .menu-box-nav-item-repository{
+        display: flex;
+        align-items: center;
+    }
+}
+
+.menu-box-isexpanded{
+    position: absolute;
+    top: 80%;
+    right: -20px;
+    transform: translateY(-50%);
+    background: #ebebeb;
+    border-radius: 5px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: right 0.3s;
+    border: 1px solid #d4dde8;
+    display: none;
+    z-index: 100;
+}
+
+
+.menu-box:hover .menu-box-isexpanded {
+    right: -8px;
+    display: block;
+}
+
+.menu-box-expended{
+    width: 200px;
+}
+
+.menu-box-not-expended{
+    width: 80px;
+}
+
+.ws-icon-box{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.more-menu-box{
+    padding: 10px;
+    width: 200px;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 22%);
+    background: #fff;
+    z-index: 10;
+    overflow: auto;
+
+    .more-menu-box-item{
+        padding: 8px;
+        margin: 0 0 5px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .more-menu-box-item-action{
+        background-color:  var(--pi-action-color);
+    }
+}
+
+.ws-hover-box{
+    //display: none;
+    width: 240px;
+    position: absolute;
+    top: -45px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 22%);
+    background: #fff;
+    z-index: 10;
+    overflow: auto;
+
+    .ws-hover-item{
+        border-radius: var(--pi-border-radius);
+        padding: 5px;
+        margin: 2px 0 0 0;
+        display: flex;
+        align-items: center;
+        height: 42px;
+    }
+
+    .ws-hover-item:hover{
+        background: var(--pi-hover-color);
+        cursor: pointer;
+    }
+
+    .ws-toggle-ws-select{
+        background: var(--pi-hover-color);
+        cursor: pointer;
+    }
+
+    .ws-hover-box-title{
+        border-bottom: 1px solid var(--pi-border-color);
+        padding: 0 0 5px 5px;
+        font-weight: 600;
+    }
+
+    .ws-icon-box-toggle-icon{
+        width: var(--pi-icon-s);
+        height: var(--pi-icon-s);
+    }
+
+    .ws-toggle-repository_more{
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+        background: var(--pi-bg-grey-100);
+    }
+
+}

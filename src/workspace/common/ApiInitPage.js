@@ -1,5 +1,5 @@
 import React from "react";
-import noneImg from "../../assets/img/nonedoc.png";
+import {Empty} from "antd";
 
 /**
  * 接口初始页
@@ -15,10 +15,10 @@ const ApiInitPage = (props) =>{
             "flex":1,
             "overflow":"hidden"
         }}>
-            <div>
-                <img src={noneImg} alt={"none-img"} width={200} />
-                <div style={{textAlign:"center"}}>点击目录查看</div>
-            </div>
+            <Empty
+                imageStyle={{height: 120}}
+                description={<span>点击目录查看</span>}
+            />
         </div>
     )
 }

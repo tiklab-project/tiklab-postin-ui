@@ -65,7 +65,7 @@ const JsonStructureEdit = (props) =>{
         if(props.btn==="btn"&&props.type==="add"){
            return <IconBtn
                    className="important-btn"
-                   icon={"xinzeng-copy"}
+                   type="primary"
                    onClick={showModal}
                    name={"添加"}
                />
@@ -115,7 +115,7 @@ const JsonStructureEdit = (props) =>{
                         rules={[{ required: true }]}
                         name="paramName"
                     >
-                        <Input />
+                        <Input placeholder={"请输入名称"}/>
                     </Form.Item>
                     <Form.Item
                         label="类型"

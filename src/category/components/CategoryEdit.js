@@ -92,7 +92,7 @@ const CategoryEdit =(props)=>{
                             name="name"
                             rules={[{ required: true, message: '添加目录名称!' }]}
                         >
-                            <Input />
+                            <Input  placeholder="请输入目录名称"/>
                         </Form.Item>
                     </Form>
                 </div>

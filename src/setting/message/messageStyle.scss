@@ -7,6 +7,23 @@
     padding: 5px!important;
 }
 
+.message-icon-box{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 30px;
+    cursor: pointer;
+    width: 100%;
+
+    &:hover{
+        background: var(--pi-hover-color);
+    }
+
+    .header-icon-item{
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
 
 .message-item{
     display: flex;

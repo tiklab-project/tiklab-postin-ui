@@ -58,13 +58,13 @@ const WSTestPage = () =>{
     const isConnectView = () =>{
 
         switch (readyState) {
-            case 1:return <Button className={"important-btn"} onClick={closeWs}>断开</Button>
+            case 1:return <Button className={"important-btn"} type="primary" onClick={closeWs}>断开</Button>
             case 0:
             case 2:
             case 3:
-                return <Button className={"important-btn"} onClick={connectFn}>连接</Button>
+                return <Button className={"important-btn"} type="primary" onClick={connectFn}>连接</Button>
             default:
-                return <Button className={"important-btn"} onClick={connectFn}>连接</Button>
+                return <Button className={"important-btn"} type="primary" onClick={connectFn}>连接</Button>
         }
 
     }
@@ -79,7 +79,7 @@ const WSTestPage = () =>{
                 {
                     isConnectView()
                 }
-                <Button className={"important-btn"} onClick={send}>发送</Button>
+                <Button className={"important-btn"} type="primary" onClick={send}>发送</Button>
             </div>
             <RequestTestWS type={type} />
             <div style={{margin:"10px 0 "}}>报文列表</div>

@@ -72,6 +72,7 @@ const DataStructureEdit = (props) => {
                         className="important-btn"
                         onClick={showModal}
                         name={"添加模型"}
+                        type="primary"
                     />
                     :  <IconCommon
                         icon={"bianji11"}
@@ -100,7 +101,7 @@ const DataStructureEdit = (props) => {
                         rules={[{ required: true }]}
                         name="name"
                     >
-                        <Input />
+                        <Input placeholder={"请输入名称"}/>
                     </Form.Item>
                     {/*<Form.Item*/}
                     {/*    label="类型"*/}

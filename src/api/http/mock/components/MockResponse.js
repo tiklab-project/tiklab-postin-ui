@@ -118,7 +118,7 @@ const MockResponse = (props) => {
                         </Form>
                         <div className={`${showBtn?"pi-show":"pi-hide"}`}>
                             <Button onClick={()=>setShowBtn(false)} style={{marginRight:"10px"}}> 取消</Button>
-                            <Button onClick={save} className={"important-btn"}> 保存</Button>
+                            <Button onClick={save} className={"important-btn"} type="primary"> 保存</Button>
                         </div>
                     </div>
                 </TabPane>

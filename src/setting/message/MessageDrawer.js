@@ -8,7 +8,7 @@ import TemplateList from "../../common/templateList/TemplateList";
 /**
  * 消息抽屉
  */
-const MessageDrawer = (props) =>{
+const MessageDrawer = ({isExpanded}) =>{
 
     const [initLoading, setInitLoading] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -208,10 +208,15 @@ const MessageDrawer = (props) =>{
 
 
     return (
-        <div className={"header-msg-box"}>
-            <Badge count={length}>
-                <BellOutlined className={"header-icon-item"} onClick={showDrawer}/>
-            </Badge>
+        <>
+            <div className={"message-icon-box"} onClick={showDrawer}>
+                <Badge count={length}>
+                    <BellOutlined className={"header-icon-item"} />
+                </Badge>
+                {
+                    isExpanded&&<div>消息</div>
+                }
+            </div>
             <Drawer
                 title="消息"
                 placement="right"
@@ -235,7 +240,7 @@ const MessageDrawer = (props) =>{
                     loadMore()
                 }
             </Drawer>
-        </div>
+        </>
     );
 }
 

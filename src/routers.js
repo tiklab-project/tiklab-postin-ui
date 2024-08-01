@@ -50,7 +50,6 @@ const ShareMain = AsyncComponent(() => import("./support/share/components/ShareM
 const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
 const EnvironmentTable = AsyncComponent(()=>import ("./support/environment/components/EnvironmentTable"))
 
-const SystemHome = AsyncComponent(() => import("./setting/system/SystemHome"));
 const SystemContent = AsyncComponent(() => import("./setting/system/SystemContent"));
 const Version = AsyncComponent(() => import("./setting/version/Version"));
 
@@ -126,11 +125,7 @@ const routers =  [
                 key:'systemManagement',
                 component:SystemContent,
                 routes:[
-                    {
-                        path:'/setting/home',
-                        exact: true,
-                        component:SystemHome,
-                    },
+
                     //成员与部门
                     {
                         path: "/setting/orga",
@@ -277,7 +272,7 @@ const routers =  [
                         path: "/setting",
                         key:'sysEnvMana',
                         exact: true,
-                        render: () => <Redirect to={"/setting/home"}/>,
+                        render: () => <Redirect to={"/setting/version"}/>,
                     },
                 ]
             },

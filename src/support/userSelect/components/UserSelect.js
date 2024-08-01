@@ -136,7 +136,6 @@ const UserSelect =(props) =>{
                     className='search-input'
                 />
                 <Table
-                    className="tablelist"
                     columns={columns}
                     dataSource={userSelectList}
                     rowKey={record => record.id}

@@ -35,12 +35,12 @@
 
     /*----项目内定义----*/
     --pi-base-color:var(--thoughtware-blue);  /*着重色*/
-    --pi-bg-grey-100:#f7f8f9;
+    --pi-bg-grey-100:#f8f8f8;
     --pi-bg-grey-200:#ededed;
     --pi-bg-color:var(--thoughtware-white);
 
-    --pi-hover-color:var(--thoughtware-gray-300); /*hover颜色*/
-    --pi-action-color:var(--thoughtware-gray-400); /*选中*/
+    --pi-hover-color: var(--thoughtware-gray-200); /*hover颜色*/
+    --pi-action-color: var(--thoughtware-gray-200); /*选中*/
 
 
     --pi-background-color:#f6f8fa;
@@ -62,10 +62,12 @@
 
     --pi-calc-content:calc(100% - 48px);
 
-    --pi-border-color:#091e4224; /*边框颜色*/
+    --pi-border-color: #ececec; /*边框颜色*/
     --pi-box-shadow: 0 3px 6px rgb(140 149 159 / 15%);  /*阴影*/
     --pi-border-radius:4px; /*边框圆角*/
     --pi-input-border:2px solid var(--thoughtware-gray-200);
+
+    --pi-font-color-grey: #888;
 
     --pi-font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI, Roboto,Oxygen,
     Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica,Arial,sans-serif; /* 字体

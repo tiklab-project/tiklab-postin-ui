@@ -3,7 +3,7 @@ import {inject, observer} from "mobx-react";
 import {Empty, Input, Space, Tooltip} from "antd";
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "thoughtware-core-ui";
-import {CloseOutlined, SearchOutlined} from "@ant-design/icons";
+import {SearchOutlined} from "@ant-design/icons";
 import {
     getMediaType,
     processFormParamData,
@@ -242,7 +242,7 @@ const LeftNavListQuickTest =(props)=>{
         <>
             <div className={"qt-left-header"}  style={{minWidth: "280px"}}>
                 <Input
-                    prefix={<SearchOutlined />}
+                    prefix={<SearchOutlined style={{fontSize:"16px"}} />}
                     placeholder={"搜索"}
                     onChange={debounce(onSearch,500)}
                     onPressEnter={onSearch}

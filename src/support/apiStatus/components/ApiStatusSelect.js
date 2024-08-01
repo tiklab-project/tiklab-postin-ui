@@ -69,14 +69,14 @@ const ApiStatusSelect = (props) =>{
             value={status}
             onChange={(e)=>selectStatus(e)}
             onFocus={clickSelect}
-            dropdownRender={item=>(
-                <>
-                    <div style={{"overflow":"auto"}}>{item}</div>
-
-                    <Divider style={{ margin: '8px 0' }} />
-                    <ApiStatusModal />
-                </>
-            )}
+            // dropdownRender={item=>(
+            //     <>
+            //         <div style={{"overflow":"auto"}}>{item}</div>
+            //
+            //         <Divider style={{ margin: '8px 0' }} />
+            //         <ApiStatusModal />
+            //     </>
+            // )}
             showArrow={showValidateStatus === "apiStatus"}
             suffixIcon={showValidateStatus === "apiStatus"?<CaretDownOutlined />:null}
             onMouseEnter={()=>{setShowValidateStatus("apiStatus")}}

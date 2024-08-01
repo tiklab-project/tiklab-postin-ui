@@ -74,6 +74,7 @@ const EnumStructureEdit = (props) =>{
                    className="important-btn"
                    onClick={showModal}
                    name={"添加"}
+                   type="primary"
                 />
         }
 
@@ -111,7 +112,7 @@ const EnumStructureEdit = (props) =>{
                         rules={[{ required: true }]}
                         name="paramName"
                     >
-                        <Input />
+                        <Input placeholder={"请输入名称"}/>
                     </Form.Item>
                     <Form.Item
                         label="类型"

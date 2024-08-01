@@ -75,7 +75,6 @@ const WorkspaceRecentHome = (props) =>{
                     ?<>{showRecent(dataList)}</>
                     : <Empty
                         description={<span>暂无访问</span>}
-                        image={emptyImg}
                     />
             }
         </div>

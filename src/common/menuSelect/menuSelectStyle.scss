@@ -13,7 +13,7 @@
     .ws-header-menu-item{
         padding: 8px 3px;
         cursor: pointer;
-        border-bottom:3px solid  #ffffff00;
+        border-bottom:2px solid  #ffffff00;
 
         span{
             font-size: var(--pi-font-size-14);
@@ -21,13 +21,13 @@
     }
 
     .ws-header-menu-item:hover{
-        border-bottom:3px solid  var(--pi-base-color);
+        border-bottom:2px solid  var(--pi-base-color);
         color:  var(--pi-base-color);
     }
 
     .ws-header-menu-item-selected{
         color:  var(--pi-base-color);
-        border-bottom:3px solid  var(--pi-base-color);
+        border-bottom:2px solid  var(--pi-base-color);
     }
 
     .ws-header-menu-input{

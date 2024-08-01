@@ -128,16 +128,16 @@ const APIEdit = (props) => {
                     <Form.Item
                         label="接口名称"
                         name="name"
-                        rules={[{ required: true, message: '输入接口名称!' }]}
+                        rules={[{ required: true, message: '输入接口名称' }]}
                     >
-                        <Input />
+                        <Input placeholder="请输入接口名称"/>
                     </Form.Item>
                     {
                         apiInfo?.protocolType==="http"
                             ?<Form.Item
                                 label="请求方式"
                                 name="methodType"
-                                rules={[{ required: true, message: 'Please input your request!' }]}
+                                rules={[{ required: true, message: '请输入请求方式' }]}
                             >
                                 <Select>
                                     {
@@ -150,9 +150,9 @@ const APIEdit = (props) => {
                     <Form.Item
                         label="接口路径"
                         name="path"
-                        rules={[{ required: true, message: '输入接口路径!' }]}
+                        rules={[{ required: true, message: '输入接口路径' }]}
                     >
-                        <Input />
+                        <Input placeholder="请输入路径"/>
                     </Form.Item>
                     <Form.Item
                         label="描述"

@@ -177,6 +177,7 @@ const ApxMethodEdit = (props) => {
                 className="important-btn"
                 onClick={showModal}
                 name={"添加接口"}
+                type="primary"
             />
         }
 
@@ -223,7 +224,7 @@ const ApxMethodEdit = (props) => {
                         props.tab && <Form.Item
                             label="分组"
                             name="category"
-                            rules={[{ required: true, message: 'Please input your category!' }]}
+                            rules={[{ required: true, message: '请选择分组' }]}
                         >
                             <Cascader
                                 fieldNames={{ label: 'name', value: 'id', children: 'children' }}
@@ -238,14 +239,14 @@ const ApxMethodEdit = (props) => {
                     <Form.Item
                         label="接口名称"
                         name="name"
-                        rules={[{ required: true, message: 'Please input your interfacename!' }]}
+                        rules={[{ required: true, message: '请输入接口名称' }]}
                     >
-                        <Input />
+                        <Input placeholder="请输入接口名称"/>
                     </Form.Item>
                     <Form.Item
                         label="请求方式"
                         name="methodType"
-                        rules={[{ required: true, message: 'Please input your request!' }]}
+                        rules={[{ required: true, message: '请选择请求方式' }]}
                     >
                         <Select>
                             {
@@ -264,7 +265,7 @@ const ApxMethodEdit = (props) => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input placeholder="请输入接口路径"/>
                     </Form.Item>
                     <Form.Item
                         label="描述"

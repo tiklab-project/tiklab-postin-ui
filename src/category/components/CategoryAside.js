@@ -47,7 +47,7 @@ const CategoryAside = (props) => {
                 <div className='ws-detail-menu'>
                     <div className="ws-detail-menu-serchbtn" style={{minWidth: "280px"}}>
                         <Input
-                            prefix={<SearchOutlined />}
+                            prefix={<SearchOutlined style={{fontSize:"16px"}} />}
                             placeholder="搜索"
                             onPressEnter={onSearch}
                             onChange={debounce(onSearch,500)}

@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import {Input, Space, Table} from "antd";
+import {Col,Row, Input, Space, Table} from "antd";
 import DataStructureEdit from "./DataStructureEdit";
 import { observer} from "mobx-react";
 import "./structureStyle.scss"
@@ -8,7 +8,6 @@ import {SearchOutlined} from "@ant-design/icons";
 import dataStructureStore from "../store/DataStructureStore";
 import HideDelete from "../../../api/common/hideDelete/HideDelete";
 import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
-import PageCenter from "../../../common/pageCenter/PageCenter";
 
 /**
  * @description：数据结构页
@@ -22,20 +21,20 @@ const DataStructure = (props) => {
             title:`名称`,
             dataIndex: "name",
             key: "name",
-            width: '25%',
-            render:(text,record)=> <a onClick = {()=>toModeDetail(record.id)}>{text}</a>
+            width: '45%',
+            render:(text,record)=> <span className={"link-text"} onClick = {()=>toModeDetail(record.id)}>{text}</span>
         },
         {
             title: `类型`,
             dataIndex: "dataType",
             key: "dataType",
-            width: '20%',
+            width: '15%',
         },
         {
             title: `创建人`,
             dataIndex: "createUser",
             key: "user",
-            width: '20%',
+            width: '15%',
             render: (text, record) => (
                 <div className={"ws-user-item"}>
                     {/*<Profile userInfo={record.createUser}/>*/}
@@ -52,7 +51,7 @@ const DataStructure = (props) => {
         {
             title: `操作`,
             key: "action",
-            width: '15%',
+            width: '10%',
             render: (text, record) => (
                 <Space size="middle">
                     <DataStructureEdit
@@ -233,7 +232,13 @@ const DataStructure = (props) => {
 
 
     return(
-        <PageCenter>
+        <Row style={{height:"100%"}}>
+            <Col
+                md={{ span: 24, offset: 0 }}
+                lg={{ span: 20, offset: 2 }}
+                xl={{ span: 18, offset: 3 }}
+                xll={{ span: 16, offset: 4 }}
+            >
             <div className={"page-center"}>
                 <DetailHeader
                     left={<span>数据结构</span>}
@@ -244,7 +249,7 @@ const DataStructure = (props) => {
                 <div className={"flex-box"}>
                     <div className={"flex-box structure-header-box"}>
                         <Input
-                            prefix={<SearchOutlined />}
+                            prefix={<SearchOutlined style={{fontSize:"16px"}} />}
                             placeholder={`搜索名称`}
                             onPressEnter={onSearch}
                             onChange={debounce(onSearch,500) }
@@ -270,7 +275,7 @@ const DataStructure = (props) => {
                     </div>
                 </div>
 
-                <div className={"out-table-box"}>
+                <div className={"pi-list-box"}>
                     <Table
                         columns={columns}
                         dataSource={dataStructureList}
@@ -279,7 +284,8 @@ const DataStructure = (props) => {
                     />
                 </div>
             </div>
-        </PageCenter>
+            </Col>
+        </Row>
     )
 }
 

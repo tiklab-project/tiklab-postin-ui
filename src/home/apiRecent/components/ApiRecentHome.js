@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {getUser} from "thoughtware-core-ui";
 import {inject, observer} from "mobx-react";
 import {Empty, List, Skeleton, Tag} from "antd";
-import emptyImg from "../../../assets/img/empty.png";
 import IconCommon from "../../../common/IconCommon";
 import apiRecentStore from "../store/ApiRecentStore";
 /**
@@ -52,9 +51,8 @@ const ApiRecentHome = (props) =>{
             dataSource={dataList}
             locale={{
                 emptyText: <Empty
-                    imageStyle={{ height: 120 }}
+                    imageStyle={{ height: 100 }}
                     description={<span>暂无动态</span>}
-                    image={emptyImg}
                 />,
             }}
             renderItem={(item) => (

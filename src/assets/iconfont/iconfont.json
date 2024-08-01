@@ -6,11 +6,25 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "11855580",
-      "name": "新建",
-      "font_class": "xinjian",
-      "unicode": "e60c",
-      "unicode_decimal": 58892
+      "icon_id": "27438071",
+      "name": "更换皮肤",
+      "font_class": "genghuanpifu",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "8104060",
+      "name": "九宫格",
+      "font_class": "jiugongge",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "32549025",
+      "name": "环节变动",
+      "font_class": "huanjiebiandong",
+      "unicode": "e625",
+      "unicode_decimal": 58917
     },
     {
       "icon_id": "3435341",
@@ -46,13 +60,6 @@
       "font_class": "liaotian",
       "unicode": "e615",
       "unicode_decimal": 58901
-    },
-    {
-      "icon_id": "27400967",
-      "name": "用户",
-      "font_class": "user1",
-      "unicode": "ed68",
-      "unicode_decimal": 60776
     },
     {
       "icon_id": "27400970",

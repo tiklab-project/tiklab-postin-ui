@@ -86,14 +86,14 @@ const SaveToApi = (props) =>{
                     layout={"vertical"}
                 >
                     <Form.Item
-                        label="用例名称"
+                        label="名称"
                         name="name"
                         rules={[{
                             required: true,
-                            message: '添加用例名称!'
+                            message: '添加名称!'
                         }]}
                     >
-                        <Input />
+                        <Input placeholder={"请输入名称"}/>
                     </Form.Item>
                     <Form.Item
                         label="分组"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
-import { DownOutlined,UpOutlined} from '@ant-design/icons';
+import {DownOutlined, LeftCircleOutlined, UpOutlined} from '@ant-design/icons';
 import { PrivilegeButton,SystemNav } from "thoughtware-privilege-ui";
 import './sysMana.scss'
 import {getUser} from "thoughtware-core-ui";
@@ -38,10 +38,9 @@ const SysManage = (props) => {
     const select = (key) => {
         if (!authConfig.authType) {
             if (specialKeys.includes(key)) {
-                let value = key.substring(8);
                 let authServiceUrl = authConfig.authServiceUrl
                 let ticket = getUser().ticket
-                let url = `${authServiceUrl}#/user${value}?ticket=${ticket}`;
+                let url = authServiceUrl +"#"+key+"?ticket="+ticket
 
                 window.open(url, "_blank");
                 return;
@@ -90,17 +89,18 @@ const SysManage = (props) => {
                         key={data.id}
                         className={` orga-aside-li ${data.id=== selectKey ? "orga-aside-select" : null}`}
                         onClick={()=>select(data.id)}
-                        style={{paddingLeft:`${deep*20}px`}}
+                        style={{paddingLeft:`${deep*25}px`}}
                     >
                         <div className={'aside-li'} >
                             <div>
-                                {/*{*/}
-                                {/*    isFirst*/}
-                                {/*        ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">*/}
-                                {/*            <use xlinkHref= {`#icon-${data.icon}`} />*/}
-                                {/*        </svg>*/}
-                                {/*        :null*/}
-                                {/*}*/}
+                                {
+                                    isFirst
+                                    &&<IconCommon
+                                            icon={data.icon}
+                                            className={"icon-m"}
+                                            style={{margin:"0 5px 0 0"}}
+                                        />
+                                }
                                 {data.title}
                             </div>
                             {
@@ -116,17 +116,19 @@ const SysManage = (props) => {
                 key={data.id}
                 className={` orga-aside-li ${data.id=== selectKey ? "orga-aside-select" : null}`}
                 onClick={()=>select(data.id)}
-                style={{paddingLeft:`${deep*20}px`}}
+                style={{paddingLeft:`${deep*25}px`}}
             >
                 <div className={'aside-li'} >
                     <div>
-                        {/*{*/}
-                        {/*    isFirst*/}
-                        {/*        ?<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">*/}
-                        {/*            <use xlinkHref= {`#icon-${data.icon}`} />*/}
-                        {/*        </svg>*/}
-                        {/*        :null*/}
-                        {/*}*/}
+                        {
+                            isFirst
+                                ?<IconCommon
+                                    icon={data.icon}
+                                    className={"icon-m"}
+                                    style={{margin:"0 5px 0 0"}}
+                                />
+                                :null
+                        }
                         {data.title}
                     </div>
                     {
@@ -151,9 +153,11 @@ const SysManage = (props) => {
                              style={{paddingLeft:`${deep*20}px`}}
                         >
                             <div className={"menu-name-icon"}>
-                                {/*<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">*/}
-                                {/*    <use xlinkHref= {`#icon-${icon}`} />*/}
-                                {/*</svg>*/}
+                                <IconCommon
+                                    icon={icon}
+                                    className={"icon-m"}
+                                    style={{margin:"0 5px 0 0"}}
+                                />
                                 <span key={id}> {title}</span>
                             </div>
                             <div className="orga-aside-item-icon">
@@ -188,9 +192,11 @@ const SysManage = (props) => {
                          style={{paddingLeft:`${deep*20}px`}}
                     >
                         <div className={"menu-name-icon"}>
-                            {/*<svg style={{width:16,height:16,margin:"0 5px 0 0"}} aria-hidden="true">*/}
-                            {/*    <use xlinkHref= {`#icon-${icon}`} />*/}
-                            {/*</svg>*/}
+                            <IconCommon
+                                icon={icon}
+                                className={"icon-m"}
+                                style={{margin:"0 5px 0 0"}}
+                            />
                             <span key={id}>{title}</span>
                         </div>
                         <div className="orga-aside-item-icon">
@@ -239,17 +245,23 @@ const SysManage = (props) => {
             <Layout className = 'sysmana-layout'>
                 <Sider
                     className = 'sysmana-sider'
-                    width={240}
+                    width={220}
                     theme={'light'}
                 >
                     <div className="thoughtware-orga-aside">
+                        <div
+                             style={{
+                                 borderBottom:"1px solid #e4e4e4",
+                                 padding:"10px 15px 10px 30px",
+                             }}
+                        >
+                            <div style={{fontWeight:"bold",display:"flex",gap:"5px",alignItems:"center"}}>
+                                <LeftCircleOutlined style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>props.history.push("/home")}/>
+                                设置
+                            </div>
+                        </div>
+
                         <ul style={{padding: 0}} >
-                            <li style={{
-                                borderBottom:"1px solid #e4e4e4",
-                                padding:"10px 28px",
-                                fontWeight:"bold",
-                            }}
-                            >设置</li>
                             {
                                 showUlView(menuRouter)
                             }

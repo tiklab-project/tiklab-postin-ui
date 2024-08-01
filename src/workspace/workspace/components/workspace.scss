@@ -16,36 +16,6 @@ ul{
 
 
 
-.pi-list-box{
-    border-bottom: 1px solid var(--pi-border-color);
-
-    .ant-table-thead > tr > th, .ant-table-tbody > tr > td, .ant-table tfoot > tr > th, .ant-table tfoot > tr > td{
-        padding: 8px;
-    }
-
-    .ant-table-thead > tr > th{
-        background:var(--pi-bg-color);
-        font-weight: 600;
-        font-size: 12px;
-    }
-
-    .ant-table-tbody > tr > td{
-        border-bottom: 0;
-    }
-
-    .tablelist  .ant-spin-nested-loading .ant-spin-container .ant-table-container .ant-table-tbody{
-        border-bottom: 1px solid var(--pi-border-color);
-    }
-
-    .ant-table-tbody>tr>td,  .ant-table tfoot>tr>td, .ant-table tfoot>tr>th{
-        padding: 8px ;
-    }
-
-    .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before{
-        content: none;
-    }
-}
-
 .ws-user-item{
     display: flex;
     align-items: center;
@@ -101,6 +71,7 @@ ul{
         cursor: pointer;
         border-radius: var(--pi-border-radius);
         margin: 5px;
+        padding: 0 20px;
     }
 
     .ws-menu-li:hover{
@@ -157,15 +128,15 @@ ul{
 
 
     .ws-edit-box{
-        height: 100%;
         border-radius: var(--pi-border-radius);
-        padding: 10px;
 
         .ant-form{
-            margin: 0 10px;
-
             .ant-form-item{
-                margin: 15px 0;
+                margin:  0 0 15px 0;
+            }
+
+            .ant-col-0{
+                display: block;
             }
         }
 
@@ -174,7 +145,9 @@ ul{
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 13px 13px 0;
+            margin: 10px 0;
+
+
             &-title{
                 font-weight: var(--pi-font-weight-title);
                 font-size: var(--thoughtware-font-16);
@@ -184,6 +157,7 @@ ul{
         .ws-edit-form-input{
             .ant-input{
                 height: 40px;
+                border-radius: var(--pi-border-radius);
             }
 
 
@@ -197,7 +171,7 @@ ul{
         }
 
         .ws-edit-box-footer{
-            padding: 10px;
+            padding: 10px 0;
             display: flex;
 
             .ws-edit-box-footer-btn{
@@ -207,9 +181,6 @@ ul{
             }
         }
 
-        .ant-input{
-            border-radius: var(--pi-border-radius);
-        }
     }
 }
 .ws-edit-box-select{

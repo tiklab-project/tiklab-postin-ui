@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import EnumParamDS from './EnumStructure';
-import JsonParamDS from "./JsonStructure";
 import {inject, observer} from "mobx-react";
 import {Breadcrumb} from "antd";
 import dataStructureStore from "../store/DataStructureStore";
 import JsonStructure from "./JsonStructure";
+import PageCenter from "../../../common/pageCenter/PageCenter";
 /**
  * 结构页详情
  */
@@ -32,6 +31,7 @@ const StructureDetail = (props) => {
     }
 
     return(
+        <PageCenter>
         <div className={"structure-content"}>
             <div className={"structure-content-box"}>
                 <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
@@ -46,9 +46,8 @@ const StructureDetail = (props) => {
                     <JsonStructure />
                 </div>
             </div>
-
-
         </div>
+        </PageCenter>
     )
 }
 

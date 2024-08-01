@@ -117,14 +117,14 @@ const ResponseTabEdit =(props)=>{
                     <Form.Item
                         label="名称 "
                         name="name"
-                        rules={[{ required: true, message: '添加名称!' }]}
+                        rules={[{ required: true, message: '添加名称' }]}
                     >
-                        <Input  />
+                        <Input placeholder={"添加名称"} />
                     </Form.Item>
                     <Form.Item
                         label="数据类型"
                         name="dataType"
-                        rules={[{ required: true, message: '添加数据类型!' }]}
+                        rules={[{ required: true, message: '添加数据类型' }]}
                     >
                         <Radio.Group value={"json"}>
                             <Radio value={"json"}>json</Radio>

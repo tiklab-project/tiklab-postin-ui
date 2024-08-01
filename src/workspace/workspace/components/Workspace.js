@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './workspace.scss';
-import {Input} from "antd";
+import {Col,Row, Input} from "antd";
 import {inject, observer} from "mobx-react";
 import WorkspaceList from "./WorkspaceList";
 import {SearchOutlined} from "@ant-design/icons";
@@ -10,7 +10,6 @@ import workspaceFollowStore from "../store/WorkspaceFollowStore";
 import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
 import {getUser} from "thoughtware-core-ui";
 import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
-import PageCenter from "../../../common/pageCenter/PageCenter";
 /**
  * 空间页
  */
@@ -106,7 +105,13 @@ const Workspace = (props) => {
 
     return(
         <div style={{"height":"100%",overflow:"auto"}}>
-            <PageCenter>
+            <Row style={{height:"100%"}}>
+                <Col
+                    md={{ span: 24, offset: 0 }}
+                    lg={{ span: 20, offset: 2 }}
+                    xl={{ span: 18, offset: 3 }}
+                    xll={{ span: 16, offset: 4 }}
+                >
                 <div className='ws-layout'>
                         <div
                             style={{
@@ -121,6 +126,7 @@ const Workspace = (props) => {
                                 className="important-btn"
                                 onClick={toWorkspaceEdit}
                                 name={"添加空间"}
+                                type="primary"
                             />
                         </div>
 
@@ -133,7 +139,7 @@ const Workspace = (props) => {
                             selectItem={selectTab}
                             right={
                                 <Input
-                                    prefix={<SearchOutlined />}
+                                    prefix={<SearchOutlined style={{fontSize:"16px"}}/>}
                                     placeholder={`搜索空间`}
                                     onPressEnter={onSearch}
                                     className={"ws-header-menu-input"}
@@ -152,7 +158,8 @@ const Workspace = (props) => {
                             />
                         </div>
                     </div>
-            </PageCenter>
+                </Col>
+            </Row>
         </div>
     )
 }
