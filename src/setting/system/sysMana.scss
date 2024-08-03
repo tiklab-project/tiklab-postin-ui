@@ -1,15 +1,32 @@
 .sysmana-layout{
     height: 100%;
 
-    .search-add{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .system-header{
+        border-bottom:1px solid #e3e3e3;
+        padding: 8px 0 0 0;
 
-        .addmodel {
-            margin: 0 10px;
+        .system-header-item{
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            padding: 7px 20px;
         }
+
+        .system-header-title{
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .system-header-back-home{
+            cursor: pointer;
+
+            &:hover{
+                background: var(--pi-hover-color);
+            }
+        }
+
     }
+
 
     .thoughtware-orga-aside {
         height: 100%;
@@ -27,7 +44,7 @@
 
         .aside-li{
             cursor: pointer;
-            padding: 0 15px 0 30px;
+            padding: 0 15px 0 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;

@@ -4,7 +4,7 @@ import categoryStore from "../../../../category/store/CategoryStore";
 import {observer} from "mobx-react";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "../../../../workspace/workspace/components/WorkspaceFn";
 import {TextMethodType} from "../../../MethodType";
-import {Space} from "antd";
+import {Empty, Space} from "antd";
 import {useHistory} from "react-router";
 import apiRecentStore from "../../../../home/apiRecent/store/ApiRecentStore";
 
@@ -13,7 +13,7 @@ const ShowSearchResult = (props)=>{
         workspaceRecentList,apiRecentList,
         isSearch,
         workspaceSearchList,apiSearchList,
-        setToggleSearch
+        setIsModalOpen
     } = props;
     const {workspaceRecent}=workspaceRecentStore;
     const {apiRecent}=apiRecentStore;
@@ -28,7 +28,7 @@ const ShowSearchResult = (props)=>{
         toWorkspaceDetail(id,workspaceRecent,"/workspace/quick/test")
         history.push('/workspace/quick/test');
 
-        setToggleSearch(false);
+        setIsModalOpen(false);
 
     }
 
@@ -52,7 +52,7 @@ const ShowSearchResult = (props)=>{
             history.push('/workspace/apis/ws/document');
         }
 
-        setToggleSearch(false);
+        setIsModalOpen(false);
     }
 
     const showWorkspaceItem = (list)=>{
@@ -148,7 +148,12 @@ const ShowSearchResult = (props)=>{
                             <div className="search-title">空间: </div>
                             <div style={{"minHeight": 50}}>
                                 {
-                                    showWorkspaceItem(workspaceSearchList)
+                                    workspaceSearchList&&workspaceSearchList.length>0
+                                        ? showWorkspaceItem(workspaceSearchList)
+                                        : <Empty
+                                            imageStyle={{ height: 60 }}
+                                            description={<span>暂无空间</span>}
+                                        />
                                 }
                             </div>
 
@@ -157,7 +162,12 @@ const ShowSearchResult = (props)=>{
                             <div className="search-title">接口:</div>
                             <div style={{"minHeight": 50}}>
                                 {
-                                    showApiItem(apiSearchList)
+                                    apiSearchList&&apiSearchList.length>0
+                                        ?showApiItem(apiSearchList)
+                                        :<Empty
+                                            imageStyle={{ height: 60 }}
+                                            description={<span>暂无接口</span>}
+                                        />
                                 }
                             </div>
                         </div>
@@ -167,7 +177,12 @@ const ShowSearchResult = (props)=>{
                             <div className="search-title">最近访问空间: </div>
                             <div style={{"minHeight": 50}}>
                                 {
-                                    showRecentWorkspaceItem(workspaceRecentList)
+                                    workspaceRecentList&&workspaceRecentList.length>0
+                                        ?showRecentWorkspaceItem(workspaceRecentList)
+                                        :<Empty
+                                            imageStyle={{ height: 60 }}
+                                            description={<span>暂无空间</span>}
+                                        />
                                 }
                             </div>
 
@@ -176,7 +191,12 @@ const ShowSearchResult = (props)=>{
                             <div className="search-title">最近访问接口:</div>
                             <div style={{"minHeight": 50}}>
                                 {
-                                    showRecentApiItem(apiRecentList)
+                                    apiRecentList&&apiRecentList.length>0
+                                        ? showRecentApiItem(apiRecentList)
+                                        :<Empty
+                                            imageStyle={{ height: 60 }}
+                                            description={<span>暂无空间</span>}
+                                        />
                                 }
                             </div>
                         </div>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Badge, Drawer} from "antd";
+import {Badge, Drawer, Tooltip} from "antd";
 import {BellOutlined} from "@ant-design/icons";
 import {Axios, getUser} from "thoughtware-core-ui";
 import "./messageStyle.scss"
@@ -8,7 +8,7 @@ import TemplateList from "../../common/templateList/TemplateList";
 /**
  * 消息抽屉
  */
-const MessageDrawer = ({isExpanded}) =>{
+const MessageDrawer = ({isExpanded,themeColor}) =>{
 
     const [initLoading, setInitLoading] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -209,23 +209,32 @@ const MessageDrawer = ({isExpanded}) =>{
 
     return (
         <>
-            <div className={"message-icon-box"} onClick={showDrawer}>
-                <Badge count={length}>
-                    <BellOutlined className={"header-icon-item"} />
-                </Badge>
-                {
-                    isExpanded&&<div>消息</div>
-                }
-            </div>
+            {isExpanded
+                ? <div className={`message-icon-box message-icon-${themeColor}`} onClick={showDrawer}>
+                    <Badge count={length}>
+                        <BellOutlined className={"header-icon-item"}/>
+                    </Badge>
+                    <div>消息</div>
+                </div>
+                : <Tooltip placement="right" title={"消息"}>
+                    <div className={`message-icon-box  message-icon-${themeColor} message-icon-box-not-isExpanded`} onClick={showDrawer}>
+                        <Badge count={length}>
+                            <BellOutlined className={"header-icon-item"}/>
+                        </Badge>
+                    </div>
+                </Tooltip>
+            }
             <Drawer
                 title="消息"
-                placement="right"
+                placement="left"
                 onClose={onClose}
                 visible={open}
-                mask={false}
                 width={360}
                 maskStyle={{background:"transparent"}}
-                contentWrapperStyle={{top:48,height:"calc(100% - 48px)"}}
+                contentWrapperStyle={{
+                    transform:isExpanded?"translateX(200px)":"translateX(75px)",
+                    transition: "all 0s"
+                }}
                 extra={
                     <div className={"msg-select-box"}>
                         {

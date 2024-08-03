@@ -43,17 +43,11 @@ const LeftNav = (props) =>{
             "router":"/workspace/apis"
         },
         {
-            "icon":"ico-",
+            "icon":"datamodel",
             "name":"数据结构",
             "key":"dataStructure",
             "router":"/workspace/dataStructure"
-        },
-        {
-            "icon":"setting",
-            "name":"设置",
-            "key":"setting",
-            "router":"/workspace/setting"
-        },
+        }
     ]
 
 
@@ -62,6 +56,7 @@ const LeftNav = (props) =>{
     const workspaceId = localStorage.getItem("workspaceId")
     const [recentList, setRecentList] = useState([]);
     const [workspaceName, setWorkspaceName] = useState();
+    let userId = getUser().userId
 
     useEffect(async ()=>{
         let info = await findWorkspace(workspaceId)
@@ -69,70 +64,6 @@ const LeftNav = (props) =>{
 
         systemRoleStore.getInitProjectPermissions(getUser().userId, workspaceId)
     },[workspaceId])
-
-    /**
-     * 点击快捷测试初始化的tap
-     */
-    const addQuickTestTabInfo = (router) =>{
-        if(router==="/workspace/quick"){
-            localStorage.setItem("instanceId","-1")
-        }
-    }
-
-
-    const showToggleRepository = (isExpanded)=> (
-        <>
-            <li className={`menu-box-nav-item-workspace `} >
-                <Tooltip placement="right" title={workspaceName}>
-                <Dropdown
-                        overlay={()=>toggleWorkspaceView(isExpanded)}
-                        trigger={['click']}
-                        visible={visible}
-                        onOpenChange={openToggleWorkspace}
-                    >
-                    <div style={{padding:`15px  0 15px 24px`}} className={`ws-icon-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
-                        <div style={{"cursor":"pointer"}}>
-                            <ShowWorkspaceIcon url={workspaceIcon} className={"workspace-icon icon-bg-border"}  width={30}/>
-                        </div>
-                        {
-                            isExpanded&& <div>{workspaceName}</div>
-                        }
-
-                        <IconCommon
-                            style={{"cursor":"pointer"}}
-                            className={"icon-s"}
-                            icon={"xiala"}
-                            />
-                        </div>
-                    </Dropdown>
-                </Tooltip>
-            </li>
-            <li
-                className={`menu-box-nav-item `}
-                style={{
-                    borderBottom: "1px solid #e4e4e4",
-                    margin: "0 0 10px 0"
-                }}
-                onClick={()=> {
-                    history.push("/home")
-                    localStorage.setItem("LEFT_MENU_SELECT","/home");
-                }}
-            >
-                <div className={`
-                    menu-box-nav-item-box
-                  ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}
-                `}>
-                    <div className={"menu-box-nav-item-detail"}>
-                        <LeftCircleOutlined style={{fontSize:"18px",margin:"0 5px 0 6px"}}/>
-                    </div>
-                    <div  className={"menu-box-nav-item-detail"}>
-                        返回主页
-                    </div>
-                </div>
-            </li>
-        </>
-    )
-
 
     const openToggleWorkspace = async () =>{
         setVisible(!visible)
@@ -165,7 +96,7 @@ const LeftNav = (props) =>{
      * 展示切换的空间
      */
     const toggleWorkspaceView =(isExpanded)=> (
-        <div className={"ws-hover-box"} style={{left:`${isExpanded?"200px":"81px"}`}}>
+        <div className={"ws-hover-box"} style={{left:`${isExpanded?"200px":"75px"}`}}>
             <div style={{ padding: "10px"}}>
                 <div className={"ws-hover-box-title"}>切换空间</div>
                 <div style={{height:"210px"}}>
@@ -205,6 +136,63 @@ const LeftNav = (props) =>{
         setVisible(false)
     }
 
+    const showToggleRepository = (isExpanded,themeColor)=> (
+        <>
+            <li className={`menu-box-nav-item-workspace `} >
+                <Tooltip placement="right" title={workspaceName}>
+                <Dropdown
+                        overlay={()=>toggleWorkspaceView(isExpanded)}
+                        trigger={['click']}
+                        visible={visible}
+                        onOpenChange={openToggleWorkspace}
+                    >
+                    <div style={{padding:`15px  0 15px 21px`}} className={`ws-icon-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
+                        <div style={{"cursor":"pointer"}}>
+                            <ShowWorkspaceIcon url={workspaceIcon} className={"icon-x icon-bg-border"}  width={30}/>
+                        </div>
+                        {
+                            isExpanded&& <div className={"text-ellipsis"} style={{maxWidth:"100px"}}>{workspaceName}</div>
+                        }
+
+                        <IconCommon
+                            style={{
+                                cursor:"pointer",
+                                width:"12px",
+                                height:"12px",
+                                marginLeft:"3px"
+                            }}
+                            icon={"xiala"}
+                        />
+                        </div>
+                    </Dropdown>
+                </Tooltip>
+            </li>
+            <li
+                className={`menu-box-nav-item `}
+                style={{
+                    borderBottom:themeColor==="theme-default"?"1px solid #e3e3e3":"1px solid #f6f7f81a",
+                    margin: "0 0 10px 0"
+                }}
+                onClick={()=> {
+                    history.push("/home")
+                    localStorage.setItem("LEFT_MENU_SELECT","/home");
+                }}
+            >
+                <div className={`menu-box-nav-item-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
+                    <div className={"menu-box-nav-item-detail"}>
+                        <LeftCircleOutlined style={{fontSize:"18px",margin:"0 5px 0 8px"}}/>
+                    </div>
+                    <div  className={"menu-box-nav-item-detail"}>
+                        返回主页
+                    </div>
+                </div>
+            </li>
+        </>
+    )
+
+
+
+
 
 
     return(
@@ -212,6 +200,7 @@ const LeftNav = (props) =>{
             menuData={menuData}
             diffHeader={showToggleRepository}
             workspaceId={workspaceId}
+            settingRouter={"/workspace/setting"}
         />
     )
 }

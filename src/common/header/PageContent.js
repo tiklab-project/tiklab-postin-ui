@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import HeaderContent from "./HeaderContent";
 import {renderRoutes} from "react-router-config";
 import {getUser} from "thoughtware-core-ui";
 import './portalStyle.scss'
@@ -11,7 +10,6 @@ import "../../assets/iconfont/iconfont.css";
 import {inject, observer} from "mobx-react";
 import {SYSTEM_ROLE_STORE} from 'thoughtware-privilege-ui/es/store';
 import {useHistory} from "react-router";
-import WorkspaceAddModal from "../../workspace/workspace/components/WorkspaceAddModal";
 import LeftMenuCommon from "../LeftMenuCommon/LeftMenuCommon";
 
 /**
@@ -30,13 +28,11 @@ const PageContent =(props)=> {
         localStorage.setItem("LEFT_MENU_SELECT","/home")
     },[])
 
-
     useEffect(() => {
          if (user.userId) {
              props.systemRoleStore.getSystemPermissions(user.userId)
          }
      }, [user])
-
 
     const menuData = [
         {
@@ -52,12 +48,6 @@ const PageContent =(props)=> {
             router:"/workspaces"
         },
         {
-            name: "新建",
-            icon: "chuangjiantianjiapiliangtianjia",
-            key: "create",
-            router:"/new-create"
-        },
-        {
             name: "设置",
             icon: "setting",
             key: "setting",
@@ -65,13 +55,10 @@ const PageContent =(props)=> {
         },
     ]
 
-
     const startWithIncludes=[
         "/home",
         "/workspaces",
-        "/new-create",
     ]
-
 
     const showMainMenu = ()=>{
         let pathname =  history.location.pathname;
@@ -85,9 +72,6 @@ const PageContent =(props)=> {
         }
     }
 
-
-
-
     return(
         <>
             <div className={"main-content"} >
@@ -96,7 +80,6 @@ const PageContent =(props)=> {
                     {renderRoutes(router)}
                 </div>
             </div>
-            <WorkspaceAddModal />
         </>
 
     )

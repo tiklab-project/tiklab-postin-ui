@@ -46,6 +46,33 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
     background-color: white;
 }
 
+//theme
+.theme-default{
+    background: var(--thoughtware-theme-default)!important;
+}
+.theme-black{
+    background: var(--thoughtware-theme-black)!important;
+    color: white!important;
+}
+.theme-blue{
+    background: var(--thoughtware-theme-blue)!important;
+    color: white!important;
+}
+
+//flex  between
+.display-flex-between{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.display-flex-gap{
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+
 
 /*面包屑*/
 .breadcrumb-contant{
@@ -468,7 +495,7 @@ table .icon{
 .product-logo-box{
     display: flex;
     align-items: center;
-    padding: 15px 24px;
+    padding: 15px 21px;
     gap: 10px;
     cursor:pointer;
 

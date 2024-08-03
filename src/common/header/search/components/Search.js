@@ -32,9 +32,6 @@ const Search = (props) => {
 
 
     useEffect(() => {
-
-
-
         const handleOutsideClick = (event) => {
             // 检查点击的目标是否在下拉框内
             if (elementRef.current && !elementRef.current.contains(event.target)) {

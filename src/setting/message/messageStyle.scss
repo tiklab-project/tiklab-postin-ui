@@ -10,19 +10,45 @@
 .message-icon-box{
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px 30px;
-    cursor: pointer;
+    gap: 10px;
+    padding: 10px 29px;
     width: 100%;
 
+    .header-icon-item{
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .ant-badge{
+        color: inherit
+    }
+}
+
+.message-icon-theme-default{
+    cursor: pointer;
     &:hover{
         background: var(--pi-hover-color);
     }
+}
+.message-icon-theme-black{
+    cursor: pointer;
+    color: white;
 
-    .header-icon-item{
-        font-size: 24px;
-        cursor: pointer;
+    &:hover{
+        background-color: #eef5ff42;
     }
+}
+.message-icon-theme-blue{
+    cursor: pointer;
+    color: white;
+    &:hover{
+        background-color: #abc2e866;
+    }
+}
+
+
+.message-icon-box-not-isExpanded{
+    justify-content: center;
 }
 
 .message-item{

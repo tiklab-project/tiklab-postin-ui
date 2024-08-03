@@ -1,10 +1,10 @@
 import React, { useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
-import {DownOutlined, LeftCircleOutlined, UpOutlined} from '@ant-design/icons';
+import {DownOutlined, HomeOutlined, LeftCircleOutlined, UpOutlined} from '@ant-design/icons';
 import { PrivilegeButton,SystemNav } from "thoughtware-privilege-ui";
 import './sysMana.scss'
-import {getUser} from "thoughtware-core-ui";
+import {getUser, productWhiteImg,productTitle} from "thoughtware-core-ui";
 import IconCommon from "../../common/IconCommon";
 
 const { Sider, Content } = Layout;
@@ -233,6 +233,11 @@ const SysManage = (props) => {
         })
     }
 
+    const toHome = () =>{
+        localStorage.setItem("LEFT_MENU_SELECT","/home");
+        props.history.push("/home")
+    }
+
     return (
         <SystemNav
             {...props}
@@ -249,18 +254,18 @@ const SysManage = (props) => {
                     theme={'light'}
                 >
                     <div className="thoughtware-orga-aside">
-                        <div
-                             style={{
-                                 borderBottom:"1px solid #e4e4e4",
-                                 padding:"10px 15px 10px 30px",
-                             }}
-                        >
-                            <div style={{fontWeight:"bold",display:"flex",gap:"5px",alignItems:"center"}}>
-                                <LeftCircleOutlined style={{fontSize:"20px",cursor:"pointer"}} onClick={()=>props.history.push("/home")}/>
+                        <div className={"system-header"}>
+                            <div className={"system-header-title system-header-item"}>
                                 设置
                             </div>
+                            <div className={"system-header-back-home system-header-item"} onClick={()=> {
+                                localStorage.setItem("leftRouter","/home");
+                                props.history.push("/home")
+                            }}>
+                                <HomeOutlined  style={{fontSize:"18px",cursor:"pointer"}}/>
+                                返回首页
+                            </div>
                         </div>
-
                         <ul style={{padding: 0}} >
                             {
                                 showUlView(menuRouter)
