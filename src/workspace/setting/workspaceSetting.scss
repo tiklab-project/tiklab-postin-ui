@@ -129,13 +129,14 @@
 .ws-menu-ul {
     padding: 0;
     .ws-menu-li {
-        height: 40px;
+        height: 32px;
         width: 180px;
-        line-height: 40px;
+        line-height: 32px;
         display: block;
         cursor: pointer;
         border-radius: var(--pi-border-radius);
         margin: 5px;
+        padding: 0 20px;
     }
 
     .ws-menu-li:hover{

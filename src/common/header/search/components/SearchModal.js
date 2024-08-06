@@ -1,6 +1,6 @@
 import {Input, Modal, Tooltip} from 'antd';
 import React, { useState } from 'react';
-import { SearchOutlined} from "@ant-design/icons";
+import {CloseOutlined, SearchOutlined} from "@ant-design/icons";
 import workspaceRecentStore from "../../../../workspace/workspace/store/WorkspaceRecentStore";
 import apiRecentStore from "../../../../home/apiRecent/store/ApiRecentStore";
 import categoryStore from "../../../../category/store/CategoryStore";
@@ -74,12 +74,13 @@ const SearchModal = (props) => {
     return (
         <>
             {isExpanded
-                ? <div className={`search-box message-icon-${themeColor}`} onClick={showModal}>
+                ? <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item message-icon-box`} onClick={showModal}>
                     <SearchOutlined style={{fontSize:"18px"}}/>
                     <div>搜索</div>
                 </div>
                 : <Tooltip placement="right" title={"搜索"}>
-                    <div className={`search-box  message-icon-${themeColor} search-box-not-isExpanded`} onClick={showModal}>
+                    <div className={`message-icon-box menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-not-isExpanded`}
+                         onClick={showModal}>
                         <SearchOutlined style={{fontSize:"18px"}}/>
                     </div>
                 </Tooltip>
@@ -95,10 +96,11 @@ const SearchModal = (props) => {
                 <div className={"search-modal-input"}>
                     <Input
                         width={"100%"}
-                        prefix={<SearchOutlined />}
+                        prefix={<SearchOutlined style={{fontSize:"18px"}}/>}
                         placeholder="搜索空间、接口"
                         onChange={debounce(changeValue,500) }
                         allowClear
+                        addonAfter={<CloseOutlined style={{cursor:"pointer"}} onClick={()=>setIsModalOpen(false)}/>}
                     />
                 </div>
                 <div className={"search-modal-box"}>

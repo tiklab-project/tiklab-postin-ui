@@ -61,30 +61,6 @@ ul{
     display: none;
 }
 
-.ws-menu-ul {
-    padding: 0;
-    .ws-menu-li {
-        height: 40px;
-        width: 220px;
-        line-height: 40px;
-        display: block;
-        cursor: pointer;
-        border-radius: var(--pi-border-radius);
-        margin: 5px;
-        padding: 0 20px;
-    }
-
-    .ws-menu-li:hover{
-        background-color:  var(--pi-hover-color);
-    }
-    .ws-menu-li-action{
-
-        background-color:  var(--pi-action-color);
-
-    }
-}
-
-
 .ws-menu-icon{
     flex-grow: 1;
     margin-left: 20px;

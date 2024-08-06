@@ -254,7 +254,7 @@ const DataStructure = (props) => {
                             onPressEnter={onSearch}
                             onChange={debounce(onSearch,500) }
                             allowClear
-                            style={{width:200,margin:"10px 0"}}
+                            className='search-input'
                         />
                     </div>
 

@@ -142,7 +142,7 @@ const Workspace = (props) => {
                                     prefix={<SearchOutlined style={{fontSize:"16px"}}/>}
                                     placeholder={`搜索空间`}
                                     onPressEnter={onSearch}
-                                    className={"ws-header-menu-input"}
+                                    className={'search-input'}
                                     onChange={debounce(onSearch,500)}
                                     allowClear
                                 />

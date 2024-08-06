@@ -22,6 +22,8 @@ const MethodType =(props) =>{
                 return <span className={"requestType requestType-options"}>OPTS</span>
             case "patch":
                 return <span className={"requestType requestType-patch"}>PATCH</span>
+            case "ws":
+                return <span className={"requestType requestType-ws"}>WS</span>
         }
     }
 

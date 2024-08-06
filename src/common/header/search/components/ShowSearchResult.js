@@ -3,7 +3,7 @@ import workspaceRecentStore from "../../../../workspace/workspace/store/Workspac
 import categoryStore from "../../../../category/store/CategoryStore";
 import {observer} from "mobx-react";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "../../../../workspace/workspace/components/WorkspaceFn";
-import {TextMethodType} from "../../../MethodType";
+import MethodType, {TextMethodType} from "../../../MethodType";
 import {Empty, Space} from "antd";
 import {useHistory} from "react-router";
 import apiRecentStore from "../../../../home/apiRecent/store/ApiRecentStore";
@@ -55,6 +55,16 @@ const ShowSearchResult = (props)=>{
         setIsModalOpen(false);
     }
 
+    const showVisibility = (name,icon) =>{
+        return <div style={{"display":"flex","alignItems":"center","gap":"6px",fontSize:"12px",color:"#b0b0b0"}}>
+            <svg style={{width:14,height:14}} aria-hidden="true">
+                <use xlinkHref= {`#icon-${icon}`} />
+            </svg>
+            <span>{name}</span>
+        </div>
+    }
+
+
     const showWorkspaceItem = (list)=>{
         return list&&list.map(item=>{
 
@@ -63,9 +73,14 @@ const ShowSearchResult = (props)=>{
                     <div className="list-item" onClick={()=>toWorkspace(item.id)}>
                         <Space>
                             <ShowWorkspaceIcon url={item.iconUrl} className={"workspace-icon icon-bg-border"}/>
-                            <div style={{width:"240px"}} className={"text-ellipsis"}>{item.workspaceName}</div>
+                            <div style={{width:"350px"}} className={"text-ellipsis"}>{item.workspaceName}</div>
                         </Space>
                         {/*<span style={{fontSize: "12px", color: "#b0b0b0"}}>{item.updateTime}</span>*/}
+                        {
+                            item.visibility===0
+                                ? showVisibility("公共","suoding")
+                                :showVisibility("私密","jiesuo")
+                        }
                     </div>
                 </div>
             )
@@ -82,9 +97,9 @@ const ShowSearchResult = (props)=>{
                     <div className="list-item" onClick={()=>toWorkspace(workspace.id)}>
                         <Space>
                             <ShowWorkspaceIcon url={workspace.iconUrl} className={"workspace-icon icon-bg-border"}/>
-                            <div style={{width:"180px"}} className={"text-ellipsis"}>{workspace.workspaceName}</div>
+                            <div style={{width:"350px"}} className={"text-ellipsis"}>{workspace.workspaceName}</div>
                         </Space>
-                        <div style={{fontSize: "12px", color: "#b0b0b0",width:"70px"}} >{item.updateTime}</div>
+                        <div className={"right-item text-ellipsis"} >{item.updateTime}</div>
                     </div>
                 </div>
             )
@@ -98,16 +113,16 @@ const ShowSearchResult = (props)=>{
                 <div key={item.id}>
                     <div className="list-item" onClick={() => toMethod(item.id, item.workspace.id,item.type)}>
                         <Space>
-                            <div style={{width:"40px"}}>
+                            <div style={{width:"50px"}}>
                                 {
                                     item.type==="ws"
-                                        ? <TextMethodType type={item.type}/>
-                                        : <TextMethodType type={item.methodType}/>
+                                        ? <MethodType type={item.type}/>
+                                        : <MethodType type={item.methodType}/>
                                 }
                             </div>
-                            <div style={{width:"180px"}} className={"text-ellipsis"}>{item.name}</div>
+                            <div style={{width:"350px"}} className={"text-ellipsis"}>{item.name}</div>
                         </Space>
-                        <div style={{fontSize: "12px", color: "#b0b0b0",width:"70px"}} className={"text-ellipsis"}>{item?.workspace?.workspaceName}</div>
+                        <div className={"right-item text-ellipsis"}>{item?.workspace?.workspaceName}</div>
                     </div>
                 </div>
             )
@@ -123,16 +138,16 @@ const ShowSearchResult = (props)=>{
                 <div key={item.id}>
                     <div className="list-item" onClick={() => toMethod(apix?.id, apix?.workspaceId,apix?.protocolType)}>
                         <Space>
-                            <div style={{width:"40px"}}>
+                            <div style={{width:"50px"}}>
                                 {
                                     apix?.protocolType==="ws"
-                                        ? <TextMethodType type={apix?.protocolType}/>
-                                        : <TextMethodType type={apix?.node?.methodType}/>
+                                        ? <MethodType type={apix?.protocolType}/>
+                                        : <MethodType type={apix?.node?.methodType}/>
                                 }
                             </div>
-                            <div  style={{width:"180px"}} className={"text-ellipsis"}>{apix?.node?.name}</div>
+                            <div  style={{width:"350px"}} className={"text-ellipsis"}>{apix?.node?.name}</div>
                         </Space>
-                        <div style={{fontSize: "12px", color: "#b0b0b0",width:"70px"}}  className={"text-ellipsis"}>{item?.workspace?.workspaceName}</div>
+                        <div className={"right-item text-ellipsis"}>{item?.workspace?.workspaceName}</div>
                     </div>
                 </div>
             )

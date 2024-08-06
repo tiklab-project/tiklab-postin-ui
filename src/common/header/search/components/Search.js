@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import { Input } from 'antd';
 import {inject, observer} from 'mobx-react';
 import './search.scss'
-import {SearchOutlined} from "@ant-design/icons";
+import {CloseOutlined, SearchOutlined} from "@ant-design/icons";
 import ShowSearchResult from "./ShowSearchResult";
 import workspaceRecentStore from "../../../../workspace/workspace/store/WorkspaceRecentStore";
 import apiRecentStore from "../../../../home/apiRecent/store/ApiRecentStore";
@@ -99,6 +99,7 @@ const Search = (props) => {
                     onFocus={onFocus}
                     allowClear
                     className={`${toggleSearch?"search-action-width": null}`}
+
                 />
             </div>
 

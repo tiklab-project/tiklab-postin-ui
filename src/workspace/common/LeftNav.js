@@ -10,6 +10,7 @@ import {useHistory} from "react-router";
 import "./workspaceDetailStyle.scss"
 import "../workspace/components/workspace.scss"
 import "../../common/commonStyle.scss"
+import "../../category/components/category.scss"
 import "../../api/http/definition/components/apxMethod.scss"
 import "../../support/share/components/shareStyle.scss"
 import {LeftCircleOutlined} from "@ant-design/icons";
@@ -146,9 +147,9 @@ const LeftNav = (props) =>{
                         visible={visible}
                         onOpenChange={openToggleWorkspace}
                     >
-                    <div style={{padding:`15px  0 15px 21px`}} className={`ws-icon-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
+                    <div style={{padding:`15px  0 15px 24px`}} className={`ws-icon-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
                         <div style={{"cursor":"pointer"}}>
-                            <ShowWorkspaceIcon url={workspaceIcon} className={"icon-x icon-bg-border"}  width={30}/>
+                            <ShowWorkspaceIcon url={workspaceIcon} className={`${isExpanded?"icon-l":"icon-x"} icon-bg-border`}  width={30}/>
                         </div>
                         {
                             isExpanded&& <div className={"text-ellipsis"} style={{maxWidth:"100px"}}>{workspaceName}</div>
@@ -178,7 +179,10 @@ const LeftNav = (props) =>{
                     localStorage.setItem("LEFT_MENU_SELECT","/home");
                 }}
             >
-                <div className={`menu-box-nav-item-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
+                <div className={`
+                    menu-box-nav-item-${themeColor}
+                  ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}
+                `}>
                     <div className={"menu-box-nav-item-detail"}>
                         <LeftCircleOutlined style={{fontSize:"18px",margin:"0 5px 0 8px"}}/>
                     </div>

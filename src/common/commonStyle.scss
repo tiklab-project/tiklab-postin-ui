@@ -63,6 +63,10 @@
     color: var(--pi-patch-color);
 }
 
+.requestType-ws{
+    color: white;
+    background: #0070ffbf;
+}
 .protocol-ws-text{
     color: #0070ff
 }
@@ -212,6 +216,7 @@
 .left-tree-box{
     position: relative;
     display: flex;
+    background: #fafbfc;
 
     .left-tree-content{
         height: 100%;

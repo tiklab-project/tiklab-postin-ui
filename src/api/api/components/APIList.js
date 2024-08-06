@@ -189,7 +189,6 @@ const APIList = (props) => {
                         placeholder={'搜索接口'}
                         onPressEnter={onSearch}
                         className='search-input'
-                        style={{width:200}}
                     />
                     <Space>
                         <CategoryDocDrawer categoryId={categoryId}/>

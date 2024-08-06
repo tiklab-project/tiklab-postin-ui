@@ -209,17 +209,19 @@ const MessageDrawer = ({isExpanded,themeColor}) =>{
 
     return (
         <>
+
             {isExpanded
-                ? <div className={`message-icon-box message-icon-${themeColor}`} onClick={showDrawer}>
-                    <Badge count={length}>
-                        <BellOutlined className={"header-icon-item"}/>
+                ? <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item message-icon-box`} onClick={showDrawer}>
+                    <Badge count={length} size={"small"}>
+                        <BellOutlined style={{color:"inherit"}}/>
                     </Badge>
                     <div>消息</div>
                 </div>
                 : <Tooltip placement="right" title={"消息"}>
-                    <div className={`message-icon-box  message-icon-${themeColor} message-icon-box-not-isExpanded`} onClick={showDrawer}>
-                        <Badge count={length}>
-                            <BellOutlined className={"header-icon-item"}/>
+                    <div className={`message-icon-box menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-not-isExpanded`}
+                         onClick={showDrawer}>
+                        <Badge count={length} size={"small"}>
+                            <BellOutlined style={{color:"inherit"}}/>
                         </Badge>
                     </div>
                 </Tooltip>

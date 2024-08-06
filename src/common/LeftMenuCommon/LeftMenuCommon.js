@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {productWhiteImg, productWhitePureImg} from "thoughtware-core-ui";
+import {productFrameImg, productImg, productWhiteImg, productWhitePureImg} from "thoughtware-core-ui";
 import {useHistory} from "react-router";
 import {productTitle} from "thoughtware-core-ui/es/utils/product";
 import "./LeftMenuCommonStyle.scss"
@@ -171,7 +171,7 @@ const LeftMenuCommon = (props) =>{
         <div className={`menu-box ${isExpanded?"menu-box-expended":"menu-box-not-expended"} ${themeColor}`}>
             {
                 isFirst&&<div style={{width:`${isExpanded&&"200px"}`}} className={'product-logo-box'} onClick={()=>clickToPage({router:"/home"})}>
-                    <img src={themeColor===THEME_DEFAULT?productWhiteImg.postin:productWhitePureImg?.postin} alt='logo' className={"product-logo"}/>
+                    <img src={themeColor===THEME_DEFAULT?productImg.postin:productFrameImg?.postin} alt='logo' className={`${isExpanded?"product-logo-expanded":"product-logo"}`}/>
                     {
                         isExpanded&&<div className={"productName"} >{productTitle.postin}</div>
                     }
@@ -263,7 +263,7 @@ const LeftMenuCommon = (props) =>{
                         AvatarLink&&<AvatarLink
                             changeTheme={changeTheme}
                             iconComponent={
-                                <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item`} style={{padding:"10px 20px"}}>
+                                <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item`} style={{padding:`${isExpanded?"10px 14px":"10px 20px"}`}}>
                                     <Profile />
                                     {isExpanded && <div >个人中心</div>}
                                 </div>

@@ -25,26 +25,30 @@
             border-left: 3px solid var(--pi-bg-grey-100);
 
             &:hover{
-                background-color: var(--pi-hover-color);
+                background-color: #e4e2e2;
             }
         }
 
         .select-link-theme-default{
-            background-color: var(--pi-action-color);
+            background-color: #e4e2e2;
             border-left: 3px solid var(--pi-base-color);
         }
 
         .menu-box-nav-item-theme-black{
             border-left: 3px solid #eef5ff00;
+            opacity: 0.7;
             &:hover{
                 background-color: #eef5ff42;
+                opacity: 1;
             }
         }
 
         .select-link-theme-black{
             background-color: #eef5ff42;
             border-left: 3px solid #eef5ff;
+            opacity: 1;
         }
+
 
         .menu-box-nav-item-theme-blue{
             border-left: 3px solid #E9F2FF00;
@@ -60,7 +64,7 @@
 
 
         .menu-box-nav-item-isExpanded{
-            padding: 8px 20px;
+            padding: 8px 16px;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -94,41 +98,7 @@
         justify-content: flex-end;
 
         .licence_dropdown{width: 100%}
-
-        .menu-box-bottom-item{
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 29px;
-            width: 100%;
-        }
-
-        .menu-box-bottom-item-theme-default{
-            cursor: pointer;
-            &:hover{
-                background-color: var(--pi-hover-color);
-            }
-        }
-
-        .menu-box-bottom-item-theme-black{
-            cursor: pointer;
-            &:hover{
-                background-color: #eef5ff42;
-            }
-        }
-
-        .menu-box-bottom-item-theme-blue{
-            cursor: pointer;
-            &:hover{
-                background-color: #abc2e866;
-            }
-        }
-
-        .menu-box-bottom-item-not-isExpanded{
-            justify-content: center;
-        }
     }
-
 
     .menu-box-nav-item-repository{
         display: flex;
@@ -165,6 +135,41 @@
             visibility: visible;
         }
     }
+}
+.menu-box-bottom-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 21px;
+    width: 100%;
+}
+
+.menu-box-bottom-item-theme-default{
+    cursor: pointer;
+    &:hover{
+        background-color: var(--pi-hover-color);
+    }
+}
+
+
+.menu-box-bottom-item-theme-black{
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover{
+        background-color: #eef5ff42;
+        opacity: 1;
+    }
+}
+
+.menu-box-bottom-item-theme-blue{
+    cursor: pointer;
+    &:hover{
+        background-color: #abc2e866;
+    }
+}
+
+.menu-box-bottom-item-not-isExpanded{
+    justify-content: center;
 }
 
 
@@ -255,4 +260,10 @@
         background: var(--pi-bg-grey-100);
     }
 
+}
+
+.ant-drawer-left{
+    .ant-drawer-content-wrapper{
+        transition: all 0s
+    }
 }

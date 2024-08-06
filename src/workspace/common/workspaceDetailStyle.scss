@@ -317,72 +317,7 @@
 }
 
 
-.ws-detail-menu-ul-box{
-    overflow: auto;
-    overflow-x: hidden;
-    padding: 5px;
-}
-
-
-.ws-detail-menu{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
-}
-
-
-
-.ws-detail-menu-ul-show{
-    display: block;
-}
-
-.ws-detail-menu-ul-collapsed{
-    display: none;
-}
-
-.ws-detail-menu-protitle{
-    display: flex;
-    justify-content: space-around;
-}
-
-.ws-detail-menu-set{
-    padding: 10px 0;
-    display: flex;
-    border-top: 1px solid  var(--pi-border-color);
-}
-
-.ws-detail-menu-text{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.ws-detail-iconMenu{
-    ul{
-        height: 93%;
-        width: 100%;
-        padding:1px 0;
-        li{
-            text-align: center;
-            line-height: 45px;
-            height: 45px;
-            margin: 20px 0 ;
-
-        }
-    }
-    height: 100%;
-}
-.detailmenu-unfold{
-    padding: 15px 0;
-    text-align: center;
-}
 .ws-menu{
-    height: 100%;
-}
-
-
-.detailmenu-fold{
     height: 100%;
 }
 

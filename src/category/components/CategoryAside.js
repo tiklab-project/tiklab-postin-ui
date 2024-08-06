@@ -42,30 +42,29 @@ const CategoryAside = (props) => {
     );
 
     return(
-        <div className='wsAside'>
-            <div className={` detailmenu-fold  `}>
-                <div className='ws-detail-menu'>
-                    <div className="ws-detail-menu-serchbtn" style={{minWidth: "280px"}}>
-                        <Input
-                            prefix={<SearchOutlined style={{fontSize:"16px"}} />}
-                            placeholder="搜索"
-                            onPressEnter={onSearch}
-                            onChange={debounce(onSearch,500)}
-                            allowClear
+        <div className='ws-detail-menu'>
+            <div  className='api-category-header'>
+                <div className={"api-category-header-title"}>接口</div>
+                <Dropdown overlay={menu}  className="ws-left-tree-drop" >
+                    <div>
+                        <IconCommon
+                            className={"icon-s"}
+                            icon={"tianjia-"}
                         />
-                        <Dropdown overlay={menu}  className="ws-left-tree-drop" >
-                            <div>
-                                <IconCommon
-                                    className={"icon-s"}
-                                    icon={"tianjia-"}
-                                />
-                            </div>
-                        </Dropdown>
                     </div>
-                    <div className='ws-detail-menu-ul-box'>
-                        <NodeTree />
-                    </div>
-                </div>
+                </Dropdown>
+            </div>
+            <div className="ws-detail-menu-serchbtn">
+                <Input
+                    prefix={<SearchOutlined style={{fontSize:"16px"}} />}
+                    placeholder="搜索"
+                    onPressEnter={onSearch}
+                    onChange={debounce(onSearch,500)}
+                    allowClear
+                />
+            </div>
+            <div className='ws-detail-menu-ul-box'>
+                <NodeTree />
             </div>
         </div>
     )

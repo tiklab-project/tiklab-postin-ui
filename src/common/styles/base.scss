@@ -108,7 +108,18 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
 
 .ant-input-affix-wrapper{
     border-radius: var(--pi-border-radius);
-    border: var(--pi-input-border);
+    border: 0;
+}
+
+.search-input{
+    width: 180px;
+    border-radius: var(--pi-border-radius);
+    border: 0;
+    background: var(--pi-bg-grey-100);
+
+    .ant-input{
+        background: var(--pi-bg-grey-100);
+    }
 }
 
 .table-delete{
@@ -502,6 +513,11 @@ table .icon{
     .product-logo{
         width: var(--pi-icon-x);
         height: var(--pi-icon-x);
+    }
+
+    .product-logo-expanded{
+        width: var(--pi-icon-l);
+        height: var(--pi-icon-l);
     }
 
     .productName{

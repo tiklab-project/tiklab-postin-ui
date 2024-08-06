@@ -45,7 +45,7 @@ export class InstanceStore {
             ...values
         }
 
-        const res = await Axios.post("/testInstance/findTestInstanceList",params);
+        const res = await Axios.post("/testInstance/findTestInstanceGroupByCreateTime",params);
         if(res.code===0){
             this.instanceList = res.data;
             return res.data;

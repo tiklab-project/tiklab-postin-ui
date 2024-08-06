@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import {Empty, Input, Space, Tooltip} from "antd";
+import {Empty, Input, Space, Tooltip, Tree} from "antd";
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "thoughtware-core-ui";
-import {SearchOutlined} from "@ant-design/icons";
+import {DownOutlined, FolderOpenOutlined, FolderOutlined, SearchOutlined} from "@ant-design/icons";
 import {
     getMediaType,
     processFormParamData,
@@ -15,6 +15,8 @@ import {mediaTypeDir, rawTypeDictionary} from "../../common/dictionary/dictionar
 import quickTestStore from "../http/store/QuickTestStore";
 import tabQuickTestStore from "../store/TabQuickTestStore";
 import {debounce} from "../../common/commonUtilsFn/CommonUtilsFn";
+
+const { TreeNode } = Tree;
 
 
 /**
@@ -30,6 +32,7 @@ const LeftNavListQuickTest =(props)=>{
     const userId = getUser().userId;
     const workspaceId = localStorage.getItem("workspaceId")
     const [visible, setVisible] = useState(false);
+    const [expandedKeys, setExpandedKeys] = useState([]);
 
     useEffect(()=>{
         findList()
@@ -49,6 +52,8 @@ const LeftNavListQuickTest =(props)=>{
      * 点击打开不同的实例
      */
     const onClick= (item)=>{
+
+
         findInstance(item.id).then(res=>{
             let request = res.requestInstance;
             let headerList = processHeaderData(request.headers)
@@ -208,9 +213,7 @@ const LeftNavListQuickTest =(props)=>{
 
                         <Space>
                             {
-                                item.statusCode
-                                    ?<span className={"qt-left-list-li-status"} >{item.statusCode}</span>
-                                    :null
+                                item.statusCode&&<span className={"qt-left-list-li-status"} >{item.statusCode}</span>
                             }
 
                             <span style={{fontSize:13,margin:"0 0 0 10px"}}>{showTime(item.time)||"0ms"}</span>
@@ -238,16 +241,66 @@ const LeftNavListQuickTest =(props)=>{
         findList(value)
     }
 
+    const generateTreeNodes = (data) => {
+        return Object.keys(data).map(date => ({
+            title: date,
+            key: date,
+            children: data[date].map(instance => ({
+                ...instance,
+            }))
+        }));
+    };
+
+    const renderTreeNodes = (list) => {
+        const data = generateTreeNodes(list);
+
+        return data && data.map(date => (
+            <TreeNode
+                key={date.key}
+                title={date.title}
+                icon={({ expanded }) => (expanded ? <FolderOpenOutlined /> : <FolderOutlined />)}
+                dataRef={date}
+                selectable={true}
+            >
+                {date.children.map(item => (
+                    <TreeNode
+                        key={item.id}
+                        title={
+                            <div
+                                className={"qt-left-list-li"}
+                                key={item.id}
+                            >
+                                <div className={"qt-left-list-box"} onClick={()=>onClick(item)}>
+                                    <div className={"qt-left-list-box-ellipsis"}>
+                                        <TextMethodType type={item.requestInstance?.methodType} />
+                                        <div className={"text-ellipsis"}>{item.requestInstance?.url}</div>
+                                    </div>
+                                </div>
+                                <svg className="qt-left-list-icon" aria-hidden="true" onClick={()=> deleteInstance(item.id).then(()=> findList())}>
+                                    <use xlinkHref= {`#icon-shanchu1`} />
+                                </svg>
+                            </div>
+                        }
+                        dataRef={item}
+                    />
+                ))}
+            </TreeNode>
+        ));
+    };
+
+    const onSelect = (selectedKeys, { node }) => {
+        if (expandedKeys.includes(node.key)) {
+            setExpandedKeys(expandedKeys.filter(key => key !== node.key));
+        } else {
+            setExpandedKeys([...expandedKeys, node.key]);
+        }
+    };
+
+
     return(
         <>
             <div className={"qt-left-header"}  style={{minWidth: "280px"}}>
-                <Input
-                    prefix={<SearchOutlined style={{fontSize:"16px"}} />}
-                    placeholder={"搜索"}
-                    onChange={debounce(onSearch,500)}
-                    onPressEnter={onSearch}
-                    allowClear
-                />
+                <div style={{fontSize:"16px",fontWeight:"bold"}}>接口调试</div>
                 <div className={"qt-left-heaer-clear"}>
                     <Tooltip placement="right" title={"清空"}>
                         <svg className="icon" aria-hidden="true" onClick={deleteAllInstanceFn}>
@@ -256,19 +309,39 @@ const LeftNavListQuickTest =(props)=>{
                     </Tooltip>
                 </div>
             </div>
-            {
-                instanceList&&instanceList.length>0
-                    ? <ul className={"qt-left-list"}>
-                        {
-                            showListView(instanceList)
-                        }
-                    </ul>
-                    :<div className={"qt-left-empty"}>
-                        <Empty
-                            description={ <span> 暂无测试历史</span>}
-                        />
-                    </div>
-            }
+
+            <div className={"qt-left-search"}>
+                <Input
+                    prefix={<SearchOutlined style={{fontSize:"16px"}} />}
+                    placeholder={"搜索"}
+                    onChange={debounce(onSearch,500)}
+                    onPressEnter={onSearch}
+                    allowClear
+                />
+            </div>
+
+            <div className={"qt-left-list"}>
+                {
+                    instanceList&&Object.keys(instanceList).length>0
+                        ? <Tree
+                            switcherIcon={<DownOutlined />}
+                            showIcon
+                            expandedKeys={expandedKeys}
+                            onExpand={setExpandedKeys}
+                            onSelect={onSelect}
+                        >
+                            {renderTreeNodes(instanceList)}
+                        </Tree>
+                        :<div className={"qt-left-empty"}>
+                            <Empty
+                                description={ <span> 暂无测试历史</span>}
+                            />
+                        </div>
+                }
+            </div>
+
+
+
         </>
 
     )
