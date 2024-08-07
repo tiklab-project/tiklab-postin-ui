@@ -1,5 +1,7 @@
 //workspaceDetailLayout
 .ws-detail-contant{
+    height: 100%;
+    display: flex;
 
     .ant-tabs-bottom>.ant-tabs-nav, .ant-tabs-bottom>div>.ant-tabs-nav, .ant-tabs-top>.ant-tabs-nav, .ant-tabs-top>div>.ant-tabs-nav{
         margin: 0;
@@ -26,13 +28,13 @@
     .ws-detail-left{
         height: 100%;
         position:relative;
-        background: var(--pi-bg-grey-100);
+        background: #e7e7e7ab;;
         box-shadow: 3px 0 3px -4px rgba(0, 0, 0, 0.3);
         z-index: 10;
     }
 
     .ws-detail-right{
-
+        width: 100%;
 
         .wscontant{
             display: flex;
@@ -41,52 +43,6 @@
         }
     }
 
-}
-
-
-.ws-detail-left-nav{
-    width: 80px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    .ws-detail-left-nav-item-workspace{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-
-    }
-
-    .ws-detail-left-nav-icon{
-        width: 32px;
-        height: 32px;
-    }
-
-    .ws-left-nav-item{
-        margin: 0 0 10px;
-
-        .ws-left-nav-item-box{
-            padding: 6px 0;
-            cursor: pointer;
-            border-left: 3px solid var(--pi-bg-grey-100);
-        }
-        .ws-left-nav-item-box:hover{
-            background-color: var(--pi-hover-color);
-        }
-
-
-        .ws-left-nav-item-detail{
-            display: flex;
-            justify-content: center;
-        }
-
-        .selectlink{
-            background-color: var(--pi-action-color);
-            border-left: 3px solid var(--pi-base-color);
-        }
-    }
 }
 
 .ant-pagination{
@@ -201,64 +157,6 @@
     margin: 0 auto;
 
 }
-
-.ws-icon-box{
-    position: relative;
-    display: flex;
-    align-items: center;
-
-}
-.ws-hover-box{
-    //display: none;
-    width: 240px;
-    position: absolute;
-    top: -45px;
-    left: 73px;
-    box-shadow: 0 3px 6px rgb(0 0 0 / 22%);
-    background: #fff;
-    z-index: 10;
-    overflow: auto;
-
-    .ws-hover-item{
-        border-radius: var(--pi-border-radius);
-        padding: 5px;
-        margin: 2px 0 0 0;
-        display: flex;
-        align-items: center;
-        height: 42px;
-    }
-
-    .ws-hover-item:hover{
-        background: var(--pi-hover-color);
-        cursor: pointer;
-    }
-
-    .ws-toggle-ws-select{
-        background: var(--pi-hover-color);
-        cursor: pointer;
-    }
-
-    .ws-hover-box-title{
-        border-bottom: 1px solid var(--pi-border-color);
-        padding: 0 0 5px 5px;
-        font-weight: 600;
-    }
-
-    .ws-icon-box-toggle-icon{
-        width: var(--pi-icon-s);
-        height: var(--pi-icon-s);
-    }
-
-    .ws-toggle-repository_more{
-        display: inline-block;
-        text-align: center;
-        width: 100%;
-        padding: 5px;
-        background: var(--pi-bg-grey-100);
-    }
-
-}
-
 
 .ws-select-box{
     width: 200px;

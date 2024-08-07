@@ -382,22 +382,7 @@ table .icon{
 .main-content{
     height: 100%;
     display: flex;
-}
-
-.ws-detail-contant{
-    height: 100%;
-    display: flex;
-}
-.ws-detail-left{
-    height: 100%;
-    position:relative;
-    background: var(--pi-bg-grey-100);
-    box-shadow: 3px 0 5px -5px rgb(0 0 0 / 30%);
-    z-index: 1;
-}
-
-.ws-detail-right{
-    width: 100%;
+    overflow-x: hidden;
 }
 
 .text-ellipsis{
@@ -524,4 +509,47 @@ table .icon{
         font-size: 20px;
         font-weight: 600;
     }
+}
+
+
+//treeNode
+.ant-tree .ant-tree-treenode{
+    width: 100%;
+}
+
+.ant-tree-title{
+    display: inline-block;
+    width: 90%;
+    padding: 5px 0;
+}
+
+.ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle{
+    min-width: 24px;
+    width: unset;
+}
+
+.node-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ant-tree-switcher{
+    padding: 5px;
+    width: 18px;
+}
+
+.ant-tree .ant-tree-node-content-wrapper{
+    width: 100%;
+    display: flex;
+    padding: unset;
+    margin: 0 6px 0 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
+    background: var(--pi-action-color);
 }

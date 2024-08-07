@@ -10,7 +10,6 @@ import {useHistory} from "react-router";
 import "./workspaceDetailStyle.scss"
 import "../workspace/components/workspace.scss"
 import "../../common/commonStyle.scss"
-import "../../category/components/category.scss"
 import "../../api/http/definition/components/apxMethod.scss"
 import "../../support/share/components/shareStyle.scss"
 import {LeftCircleOutlined} from "@ant-design/icons";

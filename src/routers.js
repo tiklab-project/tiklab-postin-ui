@@ -8,14 +8,12 @@ import {ExcludeProductUser, NotFound} from "thoughtware-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "thoughtware-security-ui";
 import {MessageNotice, MessageSendType, MessageType} from "thoughtware-message-ui";
 import {ProductAuth} from "thoughtware-licence-ui";
-import NewCreatePage from "./home/newCreatePage/NewCreatePage";
 
 //----内部组件----
 const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
 const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
 const PortalContent = AsyncComponent(() => import("./common/header/PortalContent"));
 const Home = AsyncComponent(() => import('./home/Home'));
-const SearchResult = AsyncComponent(() => import('./common/header/search'));
 const Workspace = AsyncComponent(() => import('./workspace/workspace/components/Workspace'));
 const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
 const WorkspaceDetailLayout = AsyncComponent(() => import("./workspace/common/WorkspaceDetailLayout"));
@@ -114,15 +112,9 @@ const routers =  [
                 path: "/workspaces-edit",
                 component: WorkspaceEdit,
             },
-            {
-                path: "/new-create",
-                component: NewCreatePage,
-            },
-
 
             {
                 path:'/setting',
-                key:'systemManagement',
                 component:SystemContent,
                 routes:[
 
@@ -277,12 +269,6 @@ const routers =  [
                 ]
             },
 
-            {
-                path: "/searchResult",
-                key:'searchResult',
-                exact: true,
-                component: SearchResult,
-            },
             {
                 component: WorkspaceDetailLayout,
                 path: "/workspace",

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {productFrameImg, productImg, productWhiteImg, productWhitePureImg} from "thoughtware-core-ui";
+import {getUser, productFrameImg, productImg, productWhiteImg, productWhitePureImg} from "thoughtware-core-ui";
 import {useHistory} from "react-router";
 import {productTitle} from "thoughtware-core-ui/es/utils/product";
 import "./LeftMenuCommonStyle.scss"
@@ -265,7 +265,7 @@ const LeftMenuCommon = (props) =>{
                             iconComponent={
                                 <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item`} style={{padding:`${isExpanded?"10px 14px":"10px 20px"}`}}>
                                     <Profile />
-                                    {isExpanded && <div >个人中心</div>}
+                                    {isExpanded && <div >{getUser()?.nickname}</div>}
                                 </div>
                             }
                             {...props}

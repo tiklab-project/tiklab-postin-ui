@@ -149,48 +149,6 @@
 }
 
 
-//treeNode
-.ant-tree .ant-tree-treenode{
-    width: 100%;
-}
-
-.ant-tree-title{
-    display: inline-block;
-    width: 90%;
-    padding: 5px 0;
-}
-
-.ant-tree .ant-tree-node-content-wrapper .ant-tree-iconEle{
-    min-width: 24px;
-    width: unset;
-}
-
-.node-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.ant-tree-switcher{
-    padding: 5px;
-    width: 18px;
-}
-
-.ant-tree .ant-tree-node-content-wrapper{
-    width: 100%;
-    display: flex;
-    padding: unset;
-    margin: 0 6px 0 0;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    align-items: center;
-}
-
-.ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected{
-     background: var(--pi-action-color);
- }
-
 
 .ws-detail-menu{
     height: 100%;

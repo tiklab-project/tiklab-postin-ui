@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import {Empty, Input, Space, Tooltip, Tree} from "antd";
+import {Empty, Input, Spin, Tooltip, Tree} from "antd";
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "thoughtware-core-ui";
 import {DownOutlined, FolderOpenOutlined, FolderOutlined, SearchOutlined} from "@ant-design/icons";
@@ -31,20 +31,23 @@ const LeftNavListQuickTest =(props)=>{
 
     const userId = getUser().userId;
     const workspaceId = localStorage.getItem("workspaceId")
-    const [visible, setVisible] = useState(false);
     const [expandedKeys, setExpandedKeys] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         findList()
     },[])
 
-    let findList = (url)=>{
+    let findList = async (url)=>{
+        setLoading(true)
         let params={
             "workspaceId":workspaceId,
             "userId":userId,
             "url":url
         }
-        findInstanceList(params)
+
+        await findInstanceList(params)
+        setLoading(false)
     }
 
 
@@ -52,8 +55,6 @@ const LeftNavListQuickTest =(props)=>{
      * 点击打开不同的实例
      */
     const onClick= (item)=>{
-
-
         findInstance(item.id).then(res=>{
             let request = res.requestInstance;
             let headerList = processHeaderData(request.headers)
@@ -171,65 +172,6 @@ const LeftNavListQuickTest =(props)=>{
 
 
     /**
-     * 耗时渲染
-     */
-    const showTime = (time) =>{
-        if(!time) return
-
-        if(JSON.stringify(time).length>3){
-            return<span > {time/1000} ms</span>
-        }else {
-            return <span >{time} ms</span>
-        }
-    }
-
-    /**
-     * 大小渲染
-     */
-    const showSize = (size) =>{
-        if(!size) return
-
-        if(JSON.stringify(size).length>3){
-            return<span >{size/1000} kb</span>
-        }else {
-            return <span >{size} b</span>
-        }
-    }
-
-    /**
-     * 列表项渲染
-     */
-    const showListView = (data) =>{
-        return data&&data.map(item=>{
-            return(
-                <li
-                    className={"qt-left-list-li"}
-                    key={item.id}
-                >
-                    <div className={"qt-left-list-box"} onClick={()=>onClick(item)}>
-                        <div className={"qt-left-list-box-ellipsis"}>
-                            <TextMethodType type={item.requestInstance?.methodType} /><span>{item.requestInstance?.url}</span>
-                        </div>
-
-                        <Space>
-                            {
-                                item.statusCode&&<span className={"qt-left-list-li-status"} >{item.statusCode}</span>
-                            }
-
-                            <span style={{fontSize:13,margin:"0 0 0 10px"}}>{showTime(item.time)||"0ms"}</span>
-                            <span style={{fontSize:13,margin:"0 0 0 10px"}}>{showSize(item.size)||"0b"}</span>
-                        </Space>
-
-                    </div>
-                    <svg className="qt-left-list-icon" aria-hidden="true" onClick={()=> deleteInstance(item.id).then(()=> findList())}>
-                        <use xlinkHref= {`#icon-shanchu1`} />
-                    </svg>
-                </li>
-            )
-        })
-    }
-
-    /**
      * 清空所有实例
      */
     const deleteAllInstanceFn = ()=>{
@@ -321,6 +263,7 @@ const LeftNavListQuickTest =(props)=>{
             </div>
 
             <div className={"qt-left-list"}>
+                <Spin size="large" spinning={loading}>
                 {
                     instanceList&&Object.keys(instanceList).length>0
                         ? <Tree
@@ -338,6 +281,7 @@ const LeftNavListQuickTest =(props)=>{
                             />
                         </div>
                 }
+                </Spin>
             </div>
 
 
