@@ -6,7 +6,7 @@ import TableHeaderDoc from "../../common/apiDoc/TableHeaderDoc";
 import TableQueryDoc from "../../common/apiDoc/TableQueryDoc";
 import RequestBodyDoc from "../../common/apiDoc/RequestBodyDoc";
 import ResponseResultDoc from "../../common/apiDoc/ResponseResultDoc";
-import {Tooltip} from "antd";
+import {Spin, Tag, Tooltip} from "antd";
 import apxMethodStore from "../store/ApxMethodStore";
 import copyMockUrl from "../../../../common/copyLink";
 import IconCommon from "../../../../common/IconCommon";
@@ -21,10 +21,13 @@ const ApiDocumentPage = (props) =>{
     const apiId = localStorage.getItem('apiId');
     const workspaceId = localStorage.getItem("workspaceId")
     const [visible, setVisible] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(async ()=>{
+        setLoading(true)
         let res = await findApxMethod(apiId);
         setApiDoc(res)
+        setLoading(false)
     },[apiId])
 
     useEffect(async ()=>{
@@ -33,12 +36,16 @@ const ApiDocumentPage = (props) =>{
     },[])
 
     return (
-        <>
+        <Spin spinning={loading}>
             <div className={"share-box-right-content-item"}>
                 <div className={"share-box-right-content-item-detail"}>
-                    <ProtocolType type={apiDoc?.apix?.protocolType}/>
+                    {/*<ProtocolType type={apiDoc?.apix?.protocolType}/>*/}
+
                     <MethodType type={apiDoc?.node?.methodType} />
                     <div>{apiDoc?.apix?.path}</div>
+                    <div className={"status-box"}>
+                        {apiDoc?.apix?.status?.name}
+                    </div>
                 </div>
 
             </div>
@@ -122,7 +129,7 @@ const ApiDocumentPage = (props) =>{
                 </Tooltip>
             </div>
 
-        </>
+        </Spin>
     );
 
 }

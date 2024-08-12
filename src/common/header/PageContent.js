@@ -16,10 +16,8 @@ import LeftMenuCommon from "../LeftMenuCommon/LeftMenuCommon";
  * 整个页面
  */
 const PageContent =(props)=> {
-    const {workspaceStore} = props;
-    const {setNewCreateWorkspaceModal} = workspaceStore
-
     const router = props.route.routes;
+
     const user = getUser();
     const history = useHistory()
 
@@ -64,7 +62,6 @@ const PageContent =(props)=> {
         let pathname =  history.location.pathname;
         if (startWithIncludes.some(prefix => pathname.startsWith(prefix))) {
              return<LeftMenuCommon
-                 setNewCreateWorkspaceModal={setNewCreateWorkspaceModal}
                 menuData={menuData}
                 isFirst={true}
                 {...props}
@@ -76,7 +73,7 @@ const PageContent =(props)=> {
         <>
             <div className={"main-content"} >
                 {showMainMenu()}
-                <div style={{height:"100%",flex: 1}}>
+                <div style={{height:"100%",width:"100%"}}>
                     {renderRoutes(router)}
                 </div>
             </div>

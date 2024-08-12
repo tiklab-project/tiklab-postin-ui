@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Request, Response} from '../index';
-import { Form,  Tabs} from 'antd';
+import {Form, Spin, Tabs} from 'antd';
 import './apxMethod.scss'
 import ResponseHeader from "./ResponseHeader";
 import categoryStore from "../../../../category/store/CategoryStore";
@@ -22,6 +22,7 @@ const ApxMethodEditPage = (props) => {
     const [resData, setResData] = useState({});
     const [tabTip, setTabTip] = useState();
     const [form] = Form.useForm()
+    const [loading, setLoading] = useState(true);
 
     useEffect(async ()=>{
         let apiInfo = await findApxMethod(apiId)
@@ -75,7 +76,7 @@ const ApxMethodEditPage = (props) => {
                 break
         }
         setTabTip(tabTipObj)
-
+        setLoading(false)
 
     },[apiId]);
 
@@ -125,7 +126,7 @@ const ApxMethodEditPage = (props) => {
     }
 
     return(
-        <>
+        <Spin spinning={loading}>
             <div className="header-title ex-title">基础信息</div>
             <DetailCommon
                 updateApi={updateFn}
@@ -150,7 +151,7 @@ const ApxMethodEditPage = (props) => {
                     <div style={{margin:"10px 0 0 0"}} ><Response  /></div>
                 </TabPane>
             </Tabs>
-        </>
+        </Spin>
 
     )
 }

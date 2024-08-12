@@ -70,7 +70,7 @@
 }
 
 .qt-left-header{
-    padding: 10px 10px 10px 15px;
+    padding: 6px 10px 10px 15px;
     //border-bottom:1px solid var(--pi-border-color) ;
     display: flex;
     justify-content: space-between;
@@ -106,14 +106,21 @@
     .ant-tree{
         background: #fafbfc;
 
+        .ant-tree-treenode{
+            align-items: center;
+        }
+        .ant-tree-indent-unit{
+            width: 18px;
+        }
+
         .ant-tree-switcher-noop{
             display: none;
         }
 
         .ant-tree-title{
             width: 100%;
+            padding: 1px 0
         }
-
     }
 
     .qt-left-list-li{

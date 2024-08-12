@@ -45,7 +45,7 @@ const TestResultCommon = (props) =>  {
         if (!response) return;
         const {time,statusCode,headers,size,body} = response;
 
-        console.log(toJS(response))
+        // console.log(toJS(response))
 
 
         let mediaType = "text/plain";
@@ -80,7 +80,10 @@ const TestResultCommon = (props) =>  {
                 }
             >
                 <TabPane tab="响应体" key="1">
-                    <ResponseBodyCommon responseBodyData={body} mediaType={mediaType}/>
+                    {
+                        body&&<ResponseBodyCommon responseBodyData={body} mediaType={mediaType}/>
+                    }
+
                 </TabPane>
                 <TabPane tab="响应头" key="2">
                     <ResHeaderCommon headers={processResHeader(headers&&JSON.stringify(headers))}/>

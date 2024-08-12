@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import "./testResponseStyle.scss"
-import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from"../../../../common/monacoEditor/ReactMonacoEditor";
 
 const ResponseBodyCommon = (props) => {
     const {responseBodyData,mediaType} = props;
-
 
     const [language, setLanguage] = useState('plaintext');
     const [precessValue, setPrecessValue] = useState("");
@@ -38,7 +37,6 @@ const ResponseBodyCommon = (props) => {
             return typeof data === 'object' ? JSON.stringify(data, null, 2) : String(data);
         }
     };
-
 
     return(
         <div className={"codemirror-box"}>

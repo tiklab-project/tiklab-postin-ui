@@ -31,7 +31,7 @@ const WorkspaceSettingMenu = (props) =>{
             id: '/workspace/setting/detail',
             // icon: 'icon-setting',
         },{
-            title: '环境设置',
+            title: '环境',
             id: '/workspace/setting/env',
             // icon: 'icon-modular',
         },{

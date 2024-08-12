@@ -13,23 +13,38 @@ const ProtocolType = (props) =>{
 
         switch (type) {
             case protocolType.http:
-                return(
-                    <div
-                        style={{
-                            background: "#0078d4",
-                            padding: "0 5px",
-                            borderRadius:" 2px",
-                            color: "white",
-                            height: "22px"
-                        }}
-                    >
-                        {protocolType.http.toUpperCase()}
-                    </div>
-                )
+                return <div
+                    style={{
+                        background: "#0078d4",
+                        padding: "0 5px",
+                        borderRadius:" 4px",
+                        color: "white",
+                        height: "20px",
+                        fontSize: "13px"
+                    }}
+                > {protocolType.http.toUpperCase()}</div>
             case protocolType.https:
-                return <div className={"api-protocol-type-http"}> {protocolType.https.toUpperCase()}</div>
+                return <div
+                    style={{
+                        background: "#0078d4",
+                        padding: "0 5px",
+                        borderRadius:" 4px",
+                        color: "white",
+                        height: "20px",
+                        fontSize: "13px"
+                    }}
+                > {protocolType.https.toUpperCase()}</div>
             case protocolType.ws:
-                return <div className={"api-protocol-type-http"}> {protocolType.ws.toUpperCase()}</div>
+                return <div
+                    style={{
+                        background: "#2ea7ff",
+                        padding: "0 5px",
+                        borderRadius:" 4px",
+                        color: "white",
+                        height: "20px",
+                        fontSize: "13px"
+                    }}
+                > {protocolType.ws.toUpperCase()}</div>
         }
     }
 

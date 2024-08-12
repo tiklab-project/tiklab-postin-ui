@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getUser, productFrameImg, productImg, productWhiteImg, productWhitePureImg} from "thoughtware-core-ui";
+import {getUser, productFrameImg, productImg} from "thoughtware-core-ui";
 import {useHistory} from "react-router";
 import {productTitle} from "thoughtware-core-ui/es/utils/product";
 import "./LeftMenuCommonStyle.scss"
@@ -22,6 +22,7 @@ const LeftMenuCommon = (props) =>{
         settingRouter,
         HelpLink,AppLink,AvatarLink
     } = props
+
     const history = useHistory()
     const LEFT_MENU_SELECT = localStorage.getItem("LEFT_MENU_SELECT")
     const [isExpanded, setIsExpanded] = useMenuExpanded();
@@ -201,17 +202,17 @@ const LeftMenuCommon = (props) =>{
                         isFirst
                             ?null
                             :isExpanded
-                            ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item`} onClick={()=>clickToPage({router:settingRouter})}>
-                                <SettingOutlined style={{fontSize:"18px"}}/>
-                                {isExpanded && <div>设置</div>}
-                            </div>
-                            : <Tooltip placement="right" title={"设置"}>
-                                <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-not-isExpanded`}
-                                     onClick={()=>clickToPage({router:settingRouter})}
-                                >
+                                ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-isExpanded`} onClick={()=>clickToPage({router:settingRouter})}>
                                     <SettingOutlined style={{fontSize:"18px"}}/>
+                                    {isExpanded && <div>设置</div>}
                                 </div>
-                            </Tooltip>
+                                : <Tooltip placement="right" title={"设置"}>
+                                    <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-not-isExpanded`}
+                                         onClick={()=>clickToPage({router:settingRouter})}
+                                    >
+                                        <SettingOutlined style={{fontSize:"18px"}}/>
+                                    </div>
+                                </Tooltip>
                     }
 
                     {
@@ -223,7 +224,7 @@ const LeftMenuCommon = (props) =>{
                             bgroup={'teston'}
                             iconComponent= {
                                 isExpanded
-                                    ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item`}>
+                                    ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-isExpanded`}>
                                         <QuestionCircleOutlined style={{fontSize:"18px"}}/>
                                         {isExpanded && <div>帮助</div>}
                                     </div>
@@ -241,7 +242,7 @@ const LeftMenuCommon = (props) =>{
                             translateX={isExpanded?200:75}
                             iconComponent={
                                 isExpanded
-                                    ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item`}>
+                                    ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-isExpanded`}>
                                         <IconCommon
                                             icon={`${themeColor===THEME_DEFAULT?"jiugongge":"jiugongge1"}`}
                                             className={"icon-s"}

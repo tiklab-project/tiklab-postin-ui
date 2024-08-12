@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import {Empty, Input, Spin, Tooltip, Tree} from "antd";
+import {Empty, Input, Tooltip, Tree} from "antd";
 import {TextMethodType} from "../../common/MethodType";
 import {getUser} from "thoughtware-core-ui";
 import {DownOutlined, FolderOpenOutlined, FolderOutlined, SearchOutlined} from "@ant-design/icons";
@@ -24,15 +24,14 @@ const { TreeNode } = Tree;
  * 左侧目录
  */
 const LeftNavListQuickTest =(props)=>{
-    const {instanceStore} = props;
+    const {instanceStore,setLoading} = props;
     const {findInstanceList,instanceList,deleteAllInstance,deleteInstance,findInstance} = instanceStore;
     const {setResponseShow} = quickTestStore;
-    const {tabPaneInfo,setTabPaneInfo} = tabQuickTestStore
+    const {tabPaneInfo,setTabPaneInfo,setTapLoading} = tabQuickTestStore
 
     const userId = getUser().userId;
     const workspaceId = localStorage.getItem("workspaceId")
     const [expandedKeys, setExpandedKeys] = useState([]);
-    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         findList()
@@ -55,7 +54,11 @@ const LeftNavListQuickTest =(props)=>{
      * 点击打开不同的实例
      */
     const onClick= (item)=>{
+        setTapLoading(true)
         findInstance(item.id).then(res=>{
+            setTapLoading(false)
+            setResponseShow(true);
+
             let request = res.requestInstance;
             let headerList = processHeaderData(request.headers)
             let queryList = processQueryData(request.url)
@@ -101,7 +104,7 @@ const LeftNavListQuickTest =(props)=>{
             setTabPaneInfo(newTabInfo)
         })
 
-        setResponseShow(true);
+
     }
 
     //获取请求体数据
@@ -263,7 +266,6 @@ const LeftNavListQuickTest =(props)=>{
             </div>
 
             <div className={"qt-left-list"}>
-                <Spin size="large" spinning={loading}>
                 {
                     instanceList&&Object.keys(instanceList).length>0
                         ? <Tree
@@ -281,7 +283,6 @@ const LeftNavListQuickTest =(props)=>{
                             />
                         </div>
                 }
-                </Spin>
             </div>
 
 

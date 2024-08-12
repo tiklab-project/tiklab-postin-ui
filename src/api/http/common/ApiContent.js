@@ -7,6 +7,7 @@ import apxMethodStore from "../definition/store/ApxMethodStore";
 import {useHistory} from "react-router";
 import categoryStore from "../../../category/store/CategoryStore";
 import {observer} from "mobx-react";
+import ProtocolType from "../../../common/ProtocolType";
 
 const ApiContent = (props) =>{
     const { findApxMethod,apiInfo } = apxMethodStore;
@@ -44,8 +45,9 @@ const ApiContent = (props) =>{
                     <div className={"content-margin-box"} style={{borderBottom:"1px solid #e4e4e4"}}>
                         <div style={{display:"flex",justifyContent:"space-between"}}>
                             <Space>
+                                <ProtocolType type={apiInfo?.apix?.protocolType}/>
                                 <span style={{fontWeight:"bold"}}>{apiInfo?.node?.name}</span>
-                                <Tag color={apiInfo?.apix?.status?.color} style={{margin:"0 10px"}}>{apiInfo?.apix?.status?.name}</Tag>
+                                {/*<Tag color={apiInfo?.apix?.status?.color} style={{margin:"0 10px"}}>{apiInfo?.apix?.status?.name}</Tag>*/}
                             </Space>
                             <Space>
                                 <ShareModal

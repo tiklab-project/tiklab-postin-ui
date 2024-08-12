@@ -78,7 +78,6 @@
         display: flex;
         justify-content: space-around;
 
-
         .addApi{
             padding: 5px 0 0 7px;
         }
@@ -159,7 +158,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 10px 0 12px;
+        padding: 18px 10px 0 12px;
 
         .api-category-header-title{
             font-size: 16px;
@@ -179,9 +178,31 @@
         overflow-x: hidden;
         padding: 5px;
         border-top:1px solid var(--pi-border-color);
+        height: 100%;
 
         .ant-tree{
             background: #fafbfc;
+
+            .ant-tree-switcher-noop{
+                //display:  none;
+            }
+
+            .ant-tree-indent-unit{
+                width: 13px;
+            }
+
+            .ant-tree-title{
+                padding: 0;
+                height: 32px;
+                line-height: 32px;
+            }
+
+            .ant-spin-nested-loading{
+                height: 100%;
+                .ant-spin-container{
+                    height: inherit;
+                }
+            }
         }
     }
 

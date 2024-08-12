@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { observer } from 'mobx-react';
-import {Table, Space, Tooltip, Popconfirm, Switch} from 'antd';
+import {Table, Space, Tooltip, Popconfirm, Switch, Empty} from 'antd';
 import MockEdit from './MockEdit';
 import './mock.scss';
 import copyMockUrl from "../../../../common/copyLink";
@@ -137,6 +137,12 @@ const Mock = (props) => {
                     dataSource={mockList}
                     rowKey = {record => record.id}
                     pagination={false}
+                    locale={{
+                        emptyText: <Empty
+                            imageStyle={{height: 80}}
+                            description={<span>暂无Mock</span>}
+                        />
+                    }}
                 />
             </div>
         </>

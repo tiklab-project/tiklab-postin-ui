@@ -6,6 +6,7 @@ import {observer} from "mobx-react";
 import {Dropdown, Menu, Space, Tag} from "antd";
 import categoryStore from "../../../category/store/CategoryStore";
 import {useHistory} from "react-router";
+import ProtocolType from "../../../common/ProtocolType";
 
 const WSContent = (props) =>{
     const {findWSApi} = wsStore
@@ -47,8 +48,9 @@ const WSContent = (props) =>{
                     <div className={"content-margin-box"} style={{borderBottom:"1px solid #e4e4e4"}}>
                         <div style={{display:"flex",justifyContent:"space-between"}}>
                             <Space>
+                                <ProtocolType type={wsInfo?.apix?.protocolType}/>
                                 <span style={{fontWeight:"bold"}}>{wsInfo?.node?.name}</span>
-                                <Tag color={wsInfo?.apix?.status?.color} >{wsInfo?.apix?.status?.name}</Tag>
+                                {/*<Tag color={wsInfo?.apix?.status?.color} >{wsInfo?.apix?.status?.name}</Tag>*/}
                             </Space>
 
                             <Dropdown overlay={moreMenu}>

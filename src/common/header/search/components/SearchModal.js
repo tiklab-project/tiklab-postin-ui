@@ -74,7 +74,7 @@ const SearchModal = (props) => {
     return (
         <>
             {isExpanded
-                ? <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item message-icon-box`} onClick={showModal}>
+                ? <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item message-icon-box menu-box-bottom-item-isExpanded`} onClick={showModal}>
                     <SearchOutlined style={{fontSize:"18px"}}/>
                     <div>搜索</div>
                 </div>

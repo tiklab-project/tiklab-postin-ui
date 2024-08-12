@@ -1,48 +1,20 @@
 
 
 .share-modal{
-    height: 240px;
-    padding: 20px 10px;
+    height: 180px;
+    //padding: 20px 10px;
 
-    .share-modal-item{
-        margin: 10px 0;
-        padding: 5px 0;
-        display: flex;
+    .share-modal-link{
+          width: 100%;
+          font-size: 12px;
+          border: 1px solid #eee;
+          padding: 6px;
+          cursor: text;
 
-        &-visibility{
-            width: 100px;
-        }
-
-        .share-modal-link{
-            width: calc(100% - 85px);
-            font-size: 12px;
-            border: 1px solid #eee;
-            padding: 6px;
-            cursor: text;
-
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-    }
-
-    .share-modal-top{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 36px;
-        margin: 0 0 20px 0 ;
-
-
-
-        &-type{
-            background: var(--pi-base-color);
-            color: white;
-            border-radius: var(--pi-border-radius);
-            padding: 5px;
-        }
-    }
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }
 }
 
 .share-box-api-title{
@@ -96,6 +68,14 @@
                     gap: 16px;
                     align-items: center;
                     margin: 20px 0;
+
+                    .status-box{
+                        padding: 0 5px;
+                        border-radius: var(--pi-border-radius);
+                        border: 1px solid #e3e8f0;
+                        background: #f8f8f8;
+                       font-size:12px;
+                    }
                 }
 
                 .share-detail-title{

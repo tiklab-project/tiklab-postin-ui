@@ -3,6 +3,8 @@ import {initTabPane, initWSTabPane} from "../common/quickTestData";
 
 
 class TabQuickTestStore {
+    @observable loading=false;
+
     @observable activeKey=0;
     //接口调试中的tab页初始值
     @observable tabPaneInfo = {
@@ -253,6 +255,11 @@ class TabQuickTestStore {
         }
 
        return list;
+    }
+
+    @action
+    setTapLoading = (loading)=>{
+        this.loading=loading
     }
 }
 

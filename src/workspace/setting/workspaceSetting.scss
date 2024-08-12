@@ -57,7 +57,16 @@
 
 
     .ant-collapse-item{
-        background: white;
+        background: var(--pi-bg-grey-100);
+    }
+    .collapse-panel-desc{
+        font-size: 12px;
+        color: #999;
+        margin-left: 24px;
+    }
+
+    .ant-btn-dangerous.ant-btn-primary{
+        background: #ff4d4f!important;
     }
 
 

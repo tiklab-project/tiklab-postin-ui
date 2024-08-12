@@ -28,6 +28,9 @@ const WSDocumentPage = (props) =>{
                 <div className={"share-box-right-content-item-detail"}>
                     <span style={{color:"white",background: "rgb(46 167 255)"}} className={"requestType"}>{wsInfo?.apix?.protocolType.toUpperCase()}</span>
                     <div>{wsInfo?.apix?.path}</div>
+                    <div className={"status-box"}>
+                        {wsInfo?.apix?.status?.name}
+                    </div>
                 </div>
                 <div className={"share-box-right-content-item-detail"}>
                     <div>

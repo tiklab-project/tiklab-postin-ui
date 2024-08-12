@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Dropdown, Menu, Popconfirm, Space, Tree} from 'antd';
+import {Dropdown, Menu, Popconfirm, Spin, Tree} from 'antd';
 import {FolderOutlined, FolderOpenOutlined, DownOutlined} from '@ant-design/icons';
 import {useEffect} from "react";
 import categoryStore from "../store/CategoryStore";
@@ -7,14 +7,12 @@ import {TextMethodType} from "../../common/MethodType";
 import CategoryEdit from "./CategoryEdit";
 import {ApxMethodEdit} from "../../api/http/definition";
 import WSAdd from "../../api/ws/ws/components/WSAdd";
-import {getUser} from "thoughtware-core-ui";
 import {useHistory} from "react-router";
 import {observer} from "mobx-react";
 import APIEdit from "../../api/api/components/APIEdit";
 import apiRecentStore from "../../home/apiRecent/store/ApiRecentStore";
 
 const { TreeNode } = Tree;
-
 
 const NodeTree = (props) => {
     const { findNodeTree,categoryList,deleteNode } = categoryStore;
@@ -23,13 +21,16 @@ const NodeTree = (props) => {
     let history = useHistory()
     const workspaceId = localStorage.getItem('workspaceId');
     const [expandedKeys, setExpandedKeys] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(async ()=>{
         await findTree()
     },[workspaceId])
 
     const findTree = async ()=>{
+        setLoading(true)
         await findNodeTree({workspaceId:workspaceId})
+        setLoading(false)
     }
 
     /**
@@ -213,7 +214,7 @@ const NodeTree = (props) => {
                                 // className={"cate-node-name"}
                                 onClick={(e) => onClick(item)}
                             >
-                                <div style={{margin: "0 5px",textAlign:"center"}}>
+                                <div style={{margin: "0 5px 0 7px",textAlign:"center"}}>
                                     {getIcon(item.type, item.methodType)}
                                 </div>
                                 <div className={"cate-node-name"} >{item.name}</div>
@@ -241,14 +242,16 @@ const NodeTree = (props) => {
 
 
     return(
-        <Tree
-            switcherIcon={<DownOutlined />}
-            showIcon
-            expandedKeys={expandedKeys}
-            onExpand={setExpandedKeys}
-        >
-            {renderTreeNodes(categoryList)}
-        </Tree>
+        <Spin spinning={loading}>
+            <Tree
+                switcherIcon={<DownOutlined />}
+                showIcon
+                expandedKeys={expandedKeys}
+                onExpand={setExpandedKeys}
+            >
+                {renderTreeNodes(categoryList)}
+            </Tree>
+        </Spin>
     )
 }
 

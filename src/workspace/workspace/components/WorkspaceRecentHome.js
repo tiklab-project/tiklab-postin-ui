@@ -2,8 +2,7 @@ import React, {useEffect, useState} from "react";
 import {getUser} from "thoughtware-core-ui";
 import {observer} from "mobx-react";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
-import {Empty, Space} from "antd";
-import emptyImg from "../../../assets/img/empty.png";
+import {Empty, Spin} from "antd";
 import workspaceRecentStore from "../store/WorkspaceRecentStore";
 
 /**
@@ -14,6 +13,7 @@ const WorkspaceRecentHome = (props) =>{
 
     const userId = getUser().userId;
     const [dataList, setDataList] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect( async ()=>{
         let params = {
@@ -26,6 +26,7 @@ const WorkspaceRecentHome = (props) =>{
         let list = await findWorkspaceRecentPage(params)
 
         setDataList(list)
+        setLoading(false)
     },[userId])
 
     /**
@@ -69,15 +70,18 @@ const WorkspaceRecentHome = (props) =>{
 
 
     return(
-        <div className={"home-recent-box"}>
-            {
-                dataList&&dataList.length>0
-                    ?<>{showRecent(dataList)}</>
-                    : <Empty
-                        description={<span>暂无访问</span>}
-                    />
-            }
-        </div>
+        <Spin spinning={loading}>
+            <div className={"home-recent-box"}>
+                {
+                    dataList&&dataList.length>0
+                        ?<>{showRecent(dataList)}</>
+                        : <Empty
+                            description={<span>暂无访问</span>}
+                        />
+                }
+            </div>
+        </Spin>
+
     )
 }
 

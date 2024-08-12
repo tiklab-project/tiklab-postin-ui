@@ -1,6 +1,6 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import './workspace.scss';
-import {Col,Row, Input} from "antd";
+import {Col, Row, Input, Spin} from "antd";
 import {inject, observer} from "mobx-react";
 import WorkspaceList from "./WorkspaceList";
 import {SearchOutlined} from "@ant-design/icons";
@@ -10,6 +10,7 @@ import workspaceFollowStore from "../store/WorkspaceFollowStore";
 import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
 import {getUser} from "thoughtware-core-ui";
 import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
+
 /**
  * 空间页
  */
@@ -21,6 +22,7 @@ const Workspace = (props) => {
     const userId = getUser().userId;
     const [workspaceList, setWorkspaceList] = useState([]);
     const [selectTab, setSelectTab] = useState("all");
+    const [loading, setLoading] = useState(true);
 
 
     useEffect(()=>{
@@ -39,9 +41,10 @@ const Workspace = (props) => {
     /**
      * 根据不同的筛选项查找
      */
-    const findList = useCallback((name,selectIndex)=>{
-        let uId = {userId:userId}
+    const findList =(name,selectIndex)=>{
+        setLoading(true)
 
+        let uId = {userId:userId}
         switch (selectIndex||"all") {
             case "all":
                 let params= {
@@ -50,6 +53,7 @@ const Workspace = (props) => {
                 }
                 findWorkspaceJoinList(params).then(list=>{
                     setWorkspaceList(list)
+                    setLoading(false)
                 })
 
                 setSelectTab("all");
@@ -61,6 +65,7 @@ const Workspace = (props) => {
                 }
                 findWorkspaceList(param).then(list=>{
                     setWorkspaceList(list)
+                    setLoading(false)
                 })
 
                 setSelectTab("create");
@@ -68,18 +73,17 @@ const Workspace = (props) => {
             case "follow":
                 findWorkspaceFollowList(uId).then(list=>{
                     setWorkspaceList(list)
+                    setLoading(false)
                 })
 
                 setSelectTab("follow");
                 break;
         }
-
-    },[])
+    }
 
     const toWorkspaceEdit = () =>{
         props.history.push("/workspaces-edit")
     }
-
 
     //空间筛选列表
     const items = [
@@ -150,12 +154,15 @@ const Workspace = (props) => {
                             selectKeyFun={selectMenu}
                         />
                         <div className='contant-box' style={{margin:"10px 0 0 0"}}>
-                            <WorkspaceList
-                                {...props}
-                                workspaceList={workspaceList}
-                                findList={findList}
-                                selectItem={selectTab}
-                            />
+                            <Spin spinning={loading}>
+                                <WorkspaceList
+                                    {...props}
+                                    workspaceList={workspaceList}
+                                    findList={findList}
+                                    selectItem={selectTab}
+                                />
+                            </Spin>
+
                         </div>
                     </div>
                 </Col>

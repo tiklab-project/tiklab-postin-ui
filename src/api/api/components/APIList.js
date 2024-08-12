@@ -28,13 +28,13 @@ const APIList = (props) => {
         {
             title: '名称',
             dataIndex: "name",
-            width: '25%',
+            width: '23%',
             render: (text,record) => (<span className={"link-text"} onClick={()=>toApiDetailPage(record)}>{text}</span> )
         },
         {
             title: '协议/方法',
             dataIndex: 'type',
-            width: '10%',
+            width: '14%',
             render: (text,record) => (
                 <Space>
                     {record.protocolType==="ws" &&
@@ -49,7 +49,7 @@ const APIList = (props) => {
         {
             title: '地址',
             dataIndex: 'path',
-            width: '35%',
+            width: '33%',
         },
         {
             title: '状态',

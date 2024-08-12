@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Input, Modal, Select, Tag, Tooltip} from "antd";
+import {Button, Input, Modal, Select, Tag, Tooltip, Radio, Col,Row} from "antd";
 import IconCommon from "../../../common/IconCommon";
 import {uuid} from "../../../common/utils/createId";
 import {inject, observer} from "mobx-react";
@@ -57,7 +57,8 @@ const ShareModal  = (props) =>{
     /**
      * 参数改变保存数据库
      */
-    const changeType =async (type) =>{
+    const changeType =async (e) =>{
+        let type = e.target.value
         setVisibility(type);
 
         let param = {
@@ -158,43 +159,58 @@ const ShareModal  = (props) =>{
                 cancelText="取消"
                 centered
                 footer={false}
+                width={500}
             >
-                <div className={"share-modal"}>
-                    <div className={"share-modal-item share-modal-top"}>
-                        <div>{targetName}</div>
-                        <Tag  color="#55acee"> {showTargetName(targetType)}</Tag>
 
-                    </div>
-                    <div className={"share-modal-item"}>
-                        <Select
-                            className={"share-modal-item-visibility"}
-                            onChange={ changeType}
+                <Row  className={"share-modal"} gutter={[16, 16]}>
+                    <Col span={3}>名称 :</Col>
+                    <Col span={21}>{targetName}</Col>
+
+                    <Col span={3}>类型 :</Col>
+                    <Col span={21}> <Tag  color="#55acee"> {showTargetName(targetType)}</Tag></Col>
+
+                    <Col span={3} style={{lineHeight:"32px"}}>展示 :</Col>
+                    <Col span={9}>
+                        <Radio.Group
+                            size={"middle"}
+                            options={[
+                                {
+                                    label:"公开",
+                                    value:0
+                                },
+                                {
+                                    label:"密码查看",
+                                    value:1
+                                }
+                            ]}
+                            onChange={changeType}
                             defaultValue={visibility}
-                        >
-                            <Option value={0}>公开</Option>
-                            <Option value={1}>密码查看</Option>
-                        </Select>
+                            optionType="button"
+                            buttonStyle="solid"
+                        />
+                    </Col>
+                    <Col span={11}>
                         {
                             visibility
                                 ?<Input.Password
-                                    style={{width: 'calc(100% - 105px)'}}
+                                    style={{width: "160px", border: "1px solid #eee"}}
                                     defaultValue={password}
                                     onBlur={(e)=>changePassword(e.target.value)}
                                 />
                                 :<span />
                         }
-                    </div>
-                    <div className={"share-modal-item"}>
+                    </Col>
+                    <Col span={3}>链接 :</Col>
+                    <Col span={18}>
                         <div className={"share-modal-link"} id={"share-link"}>
                             {shareUrl}
                         </div>
-                        <Button className={"important-btn"} type="primary" onClick={()=>copyMockUrl("share-link")}>复制链接</Button>
-                    </div>
-
-                </div>
-
+                    </Col>
+                    <Col span={3}>
+                        <Button className={"important-btn"} type="primary" onClick={()=>copyMockUrl("share-link")}>复制</Button>
+                    </Col>
+                </Row>
             </Modal>
-
         </>
     )
 }

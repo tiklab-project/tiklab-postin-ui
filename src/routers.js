@@ -360,14 +360,13 @@ const routers =  [
                     {
                         path: "/workspace/quick",
                         component: LayoutQuickTest,
-                        cacheKey: 'quickTest',
-                        cache: true,// 缓存 组件
+                        cache: true,
                         routes:[
                             {
                                 path: "/workspace/quick/test",
                                 cacheKey: 'TabsQuickTest',
                                 component: TestBoxQuickTest,
-                                cache: true,// 缓存 组件
+                                cache: true,
                             },
                         ]
                     },{

@@ -1,10 +1,9 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import { observer, inject } from "mobx-react";
 import {Table, Space, Empty, Tooltip} from 'antd';
 import {getUser} from "thoughtware-core-ui";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
-import emptyImg  from "../../../assets/img/empty.png"
 import Avatar from "../../../common/avatar/avatar";
 import workspaceFollowStore from "../store/WorkspaceFollowStore";
 import workspaceRecentStore from "../store/WorkspaceRecentStore";
@@ -13,7 +12,7 @@ import workspaceRecentStore from "../store/WorkspaceRecentStore";
  * 空间页
  */
 const WorkspaceList = (props) => {
-    const {workspaceStore, findList,selectItem,workspaceList } = props;
+    const {workspaceStore, findList,selectItem,workspaceList} = props;
     const {settingMenuSelected} = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const {createWorkspaceFollow,deleteWorkspaceFollow} = workspaceFollowStore;

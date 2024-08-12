@@ -211,7 +211,7 @@ const MessageDrawer = ({isExpanded,themeColor}) =>{
         <>
 
             {isExpanded
-                ? <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item message-icon-box`} onClick={showDrawer}>
+                ? <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item message-icon-box menu-box-bottom-item-isExpanded`} onClick={showDrawer}>
                     <Badge count={length} size={"small"}>
                         <BellOutlined style={{color:"inherit"}}/>
                     </Badge>

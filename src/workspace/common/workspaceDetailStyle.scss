@@ -28,8 +28,6 @@
     .ws-detail-left{
         height: 100%;
         position:relative;
-        background: #e7e7e7ab;;
-        box-shadow: 3px 0 3px -4px rgba(0, 0, 0, 0.3);
         z-index: 10;
     }
 
@@ -55,7 +53,7 @@
 .wscontant-box{
     height: 100%;
     margin: 0 auto;
-    min-width: 800px;
+    min-width: 760px;
 
     .ant-tabs {
         height: 100%;
@@ -159,13 +157,12 @@
 }
 
 .ws-select-box{
-    width: 200px;
-    height: 36px;
+    width: 160px;
+    height: 30px;
     border-radius: var(--pi-border-radius);
-    border: var(--pi-input-border);
+    border: 1px solid #e4e4e4;
     background-color: white;
-    //margin: 0 10px!important;
-    font-size: 12px!important;
+    font-size: 11px !important;
 }
 
 .workspace-detail-text-icon-box{

@@ -2,7 +2,6 @@
 
 import React, { useRef, useState} from 'react';
 import { renderRoutes } from "react-router-config";
-import {useHistory} from "react-router";
 
 /**
  * 可以拖拽

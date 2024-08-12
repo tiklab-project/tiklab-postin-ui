@@ -82,7 +82,7 @@ const EnvironmentTable = (props) => {
                                 alignItems:"center",
                                 justifyContent:"space-between",
                             }}>
-                                <span>环境设置</span>
+                                <span>环境</span>
                             </div>
                         }
                         right={

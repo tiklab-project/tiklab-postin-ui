@@ -40,7 +40,7 @@ const RawDoc = (props) =>{
                 dataSource&&dataSource.raw
                     ? <div className={"share-request-item"}>
                         <Space><div>Body参数</div><Tag>RAW</Tag></Space>
-                        <div className={"share-right-table"} style={{border:"1px solid var(--pi-border-color)"}}>
+                        <div className={"share-right-table"} style={{border:"1px solid var(--pi-border-color)",width:"99%"}}>
                             <ReactMonacoEditor
                                 value={dataSource.raw}
                                 language={getLanguageFromMIME(dataSource.type)}

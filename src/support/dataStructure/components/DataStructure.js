@@ -1,5 +1,5 @@
 import React, {useEffect,useState} from 'react'
-import {Col,Row, Input, Space, Table} from "antd";
+import {Col, Row, Input, Space, Table, Empty} from "antd";
 import DataStructureEdit from "./DataStructureEdit";
 import { observer} from "mobx-react";
 import "./structureStyle.scss"
@@ -8,7 +8,7 @@ import {SearchOutlined} from "@ant-design/icons";
 import dataStructureStore from "../store/DataStructureStore";
 import HideDelete from "../../../api/common/hideDelete/HideDelete";
 import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
-
+import moment from "moment"
 /**
  * @description：数据结构页
  * @date: 2021-07-29 09:54
@@ -21,8 +21,9 @@ const DataStructure = (props) => {
             title:`名称`,
             dataIndex: "name",
             key: "name",
-            width: '45%',
-            render:(text,record)=> <span className={"link-text"} onClick = {()=>toModeDetail(record.id)}>{text}</span>
+            width: '40%',
+            render:(text,record)=> <span className={"link-text"} onClick = {()=>toModeDetail(record.id)}>{text}</span>,
+            sorter: (a, b) => a.name.localeCompare(b.name),
         },
         {
             title: `类型`,
@@ -47,6 +48,8 @@ const DataStructure = (props) => {
             dataIndex: "createTime",
             key: "time",
             width: '20%',
+            render: (text) => moment(text, 'YYYY-MM-DD').format('YYYY-MM-DD'), // 格式化显示
+            sorter: (a, b) => moment(a.createTime, 'YYYY-MM-DD').unix() - moment(b.createTime, 'YYYY-MM-DD').unix(), // 改进排序
         },
         {
             title: `操作`,
@@ -71,17 +74,11 @@ const DataStructure = (props) => {
 
     const [toggleSort, setToggleSort] = useState(false);
     const [sortBy, setSortBy] = useState({name:"name",sort:"asc"});
+    const [loading, setLoading] = useState(false);
     let workspaceId= localStorage.getItem("workspaceId")
 
     useEffect(()=>{
-        let params = {
-            workspaceId:workspaceId,
-            orderParams:[{
-                name:sortBy.name,
-                orderType:sortBy.sort
-            }]
-        }
-        findDataStructureList(params)
+        findPage()
     },[])
 
     /**
@@ -89,8 +86,21 @@ const DataStructure = (props) => {
      */
     const deleteFn=(id)=>{
         deleteDataStructure(id).then(()=> {
-            findDataStructureList({workspaceId: workspaceId})
+            findPage()
         })
+    }
+
+    const findPage = async () =>{
+        setLoading(true)
+        let params = {
+            workspaceId:workspaceId,
+            orderParams:[{
+                name:sortBy.name,
+                orderType:sortBy.sort
+            }]
+        }
+        await findDataStructureList(params)
+        setLoading(false)
     }
 
     /**
@@ -234,6 +244,8 @@ const DataStructure = (props) => {
     return(
         <Row style={{height:"100%"}}>
             <Col
+                xs={{ span: "24" }}
+                sm={{ span: "24" }}
                 md={{ span: 24, offset: 0 }}
                 lg={{ span: 20, offset: 2 }}
                 xl={{ span: 18, offset: 3 }}
@@ -259,20 +271,20 @@ const DataStructure = (props) => {
                     </div>
 
 
-                    <div className={"sort-box"}>
-                        <div className={'sort-box-title'}>
-                            <svg className={"icon-s"} aria-hidden="true"  >
-                                <use xlinkHref= {`#icon-icon-`} />
-                            </svg>
-                            <span>排序</span>
-                        </div>
+                    {/*<div className={"sort-box"}>*/}
+                    {/*    <div className={'sort-box-title'}>*/}
+                    {/*        <svg className={"icon-s"} aria-hidden="true"  >*/}
+                    {/*            <use xlinkHref= {`#icon-icon-`} />*/}
+                    {/*        </svg>*/}
+                    {/*        <span>排序</span>*/}
+                    {/*    </div>*/}
 
-                        <div  className={`sort-show-box`}>
-                            {
-                                showSortItem(sortItem)
-                            }
-                        </div>
-                    </div>
+                    {/*    <div  className={`sort-show-box`}>*/}
+                    {/*        {*/}
+                    {/*            showSortItem(sortItem)*/}
+                    {/*        }*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
 
                 <div className={"pi-list-box"}>
@@ -281,6 +293,13 @@ const DataStructure = (props) => {
                         dataSource={dataStructureList}
                         rowKey={record => record.id}
                         pagination={false}
+                        loading={loading}
+                        locale={{
+                            emptyText: <Empty
+                                imageStyle={{height: 80}}
+                                description={<span>暂无模型</span>}
+                            />
+                        }}
                     />
                 </div>
             </div>

@@ -21,6 +21,7 @@ const JsonSchemaTable = ({schema,updateFn}) => {
             dataIndex: 'name',
             width: "20%",
             editable: true,
+            ellipsis:true,
             render:(text,record) =>  (showName(record))
         },{
             title: '必须',
@@ -65,7 +66,7 @@ const JsonSchemaTable = ({schema,updateFn}) => {
             title: '说明',
             dataIndex: 'description',
             editable: true,
-
+            ellipsis:true
         },
         {
             title: '操作',

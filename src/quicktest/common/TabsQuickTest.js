@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Select, Tabs} from "antd";
+import {Select, Spin, Tabs} from "antd";
 import {observer} from "mobx-react";
 import {TextMethodType} from "../../common/MethodType";
 import {initTabPane} from "./quickTestData";
@@ -17,7 +17,7 @@ const {Option} = Select;
  * tab
  */
 const TabsQuickTest = (props) =>{
-    const {setTabPaneInfo,tabPaneInfo,updateProtocol,protocol} = tabQuickTestStore;
+    const {setTabPaneInfo,tabPaneInfo,updateProtocol,protocol,loading} = tabQuickTestStore;
 
     const [action, setAction] = useState(false);
 
@@ -145,50 +145,51 @@ const TabsQuickTest = (props) =>{
     ];
 
     return (
-        <div className={"qk-test-box"}>
-            <Tabs
-                type="editable-card"
-                onChange={onChange}
-                activeKey={tabPaneInfo.activeKey}//字符串才生效
-                onEdit={onEdit}
-                onTabClick={changeTabPane}
-                style={{background: "var(--pi-bg-grey-100)"}}
-            >
-                {
-                    tabPaneInfo&&tabPaneInfo.tabList.map((item,index )=> (
-                        <TabPane
-                            tab={
-                                <>
-                                    {
-                                        item.protocol==="http"
-                                            ?<TextMethodType type={item.data.baseInfo.methodType} />
-                                            :<span  style={{color:"rgb(46 167 255)"}} className={"requestType"}>WS</span>
-                                    }
+        <Spin spinning={loading}>
+            <div className={"qk-test-box"}>
+                <Tabs
+                    type="editable-card"
+                    onChange={onChange}
+                    activeKey={tabPaneInfo.activeKey}//字符串才生效
+                    onEdit={onEdit}
+                    onTabClick={changeTabPane}
+                    style={{background: "var(--pi-bg-grey-100)"}}
+                >
+                    {
+                        tabPaneInfo&&tabPaneInfo.tabList.map((item,index )=> (
+                            <TabPane
+                                tab={
+                                    <>
+                                        {
+                                            item.protocol==="http"
+                                                ?<TextMethodType type={item.data.baseInfo.methodType} />
+                                                :<span  style={{color:"rgb(46 167 255)"}} className={"requestType"}>WS</span>
+                                        }
 
-                                    {item.data.baseInfo.path?item.data.baseInfo.path:"新标签"}
-                                </>
-                            }
-                            key={index}
-                            style={{background:"white"}}
-                        >
-                            {
-                                protocol==="http"
-                                    ?<HttpTest
-                                        sendTest={props.sendTest}
-                                        toggleProtocol={toggleProtocol}
-                                        {...props}
-                                    />
-                                    :<WSTest
-                                        toggleProtocol={toggleProtocol}
-                                        {...props}
-                                    />
-                            }
-                        </TabPane>
-                    ))
-                }
-            </Tabs>
-        </div>
-
+                                        {item.data.baseInfo.path?item.data.baseInfo.path:"新标签"}
+                                    </>
+                                }
+                                key={index}
+                                style={{background:"white"}}
+                            >
+                                {
+                                    protocol==="http"
+                                        ?<HttpTest
+                                            sendTest={props.sendTest}
+                                            toggleProtocol={toggleProtocol}
+                                            {...props}
+                                        />
+                                        :<WSTest
+                                            toggleProtocol={toggleProtocol}
+                                            {...props}
+                                        />
+                                }
+                            </TabPane>
+                        ))
+                    }
+                </Tabs>
+            </div>
+        </Spin>
     );
 }
 

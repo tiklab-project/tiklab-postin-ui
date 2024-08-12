@@ -56,7 +56,6 @@ const LeftNav = (props) =>{
     const workspaceId = localStorage.getItem("workspaceId")
     const [recentList, setRecentList] = useState([]);
     const [workspaceName, setWorkspaceName] = useState();
-    let userId = getUser().userId
 
     useEffect(async ()=>{
         let info = await findWorkspace(workspaceId)
@@ -146,7 +145,7 @@ const LeftNav = (props) =>{
                         visible={visible}
                         onOpenChange={openToggleWorkspace}
                     >
-                    <div style={{padding:`15px  0 15px 24px`}} className={`ws-icon-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
+                    <div style={{padding:`15px  0 15px 20px`}} className={`ws-icon-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
                         <div style={{"cursor":"pointer"}}>
                             <ShowWorkspaceIcon url={workspaceIcon} className={`${isExpanded?"icon-l":"icon-x"} icon-bg-border`}  width={30}/>
                         </div>

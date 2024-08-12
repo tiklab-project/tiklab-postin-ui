@@ -1,4 +1,5 @@
 .menu-box{
+    flex: none;
     position:relative;
     height: 100%;
     background: var(--pi-bg-grey-100);
@@ -22,7 +23,7 @@
         }
 
         .menu-box-nav-item-theme-default{
-            border-left: 3px solid var(--pi-bg-grey-100);
+            border-left: 3px solid #e7e7e7ab;
 
             &:hover{
                 background-color: #e4e2e2;
@@ -64,14 +65,14 @@
 
 
         .menu-box-nav-item-isExpanded{
-            padding: 8px 16px;
+            padding: 8px 12px;
             display: flex;
             align-items: center;
             gap: 5px;
         }
 
         .menu-box-nav-item-not-isExpanded{
-            padding: 8px 6px;
+            padding: 8px 5px;
         }
 
         .menu-box-nav-item-detail{
@@ -141,6 +142,12 @@
     gap: 10px;
     padding: 10px 21px;
     width: 100%;
+
+    .thoughtware-profile{
+        .ant-avatar{
+            background: #40a9ff;
+        }
+    }
 }
 
 .menu-box-bottom-item-theme-default{
@@ -167,8 +174,12 @@
     }
 }
 
+.menu-box-bottom-item-isExpanded{
+    //padding: 10px 21px;
+}
 .menu-box-bottom-item-not-isExpanded{
     justify-content: center;
+    padding: 10px 28px;
 }
 
 
