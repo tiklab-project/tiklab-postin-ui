@@ -22,17 +22,8 @@ const Category = AsyncComponent(() => import("./api/api/components/APIList"));
 const ApiInitPage = AsyncComponent(() => import("./workspace/common/ApiInitPage"));
 
 const LayoutApiContent = AsyncComponent(() => import( "./api/http/definition/components/LayoutApiContent"));
-const ApiDocument = AsyncComponent(() => import("./api/http/definition/components/ApiDocumentPage"));
-const ApiContent  = AsyncComponent(() => import( "./api/http/common/ApiContent"));
-const ApxMethodDetail = AsyncComponent(() => import("./api/http/definition/components/ApxMethodEditPage"));
-const Mock = AsyncComponent(() => import("./api/http/mock/components/Mock"));
-const MockDetail = AsyncComponent(() => import("./api/http/mock/components/MockDetail"));
-const TestBox = AsyncComponent(() => import( "./api/http/test/test/components/ApiTestPage"));
-
-const WsContent = AsyncComponent(()=>import ("./api/ws/common/WSContent"));
-const WSDocumentPage = AsyncComponent(()=>import ( "./api/ws/document/components/WSDocumentPage"));
-const WSDesignPage = AsyncComponent(()=>import ( "./api/ws/design/components/WSDesignPage"));
-const WSTestPage = AsyncComponent(()=>import ("./api/ws/test/components/WSTestPage"));
+const HttpContent  = AsyncComponent(() => import( "./api/http/common/HttpContent"));
+const WsContent = AsyncComponent(()=>import ("./api/ws/common/WsContent"));
 
 const LayoutQuickTest = AsyncComponent(() => import("./quicktest/common/LayoutQuickTest"));
 const TestBoxQuickTest = AsyncComponent(() => import("./quicktest/http/components/TestBoxQuickTest"));
@@ -53,6 +44,11 @@ const Version = AsyncComponent(() => import("./setting/version/Version"));
 
 
 const routers =  [
+    {
+        path: "/",
+        exact: true,
+        render: () => <Redirect to={"/index"}/>,
+    },
     {
         path: "/share",
         component: Share,
@@ -97,20 +93,21 @@ const routers =  [
     {
         component: PortalContent,
         path: '/',
-        key:'poroute',
         routes:[
             {
-                path: "/home",
+                path: "/index",
                 component: Home,
                 exact: true,
             },
             {
-                path: "/workspaces",
+                path: "/workspace",
                 component: Workspace,
+                exact: true,
             },
             {
-                path: "/workspaces-edit",
+                path: "/workspaceAdd",
                 component: WorkspaceEdit,
+                exact: true,
             },
 
             {
@@ -140,7 +137,7 @@ const routers =  [
                         path: "/setting/userGroup",
                         key:'authConfig',
                         exact: true,
-                        render: () => <UserGroup />,
+                        render: () => <UserGroup  bgroup={"postin"}/>,
                     },
                     //权限
                     {
@@ -156,7 +153,7 @@ const routers =  [
                         render:()=> <MessageSendType bgroup={"postin"} />
                     },
                     {
-                        path: "/setting/message-notice",
+                        path: "/setting/messageNotice",
                         key:'MessageType',
                         exact: true,
                         render:()=> <MessageNotice bgroup={"postin"}/>
@@ -165,8 +162,9 @@ const routers =  [
                         path: "/setting/backups",
                         exact: true,
                         render:()=> <BackupRestore />
-                    },{
-                        path: "/setting/product-auth",
+                    },
+                    {
+                        path: "/setting/productAuth",
                         exact: true,
                         render:()=> <ProductAuth  />
                     },
@@ -271,13 +269,10 @@ const routers =  [
 
             {
                 component: WorkspaceDetailLayout,
-                path: "/workspace",
-                key:'DetailIndex',
                 routes:[
                     {
-                        path: "/workspace/overview/:id",
+                        path: "/workspace/overview",
                         exact: true,
-                        key:'Category',
                         component: WorkspaceDetailInitPage,
                     },
                     {
@@ -296,58 +291,14 @@ const routers =  [
                                 key:'Category',
                                 component: Category,
                             },
-
                             {
-                                path: "/workspace/apis/http",
-                                component: ApiContent,
-                                routes:[
-
-                                    {
-                                        path:"/workspace/apis/http/document",
-                                        exact: true,
-                                        component: ApiDocument,
-                                    },
-                                    {
-                                        path:"/workspace/apis/http/edit",
-                                        exact: true,
-                                        component: ApxMethodDetail,
-                                    },
-                                    {
-                                        path:"/workspace/apis/http/test",
-                                        exact: true,
-                                        component: TestBox,
-                                    },
-                                    {
-                                        path:'/workspace/apis/http/mock',
-                                        exact: true,
-                                        component: Mock
-                                    },
-                                    {
-                                        path:'/workspace/apis/http/mock-detail',
-                                        exact: true,
-                                        component:MockDetail
-                                    },
-                                ]
+                                path: "/workspace/apis/http/:id",
+                                component: HttpContent,
                             },
 
                             {
-                                path: "/workspace/apis/ws",
+                                path: "/workspace/apis/ws/:id",
                                 component: WsContent,
-                                routes:[
-                                    {
-                                        path:"/workspace/apis/ws/document",
-                                        exact: true,
-                                        component: WSDocumentPage,
-                                    },{
-                                        path:"/workspace/apis/ws/design",
-                                        exact: true,
-                                        component: WSDesignPage,
-                                    },{
-                                        path:"/workspace/apis/ws/test",
-                                        exact: true,
-                                        component: WSTestPage,
-                                    }
-                                ]
                             },
                             {
                                 path:"/workspace/apis",
@@ -358,12 +309,10 @@ const routers =  [
                         ]
                     },
                     {
-                        path: "/workspace/quick",
                         component: LayoutQuickTest,
-                        cache: true,
                         routes:[
                             {
-                                path: "/workspace/quick/test",
+                                path: "/workspace/quickTest",
                                 cacheKey: 'TabsQuickTest',
                                 component: TestBoxQuickTest,
                                 cache: true,
@@ -375,7 +324,7 @@ const routers =  [
                         exact: true,
                         component: DataStructure,
                     },{
-                        path: "/workspace/structure-detail",
+                        path: "/workspace/structureDetail",
                         key:'structure-detail',
                         exact: true,
                         component: StructureDetail,
@@ -386,7 +335,7 @@ const routers =  [
                         component: WorkspaceSettingMenu,
                         routes: [
                             {
-                                path: "/workspace/setting/detail",
+                                path: "/workspace/setting/info",
                                 exact: true,
                                 component: WorkspaceSetting,
                             },
@@ -407,18 +356,13 @@ const routers =  [
                             },{
                                 path:"/workspace/setting",
                                 exact: true,
-                                component: ()=><Redirect to='/workspace/setting/detail'/>,
+                                component: ()=><Redirect to='/workspace/setting/info'/>,
                             },
                         ]
                     },
                 ]
             },
-            {
-                path: "/",
-                key:'tohome',
-                exact: true,
-                render: () => <Redirect to={"/home"}/>,
-            },
+
             {
                 path: "*",
                 render: () => <Redirect to={"/404"}/>,

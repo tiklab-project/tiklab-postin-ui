@@ -10,25 +10,29 @@ import {Spin, Tag, Tooltip} from "antd";
 import apxMethodStore from "../store/ApxMethodStore";
 import copyMockUrl from "../../../../common/copyLink";
 import IconCommon from "../../../../common/IconCommon";
+import {useParams} from "react-router";
 /**
  * 接口文档页面
  */
-const ApiDocumentPage = (props) =>{
+const ApiDocumentPage = ({tabKey}) =>{
     const { findApxMethod,findServerUrl } = apxMethodStore;
     const [apiDoc, setApiDoc] = useState();
 
     const [serverUrl, setServerUrl] = useState();
-    const apiId = localStorage.getItem('apiId');
+    const {id} = useParams()
+    const apiId = localStorage.getItem('apiId')||id;
     const workspaceId = localStorage.getItem("workspaceId")
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(async ()=>{
-        setLoading(true)
-        let res = await findApxMethod(apiId);
-        setApiDoc(res)
-        setLoading(false)
-    },[apiId])
+        if(tabKey==="document"){
+            setLoading(true)
+            let res = await findApxMethod(apiId);
+            setApiDoc(res)
+            setLoading(false)
+        }
+    },[apiId,tabKey])
 
     useEffect(async ()=>{
         let url = await findServerUrl()

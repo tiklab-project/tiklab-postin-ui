@@ -124,7 +124,7 @@ const DataStructure = (props) => {
     const toModeDetail = (id) =>{
         localStorage.setItem("dataStructureId",id);
 
-        props.history.push("/workspace/structure-detail")
+        props.history.push("/workspace/structureDetail")
     }
 
 

@@ -9,7 +9,7 @@ import TestResultWS from "./TestResultWS";
 import {jsonSchemaToJson} from "../../../common/TestFunctionCommon";
 import Mock from "mockjs";
 
-const WSTestPage = () =>{
+const WSTestPage = ({tabKey}) =>{
     const {findWSApi,messageData,setUrl,querySourceList,setMessage,} = wsStore;
     const {
         connectWebSocket,
@@ -23,22 +23,25 @@ const WSTestPage = () =>{
     const [type, setType] = useState("text");
 
     useEffect(async ()=>{
-        let info = await findWSApi(apiId)
-        setWsInfo(info)
+        if(tabKey==="test"){
+            let info = await findWSApi(apiId)
+            setWsInfo(info)
 
-        const {request,rawParam,jsonParam} = info
-        switch (request.bodyType) {
-            case "raw":
-                setType("text")
-                setMessage(rawParam?.raw);
-                break;
-            case "json":
-                setType("json")
-                let processJson =jsonSchemaToJson(JSON.parse(jsonParam?.jsonText));
-                let json =  JSON.stringify(Mock.mock(processJson));
-                setMessage(json);
-                break;
+            const {request,rawParam,jsonParam} = info
+            switch (request.bodyType) {
+                case "raw":
+                    setType("text")
+                    setMessage(rawParam?.raw);
+                    break;
+                case "json":
+                    setType("json")
+                    let processJson =jsonSchemaToJson(JSON.parse(jsonParam?.jsonText));
+                    let json =  JSON.stringify(Mock.mock(processJson));
+                    setMessage(json);
+                    break;
+            }
         }
+
 
     },[apiId])
 

@@ -7,6 +7,7 @@ import ResponseHeader from "./ResponseHeader";
 import categoryStore from "../../../../category/store/CategoryStore";
 import apxMethodStore from "../store/ApxMethodStore";
 import DetailCommon from "../../../common/detailcommon/DetailCommon";
+import {useParams} from "react-router";
 
 const {TabPane} = Tabs;
 
@@ -16,15 +17,24 @@ const { findApxMethod,updateApxMethod} = apxMethodStore;
 /**
  * 接口编辑页
  */
-const ApxMethodEditPage = (props) => {
-    const workspaceId = localStorage.getItem('workspaceId');
-    const apiId = localStorage.getItem('apiId');
+const ApxMethodEditPage = ({tabKey}) => {
+
     const [resData, setResData] = useState({});
     const [tabTip, setTabTip] = useState();
     const [form] = Form.useForm()
     const [loading, setLoading] = useState(true);
+    const {id} = useParams()
+    const apiId = localStorage.getItem('apiId')||id;
+    const workspaceId = localStorage.getItem('workspaceId');
 
     useEffect(async ()=>{
+       if(tabKey==="design"){
+           findApi()
+       }
+    },[apiId,tabKey]);
+
+    const findApi =async () =>{
+        setLoading(true)
         let apiInfo = await findApxMethod(apiId)
         setResData(apiInfo)
 
@@ -77,8 +87,7 @@ const ApxMethodEditPage = (props) => {
         }
         setTabTip(tabTipObj)
         setLoading(false)
-
-    },[apiId]);
+    }
 
     const updateFn = async (changedValues, allValues) =>{
         console.log(changedValues, allValues)

@@ -12,7 +12,7 @@ const WorkspaceSettingMenu = (props) =>{
     const routes = props.route.routes;
 
 
-    const [selected, setSelected] = useState(settingItemSelected?settingItemSelected:"/workspace/setting/detail");
+    const [selected, setSelected] = useState(settingItemSelected?settingItemSelected:"/workspace/setting/info");
 
     const workspaceId = localStorage.getItem("workspaceId")
 
@@ -28,7 +28,7 @@ const WorkspaceSettingMenu = (props) =>{
     const items=[
         {
             title: '空间信息',
-            id: '/workspace/setting/detail',
+            id: '/workspace/setting/info',
             // icon: 'icon-setting',
         },{
             title: '环境',

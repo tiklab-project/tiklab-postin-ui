@@ -12,10 +12,8 @@ import ProtocolType from "../../../common/ProtocolType";
 const ApiContent = (props) =>{
     const { findApxMethod,apiInfo } = apxMethodStore;
     const {findNodeTree,deleteNode} = categoryStore;
-
     const workspaceId = localStorage.getItem('workspaceId');
     const apiId = localStorage.getItem("apiId")
-
     const history = useHistory()
 
     useEffect(async ()=>{

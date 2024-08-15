@@ -6,10 +6,13 @@ import './mock.scss';
 import copyMockUrl from "../../../../common/copyLink";
 import mockStore from "../store/MockStore";
 import apxMethodStore from "../../definition/store/ApxMethodStore";
+import {useParams} from "react-router";
+import MockDetail from "./MockDetail";
 /**
  * 接口的Mock列表页
  */
 const Mock = (props) => {
+    const {tabKey} = props;
     const { findMockPage, deleteMock,updateMock, mockList } = mockStore
     const { findServerUrl } = apxMethodStore;
 
@@ -19,9 +22,7 @@ const Mock = (props) => {
             dataIndex: 'name',
             key: 'name',
             width:'20%',
-            render:(text,record)=>(
-                <span className={"link-text"} onClick = {()=>setLocalStorage('mockId',record.id)}>{text}</span>
-            )
+            render:(text,record)=><MockDetail mockId={record.id} name={text}/>
         },
         {
             title: '启用',
@@ -81,13 +82,16 @@ const Mock = (props) => {
         },
     ]
 
+    const {id} = useParams()
+    const apiId =  localStorage.getItem('apiId')||id;
     const workspaceId = localStorage.getItem("workspaceId")
-    const apiId =  localStorage.getItem('apiId');
     const [serverUrl, setServerUrl] = useState();
 
     useEffect(async ()=>{
-        await findMockPage(apiId)
-    },[apiId])
+        if(tabKey==="mock"){
+            await findMockPage(apiId)
+        }
+    },[apiId,tabKey])
 
     useEffect(async ()=>{
         let url = await findServerUrl()

@@ -110,9 +110,9 @@ const WorkspaceList = (props) => {
      *  保存空间id到缓存
      */
     const setLocalStorage = (workspaceId) => {
-        toWorkspaceDetail(workspaceId,workspaceRecent,"/workspace/quick/test")
+        toWorkspaceDetail(workspaceId,workspaceRecent,"/workspace/quickTest")
 
-        props.history.push('/workspace/quick/test');
+        props.history.push('/workspace/quickTest');
     }
 
 

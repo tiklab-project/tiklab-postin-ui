@@ -9,7 +9,7 @@ import RequestWS from "./RequestWS";
 /**
  * 接口编辑页
  */
-const WSDesignPage = (props) => {
+const WSDesignPage = ({tabKey}) => {
     const {findWSApi} = wsStore
     const {updateApi,findApi} = apiStore
 
@@ -18,16 +18,19 @@ const WSDesignPage = (props) => {
     const [form] = Form.useForm()
 
     useEffect(async ()=>{
-        let info =  await findApi(apiId)
-        setAPIInfo(info)
-        form.setFieldsValue({
-            name:info.node.name,
-            path:info.path,
-            category:info.categoryId,
-            executor:info.executor?.id,
-            desc:info.desc,
-        })
-    },[apiId]);
+        if(tabKey==="design"){
+            let info =  await findApi(apiId)
+            setAPIInfo(info)
+            form.setFieldsValue({
+                name:info.node.name,
+                path:info.path,
+                category:info.categoryId,
+                executor:info.executor?.id,
+                desc:info.desc,
+            })
+        }
+
+    },[apiId,tabKey]);
 
     const updateFn = async (changedValues, allValues) =>{
         let params = {

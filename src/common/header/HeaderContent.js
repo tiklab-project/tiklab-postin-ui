@@ -12,9 +12,9 @@ const HeaderContent = props => {
 
     //去往主页
     const goHome = () =>{
-        props.history.push("/home")
+        props.history.push("/index")
         //点击左侧导航，设置选择项,用于刷新后还能选择。
-        localStorage.setItem("LEFT_MENU_SELECT","/home");
+        localStorage.setItem("LEFT_MENU_SELECT","/index");
     }
 
 

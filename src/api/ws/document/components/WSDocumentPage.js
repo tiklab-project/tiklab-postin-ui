@@ -9,7 +9,8 @@ import IconCommon from "../../../../common/IconCommon";
 /**
  * 接口文档页面
  */
-const WSDocumentPage = (props) =>{
+const WSDocumentPage = ({tabKey}) =>{
+
     const {findWSApi} = wsStore
     
     const apiId = localStorage.getItem('apiId');
@@ -17,9 +18,11 @@ const WSDocumentPage = (props) =>{
     const [visible, setVisible] = useState(false);
 
     useEffect(async ()=>{
-        let info =  await findWSApi(apiId)
-        setWsInfo(info)
-    },[apiId])
+        if(tabKey==="document"){
+            let info =  await findWSApi(apiId)
+            setWsInfo(info)
+        }
+    },[apiId,tabKey])
 
 
     return (

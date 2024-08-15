@@ -23,7 +23,7 @@ const PageContent =(props)=> {
 
     useEffect(()=>{
         //给左侧导航设置一个选择项
-        localStorage.setItem("LEFT_MENU_SELECT","/home")
+        localStorage.setItem("LEFT_MENU_SELECT","/index")
     },[])
 
     useEffect(() => {
@@ -37,13 +37,13 @@ const PageContent =(props)=> {
             name:"主页",
             icon: "home",
             key:"home",
-            router:"/home"
+            router:"/index"
         },
         {
             name: "空间",
             icon: "xiangmu1",
             key: "workspaces",
-            router:"/workspaces"
+            router:"/workspace"
         },
         {
             name: "设置",
@@ -53,14 +53,9 @@ const PageContent =(props)=> {
         },
     ]
 
-    const startWithIncludes=[
-        "/home",
-        "/workspaces",
-    ]
-
     const showMainMenu = ()=>{
         let pathname =  history.location.pathname;
-        if (startWithIncludes.some(prefix => pathname.startsWith(prefix))) {
+        if (pathname==="/index"||pathname==="/workspace") {
              return<LeftMenuCommon
                 menuData={menuData}
                 isFirst={true}

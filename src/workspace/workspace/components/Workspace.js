@@ -82,7 +82,7 @@ const Workspace = (props) => {
     }
 
     const toWorkspaceEdit = () =>{
-        props.history.push("/workspaces-edit")
+        props.history.push("/workspaceAdd")
     }
 
     //空间筛选列表

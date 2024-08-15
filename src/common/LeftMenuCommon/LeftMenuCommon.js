@@ -60,7 +60,7 @@ const LeftMenuCommon = (props) =>{
      */
     const clickToPage = (item) => {
         if(item.key==="overview"){
-            history.push(`/workspace/overview/${workspaceId}`)
+            history.push(`/workspace/overview`)
         }else {
             history.push(item.router)
         }

@@ -21,6 +21,7 @@ import requestHeaderTestStore from "../store/RequestHeaderTestStore";
 import testStore from "../store/TestStore";
 import environmentStore from "../../../../../support/environment/store/environmentStore";
 import {messageFn} from "../../../../../common/messageCommon/MessageCommon";
+import {useParams} from "react-router";
 
 const { Option } = Select;
 /**
@@ -29,7 +30,8 @@ const { Option } = Select;
 const ApiTestContent = (props) => {
     const {
         sendTest,
-        globalHeaderStore
+        globalHeaderStore,
+        tabKey
     } = props;
 
     const {findApxMethod} = apxMethodStore;
@@ -55,10 +57,17 @@ const ApiTestContent = (props) => {
     const [testResponse, setTestResponse] = useState();
     const [tabTip, setTabTip] = useState();
     const [afterScript, setAfterScript] = useState();
-    const methodId = localStorage.getItem('apiId');
+    const {id} = useParams()
+    const apiId = localStorage.getItem('apiId')||id;
 
     useEffect(()=>{
-        findApxMethod(methodId).then(res=>{
+        if(tabKey==="test"){
+            findApi()
+        }
+    },[apiId,tabKey])
+
+    const findApi = () =>{
+        findApxMethod(apiId).then(res=>{
             // debugger
             setApiData(res)
             form.setFieldsValue({
@@ -114,8 +123,7 @@ const ApiTestContent = (props) => {
 
             setTabTip(tabTipObj)
         })
-    },[methodId])
-
+    }
 
     /**
      * 点击测试

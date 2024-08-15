@@ -62,8 +62,8 @@ const WorkspaceAddModal = (props) => {
 
             toWorkspaceDetail(res.data,workspaceRecent)
 
-            localStorage.setItem("LEFT_MENU_SELECT","/workspace/quick/test")
-            history.push('/workspace/quick/test');
+            localStorage.setItem("LEFT_MENU_SELECT","/workspace/quickTest")
+            history.push('/workspace/quickTest');
         });
     };
 

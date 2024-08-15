@@ -34,7 +34,7 @@ const LeftNav = (props) =>{
             "icon":"kuaijieyingyon",
             "name":"接口调试",
             "key":"quickTest",
-            "router":"/workspace/quick/test"
+            "router":"/workspace/quickTest"
         },
         {
             "icon":"jiekou",
@@ -130,7 +130,7 @@ const LeftNav = (props) =>{
     const toggleWorkspace = (workspaceId)=>{
         toWorkspaceDetail(workspaceId,workspaceRecent)
 
-        props.history.push('/workspace/overview/'+workspaceId);
+        props.history.push('/workspace/overview');
 
         setVisible(false)
     }
@@ -173,8 +173,8 @@ const LeftNav = (props) =>{
                     margin: "0 0 10px 0"
                 }}
                 onClick={()=> {
-                    history.push("/home")
-                    localStorage.setItem("LEFT_MENU_SELECT","/home");
+                    history.push("/index")
+                    localStorage.setItem("LEFT_MENU_SELECT","/index");
                 }}
             >
                 <div className={`
@@ -191,10 +191,6 @@ const LeftNav = (props) =>{
             </li>
         </>
     )
-
-
-
-
 
 
     return(

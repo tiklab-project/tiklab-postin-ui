@@ -8,7 +8,7 @@ import categoryStore from "../../../category/store/CategoryStore";
 import {useHistory} from "react-router";
 import ProtocolType from "../../../common/ProtocolType";
 
-const WSContent = (props) =>{
+const WSContentold = (props) =>{
     const {findWSApi} = wsStore
 
     const {deleteNode,findNodeTree} = categoryStore;
@@ -74,4 +74,4 @@ const WSContent = (props) =>{
         </>
     )
 }
-export default observer(WSContent);
+export default observer(WSContentold);

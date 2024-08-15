@@ -25,8 +25,8 @@ const ShowSearchResult = (props)=>{
      * 点击搜索到空间，跳到对应的空间
      */
     const toWorkspace = (id) =>{
-        toWorkspaceDetail(id,workspaceRecent,"/workspace/quick/test")
-        history.push('/workspace/quick/test');
+        toWorkspaceDetail(id,workspaceRecent,"/workspace/quickTest")
+        history.push('/workspace/quickTest');
 
         setIsModalOpen(false);
 
@@ -43,7 +43,7 @@ const ShowSearchResult = (props)=>{
         }
         await apiRecent(params)
 
-        localStorage.setItem("LEFT_MENU_SELECT","/workspace/quick/test");
+        localStorage.setItem("LEFT_MENU_SELECT","/workspace/quickTest");
         localStorage.setItem('workspaceId',workspaceId);
         localStorage.setItem('apiId',apiId);
         if(type==="http"){

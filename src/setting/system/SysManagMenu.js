@@ -234,8 +234,8 @@ const SysManage = (props) => {
     }
 
     const toHome = () =>{
-        localStorage.setItem("LEFT_MENU_SELECT","/home");
-        props.history.push("/home")
+        localStorage.setItem("LEFT_MENU_SELECT","/index");
+        props.history.push("/index")
     }
 
     return (
@@ -259,8 +259,8 @@ const SysManage = (props) => {
                                 设置
                             </div>
                             <div className={"system-header-back-home system-header-item"} onClick={()=> {
-                                localStorage.setItem("leftRouter","/home");
-                                props.history.push("/home")
+                                localStorage.setItem("leftRouter","/index");
+                                props.history.push("/index")
                             }}>
                                 <HomeOutlined  style={{fontSize:"18px",cursor:"pointer"}}/>
                                 返回首页

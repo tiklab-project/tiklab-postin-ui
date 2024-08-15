@@ -33,8 +33,8 @@ const WorkspaceRecentHome = (props) =>{
      * 去往详情页
      */
     const toDetail = (workspaceId) => {
-        toWorkspaceDetail(workspaceId,workspaceRecent,'/workspace/quick/test')
-        props.history.push('/workspace/quick/test');
+        toWorkspaceDetail(workspaceId,workspaceRecent,'/workspace/quickTest')
+        props.history.push('/workspace/quickTest');
     }
 
     /**

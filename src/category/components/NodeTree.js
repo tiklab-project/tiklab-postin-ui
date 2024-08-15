@@ -63,9 +63,9 @@ const NodeTree = (props) => {
 
                 localStorage.setItem('apiId',item.id);
                 if(item.type==="http"){
-                    history.push('/workspace/apis/http/document');
+                    history.push(`/workspace/apis/http/${item.id}`);
                 }else {
-                    history.push('/workspace/apis/ws/document');
+                    history.push(`/workspace/apis/ws/${item.id}`);
                 }
         }
     }
