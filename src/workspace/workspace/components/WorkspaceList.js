@@ -102,8 +102,8 @@ const WorkspaceList = (props) => {
     const toWorkspaceUser = (workspaceId)=>{
         toWorkspaceDetail(workspaceId,workspaceRecent,"setting");
 
-        settingMenuSelected("/workspace/setting/role");
-        props.history.push('/workspace/setting/role');
+        settingMenuSelected("/workspace/setting/member");
+        props.history.push('/workspace/setting/member');
     }
 
     /**

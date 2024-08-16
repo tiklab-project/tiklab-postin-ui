@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {getUser} from "thoughtware-core-ui";
 import {observer} from "mobx-react";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
-import {Empty, Spin} from "antd";
+import {Col, Empty, Spin,Row} from "antd";
 import workspaceRecentStore from "../store/WorkspaceRecentStore";
 
 /**
@@ -47,22 +47,24 @@ const WorkspaceRecentHome = (props) =>{
             let iconurl =workspace?.iconUrl
 
             return(
-                <div key={workspace.id} className={"home-recent-item"} onClick={()=>toDetail(workspace.id)}>
-                    <div className={"home-recent-item-left"}>
-                        <ShowWorkspaceIcon url={iconurl} className={"ws-img-icon icon-bg-border"}/>
-                        <div className={"home-recent-item-left-name text-ellipsis"}>{workspace.workspaceName}</div>
-                    </div>
-                    <div style={{display:"flex","justifyContent":"space-between"}}>
-                        <div className={"home-recent-item-num"}>
-                            <div className={"home-recent-item-num-title"}>目录数</div>
-                            <div>{item.categoryNum}</div>
+                <Col span={6}>
+                    <div key={workspace.id} className={"home-recent-item"} onClick={()=>toDetail(workspace.id)}>
+                        <div className={"home-recent-item-left"}>
+                            <ShowWorkspaceIcon url={iconurl} className={"ws-img-icon icon-bg-border"}/>
+                            <div className={"home-recent-item-left-name text-ellipsis"}>{workspace.workspaceName}</div>
                         </div>
-                        <div className={"home-recent-item-num"}>
-                            <div className={"home-recent-item-num-title"}>接口数</div>
-                            <div>{item.apiNum}</div>
+                        <div style={{display:"flex","justifyContent":"space-between"}}>
+                            <div className={"home-recent-item-num"}>
+                                <div className={"home-recent-item-num-title"}>目录数</div>
+                                <div>{item.categoryNum}</div>
+                            </div>
+                            <div className={"home-recent-item-num"}>
+                                <div className={"home-recent-item-num-title"}>接口数</div>
+                                <div>{item.apiNum}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Col>
             )
         })
     }
@@ -72,13 +74,16 @@ const WorkspaceRecentHome = (props) =>{
     return(
         <Spin spinning={loading}>
             <div className={"home-recent-box"}>
-                {
-                    dataList&&dataList.length>0
-                        ?<>{showRecent(dataList)}</>
-                        : <Empty
-                            description={<span>暂无访问</span>}
-                        />
-                }
+                <Row gutter={[20,20]}>
+                    {
+                        dataList&&dataList.length>0
+                            ?<>{showRecent(dataList)}</>
+                            : <Empty
+                                description={<span>暂无访问</span>}
+                            />
+                    }
+                </Row>
+
             </div>
         </Spin>
 

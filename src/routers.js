@@ -286,9 +286,8 @@ const routers =  [
                                 component: ApiInitPage,
                             },
                             {
-                                path: "/workspace/apis/category",
+                                path: "/workspace/apis/category/:id",
                                 exact: true,
-                                key:'Category',
                                 component: Category,
                             },
                             {
@@ -303,27 +302,17 @@ const routers =  [
                             {
                                 path:"/workspace/apis",
                                 exact: true,
-                                key:'ridapisdetail',
                                 component: ()=><Redirect to='/workspace/apis/init'/>,
                             },
                         ]
                     },
                     {
-                        component: LayoutQuickTest,
-                        routes:[
-                            {
-                                path: "/workspace/quickTest",
-                                cacheKey: 'TabsQuickTest',
-                                component: TestBoxQuickTest,
-                                cache: true,
-                            },
-                        ]
-                    },{
                         path: "/workspace/dataStructure",
                         key:'dataStucture',
                         exact: true,
                         component: DataStructure,
-                    },{
+                    },
+                    {
                         path: "/workspace/structureDetail",
                         key:'structure-detail',
                         exact: true,
@@ -345,7 +334,7 @@ const routers =  [
                                 component: EnvironmentTable,
                             },
                             {
-                                path: "/workspace/setting/role",
+                                path: "/workspace/setting/member",
                                 exact: true,
                                 component: WorkspaceRole,
                             },
@@ -357,6 +346,17 @@ const routers =  [
                                 path:"/workspace/setting",
                                 exact: true,
                                 component: ()=><Redirect to='/workspace/setting/info'/>,
+                            },
+                        ]
+                    },
+
+                    {
+                        component: LayoutQuickTest,
+                        routes:[
+                            {
+                                path: "/workspace/quickTest",
+                                component: TestBoxQuickTest,
+                                cache: true,
                             },
                         ]
                     },

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {renderRoutes} from "react-router-config";
 import {getUser} from "thoughtware-core-ui";
 import './portalStyle.scss'
@@ -11,6 +11,7 @@ import {inject, observer} from "mobx-react";
 import {SYSTEM_ROLE_STORE} from 'thoughtware-privilege-ui/es/store';
 import {useHistory} from "react-router";
 import LeftMenuCommon from "../LeftMenuCommon/LeftMenuCommon";
+import {useMenuExpanded} from "../hooks/useMenuExpanded";
 
 /**
  * 整个页面
@@ -20,11 +21,13 @@ const PageContent =(props)=> {
 
     const user = getUser();
     const history = useHistory()
+    const [menuExpanded]  = useMenuExpanded()
+    const firstPage = history.location.pathname === "/index" || history.location.pathname === "/workspace";
 
     useEffect(()=>{
         //给左侧导航设置一个选择项
         localStorage.setItem("LEFT_MENU_SELECT","/index")
-    },[])
+    },[menuExpanded])
 
     useEffect(() => {
          if (user.userId) {
@@ -54,8 +57,7 @@ const PageContent =(props)=> {
     ]
 
     const showMainMenu = ()=>{
-        let pathname =  history.location.pathname;
-        if (pathname==="/index"||pathname==="/workspace") {
+        if (firstPage) {
              return<LeftMenuCommon
                 menuData={menuData}
                 isFirst={true}
@@ -68,7 +70,8 @@ const PageContent =(props)=> {
         <>
             <div className={"main-content"} >
                 {showMainMenu()}
-                <div style={{height:"100%",width:"100%"}}>
+                <div style={{height:"100%", width:`${firstPage?"calc(100% - 74px)" :"100%"}`}}>
+
                     {renderRoutes(router)}
                 </div>
             </div>

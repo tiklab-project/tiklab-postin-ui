@@ -249,14 +249,11 @@ table .icon{
 
 
 .home-recent-box{
-    display: flex;
-    align-items: center;
     margin:15px 0 20px 0;
-    gap: 30px;
 
     .home-recent-item{
         height: 105px;
-        width: 235px;
+        min-width: 160px;
         border-radius: var(--pi-border-radius) ;
         margin: 0 3px 0 0;
         background: var(--pi-bg-grey-100);
@@ -315,7 +312,7 @@ table .icon{
 }
 
 .wscontant-contant{
-    flex:1;
+    width: 100%;
     overflow: auto;
 }
 
@@ -382,7 +379,7 @@ table .icon{
 .main-content{
     height: 100%;
     display: flex;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .text-ellipsis{

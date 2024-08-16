@@ -36,7 +36,7 @@ const WorkspaceSettingMenu = (props) =>{
             // icon: 'icon-modular',
         },{
             title: '成员',
-            id: '/workspace/setting/role',
+            id: '/workspace/setting/member',
             // icon: 'icon-modular',
         },{
             title: '权限',

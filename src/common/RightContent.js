@@ -55,7 +55,7 @@ const RightContent = (props) => {
     return(
         <div className='wscontant'>
             <div
-                style={{  width:` ${leftBoxWidth?leftBoxWidth:280}px`  }}
+                style={{  width:` ${leftBoxWidth?leftBoxWidth:280}px`,flex:"none"  }}
                 className={"left-tree-box"}
             >
                 <div  className={'left-tree-content'} >

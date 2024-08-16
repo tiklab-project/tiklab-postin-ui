@@ -4,7 +4,7 @@ import {observer} from "mobx-react";
 import {Axios} from "thoughtware-core-ui";
 import categoryStore from "../../../category/store/CategoryStore";
 import "./DetailCommonStyle.scss"
-import ApiStatusModal from "../../../support/apiStatus/components/ApiStatusSelect";
+import ApiStatusSelect from "../../../support/apiStatus/components/ApiStatusSelect";
 import MethodType from "../../../common/MethodType";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
 import IconCommon from "../../../common/IconCommon";
@@ -83,7 +83,7 @@ const DetailCommon = (props) =>{
                     </Col>
                     <Col span={10}>
                         <Form.Item label={"状态"} name="status" >
-                            <ApiStatusModal
+                            <ApiStatusSelect
                                 selectStatus={updateStatus}
                                 status={apiInfo?.status?.id}
                             />

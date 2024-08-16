@@ -49,7 +49,7 @@ const SystemContent = (props) =>{
                     purviewCode: "MSG_SendType",
                 },{
                     title: "消息通知方案",
-                    id: '/setting/message-notice',
+                    id: '/setting/messageNotice',
                     purviewCode: "MSG_Notice",
                 },
             ],

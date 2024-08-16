@@ -32,7 +32,8 @@
     }
 
     .ws-detail-right{
-        width: 100%;
+        width: calc(100% - 74px);
+        overflow: auto;
 
         .wscontant{
             display: flex;
@@ -79,7 +80,7 @@
     margin: 0 auto;
     border-radius: var(--pi-border-radius);
     max-width: 1180px;
-    min-width: 860px;
+    min-width: 670px;
     padding: 20px 30px;
     height: 100%;
 
@@ -151,6 +152,7 @@
 
 .page-center{
     max-width: 1190px;
+    min-width: 600px;
     padding: 10px 30px;
     margin: 0 auto;
 

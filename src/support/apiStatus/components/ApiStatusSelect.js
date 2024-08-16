@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {Divider, Select} from "antd";
+import {Divider, Select, Space} from "antd";
 import {inject, observer} from "mobx-react";
 import {Option} from "antd/es/mentions";
-import ApiStatusModal from "./ApiStatusModal";
-import {CaretDownOutlined} from "@ant-design/icons";
+import {CaretDownOutlined, DownOutlined} from "@ant-design/icons";
 import apxMethodStatusStore from "../store/ApxMethodStatusStore";
+import "./apiStatus.scss"
 /**
  * 状态下拉选择框
  */
@@ -77,8 +77,6 @@ const ApiStatusSelect = (props) =>{
             //         <ApiStatusModal />
             //     </>
             // )}
-            showArrow={showValidateStatus === "apiStatus"}
-            suffixIcon={showValidateStatus === "apiStatus"?<CaretDownOutlined />:null}
             onMouseEnter={()=>{setShowValidateStatus("apiStatus")}}
             onMouseLeave={()=>{setShowValidateStatus("")}}
         >

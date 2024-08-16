@@ -50,7 +50,7 @@ const NodeTree = (props) => {
 
 
                 localStorage.setItem('categoryId',item.id);
-                history.push('/workspace/apis/category');
+                history.push(`/workspace/apis/category/${item.id}`);
                 break;
             case "http":
             case "ws":
