@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import {Button, Form} from 'antd';
 import rawParamStore from "../../../api/store/RawParamStore";
-import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../common/monacoEditor/MonacoEditor";
 
 const RawParamWS = (props) => {
     const {

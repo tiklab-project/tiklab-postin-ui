@@ -1,10 +1,10 @@
 import React, { useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import { Layout } from 'antd';
-import {DownOutlined, HomeOutlined, LeftCircleOutlined, UpOutlined} from '@ant-design/icons';
+import {DownOutlined, HomeOutlined, UpOutlined} from '@ant-design/icons';
 import { PrivilegeButton,SystemNav } from "thoughtware-privilege-ui";
 import './sysMana.scss'
-import {getUser, productWhiteImg,productTitle} from "thoughtware-core-ui";
+import {getUser} from "thoughtware-core-ui";
 import IconCommon from "../../common/IconCommon";
 
 const { Sider, Content } = Layout;
@@ -15,14 +15,12 @@ const { Sider, Content } = Layout;
 const SysManage = (props) => {
     const {settingMenu} = props;
     const routers = props.route.routes
-    const [selectKey,setSelectKey] = useState('/setting/systemRole')
+    const [selectKey,setSelectKey] = useState()
     const [menuRouter,setMenuRouter] = useState();
     const authConfig = JSON.parse(localStorage.getItem("authConfig"))
     const curRouter =  window.location.hash.substr(1)
 
     useEffect(() => {
-        //设置左侧导航哪个选中
-        setSelectKey(curRouter)
         setMenuRouter(settingMenu);
     }, [curRouter])
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect} from "react";
 import {renderRoutes} from "react-router-config";
 import {getUser} from "thoughtware-core-ui";
 import './portalStyle.scss'
@@ -52,7 +52,7 @@ const PageContent =(props)=> {
             name: "设置",
             icon: "setting",
             key: "setting",
-            router:"/setting/version"
+            router:`${version==="cloud"?"/setting/log":"/setting/version"}`
         },
     ]
 

@@ -24,6 +24,13 @@
             font-size: 13px;
         }
     }
+
+    @media (max-width: 575px) {
+        .ant-form .ant-form-item .ant-form-item-label, .ant-form .ant-form-item .ant-form-item-control {
+            flex: none;
+        }
+    }
+
 }
 
 

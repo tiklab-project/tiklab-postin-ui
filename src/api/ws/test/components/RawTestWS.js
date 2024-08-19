@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../common/monacoEditor/MonacoEditor";
 import wsStore from "../../ws/store/WSStore";
 import {observer} from "mobx-react";
 

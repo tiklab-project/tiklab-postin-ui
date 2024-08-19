@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import ReactMonacoEditor from "../../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../../common/monacoEditor/MonacoEditor";
 import testStore from "../store/TestStore";
 import Mock from "mockjs"
 import {jsonSchemaToJson} from "../../../../common/TestFunctionCommon";

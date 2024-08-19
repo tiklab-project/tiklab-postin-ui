@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./jsonSchemaDocStyle.scss"
 import {jsonSchemaToJson} from "../../../../common/TestFunctionCommon";
 import Mock from "mockjs";
-import ReactMonacoEditor from "../../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../../common/monacoEditor/MonacoEditor";
 import IconCommon from "../../../../../common/IconCommon";
 
 const JsonSchemaDoc = ({schemaStr}) =>{

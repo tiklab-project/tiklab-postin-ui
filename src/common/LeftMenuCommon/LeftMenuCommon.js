@@ -264,7 +264,7 @@ const LeftMenuCommon = (props) =>{
                         AvatarLink&&<AvatarLink
                             changeTheme={changeTheme}
                             iconComponent={
-                                <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item`} style={{padding:`${isExpanded?"10px 14px":"10px 20px"}`}}>
+                                <div className={`menu-box-bottom-item`} style={{padding:`${isExpanded?"10px 14px":"10px 20px"}`}}>
                                     <Profile />
                                     {isExpanded && <div >{getUser()?.nickname}</div>}
                                 </div>

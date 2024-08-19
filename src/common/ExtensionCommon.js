@@ -3,6 +3,7 @@ import {Button, Modal} from "antd";
 import {getVersionInfo} from "thoughtware-core-ui";
 import upgradeImg from "../assets/img/upgrade.png"
 import IconCommon from "./IconCommon"
+import {applySubscription} from "thoughtware-core-ui";
 
 /**
  * 以btn形式展示
@@ -68,11 +69,7 @@ const ExtensionCommon =(props)=>{
     const handleOk = () => {
         setIsModalOpen(false);
 
-        if(version==="ce"||version==="ee"){
-            window.open("https://thoughtware.cn/account/subscribe/apply/postin")
-        }else {
-            window.open("https://work.thoughtware.cn/#/enterprise/application/postin")
-        }
+        applySubscription("postin")
     };
 
     const handleCancel = () =>  setIsModalOpen(false);

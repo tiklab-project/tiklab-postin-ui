@@ -15,9 +15,7 @@ import routers from './routers';
 import {enableAxios} from "thoughtware-core-ui"
 import App from "./app";
 
-
 enableAxios();
-
 export const Entry = (props) => {
 
     let allStore = {
@@ -34,8 +32,6 @@ export const Entry = (props) => {
         </Provider>
     )
 }
-
-
 
 ReactDOM.render(<Entry/>,document.getElementById('container'));
 

@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {Button, Form,Space} from "antd"
 import { observer} from "mobx-react";
-import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../common/monacoEditor/MonacoEditor";
 import apiResponseStore from "../store/ApiResponseStore";
 import JsonSchemaTable from "../../../../common/JsonSchemaTable/JsonSchemaTable";
 

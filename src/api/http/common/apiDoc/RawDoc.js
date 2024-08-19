@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {UnControlled as ReactCodeMirror} from "react-codemirror2";
 import {Space, Tag} from "antd";
-import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../common/monacoEditor/MonacoEditor";
 
 /**
  * 文档中raw

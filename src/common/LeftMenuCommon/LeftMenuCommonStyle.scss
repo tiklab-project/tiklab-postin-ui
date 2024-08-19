@@ -23,31 +23,41 @@
         }
 
         .menu-box-nav-item-theme-default{
-            border-left: 3px solid #e7e7e7ab;
+            border-left: 3px solid #f0f3fa;
 
             &:hover{
-                background-color: #e4e2e2;
+                background-color: #e3e8f0;
             }
         }
 
         .select-link-theme-default{
-            background-color: #e4e2e2;
+            background-color: #e3e8f0;
             border-left: 3px solid var(--pi-base-color);
         }
 
         .menu-box-nav-item-theme-black{
             border-left: 3px solid #eef5ff00;
-            opacity: 0.7;
+
+            svg{
+                opacity: 0.7;
+            }
+
             &:hover{
                 background-color: #eef5ff42;
-                opacity: 1;
+
+                svg{
+                    opacity: 1;
+                }
             }
         }
 
         .select-link-theme-black{
             background-color: #eef5ff42;
             border-left: 3px solid #eef5ff;
-            opacity: 1;
+
+            svg{
+                opacity: 1;
+            }
         }
 
 
@@ -153,7 +163,7 @@
 .menu-box-bottom-item-theme-default{
     cursor: pointer;
     &:hover{
-        background-color: var(--pi-hover-color);
+        background-color: #e3e8f0;
     }
 }
 

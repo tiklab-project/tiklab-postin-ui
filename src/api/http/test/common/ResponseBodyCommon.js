@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import "./testResponseStyle.scss"
-import ReactMonacoEditor from"../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from"../../../../common/monacoEditor/MonacoEditor";
 
 const ResponseBodyCommon = (props) => {
     const {responseBodyData,mediaType} = props;

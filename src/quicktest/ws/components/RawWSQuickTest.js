@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMonacoEditor from "../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../common/monacoEditor/MonacoEditor";
 import tabQuickTestStore from "../../store/TabQuickTestStore";
 
 

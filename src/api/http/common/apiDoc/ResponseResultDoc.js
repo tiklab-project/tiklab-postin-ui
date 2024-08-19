@@ -1,6 +1,6 @@
 import React from "react";
 import {Tabs, Tag} from "antd";
-import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../common/monacoEditor/MonacoEditor";
 import JsonSchemaDoc from "./jsonParamDoc/JsonSchemaDoc";
 const { TabPane } = Tabs;
 

@@ -1,67 +1,86 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import * as monaco from "monaco-editor";
+import beautify from "js-beautify";
+import 'monaco-editor/esm/vs/basic-languages/monaco.contribution';
 
 /**
  * monaco文本框
  */
 const MonacoEditor = (props) =>{
-    const {
-        language="json",
-        setEditorValue
-    } = props;
+    const { value, editorChange, language, readOnly, width, height } = props;
+    const editorRef = useRef(null);
+    const monacoRef = useRef(null);
 
+    const options = {
+        value: value,
+        language: language,
+        selectOnLineNumbers: true,
+        minimap: { enabled: false },
+        automaticLayout: true,
+        autoClosingBrackets: "always",
+        codeLens: true,
+        wordWrap: "on",
+        colorDecorators: true,
+        contextmenu: false,
+        readOnly: readOnly,
+        formatOnPaste: true,
+        formatOnType: true,
+        folding: true,
+        overviewRulerBorder: false,
+        scrollBeyondLastLine: true,
+        theme: "vs",
+        fontSize: 12,
+        tabSize: 4,
+    };
 
-    let monacoEditor;
-    const monacoEditorDomRef = useRef(null);
-
+    const beautifyCode = async (code) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(
+                    beautify(code, {
+                        indent_size: 2,
+                        space_in_empty_paren: true,
+                    })
+                );
+            }, 0);
+        });
+    };
 
     useEffect(() => {
-        init ();
-    }, []);
+        // 初始化 Monaco Editor
+        if (editorRef.current) {
+            monacoRef.current = monaco.editor.create(editorRef.current, options);
 
-    /**
-     * 配置
-     */
-    const init  = () => {
-        if(monacoEditorDomRef.current){
-            monacoEditor = monaco.editor.create(monacoEditorDomRef.current, {
-                value: props.value,
-                language: language,
-                minimap: { enabled: false }, // 小地图
-                automaticLayout: true, // 自动布局,
-                autoClosingBrackets: 'always', // 是否自动添加结束括号(包括中括号) "always" | "languageDefined" | "beforeWhitespace" | "never"
-                codeLens: true,
-                colorDecorators: true,
-                contextmenu: false,
-                readOnly: false, //是否只读
-                formatOnPaste: true,
-                folding: true, // 是否启用代码折叠
-                overviewRulerBorder: false, // 滚动条的边框
-                scrollBeyondLastLine: true,
-                theme: 'vs', // 主题
-                fontSize: 13, // 字体
-                tabSize: 4, // tab缩进长度
-                width:"100%",
-                height:"400px"
+            // 当编辑器失去焦点时，触发 change 事件
+            monacoRef.current.onDidBlurEditorText(() => {
+                const currentValue = monacoRef.current.getValue();
+                editorChange(currentValue);
             });
-
-            monacoEditor.getAction("editor.action.formatDocument").run();//自动格式化代码//自动格式化代码
-
-            monacoEditor.setValue( monacoEditor.getValue())
         }
-
 
         return () => {
-            monacoEditor.dispose()
-        }
-    }
+            if (monacoRef.current) {
+                monacoRef.current.dispose();  // 清理 Monaco Editor 实例
+            }
+        };
+    }, [language]);
 
+    useEffect(() => {
+        const formatCode = async () => {
+            const beautified = await beautifyCode(value);
+            if (monacoRef.current) {
+                monacoRef.current.setValue(beautified);
+            }
+        };
+        formatCode();
+    }, [value]);
 
-    return(
-        <>
-            <div style={{minWidth:860,height:400}} ref={monacoEditorDomRef}/>
-        </>
-    )
-}
+    return (
+        <div
+            ref={editorRef}
+            style={{ width: width || "100%", height: height || "500px" }}
+        />
+    );
+};
 
 export default MonacoEditor

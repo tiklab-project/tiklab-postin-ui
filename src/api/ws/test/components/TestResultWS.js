@@ -2,7 +2,7 @@ import React from "react";
 import {observer} from "mobx-react";
 import {Col, Collapse, Row} from "antd";
 import IconBtn from "../../../../common/iconBtn/IconBtn";
-import ReactMonacoEditor from "../../../../common/monacoEditor/ReactMonacoEditor";
+import ReactMonacoEditor from "../../../../common/monacoEditor/MonacoEditor";
 import {ArrowDownOutlined, ArrowUpOutlined, CheckCircleTwoTone, CloseSquareOutlined} from "@ant-design/icons";
 import webSocketFnStore from "../store/WebSocketFnStore";
 import "./WSTestStyle.scss"
