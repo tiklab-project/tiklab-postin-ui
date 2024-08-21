@@ -50,17 +50,19 @@ const WsContent = (props) =>{
 
     return(
         <div className={"page-center"}>
-            <div style={{display:"flex",justifyContent:"space-between"}}>
+            <div style={{display:"flex",justifyContent:"space-between",position: "relative"}}>
                 <Space>
                     <ProtocolType type={wsInfo?.apix?.protocolType}/>
                     <span style={{fontWeight:"bold"}}>{wsInfo?.node?.name}</span>
                 </Space>
 
-                <Dropdown overlay={moreMenu}>
-                    <svg className="icon-m" aria-hidden="true" style={{cursor:"pointer"}}>
-                        <use xlinkHref={`#icon-gengduo`}/>
-                    </svg>
-                </Dropdown>
+                <div className={"display-flex-between header-right-box"}>
+                    <Dropdown overlay={moreMenu}>
+                        <svg className="icon-m" aria-hidden="true" style={{cursor:"pointer"}}>
+                            <use xlinkHref={`#icon-gengduo`}/>
+                        </svg>
+                    </Dropdown>
+                </div>
             </div>
             <Tabs
                 defaultActiveKey="document"

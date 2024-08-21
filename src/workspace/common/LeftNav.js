@@ -104,13 +104,13 @@ const LeftNav = (props) =>{
                                 if(index>4) return
                                 return (
                                     <div
-                                        className={`ws-hover-item ${item.id===workspaceId?"ws-toggle-ws-select":""}`}
-                                        key={item.id}
-                                        onClick={() => toggleWorkspace(item.id)}
+                                        className={`ws-hover-item ${item?.workspace?.id===workspaceId?"ws-toggle-ws-select":""}`}
+                                        key={item?.workspace?.id}
+                                        onClick={() => toggleWorkspace(item?.workspace?.id)}
                                     >
                                         <Space>
-                                            <ShowWorkspaceIcon url={item.iconUrl} className={"workspace-icon icon-bg-border"}  width={30}/>
-                                            {item.workspaceName}
+                                            <ShowWorkspaceIcon url={item?.workspace?.iconUrl} className={"workspace-icon icon-bg-border"}  width={30}/>
+                                            {item?.workspace?.workspaceName}
                                         </Space>
                                     </div>
                                 )

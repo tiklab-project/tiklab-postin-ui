@@ -62,7 +62,7 @@ const SysManage = (props) => {
     /**
      * 树的展开与闭合
      */
-    const [expandedTree, setExpandedTree] = useState(["/setting/system"])
+    const [expandedTree, setExpandedTree] = useState([])
 
     const isExpandedTree = (key) => {
         return expandedTree.some(item => item ===key)
@@ -231,16 +231,11 @@ const SysManage = (props) => {
         })
     }
 
-    const toHome = () =>{
-        localStorage.setItem("LEFT_MENU_SELECT","/index");
-        props.history.push("/index")
-    }
-
     return (
         <SystemNav
             {...props}
-            expandedTree={expandedTree} // 树的展开和闭合(非必传)
-            setExpandedTree={setExpandedTree} // 树的展开和闭合(非必传)
+            // expandedTree={expandedTree} // 树的展开和闭合(非必传)
+            // setExpandedTree={setExpandedTree} // 树的展开和闭合(非必传)
             applicationRouters={menuRouter} // 菜单
             outerPath={"/setting"} // 系统设置Layout路径
             notFoundPath={"/noaccess"}

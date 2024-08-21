@@ -1,4 +1,4 @@
-import {Input, Modal, Tooltip} from 'antd';
+import {Input, Modal} from 'antd';
 import React, { useState } from 'react';
 import {CloseOutlined, SearchOutlined} from "@ant-design/icons";
 import workspaceRecentStore from "../../../../workspace/workspace/store/WorkspaceRecentStore";
@@ -73,18 +73,20 @@ const SearchModal = (props) => {
     };
     return (
         <>
-            {isExpanded
-                ? <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item message-icon-box menu-box-bottom-item-isExpanded`} onClick={showModal}>
-                    <SearchOutlined style={{fontSize:"18px"}}/>
-                    <div>搜索</div>
-                </div>
-                : <Tooltip placement="right" title={"搜索"}>
-                    <div className={`message-icon-box menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-not-isExpanded`}
-                         onClick={showModal}>
-                        <SearchOutlined style={{fontSize:"18px"}}/>
+            <div
+                className={`menu-box-nav-item `}
+                onClick={showModal}
+            >
+                <div
+                    className={`menu-box-nav-item-${themeColor} ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
+                    <div className={"menu-box-nav-item-detail"}>
+                        <SearchOutlined style={{fontSize:"18px",margin:"0 5px"}}/>
                     </div>
-                </Tooltip>
-            }
+                    <div  className={`menu-box-nav-item-detail ${isExpanded?"":"menu-box-nav-item-title"}`}>
+                        搜索
+                    </div>
+                </div>
+            </div>
             <Modal
                 title="搜索"
                 open={isModalOpen}

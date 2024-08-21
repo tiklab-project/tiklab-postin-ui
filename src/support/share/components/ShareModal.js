@@ -135,7 +135,7 @@ const ShareModal  = (props) =>{
                     <span>
                        <IconCommon
                            icon={"fenxiang"}
-                           style={{margin:"0 10px 0 0",cursor:"pointer"}}
+                           style={{margin:"5px 0  0 0",cursor:"pointer"}}
                            className={"icon-s"}
                            onClick={showModal}
                        />

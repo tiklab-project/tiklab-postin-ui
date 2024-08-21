@@ -268,6 +268,7 @@ const routers =  [
             },
 
             {
+                path: "/workspace",
                 component: WorkspaceDetailLayout,
                 routes:[
                     {

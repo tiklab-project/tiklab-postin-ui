@@ -187,6 +187,9 @@ const LeftMenuCommon = (props) =>{
                         showMenuItem(visibleMenuItems)
                     }
                     {
+                        isFirst&&<SearchModal isExpanded={isExpanded} themeColor={themeColor}/>
+                    }
+                    {
                         moreMenu&&moreMenu.length>0
                             &&moreItem()
                     }
@@ -194,27 +197,6 @@ const LeftMenuCommon = (props) =>{
 
 
                 <div className={"menu-box-bottom"}>
-                    {
-                        isFirst&&<SearchModal isExpanded={isExpanded} themeColor={themeColor}/>
-                    }
-
-                    {
-                        isFirst
-                            ?null
-                            :isExpanded
-                                ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-isExpanded`} onClick={()=>clickToPage({router:settingRouter})}>
-                                    <SettingOutlined style={{fontSize:"18px"}}/>
-                                    {isExpanded && <div>设置</div>}
-                                </div>
-                                : <Tooltip placement="right" title={"设置"}>
-                                    <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-not-isExpanded`}
-                                         onClick={()=>clickToPage({router:settingRouter})}
-                                    >
-                                        <SettingOutlined style={{fontSize:"18px"}}/>
-                                    </div>
-                                </Tooltip>
-                    }
-
                     {
                         isFirst&&<MessageDrawer isExpanded={isExpanded} themeColor={themeColor}/>
                     }
@@ -260,6 +242,22 @@ const LeftMenuCommon = (props) =>{
                             }
                         />
                     }
+
+                    {
+                        isExpanded
+                            ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-isExpanded`} onClick={()=>clickToPage({router:settingRouter})}>
+                                <SettingOutlined style={{fontSize:"18px"}}/>
+                                {isExpanded && <div>设置</div>}
+                            </div>
+                            : <Tooltip placement="right" title={"设置"}>
+                                <div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-not-isExpanded`}
+                                     onClick={()=>clickToPage({router:settingRouter})}
+                                >
+                                    <SettingOutlined style={{fontSize:"18px"}}/>
+                                </div>
+                            </Tooltip>
+                    }
+
                     {
                         AvatarLink&&<AvatarLink
                             changeTheme={changeTheme}

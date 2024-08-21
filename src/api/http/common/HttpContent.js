@@ -52,13 +52,15 @@ const HttpContent = (props) =>{
 
     return(
         <div className={"page-center"}>
-            <div style={{display:"flex",justifyContent:"space-between"}}>
+            <div style={{display:"flex",justifyContent:"space-between",position: "relative"}}>
+
                 <Space>
                     <ProtocolType type={apiInfo?.apix?.protocolType}/>
                     <span style={{fontWeight:"bold"}}>{apiInfo?.node?.name}</span>
                     {/*<Tag color={apiInfo?.apix?.status?.color} style={{margin:"0 10px"}}>{apiInfo?.apix?.status?.name}</Tag>*/}
                 </Space>
-                <Space>
+                <div className={"display-flex-between header-right-box"}>
+                    <EnvSelect />
                     <ShareModal
                         targetId={apiId}
                         targetType={"api"}
@@ -70,13 +72,12 @@ const HttpContent = (props) =>{
                             <use xlinkHref={`#icon-gengduo`}/>
                         </svg>
                     </Dropdown>
-                </Space>
+                </div>
             </div>
 
             <Tabs
                 defaultActiveKey="document"
                 onChange={onChange}
-                tabBarExtraContent={<EnvSelect />}
                 items={[
                     {
                         label: `文档`,

@@ -47,13 +47,7 @@ const PageContent =(props)=> {
             icon: "xiangmu1",
             key: "workspaces",
             router:"/workspace"
-        },
-        {
-            name: "设置",
-            icon: "setting",
-            key: "setting",
-            router:`${version==="cloud"?"/setting/log":"/setting/version"}`
-        },
+        }
     ]
 
     const showMainMenu = ()=>{
@@ -61,6 +55,7 @@ const PageContent =(props)=> {
              return<LeftMenuCommon
                 menuData={menuData}
                 isFirst={true}
+                settingRouter={`${version==="cloud"?"/setting/log":"/setting/version"}`}
                 {...props}
             />
         }

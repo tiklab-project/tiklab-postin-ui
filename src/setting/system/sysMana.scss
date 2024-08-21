@@ -21,7 +21,7 @@
             cursor: pointer;
 
             &:hover{
-                background: var(--pi-hover-color);
+                background: #e3e8f0;
             }
         }
 
@@ -31,7 +31,7 @@
     .thoughtware-orga-aside {
         height: 100%;
         border-right: 1px solid var(--pi-border-color);
-        background: #f9f9f9;
+        background: #f0f3fa;
         overflow: auto;
 
         ul,li {
@@ -59,7 +59,7 @@
         }
 
         .orga-aside-item:hover{
-            background-color:var(--pi-hover-color);
+            background-color:#e3e8f0;
         }
 
         .aside-item-li{
@@ -69,15 +69,16 @@
         .orga-aside-li {
             height: 40px;
             line-height: 40px;
-
+            border-left: 3px solid rgba(255, 255, 255, 0);
         }
 
         .orga-aside-li:hover{
-              background-color:var(--pi-hover-color);
-          }
+            background-color:#e3e8f0;
+            border-left: 3px solid var(--pi-base-color);
+        }
 
         .orga-aside-select {
-            background-color: var(--pi-action-color);
+            background-color: #e3e8f0;
             border-left: 3px solid var(--pi-base-color);
         }
     }
