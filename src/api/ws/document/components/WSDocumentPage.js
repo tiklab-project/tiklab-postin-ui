@@ -31,16 +31,16 @@ const WSDocumentPage = ({tabKey}) =>{
                 <div className={"share-box-right-content-item-detail"}>
                     <span style={{color:"white",background: "rgb(46 167 255)"}} className={"requestType"}>{wsInfo?.apix?.protocolType.toUpperCase()}</span>
                     <div>{wsInfo?.apix?.path}</div>
-                    <div className={"status-box"}>
-                        {wsInfo?.apix?.status?.name}
-                    </div>
                 </div>
                 <div className={"share-box-right-content-item-detail"}>
                     <div>
-                        <span className={"share-detail-title"}>负责人: {wsInfo?.apix?.executor?.name||"未设置"}</span>
+                        <span className={"share-detail-title"}>状态 :  {wsInfo?.apix?.status?.name||"未设置"}</span>
                     </div>
-                    <div style={{margin:"0 50px"}}>
-                        <span className={"share-detail-title"}>更新时间: {wsInfo?.node?.updateTime}</span>
+                    <div style={{margin:"0 20px"}}>
+                        <span className={"share-detail-title"}>负责人 :  {wsInfo?.apix?.executor?.name||"未设置"}</span>
+                    </div>
+                    <div >
+                        <span className={"share-detail-title"}>更新时间 :  {wsInfo?.node?.updateTime}</span>
                     </div>
                     {
                         wsInfo?.apix?.desc

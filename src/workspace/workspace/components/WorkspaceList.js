@@ -12,7 +12,7 @@ import workspaceRecentStore from "../store/WorkspaceRecentStore";
  * 空间页
  */
 const WorkspaceList = (props) => {
-    const {workspaceStore, findList,selectItem,workspaceList} = props;
+    const {workspaceStore, findList,selectItem,workspaceList,loading} = props;
     const {settingMenuSelected} = workspaceStore;
     const {workspaceRecent}=workspaceRecentStore;
     const {createWorkspaceFollow,deleteWorkspaceFollow} = workspaceFollowStore;
@@ -145,12 +145,14 @@ const WorkspaceList = (props) => {
                 dataSource={workspaceList}
                 rowKey={record => record.id}
                 pagination={false}
-                // showHeader={false}
+                loading={loading}
                 locale={{
-                    emptyText: <Empty
-                        imageStyle={{height: 100}}
-                        description={<span>暂无空间</span>}
-                    />,
+                    emptyText: !loading
+                        ?<Empty
+                            imageStyle={{height: 100}}
+                            description={<span>暂无空间</span>}
+                        />
+                        :<div style={{height: 100}}/>,
                 }}
             />
         </div>

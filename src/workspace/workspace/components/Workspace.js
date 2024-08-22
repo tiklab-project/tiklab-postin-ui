@@ -154,15 +154,13 @@ const Workspace = (props) => {
                             selectKeyFun={selectMenu}
                         />
                         <div className='contant-box' style={{margin:"10px 0 0 0"}}>
-                            <Spin spinning={loading}>
-                                <WorkspaceList
-                                    {...props}
-                                    workspaceList={workspaceList}
-                                    findList={findList}
-                                    selectItem={selectTab}
-                                />
-                            </Spin>
-
+                            <WorkspaceList
+                                {...props}
+                                workspaceList={workspaceList}
+                                findList={findList}
+                                selectItem={selectTab}
+                                loading={loading}
+                            />
                         </div>
                     </div>
                 </Col>

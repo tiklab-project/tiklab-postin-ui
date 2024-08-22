@@ -72,8 +72,6 @@ const DataStructure = (props) => {
         },
     ]
 
-    const [toggleSort, setToggleSort] = useState(false);
-    const [sortBy, setSortBy] = useState({name:"name",sort:"asc"});
     const [loading, setLoading] = useState(false);
     let workspaceId= localStorage.getItem("workspaceId")
 
@@ -92,13 +90,7 @@ const DataStructure = (props) => {
 
     const findPage = async () =>{
         setLoading(true)
-        let params = {
-            workspaceId:workspaceId,
-            orderParams:[{
-                name:sortBy.name,
-                orderType:sortBy.sort
-            }]
-        }
+        let params = {workspaceId:workspaceId}
         await findDataStructureList(params)
         setLoading(false)
     }
@@ -109,11 +101,7 @@ const DataStructure = (props) => {
     const onSearch = (e) => {
         let params = {
             name: e.target.value,
-            workspaceId:workspaceId,
-            orderParams:[{
-                name:sortBy.name,
-                orderType:sortBy.sort
-            }]
+            workspaceId:workspaceId
         }
         findDataStructureList(params)
     }
@@ -166,10 +154,12 @@ const DataStructure = (props) => {
                         pagination={false}
                         loading={loading}
                         locale={{
-                            emptyText: <Empty
-                                imageStyle={{height: 80}}
-                                description={<span>暂无模型</span>}
-                            />
+                            emptyText: !loading
+                                ?<Empty
+                                    imageStyle={{height: 100}}
+                                    description={<span>暂无模型</span>}
+                                />
+                                :<div style={{height: 100}}/>,
                         }}
                     />
                 </div>

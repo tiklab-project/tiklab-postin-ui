@@ -51,7 +51,7 @@ const ApiStatusSelect = (props) =>{
         return data&&data.map(item=>{
             return (
                 <Option key={item.id} value={item.id}>
-                    <span className={"status-option-bg"} style={{"background":`${item.color}`}}> </span>
+                    {/*<span className={"status-option-bg"} style={{"background":`${item.color}`}}> </span>*/}
                     <span>{item.name}</span>
                 </Option>
             )

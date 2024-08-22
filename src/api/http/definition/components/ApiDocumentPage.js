@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import { observer} from "mobx-react";
-import ProtocolType from "../../../../common/ProtocolType";
 import MethodType from "../../../../common/MethodType";
 import TableHeaderDoc from "../../common/apiDoc/TableHeaderDoc";
 import TableQueryDoc from "../../common/apiDoc/TableQueryDoc";
@@ -43,13 +42,8 @@ const ApiDocumentPage = ({tabKey}) =>{
         <Spin spinning={loading}>
             <div className={"share-box-right-content-item"}>
                 <div className={"share-box-right-content-item-detail"}>
-                    {/*<ProtocolType type={apiDoc?.apix?.protocolType}/>*/}
-
                     <MethodType type={apiDoc?.node?.methodType} />
                     <div>{apiDoc?.apix?.path}</div>
-                    <div className={"status-box"}>
-                        {apiDoc?.apix?.status?.name}
-                    </div>
                 </div>
 
             </div>
@@ -57,10 +51,13 @@ const ApiDocumentPage = ({tabKey}) =>{
             <div className={"share-box-right-content-item"}  >
                 <div className={"share-box-right-content-item-detail"}>
                     <div>
-                        <span className={"share-detail-title"}>负责人: {apiDoc?.apix?.executor?.name||"未设置"}</span>
+                        <span className={"share-detail-title"}>状态 : {apiDoc?.apix?.status?.name||"未设置"}</span>
                     </div>
-                    <div style={{margin:"0 50px"}}>
-                        <span className={"share-detail-title"}>更新时间: {apiDoc?.node?.updateTime}</span>
+                    <div style={{margin:"0 20px"}}>
+                        <span className={"share-detail-title"}>负责人 : {apiDoc?.apix?.executor?.name||"未设置"}</span>
+                    </div>
+                    <div >
+                        <span className={"share-detail-title"}>更新时间 : {apiDoc?.node?.updateTime}</span>
                     </div>
                     {
                         apiDoc?.apix?.desc

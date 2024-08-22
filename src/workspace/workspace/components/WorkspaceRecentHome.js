@@ -78,9 +78,9 @@ const WorkspaceRecentHome = (props) =>{
                     {
                         dataList&&dataList.length>0
                             ?<>{showRecent(dataList)}</>
-                            : <Empty
-                                description={<span>暂无访问</span>}
-                            />
+                            :  !loading
+                                    ?<Empty description={<span>暂无访问</span>}/>
+                                    :<div style={{height: 110}}/>
                     }
                 </Row>
 

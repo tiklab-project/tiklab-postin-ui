@@ -24,7 +24,7 @@ const { TreeNode } = Tree;
  * 左侧目录
  */
 const LeftNavListQuickTest =(props)=>{
-    const {instanceStore,setLoading} = props;
+    const {instanceStore,setLoading,loading} = props;
     const {findInstanceList,instanceList,deleteAllInstance,deleteInstance,findInstance} = instanceStore;
     const {setResponseShow} = quickTestStore;
     const {tabPaneInfo,setTabPaneInfo,setTapLoading} = tabQuickTestStore
@@ -103,8 +103,6 @@ const LeftNavListQuickTest =(props)=>{
 
             setTabPaneInfo(newTabInfo)
         })
-
-
     }
 
     //获取请求体数据
@@ -278,9 +276,12 @@ const LeftNavListQuickTest =(props)=>{
                             {renderTreeNodes(instanceList)}
                         </Tree>
                         :<div className={"qt-left-empty"}>
-                            <Empty
-                                description={ <span> 暂无测试历史</span>}
-                            />
+                            {
+                                !loading
+                                    ? <Empty description={ <span> 暂无测试历史</span>}/>
+                                    : <div />
+                            }
+
                         </div>
                 }
             </div>

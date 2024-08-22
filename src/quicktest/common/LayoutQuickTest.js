@@ -9,12 +9,12 @@ import "./qtestStyle.scss"
  * 布局
  */
 const LayoutQuickTest = (props) =>{
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     return(
         <Spin size="large" spinning={loading} style={{height:"100%"}}>
             <RightContent
-                left={ <LeftNavListQuickTest setLoading={setLoading}  {...props}/>}
+                left={ <LeftNavListQuickTest loading={loading} setLoading={setLoading}  {...props}/>}
                 {...props}
             />
         </Spin>
