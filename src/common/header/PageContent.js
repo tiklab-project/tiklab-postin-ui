@@ -22,7 +22,7 @@ const PageContent =(props)=> {
     const user = getUser();
     const history = useHistory()
     const [menuExpanded]  = useMenuExpanded()
-    const firstPage = history.location.pathname === "/index" || history.location.pathname === "/workspace";
+    const firstPage = history.location.pathname === "/index" || history.location.pathname === "/workspace"||history.location.pathname === "/workspaceAdd";
 
     useEffect(()=>{
         //给左侧导航设置一个选择项

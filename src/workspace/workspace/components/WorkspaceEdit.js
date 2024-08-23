@@ -112,7 +112,7 @@ const WorkspaceEdit = (props) => {
     * 关闭
     */
     const onCancel = () => {
-        props.history.push("/workspaces")
+        props.history.push("/workspace")
     };
 
     return (
