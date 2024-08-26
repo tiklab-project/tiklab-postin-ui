@@ -1,5 +1,7 @@
 .sysmana-layout{
     height: 100%;
+    display: flex;
+    gap: 10px;
 
     .system-header{
         border-bottom:1px solid #e3e3e3;
@@ -27,9 +29,9 @@
 
     }
 
-
     .thoughtware-orga-aside {
         height: 100%;
+        width: 220px;
         border-right: 1px solid var(--pi-border-color);
         background: #f0f3fa;
         overflow: auto;
@@ -44,10 +46,10 @@
 
         .aside-li{
             cursor: pointer;
-            padding: 0 15px 0 20px;
+            padding: 0 15px 0 16px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 5px;
         }
 
         .orga-aside-item {
@@ -56,6 +58,7 @@
             align-items: center;
             height: 40px;
             line-height: 40px;
+            padding-left: 3px;
         }
 
         .orga-aside-item:hover{
@@ -69,11 +72,12 @@
         .orga-aside-li {
             height: 40px;
             line-height: 40px;
-            border-left: 3px solid rgba(255, 255, 255, 0);
+            border-left: 3px solid rgba(255, 255, 255, 0)
+
         }
 
         .orga-aside-li:hover{
-            background-color:#e3e8f0;
+            background-color: #e3e8f0;
             border-left: 3px solid var(--pi-base-color);
         }
 
@@ -86,7 +90,7 @@
 
 .sysmana-sider{
     width: 200px;
-    background-color: var(--pi-bg-color);
+    //background-color: var(--pi-bg-color);
     height: 100%;
 }
 
@@ -98,9 +102,12 @@
     overflow: auto;
     height: 100%;
     background-color: var(--pi-bg-color);
+    //padding: 0 10px;
+    flex: 1;
 }
 
 
+// evnMana
 .environment-breadcrumb{
     margin: 15px 0;
 }
@@ -123,6 +130,8 @@
     width: 120px;
     height: 30px;
     align-items: center;
+    gap: 5px;
+    padding-left: 3px;
 }
 
 
@@ -146,7 +155,7 @@
 
 
 .system-home{
-    width: 1024px;
+    //width: 1024px;
     padding: 20px;
     margin: 0 auto;
 
@@ -154,34 +163,70 @@
         padding:10px;
     }
 
-    .system-menu-box{
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 5px 0;
-        margin: 5px 0 20px 0;
+    .system-module{
+        padding: 10px;
+        //background: #f5f4f4;
+        margin: 10px;
+        border-radius: 5px;
+    }
 
-        .system-menu-item{
-            background: var(--pi-bg-grey-100);
-            width: 195px;
-            height: 90px;
+    .system-role-module{
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+
+        .system-role{
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: space-around;
+            align-items: center;
+            //padding: 5px 0;
+            margin: 5px 0 0 0;
+            background: #f5f4f4;
+            border: 1px solid #e8e8e8;
+            background: var(--pi-bg-grey-100);
             padding: 10px;
             border-radius: 5px;
-            border: 1px solid #e8e8e8;
-
-
-            &:hover{
-                cursor: pointer;
-            }
         }
     }
 
+
+
+
+    .system-menu-box{
+        //display: flex;
+        //align-items: center;
+        //gap: 10px;
+        padding: 5px 0;
+        margin: 5px 0 0 0;
+    }
+    .system-menu-role{
+        height: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+        border-radius: 5px;
+        //border: 1px solid #e8e8e8;
+    }
+
+    .system-menu-item{
+        background: var(--pi-bg-grey-100);
+        //width: 195px;
+        height: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #e8e8e8;
+
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
 }
-
-
 
 
