@@ -8,6 +8,7 @@ import {ExcludeProductUser, NotFound} from "thoughtware-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "thoughtware-security-ui";
 import {MessageNotice, MessageSendType, MessageType} from "thoughtware-message-ui";
 import {ProductAuth} from "thoughtware-licence-ui";
+import SystemHome from "./setting/system/SystemHome";
 
 //----内部组件----
 const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
@@ -114,7 +115,11 @@ const routers =  [
                 path:'/setting',
                 component:SystemContent,
                 routes:[
-
+                    {
+                        path: "/setting/home",
+                        exact: true,
+                        component:SystemHome,
+                    },
                     //成员与部门
                     {
                         path: "/setting/orga",

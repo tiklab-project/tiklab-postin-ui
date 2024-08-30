@@ -61,6 +61,7 @@ const CategoryAside = (props) => {
                     onPressEnter={onSearch}
                     onChange={debounce(onSearch,500)}
                     allowClear
+                    className={"api-search-box"}
                 />
             </div>
             <div className='ws-detail-menu-ul-box'>

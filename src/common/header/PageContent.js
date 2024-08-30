@@ -55,7 +55,7 @@ const PageContent =(props)=> {
              return<LeftMenuCommon
                 menuData={menuData}
                 isFirst={true}
-                settingRouter={`${version==="cloud"?"/setting/log":"/setting/version"}`}
+                settingRouter={`/setting/home`}
                 {...props}
             />
         }

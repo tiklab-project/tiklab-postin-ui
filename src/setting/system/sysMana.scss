@@ -17,6 +17,7 @@
         .system-header-title{
             font-size: 18px;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .system-header-back-home{
@@ -193,9 +194,9 @@
 
 
     .system-menu-box{
-        //display: flex;
-        //align-items: center;
-        //gap: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
         padding: 5px 0;
         margin: 5px 0 0 0;
     }

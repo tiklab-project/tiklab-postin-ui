@@ -79,7 +79,8 @@
     .qt-left-heaer-clear{
         width: 30px;
         height: 30px;
-        background: #f0f0f0;
+        background: #fafbfc;
+        border: 1px solid #eeeeee;
         /* padding: 0px; */
         display: flex;
         align-items: center;
@@ -93,6 +94,15 @@
 .qt-left-search{
     margin: 0 10px 10px;
     border: 1px solid #f4f4f4;
+
+    .ant-input-affix-wrapper{
+        background: #fafbfc;
+        border-radius: var(--pi-border-radius);
+        .ant-input{
+            background: #fafbfc;
+
+        }
+    }
 }
 
 //leftList
@@ -104,7 +114,6 @@
     height: calc(100% - 91px);
 
     .ant-tree{
-        background: #fafbfc;
 
         .ant-tree-treenode{
             align-items: center;

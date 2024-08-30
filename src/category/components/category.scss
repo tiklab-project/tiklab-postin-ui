@@ -1,12 +1,9 @@
-
 .category-search{
     display: flex;
     justify-content: space-between;
 }
 
-
 /* categoryNav */
-
 .allapi{
     padding: 10px 0 8px 26px;
     border-bottom: 1px solid var(--pi-border-color);
@@ -39,7 +36,6 @@
 .action-li{
     background-color: var(--pi-action-color);
 }
-
 
 .tree-span{
     height: 35px;
@@ -88,8 +84,8 @@
         cursor: pointer;
         margin: 4px 0 0;
     }
-
 }
+
 .node-box-right{
     display: flex;
     align-items: center;
@@ -127,7 +123,7 @@
 .ws-left-tree-drop{
     width: 32px;
     height: 30px;
-    background: #f0f0f0;
+    background: #fafbfc;
     /* padding: 0px; */
     display: flex;
     align-items: center;
@@ -172,6 +168,12 @@
         justify-content: space-around;
         border: 1px solid #f4f4f4;
     }
+    .api-search-box{
+        background: #fafbfc;
+        .ant-input{
+            background: #fafbfc;
+        }
+    }
 
     .ws-detail-menu-ul-box{
         overflow: auto;
@@ -181,11 +183,6 @@
         height: 100%;
 
         .ant-tree{
-            background: #fafbfc;
-
-            .ant-tree-switcher-noop{
-                //display:  none;
-            }
 
             .ant-tree-indent-unit{
                 width: 13px;
