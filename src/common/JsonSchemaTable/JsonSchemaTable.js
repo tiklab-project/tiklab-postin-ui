@@ -43,6 +43,7 @@ const JsonSchemaTable = ({schema,updateFn}) => {
                     defaultValue={record.dataType}
                     handleSave={toggleSelect}
                     rowData={record}
+                    model={true}
                 />
             )
         },

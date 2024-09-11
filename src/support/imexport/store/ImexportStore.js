@@ -7,34 +7,17 @@ import {Axios} from "thoughtware-core-ui";
  */
 class ImexportStore{
 
-    /**
-     * 导入
-     */
-    @action
-    importData = (values)=>{
-        const params = new FormData();
-        params.append("workspaceId",values.workspaceId);
-        params.append("file",values.file);
-
-        switch (values.type){
-            case "portman":
-                this.importPostman(params);
-                break;
-            case "report":
-                this.importReport(params);
-                break;
-        }
-    }
 
     /**
      * 导入postman
      */
     @action
-    importPostman = async (values) =>{
+    importData = async (values) =>{
         const params = new FormData();
         params.append("workspaceId",values.workspaceId);
         params.append("file",values.file);
-        return await Axios.post("/port/importPostman",params);
+        params.append("type",values.type);
+        return await Axios.post("/port/importData",params);
     }
 
     /**

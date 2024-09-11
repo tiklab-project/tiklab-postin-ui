@@ -13,11 +13,10 @@ export const dir = {
 export const methodDictionary = [
     "post",
     "get",
-    // "head",
-    // "put",
-    // "delete",
-    // "options",
-    // "patch"
+    "head",
+    "put",
+    "delete",
+    "patch"
 ]
 
 //请求中的字典项

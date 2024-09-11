@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Dropdown,Button, Form, Input, Select} from "antd";
+import {Button, Form, Input, Select} from "antd";
 import RequestTabQuickTest from "./RequestTabQuickTest";
 import {inject, observer} from "mobx-react";
 import {localDataProcess, mergeTestData} from "../../../common/request/sendTestCommon";
@@ -7,7 +7,6 @@ import {methodDictionary} from "../../../common/dictionary/dictionary";
 import {getUser} from "thoughtware-core-ui";
 import TestResultCommon from "../../../api/http/test/common/TestResultCommon";
 import {execute} from "../../../api/http/test/common/preAfterScript";
-import {DownOutlined} from "@ant-design/icons";
 import SaveToApi from "./saveToApi";
 import quickTestStore from "../store/QuickTestStore";
 import tabQuickTestStore from "../../store/TabQuickTestStore";
@@ -207,26 +206,6 @@ const HttpTest = (props) =>{
                             </Form.Item>
                         </div>
                         <div className={"test-base-item"}>
-                            {/*{*/}
-                            {/*    client==="web"*/}
-                            {/*        ?<Dropdown.Button*/}
-                            {/*            icon={<DownOutlined />}*/}
-                            {/*            menu={{items}}*/}
-                            {/*            onClick={onFinish}*/}
-                            {/*            type={"primary"}*/}
-                            {/*            loading={loading}*/}
-                            {/*            className={"important-btn"}*/}
-                            {/*        >*/}
-                            {/*            发送*/}
-                            {/*        </Dropdown.Button>*/}
-                            {/*        :<Button */}
-                            {/*            className={"important-btn"} */}
-                            {/*            onClick={onFinish} */}
-                            {/*            loading={loading}*/}
-                            {/*        >*/}
-                            {/*            发送*/}
-                            {/*        </Button>*/}
-                            {/*}*/}
                             <Button
                                 className={"important-btn"}
                                 onClick={onFinish}

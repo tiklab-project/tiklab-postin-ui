@@ -60,6 +60,8 @@ const RequestTab = (props) =>{
                 return props.header
             case "query":
                 return props.query
+            case "path":
+                return props.path
             case "body":
                 return props.body
             case "pre":
@@ -72,19 +74,35 @@ const RequestTab = (props) =>{
     }
 
     //请求中tab的名称
-    const requestTabDictionary = {
-        "header":"请求头",
-        "query":"查询参数",
-        "body":"请求体",
-        "pre":"前置脚本",
-        "after":"后置脚本",
-        "assert":"断言"
+    const requestTabDictionary = ()=>{
+        if(props.path){
+            return{
+                "header":"Header",
+                "query":"Query",
+                "path":`Path`,
+                "body":"Body",
+                "pre":"前置脚本",
+                "after":"后置脚本",
+                "assert":"断言"
+            }
+        }else {
+            return {
+                "header":"Header",
+                "query":"Query",
+                "body":"Body",
+                "pre":"前置脚本",
+                "after":"后置脚本",
+                "assert":"断言"
+            }
+        }
     }
+
+    let tapObj = requestTabDictionary()
 
     return(
         <Tabs className="tabs" size={"small"}>
             {
-                showTabPane(requestTabDictionary)
+                showTabPane(tapObj)
             }
         </Tabs>
     )

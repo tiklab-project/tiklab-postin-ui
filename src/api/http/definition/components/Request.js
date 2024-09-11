@@ -6,6 +6,7 @@ import RequestBody from "./RequestBody";
 import PreParam from './PreParam';
 import AfterScript from './AfterParam';
 import {inject, observer} from "mobx-react";
+import PathParam from "./PathParam";
 
 
 /**
@@ -20,6 +21,7 @@ const Request = (props) => {
             tabTip={tabTip}
             header={<RequestHeader />}
             query={<QueryParam />}
+            path={<PathParam />}
             body={<RequestBody />}
             pre={<PreParam />}
             after={<AfterScript />}

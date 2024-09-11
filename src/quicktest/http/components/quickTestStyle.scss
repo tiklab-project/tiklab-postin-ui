@@ -79,15 +79,17 @@
     .qt-left-heaer-clear{
         width: 30px;
         height: 30px;
-        background: #fafbfc;
-        border: 1px solid #eeeeee;
-        /* padding: 0px; */
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 2px 0 0 10px;
         border-radius: 5px;
         cursor: pointer;
+
+        &:hover{
+            background: #f1f3fa;
+            border: 1px solid #eeeeee;
+        }
     }
 }
 

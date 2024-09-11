@@ -8,9 +8,9 @@ import categoryStore from "../../../../category/store/CategoryStore";
 import apxMethodStore from "../store/ApxMethodStore";
 import DetailCommon from "../../../common/detailcommon/DetailCommon";
 import {useParams} from "react-router";
+import pathParamStore from "../store/PathParamStore";
 
 const {TabPane} = Tabs;
-
 const {findNodeTree} = categoryStore;
 const { findApxMethod,updateApxMethod} = apxMethodStore;
 
@@ -18,6 +18,11 @@ const { findApxMethod,updateApxMethod} = apxMethodStore;
  * 接口编辑页
  */
 const ApxMethodEditPage = ({tabKey}) => {
+    const {
+        findPathParamList,
+        createPathParam,
+        deletePathParam
+    } = pathParamStore;
 
     const [resData, setResData] = useState({});
     const [tabTip, setTabTip] = useState();
@@ -111,8 +116,45 @@ const ApxMethodEditPage = ({tabKey}) => {
             await findNodeTree({workspaceId:workspaceId});
             let apiInfo = await findApxMethod(apiId)
             setResData(apiInfo)
+
+            isAddPathValue(apiInfo?.apix?.path)
         });
     }
+
+    const isAddPathValue = async (path) =>{
+        const regex = /\{([^}]+)\}/g;
+        let match;
+        const matches = [];
+
+        while ((match = regex.exec(path)) !== null) {
+            matches.push(match[1]); // 提取花括号内的内容
+        }
+
+        if(matches&&matches.length>0){
+            matches.forEach(match => {
+                let data = {
+                    apiId: apiId,
+                    dataType: "string",
+                    name: match,
+                    required: 1,
+                }
+
+                createPathParam(data).then(() => {
+                    findPathParamList({apiId:apiId})
+                })
+            });
+        }else {
+            let list = await findPathParamList({apiId:apiId})
+            if(list&&list.length>0){
+                list.map(item=>{
+                    deletePathParam(item.id).then(() => {
+                        findPathParamList({apiId:apiId})
+                    })
+                })
+            }
+        }
+    }
+
 
     /**
      * 设置状态
@@ -161,7 +203,6 @@ const ApxMethodEditPage = ({tabKey}) => {
                 </TabPane>
             </Tabs>
         </Spin>
-
     )
 }
 

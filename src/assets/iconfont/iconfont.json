@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "3031904",
+      "name": "swagger",
+      "font_class": "swagger",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "27239416",
+      "name": "openapiinitiative",
+      "font_class": "openapi",
+      "unicode": "e70c",
+      "unicode_decimal": 59148
+    },
+    {
+      "icon_id": "40850394",
+      "name": "Postman",
+      "font_class": "postman",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
       "icon_id": "41326760",
       "name": "更多-copy",
       "font_class": "gengduo1",

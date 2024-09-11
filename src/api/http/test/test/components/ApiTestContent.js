@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { observer, inject } from "mobx-react";
-import {Breadcrumb, Button, Form, Input, Select, Space, Tooltip} from 'antd';
+import { Button, Form, Input, Select, Tooltip } from 'antd';
 import { TestRequest } from '../index';
 import './test.scss';
 import {localDataProcess, mergeTestData} from "../../../../../common/request/sendTestCommon";
 import {methodDictionary} from "../../../../../common/dictionary/dictionary";
 import {execute} from "../../common/preAfterScript";
 import TestResultCommon from "../../common/TestResultCommon";
-import IconBtn from "../../../../../common/iconBtn/IconBtn";
 import apxMethodStore from "../../../definition/store/ApxMethodStore";
 import afterParamTestStore from "../store/AfterParamTestStore";
 import assertParamTestStore from "../store/AssertParamTestStore";

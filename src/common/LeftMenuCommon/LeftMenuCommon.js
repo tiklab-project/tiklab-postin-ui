@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getUser, productFrameImg, productImg} from "thoughtware-core-ui";
+import {getUser, productFrameImg, productImg, productWhiteImg} from "thoughtware-core-ui";
 import {useHistory} from "react-router";
 import {productTitle} from "thoughtware-core-ui/es/utils/product";
 import "./LeftMenuCommonStyle.scss"
@@ -172,7 +172,7 @@ const LeftMenuCommon = (props) =>{
         <div className={`menu-box ${isExpanded?"menu-box-expended":"menu-box-not-expended"} ${themeColor}`}>
             {
                 isFirst&&<div style={{width:`${isExpanded&&"200px"}`}} className={'product-logo-box'} onClick={()=>clickToPage({router:"/index"})}>
-                    <img src={themeColor===THEME_DEFAULT?productImg.postin:productFrameImg?.postin} alt='logo' className={`${isExpanded?"product-logo-expanded":"product-logo"}`}/>
+                    <img src={themeColor===THEME_DEFAULT?productImg.postin:productWhiteImg?.postin} alt='logo' className={`${isExpanded?"product-logo-expanded":"product-logo"}`}/>
                     {
                         isExpanded&&<div className={"productName"} >{productTitle.postin}</div>
                     }

@@ -10,7 +10,7 @@ const {Option} = Select;
  * 数据类型下拉选择框
  */
 const DataTypeSelect = (props) =>{
-    const {defaultValue,handleSave,rowData,setNewRowAction} = props;
+    const {defaultValue,handleSave,rowData,setNewRowAction,model} = props;
 
 
     /**
@@ -56,11 +56,14 @@ const DataTypeSelect = (props) =>{
             allowClear
         >
             {renderItem(dataTypeDictionary)}
-            <Option key={"model"}>
-                <ModeModal
-                    selectModel={onSelect}
-                />
-            </Option>
+            {
+                model&& <Option key={"model"}>
+                    <ModeModal
+                        selectModel={onSelect}
+                    />
+                </Option>
+            }
+
         </Select>
     )
 }

@@ -711,9 +711,9 @@ const EnterPriseEdition = props =>{
 
     const onOk = () =>{
         if(featureType==='ee'){
-            window.open(`https://thoughtware.cn/account/subscribe/apply/postin`)
+            window.open(`https://tiklab.net/account/subscribe/apply/postin`)
         } else {
-            window.open(`https://work.thoughtware.cn/#/enterprise/application/postin`)
+            window.open(`https://work.tiklab.net/#/enterprise/application/postin`)
         }
         onCancel()
     }
