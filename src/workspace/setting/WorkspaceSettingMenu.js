@@ -34,11 +34,18 @@ const WorkspaceSettingMenu = (props) =>{
             title: '环境',
             id: '/workspace/setting/env',
             // icon: 'icon-modular',
-        },{
+        },
+        {
+            title: '模型',
+            id: '/workspace/setting/model',
+            // icon: 'icon-modular',
+        },
+        {
             title: '成员',
             id: '/workspace/setting/member',
             // icon: 'icon-modular',
-        },{
+        },
+        {
             title: '权限',
             id: '/workspace/setting/privilege',
             // icon: 'icon-modular',

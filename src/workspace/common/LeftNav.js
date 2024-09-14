@@ -43,10 +43,10 @@ const LeftNav = (props) =>{
             "router":"/workspace/apis"
         },
         {
-            "icon":"datamodel",
-            "name":"数据结构",
-            "key":"dataStructure",
-            "router":"/workspace/dataStructure"
+            "icon":"fenxiang",
+            "name":"分享",
+            "key":"share",
+            "router":"/workspace/share"
         }
     ]
 
@@ -215,7 +215,7 @@ const LeftNav = (props) =>{
                                         style={{
                                             fontSize:`24px`,
                                             margin:"0 5px 0 6px",
-                                            color:"#777"
+                                            color:`${themeColor==="theme-default"?"#777":"white"}`
                                         }}
                                     />
                                 </div>

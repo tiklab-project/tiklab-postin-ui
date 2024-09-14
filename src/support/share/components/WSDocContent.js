@@ -59,7 +59,7 @@ const WSDocContent = (props) =>{
     return (
         <div style={style} id={"share-right-content"} >
             <div className={"share-box-right-detail-content"}  id="share-base-info" style={{padding:"0 10px 0 0"}} >
-                <div style={{width:"860px"}}>
+                <div>
                     <div className={"share-box-right-content-item"}  >
                         <div className={"share-box-api-title"}>{wsData?.node?.name}</div>
                         <div className={"share-box-right-content-item-detail"}>

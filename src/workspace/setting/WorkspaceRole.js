@@ -7,7 +7,6 @@ import { DomainUser  } from 'thoughtware-user-ui';
 const WorkspaceRole = props => {
     const workspaceId = localStorage.getItem('workspaceId')
     return (
-        // <div>1111</div>
             <DomainUser
                 {...props}
                 domainId = { workspaceId }

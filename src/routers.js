@@ -8,12 +8,13 @@ import {ExcludeProductUser, NotFound} from "thoughtware-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "thoughtware-security-ui";
 import {MessageNotice, MessageSendType, MessageType} from "thoughtware-message-ui";
 import {ProductAuth} from "thoughtware-licence-ui";
-import SystemHome from "./setting/system/SystemHome";
+
 
 //----内部组件----
 const LoginContent = AsyncComponent(() => import("./login/LoginContent"));
 const LoginOut = AsyncComponent(() => import("./common/header/LoginOut"));
 const PortalContent = AsyncComponent(() => import("./common/header/PortalContent"));
+
 const Home = AsyncComponent(() => import('./home/Home'));
 const Workspace = AsyncComponent(() => import('./workspace/workspace/components/Workspace'));
 const WorkspaceEdit = AsyncComponent(() => import("./workspace/workspace/components/WorkspaceEdit"));
@@ -35,6 +36,7 @@ const WorkspaceSettingMenu = AsyncComponent(() => import("./workspace/setting/Wo
 const WorkspaceSetting = AsyncComponent(() => import("./workspace/setting/WorkspaceSetting"));
 
 const StructureDetail = AsyncComponent(() => import("./support/dataStructure/components/StructureDetail"));
+const ShareList = AsyncComponent(() => import( "./support/share/components/ShareList"));
 const Share = AsyncComponent(() => import("./support/share/components/Share"));
 const ShareMain = AsyncComponent(() => import("./support/share/components/ShareMain"));
 const DataStructure = AsyncComponent(() => import("./support/dataStructure/components/DataStructure"));
@@ -42,7 +44,7 @@ const EnvironmentTable = AsyncComponent(()=>import ("./support/environment/compo
 
 const SystemContent = AsyncComponent(() => import("./setting/system/SystemContent"));
 const Version = AsyncComponent(() => import("./setting/version/Version"));
-
+const SystemHome = AsyncComponent(() => import( "./setting/system/SystemHome"));
 
 const routers =  [
     {
@@ -298,11 +300,13 @@ const routers =  [
                             },
                             {
                                 path: "/workspace/apis/http/:id",
+                                exact: true,
                                 component: HttpContent,
                             },
 
                             {
                                 path: "/workspace/apis/ws/:id",
+                                exact: true,
                                 component: WsContent,
                             },
                             {
@@ -313,10 +317,9 @@ const routers =  [
                         ]
                     },
                     {
-                        path: "/workspace/dataStructure",
-                        key:'dataStucture',
+                        path: "/workspace/share",
                         exact: true,
-                        component: DataStructure,
+                        component: ShareList,
                     },
                     {
                         path: "/workspace/structureDetail",
@@ -340,6 +343,11 @@ const routers =  [
                                 component: EnvironmentTable,
                             },
                             {
+                                path: "/workspace/setting/model",
+                                exact: true,
+                                component: DataStructure,
+                            },
+                            {
                                 path: "/workspace/setting/member",
                                 exact: true,
                                 component: WorkspaceRole,
@@ -358,11 +366,12 @@ const routers =  [
 
                     {
                         component: LayoutQuickTest,
+                        path: "/workspace/quickTest",
                         routes:[
                             {
                                 path: "/workspace/quickTest",
                                 component: TestBoxQuickTest,
-                                cache: true,
+                                exact: true,
                             },
                         ]
                     },

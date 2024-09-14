@@ -37,7 +37,7 @@ const LeftMenuCommon = (props) =>{
         const menuHeight = documentHeight - 220;
         const menuNum = Math.floor(menuHeight / 65);
 
-        if (menuData.length > menuNum) {
+        if (menuData&&menuData.length > menuNum) {
             setVisibleMenuItems(menuData.slice(0, menuNum - 1));
             setMoreMenu(menuData.slice(menuNum - 1));
         } else {
@@ -53,7 +53,6 @@ const LeftMenuCommon = (props) =>{
             window.removeEventListener('resize', resizeUpdate);
         };
     }, []);
-
 
     /**
      * 点击路由
@@ -199,7 +198,7 @@ const LeftMenuCommon = (props) =>{
                 <div className={"menu-box-bottom"}>
 
                     {
-                        isExpanded
+                        isExpanded&&settingRouter
                             ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-isExpanded`} onClick={()=>clickToPage({router:settingRouter})}>
                                 <SettingOutlined style={{fontSize:"18px"}}/>
                                 {isExpanded && <div>设置</div>}

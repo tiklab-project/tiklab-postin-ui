@@ -21,6 +21,7 @@ const ShareModal  = (props) =>{
     const [password, setPassword] = useState(uuid(6));
     const [shareUrl, setShareUrl] = useState();
     const [visible, setVisible] = useState(false);
+    const workspaceId = localStorage.getItem("workspaceId")
 
     /**
      * 展示分享弹框
@@ -38,6 +39,7 @@ const ShareModal  = (props) =>{
                 targetId: targetId,
                 targetType:targetType,
                 visibility:visibility,
+                workspaceId:workspaceId,
                 password:null,
             }
 
@@ -121,6 +123,10 @@ const ShareModal  = (props) =>{
      * 展示分享的按钮效果
      */
     const showClickView = () =>{
+        if(props.name){
+            return <span className={"link-text"}  onClick={showModal}>{props.name}</span>
+        }
+
         if(props.btn){
             return <IconBtn
                 className="pi-icon-btn-grey"

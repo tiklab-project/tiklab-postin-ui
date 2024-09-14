@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../test/cat-token-box-main/.idea/cat-token-box-main.iml" filepath="$PROJECT_DIR$/../../test/cat-token-box-main/.idea/cat-token-box-main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/thoughtware-postin-ui.iml" filepath="$PROJECT_DIR$/.idea/thoughtware-postin-ui.iml" />
     </modules>
   </component>

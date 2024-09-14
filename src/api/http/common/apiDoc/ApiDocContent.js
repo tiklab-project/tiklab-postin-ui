@@ -59,15 +59,10 @@ const ApiDocContent = (props) =>{
         })
     }
 
-    const showRequest = () =>{
-
-
-    }
-
     return(
-        <div style={style} id={"share-right-content"} >
+        <div style={style} id={"api-detail-content"} >
             <div className={"share-box-right-detail-content"}  id="share-base-info" style={{padding:"0 10px 0 0"}} >
-                <div style={{width:"860px"}}>
+                <div>
                     <div className={"share-box-right-content-item"}  >
                         <div className={"share-box-api-title"}>{apiData?.node?.name}</div>
                         <div className={"share-box-right-content-item-detail"}>

@@ -10,8 +10,17 @@ class ShareStore {
     @observable shareList = [];
     @observable totalRecord ;
 
+    @action
+    findSharePage = async (params) =>{
+        let  res = await Axios.post("/share/findSharePage",params)
+        if(res.code === 0) {
+            return  res.data
+        }
+    }
+
+
     /**
-     * 查询接口文档列表
+     * 查询左侧树形列表的接口目录树
      */
     @action
     findShareTree = async (params) => {

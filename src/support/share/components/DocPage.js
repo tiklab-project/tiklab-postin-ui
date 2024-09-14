@@ -5,6 +5,8 @@ import noneImg from "../../../assets/img/nonedoc.png";
 import shareStore from "../store/ShareStore";
 import NodeTreeShare from "./NodeTreeShare";
 import WSDocContent from "./WSDocContent";
+import {productImg} from "thoughtware-core-ui";
+import {productTitle} from "thoughtware-core-ui/es/utils/product";
 
 const EmptyPage =() => {
 
@@ -80,15 +82,23 @@ const DocPage = (props) =>{
 
 
     return(
-        <div style={{height: "calc(100% - 48px)",overflow: "auto"}}>
+        <div style={{width:"100%"}}>
             <div className={"share-box"}>
                 <div className={"share-box-left"}>
-                    <NodeTreeShare
-                        setApiData={setApiData}
-                        treeList={treeList}
-                        setWsData={setWsData}
-                        setNodeType={setNodeType}
-                    />
+                    <div className={"share-left-header"} >
+                        <img src={productImg.postin} alt='logo'  className={"share-left-logo"} />
+                        <span className={"share-left-name"}>{productTitle.postin}</span>
+                    </div>
+                    <div className={"share-left-list"}>
+                        <NodeTreeShare
+                            setApiData={setApiData}
+                            treeList={treeList}
+                            setWsData={setWsData}
+                            setNodeType={setNodeType}
+                        />
+                    </div>
+
+
                 </div>
                 <div className={"share-box-right"}  >
                     {
