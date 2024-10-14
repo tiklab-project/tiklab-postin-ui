@@ -21,14 +21,6 @@ const StructureDetail = (props) => {
 
     },[])
 
-
-    /**
-     * 去往结构列表页
-     */
-    const backToList =() =>{
-        props.history.push("/workspace/dataStructure")
-    }
-
     return(
         <Row style={{height:"100%"}}>
         <Col
@@ -42,7 +34,7 @@ const StructureDetail = (props) => {
             <div className={"structure-content"}>
                 <div className={"structure-content-box"}>
                     <Breadcrumb className={"breadcrumb-box"} style={{margin:"0 0 10px 0"}}>
-                        <Breadcrumb.Item onClick={backToList} className={"first-item"}>数据结构</Breadcrumb.Item>
+                        <Breadcrumb.Item className={"first-item"}>数据结构</Breadcrumb.Item>
                         <Breadcrumb.Item>{data?.name}</Breadcrumb.Item>
                     </Breadcrumb>
                     <div className={"structure-content-box-main"}>

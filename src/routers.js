@@ -285,7 +285,6 @@ const routers =  [
                     },
                     {
                         path: "/workspace/apis",
-                        key:'apis',
                         component: LayoutApiContent,
                         routes:[
                             {
@@ -321,12 +320,7 @@ const routers =  [
                         exact: true,
                         component: ShareList,
                     },
-                    {
-                        path: "/workspace/structureDetail",
-                        key:'structure-detail',
-                        exact: true,
-                        component: StructureDetail,
-                    },
+
                     {
                         path: "/workspace/setting",
                         key:'workspaceSetting',
@@ -346,6 +340,12 @@ const routers =  [
                                 path: "/workspace/setting/model",
                                 exact: true,
                                 component: DataStructure,
+                            },
+                            {
+                                path: "/workspace/setting/modelDetail",
+                                key:'structure-detail',
+                                exact: true,
+                                component: StructureDetail,
                             },
                             {
                                 path: "/workspace/setting/member",
