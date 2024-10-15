@@ -1,28 +1,8 @@
+<h1 align="center" style="border-bottom: none">
+    <a href="https://postin.tiklab.net/" target="_blank"><img alt="postin" src="src/assets/img/logo.png"></a><br>postin
+</h1>
+
 # Postin - 接口管理工具
-
-[comment]: <> (<h1 align="center">Postin</h1>)
-
-
-[comment]: <> (<h1 align="center" style="border-bottom: none">)
-
-[comment]: <> (    <a href="https://kaelthas.tiklab.net/" target="_blank"><img alt="Kaelthas" src="src/assets/img/logo.png"></a><br>Kaelthas)
-
-[comment]: <> (</h1>)
-
-[comment]: <> (<div align="center">)
-
-[comment]: <> (  <img src="src/assets/img/logo.png" alt="img_1.png" />)
-
-[comment]: <> (</div>)
-
-[comment]: <> (<h3 align="center">接口管理工具</h3>)
-
-<p >
-  <a href="https://github.com/tiklab/postin"><img src="https://img.shields.io/github/license/tiklab/postin?sanitize=true" alt="License"></a>
-  <a href="https://github.com/tiklab/postin/releases"><img src="https://img.shields.io/github/v/release/tiklab/postin?sanitize=true" alt="Version"></a>
-  <a href="https://github.com/tiklab/postin/releases"><img src="https://img.shields.io/github/downloads/tiklab/postin/total?sanitize=true" alt="Downloads"></a>
-</p>
-
 
 随着 API 在现代开发中的广泛应用，Postman 等工具已成为接口测试和调试的必备。然而，随着项目规模的扩大和团队协作的复杂化，开发者们开始寻求更灵活且易于集成的解决方案。**Postin** 正是这样一款开源的接口管理工具，为团队提供从 API 设计到调试、接口文档和模拟数据生成的一站式解决方案，简化开发流程，提升协作效率。
 
