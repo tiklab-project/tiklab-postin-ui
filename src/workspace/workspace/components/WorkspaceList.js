@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import { observer, inject } from "mobx-react";
 import {Table, Space, Empty, Tooltip} from 'antd';
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
 import Avatar from "../../../common/avatar/avatar";
 import workspaceFollowStore from "../store/WorkspaceFollowStore";

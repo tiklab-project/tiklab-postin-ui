@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Axios} from "thoughtware-core-ui";
+import {Axios} from "tiklab-core-ui";
 import ShareVerify from "./ShareVerify";
 import ApiDoc from "./DocPage";
 

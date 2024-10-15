@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {observer} from "mobx-react";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "./WorkspaceFn";
 import {Col, Empty, Spin,Row} from "antd";

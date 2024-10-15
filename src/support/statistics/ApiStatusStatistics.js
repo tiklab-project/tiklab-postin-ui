@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from "react";
 import * as echarts from 'echarts';
-import {Axios} from "thoughtware-core-ui";
+import {Axios} from "tiklab-core-ui";
 import {Col,Card} from "antd";
 import "./statisticsStyle.scss"
 

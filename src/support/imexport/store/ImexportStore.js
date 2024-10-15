@@ -1,6 +1,6 @@
 import {action} from "mobx";
 
-import {Axios} from "thoughtware-core-ui";
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 导入导出 store

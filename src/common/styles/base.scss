@@ -48,14 +48,14 @@ body,p,h1,h2,h3,h4,h5,h6,ul,ol,dl,li,dt,dd{
 
 //theme
 .theme-default{
-    background: var(--thoughtware-theme-default)!important;
+    background: var(--tiklab-theme-default)!important;
 }
 .theme-black{
-    background: var(--thoughtware-theme-black)!important;
+    background: var(--tiklab-theme-black)!important;
     color: white!important;
 }
 .theme-blue{
-    background: var(--thoughtware-theme-blue)!important;
+    background: var(--tiklab-theme-blue)!important;
     color: white!important;
 }
 
@@ -326,7 +326,7 @@ table .icon{
 .link-text{
 
     &:hover{
-        color: var(--thoughtware-blue);
+        color: var(--tiklab-blue);
         cursor: pointer;
     }
 }

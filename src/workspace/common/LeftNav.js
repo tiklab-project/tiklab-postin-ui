@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {inject, observer} from "mobx-react";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {Dropdown, Space, Tooltip} from "antd";
 import {ShowWorkspaceIcon, toWorkspaceDetail} from "../workspace/components/WorkspaceFn";
-import {SYSTEM_ROLE_STORE} from 'thoughtware-privilege-ui/es/store'
+import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store'
 import workspaceRecentStore from "../workspace/store/WorkspaceRecentStore";
 import IconCommon from "../../common/IconCommon";
 import {useHistory} from "react-router";

@@ -1,7 +1,7 @@
 import React from "react";
 import {Avatar} from "antd";
 import {UserOutlined} from "@ant-design/icons";
-import {getUser} from "thoughtware-core-ui"
+import {getUser} from "tiklab-core-ui"
 
 const ProfileContent = ({userInfo = undefined}) => {
 
@@ -23,7 +23,7 @@ const ProfileContent = ({userInfo = undefined}) => {
         return <Avatar size={32} icon={<UserOutlined />} />
     }
 
-    return  <div className={'thoughtware-profile'}>
+    return  <div className={'tiklab-profile'}>
         {renderEl()}
     </div>
 }

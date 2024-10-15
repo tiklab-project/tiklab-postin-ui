@@ -1,7 +1,7 @@
 import {testFunctionCommon} from "../../api/common/TestFunctionCommon";
 import {mediaTypeDir, rawTypeDictionary} from "../dictionary/dictionary";
 import axiosIns from "../utils/localrequest";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import React from "react";
 import querystring from "querystring";
 

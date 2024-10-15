@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import { renderRoutes } from "react-router-config";
 import {DownOutlined, HomeOutlined, UpOutlined} from '@ant-design/icons';
-import { PrivilegeButton,SystemNav } from "thoughtware-privilege-ui";
+import { PrivilegeButton,SystemNav } from "tiklab-privilege-ui";
 import './sysMana.scss'
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import IconCommon from "../../common/IconCommon";
 import {useLocation} from "react-router";
 
@@ -116,7 +116,7 @@ const SysManage = (props) => {
             setExpandedTree={setExpandedTree} // 树的展开和闭合(非必传)
         >
             <div className='sysmana-layout'>
-                <div className="thoughtware-orga-aside">
+                <div className="tiklab-orga-aside">
                     <div className="system-header">
                         <div className="system-header-title system-header-item" onClick={()=>history.push("/setting/home")}>设置</div>
                         <div

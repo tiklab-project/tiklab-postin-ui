@@ -8,7 +8,7 @@ import WorkspaceRecentHome from "./WorkspaceRecentHome";
 import IconBtn from "../../../common/iconBtn/IconBtn";
 import workspaceFollowStore from "../store/WorkspaceFollowStore";
 import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {debounce} from "../../../common/commonUtilsFn/CommonUtilsFn";
 
 /**

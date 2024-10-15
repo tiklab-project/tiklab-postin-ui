@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {renderRoutes} from "react-router-config";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import './portalStyle.scss'
 import '../styles/base.scss';
 import '../styles/global.scss';
@@ -8,7 +8,7 @@ import '../language/i18n';
 import "../../assets/iconfont/iconfont";
 import "../../assets/iconfont/iconfont.css";
 import {inject, observer} from "mobx-react";
-import {SYSTEM_ROLE_STORE} from 'thoughtware-privilege-ui/es/store';
+import {SYSTEM_ROLE_STORE} from 'tiklab-privilege-ui/es/store';
 import {useHistory} from "react-router";
 import LeftMenuCommon from "../LeftMenuCommon/LeftMenuCommon";
 import {useMenuExpanded} from "../hooks/useMenuExpanded";

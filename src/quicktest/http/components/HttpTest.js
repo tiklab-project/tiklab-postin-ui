@@ -4,7 +4,7 @@ import RequestTabQuickTest from "./RequestTabQuickTest";
 import {inject, observer} from "mobx-react";
 import {localDataProcess, mergeTestData} from "../../../common/request/sendTestCommon";
 import {methodDictionary} from "../../../common/dictionary/dictionary";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import TestResultCommon from "../../../api/http/test/common/TestResultCommon";
 import {execute} from "../../../api/http/test/common/preAfterScript";
 import SaveToApi from "./saveToApi";

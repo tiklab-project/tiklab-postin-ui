@@ -1,5 +1,5 @@
 import React from "react";
-import {Logout} from "thoughtware-eam-ui"
+import {Logout} from "tiklab-eam-ui"
 
 /**
  * 包一下平台退出页

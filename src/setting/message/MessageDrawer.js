@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Badge, Drawer, Tooltip} from "antd";
 import {BellOutlined} from "@ant-design/icons";
-import {Axios, getUser} from "thoughtware-core-ui";
+import {Axios, getUser} from "tiklab-core-ui";
 import "./messageStyle.scss"
 import TemplateList from "../../common/templateList/TemplateList";
 

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {renderRoutes} from "react-router-config";
 import "./workspaceSetting.scss"
 import {inject, observer} from "mobx-react";
-import {ProjectNav} from "thoughtware-privilege-ui"
+import {ProjectNav} from "tiklab-privilege-ui"
 /**
  * 空间设置页中的左侧导航
  */

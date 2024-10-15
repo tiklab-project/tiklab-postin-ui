@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FolderOpenOutlined, FolderOutlined} from '@ant-design/icons';
 import {TextMethodType} from "../../../common/MethodType";
 import {observer} from "mobx-react";
-import {Axios} from "thoughtware-core-ui";
+import {Axios} from "tiklab-core-ui";
 import {Tree} from "antd";
 const { TreeNode } = Tree;
 

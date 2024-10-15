@@ -1,5 +1,5 @@
 import { observable,  action } from "mobx";
-import {Axios} from "thoughtware-core-ui";
+import {Axios} from "tiklab-core-ui";
 
 /**
  * 历史实例 store

@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
-import {BaseModal,HeaderDropdown} from "thoughtware-licence-ui/es/commons";
-import {disableFunction} from "thoughtware-core-ui";
+import {BaseModal,HeaderDropdown} from "tiklab-licence-ui/es/commons";
+import {disableFunction} from "tiklab-core-ui";
 import vipLight from '../../../assets/img/vip.png';
 import vipDark from '../../../assets/img/notvip.png';
 import "./EnterPriseEditionStyle.scss";

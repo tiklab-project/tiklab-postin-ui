@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Login } from 'thoughtware-eam-ui';
+import { Login } from 'tiklab-eam-ui';
 
 /**
  * 登录页

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Axios} from "thoughtware-core-ui";
+import {Axios} from "tiklab-core-ui";
 import {Empty} from "antd";
 import Profile from "../../common/avatar/Profile";
 import "./DynamicList.scss"

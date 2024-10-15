@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import MessageDrawer from "../../setting/message/MessageDrawer";
 import Search from "./search/components/Search";
-import {productWhiteImg, productTitle} from "thoughtware-core-ui";
+import {productWhiteImg, productTitle} from "tiklab-core-ui";
 import EnterPriseEdition from "./enterpriseEdition/EnterPriseEdition";
 import {observer} from "mobx-react";
 

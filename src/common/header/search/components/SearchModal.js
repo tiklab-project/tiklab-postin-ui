@@ -4,7 +4,7 @@ import {CloseOutlined, SearchOutlined} from "@ant-design/icons";
 import workspaceRecentStore from "../../../../workspace/workspace/store/WorkspaceRecentStore";
 import apiRecentStore from "../../../../home/apiRecent/store/ApiRecentStore";
 import categoryStore from "../../../../category/store/CategoryStore";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import ShowSearchResult from "./ShowSearchResult";
 import {debounce} from "../../../commonUtilsFn/CommonUtilsFn";
 import {inject, observer} from "mobx-react";

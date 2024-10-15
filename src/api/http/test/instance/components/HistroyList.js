@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import {inject, observer} from "mobx-react";
 import {Drawer,  Space} from "antd";
 import InstanceDetail from "./InstanceDetail";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {TextMethodType} from "../../../../../common/MethodType";
 import "./instanceStyle.scss"
 import IconCommon from "../../../../../common/IconCommon";

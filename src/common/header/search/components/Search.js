@@ -8,7 +8,7 @@ import workspaceRecentStore from "../../../../workspace/workspace/store/Workspac
 import apiRecentStore from "../../../../home/apiRecent/store/ApiRecentStore";
 import categoryStore from "../../../../category/store/CategoryStore";
 import {debounce} from "../../../commonUtilsFn/CommonUtilsFn";
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 
 /**
  * 头部搜索

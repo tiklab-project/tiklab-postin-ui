@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { Upload, message, Button } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import {getUser} from "thoughtware-core-ui";
+import {getUser} from "tiklab-core-ui";
 import {observer} from "mobx-react";
 import binaryParamStore from "../store/BinaryParamStore";
 

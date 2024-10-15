@@ -1,7 +1,7 @@
 import React from 'react';
-import {UserVerify} from "thoughtware-eam-ui";
+import {UserVerify} from "tiklab-eam-ui";
 import PageContent from "./PageContent";
-import {AppLink, AvatarLink, HelpLink} from "thoughtware-licence-ui"
+import {AppLink, AvatarLink, HelpLink} from "tiklab-licence-ui"
 
 /**
  * 用于个性化配置

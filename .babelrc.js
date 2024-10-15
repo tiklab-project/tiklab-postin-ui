@@ -15,7 +15,7 @@ module.exports={
         }],
 
         ["import", {
-            "libraryName": "thoughtware-eam-ui",
+            "libraryName": "tiklab-eam-ui",
             "libraryDirectory": "es",
             "style": true,
             "customName": (name) => {
@@ -29,12 +29,12 @@ module.exports={
                     const name = UpBit + lowBit
                     return total += name;
                 },'');
-                return `thoughtware-eam-ui/es/${fullName}`;
+                return `tiklab-eam-ui/es/${fullName}`;
             }
-        },"thoughtware-eam-ui"],
+        },"tiklab-eam-ui"],
 
         ["import", {
-            "libraryName": "thoughtware-licence-ui",
+            "libraryName": "tiklab-licence-ui",
             "libraryDirectory": "es",
             "style":  true,
             "customName": (name) => {
@@ -48,12 +48,12 @@ module.exports={
                     const name = UpBit + lowBit
                     return total += name;
                 },'');
-                return `thoughtware-licence-ui/es/${fullName}`;
+                return `tiklab-licence-ui/es/${fullName}`;
             }
-        },"thoughtware-licence-ui"],
+        },"tiklab-licence-ui"],
 
         ["import", {
-            "libraryName": "thoughtware-message-ui",
+            "libraryName": "tiklab-message-ui",
             "libraryDirectory": "es",
             "style":  true,
             "customName": (name) => {
@@ -67,12 +67,12 @@ module.exports={
                     const name = UpBit + lowBit
                     return total += name;
                 },'');
-                return `thoughtware-message-ui/es/${fullName}`;
+                return `tiklab-message-ui/es/${fullName}`;
             }
-        },"thoughtware-message-ui"],
+        },"tiklab-message-ui"],
 
         ["import", {
-            "libraryName": "thoughtware-plugin-manager-ui",
+            "libraryName": "tiklab-plugin-manager-ui",
             "libraryDirectory": "es",
             "style": true,
             "customName": (name) => {
@@ -86,12 +86,12 @@ module.exports={
                     const name = UpBit + lowBit
                     return total += name;
                 },'');
-                return `thoughtware-plugin-manager-ui/es/${fullName}`;
+                return `tiklab-plugin-manager-ui/es/${fullName}`;
             }
-        }, "thoughtware-plugin-manager-ui"],
+        }, "tiklab-plugin-manager-ui"],
 
         ["import", {
-            "libraryName": "thoughtware-security-ui",
+            "libraryName": "tiklab-security-ui",
             "libraryDirectory": "es",
             "style": true,
             "customName": (name) => {
@@ -105,9 +105,9 @@ module.exports={
                     const name = UpBit + lowBit
                     return total += name;
                 },'');
-                return `thoughtware-security-ui/es/${fullName}`;
+                return `tiklab-security-ui/es/${fullName}`;
             }
-        }, "thoughtware-security-ui"],
+        }, "tiklab-security-ui"],
 
 
         ["@babel/plugin-proposal-decorators", { "legacy": true }],

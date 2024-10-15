@@ -1,5 +1,5 @@
 import React from "react";
-import {Version as VersionCom} from "thoughtware-licence-ui";
+import {Version as VersionCom} from "tiklab-licence-ui";
 import {Table} from "antd";
 
 /**

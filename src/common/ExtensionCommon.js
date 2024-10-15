@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Button, Modal} from "antd";
-import {getVersionInfo} from "thoughtware-core-ui";
+import {getVersionInfo} from "tiklab-core-ui";
 import upgradeImg from "../assets/img/upgrade.png"
 import IconCommon from "./IconCommon"
-import {applySubscription} from "thoughtware-core-ui";
+import {applySubscription} from "tiklab-core-ui";
 
 /**
  * 以btn形式展示

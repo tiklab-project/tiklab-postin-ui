@@ -5,8 +5,8 @@ import noneImg from "../../../assets/img/nonedoc.png";
 import shareStore from "../store/ShareStore";
 import NodeTreeShare from "./NodeTreeShare";
 import WSDocContent from "./WSDocContent";
-import {productImg} from "thoughtware-core-ui";
-import {productTitle} from "thoughtware-core-ui/es/utils/product";
+import {productImg} from "tiklab-core-ui";
+import {productTitle} from "tiklab-core-ui/es/utils/product";
 
 const EmptyPage =() => {
 

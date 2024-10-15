@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import {inject, observer} from "mobx-react";
 import {Form, Button, Input, Row, Col, Select,Modal} from 'antd';
-import {Axios} from "thoughtware-core-ui";
+import {Axios} from "tiklab-core-ui";
 import {toWorkspaceDetail} from "./WorkspaceFn";
 import workspaceRecentStore from "../store/WorkspaceRecentStore";
 import {useHistory} from "react-router";

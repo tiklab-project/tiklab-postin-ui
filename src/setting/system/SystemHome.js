@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 import {Row,Col} from "antd";
-import {applyJump, disableFunction, applySubscription, getVersionInfo, Axios, getUser} from "thoughtware-core-ui";
+import {applyJump, disableFunction, applySubscription, getVersionInfo, Axios, getUser} from "tiklab-core-ui";
 import vipLight from '../../assets/img/vip.png';
 import vipDark from '../../assets/img/notvip.png';
 import "./SettingHome.scss";
@@ -15,7 +15,7 @@ import {
     HistoryOutlined,
     LaptopOutlined,
 } from "@ant-design/icons"
-import versionStore from "thoughtware-licence-ui/es/version/VersionStore";
+import versionStore from "tiklab-licence-ui/es/version/VersionStore";
 
 const IsSubScribeMap={
     1:"专业版",
