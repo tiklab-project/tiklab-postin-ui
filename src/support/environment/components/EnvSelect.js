@@ -3,16 +3,20 @@ import {Divider, Select, Tooltip} from "antd";
 import {inject, observer} from "mobx-react";
 import EvnMana from "./Environment";
 import environmentStore from "../store/environmentStore";
+import {useHistory} from "react-router";
 const { Option } = Select;
 
 /**
  * 环境选择
  */
 const EnvSelect = (props) =>{
+    const {workspaceStore} = props
+    const {settingMenuSelected} = workspaceStore;
 
     const { findEnvironmentList, envSourceList,getTestEnvUrl,testEnvUrl } = environmentStore;
 
     let workspaceId=localStorage.getItem("workspaceId")
+    const history = useHistory()
 
     /**
      * 选择测试环境 input框呈现相应的地址
@@ -29,7 +33,12 @@ const EnvSelect = (props) =>{
         return data&&data.map(item=>{
             return (
                 <Option key={item.id} value={item.url}>
-                    <Tooltip placement="leftTop" title={item.url}> {item.name} </Tooltip>
+                    <Tooltip
+                        placement="leftTop"
+                        title={item.url}
+                    >
+                        <div style={{width:"100%"}}>{item.name}</div>
+                    </Tooltip>
                 </Option>
             )
         })
@@ -37,6 +46,11 @@ const EnvSelect = (props) =>{
 
     const onDropdownVisibleChange = async ()=>{
         await findEnvironmentList({workspaceId:workspaceId})
+    }
+
+    const toEnv = () =>{
+        history.push("/workspace/setting/env")
+        settingMenuSelected("/workspace/setting/env")
     }
 
     return(
@@ -52,7 +66,8 @@ const EnvSelect = (props) =>{
                     <div style={{"overflow":"auto","height":"100px"}}>{item}</div>
 
                     <Divider style={{ margin: '8px 0' }} />
-                    <EvnMana />
+                    {/*<EvnMana />*/}
+                    <a style={{margin: "0 10px"}} onClick={toEnv}>前往环境</a>
                 </>
             )}
         >
@@ -64,4 +79,4 @@ const EnvSelect = (props) =>{
     )
 }
 
-export default observer(EnvSelect);
+export default inject("workspaceStore")(observer(EnvSelect));

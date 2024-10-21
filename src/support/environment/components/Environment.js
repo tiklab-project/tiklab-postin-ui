@@ -1,7 +1,7 @@
 import "./envStyle.scss"
 import React, {useEffect, useState} from 'react';
 import { observer } from "mobx-react";
-import { Space, Popconfirm, Modal} from 'antd';
+import {Space, Popconfirm, Modal, Tooltip} from 'antd';
 import {ExTable} from "../../../common/EditTable";
 import environmentStore from "../store/environmentStore";
 import IconCommon from "../../../common/IconCommon";
@@ -97,11 +97,15 @@ const EvnMana = (props) => {
                             item.name === record.name
                             && item.url === record.url
                                 ? null
-                                :  <IconCommon
-                                    icon={"btn_confirm"}
-                                    className="icon-s table-edit-icon"
-                                    onClick={() => upData(record)}
-                                />
+                                :<Tooltip title="保存">
+                                    <span>
+                                        <IconCommon
+                                            icon={"btn_confirm"}
+                                            className="icon-s table-edit-icon"
+                                            onClick={() => upData(record)}
+                                        />
+                                    </span>
+                                </Tooltip>
                         }
                     </>
                     :null
@@ -144,7 +148,6 @@ const EvnMana = (props) => {
      * 添加行
      */
     const addNewRow = () =>{
-
         let arr = environmentList.filter(item=> item.id==="environmentInitRow")
 
         if(arr&&arr.length===1){
@@ -202,7 +205,6 @@ const EvnMana = (props) => {
                     </div>
                 </div>
             </Modal>
-
         </>
     )
 }

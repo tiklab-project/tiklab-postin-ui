@@ -40,15 +40,7 @@ const EnvironmentTable = (props) => {
             title: '操作',
             dataIndex: 'operation',
             width: 100,
-            render: (text, record) =>(
-                <Space  >
-                    <EnvironmentEdit envData={record} findList={findList}/>
-
-                    <HideDelete
-                        deleteFn={() =>deleteEnvironment(record.id).then(()=>findList())}
-                    />
-                </Space>
-            )
+            render: (text, record) =>(isShowActionBtn(record))
         }
     ]
 
@@ -61,6 +53,22 @@ const EnvironmentTable = (props) => {
 
     const findList = () =>{
         findEnvironmentList({workspaceId:workspaceId}).then(list=>setEnvList(list));
+    }
+
+    //mock环境不能删除
+    const isShowActionBtn = (record) =>{
+        let urlBoolean = record.url.includes(`/mockx/${workspaceId}`)
+        let nameBoolean = record.name==="Mock"
+        if(nameBoolean&&urlBoolean){
+            return null
+        }else {
+            return  <Space>
+                <EnvironmentEdit envData={record} findList={findList}/>
+                <HideDelete
+                    deleteFn={() =>deleteEnvironment(record.id).then(()=>findList())}
+                />
+            </Space>
+        }
     }
 
 

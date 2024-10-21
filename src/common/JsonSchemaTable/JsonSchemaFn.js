@@ -41,16 +41,19 @@ export const convertTableDataToJsonSchema = (data) => {
  *  jsonschema 转换成 tableList
  */
 export const schemaToTable = (properties,  requiredFields = []) => {
-    return Object.keys(properties).map(subKey => {
-        const subProperty = properties[subKey];
-        return {
-            id: uuid(),
-            name: subKey,
-            dataType: subProperty.type,
-            mock: subProperty.mock?.mock,
-            required: requiredFields.includes(subKey),
-            description: subProperty.description,
-            children: subProperty.properties ? schemaToTable(subProperty.properties, subProperty.required ?? []) : undefined,
-        };
-    });
+    if(properties){
+        return Object.keys(properties).map(subKey => {
+            const subProperty = properties[subKey];
+            return {
+                id: uuid(),
+                name: subKey,
+                dataType: subProperty.type,
+                mock: subProperty.mock?.mock,
+                required: requiredFields.includes(subKey),
+                description: subProperty.description,
+                children: subProperty.properties ? schemaToTable(subProperty.properties, subProperty.required ?? []) : undefined,
+            };
+        });
+    }
+
 };

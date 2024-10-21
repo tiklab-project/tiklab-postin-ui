@@ -4,7 +4,7 @@ import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----
 import {Directory, Orga, UserGroup, User,} from "tiklab-user-ui";
 import {NoAccess, ProjectFeature, ProjectRole, SystemFeature, SystemRole,ProjectVirtualRole} from "tiklab-privilege-ui"
-import {ExcludeProductUser, NotFound} from "tiklab-eam-ui";
+import {ExcludeProductUser, LoginRpw, NotFound} from "tiklab-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "tiklab-security-ui";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import {ProductAuth} from "tiklab-licence-ui";
@@ -55,7 +55,6 @@ const routers =  [
     {
         path: "/share",
         component: Share,
-        key:'Share',
         routes: [
             {
                 path: "/share/:id",
@@ -68,13 +67,11 @@ const routers =  [
         path: "/login",
         component: LoginContent,
         exact: true,
-        key:'Login',
     },
     {
         path: "/logout",
         component: LoginOut,
         exact: true,
-        key:'logout',
     },
     {
         exact: true,
@@ -91,6 +88,13 @@ const routers =  [
         exact: true,
         render:(props)=>{
             return <ExcludeProductUser {...props}/>
+        }
+    },
+    {
+        exact:true,
+        path: '/loginRpw',
+        render:(props)=>{
+            return <LoginRpw {...props}   loginGoRouter='/'/>
         }
     },
     {

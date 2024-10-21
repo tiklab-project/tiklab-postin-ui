@@ -131,8 +131,6 @@ const DataStructure = (props) => {
                     left={<span>数据结构</span>}
                     right={ <DataStructureEdit type={"add"} name={'+添加数据结构'}  /> }
                 />
-
-
                 <div className={"flex-box"}>
                     <div className={"flex-box structure-header-box"}>
                         <Input

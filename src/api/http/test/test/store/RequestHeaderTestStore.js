@@ -8,7 +8,7 @@ class RequestHeaderTestStore {
 
     //带过来所有的项
     @observable requestHeaderTestList = [];
-    @observable newHeaderRow=[{id: 'InitNewRowId'}];
+    @observable newHeaderRow=[{id: 'InitNewRowId',headerName:" "}];
 
     @action
     getRequestHeaderTestList= (data) => {

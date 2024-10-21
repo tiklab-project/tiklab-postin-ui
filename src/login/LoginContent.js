@@ -12,7 +12,7 @@ const LoginContent = (props)=> {
             {...props}
             title={"Postin"}
             bgroup={'postin'}
-            loginGoRouter="/"
+            loginGoRouter="/index"
             vaildUserAuthRouter={"/no-auth"}
         />
     )

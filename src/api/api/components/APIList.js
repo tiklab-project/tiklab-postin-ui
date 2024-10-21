@@ -169,7 +169,6 @@ const APIList = (props) => {
     const onTableChange = (current) => {
         setCurrentPage(current)
         const newParams = {
-            ...pageParam,
             pageParam: {
                 pageSize: pageSize,
                 currentPage: current

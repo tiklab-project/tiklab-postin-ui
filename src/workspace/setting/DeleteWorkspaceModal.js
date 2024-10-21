@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Form, Input, Modal} from "antd";
+import {Button, Input, Modal} from "antd";
 import {PrivilegeProjectButton} from "tiklab-privilege-ui";
 
 /**
@@ -31,7 +31,7 @@ const DeleteWorkspaceModal = (props) =>{
      */
     const deleteFn = () =>{
         deleteWorkspace(workspaceId).then(()=>{
-            props.history.push("/workspaces")
+            props.history.push("/workspace")
         })
     }
 

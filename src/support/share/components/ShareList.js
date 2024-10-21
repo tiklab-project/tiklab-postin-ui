@@ -4,6 +4,7 @@ import shareStore from "../store/ShareStore";
 import HideDelete from "../../../api/common/hideDelete/HideDelete";
 import MenuSelectCommon from "../../../common/menuSelect/MenuSelectCommon";
 import ShareModal from "./ShareModal";
+import PaginationCommon from "../../../common/pagination/Page";
 
 const ShareList = () =>{
     const {findSharePage,deleteShare} =shareStore
@@ -12,20 +13,31 @@ const ShareList = () =>{
     const workspaceId = localStorage.getItem("workspaceId")
     const [dataList, setDataList] = useState([]);
     const [selectTab, setSelectTab] = useState(null);
+    const [totalPage, setTotalPage] = useState();
+    const [totalRecord, setTotalRecord] = useState();
+    const [pageSize] = useState(12);
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect( ()=>{
         findPage();
     },[])
 
-    const findPage = async (params) =>{
+    const findPage =  (params) =>{
         setLoading(true)
         let param = {
+            pageParam: {
+                pageSize: pageSize,
+                currentPage:1
+            },
             workspaceId:workspaceId,
             ...params
         }
-        let info = await findSharePage(param)
-        setDataList(info?.dataList)
-        setLoading(false)
+        findSharePage(param).then((res)=>{
+            setTotalPage(res.totalPage);
+            setTotalRecord(res.totalRecord)
+            setDataList(res?.dataList)
+            setLoading(false)
+        })
     }
 
     const columns = [
@@ -107,6 +119,22 @@ const ShareList = () =>{
         setSelectTab(item.key)
     }
 
+    /**
+     * 分页
+     */
+    const onTableChange = (current) => {
+        setCurrentPage(current)
+        const newParams = {
+            pageParam: {
+                pageSize: pageSize,
+                currentPage: current
+            },
+        }
+
+        findPage(newParams)
+    }
+
+
     return(
         <Row style={{height:"100%",overflow:"auto"}}>
             <Col
@@ -138,6 +166,13 @@ const ShareList = () =>{
                         }}
                     />
                 </div>
+                <PaginationCommon
+                    currentPage={currentPage}
+                    totalPage={totalPage}
+                    changePage={onTableChange}
+                    totalRecord={totalRecord}
+                    findPage={findPage}
+                />
             </Col>
         </Row>
     )

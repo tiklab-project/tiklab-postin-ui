@@ -6,6 +6,7 @@ import DeleteWorkspaceModal from "./DeleteWorkspaceModal";
 import {DeleteOutlined, EditOutlined, ExportOutlined} from "@ant-design/icons";
 import HtmlExport from "./export/HtmlExport";
 import ExtensionCommon from "../../common/ExtensionCommon";
+import {messageFn} from "../../common/messageCommon/MessageCommon";
 const { Panel } = Collapse;
 const {TextArea} = Input;
 
@@ -40,15 +41,20 @@ const WorkspaceSetting = (props) =>{
         })
     },[workspaceId])
 
-    const onFinish = (values) =>{
+    const onFinish = async (values) =>{
         values.visibility=visibility;
         let param = {
             id:workspaceId,
             iconUrl:workspaceDetail?.iconUrl,
             ...values,
         }
+        let data = await updateWorkspace(param);
+        if(data&&data.code===0){
+            messageFn("success","编辑成功")
+        }else {
+            messageFn("error","Error：编辑失败")
+        }
 
-        updateWorkspace(param);
     }
 
 
