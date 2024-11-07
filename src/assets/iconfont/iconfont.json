@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6363813",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
       "icon_id": "3031904",
       "name": "swagger",
       "font_class": "swagger",
@@ -200,13 +207,6 @@
       "font_class": "lishi",
       "unicode": "e60b",
       "unicode_decimal": 58891
-    },
-    {
-      "icon_id": "2076191",
-      "name": "分享",
-      "font_class": "fenxiang",
-      "unicode": "e86e",
-      "unicode_decimal": 59502
     },
     {
       "icon_id": "26081414",

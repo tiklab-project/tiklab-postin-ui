@@ -89,7 +89,7 @@ const pi =  {
 // }
 
 
-export const execute=(express,responseData)=>{
-    resData=responseData?responseData:{}
-    return eval(express)
-}
+export const execute = (express, responseData) => {
+    resData = responseData || {};
+    return eval(express);
+};

@@ -82,6 +82,7 @@ const MockDetail = (props) =>{
     }
 
     const showDrawer = () => {
+        localStorage.setItem("mockId",mockId)
         setOpen(true);
     };
     const onClose = () => {

@@ -58,7 +58,7 @@ const WorkspaceEdit = (props) => {
         createWorkspace(values).then((res)=> {
             toWorkspaceDetail(res.data,workspaceRecent)
 
-            props.history.push('/workspace/quickTest');
+            props.history.push('/workspace');
         });
     };
 

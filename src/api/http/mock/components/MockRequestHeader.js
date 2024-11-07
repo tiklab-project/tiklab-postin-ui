@@ -9,7 +9,7 @@ import mockRequestHeaderStore from "../store/MockRequestHeaderStore";
  * mock
  * 请求头可编辑表格
  */
-const RequestHeaderMock = (props) =>{
+const RequestHeaderMock = ({mockId}) =>{
     const { 
         findRequestHeaderMockList, 
         deleteRequestHeaderMock, 
@@ -22,7 +22,7 @@ const RequestHeaderMock = (props) =>{
 
     const [newRowAction, setNewRowAction] = useState(false);
     const [dataSource,setDataSource] = useState([])
-    const mockId = localStorage.getItem('mockId')
+    // const mockId = localStorage.getItem('mockId')
 
     useEffect( async ()=>{
         await findList()

@@ -12,13 +12,14 @@ const { TabPane } = Tabs;
  * 输出参数 请求头部与请求参数的切换
  */
 const MockRequest = (props) => {
+    const {mockId} = props
     const { 
         findRequestMock,
         updateRequestMock,
     } = requestMockStore; 
 
     const [radioType, setRadioType] = useState()
-    const mockId = localStorage.getItem('mockId');
+    // const mockId = mockId||localStorage.getItem('mockId');
 
     useEffect(()=>{
         findRequestMock(mockId).then((res) => {
@@ -42,9 +43,9 @@ const MockRequest = (props) => {
 
         switch(radioType) {
             case 'form':
-                return <div className={"tabPane-item-box"}><MockFormParam /></div>
+                return <div className={"tabPane-item-box"}><MockFormParam mockId={mockId} /></div>
             case 'json':
-                return <div className={"tabPane-item-box"}><JsonParamMock /></div>
+                return <div className={"tabPane-item-box"}><JsonParamMock mockId={mockId} /></div>
         } 
     }
      
@@ -52,10 +53,10 @@ const MockRequest = (props) => {
         <Fragment>
             <Tabs defaultActiveKey="1" >
                 <TabPane tab="请求头部" key="1">
-                    <div className={"tabPane-item-box"}><MockRequestHeader /></div>
+                    <div className={"tabPane-item-box"}><MockRequestHeader mockId={mockId} /></div>
                 </TabPane>
                 <TabPane tab="查询参数" key="2">
-                    <div className={"tabPane-item-box"}><MockQueryParam /></div>
+                    <div className={"tabPane-item-box"}><MockQueryParam mockId={mockId} /></div>
                 </TabPane>
                 <TabPane tab="请求体" key="3">
                     <div className='request-radio'>

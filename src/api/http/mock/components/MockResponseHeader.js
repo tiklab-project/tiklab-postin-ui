@@ -14,7 +14,7 @@ import mockResponseHeaderStore from "../store/MockResponseHeaderStore";
  * @returns {JSX.Element}
  * @constructor
  */
-const MockResponseHeader = (props) => {
+const MockResponseHeader = ({mockId}) => {
     const {
         findResponseHeaderMockList,
         deleteResponseHeaderMock,
@@ -26,11 +26,11 @@ const MockResponseHeader = (props) => {
     } = mockResponseHeaderStore;
 
     const [dataSource,setDataSource] = useState([])
-    const mockId = localStorage.getItem('mockId')
+    // const mockId = localStorage.getItem('mockId')
 
     useEffect( async ()=>{
         await findList()
-    },[dataLength])
+    },[mockId,dataLength])
 
     const findList = () =>{
         findResponseHeaderMockList(mockId).then(list=>setDataSource(list));

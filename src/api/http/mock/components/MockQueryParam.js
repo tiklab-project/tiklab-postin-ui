@@ -8,7 +8,7 @@ import mockQueryParamStore from "../store/MockQueryParamStore";
  * mock
  * 查询参数可编辑表格
  */
-const QueryParamMock = (props) =>{
+const QueryParamMock = ({mockId}) =>{
     const { 
         findQueryParamMockList, 
         deleteQueryParamMock, 
@@ -20,7 +20,7 @@ const QueryParamMock = (props) =>{
     } = mockQueryParamStore;
 
     const [dataSource,setDataSource] = useState([]);
-    const mockId = localStorage.getItem('mockId');
+    // const mockId = localStorage.getItem('mockId');
 
     useEffect( ()=>{
         findQueryParamMockList(mockId).then(res=>setDataSource(res))

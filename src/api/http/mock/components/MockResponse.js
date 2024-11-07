@@ -11,7 +11,7 @@ const { TabPane } = Tabs;
  * mock
  * 响应部分
  */
-const MockResponse = (props) => {
+const MockResponse = ({mockId}) => {
     const { 
         findResponseMock, 
         updateResponseMock,
@@ -28,7 +28,7 @@ const MockResponse = (props) => {
     const [form] = Form.useForm();
     const [ radioValue, setRadioValue ] = useState();
 
-    const mockId = localStorage.getItem('mockId');
+    // const mockId = localStorage.getItem('mockId');
     
     useEffect(()=> {
         findResponseMock(mockId).then((res)=>{
@@ -90,7 +90,7 @@ const MockResponse = (props) => {
         <>
             <Tabs defaultActiveKey="1" >
                 <TabPane tab="返回头部" key="1">
-                    <div className={"tabPane-item-box"}><MockResponseHeader /></div>
+                    <div className={"tabPane-item-box"}><MockResponseHeader mockId={mockId} /></div>
                 </TabPane>
 
                 <TabPane tab="返回结果" key="2">

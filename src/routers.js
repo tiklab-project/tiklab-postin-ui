@@ -4,7 +4,7 @@ import AsyncComponent from "./common/lazy/SyncComponent";
 //----平台组件----
 import {Directory, Orga, UserGroup, User,} from "tiklab-user-ui";
 import {NoAccess, ProjectFeature, ProjectRole, SystemFeature, SystemRole,ProjectVirtualRole} from "tiklab-privilege-ui"
-import {ExcludeProductUser, LoginRpw, NotFound} from "tiklab-eam-ui";
+import {ExcludeProductUser, LoginRpw, NotFound,SysException} from "tiklab-eam-ui";
 import {BackupRestore, LogTemplate, LogType, MyLog} from "tiklab-security-ui";
 import {MessageNotice, MessageSendType, MessageType} from "tiklab-message-ui";
 import {ProductAuth} from "tiklab-licence-ui";
@@ -88,6 +88,12 @@ const routers =  [
         exact: true,
         render:(props)=>{
             return <ExcludeProductUser {...props}/>
+        }
+    },{
+        path:"/500",
+        exact:true,
+        render:(props)=>{
+            return <SysException  {...props}/>
         }
     },
     {

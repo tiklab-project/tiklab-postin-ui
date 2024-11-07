@@ -7,7 +7,7 @@ import mockFormParamStore from "../store/MockFormParamStore";
 /**
  * 请求参数的可编辑表格
  */
-const FormParamMock = (props) =>{
+const FormParamMock = ({mockId}) =>{
     const { 
         findFormParamMockList, 
         deleteFormParamMock, 
@@ -19,11 +19,11 @@ const FormParamMock = (props) =>{
     } = mockFormParamStore;
 
     const [dataSource,setDataSource] = useState([])
-    const mockId = localStorage.getItem('mockId')
+    // const mockId = localStorage.getItem('mockId')
 
     useEffect( ()=>{
         findFormParamMockList(mockId).then(res=>setDataSource(res))
-    },[dataLength])
+    },[mockId,dataLength])
 
     let columns= [
         {

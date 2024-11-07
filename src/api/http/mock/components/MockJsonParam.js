@@ -8,7 +8,7 @@ import mockJsonParamStore from "../store/MockJsonParamStore";
  * mock
  * json
  */
-const JsonParamMock = (props) =>{
+const JsonParamMock = ({mockId}) =>{
     const { 
         findJsonParamMockList, 
         deleteJsonParamMock, 
@@ -20,11 +20,11 @@ const JsonParamMock = (props) =>{
     } = mockJsonParamStore;
 
     const [dataSource,setDataSource] = useState([]);
-    const mockId = localStorage.getItem('mockId');
+    // const mockId = localStorage.getItem('mockId');
 
     useEffect( ()=>{
         findJsonParamMockList(mockId).then(res=>setDataSource(res));
-    },[dataLength])
+    },[mockId,dataLength])
 
     let columns= [
         {
