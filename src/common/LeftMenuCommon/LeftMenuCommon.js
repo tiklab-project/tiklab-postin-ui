@@ -218,7 +218,7 @@ const LeftMenuCommon = (props) =>{
 
                     {
                         HelpLink&& <HelpLink
-                            bgroup={'teston'}
+                            bgroup={'postin'}
                             iconComponent= {
                                 isExpanded
                                     ?<div className={`menu-box-bottom-item-${themeColor} menu-box-bottom-item menu-box-bottom-item-isExpanded`}>
@@ -235,7 +235,7 @@ const LeftMenuCommon = (props) =>{
                     }
                     {
                         AppLink&& <AppLink
-                            bgroup={'teston'}
+                            bgroup={'postin'}
                             translateX={isExpanded?200:75}
                             iconComponent={
                                 isExpanded
