@@ -167,20 +167,27 @@ const LeftMenuCommon = (props) =>{
         setThemeColor(theme);
     }
 
+    const isElectronWindows = () => {
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isElectron = userAgent.indexOf('electron') > -1;
+        const isWindows = userAgent.indexOf('windows') > -1;
+        return isElectron && isWindows;
+    }
+    
     return(
         <div className={`menu-box ${isExpanded?"menu-box-expended":"menu-box-not-expended"} ${themeColor}`}>
             {
-                isFirst&&<div style={{width:`${isExpanded&&"200px"}`}} className={'product-logo-box'} onClick={()=>clickToPage({router:"/index"})}>
+                isFirst&& !isElectronWindows()&&<div style={{width:`${isExpanded&&"200px"}`}} className={'product-logo-box'} onClick={()=>clickToPage({router:"/index"})}>
                     <img src={themeColor===THEME_DEFAULT?productImg.postin:productWhiteImg?.postin} alt='logo' className={`${isExpanded?"product-logo-expanded":"product-logo"}`}/>
                     {
                         isExpanded&&<div className={"productName"} >{productTitle.postin}</div>
                     }
                 </div>
             }
-            <div className={"menu-box-flex"} style={{height:`${isFirst?"calc(100% - 63px)":"100%"}`}}>
+            <div className={"menu-box-flex"} style={{height:`${isFirst&&!isElectronWindows()?"calc(100% - 63px)":"100%"}`}}>
                 <ul className={"menu-box-nav"}>
                     {
-                        diffHeader&&diffHeader(isExpanded,themeColor)
+                        diffHeader&& diffHeader(isExpanded,themeColor,isElectronWindows)
                     }
                     {
                         showMenuItem(visibleMenuItems)

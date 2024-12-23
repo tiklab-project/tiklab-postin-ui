@@ -12,7 +12,7 @@ import "../workspace/components/workspace.scss"
 import "../../common/commonStyle.scss"
 import "../../api/http/definition/components/apxMethod.scss"
 import "../../support/share/components/shareStyle.scss"
-import {HomeOutlined, LeftCircleOutlined} from "@ant-design/icons";
+import {HomeOutlined} from "@ant-design/icons";
 import LeftMenuCommon from "../../common/LeftMenuCommon/LeftMenuCommon";
 
 /**
@@ -135,97 +135,81 @@ const LeftNav = (props) =>{
         setVisible(false)
     }
 
-    const showToggleRepository = (isExpanded,themeColor)=> (
-        <>
-            {
-                isExpanded
-                    ? <li className={`menu-box-nav-item-workspace `} >
-                        <Dropdown
-                            overlay={()=>toggleWorkspaceView(isExpanded)}
-                            trigger={['click']}
-                            visible={visible}
-                            onOpenChange={openToggleWorkspace}
-                        >
-                            <div style={{padding:`15px  0 15px 22px`}} className={`ws-icon-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
-                                <div style={{"cursor":"pointer"}}>
-                                    <ShowWorkspaceIcon url={workspaceIcon} className={`${isExpanded?"icon-l":"icon-x"} icon-bg-border`}  width={30}/>
-                                </div>
-                                <div className={"text-ellipsis"} style={{maxWidth:"100px"}}>{workspaceName}</div>
-                                <IconCommon
-                                    style={{
-                                        cursor:"pointer",
-                                        width:"10px",
-                                        height:"10px",
-                                        marginLeft:"3px"
-                                    }}
-                                    icon={"xiala"}
-                                />
-                                </div>
-                        </Dropdown>
-                    </li>
-                    : <Dropdown
-                        overlay={()=>toggleWorkspaceView(isExpanded)}
-                        trigger={['click']}
-                        visible={visible}
-                        onOpenChange={openToggleWorkspace}
-                    >
-                        <Tooltip placement="right" title={workspaceName}>
-                        <li className={`menu-box-nav-item-workspace `} >
-                            <div style={{padding:`15px  0 15px 22px`}} className={`ws-icon-box ${isExpanded?"menu-box-nav-item-isExpanded":"menu-box-nav-item-not-isExpanded"}`}>
-                                <div style={{"cursor":"pointer"}}>
-                                    <ShowWorkspaceIcon url={workspaceIcon} className={`${isExpanded?"icon-l":"icon-x"} icon-bg-border`}  width={30}/>
-                                </div>
-                            </div>
-                        </li>
-                    </Tooltip>
-                </Dropdown>
-            }
-
-            <li
-                className={`menu-box-nav-item `}
-                style={{
-                    borderBottom:themeColor==="theme-default"?"1px solid #e3e3e3":"1px solid #f6f7f81a",
-                    margin: "0 0 10px 0"
-                }}
-                onClick={()=> {
-                    history.push("/index")
-                    localStorage.setItem("LEFT_MENU_SELECT","/index");
-                }}
+    const WorkspaceDropdown = ({isExpanded}) => (
+        <li className="menu-box-nav-item-workspace">
+            <Dropdown
+                overlay={() => toggleWorkspaceView(isExpanded)}
+                trigger={['click']}
+                visible={visible}
+                onOpenChange={openToggleWorkspace}
             >
-                {
-                    isExpanded
-                        ?<div className={`menu-box-nav-item-${themeColor}  menu-box-nav-item-isExpanded`}>
-                            <div className={"menu-box-nav-item-detail"}>
-                                <HomeOutlined
-                                    style={{
-                                        fontSize:`18px`,
-                                        margin:"0 5px 0 6px",
-                                        color:"#777"
-                                    }}
-                                />
-                            </div>
-                            <div  className={"menu-box-nav-item-detail"}>
-                                返回主页
+                {isExpanded ? (
+                    <div className={`ws-icon-box menu-box-nav-item-isExpanded`} style={{padding: '15px 0 15px 22px'}}>
+                        <div style={{"cursor": "pointer"}}>
+                            <ShowWorkspaceIcon url={workspaceIcon} className="icon-l icon-bg-border" width={30}/>
+                        </div>
+                        <div className="text-ellipsis" style={{maxWidth: "100px"}}>{workspaceName}</div>
+                        <IconCommon
+                            style={{cursor: "pointer", width: "10px", height: "10px", marginLeft: "3px"}}
+                            icon="xiala"
+                        />
+                    </div>
+                ) : (
+                    <Tooltip placement="right" title={workspaceName}>
+                        <div className={`ws-icon-box menu-box-nav-item-not-isExpanded`} style={{padding: '15px 0 15px 22px'}}>
+                            <div style={{"cursor": "pointer"}}>
+                                <ShowWorkspaceIcon url={workspaceIcon} className="icon-x icon-bg-border" width={30}/>
                             </div>
                         </div>
-                        : <Tooltip placement="right" title={"返回主页"}>
-                            <div className={`menu-box-nav-item-${themeColor} menu-box-nav-item-not-isExpanded`}>
-                                <div className={"menu-box-nav-item-detail"}>
-                                    <HomeOutlined
-                                        style={{
-                                            fontSize:`24px`,
-                                            margin:"0 5px 0 6px",
-                                            color:`${themeColor==="theme-default"?"#777":"white"}`
-                                        }}
-                                    />
-                                </div>
-                            </div>
-                        </Tooltip>
-                }
-            </li>
-        </>
+                    </Tooltip>
+                )}
+            </Dropdown>
+        </li>
     )
 
+    const HomeButton = ({isExpanded, themeColor}) => (
+        <li
+            className="menu-box-nav-item"
+            style={{
+                borderBottom: themeColor === "theme-default" ? "1px solid #e3e3e3" : "1px solid #f6f7f81a",
+                margin: "0 0 10px 0"
+            }}
+            onClick={() => {
+                history.push("/index")
+                localStorage.setItem("LEFT_MENU_SELECT", "/index");
+            }}
+        >
+            {isExpanded ? (
+                <div className={`menu-box-nav-item-${themeColor} menu-box-nav-item-isExpanded`}>
+                    <div className="menu-box-nav-item-detail">
+                        <HomeOutlined style={{fontSize: '18px', margin: "0 5px 0 6px", color: "#777"}}/>
+                    </div>
+                    <div className="menu-box-nav-item-detail">返回主页</div>
+                </div>
+            ) : (
+                <Tooltip placement="right" title="返回主页">
+                    <div className={`menu-box-nav-item-${themeColor} menu-box-nav-item-not-isExpanded`}>
+                        <div className="menu-box-nav-item-detail">
+                            <HomeOutlined
+                                style={{
+                                    fontSize: '20px',
+                                    margin: "0 5px 0 6px",
+                                    color: themeColor === "theme-default" ? "#777" : "white"
+                                }}
+                            />
+                        </div>
+                    </div>
+                </Tooltip>
+            )}
+        </li>
+    )
+
+    const showToggleRepository = (isExpanded, themeColor, isElectronWindows) => (
+        <>
+            {!isElectronWindows() && <WorkspaceDropdown isExpanded={isExpanded}/>}
+            <HomeButton isExpanded={isExpanded} themeColor={themeColor}/>
+        </>
+    )
 
     return(
         <LeftMenuCommon
