@@ -14,6 +14,7 @@ import { stores } from './stores';
 import routers from './routers';
 import {enableAxios} from "tiklab-core-ui"
 import App from "./app";
+import {InitInstallProvider} from 'tiklab-eam-ui';
 
 enableAxios();
 export const Entry = (props) => {
@@ -25,11 +26,13 @@ export const Entry = (props) => {
     }
 
     return (
-        <Provider {...allStore} >
-            <HashRouter>
-                <App routers={routers}/>
-            </HashRouter>
-        </Provider>
+        <InitInstallProvider bgroup={'postin'}>
+            <Provider {...allStore} >
+                <HashRouter>
+                    <App routers={routers}/>
+                </HashRouter>
+            </Provider>
+        </InitInstallProvider>
     )
 }
 
